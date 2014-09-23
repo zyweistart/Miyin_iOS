@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>进出线电费柱状图</title>
+		<script type="text/javascript" src="ichart.1.2.min.js"></script>
+		<script type="text/javascript">
+            var chart;
+            $(function(){
+              chart =new iChart.Column2D({
+                                  render : 'canvasDiv',
+                                  showpercent:false,
+                                  decimalsnum:2,
+                                         width : 1000,
+                                         height : 450,border : {
+                                         enable : false
+                                         },
+                                  coordinate:{
+                                  background_color:'#fefefe'
+                                  }
+                                         });
+              chart.draw();
+              });
+              function refresh(data1){
+                  var jsonObjects = eval(data1);
+                  chart.push("data",jsonObjects);
+                  chart.setUp();
+                  chart.draw();
+              }
+        </script>
+    </head>
+    <body>
+        <div id='canvasDiv'></div>
+    </body>
+</html>

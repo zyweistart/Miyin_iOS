@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>运行状态总揽柱状图</title>
+		<script type="text/javascript" src="ichart.1.2.min.js"></script>
+		<script type="text/javascript">
+            var chart;
+            $(function(){
+              var data = [
+                          {name : '',value : 0,color:'#a5c2d5'},
+                          ];
+              chart =new iChart.Column2D({
+                                         render : 'canvasDiv',
+                                         data:data,
+                                         showpercent:false,
+                                         decimalsnum:2,
+                                         width : 1000,
+                                         height : 450,border : {
+                                         enable : false
+                                         },
+                                         coordinate:{
+                                         background_color:'#fefefe'
+                                         }
+                                         });
+              chart.draw();
+              });
+              function refresh(data1){
+                  var jsonObjects = eval(data1);
+                  chart.push("data",jsonObjects);
+                  chart.setUp();
+                  chart.draw();
+              }
+        </script>
+    </head>
+    <body>
+        <div id='canvasDiv'></div>
+    </body>
+</html>

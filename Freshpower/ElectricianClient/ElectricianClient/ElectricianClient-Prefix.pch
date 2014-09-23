@@ -1,0 +1,77 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import "BaseUIViewController.h"
+    #import "HttpRequest.h"
+    #import "Common.h"
+    #import "Account.h"
+
+    #define IOS7 [[[UIDevice currentDevice] systemVersion]floatValue]>=7
+    #define inch4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+    #define CACHE_DATA [NSString stringWithFormat:@"%@,%@",[NSString stringWithUTF8String:object_getClassName(self)],[Common getCache:ACCOUNTUSERNAME]]
+    #define CACHE_DATABYUNIQUE(UNIQUE) [NSString stringWithFormat:@"%@-%@",CACHE_DATA,UNIQUE]
+
+    #define TOPIMAGENUM 3
+    #define REFRESHNUM1 5
+    #define REFRESHNUM2 60
+    #define PAGESIZE 20
+    #define DEFAULTDATA_LASTVERSIONNO @"DEFAULTDATA_LASTVERSIONNO"
+    #define ISACCOUNTLOGIN @"ISACCOUNTLOGIN"
+    #define ACCOUNTUSERNAME @"ACCOUNTUSERNAME"
+    #define ACCOUNTPASSWORD @"ACCOUNTPASSWORD"
+    #define ACCOUNTRESULTDATA @"ACCOUNTRESULTDATA"
+
+    #define DISPLAYLINESTR @"ia=%.2f;\nib=%.2f;\nic=%.2f;"
+    #define DISPLAYLINESTR1 @"ia=%.2f;ib=%.2f;ic=%.2f;"
+    //新能量客服电话
+    #define CUSTOMERSERVICETEL @"4008263365"
+    //微信注册APP
+    #define WEIXINREGISTERAPP @"wx6c2726803d4f336a"
+    //产品购买URL
+    #define PAYURL @"http://www.fps365.net/WEB/Index/lineOrder/LostElery.aspx"
+    //按钮背景色
+    #define BTNCOLORGB [UIColor colorWithRed:(55/255.0) green:(55/255.0) blue:(139/255.0) alpha:1]
+
+//正式环境中注释该行
+#define DEVELOPER_STATUS
+#ifdef DEVELOPER_STATUS
+//测试环境
+#define URLetgWebSite @"http://122.224.247.221:7007/WEB/mobile/"
+#define URLfpsWebSite @"http://122.224.247.221:7003/WEB/mobile/"
+#define URLcrmWebSite @"http://122.224.247.219:8083/Administrator/"
+#else
+//生产环境
+#define URLetgWebSite @"http://60.191.92.132:7006/web/mobile/"
+#define URLfpsWebSite @"http://60.191.92.132:7003/web/mobile/"
+#define URLcrmWebSite @"http://122.224.247.219:8081/Administrator/"
+#endif
+
+#define URLAppMonitoringAlarm [NSString stringWithFormat:@"%@AppMonitoringAlarm.aspx",URLetgWebSite]
+#define URLaddSuggest [NSString stringWithFormat:@"%@addSuggest.aspx",URLfpsWebSite]
+#define URLnews [NSString stringWithFormat:@"%@news.aspx",URLfpsWebSite]
+#define URLcheckMobileValid [NSString stringWithFormat:@"%@checkMobileValid.aspx",URLfpsWebSite]
+#define URLAppComElec [NSString stringWithFormat:@"%@AppComElec.aspx",URLfpsWebSite]
+#define URLAppIndexRunStatus [NSString stringWithFormat:@"%@AppIndexRunStatus.aspx",URLfpsWebSite]
+#define URLAppRunStatus [NSString stringWithFormat:@"%@AppRunStatus.aspx",URLfpsWebSite]
+#define URLAppComFhReport [NSString stringWithFormat:@"%@AppComFhReport.aspx",URLfpsWebSite]
+#define URLAppMeterHisFhReport [NSString stringWithFormat:@"%@AppMeterHisFhReport.aspx",URLfpsWebSite]
+#define URLAppHisMeterElec [NSString stringWithFormat:@"%@AppHisMeterElec.aspx",URLfpsWebSite]
+#define URLAppMeterElec [NSString stringWithFormat:@"%@AppMeterElec.aspx",URLfpsWebSite]
+#define URLAppMeterFhReport [NSString stringWithFormat:@"%@AppMeterFhReport.aspx",URLfpsWebSite]
+#define URLAppAlertInfo [NSString stringWithFormat:@"%@AppAlertInfo.aspx",URLfpsWebSite]
+#define URLAppFoundE [NSString stringWithFormat:@"%@AppFoundE.aspx",URLfpsWebSite]
+
+#endif

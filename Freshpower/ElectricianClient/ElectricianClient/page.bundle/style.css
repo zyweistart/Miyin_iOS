@@ -1,0 +1,291 @@
+/*====================================================================
+Title : style.css
+Author : piglet 
+URL : 
+Description : For all pages
+Created : 2012-11-19
+Modified : 
+====================================================================*/
+li{
+	list-style-type:none;
+}
+body{
+	background:#fff;
+	font-family:"Microsoft YaHei",SimHei;
+	margin:0px;
+}
+.descBox{
+	float:left;
+	width:100%;
+}
+.descBox .title{
+	width:100%;
+	background:#fff url(ttbg.png) left bottom repeat-x;
+	float:left;
+	border-bottom:10px solid #9AD45C;
+}
+.descBox .title .lf{
+	float:left;
+}
+.descBox .title .rt{
+	float:right;
+}
+.descBox .right{
+	float:right;
+	display:inline;
+	margin:0px 20px 0px 0px;
+}
+.descBox .title .crumb{
+	clear:both;
+	text-align:center;
+}
+.descBox .content{
+	padding:0px 5px 20px 5px;
+}
+.descBox .content h2{
+	font-size:24px;
+	color:#000;
+	text-align:center;
+	clear:both;
+	padding:20px 0px;
+}
+.descBox .content h3{
+	font-size:18px;
+	color:#37378B;
+	margin:30px 0px 10px 0px;
+	background:url(dotB.png) 5px 6px no-repeat;
+	padding:0px 0px 0px 25px;
+}
+.descBox .content h4{
+	font-size:16px;
+	color:#37378B;
+	margin:20px 0px 10px 0px;
+}
+.descBox .content h5{
+	font-size:15px;
+}
+.descBox .subCnt{
+	margin:0px 0px 0px 25px;
+}
+.descBox .subCnt1{
+	margin:0px 0px 0px 25px;
+}
+.descBox .subCnt1 h4{
+	margin:30px 0px 15px 0px !important;
+}
+.descBox .content p{
+	font-size:14px;
+	margin:15px 0px;
+	line-height:30px;
+}
+.descBox .content ul{
+	margin:10px 0px;
+}
+.descBox .content li{
+	background:url(dot.png) 5px 6px no-repeat;
+	padding:0px 0px 0px 20px;
+	margin:5px 0px;
+	font-size:14px;
+}
+.descBox .content .sub li{
+	background:none;
+	padding:0px;
+	line-height:18px;
+	padding:3px 0px;
+}
+.article h5{
+	background:none !important;
+	padding:0px 0px 0px 0px !important;
+}
+.fullwidth {
+	display:block;
+	min-width:80%;
+	max-width:80%;
+}
+img.fullwidth {
+	image-rendering:optimizeQuality;
+	-ms-interpolation-mode:bicubic;
+}
+.tbBox{
+	border-collapse:separate;
+	*border-collapse:collapse;
+	border-spacing:1px;
+	background:#000;
+	*border:1px solid #000;
+	width:100%;
+}
+.tbBox th{
+	font-size:15px;
+	font-weight:bold;
+	padding:5px 5x;
+	background:#fff;
+	text-align:center;
+}
+.tbBox td{
+	font-size:15px;
+	padding:5px 5px;
+	background:#fff;
+	text-align:center;
+	white-space:normal !important;
+}
+.pic{
+	text-align:center;
+	line-height:24px;
+	font-size:14px;
+	margin:20px 0px 0px 0px;
+}
+.pic img{
+	display:block;
+}
+.newsBox{
+	padding:0px 10px;
+}
+.newsBox  h2{
+	font-size:24px;
+	color:#000;
+	text-align:center;
+	clear:both;
+	padding:20px 0px;
+}
+.newsBox .crumb{
+	text-align:right;
+	color:#ACACAC;
+	padding:0px 20px;
+}
+.newsBox p{
+	font-size:14px;
+	margin:15px 0px;
+	line-height:30px;
+	text-indent:24px;
+}
+.newsBox ul{
+	margin:10px 0px 10px 40px;
+}
+.newsBox ul ul{
+	margin:10px 0px 10px 20px;
+}
+.newsBox li{
+	line-height:24px;
+	font-size:14px;
+	margin:5px 0px;
+}
+.newsBox table{
+	font-size:14px;
+}
+.lineBox{
+	background:url(linebg.png) left 60px no-repeat;
+	width:660px;
+	height:380px;
+	margin:20px auto;
+	position:relative;
+}
+.lineBox div{
+	color:#FFFF00;
+	font-size:14px;
+	position:absolute;
+	left: 314px;
+	top: 326px;
+	line-height:20px;
+}
+.lineBox div img{
+	display:block;
+}
+.lineBox .i1{
+	left:160px;
+	top:5px;
+}
+.lineBox .i2{
+	left:160px;
+	top:175px;
+}
+.lineBox .i3{
+	left:160px;
+	top:280px;
+}
+.lineBox .i4{
+	left:420px;
+	top:90px;
+}
+.lineBox .i5{
+	left:420px;
+	top:175px;
+}
+.lineBox .i6{
+	left:420px;
+	top:5px;
+}
+.lineBox .i7{
+	left:160px;
+	top:90px;
+}
+.lineBox .i8{
+	left:420px;
+	top:280px;
+}
+.lineBox .c1{
+	left:445px;
+	top:256px;
+}
+.lineBox .c2{
+	left:80px;
+	top:73px;
+}
+.lineBox .c3{
+	left:445px;
+	top:164px;
+}
+.lineBox .c4{
+	left:175px;
+	top:256px;
+}
+.lineBox .c5{
+	left:175px;
+	top:352px;
+}
+.lineBox .c6{
+	left:175px;
+	top:164px;
+}
+.lineBox .c7{
+	left:445px;
+	top:352px;
+}
+.lineBox .c8{
+	left:313px;
+	top:328px;
+}
+.lineBox .c9{
+	left:553px;
+	top:73px;
+}
+
+
+/******css for price********/
+.priceBox h2{
+	font-size:24px;
+	background:url(dot1.png) left top no-repeat;
+	padding:0px 0px 0px 50px;
+	line-height:45px;
+	margin:20px 0px 10px 0px;
+}
+.dotH2{
+	background:url(dot2.png) left 30px no-repeat !important;
+	border-top:1px solid #ccc;
+	padding:30px 0px 0px 50px !important;
+}
+.priceBox ul{
+	margin:0px;
+	padding:0px;
+}
+.priceBox li{
+	list-style-type:none;
+	padding-left:20px;
+	margin:10px 0px;
+	line-height:30px;
+}
+
+.priceBox p{
+	line-height:30px;
+	margin:40px 10px 20px 10px;
+	text-indent:30px;
+}

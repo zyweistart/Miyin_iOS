@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2849D73C-B6A3-48ED-9262-6AD2AD33167F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ElectricianClient</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>84C9D313-E3F4-4B33-BCCE-A674A7AB3AD1</key>
+		<string>https://github.com/zyweistart/freshpower.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ElectricianClient/ElectricianClient.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>84C9D313-E3F4-4B33-BCCE-A674A7AB3AD1</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/zyweistart/freshpower.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>84C9D313-E3F4-4B33-BCCE-A674A7AB3AD1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>84C9D313-E3F4-4B33-BCCE-A674A7AB3AD1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>freshpower</string>
+		</dict>
+	</array>
+</dict>
+</plist>
