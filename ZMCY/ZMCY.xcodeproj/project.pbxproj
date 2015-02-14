@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9BB08BA1A8F701300674109 /* SliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB08B91A8F701300674109 /* SliderViewController.m */; };
+		C9BB08CE1A8F777E00674109 /* leftside_shadow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9BB08C01A8F777E00674109 /* leftside_shadow_bg@2x.png */; };
+		C9BB08D01A8F777E00674109 /* MainAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB08C41A8F777E00674109 /* MainAppViewController.m */; };
+		C9BB08D41A8F777E00674109 /* SubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB08CB1A8F777E00674109 /* SubViewController.m */; };
+		C9BB08D81A8F834700674109 /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB08D71A8F834700674109 /* Channel.m */; };
 		C9EB5F5B1A8AF913002DE6C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB5F5A1A8AF913002DE6C0 /* main.m */; };
 		C9EB5F5E1A8AF913002DE6C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB5F5D1A8AF913002DE6C0 /* AppDelegate.m */; };
-		C9EB5F611A8AF913002DE6C0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB5F601A8AF913002DE6C0 /* ViewController.m */; };
 		C9EB5F641A8AF913002DE6C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9EB5F621A8AF913002DE6C0 /* Main.storyboard */; };
 		C9EB5F661A8AF913002DE6C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9EB5F651A8AF913002DE6C0 /* Images.xcassets */; };
 		C9EB5F691A8AF913002DE6C0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9EB5F671A8AF913002DE6C0 /* LaunchScreen.xib */; };
@@ -31,13 +35,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C9BB08B81A8F701300674109 /* SliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderViewController.h; sourceTree = "<group>"; };
+		C9BB08B91A8F701300674109 /* SliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderViewController.m; sourceTree = "<group>"; };
+		C9BB08C01A8F777E00674109 /* leftside_shadow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftside_shadow_bg@2x.png"; sourceTree = "<group>"; };
+		C9BB08C31A8F777E00674109 /* MainAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainAppViewController.h; sourceTree = "<group>"; };
+		C9BB08C41A8F777E00674109 /* MainAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainAppViewController.m; sourceTree = "<group>"; };
+		C9BB08CA1A8F777E00674109 /* SubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubViewController.h; sourceTree = "<group>"; };
+		C9BB08CB1A8F777E00674109 /* SubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubViewController.m; sourceTree = "<group>"; };
+		C9BB08D61A8F834700674109 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
+		C9BB08D71A8F834700674109 /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
 		C9EB5F551A8AF913002DE6C0 /* ZMCY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZMCY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9EB5F591A8AF913002DE6C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9EB5F5A1A8AF913002DE6C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C9EB5F5C1A8AF913002DE6C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C9EB5F5D1A8AF913002DE6C0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C9EB5F5F1A8AF913002DE6C0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C9EB5F601A8AF913002DE6C0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C9EB5F631A8AF913002DE6C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C9EB5F651A8AF913002DE6C0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C9EB5F681A8AF913002DE6C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -72,6 +83,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C9BB08B71A8F701300674109 /* SliderViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C9BB08B81A8F701300674109 /* SliderViewController.h */,
+				C9BB08B91A8F701300674109 /* SliderViewController.m */,
+			);
+			path = SliderViewController;
+			sourceTree = "<group>";
+		};
+		C9BB08D51A8F82F200674109 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C9BB08D61A8F834700674109 /* Channel.h */,
+				C9BB08D71A8F834700674109 /* Channel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		C9EB5F4C1A8AF913002DE6C0 = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +163,7 @@
 		C9EB5F7E1A8AFA08002DE6C0 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C9BB08B71A8F701300674109 /* SliderViewController */,
 				C9EB5F7F1A8AFA08002DE6C0 /* ASIHTTP */,
 			);
 			path = Librarys;
@@ -158,6 +188,7 @@
 		C9EB5FC71A8AFFE8002DE6C0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C9BB08D51A8F82F200674109 /* Model */,
 				C9EB5FC81A8AFFF5002DE6C0 /* Controller */,
 				C9EB5FC91A8B0002002DE6C0 /* XIB */,
 			);
@@ -167,8 +198,11 @@
 		C9EB5FC81A8AFFF5002DE6C0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C9EB5F5F1A8AF913002DE6C0 /* ViewController.h */,
-				C9EB5F601A8AF913002DE6C0 /* ViewController.m */,
+				C9BB08C01A8F777E00674109 /* leftside_shadow_bg@2x.png */,
+				C9BB08C31A8F777E00674109 /* MainAppViewController.h */,
+				C9BB08C41A8F777E00674109 /* MainAppViewController.m */,
+				C9BB08CA1A8F777E00674109 /* SubViewController.h */,
+				C9BB08CB1A8F777E00674109 /* SubViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -273,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9EB5F641A8AF913002DE6C0 /* Main.storyboard in Resources */,
+				C9BB08CE1A8F777E00674109 /* leftside_shadow_bg@2x.png in Resources */,
 				C9EB5F691A8AF913002DE6C0 /* LaunchScreen.xib in Resources */,
 				C9EB5F661A8AF913002DE6C0 /* Images.xcassets in Resources */,
 			);
@@ -292,8 +327,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9EB5F611A8AF913002DE6C0 /* ViewController.m in Sources */,
+				C9BB08BA1A8F701300674109 /* SliderViewController.m in Sources */,
+				C9BB08D81A8F834700674109 /* Channel.m in Sources */,
 				C9EB5F5E1A8AF913002DE6C0 /* AppDelegate.m in Sources */,
+				C9BB08D41A8F777E00674109 /* SubViewController.m in Sources */,
+				C9BB08D01A8F777E00674109 /* MainAppViewController.m in Sources */,
 				C9EB5FAC1A8AFA08002DE6C0 /* Reachability.m in Sources */,
 				C9EB5F5B1A8AF913002DE6C0 /* main.m in Sources */,
 			);
@@ -488,6 +526,7 @@
 				C9EB5F7A1A8AF913002DE6C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C9EB5F7B1A8AF913002DE6C0 /* Build configuration list for PBXNativeTarget "ZMCYTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +535,7 @@
 				C9EB5F7D1A8AF913002DE6C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
