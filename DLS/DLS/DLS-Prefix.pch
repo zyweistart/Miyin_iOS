@@ -1,0 +1,26 @@
+#ifndef DLS_DLS_Prefix_pch
+#define DLS_DLS_Prefix_pch
+
+#import <Availability.h>
+
+#ifndef __IPHONE_7_0
+#warning "该项目最底支持iOS7.0及以上版本."
+#endif
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "BaseViewController.h"
+#import "AppDelegate.h"
+
+CG_INLINE CGRect
+CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
+{
+    AppDelegate *myDelegate = [[UIApplication sharedApplication] delegate];
+    CGRect rect;
+    rect.origin.x = x * myDelegate.autoSizeScaleX; rect.origin.y = y * myDelegate.autoSizeScaleY;
+    rect.size.width = width * myDelegate.autoSizeScaleX; rect.size.height = height * myDelegate.autoSizeScaleY;
+    return rect;
+}
+
+
+#endif

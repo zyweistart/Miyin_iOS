@@ -20,9 +20,22 @@
 
 @implementation AppDelegate
 
+#define ScreenHeight [[UIScreen mainScreen] bounds].size.height
+#define ScreenWidth [[UIScreen mainScreen] bounds].size.width
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    AppDelegate *myDelegate = [[UIApplication sharedApplication] delegate];
+    if(ScreenHeight > 480){
+        myDelegate.autoSizeScaleX = ScreenWidth/320;
+        myDelegate.autoSizeScaleY = ScreenHeight/568;
+    }else{
+        myDelegate.autoSizeScaleX = 1.0;
+        myDelegate.autoSizeScaleY = 1.0;
+    }
     //显示系统托盘
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    
+    [application setStatusBarStyle:UIStatusBarStyleLightContent];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -78,9 +91,7 @@
                                          vipViewControllerNav,
                                          myViewControllerNav,
                                          nil];
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-//    [[UINavigationBar appearance] setBarTintColor:[UIColor orangeColor]];
-//    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
     self.window.rootViewController=_tabBarController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
