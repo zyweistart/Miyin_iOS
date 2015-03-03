@@ -11,6 +11,7 @@
 #import "NearbyViewController.h"
 #import "VIPViewController.h"
 #import "MyViewController.h"
+
 #define TAB_N_TEXTCOLOR [UIColor colorWithRed:(99/255.0) green:(111/255.0) blue:(125/255.0) alpha:1]
 #define TAB_P_TEXTCOLOR [UIColor colorWithRed:(46/255.0) green:(92/255.0) blue:(178/255.0) alpha:1]
 

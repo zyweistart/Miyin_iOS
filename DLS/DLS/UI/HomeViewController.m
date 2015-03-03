@@ -7,10 +7,12 @@
 //
 
 #import "HomeViewController.h"
+#import "HomeBannerCellTableViewCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define TOPNAVBGCOLOR [UIColor colorWithRed:(46/255.0) green:(92/255.0) blue:(178/255.0) alpha:1]
 
-#define TOPNAVHEIGHT 100
+#define TOPNAVHEIGHT 60
 
 @interface HomeViewController ()
 
@@ -25,20 +27,30 @@
         UIView *topView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, TOPNAVHEIGHT)];
         [topView setBackgroundColor:TOPNAVBGCOLOR];
         [self.view addSubview:topView];
-        
-        UILabel *txtLocation=[[UILabel alloc]initWithFrame:CGRectMake1(0, 30, 50, 30)];
+        //定位文案
+        UILabel *txtLocation=[[UILabel alloc]initWithFrame:CGRectMake1(5, 25, 50, 30)];
         [txtLocation setTextColor:[UIColor whiteColor]];
-        [txtLocation setText:@"杭州<"];
+        [txtLocation setText:@"杭州"];
+        [txtLocation setFont:[UIFont systemFontOfSize:15]];
+        [txtLocation setTextAlignment:NSTextAlignmentCenter];
         [topView addSubview:txtLocation];
+        //搜索框架
+        UIView *vSearchFramework=[[UIView alloc]initWithFrame:CGRectMake1(60, 25, 200, 30)];
+        vSearchFramework.layer.cornerRadius = 15;
+        vSearchFramework.layer.masksToBounds = YES;
+        [vSearchFramework setBackgroundColor:[UIColor colorWithRed:(33/255.0) green:(67/255.0) blue:(131/255.0) alpha:1]];
+        [topView addSubview:vSearchFramework];
+        //搜索图标
         
-        UITextField *tfSearch=[[UITextField alloc]initWithFrame:CGRectMake1(0, 60, 200, 30)];
+        //搜索框
+        UITextField *tfSearch=[[UITextField alloc]initWithFrame:CGRectMake1(60, 0, 120, 30)];
         [tfSearch setPlaceholder:@"输入搜索信息"];
-        [topView addSubview:tfSearch];
-        
-        
-        
-        
-        
+        [tfSearch setTextColor:[UIColor whiteColor]];
+        [vSearchFramework addSubview:tfSearch];
+        //右消息按钮
+        UIImageView *imgMessage=[[UIImageView alloc]initWithFrame:CGRectMake1(265, 25, 50, 30)];
+        [topView addSubview:imgMessage];
+        //
         self.dataItemArray=[[NSMutableArray alloc]init];
         [self.dataItemArray addObject:@"1"];//Banner条
         [self.dataItemArray addObject:@"2"];//导航
