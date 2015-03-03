@@ -40,6 +40,7 @@
 		C9E1FF0A1AA558E600720AAC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E1FEEF1AA5562000720AAC /* CFNetwork.framework */; };
 		C9E1FF0B1AA558EC00720AAC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E1FEF71AA5569100720AAC /* QuartzCore.framework */; };
 		C9E1FF0F1AA5A41B00720AAC /* HomeBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1FF0E1AA5A41B00720AAC /* HomeBannerCell.m */; };
+		C9E1FF121AA5B5A800720AAC /* UIButton+ImageWithLable.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1FF111AA5B5A800720AAC /* UIButton+ImageWithLable.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,8 @@
 		C9E1FF071AA5578700720AAC /* DLS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DLS-Prefix.pch"; sourceTree = "<group>"; };
 		C9E1FF0D1AA5A41B00720AAC /* HomeBannerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannerCell.h; sourceTree = "<group>"; };
 		C9E1FF0E1AA5A41B00720AAC /* HomeBannerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerCell.m; sourceTree = "<group>"; };
+		C9E1FF101AA5B5A800720AAC /* UIButton+ImageWithLable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ImageWithLable.h"; sourceTree = "<group>"; };
+		C9E1FF111AA5B5A800720AAC /* UIButton+ImageWithLable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ImageWithLable.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +154,8 @@
 				C9E1FEB61AA5543F00720AAC /* BaseTableViewController.m */,
 				C9E1FEB71AA5543F00720AAC /* BaseViewController.h */,
 				C9E1FEB81AA5543F00720AAC /* BaseViewController.m */,
+				C9E1FF101AA5B5A800720AAC /* UIButton+ImageWithLable.h */,
+				C9E1FF111AA5B5A800720AAC /* UIButton+ImageWithLable.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -462,6 +467,7 @@
 				C9B85F671AA432E1008A56F0 /* AppDelegate.m in Sources */,
 				C9B85F641AA432E1008A56F0 /* main.m in Sources */,
 				C922D08E1AA444B600F6DBA1 /* HomeViewController.m in Sources */,
+				C9E1FF121AA5B5A800720AAC /* UIButton+ImageWithLable.m in Sources */,
 				C9E1FEBA1AA5543F00720AAC /* BaseTableViewController.m in Sources */,
 				C9E1FEEB1AA555F000720AAC /* ATMProgressLayer.m in Sources */,
 				C922D0971AA444FB00F6DBA1 /* MyViewController.m in Sources */,

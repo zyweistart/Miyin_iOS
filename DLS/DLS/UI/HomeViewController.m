@@ -58,10 +58,9 @@
         [self.dataItemArray addObject:@"3"];//分类
         [self.dataItemArray addObject:@"4"];//资讯
         
-        self.tableView=[[UITableView alloc]initWithFrame:CGRectMake1(0, TOPNAVHEIGHT, 320, self.view.bounds.size.height-TOPNAVHEIGHT) style:UITableViewStyleGrouped];
+        self.tableView=[[UITableView alloc]initWithFrame:CGRectMake1(0, TOPNAVHEIGHT, 320, self.view.bounds.size.height-TOPNAVHEIGHT)];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         self.tableView.separatorColor=[UIColor clearColor];
-        self.tableView.sectionFooterHeight=30;
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];
         [self.view addSubview:self.tableView];
@@ -78,14 +77,10 @@
     [super viewDidLoad];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *content=[self.dataItemArray objectAtIndex:[indexPath row]];
     if([@"1" isEqualToString:content]){
-        return 162;
+        return 290;
     }else if([@"2" isEqualToString:content]){
         return 262;
     }else if([@"3" isEqualToString:content]){
@@ -112,6 +107,7 @@
         }
         NSString *content=[self.dataItemArray objectAtIndex:[indexPath row]];
         cell.textLabel.text=content;
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         return cell;
     }
 }
