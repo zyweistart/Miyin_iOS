@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeBannerCellTableViewCell : UITableViewCell
+@interface HomeBannerCell : UITableViewCell
 
 @end

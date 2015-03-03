@@ -6,14 +6,16 @@
 //  Copyright (c) 2015 Start. All rights reserved.
 //
 
-#import "HomeBannerCellTableViewCell.h"
+#import "HomeBannerCell.h"
 
-@implementation HomeBannerCellTableViewCell
+@implementation HomeBannerCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self setBackgroundColor:[UIColor colorWithRed:147 green:222 blue:250 alpha:1]];
+        UIImageView *banner=[[UIImageView alloc]initWithFrame:self.bounds];
+        [banner setImage:[UIImage imageNamed:@"banner"]];
+        [self addSubview:banner];
     }
     return self;
 }

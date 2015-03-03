@@ -39,7 +39,7 @@
 		C9E1FF081AA558A700720AAC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E1FEF11AA5563B00720AAC /* UIKit.framework */; };
 		C9E1FF0A1AA558E600720AAC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E1FEEF1AA5562000720AAC /* CFNetwork.framework */; };
 		C9E1FF0B1AA558EC00720AAC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E1FEF71AA5569100720AAC /* QuartzCore.framework */; };
-		C9E1FF0F1AA5A41B00720AAC /* HomeBannerCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1FF0E1AA5A41B00720AAC /* HomeBannerCellTableViewCell.m */; };
+		C9E1FF0F1AA5A41B00720AAC /* HomeBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1FF0E1AA5A41B00720AAC /* HomeBannerCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,8 +111,8 @@
 		C9E1FEF31AA5564100720AAC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C9E1FEF71AA5569100720AAC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C9E1FF071AA5578700720AAC /* DLS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DLS-Prefix.pch"; sourceTree = "<group>"; };
-		C9E1FF0D1AA5A41B00720AAC /* HomeBannerCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannerCellTableViewCell.h; sourceTree = "<group>"; };
-		C9E1FF0E1AA5A41B00720AAC /* HomeBannerCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerCellTableViewCell.m; sourceTree = "<group>"; };
+		C9E1FF0D1AA5A41B00720AAC /* HomeBannerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannerCell.h; sourceTree = "<group>"; };
+		C9E1FF0E1AA5A41B00720AAC /* HomeBannerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,8 +333,8 @@
 		C9E1FF0C1AA5A3DD00720AAC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				C9E1FF0D1AA5A41B00720AAC /* HomeBannerCellTableViewCell.h */,
-				C9E1FF0E1AA5A41B00720AAC /* HomeBannerCellTableViewCell.m */,
+				C9E1FF0D1AA5A41B00720AAC /* HomeBannerCell.h */,
+				C9E1FF0E1AA5A41B00720AAC /* HomeBannerCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -446,7 +446,7 @@
 			files = (
 				C9E1FEE71AA555F000720AAC /* Reachability.m in Sources */,
 				C9E1FED21AA554E200720AAC /* Response.m in Sources */,
-				C9E1FF0F1AA5A41B00720AAC /* HomeBannerCellTableViewCell.m in Sources */,
+				C9E1FF0F1AA5A41B00720AAC /* HomeBannerCell.m in Sources */,
 				C9E1FEB91AA5543F00720AAC /* BaseRefreshTableViewController.m in Sources */,
 				C9E1FEBB1AA5543F00720AAC /* BaseViewController.m in Sources */,
 				C9E1FEC91AA5548D00720AAC /* EGORefreshTableHeaderView.m in Sources */,

@@ -2,16 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "ic_vip_p.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "ic_vip_p@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "vip_p@3x.png"
+      "filename" : "ic_vip_p@3x.png"
     }
   ],
   "info" : {

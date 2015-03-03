@@ -7,7 +7,7 @@
 //
 
 #import "HomeViewController.h"
-#import "HomeBannerCellTableViewCell.h"
+#import "HomeBannerCell.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define TOPNAVBGCOLOR [UIColor colorWithRed:(46/255.0) green:(92/255.0) blue:(178/255.0) alpha:1]
@@ -48,7 +48,8 @@
         [tfSearch setTextColor:[UIColor whiteColor]];
         [vSearchFramework addSubview:tfSearch];
         //右消息按钮
-        UIImageView *imgMessage=[[UIImageView alloc]initWithFrame:CGRectMake1(265, 25, 50, 30)];
+        UIImageView *imgMessage=[[UIImageView alloc]initWithFrame:CGRectMake1(278, 30, 24, 20)];
+        [imgMessage setImage:[UIImage imageNamed:@"message"]];
         [topView addSubview:imgMessage];
         //
         self.dataItemArray=[[NSMutableArray alloc]init];
@@ -57,9 +58,10 @@
         [self.dataItemArray addObject:@"3"];//分类
         [self.dataItemArray addObject:@"4"];//资讯
         
-        self.tableView=[[UITableView alloc]initWithFrame:CGRectMake1(0, TOPNAVHEIGHT, 320, self.view.bounds.size.height-TOPNAVHEIGHT)];
+        self.tableView=[[UITableView alloc]initWithFrame:CGRectMake1(0, TOPNAVHEIGHT, 320, self.view.bounds.size.height-TOPNAVHEIGHT) style:UITableViewStyleGrouped];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         self.tableView.separatorColor=[UIColor clearColor];
+        self.tableView.sectionFooterHeight=30;
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];
         [self.view addSubview:self.tableView];
@@ -76,6 +78,10 @@
     [super viewDidLoad];
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *content=[self.dataItemArray objectAtIndex:[indexPath row]];
     if([@"1" isEqualToString:content]){
@@ -90,14 +96,24 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *CMainCell = @"CMainCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
+    NSString *row=[self.dataItemArray objectAtIndex:[indexPath row]];
+    if([@"1" isEqualToString:row]){
+        static NSString *CMainCell = @"CHomeBannerCell";
+        HomeBannerCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
+        if (cell == nil) {
+            cell = [[HomeBannerCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
+        }
+        return cell;
+    }else{
+        static NSString *CMainCell = @"CMainCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
+        }
+        NSString *content=[self.dataItemArray objectAtIndex:[indexPath row]];
+        cell.textLabel.text=content;
+        return cell;
     }
-    NSString *content=[self.dataItemArray objectAtIndex:[indexPath row]];
-    cell.textLabel.text=content;
-    return cell;
 }
 
 @end
