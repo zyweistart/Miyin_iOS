@@ -43,9 +43,11 @@
         [vSearchFramework setBackgroundColor:[UIColor colorWithRed:(33/255.0) green:(67/255.0) blue:(131/255.0) alpha:1]];
         [topView addSubview:vSearchFramework];
         //搜索图标
-        
+        UIImageView *iconSearch=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 6, 18, 18)];
+        [iconSearch setImage:[UIImage imageNamed:@"search"]];
+        [vSearchFramework addSubview:iconSearch];
         //搜索框
-        UITextField *tfSearch=[[UITextField alloc]initWithFrame:CGRectMake1(60, 0, 120, 30)];
+        UITextField *tfSearch=[[UITextField alloc]initWithFrame:CGRectMake1(38, 0, 152, 30)];
         [tfSearch setPlaceholder:@"输入搜索信息"];
         [tfSearch setTextColor:[UIColor whiteColor]];
         [vSearchFramework addSubview:tfSearch];
@@ -65,17 +67,49 @@
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];
         [self.view addSubview:self.tableView];
+        
+        [self addRefreshViewControl];
+        
+        [self autoRefreshData];
+        
     }
     return self;
 }
 
-- (void)viewDidLoad {
-    UIView *statusBarView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
-    statusBarView.backgroundColor=[UIColor orangeColor];
-    [self.view addSubview:statusBarView];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [super viewDidLoad];
+//自动下载刷新
+- (void)autoRefreshData{
+    //自行创建下拉动画
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1.0];
+    //注意位移点的y值为负值
+    self.tableView.contentOffset=CGPointMake(0.0, -200.0);
+    [UIView commitAnimations];
+    //改变refreshcontroller的状态
+    [self.refreshControl beginRefreshing];
+    //刷新数据和表格视图
+    [self RefreshViewControlEventValueChanged];
+}
+
+//添加UIRefreshControl下拉刷新控件到UITableViewController的view中
+- (void)addRefreshViewControl
+{
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [self.refreshControl addTarget:self action:@selector(RefreshViewControlEventValueChanged) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+}
+
+//刷新事件
+- (void)RefreshViewControlEventValueChanged
+{
+    if (self.refreshControl.refreshing) {
+        [self performSelector:@selector(handleData) withObject:nil afterDelay:2];
+    }
+}
+
+- (void)handleData
+{
+    [self.refreshControl endRefreshing];
+    [self.tableView reloadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -95,24 +129,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *row=[self.dataItemArray objectAtIndex:[indexPath row]];
     if([@"1" isEqualToString:row]){
-        static NSString *CMainCell = @"CHomeBannerCell";
-        HomeBannerCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
+        static NSString *CHomeBannerCell = @"CHomeBannerCell";
+        HomeBannerCell *cell = [tableView dequeueReusableCellWithIdentifier:CHomeBannerCell];
         if (cell == nil) {
-            cell = [[HomeBannerCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
+            cell = [[HomeBannerCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CHomeBannerCell];
         }
         return cell;
     }else if([@"2" isEqualToString:row]){
-        static NSString *CMainCell = @"CHomeCategoryCell";
-        HomeCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
+        static NSString *CHomeCategoryCell = @"CHomeCategoryCell";
+        HomeCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:CHomeCategoryCell];
         if (cell == nil) {
-            cell = [[HomeCategoryCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
+            cell = [[HomeCategoryCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CHomeCategoryCell];
         }
         return cell;
     }else{
-        static NSString *CMainCell = @"CHomeInformationCell";
-        HomeInformationCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
+        static NSString *CHomeInformationCell = @"CHomeInformationCell";
+        HomeInformationCell *cell = [tableView dequeueReusableCellWithIdentifier:CHomeInformationCell];
         if (cell == nil) {
-            cell = [[HomeInformationCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
+            cell = [[HomeInformationCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CHomeInformationCell];
         }
         return cell;
     }

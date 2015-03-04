@@ -10,4 +10,6 @@
 
 @interface HomeViewController : BaseTableViewController
 
+@property UIRefreshControl *refreshControl;
+
 @end

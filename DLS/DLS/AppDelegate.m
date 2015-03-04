@@ -14,6 +14,7 @@
 
 #define TAB_N_TEXTCOLOR [UIColor colorWithRed:(99/255.0) green:(111/255.0) blue:(125/255.0) alpha:1]
 #define TAB_P_TEXTCOLOR [UIColor colorWithRed:(46/255.0) green:(92/255.0) blue:(178/255.0) alpha:1]
+#define NAVBG [UIColor colorWithRed:(46/255.0) green:(92/255.0) blue:(178/255.0) alpha:1]
 
 @interface AppDelegate ()
 
@@ -53,34 +54,27 @@
     UINavigationController *nearbyViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[NearbyViewController alloc]init]];
     [[nearbyViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"ic_nearby_n"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [[nearbyViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"ic_nearby_p"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    [[nearbyViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                              dictionaryWithObjectsAndKeys: TAB_N_TEXTCOLOR,
-                                                              NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
-    [[nearbyViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                              dictionaryWithObjectsAndKeys: TAB_P_TEXTCOLOR,
-                                                              NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
+    [[nearbyViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: TAB_N_TEXTCOLOR,NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    [[nearbyViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: TAB_P_TEXTCOLOR,NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
     [[nearbyViewControllerNav tabBarItem]setTitle:@"附近"];
+    [[nearbyViewControllerNav navigationBar]setBarTintColor:NAVBG];
+    [[nearbyViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
     UINavigationController *vipViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[VIPViewController alloc]init]];
     [[vipViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"ic_vip_n"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [[vipViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"ic_vip_p"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    [[vipViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                              dictionaryWithObjectsAndKeys: TAB_N_TEXTCOLOR,
-                                                              NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
-    [[vipViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                              dictionaryWithObjectsAndKeys: TAB_P_TEXTCOLOR,
-                                                              NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
-    
+    [[vipViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: TAB_N_TEXTCOLOR,NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    [[vipViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: TAB_P_TEXTCOLOR,NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
     [[vipViewControllerNav tabBarItem]setTitle:@"VIP"];
+    [[vipViewControllerNav navigationBar]setBarTintColor:NAVBG];
+    [[vipViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
     UINavigationController *myViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[MyViewController alloc]init]];
     [[myViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"ic_my_n"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [[myViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"ic_my_p"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    [[myViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                                dictionaryWithObjectsAndKeys: TAB_N_TEXTCOLOR,
-                                                                NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
-    [[myViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                                dictionaryWithObjectsAndKeys: TAB_P_TEXTCOLOR,
-                                                              NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
+    [[myViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: TAB_N_TEXTCOLOR,NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    [[myViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: TAB_P_TEXTCOLOR,NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
     [[myViewControllerNav tabBarItem]setTitle:@"我的"];
+    [[myViewControllerNav navigationBar]setBarTintColor:NAVBG];
+    [[myViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
     
     
     UITabBarController *_tabBarController = [[UITabBarController alloc] init];
