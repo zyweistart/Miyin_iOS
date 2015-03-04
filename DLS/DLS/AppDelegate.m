@@ -14,7 +14,6 @@
 
 #define TAB_N_TEXTCOLOR [UIColor colorWithRed:(99/255.0) green:(111/255.0) blue:(125/255.0) alpha:1]
 #define TAB_P_TEXTCOLOR [UIColor colorWithRed:(46/255.0) green:(92/255.0) blue:(178/255.0) alpha:1]
-#define NAVBG [UIColor colorWithRed:(46/255.0) green:(92/255.0) blue:(178/255.0) alpha:1]
 
 @interface AppDelegate ()
 
@@ -38,19 +37,16 @@
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    HomeViewController *homeViewController =[[HomeViewController alloc]init];
-    [[homeViewController tabBarItem] setImage:[[UIImage imageNamed:@"ic_home_n"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    [[homeViewController tabBarItem] setSelectedImage:[[UIImage imageNamed:@"ic_home_p"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    [[homeViewController tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                              dictionaryWithObjectsAndKeys: TAB_N_TEXTCOLOR,
-                                                              NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
-    [[homeViewController tabBarItem] setTitleTextAttributes:[NSDictionary
-                                                              dictionaryWithObjectsAndKeys: TAB_P_TEXTCOLOR,
-                                                              NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
-    [[homeViewController tabBarItem]setTitle:@"首页"];
+    UINavigationController *homeViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[HomeViewController alloc]init]];
+    [[homeViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"ic_home_n"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [[homeViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"ic_home_p"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [[homeViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: TAB_N_TEXTCOLOR,NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    [[homeViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: TAB_P_TEXTCOLOR,NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
+    [[homeViewControllerNav tabBarItem]setTitle:@"首页"];
+    [[homeViewControllerNav navigationBar]setBarTintColor:NAVBG];
+    [[homeViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
     UINavigationController *nearbyViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[NearbyViewController alloc]init]];
     [[nearbyViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"ic_nearby_n"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [[nearbyViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"ic_nearby_p"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
@@ -76,12 +72,12 @@
     [[myViewControllerNav navigationBar]setBarTintColor:NAVBG];
     [[myViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
     
-    
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     UITabBarController *_tabBarController = [[UITabBarController alloc] init];
     [[_tabBarController tabBar] setBackgroundImage:[[UIImage alloc] init]];
 //    _tabBarController.delegate = self;
     _tabBarController.viewControllers = [NSArray arrayWithObjects:
-                                         homeViewController,
+                                         homeViewControllerNav,
                                          nearbyViewControllerNav,
                                          vipViewControllerNav,
                                          myViewControllerNav,

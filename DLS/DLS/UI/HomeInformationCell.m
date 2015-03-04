@@ -32,7 +32,7 @@
         UIView *categoryFrame =[[UIView alloc] initWithFrame:CGRectMake1(10, 0, 300, 40)] ;
         [mainFrame addSubview:categoryFrame];
         //资讯主体
-        UIView *informationFrame =[[UIView alloc] initWithFrame:CGRectMake1(0, 50, 320, 400)] ;
+        UIView *informationFrame =[[UIView alloc] initWithFrame:CGRectMake1(0, 40, 320, 400)] ;
         [mainFrame addSubview:informationFrame];
         
         self.button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 75, 40)];

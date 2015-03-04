@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VIPViewController : UIViewController
+@interface VIPViewController : BaseViewController
 
 @end
