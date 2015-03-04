@@ -14,6 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define TOPNAVBGCOLOR [UIColor colorWithRed:(46/255.0) green:(92/255.0) blue:(178/255.0) alpha:1]
+#define SEARCHTIPCOLOR [UIColor colorWithRed:(88/255.0) green:(130/255.0) blue:(216/255.0) alpha:1]
 
 @interface HomeViewController ()
 
@@ -25,7 +26,7 @@
     self=[super init];
     if(self){
         //定位信息
-        NSString *lTitle=@"杭州杭州";
+        NSString *lTitle=@"杭州";
         CGSize titleSize = [lTitle sizeWithFont:[UIFont systemFontOfSize:15.0f]];
         UIButton *location = [UIButton buttonWithType:UIButtonTypeCustom];
         [location setTitle:lTitle forState:UIControlStateNormal];
@@ -41,19 +42,22 @@
         
         //搜索框架
         UIView *vSearchFramework=[[UIView alloc]initWithFrame:CGRectMake1(0, 25, 250, 30)];
+        vSearchFramework.userInteractionEnabled=YES;
         vSearchFramework.layer.cornerRadius = 15;
         vSearchFramework.layer.masksToBounds = YES;
         [vSearchFramework setBackgroundColor:[UIColor colorWithRed:(33/255.0) green:(67/255.0) blue:(131/255.0) alpha:1]];
+        [vSearchFramework addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goSearch:)]];
         [self navigationItem].titleView=vSearchFramework;
         //搜索图标
         UIImageView *iconSearch=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 6, 18, 18)];
         [iconSearch setImage:[UIImage imageNamed:@"search"]];
         [vSearchFramework addSubview:iconSearch];
         //搜索框
-        UITextField *tfSearch=[[UITextField alloc]initWithFrame:CGRectMake1(38, 0, 152, 30)];
-        [tfSearch setPlaceholder:@"输入搜索信息"];
-        [tfSearch setTextColor:[UIColor whiteColor]];
-        [vSearchFramework addSubview:tfSearch];
+        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(38, 0, 152, 30)];
+        [lbl setText:@"输入搜索信息"];
+        [lbl setTextColor:SEARCHTIPCOLOR];
+        [lbl setFont:[UIFont systemFontOfSize:14]];
+        [vSearchFramework addSubview:lbl];
         
         //右消息按钮
         UIButton *btnMessage = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -153,12 +157,17 @@
         return cell;
     }
 }
-
+//定位
 - (void)goLocation:(UIButton*)sender
 {
     [self.navigationController pushViewController:[[MessageViewController alloc]init] animated:YES];
 }
-
+//搜索
+- (void)goSearch:(id)sender
+{
+    [self.navigationController pushViewController:[[MessageViewController alloc]init] animated:YES];
+}
+//消息
 - (void)goMessage:(UIButton*)sender
 {
     [self.navigationController pushViewController:[[MessageViewController alloc]init] animated:YES];
