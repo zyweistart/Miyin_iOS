@@ -9,6 +9,8 @@
 #import "HomeBannerCell.h"
 #import "UIButton+ImageWithLable.h"
 
+#define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
+
 @implementation HomeBannerCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -17,60 +19,44 @@
         UIImageView *banner=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 90)];
         [banner setImage:[UIImage imageNamed:@"banner"]];
         [self addSubview:banner];
-        
-        //主体
         UIView *mainFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 100, 320, 180)];
         [self addSubview:mainFrame];
-        //汽车吊求租
-        UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 80, 90)];
-        button.tag=1;
-        [button setImage:[UIImage imageNamed:@"autocrane_i"] withTitle:@"汽车吊求租" forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(goToMain:) forControlEvents:UIControlEventTouchDown];
-        [mainFrame addSubview:button];
-        //履带吊求租
-        button=[[UIButton alloc]initWithFrame:CGRectMake1(80, 0, 80, 90)];
-        button.tag=2;
-        [button setImage:[UIImage imageNamed:@"crawlercrane_i"] withTitle:@"履带吊求租" forState:UIControlStateNormal];
-        [mainFrame addSubview:button];
-        //VIP独家项目
-        button=[[UIButton alloc]initWithFrame:CGRectMake1(160, 0, 80, 90)];
-        button.tag=3;
-        [button setImage:[UIImage imageNamed:@"vip"] withTitle:@"VIP独家项目" forState:UIControlStateNormal];
-        [mainFrame addSubview:button];
-        //工程信息
-        button=[[UIButton alloc]initWithFrame:CGRectMake1(240, 0, 80, 90)];
-        button.tag=4;
-        [button setImage:[UIImage imageNamed:@"engineering_i"] withTitle:@"工程信息" forState:UIControlStateNormal];
-        [mainFrame addSubview:button];
-        //汽车吊出租
-        button=[[UIButton alloc]initWithFrame:CGRectMake1(0, 90, 80, 90)];
-        button.tag=5;
-        [button setImage:[UIImage imageNamed:@"autocrane_o"] withTitle:@"汽车吊出租" forState:UIControlStateNormal];
-        [mainFrame addSubview:button];
-        //履带吊出租
-        button=[[UIButton alloc]initWithFrame:CGRectMake1(80, 90, 80, 90)];
-        button.tag=6;
-        [button setImage:[UIImage imageNamed:@"crawlercrane_o"] withTitle:@"履带吊出租" forState:UIControlStateNormal];
-        [mainFrame addSubview:button];
-        //招标公告
-        button=[[UIButton alloc]initWithFrame:CGRectMake1(160, 90, 80, 90)];
-        button.tag=7;
-        [button setImage:[UIImage imageNamed:@"tender"] withTitle:@"招标公告" forState:UIControlStateNormal];
-        [mainFrame addSubview:button];
-        //招聘信息
-        button=[[UIButton alloc]initWithFrame:CGRectMake1(240, 90, 80, 90)];
-        button.tag=8;
-        [button setImage:[UIImage imageNamed:@"recruitment"] withTitle:@"招聘信息" forState:UIControlStateNormal];
-        [mainFrame addSubview:button];
+        [self addModel:@"autocrane_i" Title:@"汽车吊求租" Frame:mainFrame Tag:1 X:0 Y:0];
+        [self addModel:@"crawlercrane_i" Title:@"履带吊求租" Frame:mainFrame Tag:2 X:80 Y:0];
+        [self addModel:@"vip" Title:@"VIP独家项目" Frame:mainFrame Tag:3 X:160 Y:0];
+        [self addModel:@"engineering_i" Title:@"工程信息" Frame:mainFrame Tag:4 X:240 Y:0];
+        [self addModel:@"autocrane_o" Title:@"汽车吊出租" Frame:mainFrame Tag:5 X:0 Y:90];
+        [self addModel:@"crawlercrane_o" Title:@"履带吊出租" Frame:mainFrame Tag:6 X:80 Y:90];
+        [self addModel:@"tender" Title:@"招标公告" Frame:mainFrame Tag:7 X:160 Y:90];
+        [self addModel:@"recruitment" Title:@"招聘信息" Frame:mainFrame Tag:8 X:240 Y:90];
+        
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     return self;
 }
 
-- (void)goToMain:(UIButton*)sender {
+- (void)addModel:(NSString*)image Title:(NSString*)title Frame:(UIView*)frame Tag:(NSUInteger)tag X:(CGFloat)x Y:(CGFloat)y
+{
+    UIView *model=[[UIView alloc]initWithFrame:CGRectMake1(x, y, 80, 90)];
+    model.tag=tag;
+    [model addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goToMain:)]];
+    UIImageView *imgBG=[[UIImageView alloc]initWithFrame:CGRectMake1(13, 6, 54, 54)];
+    [model addSubview:imgBG];
+    UILabel *txtTitle=[[UILabel alloc]initWithFrame:CGRectMake1(0, 60, 80, 30)];
+    [model addSubview:txtTitle];
+    [txtTitle setTextColor:TITLECOLOR];
+    [txtTitle setFont:[UIFont systemFontOfSize:13]];
+    [txtTitle setTextAlignment:NSTextAlignmentCenter];
+    
+    [imgBG setImage:[UIImage imageNamed:image]];
+    [txtTitle setText:title];
+    [frame addSubview:model];
+}
+
+- (void)goToMain:(UITapGestureRecognizer*)sender {
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle:@"信息"
-                          message:@"这是消息"
+                          message:[NSString stringWithFormat:@"这是消息%d",[sender.view tag]]
                           delegate:nil
                           cancelButtonTitle:@"取消"
                           otherButtonTitles:nil, nil];
