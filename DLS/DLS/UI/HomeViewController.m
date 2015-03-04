@@ -27,7 +27,7 @@
     if(self){
         //定位信息
         NSString *lTitle=@"杭州";
-        CGSize titleSize = [lTitle sizeWithFont:[UIFont systemFontOfSize:15.0f]];
+        CGSize titleSize = [lTitle sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:15.0f],NSFontAttributeName, nil]];
         UIButton *location = [UIButton buttonWithType:UIButtonTypeCustom];
         [location setTitle:lTitle forState:UIControlStateNormal];
         [location.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -80,9 +80,7 @@
         self.refreshControl = [[UIRefreshControl alloc]init];
         [self.refreshControl addTarget:self action:@selector(RefreshViewControlEventValueChanged) forControlEvents:UIControlEventValueChanged];
         [self.tableView addSubview:self.refreshControl];
-        
         [self autoRefreshData];
-        
     }
     return self;
 }

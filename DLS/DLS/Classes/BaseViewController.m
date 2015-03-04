@@ -11,6 +11,7 @@
 - (id)init{
     self=[super init];
     if(self){
+        [self.view setBackgroundColor:[UIColor whiteColor]];
     }
     return self;
 }

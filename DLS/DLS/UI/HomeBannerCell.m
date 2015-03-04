@@ -7,7 +7,6 @@
 //
 
 #import "HomeBannerCell.h"
-#import "UIButton+ImageWithLable.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 
@@ -56,7 +55,7 @@
 - (void)goToMain:(UITapGestureRecognizer*)sender {
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle:@"信息"
-                          message:[NSString stringWithFormat:@"这是消息%d",[sender.view tag]]
+                          message:@"这是消息"
                           delegate:nil
                           cancelButtonTitle:@"取消"
                           otherButtonTitles:nil, nil];
