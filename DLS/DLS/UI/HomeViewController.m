@@ -8,6 +8,8 @@
 
 #import "HomeViewController.h"
 #import "HomeBannerCell.h"
+#import "HomeCategoryCell.h"
+#import "HomeInformationCell.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define TOPNAVBGCOLOR [UIColor colorWithRed:(46/255.0) green:(92/255.0) blue:(178/255.0) alpha:1]
@@ -53,10 +55,9 @@
         [topView addSubview:imgMessage];
         //
         self.dataItemArray=[[NSMutableArray alloc]init];
-        [self.dataItemArray addObject:@"1"];//Banner条
-        [self.dataItemArray addObject:@"2"];//导航
-        [self.dataItemArray addObject:@"3"];//分类
-        [self.dataItemArray addObject:@"4"];//资讯
+        [self.dataItemArray addObject:@"1"];//导航
+        [self.dataItemArray addObject:@"2"];//分类
+        [self.dataItemArray addObject:@"3"];//资讯
         
         self.tableView=[[UITableView alloc]initWithFrame:CGRectMake1(0, TOPNAVHEIGHT, 320, self.view.bounds.size.height-TOPNAVHEIGHT)];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
@@ -80,13 +81,14 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *content=[self.dataItemArray objectAtIndex:[indexPath row]];
     if([@"1" isEqualToString:content]){
+        //导航
         return 290;
     }else if([@"2" isEqualToString:content]){
-        return 262;
-    }else if([@"3" isEqualToString:content]){
-        return 362;
+        //分类
+        return 234;
     }else{
-        return 462;
+        //资讯
+        return 460;
     }
 }
 
@@ -99,15 +101,19 @@
             cell = [[HomeBannerCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
         }
         return cell;
-    }else{
-        static NSString *CMainCell = @"CMainCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
+    }else if([@"2" isEqualToString:row]){
+        static NSString *CMainCell = @"CHomeCategoryCell";
+        HomeCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
+            cell = [[HomeCategoryCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
         }
-        NSString *content=[self.dataItemArray objectAtIndex:[indexPath row]];
-        cell.textLabel.text=content;
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        return cell;
+    }else{
+        static NSString *CMainCell = @"CHomeInformationCell";
+        HomeInformationCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
+        if (cell == nil) {
+            cell = [[HomeInformationCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
+        }
         return cell;
     }
 }

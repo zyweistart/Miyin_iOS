@@ -15,6 +15,8 @@
 		C9B85F671AA432E1008A56F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B85F661AA432E1008A56F0 /* AppDelegate.m */; };
 		C9B85F6F1AA432E1008A56F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9B85F6E1AA432E1008A56F0 /* Images.xcassets */; };
 		C9B85F7E1AA432E1008A56F0 /* DLSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B85F7D1AA432E1008A56F0 /* DLSTests.m */; };
+		C9D4CB0A1AA69192008D3A53 /* HomeCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D4CB091AA69192008D3A53 /* HomeCategoryCell.m */; };
+		C9D4CB0D1AA6A765008D3A53 /* HomeInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D4CB0C1AA6A765008D3A53 /* HomeInformationCell.m */; };
 		C9E1FEB91AA5543F00720AAC /* BaseRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1FEB41AA5543F00720AAC /* BaseRefreshTableViewController.m */; };
 		C9E1FEBA1AA5543F00720AAC /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1FEB61AA5543F00720AAC /* BaseTableViewController.m */; };
 		C9E1FEBB1AA5543F00720AAC /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1FEB81AA5543F00720AAC /* BaseViewController.m */; };
@@ -71,6 +73,10 @@
 		C9B85F771AA432E1008A56F0 /* DLSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DLSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9B85F7C1AA432E1008A56F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9B85F7D1AA432E1008A56F0 /* DLSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DLSTests.m; sourceTree = "<group>"; };
+		C9D4CB081AA69192008D3A53 /* HomeCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoryCell.h; sourceTree = "<group>"; };
+		C9D4CB091AA69192008D3A53 /* HomeCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoryCell.m; sourceTree = "<group>"; };
+		C9D4CB0B1AA6A765008D3A53 /* HomeInformationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeInformationCell.h; sourceTree = "<group>"; };
+		C9D4CB0C1AA6A765008D3A53 /* HomeInformationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeInformationCell.m; sourceTree = "<group>"; };
 		C9E1FEB31AA5543F00720AAC /* BaseRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRefreshTableViewController.h; sourceTree = "<group>"; };
 		C9E1FEB41AA5543F00720AAC /* BaseRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRefreshTableViewController.m; sourceTree = "<group>"; };
 		C9E1FEB51AA5543F00720AAC /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
@@ -340,6 +346,10 @@
 			children = (
 				C9E1FF0D1AA5A41B00720AAC /* HomeBannerCell.h */,
 				C9E1FF0E1AA5A41B00720AAC /* HomeBannerCell.m */,
+				C9D4CB081AA69192008D3A53 /* HomeCategoryCell.h */,
+				C9D4CB091AA69192008D3A53 /* HomeCategoryCell.m */,
+				C9D4CB0B1AA6A765008D3A53 /* HomeInformationCell.h */,
+				C9D4CB0C1AA6A765008D3A53 /* HomeInformationCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -464,8 +474,10 @@
 				C9E1FEE91AA555F000720AAC /* ATMHudQueueItem.m in Sources */,
 				C922D0941AA444ED00F6DBA1 /* VIPViewController.m in Sources */,
 				C922D0911AA444E100F6DBA1 /* NearbyViewController.m in Sources */,
+				C9D4CB0D1AA6A765008D3A53 /* HomeInformationCell.m in Sources */,
 				C9B85F671AA432E1008A56F0 /* AppDelegate.m in Sources */,
 				C9B85F641AA432E1008A56F0 /* main.m in Sources */,
+				C9D4CB0A1AA69192008D3A53 /* HomeCategoryCell.m in Sources */,
 				C922D08E1AA444B600F6DBA1 /* HomeViewController.m in Sources */,
 				C9E1FF121AA5B5A800720AAC /* UIButton+ImageWithLable.m in Sources */,
 				C9E1FEBA1AA5543F00720AAC /* BaseTableViewController.m in Sources */,
