@@ -7,6 +7,15 @@
 //
 
 #import "MyViewController.h"
+#import "MyCZViewController.h"
+#import "MyQZViewController.h"
+#import "MySBXSViewController.h"
+#import "MySBWXViewController.h"
+#import "MyBJXSViewController.h"
+#import "MyVIPGCViewController.h"
+#import "MyZPXXViewController.h"
+#import "MyQZYPViewController.h"
+#import "MyHelpCenterViewController.h"
 
 @interface MyViewController ()
 
@@ -53,11 +62,13 @@
     return 10;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return 45;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *CMainCell = @"CMainCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
     if (cell == nil) {
@@ -68,6 +79,39 @@
     cell.textLabel.text = content;
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger section=[indexPath section];
+    NSInteger row=[indexPath row];
+    if(section==0){
+        if(row==0){
+            [self.navigationController pushViewController:[[MyCZViewController alloc]init] animated:YES];
+        }else if(row==1){
+            [self.navigationController pushViewController:[[MyQZViewController alloc]init] animated:YES];
+        }else if(row==2){
+            [self.navigationController pushViewController:[[MySBXSViewController alloc]init] animated:YES];
+        }else if(row==3){
+            [self.navigationController pushViewController:[[MySBWXViewController alloc]init] animated:YES];
+        }else if(row==4){
+            [self.navigationController pushViewController:[[MyBJXSViewController alloc]init] animated:YES];
+        }else if(row==5){
+            [self.navigationController pushViewController:[[MyVIPGCViewController alloc]init] animated:YES];
+        }
+    }else if(section==1){
+        if(row==0){
+            [self.navigationController pushViewController:[[MyZPXXViewController alloc]init] animated:YES];
+        }else if(row==1){
+            [self.navigationController pushViewController:[[MyQZYPViewController alloc]init] animated:YES];
+        }
+    }else{
+        if(row==0){
+            [self.navigationController pushViewController:[[MyHelpCenterViewController alloc]init] animated:YES];
+        }else if(row==1){
+            
+        }
+    }
 }
 
 @end
