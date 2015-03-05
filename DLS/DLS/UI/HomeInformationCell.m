@@ -190,16 +190,18 @@
     if (cell == nil) {
         cell = [[InformationCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CELL];
     }
-    [cell.image setImage:[UIImage imageNamed:@"category1"]];
-    
     [cell.childTitle setText:@"这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题"];
     if(currentButtonIndex==1){
+        [cell.image setImage:[UIImage imageNamed:@"category1"]];
         [cell.mainTitle setText:@"这是主标题11"];
     }else if(currentButtonIndex==2){
+        [cell.image setImage:[UIImage imageNamed:@"category2"]];
         [cell.mainTitle setText:@"这是主标题22"];
     }else if(currentButtonIndex==3){
+        [cell.image setImage:[UIImage imageNamed:@"category3"]];
         [cell.mainTitle setText:@"这是主标题33"];
     }else{
+        [cell.image setImage:[UIImage imageNamed:@"category4"]];
         [cell.mainTitle setText:@"这是主标题44"];
     }
     return cell;
