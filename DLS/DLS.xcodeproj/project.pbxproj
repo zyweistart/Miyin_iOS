@@ -19,6 +19,9 @@
 		C9B85F7E1AA432E1008A56F0 /* DLSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B85F7D1AA432E1008A56F0 /* DLSTests.m */; };
 		C9D4CB0A1AA69192008D3A53 /* HomeCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D4CB091AA69192008D3A53 /* HomeCategoryCell.m */; };
 		C9D4CB0D1AA6A765008D3A53 /* HomeInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D4CB0C1AA6A765008D3A53 /* HomeInformationCell.m */; };
+		C9DD46BF1AA8271E004AEAB7 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DD46BE1AA8271E004AEAB7 /* RegisterViewController.m */; };
+		C9DD46C21AA82731004AEAB7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DD46C11AA82731004AEAB7 /* LoginViewController.m */; };
+		C9DD46C51AA82781004AEAB7 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DD46C41AA82781004AEAB7 /* AccountViewController.m */; };
 		C9E1FEB91AA5543F00720AAC /* BaseRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1FEB41AA5543F00720AAC /* BaseRefreshTableViewController.m */; };
 		C9E1FEBA1AA5543F00720AAC /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1FEB61AA5543F00720AAC /* BaseTableViewController.m */; };
 		C9E1FEBB1AA5543F00720AAC /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1FEB81AA5543F00720AAC /* BaseViewController.m */; };
@@ -82,6 +85,12 @@
 		C9D4CB091AA69192008D3A53 /* HomeCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoryCell.m; sourceTree = "<group>"; };
 		C9D4CB0B1AA6A765008D3A53 /* HomeInformationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeInformationCell.h; sourceTree = "<group>"; };
 		C9D4CB0C1AA6A765008D3A53 /* HomeInformationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeInformationCell.m; sourceTree = "<group>"; };
+		C9DD46BD1AA8271E004AEAB7 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		C9DD46BE1AA8271E004AEAB7 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		C9DD46C01AA82731004AEAB7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		C9DD46C11AA82731004AEAB7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		C9DD46C31AA82781004AEAB7 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
+		C9DD46C41AA82781004AEAB7 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
 		C9E1FEB31AA5543F00720AAC /* BaseRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRefreshTableViewController.h; sourceTree = "<group>"; };
 		C9E1FEB41AA5543F00720AAC /* BaseRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRefreshTableViewController.m; sourceTree = "<group>"; };
 		C9E1FEB51AA5543F00720AAC /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
@@ -198,6 +207,8 @@
 		C922D08A1AA4398700F6DBA1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C9DD46BC1AA8270F004AEAB7 /* User */,
+				C9DD46BB1AA82704004AEAB7 /* Home */,
 				C922D08C1AA444B600F6DBA1 /* HomeViewController.h */,
 				C922D08D1AA444B600F6DBA1 /* HomeViewController.m */,
 				C922D0951AA444FB00F6DBA1 /* MyViewController.h */,
@@ -278,6 +289,26 @@
 				C9B85F7C1AA432E1008A56F0 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C9DD46BB1AA82704004AEAB7 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		C9DD46BC1AA8270F004AEAB7 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				C9DD46BD1AA8271E004AEAB7 /* RegisterViewController.h */,
+				C9DD46BE1AA8271E004AEAB7 /* RegisterViewController.m */,
+				C9DD46C01AA82731004AEAB7 /* LoginViewController.h */,
+				C9DD46C11AA82731004AEAB7 /* LoginViewController.m */,
+				C9DD46C31AA82781004AEAB7 /* AccountViewController.h */,
+				C9DD46C41AA82781004AEAB7 /* AccountViewController.m */,
+			);
+			name = User;
 			sourceTree = "<group>";
 		};
 		C9E1FEBC1AA5548D00720AAC /* RefreshTableHeaderView */ = {
@@ -466,13 +497,16 @@
 			files = (
 				C9E1FEE71AA555F000720AAC /* Reachability.m in Sources */,
 				C9E1FED21AA554E200720AAC /* Response.m in Sources */,
+				C9DD46C51AA82781004AEAB7 /* AccountViewController.m in Sources */,
 				C909FC1B1AA6E03A008E68FB /* MessageViewController.m in Sources */,
 				C9E1FF0F1AA5A41B00720AAC /* HomeBannerCell.m in Sources */,
 				C9E1FEB91AA5543F00720AAC /* BaseRefreshTableViewController.m in Sources */,
+				C9DD46C21AA82731004AEAB7 /* LoginViewController.m in Sources */,
 				C9E1FEBB1AA5543F00720AAC /* BaseViewController.m in Sources */,
 				C9E1FEC91AA5548D00720AAC /* EGORefreshTableHeaderView.m in Sources */,
 				C9E1FEEA1AA555F000720AAC /* ATMHudView.m in Sources */,
 				C9E1FEEC1AA555F000720AAC /* ATMSoundFX.m in Sources */,
+				C9DD46BF1AA8271E004AEAB7 /* RegisterViewController.m in Sources */,
 				C9E1FEEE1AA555F000720AAC /* MBProgressHUD.m in Sources */,
 				C9E1FED11AA554E200720AAC /* HttpRequest.m in Sources */,
 				C9E1FEED1AA555F000720AAC /* ATMTextLayer.m in Sources */,

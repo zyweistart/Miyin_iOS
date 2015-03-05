@@ -6,8 +6,15 @@
 //  Copyright (c) 2015 Start. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 
-@interface NearbyViewController : BaseViewController
+@interface NearbyViewController : BaseTableViewController
+
+@property UIButton *button1;
+@property UIButton *button2;
+@property UIButton *button3;
+@property UIButton *button4;
+
+@property UIRefreshControl *refreshControl;
 
 @end

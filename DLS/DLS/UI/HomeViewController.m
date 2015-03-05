@@ -13,7 +13,6 @@
 #import "MessageViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define TOPNAVBGCOLOR [UIColor colorWithRed:(46/255.0) green:(92/255.0) blue:(178/255.0) alpha:1]
 #define SEARCHTIPCOLOR [UIColor colorWithRed:(88/255.0) green:(130/255.0) blue:(216/255.0) alpha:1]
 
 @interface HomeViewController ()
