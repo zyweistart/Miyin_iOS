@@ -61,6 +61,18 @@
         [self.mapView setZoomEnabled:YES];
         [self.mapView setScrollEnabled:YES];
         [self.view addSubview:self.mapView];
+        //定位到当前位置
+        UIButton *currentLocation=[[UIButton alloc]initWithFrame:
+                                   CGRectMake1(10, self.mapView.bounds.size.height-190, 50, 50)];
+        [currentLocation setImage:[UIImage imageNamed:@"category2"] forState:UIControlStateNormal];
+        [currentLocation addTarget:self action:@selector(goCurrentLocation) forControlEvents:UIControlEventTouchDown];
+        [self.mapView addSubview:currentLocation];
+        //刷新位置点数据
+        UIButton *refresh=[[UIButton alloc]initWithFrame:CGRectMake1(260, 10, 50, 50)];
+        [refresh setImage:[UIImage imageNamed:@"category1"] forState:UIControlStateNormal];
+        [refresh addTarget:self action:@selector(goRefreshMapData) forControlEvents:UIControlEventTouchDown];
+        [self.mapView addSubview:refresh];
+        
         //定位管理
         self.locationManager = [CLLocationManager new];
 #ifdef __IPHONE_8_0
@@ -74,34 +86,14 @@
         [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
         [self.locationManager startUpdatingLocation];
         
-        [self loadAnnotations];
-        
     }
     return self;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    MKCoordinateRegion region;
-    region.center=[[self.locationManager location] coordinate];
-    region.span.longitudeDelta = ZOOMLEVEL;
-    region.span.longitudeDelta = ZOOMLEVEL;
-    [self.mapView setRegion:region animated:YES];
-}
-
-- (void)loadAnnotations
+- (void)viewWillAppear:(BOOL)animated
 {
-    //清除地图上的位置点
-    [self.mapView removeAnnotations:[self.mapView annotations]];
-    double latitude[9]={29.997461006205593,29.990250398850474,29.936414481847535,29.942513384159106,29.987425482052284,29.985715624943672,30.168762870400922,29.948760652467562,29.968950031785944};
-    double longitude[9]={120.6018155523682,120.54001745666507,120.57194647277835,120.57537970031741,120.657433838501,120.58688101257327,120.65537390197757,120.44440206970218,120.5882543035889};
-    for(int i=0;i<9;i++){
-        CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude[i],longitude[i])];
-        annotation1.title = @"新能量e电工";
-        annotation1.subtitle = @"点击联系此电工";
-        [annotation1 setIndex:-1];
-        [self.mapView addAnnotation:annotation1];
-    }
+    [super viewWillAppear:animated];
+    [self goCurrentLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
@@ -147,6 +139,31 @@
         [annView setEnabled:YES];
         [annView setCanShowCallout:YES];
         return annView;
+    }
+}
+
+//定位到当前位置
+- (void)goCurrentLocation
+{
+    MKCoordinateRegion region;
+    region.center=[[self.locationManager location] coordinate];
+    region.span.longitudeDelta = ZOOMLEVEL;
+    region.span.longitudeDelta = ZOOMLEVEL;
+    [self.mapView setRegion:region animated:YES];
+}
+//刷新地图位置数据
+- (void)goRefreshMapData
+{
+    //清除地图上的位置点
+    [self.mapView removeAnnotations:[self.mapView annotations]];
+    double latitude[9]={29.997461006205593,29.990250398850474,29.936414481847535,29.942513384159106,29.987425482052284,29.985715624943672,30.168762870400922,29.948760652467562,29.968950031785944};
+    double longitude[9]={120.6018155523682,120.54001745666507,120.57194647277835,120.57537970031741,120.657433838501,120.58688101257327,120.65537390197757,120.44440206970218,120.5882543035889};
+    for(int i=0;i<9;i++){
+        CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude[i],longitude[i])];
+        annotation1.title = @"新能量e电工";
+        annotation1.subtitle = @"点击联系此电工";
+        [annotation1 setIndex:i];
+        [self.mapView addAnnotation:annotation1];
     }
 }
 
