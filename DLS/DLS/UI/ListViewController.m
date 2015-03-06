@@ -20,18 +20,13 @@
     self=[super init];
     if(self){
         [self setTitle:title];
-        self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds];
-        [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        [self.tableView setDelegate:self];
-        [self.tableView setDataSource:self];
-        [self.view addSubview:self.tableView];
     }
     return self;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

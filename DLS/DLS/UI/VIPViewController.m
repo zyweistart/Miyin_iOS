@@ -94,17 +94,10 @@
         [line4 setBackgroundColor:LINECOLOR];
         [categoryFrame addSubview:line4];
         [categoryFrame addSubview:self.button4];
-        //表视图
-        self.tableView=[[UITableView alloc]initWithFrame:CGRectMake1(0, 41, self.view.bounds.size.width, self.view.bounds.size.height-41)];
-        [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        [self.tableView setDelegate:self];
-        [self.tableView setDataSource:self];
-        [self.view addSubview:self.tableView];
-        //添加UIRefreshControl下拉刷新控件到UITableViewController的view中
-        self.refreshControl = [[UIRefreshControl alloc]init];
-        [self.refreshControl addTarget:self action:@selector(RefreshViewControlEventValueChanged) forControlEvents:UIControlEventValueChanged];
-        [self.tableView addSubview:self.refreshControl];
-        [self autoRefreshData];
+        UIView *listView=[[UIView alloc]initWithFrame:CGRectMake1(0, 41, self.view.bounds.size.width, self.view.bounds.size.height-41)];
+        [listView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        [self.view addSubview:listView];
+        [self buildTableViewWithView:listView];
         
         currentButtonIndex=1;
         [self sHeaderCategory];
@@ -112,32 +105,9 @@
     return self;
 }
 
-//自动下载刷新
-- (void)autoRefreshData{
-    //自行创建下拉动画
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.0];
-    //注意位移点的y值为负值
-    self.tableView.contentOffset=CGPointMake(0.0, -200.0);
-    [UIView commitAnimations];
-    //改变refreshcontroller的状态
-    [self.refreshControl beginRefreshing];
-    //刷新数据和表格视图
-    [self RefreshViewControlEventValueChanged];
-}
-
-//刷新事件
-- (void)RefreshViewControlEventValueChanged
+-(void)viewDidLoad
 {
-    if (self.refreshControl.refreshing) {
-        [self performSelector:@selector(handleData) withObject:nil afterDelay:2];
-    }
-}
-
-- (void)handleData
-{
-    [self.refreshControl endRefreshing];
-    [self.tableView reloadData];
+    [super viewDidLoad];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

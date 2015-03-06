@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Start. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseEGOTableViewPullRefreshViewController.h"
 
-@interface ListViewController : BaseTableViewController
+@interface ListViewController : BaseEGOTableViewPullRefreshViewController
 
 - (id)initWithTitle:(NSString*)title Type:(NSInteger)type;
 

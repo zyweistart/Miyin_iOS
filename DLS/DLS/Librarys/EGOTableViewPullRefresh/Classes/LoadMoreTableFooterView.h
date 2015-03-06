@@ -24,40 +24,38 @@
 //  THE SOFTWARE.
 //
 
+// This class has derived from the EGORefreshTableHeaderView
+
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "EGORefreshTableHeaderView.h"
 
-typedef enum{
-	EGOOPullRefreshPulling = 0,
-	EGOOPullRefreshNormal,
-	EGOOPullRefreshLoading,	
-} EGOPullRefreshState;
-
-@protocol EGORefreshTableHeaderDelegate;
-@interface EGORefreshTableHeaderView : UIView {
+@protocol LoadMoreTableFooterDelegate;
+@interface LoadMoreTableFooterView : UIView {
 	
 	id _delegate;
-	EGOPullRefreshState _state;
-
-	UILabel *_lastUpdatedLabel;
+	EGOPullState _state;
+    
 	UILabel *_statusLabel;
 	CALayer *_arrowImage;
 	UIActivityIndicatorView *_activityView;
+    
+    // Set this to Yes when egoRefreshTableHeaderDidTriggerRefresh delegate is called and No with egoRefreshScrollViewDataSourceDidFinishedLoading
+    BOOL isLoading;
 	
-
 }
 
-@property(nonatomic,assign) id <EGORefreshTableHeaderDelegate> delegate;
+@property(nonatomic,assign) id <LoadMoreTableFooterDelegate> delegate;
 
-- (void)refreshLastUpdatedDate;
 - (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView;
 - (void)egoRefreshScrollViewDidEndDragging:(UIScrollView *)scrollView;
 - (void)egoRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView;
+- (void)startAnimatingWithScrollView:(UIScrollView *) scrollView;
+- (void)setBackgroundColor:(UIColor *)backgroundColor textColor:(UIColor *) textColor arrowImage:(UIImage *) arrowImage;
+
 
 @end
-@protocol EGORefreshTableHeaderDelegate
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view;
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view;
-@optional
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view;
+
+@protocol LoadMoreTableFooterDelegate
+- (void)loadMoreTableFooterDidTriggerLoadMore:(LoadMoreTableFooterView*)view;
 @end
