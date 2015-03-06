@@ -40,10 +40,10 @@
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [vSearchFramework addSubview:lbl];
         
-        //右消息按钮
+        //右切换按钮
         UIButton *btnMap = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnMap setBackgroundImage:[UIImage imageNamed:@"list"]forState:UIControlStateNormal];
-        [btnMap addTarget:self action:@selector(goMap:) forControlEvents:UIControlEventTouchUpInside];
+        [btnMap addTarget:self action:@selector(goMapOrList:) forControlEvents:UIControlEventTouchUpInside];
         btnMap.frame = CGRectMake(0, 0, 24, 20);
         UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
                                                 initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
@@ -87,6 +87,11 @@
         
     }
     return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -7,6 +7,7 @@
 //
 
 #import "VIPViewController.h"
+#import "ProjectCell.h"
 
 #define LINECOLOR [UIColor colorWithRed:(226/255.0) green:(226/255.0) blue:(226/255.0) alpha:1]
 #define TITLECOLOR [UIColor colorWithRed:(111/255.0) green:(111/255.0) blue:(111/255.0) alpha:1]
@@ -106,7 +107,7 @@
         [self autoRefreshData];
         
         currentButtonIndex=1;
-        [self showHiddenCategory];
+        [self sHeaderCategory];
     }
     return self;
 }
@@ -141,29 +142,35 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 8;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 62;
+    return 80;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *CMainCell = @"CMainCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
+    static NSString *CProjectCell = @"CProjectCell";
+    ProjectCell *cell = [tableView dequeueReusableCellWithIdentifier:CProjectCell];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
+        cell = [[ProjectCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CProjectCell];
     }
-    cell.textLabel.text = @"jfdsjalkfj";
+    [cell.image setImage:[UIImage imageNamed:@"category1"]];
+    cell.title.text=@"履带吊求租一天吊车结婚";
+    cell.address.text=@"萧山建设1路";
+    cell.money.text=@"40000元";
+    [cell setStatus:@"洽谈中" Type:1];
     return cell;
 }
 
 - (void)switchCategory:(UIButton*)sender {
-    currentButtonIndex=sender.tag;
-    [self showHiddenCategory];
+    if(currentButtonIndex!=sender.tag){
+        currentButtonIndex=sender.tag;
+        [self sHeaderCategory];
+    }
 }
 
-- (void)showHiddenCategory{
+- (void)sHeaderCategory{
     [self.button1 setTitleColor:currentButtonIndex==1?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
     [self.button1 setBackgroundColor:currentButtonIndex==1?CATEGORYBGCOLOR:[UIColor whiteColor]];
     [self.button2 setTitleColor:currentButtonIndex==2?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
