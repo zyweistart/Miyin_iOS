@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Start. All rights reserved.
 //
 #import "BaseEGOTableViewPullRefreshViewController.h"
+#import "SearchView.h"
 #import "CategoryView.h"
 
 @interface VIPViewController : BaseEGOTableViewPullRefreshViewController<CategoryViewDelegate>

@@ -25,24 +25,9 @@
     if(self){
         [self setTitle:@"VIP"];
         //搜索框架
-        UIView *vSearchFramework=[[UIView alloc]initWithFrame:CGRectMake1(0, 25, 250, 30)];
-        vSearchFramework.userInteractionEnabled=YES;
-        vSearchFramework.layer.cornerRadius = 5;
-        vSearchFramework.layer.masksToBounds = YES;
-        [vSearchFramework setBackgroundColor:[UIColor whiteColor]];
-        [vSearchFramework addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goSearch:)]];
-        [self navigationItem].titleView=vSearchFramework;
-        //搜索图标
-        UIImageView *iconSearch=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 6, 18, 18)];
-        [iconSearch setImage:[UIImage imageNamed:@"search"]];
-        [vSearchFramework addSubview:iconSearch];
-        //搜索框
-        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(38, 0, 152, 30)];
-        [lbl setText:@"输入搜索信息"];
-        [lbl setTextColor:SEARCHTIPCOLOR];
-        [lbl setFont:[UIFont systemFontOfSize:14]];
-        [vSearchFramework addSubview:lbl];
-        
+        SearchView *searchView=[[SearchView alloc]initWithFrame:CGRectMake1(0, 0, 250, 30)];
+        [searchView setController:self];
+        [self navigationItem].titleView=searchView;
         //右消息按钮
         UIButton *btnMap = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnMap setBackgroundImage:[UIImage imageNamed:@"map"]forState:UIControlStateNormal];
@@ -62,7 +47,6 @@
         [listView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.view addSubview:listView];
         [self buildTableViewWithView:listView];
-        
         [categoryView setIndex:1];
     }
     return self;
@@ -102,10 +86,6 @@
         NSLog(@"正在刷新等一会好吧");
         return NO;
     }
-}
-//搜索
-- (void)goSearch:(id)sender
-{
 }
 //地图
 - (void)goMap:(UIButton*)sender

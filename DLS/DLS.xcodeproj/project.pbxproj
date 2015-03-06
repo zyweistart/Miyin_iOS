@@ -47,6 +47,7 @@
 		C9D4CB0A1AA69192008D3A53 /* HomeCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D4CB091AA69192008D3A53 /* HomeCategoryCell.m */; };
 		C9D4CB0D1AA6A765008D3A53 /* HomeInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D4CB0C1AA6A765008D3A53 /* HomeInformationCell.m */; };
 		C9DB29A01AA9A18D00D5893B /* CategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB299F1AA9A18D00D5893B /* CategoryView.m */; };
+		C9DB29A31AA9ACDF00D5893B /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB29A21AA9ACDF00D5893B /* SearchView.m */; };
 		C9DD46BF1AA8271E004AEAB7 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DD46BE1AA8271E004AEAB7 /* RegisterViewController.m */; };
 		C9DD46C21AA82731004AEAB7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DD46C11AA82731004AEAB7 /* LoginViewController.m */; };
 		C9DD46C51AA82781004AEAB7 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DD46C41AA82781004AEAB7 /* AccountViewController.m */; };
@@ -151,6 +152,8 @@
 		C9D4CB0C1AA6A765008D3A53 /* HomeInformationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeInformationCell.m; sourceTree = "<group>"; };
 		C9DB299E1AA9A18D00D5893B /* CategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryView.h; sourceTree = "<group>"; };
 		C9DB299F1AA9A18D00D5893B /* CategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryView.m; sourceTree = "<group>"; };
+		C9DB29A11AA9ACDF00D5893B /* SearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchView.h; sourceTree = "<group>"; };
+		C9DB29A21AA9ACDF00D5893B /* SearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchView.m; sourceTree = "<group>"; };
 		C9DD46BD1AA8271E004AEAB7 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		C9DD46BE1AA8271E004AEAB7 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		C9DD46C01AA82731004AEAB7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -287,6 +290,8 @@
 			children = (
 				C9DB299E1AA9A18D00D5893B /* CategoryView.h */,
 				C9DB299F1AA9A18D00D5893B /* CategoryView.m */,
+				C9DB29A11AA9ACDF00D5893B /* SearchView.h */,
+				C9DB29A21AA9ACDF00D5893B /* SearchView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -633,6 +638,7 @@
 				C9E1FEEC1AA555F000720AAC /* ATMSoundFX.m in Sources */,
 				C9DD46BF1AA8271E004AEAB7 /* RegisterViewController.m in Sources */,
 				C9E1FEEE1AA555F000720AAC /* MBProgressHUD.m in Sources */,
+				C9DB29A31AA9ACDF00D5893B /* SearchView.m in Sources */,
 				C9E1FED11AA554E200720AAC /* HttpRequest.m in Sources */,
 				C9D2B74B1AA8690D00CF750D /* MyHelpCenterViewController.m in Sources */,
 				C9E1FEED1AA555F000720AAC /* ATMTextLayer.m in Sources */,
