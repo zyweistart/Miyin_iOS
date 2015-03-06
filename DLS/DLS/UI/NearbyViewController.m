@@ -7,24 +7,20 @@
 //
 
 #import "NearbyViewController.h"
+#import "CustomAnnotation.h"
 
-#define LINECOLOR [UIColor colorWithRed:(226/255.0) green:(226/255.0) blue:(226/255.0) alpha:1]
-#define TITLECOLOR [UIColor colorWithRed:(111/255.0) green:(111/255.0) blue:(111/255.0) alpha:1]
-#define CATEGORYBGCOLOR [UIColor colorWithRed:(94/255.0) green:(144/255.0) blue:(237/255.0) alpha:1]
+#define ZOOMLEVEL 0.05f
 #define SEARCHTIPCOLOR [UIColor colorWithRed:(88/255.0) green:(130/255.0) blue:(216/255.0) alpha:1]
 
 @interface NearbyViewController ()
 
 @end
 
-@implementation NearbyViewController{
-    long long currentButtonIndex;
-}
+@implementation NearbyViewController
 
 - (id)init{
     self=[super init];
     if(self){
-        [self setTitle:@"附近"];
         //搜索框架
         UIView *vSearchFramework=[[UIView alloc]initWithFrame:CGRectMake1(0, 25, 250, 30)];
         vSearchFramework.userInteractionEnabled=YES;
@@ -46,7 +42,7 @@
         
         //右消息按钮
         UIButton *btnMap = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btnMap setBackgroundImage:[UIImage imageNamed:@"map"]forState:UIControlStateNormal];
+        [btnMap setBackgroundImage:[UIImage imageNamed:@"list"]forState:UIControlStateNormal];
         [btnMap addTarget:self action:@selector(goMap:) forControlEvents:UIControlEventTouchUpInside];
         btnMap.frame = CGRectMake(0, 0, 24, 20);
         UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
@@ -55,130 +51,132 @@
         negativeSpacerRight.width = -5;
         self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:btnMap], nil];
         
-        UIView *categoryFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 41)];
-        [self.view addSubview:categoryFrame];
-        self.button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 79, 40)];
-        [[self.button1 titleLabel]setFont:[UIFont systemFontOfSize:14]];
-        [self.button1 setTitle:@"状态" forState:UIControlStateNormal];
-        self.button1.tag=1;
-        [self.button1 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
-        [categoryFrame addSubview:self.button1];
-        self.button2=[[UIButton alloc]initWithFrame:CGRectMake1(80, 0, 79, 40)];
-        [[self.button2 titleLabel]setFont:[UIFont systemFontOfSize:14]];
-        [self.button2 setTitle:@"类型" forState:UIControlStateNormal];
-        self.button2.tag=2;
-        [self.button2 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
-        [categoryFrame addSubview:self.button2];
-        self.button3=[[UIButton alloc]initWithFrame:CGRectMake1(160, 0, 79, 40)];
-        [[self.button3 titleLabel]setFont:[UIFont systemFontOfSize:14]];
-        [self.button3 setTitle:@"吨位" forState:UIControlStateNormal];
-        self.button3.tag=3;
-        [self.button3 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
-        [categoryFrame addSubview:self.button3];
-        self.button4=[[UIButton alloc]initWithFrame:CGRectMake1(240, 0, 80, 40)];
-        [[self.button4 titleLabel]setFont:[UIFont systemFontOfSize:14]];
-        [self.button4 setTitle:@"距离" forState:UIControlStateNormal];
-        self.button4.tag=4;
-        [self.button4 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
-        UIView *line1=[[UIView alloc]initWithFrame:CGRectMake1(79, 0, 1, 40)];
-        [line1 setBackgroundColor:LINECOLOR];
-        [categoryFrame addSubview:line1];
-        UIView *line2=[[UIView alloc]initWithFrame:CGRectMake1(159, 0, 1, 40)];
-        [line2 setBackgroundColor:LINECOLOR];
-        [categoryFrame addSubview:line2];
-        UIView *line3=[[UIView alloc]initWithFrame:CGRectMake1(239, 0, 1, 40)];
-        [line3 setBackgroundColor:LINECOLOR];
-        [categoryFrame addSubview:line3];
-        UIView *line4=[[UIView alloc]initWithFrame:CGRectMake1(0, 40, 320, 1)];
-        [line4 setBackgroundColor:LINECOLOR];
-        [categoryFrame addSubview:line4];
-        [categoryFrame addSubview:self.button4];
-        //表视图
-        self.tableView=[[UITableView alloc]initWithFrame:CGRectMake1(0, 41, self.view.bounds.size.width, self.view.bounds.size.height-41)];
-        [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        [self.tableView setDelegate:self];
-        [self.tableView setDataSource:self];
-        [self.view addSubview:self.tableView];
-        //添加UIRefreshControl下拉刷新控件到UITableViewController的view中
-        self.refreshControl = [[UIRefreshControl alloc]init];
-        [self.refreshControl addTarget:self action:@selector(RefreshViewControlEventValueChanged) forControlEvents:UIControlEventValueChanged];
-        [self.tableView addSubview:self.refreshControl];
-        [self autoRefreshData];
+        //创建地图
+        self.mapView=[[MKMapView alloc]initWithFrame:[self.view bounds]];
+        [self.mapView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        [self.mapView setDelegate:self];
+        [self.mapView setMapType:MKMapTypeStandard];
+        [self.mapView setShowsUserLocation:YES];
+        [self.mapView setZoomEnabled:YES];
+        [self.mapView setScrollEnabled:YES];
+        [self.view addSubview:self.mapView];
+        //定位到当前位置
+        UIButton *currentLocation=[[UIButton alloc]initWithFrame:
+                                   CGRectMake1(10, self.mapView.bounds.size.height-190, 50, 50)];
+        [currentLocation setImage:[UIImage imageNamed:@"category2"] forState:UIControlStateNormal];
+        [currentLocation addTarget:self action:@selector(goCurrentLocation) forControlEvents:UIControlEventTouchDown];
+        [self.mapView addSubview:currentLocation];
+        //刷新位置点数据
+        UIButton *refresh=[[UIButton alloc]initWithFrame:CGRectMake1(260, 10, 50, 50)];
+        [refresh setImage:[UIImage imageNamed:@"category1"] forState:UIControlStateNormal];
+        [refresh addTarget:self action:@selector(goRefreshMapData) forControlEvents:UIControlEventTouchDown];
+        [self.mapView addSubview:refresh];
         
-        currentButtonIndex=1;
-        [self showHiddenCategory];
+        //定位管理
+        self.locationManager = [CLLocationManager new];
+#ifdef __IPHONE_8_0
+        if(IS_OS_8_OR_LATER) {
+            [self.locationManager requestWhenInUseAuthorization];
+            [self.locationManager requestAlwaysAuthorization];
+        }
+#endif
+        [self.locationManager setDelegate:self];
+        [self.locationManager setDistanceFilter:kCLDistanceFilterNone];
+        [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+        [self.locationManager startUpdatingLocation];
+        
     }
     return self;
 }
 
-//自动下载刷新
-- (void)autoRefreshData{
-    //自行创建下拉动画
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.0];
-    //注意位移点的y值为负值
-    self.tableView.contentOffset=CGPointMake(0.0, -200.0);
-    [UIView commitAnimations];
-    //改变refreshcontroller的状态
-    [self.refreshControl beginRefreshing];
-    //刷新数据和表格视图
-    [self RefreshViewControlEventValueChanged];
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self goCurrentLocation];
 }
 
-//刷新事件
-- (void)RefreshViewControlEventValueChanged
-{
-    if (self.refreshControl.refreshing) {
-        [self performSelector:@selector(handleData) withObject:nil afterDelay:2];
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined:
+            if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+                [self.locationManager requestAlwaysAuthorization];
+            }
+            break;
+        case kCLAuthorizationStatusDenied:
+            NSLog(@"请在设置-隐私-定位服务中开启定位功能！");
+            break;
+        case kCLAuthorizationStatusRestricted:
+            NSLog(@"定位服务无法使用！");
+        default:
+            break;
     }
 }
 
-- (void)handleData
-{
-    [self.refreshControl endRefreshing];
-    [self.tableView reloadData];
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 3;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 62;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *CMainCell = @"CMainCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation {
+    if([annotation isKindOfClass:[MKUserLocation class]]){
+        //我的位置
+        static NSString* CUserLocation = @"CUserLocation";
+        MKPinAnnotationView* annView = (MKPinAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:CUserLocation];
+        if(nil == annView) {
+            annView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:CUserLocation];
+        }
+        return annView;
+    }else{
+        //附近点
+        static NSString *CPinIdentifier = @"Pin";
+        CustomAnnotation *myAnnotation = (CustomAnnotation*)annotation;
+        MKPinAnnotationView *annView = (MKPinAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:CPinIdentifier];
+        if(nil == annView) {
+            annView = [[MKPinAnnotationView alloc] initWithAnnotation:myAnnotation reuseIdentifier:CPinIdentifier];
+        }
+        [annView setImage:[UIImage imageNamed:@"category1"]];
+        UIButton *icon=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20,20)];
+        [icon setImage:[UIImage imageNamed:@"category2"] forState:UIControlStateNormal];
+        annView.rightCalloutAccessoryView=icon;
+        [[annView rightCalloutAccessoryView] setTag:[myAnnotation index]];
+        [[annView rightCalloutAccessoryView] addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickGoDetail:)]];
+        [annView setEnabled:YES];
+        [annView setCanShowCallout:YES];
+        return annView;
     }
-    cell.textLabel.text = @"jfdsjalkfj";
-    return cell;
 }
 
-- (void)switchCategory:(UIButton*)sender {
-    currentButtonIndex=sender.tag;
-    [self showHiddenCategory];
+//定位到当前位置
+- (void)goCurrentLocation
+{
+    MKCoordinateRegion region;
+    region.center=[[self.locationManager location] coordinate];
+    region.span.longitudeDelta = ZOOMLEVEL;
+    region.span.longitudeDelta = ZOOMLEVEL;
+    [self.mapView setRegion:region animated:YES];
+}
+//刷新地图位置数据
+- (void)goRefreshMapData
+{
+    //清除地图上的位置点
+    [self.mapView removeAnnotations:[self.mapView annotations]];
+    double latitude[9]={29.997461006205593,29.990250398850474,29.936414481847535,29.942513384159106,29.987425482052284,29.985715624943672,30.168762870400922,29.948760652467562,29.968950031785944};
+    double longitude[9]={120.6018155523682,120.54001745666507,120.57194647277835,120.57537970031741,120.657433838501,120.58688101257327,120.65537390197757,120.44440206970218,120.5882543035889};
+    for(int i=0;i<9;i++){
+        CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude[i],longitude[i])];
+        annotation1.title = @"新能量e电工";
+        annotation1.subtitle = @"点击联系此电工";
+        [annotation1 setIndex:i];
+        [self.mapView addAnnotation:annotation1];
+    }
 }
 
-- (void)showHiddenCategory{
-    [self.button1 setTitleColor:currentButtonIndex==1?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
-    [self.button1 setBackgroundColor:currentButtonIndex==1?CATEGORYBGCOLOR:[UIColor whiteColor]];
-    [self.button2 setTitleColor:currentButtonIndex==2?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
-    [self.button2 setBackgroundColor:currentButtonIndex==2?CATEGORYBGCOLOR:[UIColor whiteColor]];
-    [self.button3 setTitleColor:currentButtonIndex==3?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
-    [self.button3 setBackgroundColor:currentButtonIndex==3?CATEGORYBGCOLOR:[UIColor whiteColor]];
-    [self.button4 setTitleColor:currentButtonIndex==4?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
-    [self.button4 setBackgroundColor:currentButtonIndex==4?CATEGORYBGCOLOR:[UIColor whiteColor]];
+- (void)onClickGoDetail:(UITapGestureRecognizer *)sender
+{
+    int tag=[sender.view tag];
+    NSLog(@"tag=%d",tag);
 }
 //搜索
 - (void)goSearch:(id)sender
 {
 }
-//地图
-- (void)goMap:(UIButton*)sender
+//切换地图或列表
+- (void)goMapOrList:(UIButton*)sender
 {
 }
 

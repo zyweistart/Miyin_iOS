@@ -6,15 +6,12 @@
 //  Copyright (c) 2015 Start. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface NearbyViewController : BaseTableViewController
+@interface NearbyViewController : BaseViewController<MKMapViewDelegate,CLLocationManagerDelegate>
 
-@property UIButton *button1;
-@property UIButton *button2;
-@property UIButton *button3;
-@property UIButton *button4;
-
-@property UIRefreshControl *refreshControl;
+@property MKMapView *mapView;
+@property CLLocationManager *locationManager;
 
 @end
