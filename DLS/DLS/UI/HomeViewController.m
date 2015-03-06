@@ -12,6 +12,7 @@
 #import "HomeInformationCell.h"
 #import "MessageViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ListViewController.h"
 
 #define SEARCHTIPCOLOR [UIColor colorWithRed:(88/255.0) green:(130/255.0) blue:(216/255.0) alpha:1]
 
@@ -162,7 +163,7 @@
 //搜索
 - (void)goSearch:(id)sender
 {
-    [self.navigationController pushViewController:[[MessageViewController alloc]init] animated:YES];
+    [self.navigationController pushViewController:[[ListViewController alloc]initWithTitle:@"出租列表" Type:2] animated:YES];
 }
 //消息
 - (void)goMessage:(UIButton*)sender

@@ -9,7 +9,8 @@
 #pragma mark -
 #pragma mark DelegateMethod
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
      return [self.dataItemArray count];
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "HomeBannerCell.h"
+#import "ListViewController.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 

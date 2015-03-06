@@ -10,31 +10,31 @@
 	<string>ElectricianClient</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>84C9D313-E3F4-4B33-BCCE-A674A7AB3AD1</key>
-		<string>https://github.com/zyweistart/freshpower.git</string>
+		<key>142F90E583E31EEE4C816EABE6B037C19DB4AD77</key>
+		<string>https://github.com/zyweistart/Miyin_iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ElectricianClient/ElectricianClient.xcodeproj/project.xcworkspace</string>
+	<string>Freshpower/ElectricianClient/ElectricianClient.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>84C9D313-E3F4-4B33-BCCE-A674A7AB3AD1</key>
-		<string>../../..</string>
+		<key>142F90E583E31EEE4C816EABE6B037C19DB4AD77</key>
+		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/zyweistart/freshpower.git</string>
+	<string>https://github.com/zyweistart/Miyin_iOS.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>84C9D313-E3F4-4B33-BCCE-A674A7AB3AD1</string>
+	<string>142F90E583E31EEE4C816EABE6B037C19DB4AD77</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>84C9D313-E3F4-4B33-BCCE-A674A7AB3AD1</string>
+			<string>142F90E583E31EEE4C816EABE6B037C19DB4AD77</string>
 			<key>IDESourceControlWCCName</key>
-			<string>freshpower</string>
+			<string>Miyin_iOS</string>
 		</dict>
 	</array>
 </dict>

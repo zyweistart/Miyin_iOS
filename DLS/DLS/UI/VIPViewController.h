@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface VIPViewController : BaseViewController
+@interface VIPViewController : BaseViewController<MKMapViewDelegate,CLLocationManagerDelegate>
+
+@property MKMapView *mapView;
+@property CLLocationManager *locationManager;
 
 @end

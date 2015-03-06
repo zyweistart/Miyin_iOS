@@ -17,6 +17,9 @@
 		C9B85F671AA432E1008A56F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B85F661AA432E1008A56F0 /* AppDelegate.m */; };
 		C9B85F6F1AA432E1008A56F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9B85F6E1AA432E1008A56F0 /* Images.xcassets */; };
 		C9B85F7E1AA432E1008A56F0 /* DLSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B85F7D1AA432E1008A56F0 /* DLSTests.m */; };
+		C9C23CF71AA9445D007A9A27 /* CustomAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C23CF61AA9445D007A9A27 /* CustomAnnotation.m */; };
+		C9C23CF91AA946F4007A9A27 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C23CF81AA946F4007A9A27 /* CoreLocation.framework */; };
+		C9C23CFB1AA9499A007A9A27 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C23CFA1AA9499A007A9A27 /* MapKit.framework */; };
 		C9D2B7331AA8684C00CF750D /* MySBWXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B7321AA8684C00CF750D /* MySBWXViewController.m */; };
 		C9D2B7361AA8686400CF750D /* MyQZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B7351AA8686400CF750D /* MyQZViewController.m */; };
 		C9D2B7391AA8687000CF750D /* MyCZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B7381AA8687000CF750D /* MyCZViewController.m */; };
@@ -26,6 +29,8 @@
 		C9D2B7451AA868BF00CF750D /* MyZPXXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B7441AA868BF00CF750D /* MyZPXXViewController.m */; };
 		C9D2B7481AA868EB00CF750D /* MyQZYPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B7471AA868EB00CF750D /* MyQZYPViewController.m */; };
 		C9D2B74B1AA8690D00CF750D /* MyHelpCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B74A1AA8690D00CF750D /* MyHelpCenterViewController.m */; };
+		C9D2B74F1AA8912B00CF750D /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B74E1AA8912B00CF750D /* ListViewController.m */; };
+		C9D2B7521AA8966200CF750D /* ProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B7511AA8966200CF750D /* ProjectCell.m */; };
 		C9D4CB0A1AA69192008D3A53 /* HomeCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D4CB091AA69192008D3A53 /* HomeCategoryCell.m */; };
 		C9D4CB0D1AA6A765008D3A53 /* HomeInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D4CB0C1AA6A765008D3A53 /* HomeInformationCell.m */; };
 		C9DD46BF1AA8271E004AEAB7 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DD46BE1AA8271E004AEAB7 /* RegisterViewController.m */; };
@@ -90,6 +95,10 @@
 		C9B85F771AA432E1008A56F0 /* DLSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DLSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9B85F7C1AA432E1008A56F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9B85F7D1AA432E1008A56F0 /* DLSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DLSTests.m; sourceTree = "<group>"; };
+		C9C23CF51AA9445D007A9A27 /* CustomAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotation.h; sourceTree = "<group>"; };
+		C9C23CF61AA9445D007A9A27 /* CustomAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotation.m; sourceTree = "<group>"; };
+		C9C23CF81AA946F4007A9A27 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C9C23CFA1AA9499A007A9A27 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C9D2B7311AA8684C00CF750D /* MySBWXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySBWXViewController.h; sourceTree = "<group>"; };
 		C9D2B7321AA8684C00CF750D /* MySBWXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySBWXViewController.m; sourceTree = "<group>"; };
 		C9D2B7341AA8686400CF750D /* MyQZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyQZViewController.h; sourceTree = "<group>"; };
@@ -108,6 +117,10 @@
 		C9D2B7471AA868EB00CF750D /* MyQZYPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyQZYPViewController.m; sourceTree = "<group>"; };
 		C9D2B7491AA8690D00CF750D /* MyHelpCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHelpCenterViewController.h; sourceTree = "<group>"; };
 		C9D2B74A1AA8690D00CF750D /* MyHelpCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyHelpCenterViewController.m; sourceTree = "<group>"; };
+		C9D2B74D1AA8912B00CF750D /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		C9D2B74E1AA8912B00CF750D /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		C9D2B7501AA8966200CF750D /* ProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCell.h; sourceTree = "<group>"; };
+		C9D2B7511AA8966200CF750D /* ProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCell.m; sourceTree = "<group>"; };
 		C9D4CB081AA69192008D3A53 /* HomeCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoryCell.h; sourceTree = "<group>"; };
 		C9D4CB091AA69192008D3A53 /* HomeCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoryCell.m; sourceTree = "<group>"; };
 		C9D4CB0B1AA6A765008D3A53 /* HomeInformationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeInformationCell.h; sourceTree = "<group>"; };
@@ -168,6 +181,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9C23CFB1AA9499A007A9A27 /* MapKit.framework in Frameworks */,
+				C9C23CF91AA946F4007A9A27 /* CoreLocation.framework in Frameworks */,
 				C9E1FF0B1AA558EC00720AAC /* QuartzCore.framework in Frameworks */,
 				C9E1FF0A1AA558E600720AAC /* CFNetwork.framework in Frameworks */,
 				C9E1FF081AA558A700720AAC /* UIKit.framework in Frameworks */,
@@ -188,6 +203,8 @@
 		C922D0861AA4396F00F6DBA1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C9C23CF51AA9445D007A9A27 /* CustomAnnotation.h */,
+				C9C23CF61AA9445D007A9A27 /* CustomAnnotation.m */,
 				C9E1FECC1AA554E200720AAC /* HttpRequest.h */,
 				C9E1FECD1AA554E200720AAC /* HttpRequest.m */,
 				C9E1FECE1AA554E200720AAC /* Response.h */,
@@ -234,12 +251,10 @@
 		C922D08A1AA4398700F6DBA1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C9D2B74C1AA86A7C00CF750D /* My */,
 				C9DD46BB1AA82704004AEAB7 /* Home */,
 				C922D08C1AA444B600F6DBA1 /* HomeViewController.h */,
 				C922D08D1AA444B600F6DBA1 /* HomeViewController.m */,
-				C909FC191AA6E03A008E68FB /* MessageViewController.h */,
-				C909FC1A1AA6E03A008E68FB /* MessageViewController.m */,
+				C9D2B74C1AA86A7C00CF750D /* My */,
 				C922D0951AA444FB00F6DBA1 /* MyViewController.h */,
 				C922D0961AA444FB00F6DBA1 /* MyViewController.m */,
 				C922D08F1AA444E100F6DBA1 /* NearbyViewController.h */,
@@ -322,6 +337,8 @@
 		C9D2B74C1AA86A7C00CF750D /* My */ = {
 			isa = PBXGroup;
 			children = (
+				C909FC191AA6E03A008E68FB /* MessageViewController.h */,
+				C909FC1A1AA6E03A008E68FB /* MessageViewController.m */,
 				C9D2B73D1AA8689C00CF750D /* MyBJXSViewController.h */,
 				C9D2B73E1AA8689C00CF750D /* MyBJXSViewController.m */,
 				C9D2B7371AA8687000CF750D /* MyCZViewController.h */,
@@ -347,6 +364,8 @@
 		C9DD46BB1AA82704004AEAB7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C9D2B74D1AA8912B00CF750D /* ListViewController.h */,
+				C9D2B74E1AA8912B00CF750D /* ListViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -420,6 +439,8 @@
 		C9E1FF091AA558C800720AAC /* framework */ = {
 			isa = PBXGroup;
 			children = (
+				C9C23CFA1AA9499A007A9A27 /* MapKit.framework */,
+				C9C23CF81AA946F4007A9A27 /* CoreLocation.framework */,
 				C9E1FEF71AA5569100720AAC /* QuartzCore.framework */,
 				C9E1FEF11AA5563B00720AAC /* UIKit.framework */,
 				C9E1FEF31AA5564100720AAC /* Foundation.framework */,
@@ -439,6 +460,8 @@
 				C9D4CB0C1AA6A765008D3A53 /* HomeInformationCell.m */,
 				C909FC161AA6D72A008E68FB /* InformationCell.h */,
 				C909FC171AA6D72A008E68FB /* InformationCell.m */,
+				C9D2B7501AA8966200CF750D /* ProjectCell.h */,
+				C9D2B7511AA8966200CF750D /* ProjectCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -559,6 +582,7 @@
 				C9DD46C21AA82731004AEAB7 /* LoginViewController.m in Sources */,
 				C9E1FEBB1AA5543F00720AAC /* BaseViewController.m in Sources */,
 				C9E1FEC91AA5548D00720AAC /* EGORefreshTableHeaderView.m in Sources */,
+				C9D2B7521AA8966200CF750D /* ProjectCell.m in Sources */,
 				C9E1FEEA1AA555F000720AAC /* ATMHudView.m in Sources */,
 				C9D2B7451AA868BF00CF750D /* MyZPXXViewController.m in Sources */,
 				C9E1FEEC1AA555F000720AAC /* ATMSoundFX.m in Sources */,
@@ -570,6 +594,7 @@
 				C9E1FEE81AA555F000720AAC /* ATMHud.m in Sources */,
 				C9D2B7391AA8687000CF750D /* MyCZViewController.m in Sources */,
 				C9E1FEE91AA555F000720AAC /* ATMHudQueueItem.m in Sources */,
+				C9D2B74F1AA8912B00CF750D /* ListViewController.m in Sources */,
 				C922D0941AA444ED00F6DBA1 /* VIPViewController.m in Sources */,
 				C922D0911AA444E100F6DBA1 /* NearbyViewController.m in Sources */,
 				C9D4CB0D1AA6A765008D3A53 /* HomeInformationCell.m in Sources */,
@@ -581,6 +606,7 @@
 				C922D08E1AA444B600F6DBA1 /* HomeViewController.m in Sources */,
 				C909FC181AA6D72A008E68FB /* InformationCell.m in Sources */,
 				C9E1FEBA1AA5543F00720AAC /* BaseTableViewController.m in Sources */,
+				C9C23CF71AA9445D007A9A27 /* CustomAnnotation.m in Sources */,
 				C9D2B7361AA8686400CF750D /* MyQZViewController.m in Sources */,
 				C9E1FEEB1AA555F000720AAC /* ATMProgressLayer.m in Sources */,
 				C922D0971AA444FB00F6DBA1 /* MyViewController.m in Sources */,
