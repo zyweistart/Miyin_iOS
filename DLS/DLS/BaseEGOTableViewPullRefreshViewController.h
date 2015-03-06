@@ -17,4 +17,7 @@
 
 - (PullTableView *)buildTableViewWithView:(UIView*)view;
 
+- (void)refreshTable;
+- (void)loadMoreDataToTable;
+
 @end

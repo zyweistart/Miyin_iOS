@@ -18,9 +18,7 @@
 
 @end
 
-@implementation VIPViewController{
-    long long currentButtonIndex;
-}
+@implementation VIPViewController
 
 - (id)init{
     self=[super init];
@@ -55,59 +53,19 @@
                                                 target:nil action:nil];
         negativeSpacerRight.width = -5;
         self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:btnMap], nil];
-        
-        UIView *categoryFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 41)];
-        [self.view addSubview:categoryFrame];
-        self.button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 79, 40)];
-        [[self.button1 titleLabel]setFont:[UIFont systemFontOfSize:14]];
-        [self.button1 setTitle:@"状态" forState:UIControlStateNormal];
-        self.button1.tag=1;
-        [self.button1 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
-        [categoryFrame addSubview:self.button1];
-        self.button2=[[UIButton alloc]initWithFrame:CGRectMake1(80, 0, 79, 40)];
-        [[self.button2 titleLabel]setFont:[UIFont systemFontOfSize:14]];
-        [self.button2 setTitle:@"类型" forState:UIControlStateNormal];
-        self.button2.tag=2;
-        [self.button2 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
-        [categoryFrame addSubview:self.button2];
-        self.button3=[[UIButton alloc]initWithFrame:CGRectMake1(160, 0, 79, 40)];
-        [[self.button3 titleLabel]setFont:[UIFont systemFontOfSize:14]];
-        [self.button3 setTitle:@"吨位" forState:UIControlStateNormal];
-        self.button3.tag=3;
-        [self.button3 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
-        [categoryFrame addSubview:self.button3];
-        self.button4=[[UIButton alloc]initWithFrame:CGRectMake1(240, 0, 80, 40)];
-        [[self.button4 titleLabel]setFont:[UIFont systemFontOfSize:14]];
-        [self.button4 setTitle:@"距离" forState:UIControlStateNormal];
-        self.button4.tag=4;
-        [self.button4 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
-        UIView *line1=[[UIView alloc]initWithFrame:CGRectMake1(79, 0, 1, 40)];
-        [line1 setBackgroundColor:LINECOLOR];
-        [categoryFrame addSubview:line1];
-        UIView *line2=[[UIView alloc]initWithFrame:CGRectMake1(159, 0, 1, 40)];
-        [line2 setBackgroundColor:LINECOLOR];
-        [categoryFrame addSubview:line2];
-        UIView *line3=[[UIView alloc]initWithFrame:CGRectMake1(239, 0, 1, 40)];
-        [line3 setBackgroundColor:LINECOLOR];
-        [categoryFrame addSubview:line3];
-        UIView *line4=[[UIView alloc]initWithFrame:CGRectMake1(0, 40, 320, 1)];
-        [line4 setBackgroundColor:LINECOLOR];
-        [categoryFrame addSubview:line4];
-        [categoryFrame addSubview:self.button4];
-        UIView *listView=[[UIView alloc]initWithFrame:CGRectMake1(0, 41, self.view.bounds.size.width, self.view.bounds.size.height-41)];
+        //分类
+        CategoryView *categoryView=[[CategoryView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40) Title1:@"状态" Titlte2:@"类型" Title3:@"吨位" Title4:@"距离"];
+        [categoryView setDelegate:self];
+        [self.view addSubview:categoryView];
+        //列表
+        UIView *listView=[[UIView alloc]initWithFrame:CGRectMake1(0, 40, self.view.bounds.size.width, self.view.bounds.size.height-41)];
         [listView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.view addSubview:listView];
         [self buildTableViewWithView:listView];
         
-        currentButtonIndex=1;
-        [self sHeaderCategory];
+        [categoryView setIndex:1];
     }
     return self;
-}
-
--(void)viewDidLoad
-{
-    [super viewDidLoad];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -133,22 +91,17 @@
     return cell;
 }
 
-- (void)switchCategory:(UIButton*)sender {
-    if(currentButtonIndex!=sender.tag){
-        currentButtonIndex=sender.tag;
-        [self sHeaderCategory];
+- (BOOL)CategoryViewChange:(long long)index
+{
+    if(!self.tableView.pullTableIsRefreshing) {
+        NSLog(@"当前刷新：%lld",index);
+        self.tableView.pullTableIsRefreshing = YES;
+        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:2.0f];
+        return YES;
+    }else{
+        NSLog(@"正在刷新等一会好吧");
+        return NO;
     }
-}
-
-- (void)sHeaderCategory{
-    [self.button1 setTitleColor:currentButtonIndex==1?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
-    [self.button1 setBackgroundColor:currentButtonIndex==1?CATEGORYBGCOLOR:[UIColor whiteColor]];
-    [self.button2 setTitleColor:currentButtonIndex==2?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
-    [self.button2 setBackgroundColor:currentButtonIndex==2?CATEGORYBGCOLOR:[UIColor whiteColor]];
-    [self.button3 setTitleColor:currentButtonIndex==3?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
-    [self.button3 setBackgroundColor:currentButtonIndex==3?CATEGORYBGCOLOR:[UIColor whiteColor]];
-    [self.button4 setTitleColor:currentButtonIndex==4?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
-    [self.button4 setBackgroundColor:currentButtonIndex==4?CATEGORYBGCOLOR:[UIColor whiteColor]];
 }
 //搜索
 - (void)goSearch:(id)sender

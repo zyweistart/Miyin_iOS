@@ -12,10 +12,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(!self.tableView.pullTableIsRefreshing) {
-        self.tableView.pullTableIsRefreshing = YES;
-        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3.0f];
-    }
+//    if(!self.tableView.pullTableIsRefreshing) {
+//        self.tableView.pullTableIsRefreshing = YES;
+//        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3.0f];
+//    }
 }
 
 - (void)viewDidUnload
@@ -38,7 +38,7 @@
 
 #pragma mark - Refresh and load more methods
 
-- (void) refreshTable
+- (void)refreshTable
 {
     /*
      *子类重写该方法完成下拉刷新的功能
@@ -47,7 +47,7 @@
     self.tableView.pullTableIsRefreshing = NO;
 }
 
-- (void) loadMoreDataToTable
+- (void)loadMoreDataToTable
 {
     /*
      *子类重写该方法完成更多刷新的功能

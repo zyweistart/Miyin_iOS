@@ -6,12 +6,8 @@
 //  Copyright (c) 2015 Start. All rights reserved.
 //
 #import "BaseEGOTableViewPullRefreshViewController.h"
+#import "CategoryView.h"
 
-@interface VIPViewController : BaseEGOTableViewPullRefreshViewController
-
-@property UIButton *button1;
-@property UIButton *button2;
-@property UIButton *button3;
-@property UIButton *button4;
+@interface VIPViewController : BaseEGOTableViewPullRefreshViewController<CategoryViewDelegate>
 
 @end
