@@ -159,8 +159,8 @@
 
 - (void)onClickGoDetail:(UITapGestureRecognizer *)sender
 {
-    int tag=[sender.view tag];
-    NSLog(@"tag=%d",tag);
+    NSInteger tag=[sender.view tag];
+    NSLog(@"tag=%ld",tag);
 }
 
 //切换地图或列表

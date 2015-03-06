@@ -25,13 +25,15 @@
 #pragma mark -
 #pragma mark CustomMethod
 
-- (UITableView *)buildTableView{
+//创建UITableView
+- (UITableView *)buildTableViewWithView:(UIView*)view;
+{
     if(self.tableView==nil){
-        self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds];
+        self.tableView=[[UITableView alloc]initWithFrame:view.bounds];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];
-        [self.view addSubview:self.tableView];
+        [view addSubview:self.tableView];
     }
     return self.tableView;
 }
