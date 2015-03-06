@@ -10,7 +10,7 @@
 #import "BaseViewController.h"
 #import "PullTableView.h"
 
-@interface BaseEGOTableViewPullRefreshViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate, PullTableViewDelegate>
+@interface BaseEGOTableViewPullRefreshViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate, PullTableViewDelegate,HttpViewDelegate>
 
 @property (strong,nonatomic) PullTableView *tableView;
 @property (strong,nonatomic) NSMutableArray *dataItemArray;

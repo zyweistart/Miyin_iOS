@@ -90,5 +90,35 @@
 - (void)goMap:(UIButton*)sender
 {
 }
+- (void)refreshTable
+{
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"3" forKey:@"Id"];
+    [params setObject:@"1" forKey:@"index"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest handle:@"GetListALL" requestParams:params];
+}
+
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    /*
+     *子类重写该方法完成下拉刷新的功能
+     */
+    self.tableView.pullLastRefreshDate = [NSDate date];
+    self.tableView.pullTableIsRefreshing = NO;
+}
+
+- (void)requestFailed:(int)reqCode
+{
+    /*
+     *子类重写该方法完成下拉刷新的功能
+     */
+    self.tableView.pullLastRefreshDate = [NSDate date];
+    self.tableView.pullTableIsRefreshing = NO;
+}
 
 @end
