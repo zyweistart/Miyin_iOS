@@ -9,9 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@interface CustomAnnotation : NSObject
-<MKAnnotation>
-{
+@interface CustomAnnotation : NSObject<MKAnnotation>{
 	CLLocationCoordinate2D coordinate;
 	NSString *title;
 	NSString *subtitle;

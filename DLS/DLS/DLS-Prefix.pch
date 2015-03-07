@@ -26,8 +26,8 @@
 #define ACCESSKEY @"16c75872e1ab71ecae205753d4d38991"
 #else
 //正式环境定义的常量
-#define HTTP_URL @"http://api.020leader.com"
-#define ACCESSKEY @"930bb8937c42109377e73bea7b92f88c"
+#define HTTP_URL @"http://121.41.60.234:8088"
+#define ACCESSKEY @"16c75872e1ab71ecae205753d4d38991"
 #endif
 
 #define HTTP_SERVER_URL(URL,SIGNATURE,TIMESTAMP,NONCE) [NSString stringWithFormat:@"%@/Ajax/API/%@.html?signature=%@&timestamp=%@&nonce=%@",HTTP_URL,URL,SIGNATURE,TIMESTAMP,NONCE]

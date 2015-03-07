@@ -12,4 +12,6 @@
 
 + (NSData *)toJSONData:(id)theData;
 
++ (void)alert:(NSString*)message;
+
 @end

@@ -79,7 +79,7 @@
 {
     if(!self.tableView.pullTableIsRefreshing) {
         self.tableView.pullTableIsRefreshing = YES;
-        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:2.0f];
+        [self loadData];
         return YES;
     }else{
         //正在刷新中稍等
@@ -90,7 +90,8 @@
 - (void)goMap:(UIButton*)sender
 {
 }
-- (void)refreshTable
+
+- (void)loadData
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"3" forKey:@"Id"];

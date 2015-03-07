@@ -3,13 +3,12 @@
 #import "MBProgressHUD.h"
 #import "Reachability.h"
 
-@implementation HttpRequest{
-    
+@implementation HttpRequest
+{
     ATMHud *_atmHud;
     MBProgressHUD *_mbpHud;
     NSMutableData *_data;
     long downloadFileSize;
-    
 }
 //是否已连接网络
 + (BOOL)isNetworkConnection
@@ -27,25 +26,18 @@
 {
     if ([HttpRequest isNetworkConnection]) {
         NSString *bodyContent=[[NSString alloc] initWithData:[Common toJSONData:params] encoding:NSUTF8StringEncoding];
-//        //时间戳
-//        String timestamp=String.valueOf(System.currentTimeMillis());
-//        //随机数
-//        String nonce=String.valueOf(new Random().nextInt(1000));
-//        //组合成数组
-//        String[] arrs={User.USER_ACCESSKEY_LOCAL,timestamp,nonce};
-//        //升序排列
-//        Arrays.sort(arrs);
-//        String signature= DigestUtils.shaHex(arrs[0]+arrs[1]+arrs[2]);
         //时间戳;
-        NSString *timestamp=[NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]*1000];
+//        NSString *timestamp=[NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]*1000];
+        NSString *timestamp=@"1425720173772";
         //随机数
-        NSString *nonce=[NSString stringWithFormat:@"%d",arc4random() % 1000];
+//        NSString *nonce=[NSString stringWithFormat:@"%d",arc4random() % 1000];
+        NSString *nonce=@"192";
         //封装成数组
 //        NSString *arr[]={ACCESSKEY,timestamp,nonce};
         //数组排序
-//        NSString *signature=ACCESSKEY;
+
         //签名
-        NSString *signature=@"7d78381bc58e1db1dba4bd965916fe6b4d5dc892";
+        NSString *signature=@"bc290c4cda2d188f60cee19ac22eb3db5a8e0ac0";
         NSString *url=HTTP_SERVER_URL(action, signature, timestamp, nonce);
         // 初始化一个请求
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -89,7 +81,8 @@
 }
 
 #pragma mark 该方法在响应connection时调用
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
     if(_data==nil) {
         _data=[[NSMutableData alloc]init];
     }
@@ -104,7 +97,8 @@
 }
 
 #pragma mark 接收到服务器返回的数据
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
     [_data appendData:data];
     if(self.isFileDownload) {
         //显示下载进度条
@@ -118,7 +112,8 @@
 }
 
 #pragma mark 服务器的数据已经接收完毕时调用
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
     if( [_delegate respondsToSelector: @selector(connectionDidFinishLoading:)]) {
         [_delegate connectionDidFinishLoading:connection];
     } else if( [_delegate respondsToSelector: @selector(requestFinishedByResponse:requestCode:)]) {
@@ -140,7 +135,8 @@
 }
 
 #pragma mark 网络连接出错时调用
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
     if( [_delegate respondsToSelector: @selector(connection:didFailWithError:)]) {
         [_delegate connection:connection didFailWithError:error];
     } else if( [_delegate respondsToSelector: @selector(requestFailed:)]) {

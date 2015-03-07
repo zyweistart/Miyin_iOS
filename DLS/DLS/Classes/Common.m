@@ -22,4 +22,9 @@
     }
 }
 
++ (void)alert:(NSString*)message
+{
+    
+}
+
 @end

@@ -28,12 +28,14 @@
 
 - (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
 {
-    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3.0f];
+//    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3.0f];
+    [self refreshTable];
 }
 
 - (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView
 {
-    [self performSelector:@selector(loadMoreDataToTable) withObject:nil afterDelay:3.0f];
+//    [self performSelector:@selector(loadMoreDataToTable) withObject:nil afterDelay:3.0f];
+    [self loadMoreDataToTable];
 }
 
 #pragma mark - Refresh and load more methods
