@@ -7,7 +7,7 @@
 //
 
 #import "MySBWXViewController.h"
-#import "ProjectBCell.h"
+#import "ProjectCCell.h"
 
 @interface MySBWXViewController ()
 
@@ -40,14 +40,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"Cell";
-    ProjectBCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    static NSString *cellIdentifier = @"CProjectCCell";
+    ProjectCCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell) {
-        cell = [[ProjectBCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[ProjectCCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     [cell.image setImage:[UIImage imageNamed:@"category1"]];
     cell.title.text=@"履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天";
-    cell.money.text=@"￥4000";
+    [cell.name setText:@"大力神维修"];
+    [cell.distance setText:@"距离:1785KM"];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
 }
