@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C909FC181AA6D72A008E68FB /* InformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C909FC171AA6D72A008E68FB /* InformationCell.m */; };
 		C909FC1B1AA6E03A008E68FB /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C909FC1A1AA6E03A008E68FB /* MessageViewController.m */; };
+		C90BC6971AAC6504001F9902 /* UIButton+TitleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C90BC6961AAC6504001F9902 /* UIButton+TitleImage.m */; };
 		C91115AB1AAC36AF00F56DFE /* ProjectBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91115AA1AAC36AF00F56DFE /* ProjectBCell.m */; };
 		C91115AE1AAC3AE200F56DFE /* ProjectCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91115AD1AAC3AE200F56DFE /* ProjectCCell.m */; };
 		C91115BA1AAC4BAE00F56DFE /* LaraCroft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C91115B91AAC4BAE00F56DFE /* LaraCroft@2x.png */; };
@@ -90,6 +91,8 @@
 		C909FC171AA6D72A008E68FB /* InformationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationCell.m; sourceTree = "<group>"; };
 		C909FC191AA6E03A008E68FB /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		C909FC1A1AA6E03A008E68FB /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		C90BC6951AAC6504001F9902 /* UIButton+TitleImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+TitleImage.h"; sourceTree = "<group>"; };
+		C90BC6961AAC6504001F9902 /* UIButton+TitleImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+TitleImage.m"; sourceTree = "<group>"; };
 		C91115A91AAC36AF00F56DFE /* ProjectBCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectBCell.h; sourceTree = "<group>"; };
 		C91115AA1AAC36AF00F56DFE /* ProjectBCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectBCell.m; sourceTree = "<group>"; };
 		C91115AC1AAC3AE200F56DFE /* ProjectCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCCell.h; sourceTree = "<group>"; };
@@ -251,6 +254,8 @@
 				C9E1FED01AA554E200720AAC /* ResultDelegate.h */,
 				C9125AA61AA9FA12001396FF /* Common.h */,
 				C9125AA71AA9FA12001396FF /* Common.m */,
+				C90BC6951AAC6504001F9902 /* UIButton+TitleImage.h */,
+				C90BC6961AAC6504001F9902 /* UIButton+TitleImage.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -684,6 +689,7 @@
 				C9D4CB0A1AA69192008D3A53 /* HomeCategoryCell.m in Sources */,
 				C9D2B7331AA8684C00CF750D /* MySBWXViewController.m in Sources */,
 				C922D08E1AA444B600F6DBA1 /* HomeViewController.m in Sources */,
+				C90BC6971AAC6504001F9902 /* UIButton+TitleImage.m in Sources */,
 				C909FC181AA6D72A008E68FB /* InformationCell.m in Sources */,
 				C99E82FE1AA997B20087D2F4 /* LoadMoreTableFooterView.m in Sources */,
 				C9E1FEBA1AA5543F00720AAC /* BaseTableViewController.m in Sources */,

@@ -17,6 +17,8 @@
 #import "MyQZYPViewController.h"
 #import "MyHelpCenterViewController.h"
 
+#import "UIButton+TitleImage.h"
+
 #define LINEBGCOLOR [UIColor colorWithRed:(167/255.0) green:(183/255.0) blue:(216/255.0) alpha:0.5]
 
 static CGFloat kImageOriginHight = 200.f;
@@ -54,32 +56,31 @@ static CGFloat kImageOriginHight = 200.f;
         self.tableView.contentInset = UIEdgeInsetsMake(kImageOriginHight, 0, 0, 0);
         [self.tableView addSubview:self.expandZoomImageView];
         
-        UIButton *bAccount=[[UIButton alloc]initWithFrame:CGRectMake1(0, kImageOriginHight-50, 79, 40)];
-        [bAccount setImage:[UIImage imageNamed:@"account"] forState:UIControlStateNormal];
-//        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(0, 50, 80, 20)];
-//        [lbl setText:@"账号"];
-//        [bAccount addSubview:lbl];
-        [self.expandZoomImageView addSubview:bAccount];
-        UIButton *bCollection=[[UIButton alloc]initWithFrame:CGRectMake1(80, kImageOriginHight-50, 79, 40)];
-        [bCollection setImage:[UIImage imageNamed:@"collection"] forState:UIControlStateNormal];
-        [self.expandZoomImageView addSubview:bCollection];
-        UIButton *bIntegral=[[UIButton alloc]initWithFrame:CGRectMake1(160, kImageOriginHight-50, 80, 40)];
-        [bIntegral setImage:[UIImage imageNamed:@"integral"] forState:UIControlStateNormal];
-        [self.expandZoomImageView addSubview:bIntegral];
-        UIButton *bMessage=[[UIButton alloc]initWithFrame:CGRectMake1(240, kImageOriginHight-50, 80, 40)];
-        [bMessage setImage:[UIImage imageNamed:@"message"] forState:UIControlStateNormal];
-        [self.expandZoomImageView addSubview:bMessage];
-        
+        UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, kImageOriginHight-50, 320, 40)];
+        [self.expandZoomImageView addSubview:bottomFrame];
+        UIButton *bAccount=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 79, 40)];
+        [bAccount.titleLabel setFont:[UIFont systemFontOfSize:13]];
+        [bAccount setTitle:@"账号" forImage:[UIImage imageNamed:@"account"]];
+        [bottomFrame addSubview:bAccount];
+        UIButton *bCollection=[[UIButton alloc]initWithFrame:CGRectMake1(80, 0, 79, 40)];
+        [bCollection setTitle:@"收藏" forImage:[UIImage imageNamed:@"collection"]];
+        [bottomFrame addSubview:bCollection];
+        UIButton *bIntegral=[[UIButton alloc]initWithFrame:CGRectMake1(160, 0, 80, 40)];
+        [bIntegral setTitle:@"积分" forImage:[UIImage imageNamed:@"integral"]];
+        [bottomFrame addSubview:bIntegral];
+        UIButton *bMessage=[[UIButton alloc]initWithFrame:CGRectMake1(240, 0, 80, 40)];
+        [bMessage setTitle:@"消息" forImage:[UIImage imageNamed:@"message"]];
+        [bottomFrame addSubview:bMessage];
         //竖线
-        UIView *line1=[[UIView alloc]initWithFrame:CGRectMake1(79, kImageOriginHight-50, 1, 40)];
+        UIView *line1=[[UIView alloc]initWithFrame:CGRectMake1(79, 0, 1, 40)];
         [line1 setBackgroundColor:LINEBGCOLOR];
-        [self.expandZoomImageView addSubview:line1];
-        UIView *line2=[[UIView alloc]initWithFrame:CGRectMake1(159, kImageOriginHight-50, 1, 40)];
+        [bottomFrame addSubview:line1];
+        UIView *line2=[[UIView alloc]initWithFrame:CGRectMake1(159, 0, 1, 40)];
         [line2 setBackgroundColor:LINEBGCOLOR];
-        [self.expandZoomImageView addSubview:line2];
-        UIView *line3=[[UIView alloc]initWithFrame:CGRectMake1(239, kImageOriginHight-50, 1, 40)];
+        [bottomFrame addSubview:line2];
+        UIView *line3=[[UIView alloc]initWithFrame:CGRectMake1(239, 0, 1, 40)];
         [line3 setBackgroundColor:LINEBGCOLOR];
-        [self.expandZoomImageView addSubview:line3];
+        [bottomFrame addSubview:line3];
         
     }
     return self;

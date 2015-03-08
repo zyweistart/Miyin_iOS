@@ -144,23 +144,38 @@
 //刷新地图位置数据
 - (void)goRefreshMapData
 {
-    //清除地图上的位置点
-    [self.mapView removeAnnotations:[self.mapView annotations]];
-    double latitude[9]={29.997461006205593,29.990250398850474,29.936414481847535,29.942513384159106,29.987425482052284,29.985715624943672,30.168762870400922,29.948760652467562,29.968950031785944};
-    double longitude[9]={120.6018155523682,120.54001745666507,120.57194647277835,120.57537970031741,120.657433838501,120.58688101257327,120.65537390197757,120.44440206970218,120.5882543035889};
-    for(int i=0;i<9;i++){
-        CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude[i],longitude[i])];
-        annotation1.title = @"新能量e电工";
-        annotation1.subtitle = @"点击联系此电工";
-        [annotation1 setIndex:i];
-        [self.mapView addAnnotation:annotation1];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"9" forKey:@"Id"];
+    [params setObject:@"1" forKey:@"index"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:@"GetListALL" requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        //清除地图上的位置点
+        [self.mapView removeAnnotations:[self.mapView annotations]];
+        double latitude[9]={29.997461006205593,29.990250398850474,29.936414481847535,29.942513384159106,29.987425482052284,29.985715624943672,30.168762870400922,29.948760652467562,29.968950031785944};
+        double longitude[9]={120.6018155523682,120.54001745666507,120.57194647277835,120.57537970031741,120.657433838501,120.58688101257327,120.65537390197757,120.44440206970218,120.5882543035889};
+        for(int i=0;i<9;i++){
+            CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude[i],longitude[i])];
+            annotation1.title = @"新能量e电工";
+            annotation1.subtitle = @"点击联系此电工";
+            [annotation1 setIndex:i];
+            [self.mapView addAnnotation:annotation1];
+        }
     }
 }
 
 - (void)onClickGoDetail:(UITapGestureRecognizer *)sender
 {
     NSInteger tag=[sender.view tag];
-    NSLog(@"tag=%ld",tag);
+    NSLog(@"tag=%d",tag);
 }
 
 //切换地图或列表
