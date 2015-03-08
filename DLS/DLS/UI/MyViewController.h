@@ -10,4 +10,6 @@
 
 @interface MyViewController : BaseTableViewController
 
+@property (strong, nonatomic) UIImageView *expandZoomImageView;
+
 @end

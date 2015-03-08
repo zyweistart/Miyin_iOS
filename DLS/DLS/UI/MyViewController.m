@@ -17,6 +17,10 @@
 #import "MyQZYPViewController.h"
 #import "MyHelpCenterViewController.h"
 
+#define LINEBGCOLOR [UIColor colorWithRed:(167/255.0) green:(183/255.0) blue:(216/255.0) alpha:0.5]
+
+static CGFloat kImageOriginHight = 200.f;
+
 @interface MyViewController ()
 
 @end
@@ -27,15 +31,73 @@
     self=[super init];
     if(self){
         [self setTitle:@"我的"];
+        //右消息按钮
+        UIButton *btnSetting = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnSetting setBackgroundImage:[UIImage imageNamed:@"setting"]forState:UIControlStateNormal];
+//        [btnSetting addTarget:self action:@selector(goMap:) forControlEvents:UIControlEventTouchUpInside];
+        btnSetting.frame = CGRectMake(0, 0, 20, 20);
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnSetting];
         
         self.dataItemArray=[[NSMutableArray alloc]init];
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"我的出租",@"我的求租",@"设备销售",@"设备维修",@"配件销售",@"VIP工程", nil]];
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"招聘信息",@"我的求职", nil]];
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"帮助中心",@"得力手客服中心", nil]];
+
+        self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        [self.tableView setDelegate:self];
+        [self.tableView setDataSource:self];
+        [self.view addSubview:self.tableView];
         
-        [self buildTableViewWithView:self.view];
+        self.expandZoomImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, kImageOriginHight)];
+        [self.expandZoomImageView setImage:[UIImage imageNamed:@"LaraCroft"]];
+        self.tableView.contentInset = UIEdgeInsetsMake(kImageOriginHight, 0, 0, 0);
+        [self.tableView addSubview:self.expandZoomImageView];
+        
+        UIButton *bAccount=[[UIButton alloc]initWithFrame:CGRectMake1(0, kImageOriginHight-50, 79, 40)];
+        [bAccount setImage:[UIImage imageNamed:@"account"] forState:UIControlStateNormal];
+//        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(0, 50, 80, 20)];
+//        [lbl setText:@"账号"];
+//        [bAccount addSubview:lbl];
+        [self.expandZoomImageView addSubview:bAccount];
+        UIButton *bCollection=[[UIButton alloc]initWithFrame:CGRectMake1(80, kImageOriginHight-50, 79, 40)];
+        [bCollection setImage:[UIImage imageNamed:@"collection"] forState:UIControlStateNormal];
+        [self.expandZoomImageView addSubview:bCollection];
+        UIButton *bIntegral=[[UIButton alloc]initWithFrame:CGRectMake1(160, kImageOriginHight-50, 80, 40)];
+        [bIntegral setImage:[UIImage imageNamed:@"integral"] forState:UIControlStateNormal];
+        [self.expandZoomImageView addSubview:bIntegral];
+        UIButton *bMessage=[[UIButton alloc]initWithFrame:CGRectMake1(240, kImageOriginHight-50, 80, 40)];
+        [bMessage setImage:[UIImage imageNamed:@"message"] forState:UIControlStateNormal];
+        [self.expandZoomImageView addSubview:bMessage];
+        
+        //竖线
+        UIView *line1=[[UIView alloc]initWithFrame:CGRectMake1(79, kImageOriginHight-50, 1, 40)];
+        [line1 setBackgroundColor:LINEBGCOLOR];
+        [self.expandZoomImageView addSubview:line1];
+        UIView *line2=[[UIView alloc]initWithFrame:CGRectMake1(159, kImageOriginHight-50, 1, 40)];
+        [line2 setBackgroundColor:LINEBGCOLOR];
+        [self.expandZoomImageView addSubview:line2];
+        UIView *line3=[[UIView alloc]initWithFrame:CGRectMake1(239, kImageOriginHight-50, 1, 40)];
+        [line3 setBackgroundColor:LINEBGCOLOR];
+        [self.expandZoomImageView addSubview:line3];
+        
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.expandZoomImageView.frame = CGRectMake(0, -kImageOriginHight, self.tableView.frame.size.width, kImageOriginHight);
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGFloat yOffset  = scrollView.contentOffset.y;
+    if (yOffset < -kImageOriginHight) {
+        CGRect f = self.expandZoomImageView.frame;
+        f.origin.y = yOffset;
+        f.size.height =  -yOffset;
+        self.expandZoomImageView.frame = f;
+    }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
