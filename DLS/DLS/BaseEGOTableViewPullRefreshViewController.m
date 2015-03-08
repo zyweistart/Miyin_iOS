@@ -45,8 +45,7 @@
     /*
      *子类重写该方法完成下拉刷新的功能
      */
-    self.tableView.pullLastRefreshDate = [NSDate date];
-    self.tableView.pullTableIsRefreshing = NO;
+    [self loadDone];
 }
 
 - (void)loadMoreDataToTable
@@ -54,7 +53,17 @@
     /*
      *子类重写该方法完成更多刷新的功能
      */
-    self.tableView.pullTableIsLoadingMore = NO;
+    [self loadDone];
+}
+
+- (void)loadDone
+{
+    if(self.tableView.pullTableIsRefreshing){
+        self.tableView.pullLastRefreshDate = [NSDate date];
+        self.tableView.pullTableIsRefreshing = NO;
+    }else if(self.tableView.pullTableIsLoadingMore){
+        self.tableView.pullTableIsLoadingMore = NO;
+    }
 }
 
 //创建PullTableView

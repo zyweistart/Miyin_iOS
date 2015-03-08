@@ -18,9 +18,13 @@
 
 @end
 
-@implementation VIPViewController
+@implementation VIPViewController {
+    BOOL ISFIRSTINFLAG;
+    CategoryView *categoryView;
+}
 
-- (id)init{
+- (id)init
+{
     self=[super init];
     if(self){
         [self setTitle:@"VIP"];
@@ -39,7 +43,7 @@
         negativeSpacerRight.width = -5;
         self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:btnMap], nil];
         //分类
-        CategoryView *categoryView=[[CategoryView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40) Title1:@"状态" Titlte2:@"类型" Title3:@"吨位" Title4:@"距离"];
+        categoryView=[[CategoryView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40) Title1:@"状态" Titlte2:@"类型" Title3:@"吨位" Title4:@"距离"];
         [categoryView setDelegate:self];
         [self.view addSubview:categoryView];
         //列表
@@ -47,9 +51,17 @@
         [listView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.view addSubview:listView];
         [self buildTableViewWithView:listView];
-        [categoryView setIndex:1];
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if(!ISFIRSTINFLAG){
+        ISFIRSTINFLAG=YES;
+        [categoryView setIndex:1];
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -57,11 +69,13 @@
     return 8;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return 80;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *CProjectCell = @"CProjectCell";
     ProjectCell *cell = [tableView dequeueReusableCellWithIdentifier:CProjectCell];
     if (cell == nil) {
@@ -78,8 +92,8 @@
 - (BOOL)CategoryViewChange:(long long)index
 {
     if(!self.tableView.pullTableIsRefreshing) {
-        self.tableView.pullTableIsRefreshing = YES;
-        [self loadData];
+        self.tableView.pullTableIsRefreshing=YES;
+        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
         return YES;
     }else{
         //正在刷新中稍等
@@ -103,14 +117,29 @@
     [self.hRequest handle:@"GetListALL" requestParams:params];
 }
 
+- (void)refreshTable
+{
+    NSLog(@"上拉刷新");
+    [self loadData];
+}
+
+- (void)loadMoreDataToTable
+{
+    NSLog(@"下拉刷新");
+    [self loadData];
+}
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     /*
      *子类重写该方法完成下拉刷新的功能
      */
-    self.tableView.pullLastRefreshDate = [NSDate date];
-    self.tableView.pullTableIsRefreshing = NO;
+    if(self.tableView.pullTableIsRefreshing){
+        self.tableView.pullLastRefreshDate = [NSDate date];
+        self.tableView.pullTableIsRefreshing = NO;
+    }else if(self.tableView.pullTableIsLoadingMore){
+        self.tableView.pullTableIsLoadingMore = NO;
+    }
 }
 
 - (void)requestFailed:(int)reqCode
@@ -118,8 +147,12 @@
     /*
      *子类重写该方法完成下拉刷新的功能
      */
-    self.tableView.pullLastRefreshDate = [NSDate date];
-    self.tableView.pullTableIsRefreshing = NO;
+    if(self.tableView.pullTableIsRefreshing){
+        self.tableView.pullLastRefreshDate = [NSDate date];
+        self.tableView.pullTableIsRefreshing = NO;
+    }else if(self.tableView.pullTableIsLoadingMore){
+        self.tableView.pullTableIsLoadingMore = NO;
+    }
 }
 
 @end

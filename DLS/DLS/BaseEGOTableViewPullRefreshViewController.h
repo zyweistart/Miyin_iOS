@@ -19,5 +19,6 @@
 
 - (void)refreshTable;
 - (void)loadMoreDataToTable;
+- (void)loadDone;
 
 @end
