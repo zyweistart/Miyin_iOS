@@ -28,16 +28,16 @@
         NSString *bodyContent=[[NSString alloc] initWithData:[Common toJSONData:params] encoding:NSUTF8StringEncoding];
         //时间戳;
 //        NSString *timestamp=[NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]*1000];
-        NSString *timestamp=@"1425720173772";
+        NSString *timestamp=@"1425792466146";
         //随机数
 //        NSString *nonce=[NSString stringWithFormat:@"%d",arc4random() % 1000];
-        NSString *nonce=@"192";
+        NSString *nonce=@"459";
         //封装成数组
 //        NSString *arr[]={ACCESSKEY,timestamp,nonce};
         //数组排序
 
         //签名
-        NSString *signature=@"bc290c4cda2d188f60cee19ac22eb3db5a8e0ac0";
+        NSString *signature=@"16b5d592fe62ac42030971caa3d3468f278c9c56";
         NSString *url=HTTP_SERVER_URL(action, signature, timestamp, nonce);
         // 初始化一个请求
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -122,7 +122,6 @@
         //成功标记
         [response setSuccessFlag:[@"0" isEqualToString:[response code]]];
         [_delegate requestFinishedByResponse:response requestCode:self.requestCode];
-        NSLog(@"%@",[response msg]);
     }
     //隐藏下载进度条
     if(_atmHud) {
