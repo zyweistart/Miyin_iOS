@@ -61,7 +61,7 @@
         
         //右消息按钮
         UIButton *btnMessage = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btnMessage setBackgroundImage:[UIImage imageNamed:@"message"]forState:UIControlStateNormal];
+        [btnMessage setBackgroundImage:[UIImage imageNamed:@"message1"]forState:UIControlStateNormal];
         [btnMessage addTarget:self action:@selector(goMessage:) forControlEvents:UIControlEventTouchUpInside];
         btnMessage.frame = CGRectMake(0, 0, 24, 20);
         UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
