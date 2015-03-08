@@ -26,6 +26,8 @@
 
 #import "PullTableView.h"
 
+#define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
+
 @interface PullTableView (Private) <UIScrollViewDelegate>
 - (void) config;
 - (void) configDisplayProperties;
@@ -42,7 +44,7 @@
     self = [super initWithFrame:frame style:style];
     if (self) {
         [self config];
-        self.pullTextColor = [UIColor blackColor];
+        self.pullTextColor = TITLECOLOR;
         self.pullBackgroundColor = [UIColor clearColor];
         self.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
     }
