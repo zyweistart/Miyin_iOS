@@ -7,6 +7,7 @@
 //
 
 #import "HomeBannerCell.h"
+#import "UIButton+TitleImage.h"
 #import "ListViewController.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
@@ -37,30 +38,31 @@
 
 - (void)addModel:(NSString*)image Title:(NSString*)title Frame:(UIView*)frame Tag:(NSUInteger)tag X:(CGFloat)x Y:(CGFloat)y
 {
-    UIView *model=[[UIView alloc]initWithFrame:CGRectMake1(x, y, 80, 90)];
-    model.tag=tag;
-    [model addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goToMain:)]];
-    UIImageView *imgBG=[[UIImageView alloc]initWithFrame:CGRectMake1(13, 6, 54, 54)];
-    [model addSubview:imgBG];
-    UILabel *txtTitle=[[UILabel alloc]initWithFrame:CGRectMake1(0, 60, 80, 30)];
-    [model addSubview:txtTitle];
-    [txtTitle setTextColor:TITLECOLOR];
-    [txtTitle setFont:[UIFont systemFontOfSize:13]];
-    [txtTitle setTextAlignment:NSTextAlignmentCenter];
+//    UIView *model=[[UIView alloc]initWithFrame:CGRectMake1(x, y, 80, 90)];
+//    model.tag=tag;
+//    [model addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goToMain:)]];
+//    UIImageView *imgBG=[[UIImageView alloc]initWithFrame:CGRectMake1(13, 6, 54, 54)];
+//    [model addSubview:imgBG];
+//    UILabel *txtTitle=[[UILabel alloc]initWithFrame:CGRectMake1(0, 60, 80, 30)];
+//    [model addSubview:txtTitle];
+//    [txtTitle setTextColor:TITLECOLOR];
+//    [txtTitle setFont:[UIFont systemFontOfSize:13]];
+//    [txtTitle setTextAlignment:NSTextAlignmentCenter];
+//    
+//    [imgBG setImage:[UIImage imageNamed:image]];
+//    [txtTitle setText:title];
+//    [frame addSubview:model];
     
-    [imgBG setImage:[UIImage imageNamed:image]];
-    [txtTitle setText:title];
-    [frame addSubview:model];
+    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(x, y, 80, 90)];
+    [button setTitle:title forImage:[UIImage imageNamed:image]];
+    [button setTitleColor:TITLECOLOR forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(goToMain:) forControlEvents:UIControlEventTouchUpInside];
+    button.tag=tag;
+    [frame addSubview:button];
 }
 
-- (void)goToMain:(UITapGestureRecognizer*)sender {
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@"信息"
-                          message:@"这是消息"
-                          delegate:nil
-                          cancelButtonTitle:@"取消"
-                          otherButtonTitles:nil, nil];
-    [alert show];
+- (void)goToMain:(UIButton*)sender {
+    NSLog(@"%d",sender.tag);
 }
 
 @end

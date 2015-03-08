@@ -59,7 +59,6 @@ static CGFloat kImageOriginHight = 200.f;
         UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, kImageOriginHight-50, 320, 40)];
         [self.expandZoomImageView addSubview:bottomFrame];
         UIButton *bAccount=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 79, 40)];
-        [bAccount.titleLabel setFont:[UIFont systemFontOfSize:13]];
         [bAccount setTitle:@"账号" forImage:[UIImage imageNamed:@"account"]];
         [bottomFrame addSubview:bAccount];
         UIButton *bCollection=[[UIButton alloc]initWithFrame:CGRectMake1(80, 0, 79, 40)];

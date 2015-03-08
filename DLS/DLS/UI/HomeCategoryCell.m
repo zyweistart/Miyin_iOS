@@ -28,37 +28,48 @@
         
         UIView *category1=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 159.5, 90)];
         [mainFrame addSubview:category1];
-        [self addCategorySubView:category1 MainTitle:@"大件运输" ChildTitle:@"大型重物运输供应需求" ImageName:@"category1"];
+        [self addCategorySubView:category1 MainTitle:@"大件运输" ChildTitle:@"大型重物运输供应需求" ImageName:@"category1" Tag:1];
         UIView *category2=[[UIView alloc]initWithFrame:CGRectMake1(160.5, 0, 159.5, 90)];
         [mainFrame addSubview:category2];
-        [self addCategorySubView:category2 MainTitle:@"吊车配件" ChildTitle:@"吊车配件供应中心" ImageName:@"category2"];
+        [self addCategorySubView:category2 MainTitle:@"吊车配件" ChildTitle:@"吊车配件供应中心" ImageName:@"category2" Tag:2];
         UIView *category3=[[UIView alloc]initWithFrame:CGRectMake1(0, 91, 159.5, 90)];
         [mainFrame addSubview:category3];
-        [self addCategorySubView:category3 MainTitle:@"维修企业" ChildTitle:@"快速寻找最近维修单位" ImageName:@"category3"];
+        [self addCategorySubView:category3 MainTitle:@"维修企业" ChildTitle:@"快速寻找最近维修单位" ImageName:@"category3" Tag:3];
         UIView *category4=[[UIView alloc]initWithFrame:CGRectMake1(160.5, 91, 159.5, 90)];
         [mainFrame addSubview:category4];
-        [self addCategorySubView:category4 MainTitle:@"二手吊车" ChildTitle:@"闲置二手吊车交易" ImageName:@"category4"];
+        [self addCategorySubView:category4 MainTitle:@"二手吊车" ChildTitle:@"闲置二手吊车交易" ImageName:@"category4" Tag:4];
         UIView *category5=[[UIView alloc]initWithFrame:CGRectMake1(0, 182, 320, 40)];
         [mainFrame addSubview:category5];
         UIButton *button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 10, 80, 20)];
         [[button1 titleLabel]setFont:[UIFont systemFontOfSize:13]];
         [button1 setTitle:@"其他设备" forState:UIControlStateNormal];
         [button1 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
+        [button1 addTarget:self action:@selector(goToMain1:) forControlEvents:UIControlEventTouchUpInside];
+        button1.tag=5;
         [category5 addSubview:button1];
         UIButton *button2=[[UIButton alloc]initWithFrame:CGRectMake1(80, 10, 80, 20)];
         [[button2 titleLabel]setFont:[UIFont systemFontOfSize:13]];
         [button2 setTitle:@"项目预告" forState:UIControlStateNormal];
         [button2 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
+        [button2 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
+        [button2 addTarget:self action:@selector(goToMain1:) forControlEvents:UIControlEventTouchUpInside];
+        button2.tag=6;
         [category5 addSubview:button2];
         UIButton *button3=[[UIButton alloc]initWithFrame:CGRectMake1(160, 10, 80, 20)];
         [[button3 titleLabel]setFont:[UIFont systemFontOfSize:13]];
         [button3 setTitle:@"起重机制造商" forState:UIControlStateNormal];
         [button3 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
+        [button3 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
+        [button3 addTarget:self action:@selector(goToMain1:) forControlEvents:UIControlEventTouchUpInside];
+        button3.tag=7;
         [category5 addSubview:button3];
         UIButton *button4=[[UIButton alloc]initWithFrame:CGRectMake1(240, 10, 80, 20)];
         [[button4 titleLabel]setFont:[UIFont systemFontOfSize:13]];
         [button4 setTitle:@"企业大全" forState:UIControlStateNormal];
         [button4 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
+        [button4 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
+        [button4 addTarget:self action:@selector(goToMain1:) forControlEvents:UIControlEventTouchUpInside];
+        button4.tag=8;
         [category5 addSubview:button4];
         //底线2
         UIView *line0=[[UIView alloc]initWithFrame:CGRectMake1(0, 10, 320, 1)];
@@ -86,7 +97,7 @@
     return self;
 }
 
-- (void)addCategorySubView:(UIView*)frame MainTitle:(NSString*)mainTitle ChildTitle:(NSString*)childTitle ImageName:(NSString*)imageName{
+- (void)addCategorySubView:(UIView*)frame MainTitle:(NSString*)mainTitle ChildTitle:(NSString*)childTitle ImageName:(NSString*)imageName Tag:(int)tag{
     //主标题
     UILabel *mainTxt=[[UILabel alloc]initWithFrame:CGRectMake1(5, 40, 100, 25)];
     [mainTxt setFont:[UIFont systemFontOfSize:18]];
@@ -103,18 +114,16 @@
     UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(100, 15, 50, 50)];
     [image setImage:[UIImage imageNamed:imageName]];
     [frame addSubview:image];
+    frame.tag=tag;
     [frame addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goToMain:)]];
 }
 
-- (void)goToMain:(UIButton*)sender {
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@"信息"
-                          message:@"这是消息"
-                          delegate:nil
-                          cancelButtonTitle:@"取消"
-                          otherButtonTitles:nil, nil];
-    [alert show];
+- (void)goToMain:(UITapGestureRecognizer*)sender {
+    NSLog(@"%d",[sender.view tag]);
 }
 
+- (void)goToMain1:(UIButton*)sender {
+    NSLog(@"%d",sender.tag);
+}
 
 @end
