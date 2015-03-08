@@ -23,5 +23,6 @@
 - (void)refreshTable;
 - (void)loadMoreDataToTable;
 - (void)loadDone;
+- (void)loadHttp;
 
 @end

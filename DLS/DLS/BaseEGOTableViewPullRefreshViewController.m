@@ -45,7 +45,8 @@
     /*
      *子类重写该方法完成下拉刷新的功能
      */
-    [self loadDone];
+    self.currentPage=1;
+    [self loadHttp];
 }
 
 - (void)loadMoreDataToTable
@@ -53,9 +54,14 @@
     /*
      *子类重写该方法完成更多刷新的功能
      */
-    [self loadDone];
+    self.currentPage++;
+    [self loadHttp];
 }
 
+- (void)loadHttp
+{
+    
+}
 //调用该方法完成刷新状态
 - (void)loadDone
 {
@@ -65,6 +71,7 @@
     }else if(self.tableView.pullTableIsLoadingMore){
         self.tableView.pullTableIsLoadingMore = NO;
     }
+    [self.tableView reloadData];
 }
 
 //创建PullTableView
@@ -105,6 +112,29 @@
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
+    if([response successFlag]){
+        NSDictionary *rData=[[response resultJSON] objectForKey:@"Data"];
+        if(rData){
+            //当前页
+            self.currentPage=[[NSString stringWithFormat:@"%@",[rData objectForKey:@"PageIndex"]] intValue];
+            //获取数据列表
+            NSDictionary *tabData=[rData objectForKey:@"Tab"];
+            if(tabData){
+                NSMutableArray *nsArr=[[NSMutableArray alloc]init];
+                for(id data in tabData){
+                    [nsArr addObject:data];
+                }
+                if(self.currentPage==1){
+                    if(!self.dataItemArray){
+                        self.dataItemArray=[[NSMutableArray alloc]init];
+                    }else{
+                        [self.dataItemArray removeAllObjects];
+                    }
+                }
+                [self.dataItemArray addObjectsFromArray:nsArr];
+            }
+        }
+    }
     [self loadDone];
 }
 

@@ -33,11 +33,6 @@
     }
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 10;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 55;
@@ -56,31 +51,17 @@
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
 }
-- (void)loadData
+
+- (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"3" forKey:@"Id"];
-    [params setObject:@"1" forKey:@"index"];
+    [params setObject:@"9" forKey:@"Id"];
+    [params setObject:[NSString stringWithFormat:@"%d",self.currentPage] forKey:@"index"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest handle:@"GetListALL" requestParams:params];
-}
-
-- (void)refreshTable
-{
-    [self loadData];
-}
-
-- (void)loadMoreDataToTable
-{
-    [self loadData];
-}
-
-- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
-{
-    [self loadDone];
 }
 
 @end

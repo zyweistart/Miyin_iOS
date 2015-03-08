@@ -64,11 +64,6 @@
     }
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 8;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 80;
@@ -81,8 +76,9 @@
     if (cell == nil) {
         cell = [[ProjectCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CProjectCell];
     }
+    NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
     [cell.image setImage:[UIImage imageNamed:@"category1"]];
-    cell.title.text=@"履带吊求租一天吊车结婚";
+    cell.title.text=[NSString stringWithFormat:@"%@",[data objectForKey:@"Name"]];
     cell.address.text=@"萧山建设1路";
     cell.money.text=@"40000元";
     [cell setStatus:@"洽谈中" Type:1];
@@ -106,22 +102,10 @@
     
 }
 
-- (void)refreshTable
-{
-    self.currentPage=1;
-    [self loadData];
-}
-
-- (void)loadMoreDataToTable
-{
-    self.currentPage++;
-    [self loadData];
-}
-
-- (void)loadData
+- (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"3" forKey:@"Id"];
+    [params setObject:@"9" forKey:@"Id"];
     [params setObject:[NSString stringWithFormat:@"%d",self.currentPage] forKey:@"index"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];

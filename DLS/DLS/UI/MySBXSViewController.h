@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Start. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseEGOTableViewPullRefreshViewController.h"
 
-@interface MySBXSViewController : BaseViewController
+@interface MySBXSViewController : BaseEGOTableViewPullRefreshViewController
 
 @end

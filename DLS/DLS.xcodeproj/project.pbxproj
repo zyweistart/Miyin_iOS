@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C909FC181AA6D72A008E68FB /* InformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C909FC171AA6D72A008E68FB /* InformationCell.m */; };
 		C909FC1B1AA6E03A008E68FB /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C909FC1A1AA6E03A008E68FB /* MessageViewController.m */; };
+		C91115AB1AAC36AF00F56DFE /* ProjectBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91115AA1AAC36AF00F56DFE /* ProjectBCell.m */; };
 		C9125AA81AA9FA12001396FF /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = C9125AA71AA9FA12001396FF /* Common.m */; };
 		C922D08E1AA444B600F6DBA1 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C922D08D1AA444B600F6DBA1 /* HomeViewController.m */; };
 		C922D0911AA444E100F6DBA1 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C922D0901AA444E100F6DBA1 /* NearbyViewController.m */; };
@@ -87,6 +88,8 @@
 		C909FC171AA6D72A008E68FB /* InformationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationCell.m; sourceTree = "<group>"; };
 		C909FC191AA6E03A008E68FB /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		C909FC1A1AA6E03A008E68FB /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		C91115A91AAC36AF00F56DFE /* ProjectBCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectBCell.h; sourceTree = "<group>"; };
+		C91115AA1AAC36AF00F56DFE /* ProjectBCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectBCell.m; sourceTree = "<group>"; };
 		C9125AA61AA9FA12001396FF /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		C9125AA71AA9FA12001396FF /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		C922D08C1AA444B600F6DBA1 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -519,6 +522,8 @@
 				C9D2B7511AA8966200CF750D /* ProjectCell.m */,
 				C99A055C1AAC24F3004E5490 /* ProjectACell.h */,
 				C99A055D1AAC24F3004E5490 /* ProjectACell.m */,
+				C91115A91AAC36AF00F56DFE /* ProjectBCell.h */,
+				C91115AA1AAC36AF00F56DFE /* ProjectBCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -632,6 +637,7 @@
 			files = (
 				C9E1FEE71AA555F000720AAC /* Reachability.m in Sources */,
 				C99E82FF1AA997B20087D2F4 /* MessageInterceptor.m in Sources */,
+				C91115AB1AAC36AF00F56DFE /* ProjectBCell.m in Sources */,
 				C9DB29A01AA9A18D00D5893B /* CategoryView.m in Sources */,
 				C9E1FED21AA554E200720AAC /* Response.m in Sources */,
 				C9D2B7481AA868EB00CF750D /* MyQZYPViewController.m in Sources */,
