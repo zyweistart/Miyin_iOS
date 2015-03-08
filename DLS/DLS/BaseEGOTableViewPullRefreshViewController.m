@@ -56,6 +56,7 @@
     [self loadDone];
 }
 
+//调用该方法完成刷新状态
 - (void)loadDone
 {
     if(self.tableView.pullTableIsRefreshing){
@@ -98,8 +99,18 @@
     if(!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"Row %ld", indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"Row %d", indexPath.row];
     return cell;
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    [self loadDone];
+}
+
+- (void)requestFailed:(int)reqCode
+{
+    [self loadDone];
 }
 
 @end

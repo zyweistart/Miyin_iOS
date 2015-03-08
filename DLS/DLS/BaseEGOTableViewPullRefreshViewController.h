@@ -10,8 +10,11 @@
 #import "BaseViewController.h"
 #import "PullTableView.h"
 
-@interface BaseEGOTableViewPullRefreshViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate, PullTableViewDelegate,HttpViewDelegate>
+#define PAGESIZE 8
 
+@interface BaseEGOTableViewPullRefreshViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate, PullTableViewDelegate>
+
+@property NSInteger currentPage;
 @property (strong,nonatomic) PullTableView *tableView;
 @property (strong,nonatomic) NSMutableArray *dataItemArray;
 

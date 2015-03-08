@@ -8,7 +8,7 @@
     ATMHud *_atmHud;
     MBProgressHUD *_mbpHud;
     NSMutableData *_data;
-    long downloadFileSize;
+    long long downloadFileSize;
 }
 //是否已连接网络
 + (BOOL)isNetworkConnection
@@ -77,6 +77,9 @@
         }
     } else {
         NSLog(@"网络连接出错，请检测网络设置");
+        if( [_delegate respondsToSelector: @selector(requestFailed:)]) {
+            [_delegate requestFailed:self.requestCode];
+        }
     }
 }
 

@@ -11,6 +11,4 @@
 
 @interface VIPViewController : BaseEGOTableViewPullRefreshViewController<CategoryViewDelegate>
 
-@property (strong,nonatomic) HttpRequest *hRequest;
-
 @end

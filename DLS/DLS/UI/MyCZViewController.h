@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Start. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseEGOTableViewPullRefreshViewController.h"
 
-@interface MyCZViewController : BaseViewController
+@interface MyCZViewController : BaseEGOTableViewPullRefreshViewController
 
 @end

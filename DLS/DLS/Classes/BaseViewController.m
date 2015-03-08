@@ -29,4 +29,13 @@
     [super viewDidLoad];
 }
 
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+}
+
+- (void)requestFailed:(int)reqCode
+{
+    NSLog(@"网络请求失败");
+}
+
 @end
