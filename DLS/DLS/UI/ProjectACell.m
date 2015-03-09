@@ -37,4 +37,8 @@
     return self;
 }
 
+- (void)setData:(NSDictionary *)data
+{
+}
+
 @end

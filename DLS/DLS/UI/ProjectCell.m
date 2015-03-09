@@ -66,4 +66,8 @@
     }
 }
 
+- (void)setData:(NSDictionary *)data
+{
+}
+
 @end

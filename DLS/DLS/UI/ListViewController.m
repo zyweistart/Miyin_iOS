@@ -7,7 +7,7 @@
 //
 
 #import "ListViewController.h"
-#import "ProjectBCell.h"
+#import "ProjectDCell.h"
 
 @interface ListViewController ()
 
@@ -36,25 +36,26 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 70;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"Cell";
-    ProjectBCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    ProjectDCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell) {
-        cell = [[ProjectBCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[ProjectDCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
-    NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,[data objectForKey:@"images"]];
-    if([indexPath row]%2==0){
-        imageUrl=@"http://avatar.csdn.net/4/1/6/1_tangren03.jpg";
-    }
-//    [cell.image setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default_image"]];
-    cell.title.text=@"履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天";
-    cell.money.text=@"￥4000";
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    [cell setData:nil];
+//    NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+//    NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,[data objectForKey:@"images"]];
+//    if([indexPath row]%2==0){
+//        imageUrl=@"http://avatar.csdn.net/4/1/6/1_tangren03.jpg";
+//    }
+////    [cell.image setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default_image"]];
+//    cell.title.text=@"履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天";
+//    cell.money.text=@"￥4000";
+//    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
 }
 

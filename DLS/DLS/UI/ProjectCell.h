@@ -18,4 +18,6 @@
 
 - (void)setStatus:(NSString*)title Type:(int)type;
 
+- (void)setData:(NSDictionary *)data;
+
 @end

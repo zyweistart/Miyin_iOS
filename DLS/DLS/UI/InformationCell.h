@@ -14,4 +14,6 @@
 @property UILabel *mainTitle;
 @property UILabel *childTitle;
 
+- (void)setData:(NSDictionary *)data;
+
 @end

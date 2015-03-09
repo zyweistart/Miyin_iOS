@@ -10,4 +10,12 @@
 
 @interface ProjectDCell : UITableViewCell
 
+@property UILabel *title;
+@property UILabel *content;
+@property UILabel *money;
+@property UILabel *date;
+@property UILabel *status;
+
+- (void)setData:(NSDictionary *)data;
+
 @end

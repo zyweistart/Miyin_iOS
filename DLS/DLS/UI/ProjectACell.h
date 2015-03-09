@@ -14,4 +14,6 @@
 @property UILabel *address;
 @property UILabel *date;
 
+- (void)setData:(NSDictionary *)data;
+
 @end

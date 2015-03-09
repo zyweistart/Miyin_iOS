@@ -14,4 +14,6 @@
 @property UILabel *title;
 @property UILabel *money;
 
+- (void)setData:(NSDictionary *)data;
+
 @end

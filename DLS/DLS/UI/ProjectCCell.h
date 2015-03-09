@@ -15,4 +15,6 @@
 @property UILabel *name;
 @property UILabel *distance;
 
+- (void)setData:(NSDictionary *)data;
+
 @end
