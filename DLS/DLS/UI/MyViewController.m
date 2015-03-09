@@ -33,7 +33,6 @@ static CGFloat kImageOriginHight = 200.f;
     self=[super init];
     if(self){
         [self setTitle:@"我的"];
-        
         self.dataItemArray=[[NSMutableArray alloc]init];
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"我的出租",@"我的求租",@"设备销售",@"设备维修",@"配件销售",@"VIP工程", nil]];
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"招聘信息",@"我的求职", nil]];
@@ -94,6 +93,7 @@ static CGFloat kImageOriginHight = 200.f;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden=YES;
     self.expandZoomImageView.frame = CGRectMake(0, -kImageOriginHight, self.tableView.frame.size.width, kImageOriginHight);
 }
 

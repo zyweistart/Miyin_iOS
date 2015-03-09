@@ -27,6 +27,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden=NO;
     if(!self.tableView.pullTableIsRefreshing) {
         self.tableView.pullTableIsRefreshing=YES;
         [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
