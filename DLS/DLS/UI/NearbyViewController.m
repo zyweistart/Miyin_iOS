@@ -46,17 +46,17 @@
         [self.mapView setZoomEnabled:YES];
         [self.mapView setScrollEnabled:YES];
         [self.view addSubview:self.mapView];
-        //定位到当前位置
-        UIButton *currentLocation=[[UIButton alloc]initWithFrame:
-                                   CGRectMake1(10, self.mapView.bounds.size.height-190, 50, 50)];
-        [currentLocation setImage:[UIImage imageNamed:@"category2"] forState:UIControlStateNormal];
-        [currentLocation addTarget:self action:@selector(goCurrentLocation) forControlEvents:UIControlEventTouchDown];
-        [self.mapView addSubview:currentLocation];
         //刷新位置点数据
-        UIButton *refresh=[[UIButton alloc]initWithFrame:CGRectMake1(260, 10, 50, 50)];
-        [refresh setImage:[UIImage imageNamed:@"category1"] forState:UIControlStateNormal];
+        UIButton *refresh=[[UIButton alloc]initWithFrame:CGRectMake1(270, 10, 33, 33)];
+        [refresh setImage:[UIImage imageNamed:@"refresh"] forState:UIControlStateNormal];
         [refresh addTarget:self action:@selector(goRefreshMapData) forControlEvents:UIControlEventTouchDown];
         [self.mapView addSubview:refresh];
+        //定位到当前位置
+        UIButton *currentLocation=[[UIButton alloc]initWithFrame:
+                                   CGRectMake1(270, 53, 33, 33)];
+        [currentLocation setImage:[UIImage imageNamed:@"mylocation"] forState:UIControlStateNormal];
+        [currentLocation addTarget:self action:@selector(goCurrentLocation) forControlEvents:UIControlEventTouchDown];
+        [self.mapView addSubview:currentLocation];
         
         //定位管理
         self.locationManager = [CLLocationManager new];
