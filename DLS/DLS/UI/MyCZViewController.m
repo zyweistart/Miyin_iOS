@@ -19,6 +19,16 @@
     self=[super init];
     if(self){
         [self setTitle:@"我的出租"];
+        UIButton *bPublish = [UIButton buttonWithType:UIButtonTypeCustom];
+        [bPublish setTitle:@"发布出租" forState:UIControlStateNormal];
+        [bPublish.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [bPublish setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [bPublish addTarget:self action:@selector(goPublish:) forControlEvents:UIControlEventTouchUpInside];
+        bPublish.frame = CGRectMake(0, 0, 70, 30);
+        bPublish.layer.cornerRadius = 5;
+        bPublish.layer.masksToBounds = YES;
+        [bPublish setBackgroundColor:[UIColor colorWithRed:(52/255.0) green:(177/255.0) blue:(59/255.0) alpha:1]];
+        self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:bPublish];
         [self buildTableViewWithView:self.view];
     }
     return self;
@@ -62,6 +72,11 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest handle:@"GetListALL" requestParams:params];
+}
+
+- (void)goPublish:(id)sender
+{
+    NSLog(@"发布");
 }
 
 @end

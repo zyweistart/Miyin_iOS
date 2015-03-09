@@ -20,6 +20,7 @@
     if(self){
         [self setTitle:@"配件销售"];
         [self buildTableViewWithView:self.view];
+        
     }
     return self;
 }
@@ -45,7 +46,7 @@
     if(!cell) {
         cell = [[ProjectBCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    [cell.image setImage:[UIImage imageNamed:@"category1"]];
+    [cell.image setImage:[UIImage imageNamed:@"default_image"]];
     cell.title.text=@"履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天";
     cell.money.text=@"￥4000";
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];

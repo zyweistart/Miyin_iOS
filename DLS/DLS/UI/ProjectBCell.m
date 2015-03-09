@@ -26,7 +26,7 @@
         [self.title setNumberOfLines:2];
         [self.title setTextAlignment:NSTextAlignmentLeft];
         [mainView addSubview:self.title];
-        self.money=[[UILabel alloc]initWithFrame:CGRectMake1(80, 55, 210, 20)];
+        self.money=[[UILabel alloc]initWithFrame:CGRectMake1(80, 50, 210, 20)];
         [self.money setFont:[UIFont systemFontOfSize:17]];
         [self.money setTextColor:MONEYCOLOR];
         [self.money setNumberOfLines:2];
