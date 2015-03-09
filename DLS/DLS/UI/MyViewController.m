@@ -33,12 +33,6 @@ static CGFloat kImageOriginHight = 200.f;
     self=[super init];
     if(self){
         [self setTitle:@"我的"];
-        //右消息按钮
-        UIButton *btnSetting = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btnSetting setBackgroundImage:[UIImage imageNamed:@"setting"]forState:UIControlStateNormal];
-//        [btnSetting addTarget:self action:@selector(goMap:) forControlEvents:UIControlEventTouchUpInside];
-        btnSetting.frame = CGRectMake(0, 0, 20, 20);
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnSetting];
         
         self.dataItemArray=[[NSMutableArray alloc]init];
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"我的出租",@"我的求租",@"设备销售",@"设备维修",@"配件销售",@"VIP工程", nil]];
@@ -52,13 +46,25 @@ static CGFloat kImageOriginHight = 200.f;
         [self.view addSubview:self.tableView];
         
         self.expandZoomImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, kImageOriginHight)];
-        [self.expandZoomImageView setImage:[UIImage imageNamed:@"LaraCroft"]];
+        [self.expandZoomImageView setImage:[UIImage imageNamed:@"personalbg"]];
         self.tableView.contentInset = UIEdgeInsetsMake(kImageOriginHight, 0, 0, 0);
         [self.tableView addSubview:self.expandZoomImageView];
         
-        UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, kImageOriginHight-50, 320, 40)];
-        [self.expandZoomImageView addSubview:bottomFrame];
-        //功能
+        UIView *personalFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, kImageOriginHight-170, 320, 160)];
+        [self.expandZoomImageView addSubview:personalFrame];
+        //设置
+        UIButton *btnSetting = [[UIButton alloc]initWithFrame:CGRectMake1(280, 0, 20, 20)];
+        [btnSetting setBackgroundImage:[UIImage imageNamed:@"setting"]forState:UIControlStateNormal];
+        [btnSetting addTarget:self action:@selector(goSetting:) forControlEvents:UIControlEventTouchUpInside];
+        [personalFrame addSubview:btnSetting];
+        //头像
+        UIButton *bHead=[[UIButton alloc]initWithFrame:CGRectMake1(120, 20, 80, 80)];
+        [bHead setTitle:@"我是得力手" forImage:[UIImage imageNamed:@"头像"]];
+        [bHead.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [personalFrame addSubview:bHead];
+        //底部功能
+        UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 120, 320, 40)];
+        [personalFrame addSubview:bottomFrame];
         UIButton *bCollection=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 79, 40)];
         [bCollection setTitle:@"收藏" forImage:[UIImage imageNamed:@"collection"]];
         [bottomFrame addSubview:bCollection];
@@ -168,9 +174,14 @@ static CGFloat kImageOriginHight = 200.f;
         if(row==0){
             [self.navigationController pushViewController:[[MyHelpCenterViewController alloc]init] animated:YES];
         }else if(row==1){
-            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"tel://%@",@"057187071527"]]];
         }
     }
+}
+
+- (void)goSetting:(UIButton*)sender
+{
+    NSLog(@"设置");
 }
 
 @end
