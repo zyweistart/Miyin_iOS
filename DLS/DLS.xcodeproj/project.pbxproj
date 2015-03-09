@@ -32,6 +32,9 @@
 		C99E83071AA997B20087D2F4 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C99E82FB1AA997B20087D2F4 /* whiteArrow.png */; };
 		C99E83081AA997B20087D2F4 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C99E82FC1AA997B20087D2F4 /* whiteArrow@2x.png */; };
 		C99E830B1AA9983D0087D2F4 /* BaseEGOTableViewPullRefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E830A1AA9983D0087D2F4 /* BaseEGOTableViewPullRefreshViewController.m */; };
+		C9AFBB691AAD458C008C7AE9 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AFBB681AAD458C008C7AE9 /* ImageIO.framework */; };
+		C9AFBB701AAD4941008C7AE9 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AFBB6F1AAD4941008C7AE9 /* SDWebImage.framework */; };
+		C9AFBB731AAD4B80008C7AE9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AFBB721AAD4B80008C7AE9 /* CoreGraphics.framework */; };
 		C9B85F641AA432E1008A56F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B85F631AA432E1008A56F0 /* main.m */; };
 		C9B85F671AA432E1008A56F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B85F661AA432E1008A56F0 /* AppDelegate.m */; };
 		C9B85F6F1AA432E1008A56F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9B85F6E1AA432E1008A56F0 /* Images.xcassets */; };
@@ -129,6 +132,9 @@
 		C99E82FC1AA997B20087D2F4 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		C99E83091AA9983D0087D2F4 /* BaseEGOTableViewPullRefreshViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseEGOTableViewPullRefreshViewController.h; path = ../BaseEGOTableViewPullRefreshViewController.h; sourceTree = "<group>"; };
 		C99E830A1AA9983D0087D2F4 /* BaseEGOTableViewPullRefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseEGOTableViewPullRefreshViewController.m; path = ../BaseEGOTableViewPullRefreshViewController.m; sourceTree = "<group>"; };
+		C9AFBB681AAD458C008C7AE9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		C9AFBB6F1AAD4941008C7AE9 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
+		C9AFBB721AAD4B80008C7AE9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C9B85F5E1AA432E1008A56F0 /* DLS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DLS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9B85F621AA432E1008A56F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9B85F631AA432E1008A56F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -218,6 +224,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9AFBB731AAD4B80008C7AE9 /* CoreGraphics.framework in Frameworks */,
+				C9AFBB701AAD4941008C7AE9 /* SDWebImage.framework in Frameworks */,
+				C9AFBB691AAD458C008C7AE9 /* ImageIO.framework in Frameworks */,
 				C9C23CFB1AA9499A007A9A27 /* MapKit.framework in Frameworks */,
 				C9C23CF91AA946F4007A9A27 /* CoreLocation.framework in Frameworks */,
 				C9E1FF0B1AA558EC00720AAC /* QuartzCore.framework in Frameworks */,
@@ -264,6 +273,7 @@
 		C922D0871AA4396F00F6DBA1 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C9AFBB6F1AAD4941008C7AE9 /* SDWebImage.framework */,
 				C9E1FED31AA555F000720AAC /* ASIHTTP */,
 				C9E1FED61AA555F000720AAC /* ATMHud */,
 				C99E82EA1AA997B20087D2F4 /* EGOTableViewPullRefresh */,
@@ -360,6 +370,7 @@
 		C9B85F551AA432E1008A56F0 = {
 			isa = PBXGroup;
 			children = (
+				C9AFBB721AAD4B80008C7AE9 /* CoreGraphics.framework */,
 				C9B85F601AA432E1008A56F0 /* DLS */,
 				C9B85F7A1AA432E1008A56F0 /* DLSTests */,
 				C9E1FF091AA558C800720AAC /* framework */,
@@ -508,6 +519,7 @@
 		C9E1FF091AA558C800720AAC /* framework */ = {
 			isa = PBXGroup;
 			children = (
+				C9AFBB681AAD458C008C7AE9 /* ImageIO.framework */,
 				C9C23CFA1AA9499A007A9A27 /* MapKit.framework */,
 				C9C23CF81AA946F4007A9A27 /* CoreLocation.framework */,
 				C9E1FEF71AA5569100720AAC /* QuartzCore.framework */,
@@ -808,9 +820,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DLS/Librarys",
+				);
 				INFOPLIST_FILE = DLS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -823,9 +840,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DLS/Librarys",
+				);
 				INFOPLIST_FILE = DLS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

@@ -8,6 +8,7 @@
 
 #import "MyBJXSViewController.h"
 #import "ProjectBCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface MyBJXSViewController ()
 
@@ -15,7 +16,8 @@
 
 @implementation MyBJXSViewController
 
-- (id)init{
+- (id)init
+{
     self=[super init];
     if(self){
         [self setTitle:@"配件销售"];
@@ -47,7 +49,12 @@
     if(!cell) {
         cell = [[ProjectBCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    [cell.image setImage:[UIImage imageNamed:@"default_image"]];
+    NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+    NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,[data objectForKey:@"images"]];
+    if([indexPath row]%2==0){
+        imageUrl=@"http://avatar.csdn.net/4/1/6/1_tangren03.jpg";
+    }
+    [cell.image setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default_image"]];
     cell.title.text=@"履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天";
     cell.money.text=@"￥4000";
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];

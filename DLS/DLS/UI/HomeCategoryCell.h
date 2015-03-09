@@ -10,4 +10,6 @@
 
 @interface HomeCategoryCell : UITableViewCell
 
+@property UIViewController *controller;
+
 @end

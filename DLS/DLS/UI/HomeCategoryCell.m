@@ -7,6 +7,7 @@
 //
 
 #import "HomeCategoryCell.h"
+#import "ListViewController.h"
 
 #define HEADERBGCOLOR [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]
 #define MAINTITLECOLOR [UIColor colorWithRed:(110/255.0) green:(139/255.0) blue:(205/255.0) alpha:1]
@@ -14,9 +15,12 @@
 #define TITLECOLOR [UIColor colorWithRed:(59/255.0) green:(59/255.0) blue:(59/255.0) alpha:1]
 #define LINEBGCOLOR [UIColor colorWithRed:(214/255.0) green:(214/255.0) blue:(214/255.0) alpha:1]
 
-@implementation HomeCategoryCell
+@implementation HomeCategoryCell{
+    NSDictionary *data;
+}
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         //主体
@@ -28,16 +32,16 @@
         
         UIView *category1=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 159.5, 90)];
         [mainFrame addSubview:category1];
-        [self addCategorySubView:category1 MainTitle:@"大件运输" ChildTitle:@"大型重物运输供应需求" ImageName:@"category1" Tag:1];
+        [self addCategorySubView:category1 MainTitle:@"大件运输" ChildTitle:@"大型重物运输供应需求" ImageName:@"category1" Tag:9];
         UIView *category2=[[UIView alloc]initWithFrame:CGRectMake1(160.5, 0, 159.5, 90)];
         [mainFrame addSubview:category2];
-        [self addCategorySubView:category2 MainTitle:@"吊车配件" ChildTitle:@"吊车配件供应中心" ImageName:@"category2" Tag:2];
+        [self addCategorySubView:category2 MainTitle:@"吊车配件" ChildTitle:@"吊车配件供应中心" ImageName:@"category2" Tag:10];
         UIView *category3=[[UIView alloc]initWithFrame:CGRectMake1(0, 91, 159.5, 90)];
         [mainFrame addSubview:category3];
-        [self addCategorySubView:category3 MainTitle:@"维修企业" ChildTitle:@"快速寻找最近维修单位" ImageName:@"category3" Tag:3];
+        [self addCategorySubView:category3 MainTitle:@"维修企业" ChildTitle:@"快速寻找最近维修单位" ImageName:@"category3" Tag:11];
         UIView *category4=[[UIView alloc]initWithFrame:CGRectMake1(160.5, 91, 159.5, 90)];
         [mainFrame addSubview:category4];
-        [self addCategorySubView:category4 MainTitle:@"二手吊车" ChildTitle:@"闲置二手吊车交易" ImageName:@"category4" Tag:4];
+        [self addCategorySubView:category4 MainTitle:@"二手吊车" ChildTitle:@"闲置二手吊车交易" ImageName:@"category4" Tag:12];
         UIView *category5=[[UIView alloc]initWithFrame:CGRectMake1(0, 182, 320, 40)];
         [mainFrame addSubview:category5];
         UIButton *button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 10, 80, 20)];
@@ -45,7 +49,7 @@
         [button1 setTitle:@"其他设备" forState:UIControlStateNormal];
         [button1 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
         [button1 addTarget:self action:@selector(goToMain1:) forControlEvents:UIControlEventTouchUpInside];
-        button1.tag=5;
+        button1.tag=13;
         [category5 addSubview:button1];
         UIButton *button2=[[UIButton alloc]initWithFrame:CGRectMake1(80, 10, 80, 20)];
         [[button2 titleLabel]setFont:[UIFont systemFontOfSize:13]];
@@ -53,7 +57,7 @@
         [button2 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
         [button2 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
         [button2 addTarget:self action:@selector(goToMain1:) forControlEvents:UIControlEventTouchUpInside];
-        button2.tag=6;
+        button2.tag=14;
         [category5 addSubview:button2];
         UIButton *button3=[[UIButton alloc]initWithFrame:CGRectMake1(160, 10, 80, 20)];
         [[button3 titleLabel]setFont:[UIFont systemFontOfSize:13]];
@@ -61,7 +65,7 @@
         [button3 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
         [button3 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
         [button3 addTarget:self action:@selector(goToMain1:) forControlEvents:UIControlEventTouchUpInside];
-        button3.tag=7;
+        button3.tag=15;
         [category5 addSubview:button3];
         UIButton *button4=[[UIButton alloc]initWithFrame:CGRectMake1(240, 10, 80, 20)];
         [[button4 titleLabel]setFont:[UIFont systemFontOfSize:13]];
@@ -69,7 +73,7 @@
         [button4 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
         [button4 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
         [button4 addTarget:self action:@selector(goToMain1:) forControlEvents:UIControlEventTouchUpInside];
-        button4.tag=8;
+        button4.tag=16;
         [category5 addSubview:button4];
         //底线2
         UIView *line0=[[UIView alloc]initWithFrame:CGRectMake1(0, 10, 320, 1)];
@@ -93,11 +97,22 @@
         [mainFrame addSubview:line4];
         
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        data=[[NSDictionary alloc]initWithObjectsAndKeys:
+              @"大件运输",@"9",
+              @"吊车配件",@"10",
+              @"维修企业",@"11",
+              @"二手吊车",@"12",
+              @"其他设备",@"13",
+              @"项目预告",@"14",
+              @"起重机制造商",@"15",
+              @"企业大全",@"16", nil];
     }
     return self;
 }
 
-- (void)addCategorySubView:(UIView*)frame MainTitle:(NSString*)mainTitle ChildTitle:(NSString*)childTitle ImageName:(NSString*)imageName Tag:(int)tag{
+- (void)addCategorySubView:(UIView*)frame MainTitle:(NSString*)mainTitle ChildTitle:(NSString*)childTitle ImageName:(NSString*)imageName Tag:(int)tag
+{
     //主标题
     UILabel *mainTxt=[[UILabel alloc]initWithFrame:CGRectMake1(5, 40, 100, 25)];
     [mainTxt setFont:[UIFont systemFontOfSize:18]];
@@ -118,12 +133,19 @@
     [frame addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goToMain:)]];
 }
 
-- (void)goToMain:(UITapGestureRecognizer*)sender {
-    NSLog(@"%d",[sender.view tag]);
+- (void)goToMain:(UITapGestureRecognizer*)sender
+{
+    [self goController:[sender.view tag]];
 }
 
-- (void)goToMain1:(UIButton*)sender {
-    NSLog(@"%d",sender.tag);
+- (void)goToMain1:(UIButton*)sender
+{
+    [self goController:sender.tag];
+}
+
+- (void)goController:(NSInteger)tag
+{
+    [self.controller.navigationController pushViewController:[[ListViewController alloc]initWithTitle:[data objectForKey:[NSString stringWithFormat:@"%d",tag]] Type:tag] animated:YES];
 }
 
 @end

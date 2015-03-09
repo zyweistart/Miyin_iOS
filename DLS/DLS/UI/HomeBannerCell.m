@@ -12,7 +12,9 @@
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 
-@implementation HomeBannerCell
+@implementation HomeBannerCell{
+    NSDictionary *data;
+}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -32,27 +34,23 @@
         [self addModel:@"recruitment" Title:@"招聘信息" Frame:mainFrame Tag:8 X:240 Y:90];
         
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        data=[[NSDictionary alloc]initWithObjectsAndKeys:
+              @"汽车吊求租",@"1",
+              @"履带吊求租",@"2",
+              @"VIP独家项目",@"3",
+              @"工程信息",@"4",
+              @"汽车吊出租",@"5",
+              @"履带吊出租",@"6",
+              @"招标公告",@"7",
+              @"招聘信息",@"8", nil];
+        
     }
     return self;
 }
 
 - (void)addModel:(NSString*)image Title:(NSString*)title Frame:(UIView*)frame Tag:(NSUInteger)tag X:(CGFloat)x Y:(CGFloat)y
 {
-//    UIView *model=[[UIView alloc]initWithFrame:CGRectMake1(x, y, 80, 90)];
-//    model.tag=tag;
-//    [model addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goToMain:)]];
-//    UIImageView *imgBG=[[UIImageView alloc]initWithFrame:CGRectMake1(13, 6, 54, 54)];
-//    [model addSubview:imgBG];
-//    UILabel *txtTitle=[[UILabel alloc]initWithFrame:CGRectMake1(0, 60, 80, 30)];
-//    [model addSubview:txtTitle];
-//    [txtTitle setTextColor:TITLECOLOR];
-//    [txtTitle setFont:[UIFont systemFontOfSize:13]];
-//    [txtTitle setTextAlignment:NSTextAlignmentCenter];
-//    
-//    [imgBG setImage:[UIImage imageNamed:image]];
-//    [txtTitle setText:title];
-//    [frame addSubview:model];
-    
     UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(x, y, 80, 90)];
     [button setTitle:title forImage:[UIImage imageNamed:image]];
     [button setTitleColor:TITLECOLOR forState:UIControlStateNormal];
@@ -62,7 +60,7 @@
 }
 
 - (void)goToMain:(UIButton*)sender {
-    NSLog(@"%d",sender.tag);
+    [self.controller.navigationController pushViewController:[[ListViewController alloc]initWithTitle:[data objectForKey:[NSString stringWithFormat:@"%d",sender.tag]] Type:sender.tag] animated:YES];
 }
 
 @end

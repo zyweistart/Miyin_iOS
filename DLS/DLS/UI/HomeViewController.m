@@ -138,6 +138,7 @@
         if (cell == nil) {
             cell = [[HomeBannerCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CHomeBannerCell];
         }
+        [cell setController:self];
         return cell;
     }else if([indexPath row]==1){
         static NSString *CHomeCategoryCell = @"CHomeCategoryCell";
@@ -145,6 +146,7 @@
         if (cell == nil) {
             cell = [[HomeCategoryCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CHomeCategoryCell];
         }
+        [cell setController:self];
         return cell;
     }else{
         static NSString *CHomeInformationCell = @"CHomeInformationCell";

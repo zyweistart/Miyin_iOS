@@ -10,4 +10,6 @@
 
 @interface HomeBannerCell : UITableViewCell
 
+@property UIViewController *controller;
+
 @end

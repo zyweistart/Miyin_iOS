@@ -12,4 +12,6 @@
 
 - (id)initWithTitle:(NSString*)title Type:(NSInteger)type;
 
+@property NSInteger type;;
+
 @end

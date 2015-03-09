@@ -7,26 +7,31 @@
 //
 
 #import "ListViewController.h"
-#import "ProjectCell.h"
+#import "ProjectBCell.h"
 
 @interface ListViewController ()
 
 @end
 
 @implementation ListViewController
-
 - (id)initWithTitle:(NSString*)title Type:(NSInteger)type
 {
     self=[super init];
     if(self){
+        self.type=type;
         [self setTitle:title];
+        [self buildTableViewWithView:self.view];
     }
     return self;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (void)viewWillAppear:(BOOL)animated
 {
-    return 10;
+    [super viewWillAppear:animated];
+    if(!self.tableView.pullTableIsRefreshing) {
+        self.tableView.pullTableIsRefreshing=YES;
+        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -36,17 +41,33 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CProjectCell = @"CProjectCell";
-    ProjectCell *cell = [tableView dequeueReusableCellWithIdentifier:CProjectCell];
-    if (cell == nil) {
-        cell = [[ProjectCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CProjectCell];
+    static NSString *cellIdentifier = @"Cell";
+    ProjectBCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(!cell) {
+        cell = [[ProjectBCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    [cell.image setImage:[UIImage imageNamed:@"category1"]];
-    cell.title.text=@"履带吊求租一天吊车结婚";
-    cell.address.text=@"萧山建设1路";
-    cell.money.text=@"40000元";
-    [cell setStatus:@"洽谈中" Type:1];
+    NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+    NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,[data objectForKey:@"images"]];
+    if([indexPath row]%2==0){
+        imageUrl=@"http://avatar.csdn.net/4/1/6/1_tangren03.jpg";
+    }
+//    [cell.image setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default_image"]];
+    cell.title.text=@"履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天";
+    cell.money.text=@"￥4000";
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
+}
+
+- (void)loadHttp
+{
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"9" forKey:@"Id"];
+    [params setObject:[NSString stringWithFormat:@"%d",self.currentPage] forKey:@"index"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest handle:@"GetListALL" requestParams:params];
 }
 
 @end
