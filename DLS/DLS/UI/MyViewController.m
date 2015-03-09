@@ -19,6 +19,7 @@
 
 #import "UIButton+TitleImage.h"
 
+#define LOGINREGISTERBGCOLOR [UIColor colorWithRed:(58/255.0) green:(117/255.0) blue:(207/255.0) alpha:0.5]
 #define LINEBGCOLOR [UIColor colorWithRed:(167/255.0) green:(183/255.0) blue:(216/255.0) alpha:0.5]
 
 static CGFloat kImageOriginHight = 200.f;
@@ -56,11 +57,31 @@ static CGFloat kImageOriginHight = 200.f;
         [btnSetting setBackgroundImage:[UIImage imageNamed:@"setting"]forState:UIControlStateNormal];
         [btnSetting addTarget:self action:@selector(goSetting:) forControlEvents:UIControlEventTouchUpInside];
         [personalFrame addSubview:btnSetting];
+        
+        UIView *bLoginRegister=[[UIView alloc]initWithFrame:CGRectMake1(110, 40, 100, 30)];
+        [bLoginRegister setBackgroundColor:LOGINREGISTERBGCOLOR];
+        [personalFrame addSubview:bLoginRegister];
+        //登陆
+        UIButton *bLogin=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 49, 30)];
+        [bLogin setTitle:@"登陆" forState:UIControlStateNormal];
+        [bLogin.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [bLogin.titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [bLoginRegister addSubview:bLogin];
+        UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(49, 5, 1, 20)];
+        [line setBackgroundColor:LINEBGCOLOR];
+        [bLoginRegister addSubview:line];
+        //注册
+        UIButton *bRegister=[[UIButton alloc]initWithFrame:CGRectMake1(50, 0, 50, 30)];
+        [bRegister setTitle:@"注册" forState:UIControlStateNormal];
+        [bRegister.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [bRegister.titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [bLoginRegister addSubview:bRegister];
         //头像
         UIButton *bHead=[[UIButton alloc]initWithFrame:CGRectMake1(120, 20, 80, 80)];
         [bHead setTitle:@"我是得力手" forImage:[UIImage imageNamed:@"头像"]];
         [bHead.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [personalFrame addSubview:bHead];
+//        [personalFrame addSubview:bHead];
+        
         //底部功能
         UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 120, 320, 40)];
         [personalFrame addSubview:bottomFrame];

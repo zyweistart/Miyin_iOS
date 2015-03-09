@@ -35,6 +35,12 @@
 		C9AFBB691AAD458C008C7AE9 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AFBB681AAD458C008C7AE9 /* ImageIO.framework */; };
 		C9AFBB701AAD4941008C7AE9 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AFBB6F1AAD4941008C7AE9 /* SDWebImage.framework */; };
 		C9AFBB731AAD4B80008C7AE9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AFBB721AAD4B80008C7AE9 /* CoreGraphics.framework */; };
+		C9AFBB771AAD8039008C7AE9 /* RentalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AFBB761AAD8039008C7AE9 /* RentalDetailViewController.m */; };
+		C9AFBB801AAD808F008C7AE9 /* QiuzuDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AFBB7F1AAD808F008C7AE9 /* QiuzuDetailViewController.m */; };
+		C9AFBB831AAD809B008C7AE9 /* EnterpriseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AFBB821AAD809B008C7AE9 /* EnterpriseDetailViewController.m */; };
+		C9AFBB861AAD80BB008C7AE9 /* RecruitmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AFBB851AAD80BB008C7AE9 /* RecruitmentDetailViewController.m */; };
+		C9AFBB891AAD80DD008C7AE9 /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AFBB881AAD80DD008C7AE9 /* NewsDetailViewController.m */; };
+		C9AFBB8D1AAD8129008C7AE9 /* MessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AFBB8C1AAD8129008C7AE9 /* MessageDetailViewController.m */; };
 		C9B85F641AA432E1008A56F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B85F631AA432E1008A56F0 /* main.m */; };
 		C9B85F671AA432E1008A56F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B85F661AA432E1008A56F0 /* AppDelegate.m */; };
 		C9B85F6F1AA432E1008A56F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9B85F6E1AA432E1008A56F0 /* Images.xcassets */; };
@@ -135,6 +141,18 @@
 		C9AFBB681AAD458C008C7AE9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		C9AFBB6F1AAD4941008C7AE9 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		C9AFBB721AAD4B80008C7AE9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C9AFBB751AAD8039008C7AE9 /* RentalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RentalDetailViewController.h; sourceTree = "<group>"; };
+		C9AFBB761AAD8039008C7AE9 /* RentalDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RentalDetailViewController.m; sourceTree = "<group>"; };
+		C9AFBB7E1AAD808F008C7AE9 /* QiuzuDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiuzuDetailViewController.h; sourceTree = "<group>"; };
+		C9AFBB7F1AAD808F008C7AE9 /* QiuzuDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiuzuDetailViewController.m; sourceTree = "<group>"; };
+		C9AFBB811AAD809B008C7AE9 /* EnterpriseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseDetailViewController.h; sourceTree = "<group>"; };
+		C9AFBB821AAD809B008C7AE9 /* EnterpriseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseDetailViewController.m; sourceTree = "<group>"; };
+		C9AFBB841AAD80BB008C7AE9 /* RecruitmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitmentDetailViewController.h; sourceTree = "<group>"; };
+		C9AFBB851AAD80BB008C7AE9 /* RecruitmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitmentDetailViewController.m; sourceTree = "<group>"; };
+		C9AFBB871AAD80DD008C7AE9 /* NewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailViewController.h; sourceTree = "<group>"; };
+		C9AFBB881AAD80DD008C7AE9 /* NewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailViewController.m; sourceTree = "<group>"; };
+		C9AFBB8B1AAD8129008C7AE9 /* MessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetailViewController.h; sourceTree = "<group>"; };
+		C9AFBB8C1AAD8129008C7AE9 /* MessageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetailViewController.m; sourceTree = "<group>"; };
 		C9B85F5E1AA432E1008A56F0 /* DLS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DLS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9B85F621AA432E1008A56F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9B85F631AA432E1008A56F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -302,6 +320,7 @@
 		C922D08A1AA4398700F6DBA1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C9AFBB8A1AAD80F3008C7AE9 /* Detail */,
 				C9DD46BB1AA82704004AEAB7 /* Home */,
 				C9D2B74C1AA86A7C00CF750D /* My */,
 				C922D08F1AA444E100F6DBA1 /* NearbyViewController.h */,
@@ -361,6 +380,25 @@
 				C99E82FC1AA997B20087D2F4 /* whiteArrow@2x.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C9AFBB8A1AAD80F3008C7AE9 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				C9AFBB751AAD8039008C7AE9 /* RentalDetailViewController.h */,
+				C9AFBB761AAD8039008C7AE9 /* RentalDetailViewController.m */,
+				C9AFBB7E1AAD808F008C7AE9 /* QiuzuDetailViewController.h */,
+				C9AFBB7F1AAD808F008C7AE9 /* QiuzuDetailViewController.m */,
+				C9AFBB811AAD809B008C7AE9 /* EnterpriseDetailViewController.h */,
+				C9AFBB821AAD809B008C7AE9 /* EnterpriseDetailViewController.m */,
+				C9AFBB841AAD80BB008C7AE9 /* RecruitmentDetailViewController.h */,
+				C9AFBB851AAD80BB008C7AE9 /* RecruitmentDetailViewController.m */,
+				C9AFBB871AAD80DD008C7AE9 /* NewsDetailViewController.h */,
+				C9AFBB881AAD80DD008C7AE9 /* NewsDetailViewController.m */,
+				C9AFBB8B1AAD8129008C7AE9 /* MessageDetailViewController.h */,
+				C9AFBB8C1AAD8129008C7AE9 /* MessageDetailViewController.m */,
+			);
+			name = Detail;
 			sourceTree = "<group>";
 		};
 		C9B85F551AA432E1008A56F0 = {
@@ -662,6 +700,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9AFBB8D1AAD8129008C7AE9 /* MessageDetailViewController.m in Sources */,
 				C9E1FEE71AA555F000720AAC /* Reachability.m in Sources */,
 				C99E82FF1AA997B20087D2F4 /* MessageInterceptor.m in Sources */,
 				C91115AB1AAC36AF00F56DFE /* ProjectBCell.m in Sources */,
@@ -673,10 +712,13 @@
 				C9D2B73F1AA8689C00CF750D /* MyBJXSViewController.m in Sources */,
 				C909FC1B1AA6E03A008E68FB /* MessageViewController.m in Sources */,
 				C9E1FF0F1AA5A41B00720AAC /* HomeBannerCell.m in Sources */,
+				C9AFBB801AAD808F008C7AE9 /* QiuzuDetailViewController.m in Sources */,
 				C9125AA81AA9FA12001396FF /* Common.m in Sources */,
 				C9DD46C21AA82731004AEAB7 /* LoginViewController.m in Sources */,
 				C9E1FEBB1AA5543F00720AAC /* BaseViewController.m in Sources */,
+				C9AFBB861AAD80BB008C7AE9 /* RecruitmentDetailViewController.m in Sources */,
 				C9D2B7521AA8966200CF750D /* ProjectCell.m in Sources */,
+				C9AFBB771AAD8039008C7AE9 /* RentalDetailViewController.m in Sources */,
 				C9E1FEEA1AA555F000720AAC /* ATMHudView.m in Sources */,
 				C9D2B7451AA868BF00CF750D /* MyZPXXViewController.m in Sources */,
 				C9E1FEEC1AA555F000720AAC /* ATMSoundFX.m in Sources */,
@@ -694,6 +736,8 @@
 				C922D0911AA444E100F6DBA1 /* NearbyViewController.m in Sources */,
 				C99E82FD1AA997B20087D2F4 /* EGORefreshTableHeaderView.m in Sources */,
 				C9D4CB0D1AA6A765008D3A53 /* HomeInformationCell.m in Sources */,
+				C9AFBB831AAD809B008C7AE9 /* EnterpriseDetailViewController.m in Sources */,
+				C9AFBB891AAD80DD008C7AE9 /* NewsDetailViewController.m in Sources */,
 				C9B85F671AA432E1008A56F0 /* AppDelegate.m in Sources */,
 				C99A055E1AAC24F3004E5490 /* ProjectACell.m in Sources */,
 				C99E83001AA997B20087D2F4 /* PullTableView.m in Sources */,
