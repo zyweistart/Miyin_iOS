@@ -303,11 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				C9DD46BB1AA82704004AEAB7 /* Home */,
-				C922D08C1AA444B600F6DBA1 /* HomeViewController.h */,
-				C922D08D1AA444B600F6DBA1 /* HomeViewController.m */,
 				C9D2B74C1AA86A7C00CF750D /* My */,
-				C922D0951AA444FB00F6DBA1 /* MyViewController.h */,
-				C922D0961AA444FB00F6DBA1 /* MyViewController.m */,
 				C922D08F1AA444E100F6DBA1 /* NearbyViewController.h */,
 				C922D0901AA444E100F6DBA1 /* NearbyViewController.m */,
 				C9DD46BC1AA8270F004AEAB7 /* User */,
@@ -370,7 +366,6 @@
 		C9B85F551AA432E1008A56F0 = {
 			isa = PBXGroup;
 			children = (
-				C9AFBB721AAD4B80008C7AE9 /* CoreGraphics.framework */,
 				C9B85F601AA432E1008A56F0 /* DLS */,
 				C9B85F7A1AA432E1008A56F0 /* DLSTests */,
 				C9E1FF091AA558C800720AAC /* framework */,
@@ -432,6 +427,8 @@
 		C9D2B74C1AA86A7C00CF750D /* My */ = {
 			isa = PBXGroup;
 			children = (
+				C922D0951AA444FB00F6DBA1 /* MyViewController.h */,
+				C922D0961AA444FB00F6DBA1 /* MyViewController.m */,
 				C909FC191AA6E03A008E68FB /* MessageViewController.h */,
 				C909FC1A1AA6E03A008E68FB /* MessageViewController.m */,
 				C9D2B73D1AA8689C00CF750D /* MyBJXSViewController.h */,
@@ -459,6 +456,8 @@
 		C9DD46BB1AA82704004AEAB7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C922D08C1AA444B600F6DBA1 /* HomeViewController.h */,
+				C922D08D1AA444B600F6DBA1 /* HomeViewController.m */,
 				C9D2B74D1AA8912B00CF750D /* ListViewController.h */,
 				C9D2B74E1AA8912B00CF750D /* ListViewController.m */,
 			);
@@ -519,13 +518,14 @@
 		C9E1FF091AA558C800720AAC /* framework */ = {
 			isa = PBXGroup;
 			children = (
+				C9E1FEEF1AA5562000720AAC /* CFNetwork.framework */,
+				C9AFBB721AAD4B80008C7AE9 /* CoreGraphics.framework */,
+				C9C23CF81AA946F4007A9A27 /* CoreLocation.framework */,
+				C9E1FEF31AA5564100720AAC /* Foundation.framework */,
 				C9AFBB681AAD458C008C7AE9 /* ImageIO.framework */,
 				C9C23CFA1AA9499A007A9A27 /* MapKit.framework */,
-				C9C23CF81AA946F4007A9A27 /* CoreLocation.framework */,
 				C9E1FEF71AA5569100720AAC /* QuartzCore.framework */,
 				C9E1FEF11AA5563B00720AAC /* UIKit.framework */,
-				C9E1FEF31AA5564100720AAC /* Foundation.framework */,
-				C9E1FEEF1AA5562000720AAC /* CFNetwork.framework */,
 			);
 			name = framework;
 			sourceTree = "<group>";
