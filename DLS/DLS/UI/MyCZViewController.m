@@ -19,6 +19,13 @@
     self=[super init];
     if(self){
         [self setTitle:@"我的出租"];
+        //返回
+        self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]
+                                               initWithTitle:@"返回"
+                                               style:UIBarButtonItemStyleBordered
+                                               target:self
+                                               action:@selector(goBack:)];
+        //
         UIButton *bPublish = [UIButton buttonWithType:UIButtonTypeCustom];
         [bPublish setTitle:@"发布出租" forState:UIControlStateNormal];
         [bPublish.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -37,7 +44,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden=NO;
     if(!self.tableView.pullTableIsRefreshing) {
         self.tableView.pullTableIsRefreshing=YES;
         [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];

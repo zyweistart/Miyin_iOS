@@ -7,4 +7,6 @@
 
 @property (strong,nonatomic) HttpRequest *hRequest;
 
+- (void)goBack:(id)sender;
+
 @end

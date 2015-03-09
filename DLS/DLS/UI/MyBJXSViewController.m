@@ -21,6 +21,12 @@
     self=[super init];
     if(self){
         [self setTitle:@"配件销售"];
+        //返回
+        self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]
+                                               initWithTitle:@"返回"
+                                               style:UIBarButtonItemStyleBordered
+                                               target:self
+                                               action:@selector(goBack:)];
         [self buildTableViewWithView:self.view];
         
     }
@@ -30,7 +36,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden=NO;
     if(!self.tableView.pullTableIsRefreshing) {
         self.tableView.pullTableIsRefreshing=YES;
         [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];

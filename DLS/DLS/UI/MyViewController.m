@@ -28,7 +28,9 @@ static CGFloat kImageOriginHight = 200.f;
 
 @end
 
-@implementation MyViewController
+@implementation MyViewController{
+    UIView *personalFrame;
+}
 
 - (id)init{
     self=[super init];
@@ -49,23 +51,26 @@ static CGFloat kImageOriginHight = 200.f;
         [self.expandZoomImageView setImage:[UIImage imageNamed:@"personalbg"]];
         self.tableView.contentInset = UIEdgeInsetsMake(kImageOriginHight, 0, 0, 0);
         [self.tableView addSubview:self.expandZoomImageView];
-        
-        UIView *personalFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, kImageOriginHight-170, 320, 160)];
-        [self.expandZoomImageView addSubview:personalFrame];
         //设置
-        UIButton *btnSetting = [[UIButton alloc]initWithFrame:CGRectMake1(280, 0, 20, 20)];
+        UIButton *btnSetting = [[UIButton alloc]initWithFrame:CGRectMake1(280, 30, 20, 20)];
         [btnSetting setBackgroundImage:[UIImage imageNamed:@"setting"]forState:UIControlStateNormal];
         [btnSetting addTarget:self action:@selector(goSetting:) forControlEvents:UIControlEventTouchUpInside];
-        [personalFrame addSubview:btnSetting];
+        [self.expandZoomImageView addSubview:btnSetting];
+        
+        personalFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, kImageOriginHight-170, 320, 160)];
+        [self.expandZoomImageView addSubview:personalFrame];
         
         UIView *bLoginRegister=[[UIView alloc]initWithFrame:CGRectMake1(110, 40, 100, 30)];
         [bLoginRegister setBackgroundColor:LOGINREGISTERBGCOLOR];
-        [personalFrame addSubview:bLoginRegister];
+        bLoginRegister.layer.cornerRadius = 2;
+        bLoginRegister.layer.masksToBounds = YES;
+//        [personalFrame addSubview:bLoginRegister];
         //登陆
         UIButton *bLogin=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 49, 30)];
         [bLogin setTitle:@"登陆" forState:UIControlStateNormal];
         [bLogin.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [bLogin.titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [bLogin addTarget:self action:@selector(goLogin:) forControlEvents:UIControlEventTouchUpInside];
         [bLoginRegister addSubview:bLogin];
         UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(49, 5, 1, 20)];
         [line setBackgroundColor:LINEBGCOLOR];
@@ -75,27 +80,32 @@ static CGFloat kImageOriginHight = 200.f;
         [bRegister setTitle:@"注册" forState:UIControlStateNormal];
         [bRegister.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [bRegister.titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [bRegister addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
         [bLoginRegister addSubview:bRegister];
         //头像
         UIButton *bHead=[[UIButton alloc]initWithFrame:CGRectMake1(120, 20, 80, 80)];
         [bHead setTitle:@"我是得力手" forImage:[UIImage imageNamed:@"头像"]];
         [bHead.titleLabel setFont:[UIFont systemFontOfSize:15]];
-//        [personalFrame addSubview:bHead];
+        [personalFrame addSubview:bHead];
         
         //底部功能
         UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 120, 320, 40)];
         [personalFrame addSubview:bottomFrame];
         UIButton *bCollection=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 79, 40)];
         [bCollection setTitle:@"收藏" forImage:[UIImage imageNamed:@"collection"]];
+        [bCollection addTarget:self action:@selector(goCollection:) forControlEvents:UIControlEventTouchUpInside];
         [bottomFrame addSubview:bCollection];
         UIButton *bAccount=[[UIButton alloc]initWithFrame:CGRectMake1(80, 0, 79, 40)];
         [bAccount setTitle:@"账号" forImage:[UIImage imageNamed:@"account"]];
+        [bAccount addTarget:self action:@selector(goAccount:) forControlEvents:UIControlEventTouchUpInside];
         [bottomFrame addSubview:bAccount];
         UIButton *bIntegral=[[UIButton alloc]initWithFrame:CGRectMake1(160, 0, 80, 40)];
         [bIntegral setTitle:@"积分" forImage:[UIImage imageNamed:@"integral"]];
+        [bIntegral addTarget:self action:@selector(goIntegral:) forControlEvents:UIControlEventTouchUpInside];
         [bottomFrame addSubview:bIntegral];
         UIButton *bMessage=[[UIButton alloc]initWithFrame:CGRectMake1(240, 0, 80, 40)];
         [bMessage setTitle:@"消息" forImage:[UIImage imageNamed:@"message"]];
+        [bMessage addTarget:self action:@selector(goMessage:) forControlEvents:UIControlEventTouchUpInside];
         [bottomFrame addSubview:bMessage];
         //竖线
         UIView *line1=[[UIView alloc]initWithFrame:CGRectMake1(79, 0, 1, 40)];
@@ -114,7 +124,6 @@ static CGFloat kImageOriginHight = 200.f;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden=YES;
     self.expandZoomImageView.frame = CGRectMake(0, -kImageOriginHight, self.tableView.frame.size.width, kImageOriginHight);
 }
 
@@ -125,6 +134,7 @@ static CGFloat kImageOriginHight = 200.f;
         f.origin.y = yOffset;
         f.size.height =  -yOffset;
         self.expandZoomImageView.frame = f;
+        [personalFrame setFrame:CGRectMake1(0, f.size.height-170, 320, 160)];
     }
 }
 
@@ -173,36 +183,74 @@ static CGFloat kImageOriginHight = 200.f;
     NSInteger row=[indexPath row];
     if(section==0){
         if(row==0){
-            [self.navigationController pushViewController:[[MyCZViewController alloc]init] animated:YES];
+            [self presentViewController:[[MyCZViewController alloc]init]];
         }else if(row==1){
-            [self.navigationController pushViewController:[[MyQZViewController alloc]init] animated:YES];
+            [self presentViewController:[[MyQZViewController alloc]init]];
         }else if(row==2){
-            [self.navigationController pushViewController:[[MySBXSViewController alloc]init] animated:YES];
+            [self presentViewController:[[MySBXSViewController alloc]init]];
         }else if(row==3){
-            [self.navigationController pushViewController:[[MySBWXViewController alloc]init] animated:YES];
+            [self presentViewController:[[MySBWXViewController alloc]init]];
         }else if(row==4){
-            [self.navigationController pushViewController:[[MyBJXSViewController alloc]init] animated:YES];
+            [self presentViewController:[[MyBJXSViewController alloc]init]];
         }else if(row==5){
-            [self.navigationController pushViewController:[[MyVIPGCViewController alloc]init] animated:YES];
+            [self presentViewController:[[MyVIPGCViewController alloc]init]];
         }
     }else if(section==1){
         if(row==0){
-            [self.navigationController pushViewController:[[MyZPXXViewController alloc]init] animated:YES];
+            [self presentViewController:[[MyZPXXViewController alloc]init]];
         }else if(row==1){
-            [self.navigationController pushViewController:[[MyQZYPViewController alloc]init] animated:YES];
+            [self presentViewController:[[MyQZYPViewController alloc]init]];
         }
     }else{
         if(row==0){
-            [self.navigationController pushViewController:[[MyHelpCenterViewController alloc]init] animated:YES];
+             [self presentViewController:[[MyHelpCenterViewController alloc]init]];
         }else if(row==1){
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"tel://%@",@"057187071527"]]];
         }
     }
 }
 
+- (void)presentViewController:(UIViewController*)viewController
+{
+    UINavigationController *myViewControllerNav = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [[myViewControllerNav navigationBar]setBarTintColor:NAVBG];
+    [[myViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
+    [self presentViewController:myViewControllerNav animated:YES completion:nil];
+}
+
 - (void)goSetting:(UIButton*)sender
 {
     NSLog(@"设置");
+}
+
+- (void)goLogin:(UIButton*)sender
+{
+    NSLog(@"login");
+}
+
+- (void)goRegister:(UIButton*)sender
+{
+    NSLog(@"register");
+}
+
+- (void)goCollection:(UIButton*)sender
+{
+    NSLog(@"collection");
+}
+
+- (void)goAccount:(UIButton*)sender
+{
+    NSLog(@"goAccount");
+}
+
+- (void)goIntegral:(UIButton*)sender
+{
+    NSLog(@"integral");
+}
+
+- (void)goMessage:(UIButton*)sender
+{
+    NSLog(@"goMessage");
 }
 
 @end

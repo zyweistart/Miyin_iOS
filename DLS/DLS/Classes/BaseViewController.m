@@ -29,6 +29,11 @@
     [super viewDidLoad];
 }
 
+- (void)goBack:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
 }

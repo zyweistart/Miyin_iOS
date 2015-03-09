@@ -55,7 +55,6 @@
         [[button2 titleLabel]setFont:[UIFont systemFontOfSize:13]];
         [button2 setTitle:@"项目预告" forState:UIControlStateNormal];
         [button2 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
-        [button2 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
         [button2 addTarget:self action:@selector(goToMain1:) forControlEvents:UIControlEventTouchUpInside];
         button2.tag=14;
         [category5 addSubview:button2];
@@ -63,14 +62,12 @@
         [[button3 titleLabel]setFont:[UIFont systemFontOfSize:13]];
         [button3 setTitle:@"起重机制造商" forState:UIControlStateNormal];
         [button3 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
-        [button3 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
         [button3 addTarget:self action:@selector(goToMain1:) forControlEvents:UIControlEventTouchUpInside];
         button3.tag=15;
         [category5 addSubview:button3];
         UIButton *button4=[[UIButton alloc]initWithFrame:CGRectMake1(240, 10, 80, 20)];
         [[button4 titleLabel]setFont:[UIFont systemFontOfSize:13]];
         [button4 setTitle:@"企业大全" forState:UIControlStateNormal];
-        [button4 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
         [button4 setTitleColor:TITLECOLOR forState:UIControlStateNormal];
         [button4 addTarget:self action:@selector(goToMain1:) forControlEvents:UIControlEventTouchUpInside];
         button4.tag=16;
