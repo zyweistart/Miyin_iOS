@@ -8,7 +8,6 @@
 
 #import "MessageViewController.h"
 #import "ProjectBCell.h"
-#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface MessageViewController ()
 
@@ -56,15 +55,7 @@
         if(!cell) {
             cell = [[ProjectBCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
-        NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,[data objectForKey:@"images"]];
-        if([indexPath row]%2==0){
-            imageUrl=@"http://avatar.csdn.net/4/1/6/1_tangren03.jpg";
-        }
-        [cell.image setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default_image"]];
-        cell.title.text=@"履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天";
-        cell.money.text=@"￥4000";
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        [cell setData:[self.dataItemArray objectAtIndex:[indexPath row]]];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];

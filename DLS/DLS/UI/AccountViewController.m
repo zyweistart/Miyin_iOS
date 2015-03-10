@@ -24,8 +24,32 @@
                                                style:UIBarButtonItemStyleBordered
                                                target:self
                                                action:@selector(goBack:)];
+        self.dataItemArray=[[NSMutableArray alloc]init];
+        [self.dataItemArray addObject:@"zywei_624"];
+        [self.dataItemArray addObject:@"周小龙"];
+        [self.dataItemArray addObject:@"33048191283740287432"];
+        [self buildTableViewWithView:self.view];
     }
     return self;
+}
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    }
+    if([indexPath row]==0){
+        cell.textLabel.text = @"用户名";
+    }else if([indexPath row]==1){
+        cell.textLabel.text = @"姓名";
+    }else{
+        cell.textLabel.text = @"身份证";
+    }
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@", [self.dataItemArray objectAtIndex:indexPath.row]];
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    return cell;
 }
 
 @end
