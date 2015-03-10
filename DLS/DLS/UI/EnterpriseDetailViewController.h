@@ -10,4 +10,6 @@
 
 @interface EnterpriseDetailViewController : BaseViewController
 
+@property NSDictionary *data;
+
 @end

@@ -1,23 +1,23 @@
 //
-//  RegisterViewController.m
+//  CollectionViewController.m
 //  DLS
 //
-//  Created by Start on 3/5/15.
+//  Created by Start on 3/10/15.
 //  Copyright (c) 2015 Start. All rights reserved.
 //
 
-#import "RegisterViewController.h"
+#import "CollectionViewController.h"
 
-@interface RegisterViewController ()
+@interface CollectionViewController ()
 
 @end
 
-@implementation RegisterViewController
+@implementation CollectionViewController
 
 - (id)init{
     self=[super init];
     if(self){
-        [self setTitle:@"注册"];
+        [self setTitle:@"收藏"];
         //返回
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]
                                                initWithTitle:@"返回"

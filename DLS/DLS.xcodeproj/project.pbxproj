@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C90699B11AAE836600E32C54 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90699B01AAE836600E32C54 /* CollectionViewController.m */; };
+		C90699B41AAE83A300E32C54 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90699B31AAE83A300E32C54 /* SettingViewController.m */; };
+		C90699B71AAE83C700E32C54 /* IntegralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90699B61AAE83C700E32C54 /* IntegralViewController.m */; };
 		C909FC181AA6D72A008E68FB /* InformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C909FC171AA6D72A008E68FB /* InformationCell.m */; };
 		C909FC1B1AA6E03A008E68FB /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C909FC1A1AA6E03A008E68FB /* MessageViewController.m */; };
 		C90BC6971AAC6504001F9902 /* UIButton+TitleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C90BC6961AAC6504001F9902 /* UIButton+TitleImage.m */; };
@@ -96,6 +99,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C90699AF1AAE836600E32C54 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		C90699B01AAE836600E32C54 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		C90699B21AAE83A300E32C54 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		C90699B31AAE83A300E32C54 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		C90699B51AAE83C700E32C54 /* IntegralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralViewController.h; sourceTree = "<group>"; };
+		C90699B61AAE83C700E32C54 /* IntegralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralViewController.m; sourceTree = "<group>"; };
 		C909FC161AA6D72A008E68FB /* InformationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationCell.h; sourceTree = "<group>"; };
 		C909FC171AA6D72A008E68FB /* InformationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationCell.m; sourceTree = "<group>"; };
 		C909FC191AA6E03A008E68FB /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
@@ -465,8 +474,12 @@
 		C9D2B74C1AA86A7C00CF750D /* My */ = {
 			isa = PBXGroup;
 			children = (
-				C922D0951AA444FB00F6DBA1 /* MyViewController.h */,
-				C922D0961AA444FB00F6DBA1 /* MyViewController.m */,
+				C9DD46C31AA82781004AEAB7 /* AccountViewController.h */,
+				C9DD46C41AA82781004AEAB7 /* AccountViewController.m */,
+				C90699AF1AAE836600E32C54 /* CollectionViewController.h */,
+				C90699B01AAE836600E32C54 /* CollectionViewController.m */,
+				C90699B51AAE83C700E32C54 /* IntegralViewController.h */,
+				C90699B61AAE83C700E32C54 /* IntegralViewController.m */,
 				C909FC191AA6E03A008E68FB /* MessageViewController.h */,
 				C909FC1A1AA6E03A008E68FB /* MessageViewController.m */,
 				C9D2B73D1AA8689C00CF750D /* MyBJXSViewController.h */,
@@ -483,10 +496,14 @@
 				C9D2B7321AA8684C00CF750D /* MySBWXViewController.m */,
 				C9D2B73A1AA8688600CF750D /* MySBXSViewController.h */,
 				C9D2B73B1AA8688600CF750D /* MySBXSViewController.m */,
+				C922D0951AA444FB00F6DBA1 /* MyViewController.h */,
+				C922D0961AA444FB00F6DBA1 /* MyViewController.m */,
 				C9D2B7401AA868AC00CF750D /* MyVIPGCViewController.h */,
 				C9D2B7411AA868AC00CF750D /* MyVIPGCViewController.m */,
 				C9D2B7431AA868BF00CF750D /* MyZPXXViewController.h */,
 				C9D2B7441AA868BF00CF750D /* MyZPXXViewController.m */,
+				C90699B21AAE83A300E32C54 /* SettingViewController.h */,
+				C90699B31AAE83A300E32C54 /* SettingViewController.m */,
 			);
 			name = My;
 			sourceTree = "<group>";
@@ -509,8 +526,6 @@
 				C9DD46BE1AA8271E004AEAB7 /* RegisterViewController.m */,
 				C9DD46C01AA82731004AEAB7 /* LoginViewController.h */,
 				C9DD46C11AA82731004AEAB7 /* LoginViewController.m */,
-				C9DD46C31AA82781004AEAB7 /* AccountViewController.h */,
-				C9DD46C41AA82781004AEAB7 /* AccountViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -716,6 +731,7 @@
 				C9125AA81AA9FA12001396FF /* Common.m in Sources */,
 				C9DD46C21AA82731004AEAB7 /* LoginViewController.m in Sources */,
 				C9E1FEBB1AA5543F00720AAC /* BaseViewController.m in Sources */,
+				C90699B11AAE836600E32C54 /* CollectionViewController.m in Sources */,
 				C9AFBB861AAD80BB008C7AE9 /* RecruitmentDetailViewController.m in Sources */,
 				C9D2B7521AA8966200CF750D /* ProjectCell.m in Sources */,
 				C9AFBB771AAD8039008C7AE9 /* RentalDetailViewController.m in Sources */,
@@ -723,6 +739,7 @@
 				C9D2B7451AA868BF00CF750D /* MyZPXXViewController.m in Sources */,
 				C9E1FEEC1AA555F000720AAC /* ATMSoundFX.m in Sources */,
 				C9DD46BF1AA8271E004AEAB7 /* RegisterViewController.m in Sources */,
+				C90699B71AAE83C700E32C54 /* IntegralViewController.m in Sources */,
 				C9E1FEEE1AA555F000720AAC /* MBProgressHUD.m in Sources */,
 				C9DB29A31AA9ACDF00D5893B /* SearchView.m in Sources */,
 				C9E1FED11AA554E200720AAC /* HttpRequest.m in Sources */,
@@ -755,6 +772,7 @@
 				C9E1FEEB1AA555F000720AAC /* ATMProgressLayer.m in Sources */,
 				C922D0971AA444FB00F6DBA1 /* MyViewController.m in Sources */,
 				C91115AE1AAC3AE200F56DFE /* ProjectCCell.m in Sources */,
+				C90699B41AAE83A300E32C54 /* SettingViewController.m in Sources */,
 				C9D2B7421AA868AC00CF750D /* MyVIPGCViewController.m in Sources */,
 				C9583FB51AAC89940043548B /* ProjectDCell.m in Sources */,
 			);

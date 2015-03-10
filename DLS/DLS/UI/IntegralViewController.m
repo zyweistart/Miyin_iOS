@@ -1,23 +1,23 @@
 //
-//  RegisterViewController.m
+//  IntegralViewController.m
 //  DLS
 //
-//  Created by Start on 3/5/15.
+//  Created by Start on 3/10/15.
 //  Copyright (c) 2015 Start. All rights reserved.
 //
 
-#import "RegisterViewController.h"
+#import "IntegralViewController.h"
 
-@interface RegisterViewController ()
+@interface IntegralViewController ()
 
 @end
 
-@implementation RegisterViewController
+@implementation IntegralViewController
 
 - (id)init{
     self=[super init];
     if(self){
-        [self setTitle:@"注册"];
+        [self setTitle:@"积分"];
         //返回
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]
                                                initWithTitle:@"返回"

@@ -10,4 +10,6 @@
 
 @interface MessageDetailViewController : BaseViewController
 
+@property NSDictionary *data;
+
 @end

@@ -10,4 +10,6 @@
 
 @interface RecruitmentDetailViewController : BaseViewController
 
+@property NSDictionary *data;
+
 @end

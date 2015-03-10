@@ -10,4 +10,6 @@
 
 @interface NewsDetailViewController : BaseViewController
 
+@property NSDictionary *data;
+
 @end

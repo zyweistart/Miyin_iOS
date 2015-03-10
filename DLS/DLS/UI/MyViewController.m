@@ -17,19 +17,30 @@
 #import "MyQZYPViewController.h"
 #import "MyHelpCenterViewController.h"
 
+#import "SettingViewController.h"
+#import "CollectionViewController.h"
+#import "AccountViewController.h"
+#import "IntegralViewController.h"
+#import "MessageViewController.h"
+#import "LoginViewController.h"
+#import "RegisterViewController.h"
+
 #import "UIButton+TitleImage.h"
 
 #define LOGINREGISTERBGCOLOR [UIColor colorWithRed:(58/255.0) green:(117/255.0) blue:(207/255.0) alpha:0.5]
 #define LINEBGCOLOR [UIColor colorWithRed:(167/255.0) green:(183/255.0) blue:(216/255.0) alpha:0.5]
 
-static CGFloat kImageOriginHight = 200.f;
+static CGFloat kImageOriginHight = 220.f;
 
 @interface MyViewController ()
 
 @end
 
 @implementation MyViewController{
+    UIView *topFrame;
     UIView *personalFrame;
+    UIView *bLoginRegister;
+    UIButton *bHead;
 }
 
 - (id)init{
@@ -48,23 +59,24 @@ static CGFloat kImageOriginHight = 200.f;
         [self.view addSubview:self.tableView];
         
         self.expandZoomImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, kImageOriginHight)];
+        self.expandZoomImageView.userInteractionEnabled=YES;
         [self.expandZoomImageView setImage:[UIImage imageNamed:@"personalbg"]];
         self.tableView.contentInset = UIEdgeInsetsMake(kImageOriginHight, 0, 0, 0);
         [self.tableView addSubview:self.expandZoomImageView];
+        
         //设置
-        UIButton *btnSetting = [[UIButton alloc]initWithFrame:CGRectMake1(280, 30, 20, 20)];
-        [btnSetting setBackgroundImage:[UIImage imageNamed:@"setting"]forState:UIControlStateNormal];
+        UIButton *btnSetting = [[UIButton alloc]initWithFrame:CGRectMake1(270, 20, 40, 40)];
+        [btnSetting setImage:[UIImage imageNamed:@"setting"]forState:UIControlStateNormal];
         [btnSetting addTarget:self action:@selector(goSetting:) forControlEvents:UIControlEventTouchUpInside];
         [self.expandZoomImageView addSubview:btnSetting];
         
         personalFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, kImageOriginHight-170, 320, 160)];
         [self.expandZoomImageView addSubview:personalFrame];
-        
-        UIView *bLoginRegister=[[UIView alloc]initWithFrame:CGRectMake1(110, 40, 100, 30)];
+        bLoginRegister=[[UIView alloc]initWithFrame:CGRectMake1(110, 40, 100, 30)];
         [bLoginRegister setBackgroundColor:LOGINREGISTERBGCOLOR];
         bLoginRegister.layer.cornerRadius = 2;
         bLoginRegister.layer.masksToBounds = YES;
-//        [personalFrame addSubview:bLoginRegister];
+        [personalFrame addSubview:bLoginRegister];
         //登陆
         UIButton *bLogin=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 49, 30)];
         [bLogin setTitle:@"登陆" forState:UIControlStateNormal];
@@ -83,7 +95,7 @@ static CGFloat kImageOriginHight = 200.f;
         [bRegister addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
         [bLoginRegister addSubview:bRegister];
         //头像
-        UIButton *bHead=[[UIButton alloc]initWithFrame:CGRectMake1(120, 20, 80, 80)];
+        bHead=[[UIButton alloc]initWithFrame:CGRectMake1(120, 20, 80, 80)];
         [bHead setTitle:@"我是得力手" forImage:[UIImage imageNamed:@"头像"]];
         [bHead.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [personalFrame addSubview:bHead];
@@ -124,6 +136,10 @@ static CGFloat kImageOriginHight = 200.f;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    [bLoginRegister setHidden:NO];
+    [bHead setHidden:YES];
+    
     self.expandZoomImageView.frame = CGRectMake(0, -kImageOriginHight, self.tableView.frame.size.width, kImageOriginHight);
 }
 
@@ -218,39 +234,39 @@ static CGFloat kImageOriginHight = 200.f;
     [self presentViewController:myViewControllerNav animated:YES completion:nil];
 }
 
-- (void)goSetting:(UIButton*)sender
+- (void)goSetting:(id)sender
 {
-    NSLog(@"设置");
+    [self presentViewController:[[SettingViewController alloc]init]];
 }
 
-- (void)goLogin:(UIButton*)sender
+- (void)goLogin:(id)sender
 {
-    NSLog(@"login");
+    [self presentViewController:[[LoginViewController alloc]init]];
 }
 
-- (void)goRegister:(UIButton*)sender
+- (void)goRegister:(id)sender
 {
-    NSLog(@"register");
+    [self presentViewController:[[RegisterViewController alloc]init]];
 }
 
-- (void)goCollection:(UIButton*)sender
+- (void)goCollection:(id)sender
 {
-    NSLog(@"collection");
+    [self presentViewController:[[CollectionViewController alloc]init]];
 }
 
-- (void)goAccount:(UIButton*)sender
+- (void)goAccount:(id)sender
 {
-    NSLog(@"goAccount");
+    [self presentViewController:[[AccountViewController alloc]init]];
 }
 
-- (void)goIntegral:(UIButton*)sender
+- (void)goIntegral:(id)sender
 {
-    NSLog(@"integral");
+    [self presentViewController:[[IntegralViewController alloc]init]];
 }
 
-- (void)goMessage:(UIButton*)sender
+- (void)goMessage:(id)sender
 {
-    NSLog(@"goMessage");
+    [self presentViewController:[[MessageViewController alloc]init]];
 }
 
 @end

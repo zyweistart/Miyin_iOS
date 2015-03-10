@@ -10,4 +10,6 @@
 
 @interface RentalDetailViewController : BaseViewController
 
+@property NSDictionary *data;
+
 @end

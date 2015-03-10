@@ -10,4 +10,6 @@
 
 @interface QiuzuDetailViewController : BaseViewController
 
+@property NSDictionary *data;
+
 @end
