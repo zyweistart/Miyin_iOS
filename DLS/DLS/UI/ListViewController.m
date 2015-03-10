@@ -45,7 +45,7 @@
         }else if(self.type==8){
             return 70;
         }else{
-            return 70;
+            return 80;
         }
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];

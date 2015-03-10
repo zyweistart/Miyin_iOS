@@ -36,12 +36,17 @@
         [self.distance setTextColor:CHILDCOLOR];
         [self.distance setTextAlignment:NSTextAlignmentRight];
         [mainView addSubview:self.distance];
+        [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
     return self;
 }
 
 - (void)setData:(NSDictionary *)data
 {
+    [self.image setImage:[UIImage imageNamed:@"category1"]];
+    self.title.text=@"履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天";
+    [self.name setText:@"大力神维修"];
+    [self.distance setText:@"距离:1785KM"];
 }
 
 @end

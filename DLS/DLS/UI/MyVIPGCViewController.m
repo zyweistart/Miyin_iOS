@@ -56,13 +56,7 @@
         if(!cell) {
             cell = [[ProjectECell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        [cell.image setImage:[UIImage imageNamed:@"category1"]];
-        cell.title.text=@"履带吊求租使用一天";
-        cell.address.text=@"萧山建设1路";
-        cell.money.text=@"20-21";
-        cell.status.text=@"合同";
-        cell.detail.text=@"查看";
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        [cell setData:[self.dataItemArray objectAtIndex:[indexPath row]]];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];

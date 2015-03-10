@@ -56,10 +56,7 @@
         if(!cell) {
             cell = [[ProjectACell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        cell.title.text=@"履带吊求租使用一天";
-        cell.address.text=@"萧山建设1路";
-        cell.date.text=@"20-21";
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        [cell setData:[self.dataItemArray objectAtIndex:[indexPath row]]];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];

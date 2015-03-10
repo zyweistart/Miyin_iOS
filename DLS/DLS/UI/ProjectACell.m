@@ -33,12 +33,16 @@
         [self.date setTextColor:CHILDCOLOR];
         [self.date setTextAlignment:NSTextAlignmentCenter];
         [mainView addSubview:self.date];
+        [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
     return self;
 }
 
 - (void)setData:(NSDictionary *)data
 {
+    self.title.text=@"履带吊求租使用一天";
+    self.address.text=@"萧山建设1路";
+    self.date.text=@"20-21";
 }
 
 @end

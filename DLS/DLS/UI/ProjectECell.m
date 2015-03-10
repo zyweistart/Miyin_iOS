@@ -59,6 +59,7 @@
         [self.detail setNumberOfLines:2];
         [self.detail setTextAlignment:NSTextAlignmentCenter];
         [mainView addSubview:self.detail];
+        [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
     return self;
 }
@@ -77,6 +78,12 @@
 
 - (void)setData:(NSDictionary *)data
 {
+    [self.image setImage:[UIImage imageNamed:@"category1"]];
+    self.title.text=@"履带吊求租使用一天";
+    self.address.text=@"萧山建设1路";
+    self.money.text=@"20-21";
+    self.status.text=@"合同";
+    self.detail.text=@"查看";
 }
 
 @end
