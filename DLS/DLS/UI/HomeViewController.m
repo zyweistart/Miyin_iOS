@@ -10,6 +10,7 @@
 #import "HomeBannerCell.h"
 #import "HomeCategoryCell.h"
 #import "HomeInformationCell.h"
+#import "LocationViewController.h"
 #import "MessageViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ListViewController.h"
@@ -160,7 +161,7 @@
 //定位
 - (void)goLocation:(UIButton*)sender
 {
-    [self.navigationController pushViewController:[[MessageViewController alloc]init] animated:YES];
+    [self presentViewController:[[LocationViewController alloc]init]];
 }
 //搜索
 - (void)goSearch:(id)sender
@@ -170,7 +171,15 @@
 //消息
 - (void)goMessage:(UIButton*)sender
 {
-    [self.navigationController pushViewController:[[MessageViewController alloc]init] animated:YES];
+    [self presentViewController:[[MessageViewController alloc]init]];
+}
+
+- (void)presentViewController:(UIViewController*)viewController
+{
+    UINavigationController *myViewControllerNav = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [[myViewControllerNav navigationBar]setBarTintColor:NAVBG];
+    [[myViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
+    [self presentViewController:myViewControllerNav animated:YES completion:nil];
 }
 
 @end

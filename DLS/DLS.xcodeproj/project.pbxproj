@@ -10,6 +10,9 @@
 		C90699B11AAE836600E32C54 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90699B01AAE836600E32C54 /* CollectionViewController.m */; };
 		C90699B41AAE83A300E32C54 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90699B31AAE83A300E32C54 /* SettingViewController.m */; };
 		C90699B71AAE83C700E32C54 /* IntegralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90699B61AAE83C700E32C54 /* IntegralViewController.m */; };
+		C90699BA1AAE956300E32C54 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90699B91AAE956300E32C54 /* LocationViewController.m */; };
+		C90699BD1AAE984800E32C54 /* ProjectECell.m in Sources */ = {isa = PBXBuildFile; fileRef = C90699BC1AAE984800E32C54 /* ProjectECell.m */; };
+		C90699C11AAE9D2D00E32C54 /* citydict.plist in Resources */ = {isa = PBXBuildFile; fileRef = C90699C01AAE9D2D00E32C54 /* citydict.plist */; };
 		C909FC181AA6D72A008E68FB /* InformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C909FC171AA6D72A008E68FB /* InformationCell.m */; };
 		C909FC1B1AA6E03A008E68FB /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C909FC1A1AA6E03A008E68FB /* MessageViewController.m */; };
 		C90BC6971AAC6504001F9902 /* UIButton+TitleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C90BC6961AAC6504001F9902 /* UIButton+TitleImage.m */; };
@@ -105,6 +108,11 @@
 		C90699B31AAE83A300E32C54 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		C90699B51AAE83C700E32C54 /* IntegralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralViewController.h; sourceTree = "<group>"; };
 		C90699B61AAE83C700E32C54 /* IntegralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralViewController.m; sourceTree = "<group>"; };
+		C90699B81AAE956300E32C54 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
+		C90699B91AAE956300E32C54 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
+		C90699BB1AAE984800E32C54 /* ProjectECell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectECell.h; sourceTree = "<group>"; };
+		C90699BC1AAE984800E32C54 /* ProjectECell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectECell.m; sourceTree = "<group>"; };
+		C90699C01AAE9D2D00E32C54 /* citydict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = citydict.plist; sourceTree = "<group>"; };
 		C909FC161AA6D72A008E68FB /* InformationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationCell.h; sourceTree = "<group>"; };
 		C909FC171AA6D72A008E68FB /* InformationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationCell.m; sourceTree = "<group>"; };
 		C909FC191AA6E03A008E68FB /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
@@ -447,6 +455,7 @@
 		C9B85F611AA432E1008A56F0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C90699C01AAE9D2D00E32C54 /* citydict.plist */,
 				C9B85F621AA432E1008A56F0 /* Info.plist */,
 				C9B85F631AA432E1008A56F0 /* main.m */,
 				C9E1FF071AA5578700720AAC /* DLS-Prefix.pch */,
@@ -515,6 +524,8 @@
 				C922D08D1AA444B600F6DBA1 /* HomeViewController.m */,
 				C9D2B74D1AA8912B00CF750D /* ListViewController.h */,
 				C9D2B74E1AA8912B00CF750D /* ListViewController.m */,
+				C90699B81AAE956300E32C54 /* LocationViewController.h */,
+				C90699B91AAE956300E32C54 /* LocationViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -604,6 +615,8 @@
 				C91115AD1AAC3AE200F56DFE /* ProjectCCell.m */,
 				C9583FB31AAC89940043548B /* ProjectDCell.h */,
 				C9583FB41AAC89940043548B /* ProjectDCell.m */,
+				C90699BB1AAE984800E32C54 /* ProjectECell.h */,
+				C90699BC1AAE984800E32C54 /* ProjectECell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -694,6 +707,7 @@
 				C99E83011AA997B20087D2F4 /* blackArrow.png in Resources */,
 				C99E83041AA997B20087D2F4 /* blueArrow@2x.png in Resources */,
 				C99E83021AA997B20087D2F4 /* blackArrow@2x.png in Resources */,
+				C90699C11AAE9D2D00E32C54 /* citydict.plist in Resources */,
 				C99E83071AA997B20087D2F4 /* whiteArrow.png in Resources */,
 				C99E83061AA997B20087D2F4 /* grayArrow@2x.png in Resources */,
 				C99E83081AA997B20087D2F4 /* whiteArrow@2x.png in Resources */,
@@ -746,6 +760,7 @@
 				C9D2B74B1AA8690D00CF750D /* MyHelpCenterViewController.m in Sources */,
 				C9E1FEED1AA555F000720AAC /* ATMTextLayer.m in Sources */,
 				C9E1FEE81AA555F000720AAC /* ATMHud.m in Sources */,
+				C90699BD1AAE984800E32C54 /* ProjectECell.m in Sources */,
 				C9D2B7391AA8687000CF750D /* MyCZViewController.m in Sources */,
 				C9E1FEE91AA555F000720AAC /* ATMHudQueueItem.m in Sources */,
 				C9D2B74F1AA8912B00CF750D /* ListViewController.m in Sources */,
@@ -758,6 +773,7 @@
 				C9B85F671AA432E1008A56F0 /* AppDelegate.m in Sources */,
 				C99A055E1AAC24F3004E5490 /* ProjectACell.m in Sources */,
 				C99E83001AA997B20087D2F4 /* PullTableView.m in Sources */,
+				C90699BA1AAE956300E32C54 /* LocationViewController.m in Sources */,
 				C9B85F641AA432E1008A56F0 /* main.m in Sources */,
 				C9D2B73C1AA8688600CF750D /* MySBXSViewController.m in Sources */,
 				C9D4CB0A1AA69192008D3A53 /* HomeCategoryCell.m in Sources */,

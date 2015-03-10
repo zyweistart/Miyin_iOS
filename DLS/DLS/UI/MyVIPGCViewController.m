@@ -7,7 +7,7 @@
 //
 
 #import "MyVIPGCViewController.h"
-#import "ProjectACell.h"
+#import "ProjectECell.h"
 
 @interface MyVIPGCViewController ()
 
@@ -41,19 +41,22 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 55;
+    return 80;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"Cell";
-    ProjectACell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    ProjectECell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell) {
-        cell = [[ProjectACell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[ProjectECell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    [cell.image setImage:[UIImage imageNamed:@"category1"]];
     cell.title.text=@"履带吊求租使用一天";
     cell.address.text=@"萧山建设1路";
-    cell.date.text=@"20-21";
+    cell.money.text=@"20-21";
+    cell.status.text=@"合同";
+    cell.detail.text=@"查看";
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
 }
