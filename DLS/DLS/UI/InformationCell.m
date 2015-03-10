@@ -7,6 +7,8 @@
 //
 
 #import "InformationCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
 #define MAINTITLECOLOR [UIColor colorWithRed:(50/255.0) green:(50/255.0) blue:(50/255.0) alpha:1]
 #define CHILDTITLECOLOR [UIColor colorWithRed:(150/255.0) green:(150/255.0) blue:(150/255.0) alpha:1]
 
@@ -37,6 +39,10 @@
 
 - (void)setData:(NSDictionary *)data
 {
+    NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,[data objectForKey:@"images"]];
+    [self.image setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default_image"]];
+    self.mainTitle.text=@"主标题";
+    self.childTitle.text=@"这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题";
 }
 
 @end

@@ -41,22 +41,30 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    if([self.dataItemArray count]>0){
+        return 80;
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"CProjectCCell";
-    ProjectCCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(!cell) {
-        cell = [[ProjectCCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    if([self.dataItemArray count]>0){
+        static NSString *cellIdentifier = @"CProjectCCell";
+        ProjectCCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell) {
+            cell = [[ProjectCCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        [cell.image setImage:[UIImage imageNamed:@"category1"]];
+        cell.title.text=@"履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天";
+        [cell.name setText:@"大力神维修"];
+        [cell.distance setText:@"距离:1785KM"];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        return cell;
+    }else{
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
-    [cell.image setImage:[UIImage imageNamed:@"category1"]];
-    cell.title.text=@"履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天";
-    [cell.name setText:@"大力神维修"];
-    [cell.distance setText:@"距离:1785KM"];
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    return cell;
 }
 
 - (void)loadHttp

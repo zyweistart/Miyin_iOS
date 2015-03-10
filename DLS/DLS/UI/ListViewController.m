@@ -7,13 +7,16 @@
 //
 
 #import "ListViewController.h"
+#import "ProjectCell.h"
 #import "ProjectDCell.h"
+#import "InformationCell.h"
 
 @interface ListViewController ()
 
 @end
 
 @implementation ListViewController
+
 - (id)initWithTitle:(NSString*)title Type:(NSInteger)type
 {
     self=[super init];
@@ -36,27 +39,52 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70;
+    if([self.dataItemArray count]>0){
+        if(self.type==7){
+            return 80;
+        }else if(self.type==8){
+            return 70;
+        }else{
+            return 70;
+        }
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"Cell";
-    ProjectDCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(!cell) {
-        cell = [[ProjectDCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    if([self.dataItemArray count]>0){
+        if(self.type==7){
+            //招标公告
+            static NSString *cellIdentifier = @"CInformationCell";
+            InformationCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            if(!cell) {
+                cell = [[InformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            }
+            [cell setData:[self.dataItemArray objectAtIndex:[indexPath row]]];
+            return cell;
+        }else if(self.type==8){
+            //招聘信息
+            static NSString *cellIdentifier = @"CProjectDCell";
+            ProjectDCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            if(!cell) {
+                cell = [[ProjectDCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            }
+            [cell setData:[self.dataItemArray objectAtIndex:[indexPath row]]];
+            return cell;
+        }else{
+            static NSString *cellIdentifier = @"CProjectCell";
+            ProjectCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            if (cell == nil) {
+                cell = [[ProjectCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: cellIdentifier];
+            }
+            [cell setData:[self.dataItemArray objectAtIndex:[indexPath row]]];
+            return cell;
+        }
+    }else{
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
-    [cell setData:nil];
-//    NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
-//    NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,[data objectForKey:@"images"]];
-//    if([indexPath row]%2==0){
-//        imageUrl=@"http://avatar.csdn.net/4/1/6/1_tangren03.jpg";
-//    }
-////    [cell.image setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default_image"]];
-//    cell.title.text=@"履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天";
-//    cell.money.text=@"￥4000";
-//    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    return cell;
 }
 
 - (void)loadHttp

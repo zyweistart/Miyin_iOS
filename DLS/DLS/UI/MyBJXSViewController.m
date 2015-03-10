@@ -8,7 +8,6 @@
 
 #import "MyBJXSViewController.h"
 #import "ProjectBCell.h"
-#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface MyBJXSViewController ()
 
@@ -44,26 +43,26 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    if([self.dataItemArray count]>0){
+        return 80;
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"Cell";
-    ProjectBCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(!cell) {
-        cell = [[ProjectBCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    if([self.dataItemArray count]>0){
+        static NSString *cellIdentifier = @"Cell";
+        ProjectBCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell) {
+            cell = [[ProjectBCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        [cell setData:[self.dataItemArray objectAtIndex:[indexPath row]]];
+        return cell;
+    }else{
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
-    NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
-    NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,[data objectForKey:@"images"]];
-    if([indexPath row]%2==0){
-        imageUrl=@"http://avatar.csdn.net/4/1/6/1_tangren03.jpg";
-    }
-    [cell.image setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default_image"]];
-    cell.title.text=@"履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天";
-    cell.money.text=@"￥4000";
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    return cell;
 }
 
 - (void)loadHttp

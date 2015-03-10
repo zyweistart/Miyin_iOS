@@ -7,6 +7,8 @@
 //
 
 #import "ProjectBCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
 #define TITLECOLOR [UIColor colorWithRed:(70/255.0) green:(70/255.0) blue:(70/255.0) alpha:1]
 #define MONEYCOLOR [UIColor colorWithRed:(251/255.0) green:(0/255.0) blue:(7/255.0) alpha:1]
 
@@ -32,12 +34,17 @@
         [self.money setNumberOfLines:2];
         [self.money setTextAlignment:NSTextAlignmentLeft];
         [mainView addSubview:self.money];
+        [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
     return self;
 }
 
 - (void)setData:(NSDictionary *)data
 {
+    NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,[data objectForKey:@"images"]];
+    [self.image setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default_image"]];
+    self.title.text=@"履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天";
+    self.money.text=@"￥4000";
 }
 
 

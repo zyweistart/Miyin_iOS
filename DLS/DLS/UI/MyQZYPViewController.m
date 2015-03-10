@@ -41,21 +41,29 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 55;
+    if([self.dataItemArray count]>0){
+        return 55;
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"Cell";
-    ProjectACell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(!cell) {
-        cell = [[ProjectACell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    if([self.dataItemArray count]>0){
+        static NSString *cellIdentifier = @"Cell";
+        ProjectACell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell) {
+            cell = [[ProjectACell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        cell.title.text=@"履带吊求租使用一天";
+        cell.address.text=@"萧山建设1路";
+        cell.date.text=@"20-21";
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        return cell;
+    }else{
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
-    cell.title.text=@"履带吊求租使用一天";
-    cell.address.text=@"萧山建设1路";
-    cell.date.text=@"20-21";
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    return cell;
 }
 
 - (void)loadHttp

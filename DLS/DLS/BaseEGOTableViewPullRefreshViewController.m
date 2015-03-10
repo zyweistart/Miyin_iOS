@@ -1,13 +1,23 @@
 #import "BaseEGOTableViewPullRefreshViewController.h"
+#import "UIButton+TitleImage.h"
 
 @implementation BaseEGOTableViewPullRefreshViewController
 
+- (id)init{
+    self=[super init];
+    if(self){
+        self.dataItemArray=[[NSMutableArray alloc]init];
+        self.currentPage=0;
+    }
+    return self;
+}
+
 #pragma mark - View lifecycle
-//- (void)viewDidLoad
-//{
-//    [super viewDidLoad];
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
 //    [self buildTableViewWithView:self.view];
-//}
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -92,22 +102,46 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.dataItemArray count];
+    if([self.dataItemArray count]>0){
+        return [self.dataItemArray count];
+    }else{
+        return 1;
+    }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 45;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([self.dataItemArray count]>0){
+        return 45;
+    }else{
+        return self.tableView.bounds.size.height;
+    }
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    if([self.dataItemArray count]>0){
+        static NSString *cellIdentifier = @"SAMPLECell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        cell.textLabel.text = [NSString stringWithFormat:@"Row %d", indexPath.row];
+        return cell;
+    }else{
+        static NSString *CNOCell = @"NOCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CNOCell];
+        if(!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CNOCell];
+        }
+        UIButton *noData=[[UIButton alloc]initWithFrame:CGRectMake1(110, self.tableView.bounds.size.height/2-40, 100, 80)];
+        [noData.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [noData setTitle:@"暂无记录" forImage:[UIImage imageNamed:@"nocollection"]];
+        [noData setTitleColor:[UIColor colorWithRed:(93/255.0) green:(93/255.0) blue:(93/255.0) alpha:1] forState:UIControlStateNormal];
+        [cell addSubview:noData];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"Row %d", indexPath.row];
-    return cell;
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
@@ -125,11 +159,7 @@
                     [nsArr addObject:data];
                 }
                 if(self.currentPage==1){
-                    if(!self.dataItemArray){
-                        self.dataItemArray=[[NSMutableArray alloc]init];
-                    }else{
-                        [self.dataItemArray removeAllObjects];
-                    }
+                    [self.dataItemArray removeAllObjects];
                 }
                 [self.dataItemArray addObjectsFromArray:nsArr];
             }
