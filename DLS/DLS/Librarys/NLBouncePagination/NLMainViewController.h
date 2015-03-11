@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
 #import "NLSubViewController.h"
 #import "NLPullUpRefreshView.h"
 
-@interface NLMainViewController : BaseViewController<NLPullDownRefreshViewDelegate, NLPullUpRefreshViewDelegate, UIScrollViewDelegate>
+@interface NLMainViewController : UIViewController<NLPullDownRefreshViewDelegate, NLPullUpRefreshViewDelegate, UIScrollViewDelegate>
 
 @property(nonatomic, strong) UIScrollView *scrollView;
 @property(nonatomic, strong) NLSubViewController *subViewController;

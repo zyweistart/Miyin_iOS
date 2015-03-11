@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 noahlu<codedancerhua@gmail.com>. All rights reserved.
 //
 
-#define REFRESH_PULL_UP_STATUS @"继续拖动查看资讯内容"
+#define REFRESH_PULL_UP_STATUS @"上拉可以加载更多"
 #define REFRESH_RELEASED_STATUS @"可以松开了"
 // 加载中
 #define REFRESH_LOADING_STATUS @""
@@ -43,7 +43,7 @@
         self.refreshSpinner.hidesWhenStopped = YES;
         
         [self addSubview:self.refreshLabel];
-//        [self addSubview:self.refreshArrow];
+        [self addSubview:self.refreshArrow];
         [self addSubview:self.refreshSpinner];
         
         self.hasMore = YES;

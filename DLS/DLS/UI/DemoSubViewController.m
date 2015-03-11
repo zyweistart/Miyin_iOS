@@ -29,62 +29,78 @@
 {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor:BGCOLOR];
     // 注意：contentsize.height必须要大于bounds.size.height，否则不能滚动，也就无法回到父view
     self.scrollView.contentSize = CGSizeMake(320, 600);
-    //主体
-    UIView *mainFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 10, 320, 450)];
-    [self.scrollView addSubview:mainFrame];
-    //分类
-    UIView *categoryFrame =[[UIView alloc] initWithFrame:CGRectMake1(10, 0, 300, 40)] ;
-    [mainFrame addSubview:categoryFrame];
-    //资讯主体
-    UIView *informationFrame =[[UIView alloc] initWithFrame:CGRectMake1(0, 40, 320, 400)] ;
-    [mainFrame addSubview:informationFrame];
     
-    self.button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 75, 40)];
-    [[self.button1 titleLabel]setFont:[UIFont systemFontOfSize:14]];
-    [self.button1 setTitle:@"最新出租" forState:UIControlStateNormal];
-    self.button1.tag=1;
-    [self.button1 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
-    [categoryFrame addSubview:self.button1];
-    self.button2=[[UIButton alloc]initWithFrame:CGRectMake1(75, 0, 75, 40)];
-    [[self.button2 titleLabel]setFont:[UIFont systemFontOfSize:14]];
-    [self.button2 setTitle:@"最新求租" forState:UIControlStateNormal];
-    self.button2.tag=2;
-    [self.button2 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
-    [categoryFrame addSubview:self.button2];
-    self.button3=[[UIButton alloc]initWithFrame:CGRectMake1(150, 0, 75, 40)];
-    [[self.button3 titleLabel]setFont:[UIFont systemFontOfSize:14]];
-    [self.button3 setTitle:@"中标结果" forState:UIControlStateNormal];
-    self.button3.tag=3;
-    [self.button3 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
-    [categoryFrame addSubview:self.button3];
-    self.button4=[[UIButton alloc]initWithFrame:CGRectMake1(225, 0, 75, 40)];
-    [[self.button4 titleLabel]setFont:[UIFont systemFontOfSize:14]];
-    [self.button4 setTitle:@"行业资讯" forState:UIControlStateNormal];
-    self.button4.tag=4;
-    [self.button4 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
-    [categoryFrame addSubview:self.button4];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
+    view.backgroundColor = [UIColor redColor];
+    [self.scrollView addSubview:view];
     
-    //表视图、下拉刷新
-    self.tableView1=[[UITableView alloc]initWithFrame:informationFrame.bounds];
-    self.refreshControl1 = [[UIRefreshControl alloc]init];
-    self.tableView2=[[UITableView alloc]initWithFrame:informationFrame.bounds];
-    self.refreshControl2 = [[UIRefreshControl alloc]init];
-    self.tableView3=[[UITableView alloc]initWithFrame:informationFrame.bounds];
-    self.refreshControl3 = [[UIRefreshControl alloc]init];
-    self.tableView4=[[UITableView alloc]initWithFrame:informationFrame.bounds];
-    self.refreshControl4 = [[UIRefreshControl alloc]init];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake((300-80)/2.f, (200-30)/2.f, 80, 30)];
+    label.font = [UIFont systemFontOfSize:14];
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = @"第二页";
     
-    [self addTableView:self.tableView1 RefreshViewControl:self.refreshControl1 Frame:informationFrame];
-    [self addTableView:self.tableView2 RefreshViewControl:self.refreshControl2 Frame:informationFrame];
-    [self addTableView:self.tableView3 RefreshViewControl:self.refreshControl3 Frame:informationFrame];
-    [self addTableView:self.tableView4 RefreshViewControl:self.refreshControl4 Frame:informationFrame];
+    [view addSubview:label];
     
-    //默认展示页面
-    currentButtonIndex=1;
-    [self showHiddenCategory];
+    
+//    [self.scrollView setBackgroundColor:BGCOLOR];
+//    // 注意：contentsize.height必须要大于bounds.size.height，否则不能滚动，也就无法回到父view
+//    self.scrollView.contentSize = CGSizeMake(320, 600);
+//    //主体
+//    UIView *mainFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 10, 320, 450)];
+//    [self.scrollView addSubview:mainFrame];
+//    //分类
+//    UIView *categoryFrame =[[UIView alloc] initWithFrame:CGRectMake1(10, 0, 300, 40)] ;
+//    [mainFrame addSubview:categoryFrame];
+//    //资讯主体
+//    UIView *informationFrame =[[UIView alloc] initWithFrame:CGRectMake1(0, 40, 320, 400)] ;
+//    [mainFrame addSubview:informationFrame];
+//    
+//    self.button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 75, 40)];
+//    [[self.button1 titleLabel]setFont:[UIFont systemFontOfSize:14]];
+//    [self.button1 setTitle:@"最新出租" forState:UIControlStateNormal];
+//    self.button1.tag=1;
+//    [self.button1 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
+//    [categoryFrame addSubview:self.button1];
+//    self.button2=[[UIButton alloc]initWithFrame:CGRectMake1(75, 0, 75, 40)];
+//    [[self.button2 titleLabel]setFont:[UIFont systemFontOfSize:14]];
+//    [self.button2 setTitle:@"最新求租" forState:UIControlStateNormal];
+//    self.button2.tag=2;
+//    [self.button2 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
+//    [categoryFrame addSubview:self.button2];
+//    self.button3=[[UIButton alloc]initWithFrame:CGRectMake1(150, 0, 75, 40)];
+//    [[self.button3 titleLabel]setFont:[UIFont systemFontOfSize:14]];
+//    [self.button3 setTitle:@"中标结果" forState:UIControlStateNormal];
+//    self.button3.tag=3;
+//    [self.button3 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
+//    [categoryFrame addSubview:self.button3];
+//    self.button4=[[UIButton alloc]initWithFrame:CGRectMake1(225, 0, 75, 40)];
+//    [[self.button4 titleLabel]setFont:[UIFont systemFontOfSize:14]];
+//    [self.button4 setTitle:@"行业资讯" forState:UIControlStateNormal];
+//    self.button4.tag=4;
+//    [self.button4 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
+//    [categoryFrame addSubview:self.button4];
+//    
+//    //表视图、下拉刷新
+//    self.tableView1=[[UITableView alloc]initWithFrame:informationFrame.bounds];
+//    self.refreshControl1 = [[UIRefreshControl alloc]init];
+//    self.tableView2=[[UITableView alloc]initWithFrame:informationFrame.bounds];
+//    self.refreshControl2 = [[UIRefreshControl alloc]init];
+//    self.tableView3=[[UITableView alloc]initWithFrame:informationFrame.bounds];
+//    self.refreshControl3 = [[UIRefreshControl alloc]init];
+//    self.tableView4=[[UITableView alloc]initWithFrame:informationFrame.bounds];
+//    self.refreshControl4 = [[UIRefreshControl alloc]init];
+//    
+//    [self addTableView:self.tableView1 RefreshViewControl:self.refreshControl1 Frame:informationFrame];
+//    [self addTableView:self.tableView2 RefreshViewControl:self.refreshControl2 Frame:informationFrame];
+//    [self addTableView:self.tableView3 RefreshViewControl:self.refreshControl3 Frame:informationFrame];
+//    [self addTableView:self.tableView4 RefreshViewControl:self.refreshControl4 Frame:informationFrame];
+//    
+//    //默认展示页面
+//    currentButtonIndex=1;
+//    [self showHiddenCategory];
 }
 
 - (void)switchCategory:(UIButton*)sender {

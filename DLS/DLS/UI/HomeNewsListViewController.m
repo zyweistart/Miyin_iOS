@@ -28,10 +28,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.scrollView setBackgroundColor:BGCOLOR];
-    [self.scrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    
+    [self.view setBackgroundColor:BGCOLOR];
     // 注意：contentsize.height必须要大于bounds.size.height，否则不能滚动，也就无法回到父view
-    self.scrollView.contentSize = CGSizeMake(320, 450);
+    self.scrollView.contentSize = CGSizeMake(320, 600);
     //主体
     UIView *mainFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 10, 320, 450)];
     [self.scrollView addSubview:mainFrame];

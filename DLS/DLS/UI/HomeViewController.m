@@ -140,4 +140,12 @@
     [self presentViewController:[[MessageViewController alloc]init]];
 }
 
+- (void)presentViewController:(UIViewController*)viewController
+{
+    UINavigationController *myViewControllerNav = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [[myViewControllerNav navigationBar]setBarTintColor:NAVBG];
+    [[myViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
+    [self presentViewController:myViewControllerNav animated:YES completion:nil];
+}
+
 @end
