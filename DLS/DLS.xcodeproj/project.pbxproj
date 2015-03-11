@@ -38,6 +38,19 @@
 		C99E83071AA997B20087D2F4 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C99E82FB1AA997B20087D2F4 /* whiteArrow.png */; };
 		C99E83081AA997B20087D2F4 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C99E82FC1AA997B20087D2F4 /* whiteArrow@2x.png */; };
 		C99E830B1AA9983D0087D2F4 /* BaseEGOTableViewPullRefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E830A1AA9983D0087D2F4 /* BaseEGOTableViewPullRefreshViewController.m */; };
+		C99EE6F51AAFE87E004EFBE5 /* HomeNewsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99EE6F41AAFE87E004EFBE5 /* HomeNewsListViewController.m */; };
+		C9A82DC71AB01FBA0063DF9B /* NLMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A82DBA1AB01FBA0063DF9B /* NLMainTableViewController.m */; };
+		C9A82DC81AB01FBA0063DF9B /* NLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A82DBC1AB01FBA0063DF9B /* NLMainViewController.m */; };
+		C9A82DC91AB01FBA0063DF9B /* NLPullDownRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A82DBE1AB01FBA0063DF9B /* NLPullDownRefreshView.m */; };
+		C9A82DCA1AB01FBA0063DF9B /* NLPullUpRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A82DC01AB01FBA0063DF9B /* NLPullUpRefreshView.m */; };
+		C9A82DCB1AB01FBA0063DF9B /* NLSubTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A82DC21AB01FBA0063DF9B /* NLSubTableViewController.m */; };
+		C9A82DCC1AB01FBA0063DF9B /* NLSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A82DC41AB01FBA0063DF9B /* NLSubViewController.m */; };
+		C9A82DCD1AB01FBA0063DF9B /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C9A82DC61AB01FBA0063DF9B /* arrow.png */; };
+		C9A82DCF1AB020430063DF9B /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A82DCE1AB020430063DF9B /* Reveal.framework */; };
+		C9A82DD41AB022D50063DF9B /* DemoMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A82DD11AB022D50063DF9B /* DemoMainViewController.m */; };
+		C9A82DD51AB022D50063DF9B /* DemoSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A82DD31AB022D50063DF9B /* DemoSubViewController.m */; };
+		C9A82DD81AB0268E0063DF9B /* HomeBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A82DD71AB0268E0063DF9B /* HomeBannerView.m */; };
+		C9A82DDB1AB027C30063DF9B /* HomeCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A82DDA1AB027C30063DF9B /* HomeCategoryView.m */; };
 		C9AFBB691AAD458C008C7AE9 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AFBB681AAD458C008C7AE9 /* ImageIO.framework */; };
 		C9AFBB701AAD4941008C7AE9 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AFBB6F1AAD4941008C7AE9 /* SDWebImage.framework */; };
 		C9AFBB731AAD4B80008C7AE9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AFBB721AAD4B80008C7AE9 /* CoreGraphics.framework */; };
@@ -155,6 +168,30 @@
 		C99E82FC1AA997B20087D2F4 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		C99E83091AA9983D0087D2F4 /* BaseEGOTableViewPullRefreshViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseEGOTableViewPullRefreshViewController.h; path = ../BaseEGOTableViewPullRefreshViewController.h; sourceTree = "<group>"; };
 		C99E830A1AA9983D0087D2F4 /* BaseEGOTableViewPullRefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseEGOTableViewPullRefreshViewController.m; path = ../BaseEGOTableViewPullRefreshViewController.m; sourceTree = "<group>"; };
+		C99EE6F31AAFE87E004EFBE5 /* HomeNewsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeNewsListViewController.h; sourceTree = "<group>"; };
+		C99EE6F41AAFE87E004EFBE5 /* HomeNewsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNewsListViewController.m; sourceTree = "<group>"; };
+		C9A82DB91AB01FBA0063DF9B /* NLMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLMainTableViewController.h; sourceTree = "<group>"; };
+		C9A82DBA1AB01FBA0063DF9B /* NLMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLMainTableViewController.m; sourceTree = "<group>"; };
+		C9A82DBB1AB01FBA0063DF9B /* NLMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLMainViewController.h; sourceTree = "<group>"; };
+		C9A82DBC1AB01FBA0063DF9B /* NLMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLMainViewController.m; sourceTree = "<group>"; };
+		C9A82DBD1AB01FBA0063DF9B /* NLPullDownRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLPullDownRefreshView.h; sourceTree = "<group>"; };
+		C9A82DBE1AB01FBA0063DF9B /* NLPullDownRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLPullDownRefreshView.m; sourceTree = "<group>"; };
+		C9A82DBF1AB01FBA0063DF9B /* NLPullUpRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLPullUpRefreshView.h; sourceTree = "<group>"; };
+		C9A82DC01AB01FBA0063DF9B /* NLPullUpRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLPullUpRefreshView.m; sourceTree = "<group>"; };
+		C9A82DC11AB01FBA0063DF9B /* NLSubTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLSubTableViewController.h; sourceTree = "<group>"; };
+		C9A82DC21AB01FBA0063DF9B /* NLSubTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLSubTableViewController.m; sourceTree = "<group>"; };
+		C9A82DC31AB01FBA0063DF9B /* NLSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLSubViewController.h; sourceTree = "<group>"; };
+		C9A82DC41AB01FBA0063DF9B /* NLSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLSubViewController.m; sourceTree = "<group>"; };
+		C9A82DC61AB01FBA0063DF9B /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		C9A82DCE1AB020430063DF9B /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		C9A82DD01AB022D50063DF9B /* DemoMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoMainViewController.h; sourceTree = "<group>"; };
+		C9A82DD11AB022D50063DF9B /* DemoMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoMainViewController.m; sourceTree = "<group>"; };
+		C9A82DD21AB022D50063DF9B /* DemoSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoSubViewController.h; sourceTree = "<group>"; };
+		C9A82DD31AB022D50063DF9B /* DemoSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoSubViewController.m; sourceTree = "<group>"; };
+		C9A82DD61AB0268E0063DF9B /* HomeBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannerView.h; sourceTree = "<group>"; };
+		C9A82DD71AB0268E0063DF9B /* HomeBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerView.m; sourceTree = "<group>"; };
+		C9A82DD91AB027C30063DF9B /* HomeCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoryView.h; sourceTree = "<group>"; };
+		C9A82DDA1AB027C30063DF9B /* HomeCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoryView.m; sourceTree = "<group>"; };
 		C9AFBB681AAD458C008C7AE9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		C9AFBB6F1AAD4941008C7AE9 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		C9AFBB721AAD4B80008C7AE9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -266,6 +303,7 @@
 				C9C23CF91AA946F4007A9A27 /* CoreLocation.framework in Frameworks */,
 				C9E1FF0B1AA558EC00720AAC /* QuartzCore.framework in Frameworks */,
 				C9E1FF0A1AA558E600720AAC /* CFNetwork.framework in Frameworks */,
+				C9A82DCF1AB020430063DF9B /* Reveal.framework in Frameworks */,
 				C9E1FF081AA558A700720AAC /* UIKit.framework in Frameworks */,
 				C9E1FEF41AA5564100720AAC /* Foundation.framework in Frameworks */,
 			);
@@ -308,6 +346,8 @@
 		C922D0871AA4396F00F6DBA1 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C9A82DCE1AB020430063DF9B /* Reveal.framework */,
+				C9A82DB81AB01FBA0063DF9B /* NLBouncePagination */,
 				C9AFBB6F1AAD4941008C7AE9 /* SDWebImage.framework */,
 				C9E1FED31AA555F000720AAC /* ASIHTTP */,
 				C9E1FED61AA555F000720AAC /* ATMHud */,
@@ -337,6 +377,10 @@
 		C922D08A1AA4398700F6DBA1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C9A82DD01AB022D50063DF9B /* DemoMainViewController.h */,
+				C9A82DD11AB022D50063DF9B /* DemoMainViewController.m */,
+				C9A82DD21AB022D50063DF9B /* DemoSubViewController.h */,
+				C9A82DD31AB022D50063DF9B /* DemoSubViewController.m */,
 				C9AFBB8A1AAD80F3008C7AE9 /* Detail */,
 				C9DD46BB1AA82704004AEAB7 /* Home */,
 				C9D2B74C1AA86A7C00CF750D /* My */,
@@ -356,6 +400,10 @@
 				C9DB299F1AA9A18D00D5893B /* CategoryView.m */,
 				C9DB29A11AA9ACDF00D5893B /* SearchView.h */,
 				C9DB29A21AA9ACDF00D5893B /* SearchView.m */,
+				C9A82DD61AB0268E0063DF9B /* HomeBannerView.h */,
+				C9A82DD71AB0268E0063DF9B /* HomeBannerView.m */,
+				C9A82DD91AB027C30063DF9B /* HomeCategoryView.h */,
+				C9A82DDA1AB027C30063DF9B /* HomeCategoryView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -397,6 +445,34 @@
 				C99E82FC1AA997B20087D2F4 /* whiteArrow@2x.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C9A82DB81AB01FBA0063DF9B /* NLBouncePagination */ = {
+			isa = PBXGroup;
+			children = (
+				C9A82DB91AB01FBA0063DF9B /* NLMainTableViewController.h */,
+				C9A82DBA1AB01FBA0063DF9B /* NLMainTableViewController.m */,
+				C9A82DBB1AB01FBA0063DF9B /* NLMainViewController.h */,
+				C9A82DBC1AB01FBA0063DF9B /* NLMainViewController.m */,
+				C9A82DBD1AB01FBA0063DF9B /* NLPullDownRefreshView.h */,
+				C9A82DBE1AB01FBA0063DF9B /* NLPullDownRefreshView.m */,
+				C9A82DBF1AB01FBA0063DF9B /* NLPullUpRefreshView.h */,
+				C9A82DC01AB01FBA0063DF9B /* NLPullUpRefreshView.m */,
+				C9A82DC11AB01FBA0063DF9B /* NLSubTableViewController.h */,
+				C9A82DC21AB01FBA0063DF9B /* NLSubTableViewController.m */,
+				C9A82DC31AB01FBA0063DF9B /* NLSubViewController.h */,
+				C9A82DC41AB01FBA0063DF9B /* NLSubViewController.m */,
+				C9A82DC51AB01FBA0063DF9B /* resources */,
+			);
+			path = NLBouncePagination;
+			sourceTree = "<group>";
+		};
+		C9A82DC51AB01FBA0063DF9B /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				C9A82DC61AB01FBA0063DF9B /* arrow.png */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 		C9AFBB8A1AAD80F3008C7AE9 /* Detail */ = {
@@ -526,6 +602,8 @@
 				C9D2B74E1AA8912B00CF750D /* ListViewController.m */,
 				C90699B81AAE956300E32C54 /* LocationViewController.h */,
 				C90699B91AAE956300E32C54 /* LocationViewController.m */,
+				C99EE6F31AAFE87E004EFBE5 /* HomeNewsListViewController.h */,
+				C99EE6F41AAFE87E004EFBE5 /* HomeNewsListViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -704,6 +782,7 @@
 			files = (
 				C99E83051AA997B20087D2F4 /* grayArrow.png in Resources */,
 				C9B85F6F1AA432E1008A56F0 /* Images.xcassets in Resources */,
+				C9A82DCD1AB01FBA0063DF9B /* arrow.png in Resources */,
 				C99E83011AA997B20087D2F4 /* blackArrow.png in Resources */,
 				C99E83041AA997B20087D2F4 /* blueArrow@2x.png in Resources */,
 				C99E83021AA997B20087D2F4 /* blackArrow@2x.png in Resources */,
@@ -731,6 +810,7 @@
 			files = (
 				C9AFBB8D1AAD8129008C7AE9 /* MessageDetailViewController.m in Sources */,
 				C9E1FEE71AA555F000720AAC /* Reachability.m in Sources */,
+				C9A82DDB1AB027C30063DF9B /* HomeCategoryView.m in Sources */,
 				C99E82FF1AA997B20087D2F4 /* MessageInterceptor.m in Sources */,
 				C91115AB1AAC36AF00F56DFE /* ProjectBCell.m in Sources */,
 				C9DB29A01AA9A18D00D5893B /* CategoryView.m in Sources */,
@@ -739,12 +819,15 @@
 				C9DD46C51AA82781004AEAB7 /* AccountViewController.m in Sources */,
 				C99E830B1AA9983D0087D2F4 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
 				C9D2B73F1AA8689C00CF750D /* MyBJXSViewController.m in Sources */,
+				C9A82DD41AB022D50063DF9B /* DemoMainViewController.m in Sources */,
 				C909FC1B1AA6E03A008E68FB /* MessageViewController.m in Sources */,
 				C9E1FF0F1AA5A41B00720AAC /* HomeBannerCell.m in Sources */,
+				C9A82DD81AB0268E0063DF9B /* HomeBannerView.m in Sources */,
 				C9AFBB801AAD808F008C7AE9 /* QiuzuDetailViewController.m in Sources */,
 				C9125AA81AA9FA12001396FF /* Common.m in Sources */,
 				C9DD46C21AA82731004AEAB7 /* LoginViewController.m in Sources */,
 				C9E1FEBB1AA5543F00720AAC /* BaseViewController.m in Sources */,
+				C9A82DCB1AB01FBA0063DF9B /* NLSubTableViewController.m in Sources */,
 				C90699B11AAE836600E32C54 /* CollectionViewController.m in Sources */,
 				C9AFBB861AAD80BB008C7AE9 /* RecruitmentDetailViewController.m in Sources */,
 				C9D2B7521AA8966200CF750D /* ProjectCell.m in Sources */,
@@ -769,9 +852,12 @@
 				C99E82FD1AA997B20087D2F4 /* EGORefreshTableHeaderView.m in Sources */,
 				C9D4CB0D1AA6A765008D3A53 /* HomeInformationCell.m in Sources */,
 				C9AFBB831AAD809B008C7AE9 /* EnterpriseDetailViewController.m in Sources */,
+				C99EE6F51AAFE87E004EFBE5 /* HomeNewsListViewController.m in Sources */,
+				C9A82DC81AB01FBA0063DF9B /* NLMainViewController.m in Sources */,
 				C9AFBB891AAD80DD008C7AE9 /* NewsDetailViewController.m in Sources */,
 				C9B85F671AA432E1008A56F0 /* AppDelegate.m in Sources */,
 				C99A055E1AAC24F3004E5490 /* ProjectACell.m in Sources */,
+				C9A82DD51AB022D50063DF9B /* DemoSubViewController.m in Sources */,
 				C99E83001AA997B20087D2F4 /* PullTableView.m in Sources */,
 				C90699BA1AAE956300E32C54 /* LocationViewController.m in Sources */,
 				C9B85F641AA432E1008A56F0 /* main.m in Sources */,
@@ -787,10 +873,14 @@
 				C9D2B7361AA8686400CF750D /* MyQZViewController.m in Sources */,
 				C9E1FEEB1AA555F000720AAC /* ATMProgressLayer.m in Sources */,
 				C922D0971AA444FB00F6DBA1 /* MyViewController.m in Sources */,
+				C9A82DCA1AB01FBA0063DF9B /* NLPullUpRefreshView.m in Sources */,
 				C91115AE1AAC3AE200F56DFE /* ProjectCCell.m in Sources */,
+				C9A82DC71AB01FBA0063DF9B /* NLMainTableViewController.m in Sources */,
 				C90699B41AAE83A300E32C54 /* SettingViewController.m in Sources */,
 				C9D2B7421AA868AC00CF750D /* MyVIPGCViewController.m in Sources */,
 				C9583FB51AAC89940043548B /* ProjectDCell.m in Sources */,
+				C9A82DCC1AB01FBA0063DF9B /* NLSubViewController.m in Sources */,
+				C9A82DC91AB01FBA0063DF9B /* NLPullDownRefreshView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -78,7 +78,7 @@
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         //默认展示页面
-        currentButtonIndex=1;
+        currentButtonIndex=5;
         [self showHiddenCategory];
         
     }

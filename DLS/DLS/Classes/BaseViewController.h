@@ -8,5 +8,6 @@
 @property (strong,nonatomic) HttpRequest *hRequest;
 
 - (void)goBack:(id)sender;
+- (void)presentViewController:(UIViewController*)viewController;
 
 @end

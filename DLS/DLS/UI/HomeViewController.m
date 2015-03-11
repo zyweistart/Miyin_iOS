@@ -7,13 +7,14 @@
 //
 
 #import "HomeViewController.h"
-#import "HomeBannerCell.h"
-#import "HomeCategoryCell.h"
-#import "HomeInformationCell.h"
+#import "HomeBannerView.h"
+#import "HomeCategoryView.h"
+#import "HomeNewsListViewController.h"
 #import "LocationViewController.h"
 #import "MessageViewController.h"
-#import <QuartzCore/QuartzCore.h>
 #import "ListViewController.h"
+
+#import <QuartzCore/QuartzCore.h>
 
 #define SEARCHTIPCOLOR [UIColor colorWithRed:(88/255.0) green:(130/255.0) blue:(216/255.0) alpha:1]
 
@@ -70,20 +71,30 @@
                                            target:nil action:nil];
         negativeSpacerRight.width = -5;
         self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:btnMessage], nil];
-        
-        self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds];
-        [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        self.tableView.separatorColor=[UIColor clearColor];
-        [self.tableView setDelegate:self];
-        [self.tableView setDataSource:self];
-        [self.view addSubview:self.tableView];
-        //添加UIRefreshControl下拉刷新控件到UITableViewController的view中
-        self.refreshControl = [[UIRefreshControl alloc]init];
-        [self.refreshControl addTarget:self action:@selector(RefreshViewControlEventValueChanged) forControlEvents:UIControlEventValueChanged];
-        [self.tableView addSubview:self.refreshControl];
-        [self autoRefreshData];
     }
     return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self.scrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    self.scrollView.contentSize = CGSizeMake(320, 524);
+    self.subViewController = [[HomeNewsListViewController alloc] init];
+    self.subViewController.mainViewController = self;
+    
+    HomeBannerView *banner=[[HomeBannerView alloc]initWithFrame:CGRectMake(0, 0, 320, 290)];
+    [banner setController:self];
+    [self.scrollView addSubview:banner];
+    HomeCategoryView *category=[[HomeCategoryView alloc]initWithFrame:CGRectMake(0, 290, 320, 234)];
+    [category setController:self];
+    [self.scrollView addSubview:category];
+    
+    //添加UIRefreshControl下拉刷新控件到UITableViewController的view中
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [self.refreshControl addTarget:self action:@selector(RefreshViewControlEventValueChanged) forControlEvents:UIControlEventValueChanged];
+    [self.scrollView addSubview:self.refreshControl];
+    [self autoRefreshData];
 }
 
 //自动下载刷新
@@ -92,7 +103,7 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:1.0];
     //注意位移点的y值为负值
-    self.tableView.contentOffset=CGPointMake(0.0, -200.0);
+    self.scrollView.contentOffset=CGPointMake(0.0, -200.0);
     [UIView commitAnimations];
     //改变refreshcontroller的状态
     [self.refreshControl beginRefreshing];
@@ -111,52 +122,7 @@
 - (void)handleData
 {
     [self.refreshControl endRefreshing];
-    [self.tableView reloadData];
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 3;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if([indexPath row]==0){
-        //导航
-        return 290;
-    }else if([indexPath row]==1){
-        //分类
-        return 234;
-    }else{
-        //资讯
-        return 450;
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if([indexPath row]==0){
-        static NSString *CHomeBannerCell = @"CHomeBannerCell";
-        HomeBannerCell *cell = [tableView dequeueReusableCellWithIdentifier:CHomeBannerCell];
-        if (cell == nil) {
-            cell = [[HomeBannerCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CHomeBannerCell];
-        }
-        [cell setController:self];
-        return cell;
-    }else if([indexPath row]==1){
-        static NSString *CHomeCategoryCell = @"CHomeCategoryCell";
-        HomeCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:CHomeCategoryCell];
-        if (cell == nil) {
-            cell = [[HomeCategoryCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CHomeCategoryCell];
-        }
-        [cell setController:self];
-        return cell;
-    }else{
-        static NSString *CHomeInformationCell = @"CHomeInformationCell";
-        HomeInformationCell *cell = [tableView dequeueReusableCellWithIdentifier:CHomeInformationCell];
-        if (cell == nil) {
-            cell = [[HomeInformationCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CHomeInformationCell];
-        }
-        return cell;
-    }
+//    [self.tableView reloadData];
 }
 //定位
 - (void)goLocation:(UIButton*)sender
@@ -166,20 +132,12 @@
 //搜索
 - (void)goSearch:(id)sender
 {
-    [self.navigationController pushViewController:[[ListViewController alloc]initWithTitle:@"出租列表" Type:2] animated:YES];
+    [self presentViewController:[[ListViewController alloc]initWithTitle:@"出租列表" Type:2]];
 }
 //消息
 - (void)goMessage:(UIButton*)sender
 {
     [self presentViewController:[[MessageViewController alloc]init]];
-}
-
-- (void)presentViewController:(UIViewController*)viewController
-{
-    UINavigationController *myViewControllerNav = [[UINavigationController alloc] initWithRootViewController:viewController];
-    [[myViewControllerNav navigationBar]setBarTintColor:NAVBG];
-    [[myViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-    [self presentViewController:myViewControllerNav animated:YES completion:nil];
 }
 
 @end

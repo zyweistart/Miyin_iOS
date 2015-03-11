@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Start. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "NLMainViewController.h"
 
-@interface HomeViewController : BaseTableViewController
+@interface HomeViewController : NLMainViewController
 
 @property UIRefreshControl *refreshControl;
 
