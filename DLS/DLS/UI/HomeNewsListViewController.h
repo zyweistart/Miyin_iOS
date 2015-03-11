@@ -15,11 +15,6 @@
 @property UIButton *button3;
 @property UIButton *button4;
 
-@property UIRefreshControl *refreshControl1;
-@property UIRefreshControl *refreshControl2;
-@property UIRefreshControl *refreshControl3;
-@property UIRefreshControl *refreshControl4;
-
 @property UITableView *tableView1;
 @property UITableView *tableView2;
 @property UITableView *tableView3;

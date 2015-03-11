@@ -7,7 +7,7 @@
 //
 
 #define REFRESH_PULL_UP_STATUS @"继续拖动查看更多咨询信息"
-#define REFRESH_RELEASED_STATUS @"可以松开了"
+#define REFRESH_RELEASED_STATUS @"放手你将看到更多"
 // 加载中
 #define REFRESH_LOADING_STATUS @""
 #define REFRESH_NO_MORE @"没有更多了"

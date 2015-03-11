@@ -28,11 +28,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self.view setBackgroundColor:BGCOLOR];
     [self.scrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     // 注意：contentsize.height必须要大于bounds.size.height，否则不能滚动，也就无法回到父view
-    self.scrollView.contentSize = CGSizeMake(320, 600);
+    self.scrollView.contentSize = CGSizeMake(320, 500);
     //主体
     UIView *mainFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 10, 320, 450)];
     [self.scrollView addSubview:mainFrame];
@@ -70,18 +69,14 @@
     
     //表视图、下拉刷新
     self.tableView1=[[UITableView alloc]initWithFrame:informationFrame.bounds];
-    self.refreshControl1 = [[UIRefreshControl alloc]init];
     self.tableView2=[[UITableView alloc]initWithFrame:informationFrame.bounds];
-    self.refreshControl2 = [[UIRefreshControl alloc]init];
     self.tableView3=[[UITableView alloc]initWithFrame:informationFrame.bounds];
-    self.refreshControl3 = [[UIRefreshControl alloc]init];
     self.tableView4=[[UITableView alloc]initWithFrame:informationFrame.bounds];
-    self.refreshControl4 = [[UIRefreshControl alloc]init];
     
-    [self addTableView:self.tableView1 RefreshViewControl:self.refreshControl1 Frame:informationFrame];
-    [self addTableView:self.tableView2 RefreshViewControl:self.refreshControl2 Frame:informationFrame];
-    [self addTableView:self.tableView3 RefreshViewControl:self.refreshControl3 Frame:informationFrame];
-    [self addTableView:self.tableView4 RefreshViewControl:self.refreshControl4 Frame:informationFrame];
+    [self addTableView:self.tableView1 Frame:informationFrame];
+    [self addTableView:self.tableView2 Frame:informationFrame];
+    [self addTableView:self.tableView3 Frame:informationFrame];
+    [self addTableView:self.tableView4 Frame:informationFrame];
     
     //默认展示页面
     currentButtonIndex=1;
@@ -118,7 +113,7 @@
     [self.tableView4 setHidden:currentButtonIndex==4?NO:YES];
 }
 
-- (void)addTableView:(UITableView*)tableView RefreshViewControl:(UIRefreshControl*)refreshControl Frame:(UIView*)frame
+- (void)addTableView:(UITableView*)tableView Frame:(UIView*)frame
 {
     [tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     [tableView setDelegate:self];
@@ -126,47 +121,6 @@
     //    tableView.separatorColor=[UIColor clearColor];
     [tableView setBackgroundColor:[UIColor clearColor]];
     [frame addSubview:tableView];
-    [refreshControl addTarget:self action:@selector(RefreshViewControlEventValueChanged) forControlEvents:UIControlEventValueChanged];
-    [tableView addSubview:refreshControl];
-}
-
-//刷新事件
-- (void)RefreshViewControlEventValueChanged
-{
-    if(currentButtonIndex==1){
-        if (self.refreshControl1.refreshing) {
-            [self performSelector:@selector(handleData) withObject:nil afterDelay:2];
-        }
-    }else if(currentButtonIndex==2){
-        if (self.refreshControl2.refreshing) {
-            [self performSelector:@selector(handleData) withObject:nil afterDelay:2];
-        }
-    }else if(currentButtonIndex==3){
-        if (self.refreshControl3.refreshing) {
-            [self performSelector:@selector(handleData) withObject:nil afterDelay:2];
-        }
-    }else{
-        if (self.refreshControl4.refreshing) {
-            [self performSelector:@selector(handleData) withObject:nil afterDelay:2];
-        }
-    }
-}
-
-- (void)handleData
-{
-    if(currentButtonIndex==1){
-        [self.refreshControl1 endRefreshing];
-        [self.tableView1 reloadData];
-    }else if(currentButtonIndex==2){
-        [self.refreshControl2 endRefreshing];
-        [self.tableView2 reloadData];
-    }else if(currentButtonIndex==3){
-        [self.refreshControl3 endRefreshing];
-        [self.tableView3 reloadData];
-    }else{
-        [self.refreshControl4 endRefreshing];
-        [self.tableView4 reloadData];
-    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

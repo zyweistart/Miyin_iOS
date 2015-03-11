@@ -8,8 +8,8 @@
 
 #import "NLPullDownRefreshView.h"
 
-#define REFRESH_PULL_UP_STATUS @"下拉可以回到上面"
-#define REFRESH_RELEASED_STATUS @"可以松开了"
+#define REFRESH_PULL_UP_STATUS @"下拉可以回到主体功能界面"
+#define REFRESH_RELEASED_STATUS @"放手你将看到更多"
 // 加载中
 #define REFRESH_LOADING_STATUS @""
 #define REFRESHER_HEIGHT 50.0f
