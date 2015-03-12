@@ -181,6 +181,7 @@
 //切换地图或列表
 - (void)goMapOrList:(UIButton*)sender
 {
+    NSLog(@"切换成功了");
 }
 
 @end

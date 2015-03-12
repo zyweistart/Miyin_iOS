@@ -117,13 +117,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(!isFirstRefresh){
-        if(!self.tableView.pullTableIsRefreshing) {
-            isFirstRefresh=YES;
-            self.tableView.pullTableIsRefreshing=YES;
-            [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
-        }
-    }
+//    if(!isFirstRefresh){
+//        if(!self.tableView.pullTableIsRefreshing) {
+//            isFirstRefresh=YES;
+//            self.tableView.pullTableIsRefreshing=YES;
+//            [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+//        }
+//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -281,15 +281,7 @@
 //头部下拉刷新
 - (void)refreshTable
 {
-    [self loadDone];
-//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-//    [params setObject:@"9" forKey:@"Id"];
-//    [params setObject:[NSString stringWithFormat:@"%d",self.currentPage] forKey:@"index"];
-//    self.hRequest=[[HttpRequest alloc]init];
-//    [self.hRequest setRequestCode:500];
-//    [self.hRequest setDelegate:self];
-//    [self.hRequest setController:self];
-//    [self.hRequest handle:@"GetListALL" requestParams:params];
+    [self performSelector:@selector(loadDone) withObject:nil afterDelay:1.0f];
 }
 //加载更多咨询数据
 - (void)loadMoreDataToTable
