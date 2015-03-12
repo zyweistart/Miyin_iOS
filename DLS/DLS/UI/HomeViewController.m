@@ -102,7 +102,14 @@
         [header addSubview:spaceFrame];
         
         currentButtonIndex=1;
-        
+        self.currentPage1=0;
+        self.currentPage2=0;
+        self.currentPage3=0;
+        self.currentPage4=0;
+        self.dataItemArray1=[[NSMutableArray alloc]init];
+        self.dataItemArray2=[[NSMutableArray alloc]init];
+        self.dataItemArray3=[[NSMutableArray alloc]init];
+        self.dataItemArray4=[[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -110,10 +117,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(!self.tableView.pullTableIsRefreshing) {
-        self.tableView.pullTableIsRefreshing=YES;
-        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
-    }
+//    if(!self.tableView.pullTableIsRefreshing) {
+//        self.tableView.pullTableIsRefreshing=YES;
+//        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -124,27 +131,27 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     //分类
-    UIView *categoryFrame =[[UIView alloc] initWithFrame:CGRectMake1(10, 0, 300, 40)] ;
+    UIView *categoryFrame =[[UIView alloc] initWithFrame:CGRectMake1(0, 0, 320, 40)] ;
     [categoryFrame setBackgroundColor:BGCOLOR];
-    self.button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 75, 40)];
+    self.button1=[[UIButton alloc]initWithFrame:CGRectMake1(10, 0, 75, 40)];
     [[self.button1 titleLabel]setFont:[UIFont systemFontOfSize:14]];
     [self.button1 setTitle:@"最新出租" forState:UIControlStateNormal];
     self.button1.tag=1;
     [self.button1 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
     [categoryFrame addSubview:self.button1];
-    self.button2=[[UIButton alloc]initWithFrame:CGRectMake1(75, 0, 75, 40)];
+    self.button2=[[UIButton alloc]initWithFrame:CGRectMake1(85, 0, 75, 40)];
     [[self.button2 titleLabel]setFont:[UIFont systemFontOfSize:14]];
     [self.button2 setTitle:@"最新求租" forState:UIControlStateNormal];
     self.button2.tag=2;
     [self.button2 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
     [categoryFrame addSubview:self.button2];
-    self.button3=[[UIButton alloc]initWithFrame:CGRectMake1(150, 0, 75, 40)];
+    self.button3=[[UIButton alloc]initWithFrame:CGRectMake1(160, 0, 75, 40)];
     [[self.button3 titleLabel]setFont:[UIFont systemFontOfSize:14]];
     [self.button3 setTitle:@"中标结果" forState:UIControlStateNormal];
     self.button3.tag=3;
     [self.button3 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
     [categoryFrame addSubview:self.button3];
-    self.button4=[[UIButton alloc]initWithFrame:CGRectMake1(225, 0, 75, 40)];
+    self.button4=[[UIButton alloc]initWithFrame:CGRectMake1(235, 0, 75, 40)];
     [[self.button4 titleLabel]setFont:[UIFont systemFontOfSize:14]];
     [self.button4 setTitle:@"行业资讯" forState:UIControlStateNormal];
     self.button4.tag=4;
@@ -161,49 +168,71 @@
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80;
+    if([[self dataItemArray] count]>0){
+        return 80;
+    }else{
+        return 45;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CELL = @"CInformationCell";
-    InformationCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL];
-    if (cell == nil) {
-        cell = [[InformationCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CELL];
-    }
-    [cell.childTitle setText:@"这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题"];
-    if(currentButtonIndex==1){
-        [cell.image setImage:[UIImage imageNamed:@"category1"]];
-        [cell.mainTitle setText:@"这是主标题11"];
-    }else if(currentButtonIndex==2){
-        [cell.image setImage:[UIImage imageNamed:@"category2"]];
-        [cell.mainTitle setText:@"这是主标题22"];
-    }else if(currentButtonIndex==3){
-        [cell.image setImage:[UIImage imageNamed:@"category3"]];
-        [cell.mainTitle setText:@"这是主标题33"];
+    if([[self dataItemArray] count]>0){
+        static NSString *CELL = @"CInformationCell";
+        InformationCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL];
+        if (cell == nil) {
+            cell = [[InformationCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CELL];
+        }
+        [cell.childTitle setText:@"这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题"];
+        if(currentButtonIndex==1){
+            [cell.image setImage:[UIImage imageNamed:@"category1"]];
+            [cell.mainTitle setText:@"这是主标题11"];
+        }else if(currentButtonIndex==2){
+            [cell.image setImage:[UIImage imageNamed:@"category2"]];
+            [cell.mainTitle setText:@"这是主标题22"];
+        }else if(currentButtonIndex==3){
+            [cell.image setImage:[UIImage imageNamed:@"category3"]];
+            [cell.mainTitle setText:@"这是主标题33"];
+        }else{
+            [cell.image setImage:[UIImage imageNamed:@"category4"]];
+            [cell.mainTitle setText:@"这是主标题44"];
+        }
+        return cell;
     }else{
-        [cell.image setImage:[UIImage imageNamed:@"category4"]];
-        [cell.mainTitle setText:@"这是主标题44"];
+        static NSString *cellIdentifier = @"SAMPLECell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        [cell setBackgroundColor:BGCOLOR];
+        [cell.textLabel setFont:[UIFont systemFontOfSize:13]];
+        [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
+        cell.textLabel.text = @"暂无数据，如需获取更多数据请向上拖动";
+        if(currentButtonIndex==1){
+            self.currentPage1=0;
+        }else if(currentButtonIndex==2){
+            self.currentPage2=0;
+        }else if(currentButtonIndex==3){
+            self.currentPage3=0;
+        }else{
+            self.currentPage4=0;
+        }
+        return cell;
     }
-    return cell;
 }
 
-
-- (void)switchCategory:(UIButton*)sender {
+- (void)switchCategory:(UIButton*)sender
+{
     currentButtonIndex=sender.tag;
     [self showHiddenCategory];
     //展示数据
-    
     [self.tableView reloadData];
 }
 
-- (void)showHiddenCategory{
+- (void)showHiddenCategory
+{
     [self.button1 setTitleColor:currentButtonIndex==1?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
     [self.button1 setBackgroundColor:currentButtonIndex==1?CATEGORYBGCOLOR:[UIColor whiteColor]];
     [self.button2 setTitleColor:currentButtonIndex==2?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
@@ -222,7 +251,7 @@
 //搜索
 - (void)goSearch:(id)sender
 {
-    [self presentViewController:[[ListViewController alloc]initWithTitle:@"出租列表" Type:2]];
+//    [self presentViewController:[[ListViewController alloc]initWithTitle:@"出租列表" Type:2]];
 }
 //消息
 - (void)goMessage:(UIButton*)sender
@@ -238,7 +267,15 @@
 //加载更多咨询数据
 - (void)loadMoreDataToTable
 {
-    self.currentPage=1;
+    if(currentButtonIndex==1){
+        self.currentPage1++;
+    }else if(currentButtonIndex==2){
+        self.currentPage2++;
+    }else if(currentButtonIndex==3){
+        self.currentPage3++;
+    }else{
+        self.currentPage4++;
+    }
     [self loadHttp];
 }
 
@@ -252,6 +289,32 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest handle:@"GetListALL" requestParams:params];
+}
+
+- (int)currentPage
+{
+    if(currentButtonIndex==1){
+        return self.currentPage1;
+    }else if(currentButtonIndex==2){
+        return self.currentPage2;
+    }else if(currentButtonIndex==3){
+        return self.currentPage3;
+    }else{
+        return self.currentPage4;
+    }
+}
+
+- (NSMutableArray *)dataItemArray
+{
+    if(currentButtonIndex==1){
+        return self.dataItemArray1;
+    }else if(currentButtonIndex==2){
+        return self.dataItemArray2;
+    }else if(currentButtonIndex==3){
+        return self.dataItemArray3;
+    }else{
+        return self.dataItemArray4;
+    }
 }
 
 @end

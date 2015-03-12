@@ -15,6 +15,11 @@
 @property UIButton *button3;
 @property UIButton *button4;
 
+@property NSInteger currentPage1;
+@property NSInteger currentPage2;
+@property NSInteger currentPage3;
+@property NSInteger currentPage4;
+
 @property (strong,nonatomic) NSMutableArray *dataItemArray1;
 @property (strong,nonatomic) NSMutableArray *dataItemArray2;
 @property (strong,nonatomic) NSMutableArray *dataItemArray3;

@@ -102,8 +102,8 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if([self.dataItemArray count]>0){
-        return [self.dataItemArray count];
+    if([[self dataItemArray] count]>0){
+        return [[self dataItemArray] count];
     }else{
         return 1;
     }
@@ -111,7 +111,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([self.dataItemArray count]>0){
+    if([[self dataItemArray] count]>0){
         return 45;
     }else{
         return self.tableView.bounds.size.height;
@@ -120,7 +120,7 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([self.dataItemArray count]>0){
+    if([[self dataItemArray] count]>0){
         static NSString *cellIdentifier = @"SAMPLECell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if(!cell) {
@@ -158,10 +158,10 @@
                 for(id data in tabData){
                     [nsArr addObject:data];
                 }
-                if(self.currentPage==1){
-                    [self.dataItemArray removeAllObjects];
+                if([self currentPage]==1){
+                    [[self dataItemArray] removeAllObjects];
                 }
-                [self.dataItemArray addObjectsFromArray:nsArr];
+                [[self dataItemArray] addObjectsFromArray:nsArr];
             }
         }
     }
