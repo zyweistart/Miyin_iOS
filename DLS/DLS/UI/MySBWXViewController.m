@@ -8,6 +8,7 @@
 
 #import "MySBWXViewController.h"
 #import "ProjectCCell.h"
+#import "EquipmentViewController.h"
 
 @interface MySBWXViewController ()
 
@@ -33,9 +34,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(!self.tableView.pullTableIsRefreshing) {
-        self.tableView.pullTableIsRefreshing=YES;
-        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+    if([[self dataItemArray]count]==0){
+        if(!self.tableView.pullTableIsRefreshing) {
+            self.tableView.pullTableIsRefreshing=YES;
+            [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+        }
     }
 }
 
@@ -61,6 +64,11 @@
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.navigationController pushViewController:[[EquipmentViewController alloc]initWithDictionary:nil] animated:YES];
 }
 
 - (void)loadHttp

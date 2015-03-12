@@ -10,6 +10,7 @@
 #import "ProjectCell.h"
 #import "ProjectDCell.h"
 #import "InformationCell.h"
+#import "NewsDetailViewController.h"
 #import "RecruitmentDetailViewController.h"
 
 @interface ListViewController ()
@@ -32,9 +33,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(!self.tableView.pullTableIsRefreshing) {
-        self.tableView.pullTableIsRefreshing=YES;
-        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+    if([[self dataItemArray]count]==0){
+        if(!self.tableView.pullTableIsRefreshing) {
+            self.tableView.pullTableIsRefreshing=YES;
+            [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+        }
     }
 }
 
@@ -90,7 +93,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.navigationController pushViewController:[[RecruitmentDetailViewController alloc]initWithDictionary:nil] animated:YES];
+    if(self.type==7){
+        //招标公告
+        [self.navigationController pushViewController:[[NewsDetailViewController alloc]initWithDictionary:nil] animated:YES];
+    }else if(self.type==8){
+        //招聘详情
+        [self.navigationController pushViewController:[[RecruitmentDetailViewController alloc]initWithDictionary:nil] animated:YES];
+    }else{
+        
+    }
 }
 
 - (void)loadHttp

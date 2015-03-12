@@ -24,6 +24,10 @@
 		C922D0941AA444ED00F6DBA1 /* VIPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C922D0931AA444ED00F6DBA1 /* VIPViewController.m */; };
 		C922D0971AA444FB00F6DBA1 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C922D0961AA444FB00F6DBA1 /* MyViewController.m */; };
 		C9583FB51AAC89940043548B /* ProjectDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9583FB41AAC89940043548B /* ProjectDCell.m */; };
+		C9610DD71AB158B100CA8218 /* PublishQiuzuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9610DD61AB158B100CA8218 /* PublishQiuzuViewController.m */; };
+		C9610DDA1AB158C700CA8218 /* PublishRentalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9610DD91AB158C700CA8218 /* PublishRentalViewController.m */; };
+		C9610DDD1AB158E300CA8218 /* PublishRecruitmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9610DDC1AB158E300CA8218 /* PublishRecruitmentViewController.m */; };
+		C9610DE01AB15A0200CA8218 /* EquipmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9610DDF1AB15A0200CA8218 /* EquipmentViewController.m */; };
 		C99A055E1AAC24F3004E5490 /* ProjectACell.m in Sources */ = {isa = PBXBuildFile; fileRef = C99A055D1AAC24F3004E5490 /* ProjectACell.m */; };
 		C99B9F7D1AB12338004CEF6D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99B9F7C1AB12338004CEF6D /* MainViewController.m */; };
 		C99E82FD1AA997B20087D2F4 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E82ED1AA997B20087D2F4 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -135,6 +139,14 @@
 		C922D0961AA444FB00F6DBA1 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		C9583FB31AAC89940043548B /* ProjectDCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDCell.h; sourceTree = "<group>"; };
 		C9583FB41AAC89940043548B /* ProjectDCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDCell.m; sourceTree = "<group>"; };
+		C9610DD51AB158B100CA8218 /* PublishQiuzuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishQiuzuViewController.h; sourceTree = "<group>"; };
+		C9610DD61AB158B100CA8218 /* PublishQiuzuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishQiuzuViewController.m; sourceTree = "<group>"; };
+		C9610DD81AB158C700CA8218 /* PublishRentalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishRentalViewController.h; sourceTree = "<group>"; };
+		C9610DD91AB158C700CA8218 /* PublishRentalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishRentalViewController.m; sourceTree = "<group>"; };
+		C9610DDB1AB158E300CA8218 /* PublishRecruitmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishRecruitmentViewController.h; sourceTree = "<group>"; };
+		C9610DDC1AB158E300CA8218 /* PublishRecruitmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishRecruitmentViewController.m; sourceTree = "<group>"; };
+		C9610DDE1AB15A0200CA8218 /* EquipmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentViewController.h; sourceTree = "<group>"; };
+		C9610DDF1AB15A0200CA8218 /* EquipmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentViewController.m; sourceTree = "<group>"; };
 		C99A055C1AAC24F3004E5490 /* ProjectACell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectACell.h; sourceTree = "<group>"; };
 		C99A055D1AAC24F3004E5490 /* ProjectACell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectACell.m; sourceTree = "<group>"; };
 		C99B9F7B1AB12338004CEF6D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -420,6 +432,8 @@
 				C9AFBB881AAD80DD008C7AE9 /* NewsDetailViewController.m */,
 				C9AFBB8B1AAD8129008C7AE9 /* MessageDetailViewController.h */,
 				C9AFBB8C1AAD8129008C7AE9 /* MessageDetailViewController.m */,
+				C9610DDE1AB15A0200CA8218 /* EquipmentViewController.h */,
+				C9610DDF1AB15A0200CA8218 /* EquipmentViewController.m */,
 			);
 			name = Detail;
 			sourceTree = "<group>";
@@ -517,6 +531,12 @@
 				C9D2B7411AA868AC00CF750D /* MyVIPGCViewController.m */,
 				C9D2B7431AA868BF00CF750D /* MyZPXXViewController.h */,
 				C9D2B7441AA868BF00CF750D /* MyZPXXViewController.m */,
+				C9610DD51AB158B100CA8218 /* PublishQiuzuViewController.h */,
+				C9610DD61AB158B100CA8218 /* PublishQiuzuViewController.m */,
+				C9610DDB1AB158E300CA8218 /* PublishRecruitmentViewController.h */,
+				C9610DDC1AB158E300CA8218 /* PublishRecruitmentViewController.m */,
+				C9610DD81AB158C700CA8218 /* PublishRentalViewController.h */,
+				C9610DD91AB158C700CA8218 /* PublishRentalViewController.m */,
 				C90699B21AAE83A300E32C54 /* SettingViewController.h */,
 				C90699B31AAE83A300E32C54 /* SettingViewController.m */,
 			);
@@ -748,6 +768,7 @@
 				C9DD46C21AA82731004AEAB7 /* LoginViewController.m in Sources */,
 				C9E1FEBB1AA5543F00720AAC /* BaseViewController.m in Sources */,
 				C90699B11AAE836600E32C54 /* CollectionViewController.m in Sources */,
+				C9610DD71AB158B100CA8218 /* PublishQiuzuViewController.m in Sources */,
 				C9AFBB861AAD80BB008C7AE9 /* RecruitmentDetailViewController.m in Sources */,
 				C9D2B7521AA8966200CF750D /* ProjectCell.m in Sources */,
 				C9AFBB771AAD8039008C7AE9 /* RentalDetailViewController.m in Sources */,
@@ -765,6 +786,7 @@
 				C90699BD1AAE984800E32C54 /* ProjectECell.m in Sources */,
 				C9D2B7391AA8687000CF750D /* MyCZViewController.m in Sources */,
 				C9E1FEE91AA555F000720AAC /* ATMHudQueueItem.m in Sources */,
+				C9610DDD1AB158E300CA8218 /* PublishRecruitmentViewController.m in Sources */,
 				C9D2B74F1AA8912B00CF750D /* ListViewController.m in Sources */,
 				C922D0941AA444ED00F6DBA1 /* VIPViewController.m in Sources */,
 				C922D0911AA444E100F6DBA1 /* NearbyViewController.m in Sources */,
@@ -780,7 +802,9 @@
 				C9D2B7331AA8684C00CF750D /* MySBWXViewController.m in Sources */,
 				C922D08E1AA444B600F6DBA1 /* HomeViewController.m in Sources */,
 				C90BC6971AAC6504001F9902 /* UIButton+TitleImage.m in Sources */,
+				C9610DDA1AB158C700CA8218 /* PublishRentalViewController.m in Sources */,
 				C909FC181AA6D72A008E68FB /* InformationCell.m in Sources */,
+				C9610DE01AB15A0200CA8218 /* EquipmentViewController.m in Sources */,
 				C99E82FE1AA997B20087D2F4 /* LoadMoreTableFooterView.m in Sources */,
 				C9E1FEBA1AA5543F00720AAC /* BaseTableViewController.m in Sources */,
 				C9C23CF71AA9445D007A9A27 /* CustomAnnotation.m in Sources */,

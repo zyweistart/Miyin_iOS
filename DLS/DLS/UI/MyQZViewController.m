@@ -9,6 +9,7 @@
 #import "MyQZViewController.h"
 #import "ProjectACell.h"
 #import "QiuzuDetailViewController.h"
+#import "PublishQiuzuViewController.h"
 
 @interface MyQZViewController ()
 
@@ -26,6 +27,17 @@
                                                style:UIBarButtonItemStyleBordered
                                                target:self
                                                action:@selector(goBack:)];
+        //
+        UIButton *bPublish = [UIButton buttonWithType:UIButtonTypeCustom];
+        [bPublish setTitle:@"发布求租" forState:UIControlStateNormal];
+        [bPublish.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [bPublish setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [bPublish addTarget:self action:@selector(goPublish:) forControlEvents:UIControlEventTouchUpInside];
+        bPublish.frame = CGRectMake(0, 0, 70, 30);
+        bPublish.layer.cornerRadius = 5;
+        bPublish.layer.masksToBounds = YES;
+        [bPublish setBackgroundColor:[UIColor colorWithRed:(52/255.0) green:(177/255.0) blue:(59/255.0) alpha:1]];
+        self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:bPublish];
         [self buildTableViewWithView:self.view];
     }
     return self;
@@ -34,9 +46,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(!self.tableView.pullTableIsRefreshing) {
-        self.tableView.pullTableIsRefreshing=YES;
-        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+    if([[self dataItemArray]count]==0){
+        if(!self.tableView.pullTableIsRefreshing) {
+            self.tableView.pullTableIsRefreshing=YES;
+            [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+        }
     }
 }
 
@@ -64,6 +78,11 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.navigationController pushViewController:[[QiuzuDetailViewController alloc]initWithDictionary:nil] animated:YES];
+}
+
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
@@ -74,6 +93,11 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest handle:@"GetListALL" requestParams:params];
+}
+
+- (void)goPublish:(id)sender
+{
+    [self.navigationController pushViewController:[[PublishQiuzuViewController alloc]init] animated:YES];
 }
 
 @end
