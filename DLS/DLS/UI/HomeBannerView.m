@@ -19,11 +19,12 @@
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-//        CGRectMake(0, 0, 320, 290)
+//        CGRectMake(0, 0, 320, 270)
         UIImageView *banner=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 90)];
         [banner setImage:[UIImage imageNamed:@"banner"]];
         [self addSubview:banner];
-        UIView *mainFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 100, 320, 180)];
+        UIView *mainFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 90, 320, 180)];
+        [mainFrame setBackgroundColor:[UIColor whiteColor]];
         [self addSubview:mainFrame];
         [self addModel:@"autocrane_i" Title:@"汽车吊求租" Frame:mainFrame Tag:1 X:0 Y:0];
         [self addModel:@"crawlercrane_i" Title:@"履带吊求租" Frame:mainFrame Tag:2 X:80 Y:0];

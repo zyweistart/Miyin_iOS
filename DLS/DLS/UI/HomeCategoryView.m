@@ -24,25 +24,22 @@
     if (self) {
 //        CGRectMake(0, 0, 320, 234)
         //主体
-        UIView *headerFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 10)];
-        [headerFrame setBackgroundColor:HEADERBGCOLOR];
-        [self addSubview:headerFrame];
-        UIView *mainFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 11, 320, 223)];
+        UIView *mainFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 226)];
+        [mainFrame setBackgroundColor:[UIColor whiteColor]];
         [self addSubview:mainFrame];
-        
-        UIView *category1=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 159.5, 90)];
+        UIView *category1=[[UIView alloc]initWithFrame:CGRectMake1(0, 1, 159.5, 90)];
         [mainFrame addSubview:category1];
         [self addCategorySubView:category1 MainTitle:@"大件运输" ChildTitle:@"大型重物运输供应需求" ImageName:@"category1" Tag:9];
-        UIView *category2=[[UIView alloc]initWithFrame:CGRectMake1(160.5, 0, 159.5, 90)];
+        UIView *category2=[[UIView alloc]initWithFrame:CGRectMake1(160.5, 1, 159.5, 90)];
         [mainFrame addSubview:category2];
         [self addCategorySubView:category2 MainTitle:@"吊车配件" ChildTitle:@"吊车配件供应中心" ImageName:@"category2" Tag:10];
-        UIView *category3=[[UIView alloc]initWithFrame:CGRectMake1(0, 91, 159.5, 90)];
+        UIView *category3=[[UIView alloc]initWithFrame:CGRectMake1(0, 92, 159.5, 90)];
         [mainFrame addSubview:category3];
         [self addCategorySubView:category3 MainTitle:@"维修企业" ChildTitle:@"快速寻找最近维修单位" ImageName:@"category3" Tag:11];
-        UIView *category4=[[UIView alloc]initWithFrame:CGRectMake1(160.5, 91, 159.5, 90)];
+        UIView *category4=[[UIView alloc]initWithFrame:CGRectMake1(160.5, 92, 159.5, 90)];
         [mainFrame addSubview:category4];
         [self addCategorySubView:category4 MainTitle:@"二手吊车" ChildTitle:@"闲置二手吊车交易" ImageName:@"category4" Tag:12];
-        UIView *category5=[[UIView alloc]initWithFrame:CGRectMake1(0, 182, 320, 40)];
+        UIView *category5=[[UIView alloc]initWithFrame:CGRectMake1(0, 183, 320, 40)];
         [mainFrame addSubview:category5];
         UIButton *button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 10, 80, 20)];
         [[button1 titleLabel]setFont:[UIFont systemFontOfSize:13]];
@@ -73,23 +70,23 @@
         button4.tag=16;
         [category5 addSubview:button4];
         //底线2
-        UIView *line0=[[UIView alloc]initWithFrame:CGRectMake1(0, 10, 320, 1)];
+        UIView *line0=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 1)];
         [line0 setBackgroundColor:LINEBGCOLOR];
-        [headerFrame addSubview:line0];
+        [mainFrame addSubview:line0];
         //竖线
-        UIView *line1=[[UIView alloc]initWithFrame:CGRectMake1(159.5, 10, 1, 161)];
+        UIView *line1=[[UIView alloc]initWithFrame:CGRectMake1(159.5, 11, 1, 161)];
         [line1 setBackgroundColor:LINEBGCOLOR];
         [mainFrame addSubview:line1];
         //横线
-        UIView *line2=[[UIView alloc]initWithFrame:CGRectMake1(10, 90, 300, 1)];
+        UIView *line2=[[UIView alloc]initWithFrame:CGRectMake1(10, 93, 300, 1)];
         [line2 setBackgroundColor:LINEBGCOLOR];
         [mainFrame addSubview:line2];
         //底线1
-        UIView *line3=[[UIView alloc]initWithFrame:CGRectMake1(0, 181, 320, 1)];
+        UIView *line3=[[UIView alloc]initWithFrame:CGRectMake1(0, 184, 320, 1)];
         [line3 setBackgroundColor:LINEBGCOLOR];
         [mainFrame addSubview:line3];
         //底线2
-        UIView *line4=[[UIView alloc]initWithFrame:CGRectMake1(0, 222, 320, 1)];
+        UIView *line4=[[UIView alloc]initWithFrame:CGRectMake1(0, 225, 320, 1)];
         [line4 setBackgroundColor:LINEBGCOLOR];
         [mainFrame addSubview:line4];
         

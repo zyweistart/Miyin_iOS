@@ -13,16 +13,25 @@
 #import "LocationViewController.h"
 #import "MessageViewController.h"
 #import "ListViewController.h"
+#import "InformationCell.h"
 
 #import <QuartzCore/QuartzCore.h>
 
 #define SEARCHTIPCOLOR [UIColor colorWithRed:(88/255.0) green:(130/255.0) blue:(216/255.0) alpha:1]
+#define BGCOLOR [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]
+#define LINEBGCOLOR [UIColor colorWithRed:(214/255.0) green:(214/255.0) blue:(214/255.0) alpha:1]
+#define CATEGORYBGCOLOR [UIColor colorWithRed:(173/255.0) green:(176/255.0) blue:(181/255.0) alpha:1]
 
+#define MAINTITLECOLOR [UIColor colorWithRed:(110/255.0) green:(139/255.0) blue:(205/255.0) alpha:1]
+#define CHILDTITLECOLOR [UIColor colorWithRed:(158/255.0) green:(158/255.0) blue:(158/255.0) alpha:1]
+#define TITLECOLOR [UIColor colorWithRed:(54/255.0) green:(54/255.0) blue:(54/255.0) alpha:1]
 @interface HomeViewController ()
 
 @end
 
-@implementation HomeViewController
+@implementation HomeViewController{
+    long long currentButtonIndex;
+}
 
 - (id)init{
     self=[super init];
@@ -71,59 +80,140 @@
                                            target:nil action:nil];
         negativeSpacerRight.width = -5;
         self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:btnMessage], nil];
+        
+        [self buildTableViewWithView:self.view];
+        [self.tableView setBackgroundColor:BGCOLOR];
+        UIView *header=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 516)];
+        [self.tableView setTableHeaderView:header];
+        HomeBannerView *banner=[[HomeBannerView alloc]initWithFrame:CGRectMake(0, 0, 320, 270)];
+        [banner setController:self];
+        [header addSubview:banner];
+        //空格
+        UIView *spaceFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 270, 320, 10)];
+        [spaceFrame setBackgroundColor:BGCOLOR];
+        [header addSubview:spaceFrame];
+        //功能
+        HomeCategoryView *category=[[HomeCategoryView alloc]initWithFrame:CGRectMake(0, 280, 320, 226)];
+        [category setController:self];
+        [header addSubview:category];
+        //空格
+        spaceFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 506, 320, 10)];
+        [spaceFrame setBackgroundColor:BGCOLOR];
+        [header addSubview:spaceFrame];
+        
+        currentButtonIndex=1;
+        
     }
     return self;
 }
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
-    [self.scrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-    self.scrollView.contentSize = CGSizeMake(320, 524);
-    self.subViewController = [[HomeNewsListViewController alloc] init];
-    self.subViewController.mainViewController = self;
-    
-    HomeBannerView *banner=[[HomeBannerView alloc]initWithFrame:CGRectMake(0, 0, 320, 290)];
-    [banner setController:self];
-    [self.scrollView addSubview:banner];
-    HomeCategoryView *category=[[HomeCategoryView alloc]initWithFrame:CGRectMake(0, 290, 320, 234)];
-    [category setController:self];
-    [self.scrollView addSubview:category];
-    
-    //添加UIRefreshControl下拉刷新控件到UITableViewController的view中
-    self.refreshControl = [[UIRefreshControl alloc]init];
-    [self.refreshControl addTarget:self action:@selector(RefreshViewControlEventValueChanged) forControlEvents:UIControlEventValueChanged];
-    [self.scrollView addSubview:self.refreshControl];
-    [self autoRefreshData];
-}
-
-//自动下载刷新
-- (void)autoRefreshData{
-    //自行创建下拉动画
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.0];
-    //注意位移点的y值为负值
-    self.scrollView.contentOffset=CGPointMake(0.0, -200.0);
-    [UIView commitAnimations];
-    //改变refreshcontroller的状态
-    [self.refreshControl beginRefreshing];
-    //刷新数据和表格视图
-    [self RefreshViewControlEventValueChanged];
-}
-
-//刷新事件
-- (void)RefreshViewControlEventValueChanged
-{
-    if (self.refreshControl.refreshing) {
-        [self performSelector:@selector(handleData) withObject:nil afterDelay:2];
+    [super viewWillAppear:animated];
+    if(!self.tableView.pullTableIsRefreshing) {
+        self.tableView.pullTableIsRefreshing=YES;
+        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
     }
 }
 
-- (void)handleData
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    [self.refreshControl endRefreshing];
-//    [self.tableView reloadData];
+    return 40.0;
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    //分类
+    UIView *categoryFrame =[[UIView alloc] initWithFrame:CGRectMake1(10, 0, 300, 40)] ;
+    [categoryFrame setBackgroundColor:BGCOLOR];
+    self.button1=[[UIButton alloc]initWithFrame:CGRectMake1(0, 0, 75, 40)];
+    [[self.button1 titleLabel]setFont:[UIFont systemFontOfSize:14]];
+    [self.button1 setTitle:@"最新出租" forState:UIControlStateNormal];
+    self.button1.tag=1;
+    [self.button1 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
+    [categoryFrame addSubview:self.button1];
+    self.button2=[[UIButton alloc]initWithFrame:CGRectMake1(75, 0, 75, 40)];
+    [[self.button2 titleLabel]setFont:[UIFont systemFontOfSize:14]];
+    [self.button2 setTitle:@"最新求租" forState:UIControlStateNormal];
+    self.button2.tag=2;
+    [self.button2 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
+    [categoryFrame addSubview:self.button2];
+    self.button3=[[UIButton alloc]initWithFrame:CGRectMake1(150, 0, 75, 40)];
+    [[self.button3 titleLabel]setFont:[UIFont systemFontOfSize:14]];
+    [self.button3 setTitle:@"中标结果" forState:UIControlStateNormal];
+    self.button3.tag=3;
+    [self.button3 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
+    [categoryFrame addSubview:self.button3];
+    self.button4=[[UIButton alloc]initWithFrame:CGRectMake1(225, 0, 75, 40)];
+    [[self.button4 titleLabel]setFont:[UIFont systemFontOfSize:14]];
+    [self.button4 setTitle:@"行业资讯" forState:UIControlStateNormal];
+    self.button4.tag=4;
+    [self.button4 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
+    [categoryFrame addSubview:self.button4];
+    
+    [self showHiddenCategory];
+
+    return categoryFrame;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 100;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 80;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CELL = @"CInformationCell";
+    InformationCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL];
+    if (cell == nil) {
+        cell = [[InformationCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CELL];
+    }
+    [cell.childTitle setText:@"这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题"];
+    if(currentButtonIndex==1){
+        [cell.image setImage:[UIImage imageNamed:@"category1"]];
+        [cell.mainTitle setText:@"这是主标题11"];
+    }else if(currentButtonIndex==2){
+        [cell.image setImage:[UIImage imageNamed:@"category2"]];
+        [cell.mainTitle setText:@"这是主标题22"];
+    }else if(currentButtonIndex==3){
+        [cell.image setImage:[UIImage imageNamed:@"category3"]];
+        [cell.mainTitle setText:@"这是主标题33"];
+    }else{
+        [cell.image setImage:[UIImage imageNamed:@"category4"]];
+        [cell.mainTitle setText:@"这是主标题44"];
+    }
+    return cell;
+}
+
+
+- (void)switchCategory:(UIButton*)sender {
+    currentButtonIndex=sender.tag;
+    [self showHiddenCategory];
+    //展示数据
+    
+    [self.tableView reloadData];
+}
+
+- (void)showHiddenCategory{
+    [self.button1 setTitleColor:currentButtonIndex==1?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
+    [self.button1 setBackgroundColor:currentButtonIndex==1?CATEGORYBGCOLOR:[UIColor whiteColor]];
+    [self.button2 setTitleColor:currentButtonIndex==2?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
+    [self.button2 setBackgroundColor:currentButtonIndex==2?CATEGORYBGCOLOR:[UIColor whiteColor]];
+    [self.button3 setTitleColor:currentButtonIndex==3?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
+    [self.button3 setBackgroundColor:currentButtonIndex==3?CATEGORYBGCOLOR:[UIColor whiteColor]];
+    [self.button4 setTitleColor:currentButtonIndex==4?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
+    [self.button4 setBackgroundColor:currentButtonIndex==4?CATEGORYBGCOLOR:[UIColor whiteColor]];
+}
+
 //定位
 - (void)goLocation:(UIButton*)sender
 {
@@ -140,12 +230,28 @@
     [self presentViewController:[[MessageViewController alloc]init]];
 }
 
-- (void)presentViewController:(UIViewController*)viewController
+//头部下拉刷新
+- (void)refreshTable
 {
-    UINavigationController *myViewControllerNav = [[UINavigationController alloc] initWithRootViewController:viewController];
-    [[myViewControllerNav navigationBar]setBarTintColor:NAVBG];
-    [[myViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-    [self presentViewController:myViewControllerNav animated:YES completion:nil];
+    [self loadHttp];
+}
+//加载更多咨询数据
+- (void)loadMoreDataToTable
+{
+    self.currentPage=1;
+    [self loadHttp];
+}
+
+- (void)loadHttp
+{
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"9" forKey:@"Id"];
+    [params setObject:[NSString stringWithFormat:@"%d",self.currentPage] forKey:@"index"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest handle:@"GetListALL" requestParams:params];
 }
 
 @end
