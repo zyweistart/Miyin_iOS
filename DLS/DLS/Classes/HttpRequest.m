@@ -28,16 +28,16 @@
         NSString *bodyContent=[[NSString alloc] initWithData:[Common toJSONData:params] encoding:NSUTF8StringEncoding];
         //时间戳;
 //        NSString *timestamp=[NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]*1000];
-        NSString *timestamp=@"1425792466146";
+        NSString *timestamp=@"1426145110208";
         //随机数
 //        NSString *nonce=[NSString stringWithFormat:@"%d",arc4random() % 1000];
-        NSString *nonce=@"459";
+        NSString *nonce=@"881";
         //封装成数组
 //        NSString *arr[]={ACCESSKEY,timestamp,nonce};
         //数组排序
 
         //签名
-        NSString *signature=@"16b5d592fe62ac42030971caa3d3468f278c9c56";
+        NSString *signature=@"b1c6607d21672466a41aff9ca476722cd55a1bf8";
         NSString *url=HTTP_SERVER_URL(action, signature, timestamp, nonce);
         // 初始化一个请求
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];

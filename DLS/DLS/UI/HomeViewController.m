@@ -238,14 +238,16 @@
 
 - (void)switchCategory:(UIButton*)sender
 {
-    currentButtonIndex=sender.tag;
-    [self showCategoryStatus];
-    [self.tableView reloadData];
-    //暂无数据则刷新列表
-    if([[self dataItemArray] count]==0){
-        if(!self.tableView.pullTableIsLoadingMore) {
-            self.tableView.pullTableIsLoadingMore=YES;
-            [self performSelector:@selector(loadMoreDataToTable) withObject:nil afterDelay:1.0f];
+    if(!self.tableView.pullTableIsRefreshing&&!self.tableView.pullTableIsLoadingMore) {
+        currentButtonIndex=sender.tag;
+        [self showCategoryStatus];
+        [self.tableView reloadData];
+        //暂无数据则刷新列表
+        if([[self dataItemArray] count]==0){
+            if(!self.tableView.pullTableIsLoadingMore) {
+                self.tableView.pullTableIsLoadingMore=YES;
+                [self performSelector:@selector(loadMoreDataToTable) withObject:nil afterDelay:1.0f];
+            }
         }
     }
 }
@@ -286,18 +288,23 @@
 //加载更多咨询数据
 - (void)loadMoreDataToTable
 {
+    
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     if(currentButtonIndex==1){
         self.currentPage1++;
+        [params setObject:@"3" forKey:@"Id"];
     }else if(currentButtonIndex==2){
         self.currentPage2++;
+        [params setObject:@"1" forKey:@"Id"];
     }else if(currentButtonIndex==3){
         self.currentPage3++;
     }else{
         self.currentPage4++;
     }
-    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"9" forKey:@"Id"];
     [params setObject:[NSString stringWithFormat:@"%d",self.currentPage] forKey:@"index"];
+    NSMutableDictionary *search=[[NSMutableDictionary alloc]init];
+    [search setObject:@"2" forKey:@"xlValue"];
+    [params setObject:search forKey:@"search"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];

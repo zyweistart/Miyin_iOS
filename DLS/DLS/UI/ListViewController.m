@@ -17,7 +17,9 @@
 
 @end
 
-@implementation ListViewController
+@implementation ListViewController{
+    NSDictionary *idsData;
+}
 
 - (id)initWithTitle:(NSString*)title Type:(NSInteger)type
 {
@@ -26,6 +28,24 @@
         self.type=type;
         [self setTitle:title];
         [self buildTableViewWithView:self.view];
+        idsData=[NSDictionary dictionaryWithObjectsAndKeys:
+              @"4",@"1",//汽车吊求租
+              @"4",@"2",//履带吊求租
+              @"4",@"3",//VIP独家项目
+              @"4",@"4",//工程信
+              @"4",@"5",//汽车吊出租
+              @"4",@"6",//履带吊出租
+              @"4",@"7",//招标公告
+              @"4",@"8",//招聘信息
+              @"4",@"9",//大件运输
+              @"4",@"10",//吊车配件
+              @"4",@"11",//维修企业
+              @"4",@"12",//二手吊车
+              @"4",@"13",//其他设备
+              @"4",@"14",//项目预告
+              @"4",@"15",//超重机制造商
+              @"4",@"16",//企业大全
+                 nil];
     }
     return self;
 }
@@ -93,21 +113,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(self.type==7){
-        //招标公告
-        [self.navigationController pushViewController:[[NewsDetailViewController alloc]initWithDictionary:nil] animated:YES];
-    }else if(self.type==8){
-        //招聘详情
-        [self.navigationController pushViewController:[[RecruitmentDetailViewController alloc]initWithDictionary:nil] animated:YES];
-    }else{
-        
+    if([self.dataItemArray count]>0){
+        if(self.type==7){
+            //招标公告
+            [self.navigationController pushViewController:[[NewsDetailViewController alloc]initWithDictionary:nil] animated:YES];
+        }else if(self.type==8){
+            //招聘详情
+            [self.navigationController pushViewController:[[RecruitmentDetailViewController alloc]initWithDictionary:nil] animated:YES];
+        }else{
+            
+        }
     }
 }
 
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"9" forKey:@"Id"];
+    [params setObject:[idsData objectForKey:[NSString stringWithFormat:@"%d",self.type]] forKey:@"Id"];
     [params setObject:[NSString stringWithFormat:@"%d",self.currentPage] forKey:@"index"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
