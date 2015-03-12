@@ -12,4 +12,6 @@
 
 @property NSDictionary *data;
 
+- (id)initWithDictionary:(NSDictionary*)data;
+
 @end

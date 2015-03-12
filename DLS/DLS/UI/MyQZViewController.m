@@ -8,6 +8,7 @@
 
 #import "MyQZViewController.h"
 #import "ProjectACell.h"
+#import "QiuzuDetailViewController.h"
 
 @interface MyQZViewController ()
 

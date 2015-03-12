@@ -8,6 +8,7 @@
 
 #import "MessageViewController.h"
 #import "ProjectBCell.h"
+#import "MessageDetailViewController.h"
 
 @interface MessageViewController ()
 
@@ -60,6 +61,11 @@
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.navigationController pushViewController:[[MessageDetailViewController alloc]initWithDictionary:nil] animated:YES];
 }
 
 - (void)loadHttp

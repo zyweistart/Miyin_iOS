@@ -13,6 +13,7 @@
 #import "LocationViewController.h"
 #import "MessageViewController.h"
 #import "ListViewController.h"
+#import "NewsDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define SEARCHTIPCOLOR [UIColor colorWithRed:(88/255.0) green:(130/255.0) blue:(216/255.0) alpha:1]
@@ -28,6 +29,7 @@
 @end
 
 @implementation HomeViewController{
+    BOOL isFirstRefresh;
     long long currentButtonIndex;
 }
 
@@ -115,9 +117,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(!self.tableView.pullTableIsRefreshing) {
-        self.tableView.pullTableIsRefreshing=YES;
-        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+    if(!isFirstRefresh){
+        if(!self.tableView.pullTableIsRefreshing) {
+            isFirstRefresh=YES;
+            self.tableView.pullTableIsRefreshing=YES;
+            [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+        }
     }
 }
 
@@ -156,7 +161,7 @@
     [self.button4 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
     [categoryFrame addSubview:self.button4];
     
-    [self showHiddenCategory];
+    [self showCategoryStatus];
 
     return categoryFrame;
 }
@@ -207,7 +212,7 @@
         [cell setBackgroundColor:BGCOLOR];
         [cell.textLabel setFont:[UIFont systemFontOfSize:13]];
         [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
-        cell.textLabel.text = @"暂无数据，如需获取更多数据请向上拖动";
+        cell.textLabel.text = @"继续拖动加载更多~";
         if(currentButtonIndex==1){
             self.currentPage1=0;
         }else if(currentButtonIndex==2){
@@ -221,15 +226,31 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(currentButtonIndex==1){
+    }else if(currentButtonIndex==2){
+    }else if(currentButtonIndex==3){
+    }else{
+    }
+    [self.navigationController pushViewController:[[NewsDetailViewController alloc]initWithDictionary:nil] animated:YES];
+}
+
 - (void)switchCategory:(UIButton*)sender
 {
     currentButtonIndex=sender.tag;
-    [self showHiddenCategory];
-    //展示数据
+    [self showCategoryStatus];
     [self.tableView reloadData];
+    //暂无数据则刷新列表
+    if([[self dataItemArray] count]==0){
+        if(!self.tableView.pullTableIsLoadingMore) {
+            self.tableView.pullTableIsLoadingMore=YES;
+            [self performSelector:@selector(loadMoreDataToTable) withObject:nil afterDelay:1.0f];
+        }
+    }
 }
 
-- (void)showHiddenCategory
+- (void)showCategoryStatus
 {
     [self.button1 setTitleColor:currentButtonIndex==1?[UIColor whiteColor]:TITLECOLOR forState:UIControlStateNormal];
     [self.button1 setBackgroundColor:currentButtonIndex==1?CATEGORYBGCOLOR:[UIColor whiteColor]];
@@ -260,7 +281,15 @@
 //头部下拉刷新
 - (void)refreshTable
 {
-    [self loadHttp];
+    [self loadDone];
+//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+//    [params setObject:@"9" forKey:@"Id"];
+//    [params setObject:[NSString stringWithFormat:@"%d",self.currentPage] forKey:@"index"];
+//    self.hRequest=[[HttpRequest alloc]init];
+//    [self.hRequest setRequestCode:500];
+//    [self.hRequest setDelegate:self];
+//    [self.hRequest setController:self];
+//    [self.hRequest handle:@"GetListALL" requestParams:params];
 }
 //加载更多咨询数据
 - (void)loadMoreDataToTable
@@ -274,11 +303,6 @@
     }else{
         self.currentPage4++;
     }
-    [self loadHttp];
-}
-
-- (void)loadHttp
-{
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"9" forKey:@"Id"];
     [params setObject:[NSString stringWithFormat:@"%d",self.currentPage] forKey:@"index"];

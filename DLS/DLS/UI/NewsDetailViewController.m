@@ -18,7 +18,7 @@
     self=[super init];
     if(self){
         self.data=data;
-        [self setTitle:@"消息详情"];
+        [self setTitle:@"新闻详情"];
     }
     return self;
 }

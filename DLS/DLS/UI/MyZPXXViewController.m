@@ -8,6 +8,7 @@
 
 #import "MyZPXXViewController.h"
 #import "ProjectACell.h"
+#import "RecruitmentDetailViewController.h"
 
 @interface MyZPXXViewController ()
 

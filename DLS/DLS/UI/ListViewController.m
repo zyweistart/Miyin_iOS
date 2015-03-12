@@ -10,6 +10,7 @@
 #import "ProjectCell.h"
 #import "ProjectDCell.h"
 #import "InformationCell.h"
+#import "RecruitmentDetailViewController.h"
 
 @interface ListViewController ()
 
@@ -85,6 +86,11 @@
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.navigationController pushViewController:[[RecruitmentDetailViewController alloc]initWithDictionary:nil] animated:YES];
 }
 
 - (void)loadHttp
