@@ -14,4 +14,6 @@
 
 + (void)alert:(NSString*)message;
 
++ (UIImage*)createImageWithColor:(UIColor*)color;
+
 @end
