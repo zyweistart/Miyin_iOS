@@ -9,12 +9,10 @@
 #import "HomeViewController.h"
 #import "HomeBannerView.h"
 #import "HomeCategoryView.h"
-#import "HomeNewsListViewController.h"
+#import "InformationCell.h"
 #import "LocationViewController.h"
 #import "MessageViewController.h"
 #import "ListViewController.h"
-#import "InformationCell.h"
-
 #import <QuartzCore/QuartzCore.h>
 
 #define SEARCHTIPCOLOR [UIColor colorWithRed:(88/255.0) green:(130/255.0) blue:(216/255.0) alpha:1]
@@ -117,10 +115,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    if(!self.tableView.pullTableIsRefreshing) {
-//        self.tableView.pullTableIsRefreshing=YES;
-//        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
-//    }
+    if(!self.tableView.pullTableIsRefreshing) {
+        self.tableView.pullTableIsRefreshing=YES;
+        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
