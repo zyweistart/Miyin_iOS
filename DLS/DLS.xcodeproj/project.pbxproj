@@ -93,6 +93,12 @@
 		C9E1FF081AA558A700720AAC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E1FEF11AA5563B00720AAC /* UIKit.framework */; };
 		C9E1FF0A1AA558E600720AAC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E1FEEF1AA5562000720AAC /* CFNetwork.framework */; };
 		C9E1FF0B1AA558EC00720AAC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E1FEF71AA5569100720AAC /* QuartzCore.framework */; };
+		C9F11F481AB275EB0014E462 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F11F471AB275EB0014E462 /* MessageCell.m */; };
+		C9F11F4B1AB2760A0014E462 /* CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F11F4A1AB2760A0014E462 /* CollectionCell.m */; };
+		C9F11F4E1AB27AA80014E462 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F11F4D1AB27AA80014E462 /* FeedbackViewController.m */; };
+		C9F11F511AB27AB20014E462 /* ModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F11F501AB27AB20014E462 /* ModifyPasswordViewController.m */; };
+		C9F11F541AB27AC10014E462 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F11F531AB27AC10014E462 /* AboutUsViewController.m */; };
+		C9F11F571AB27AD70014E462 /* ClauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F11F561AB27AD70014E462 /* ClauseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -264,6 +270,18 @@
 		C9E1FEF31AA5564100720AAC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C9E1FEF71AA5569100720AAC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C9E1FF071AA5578700720AAC /* DLS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DLS-Prefix.pch"; sourceTree = "<group>"; };
+		C9F11F461AB275EB0014E462 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		C9F11F471AB275EB0014E462 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		C9F11F491AB2760A0014E462 /* CollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCell.h; sourceTree = "<group>"; };
+		C9F11F4A1AB2760A0014E462 /* CollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCell.m; sourceTree = "<group>"; };
+		C9F11F4C1AB27AA80014E462 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		C9F11F4D1AB27AA80014E462 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
+		C9F11F4F1AB27AB20014E462 /* ModifyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPasswordViewController.h; sourceTree = "<group>"; };
+		C9F11F501AB27AB20014E462 /* ModifyPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPasswordViewController.m; sourceTree = "<group>"; };
+		C9F11F521AB27AC10014E462 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
+		C9F11F531AB27AC10014E462 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		C9F11F551AB27AD70014E462 /* ClauseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClauseViewController.h; sourceTree = "<group>"; };
+		C9F11F561AB27AD70014E462 /* ClauseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClauseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -563,6 +581,14 @@
 				C9DD46BE1AA8271E004AEAB7 /* RegisterViewController.m */,
 				C9DD46C01AA82731004AEAB7 /* LoginViewController.h */,
 				C9DD46C11AA82731004AEAB7 /* LoginViewController.m */,
+				C9F11F4C1AB27AA80014E462 /* FeedbackViewController.h */,
+				C9F11F4D1AB27AA80014E462 /* FeedbackViewController.m */,
+				C9F11F4F1AB27AB20014E462 /* ModifyPasswordViewController.h */,
+				C9F11F501AB27AB20014E462 /* ModifyPasswordViewController.m */,
+				C9F11F521AB27AC10014E462 /* AboutUsViewController.h */,
+				C9F11F531AB27AC10014E462 /* AboutUsViewController.m */,
+				C9F11F551AB27AD70014E462 /* ClauseViewController.h */,
+				C9F11F561AB27AD70014E462 /* ClauseViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -623,16 +649,20 @@
 		C9E1FF0C1AA5A3DD00720AAC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				C9F11F491AB2760A0014E462 /* CollectionCell.h */,
+				C9F11F4A1AB2760A0014E462 /* CollectionCell.m */,
 				C909FC161AA6D72A008E68FB /* InformationCell.h */,
 				C909FC171AA6D72A008E68FB /* InformationCell.m */,
-				C9D2B7501AA8966200CF750D /* ProjectCell.h */,
-				C9D2B7511AA8966200CF750D /* ProjectCell.m */,
+				C9F11F461AB275EB0014E462 /* MessageCell.h */,
+				C9F11F471AB275EB0014E462 /* MessageCell.m */,
 				C99A055C1AAC24F3004E5490 /* ProjectACell.h */,
 				C99A055D1AAC24F3004E5490 /* ProjectACell.m */,
 				C91115A91AAC36AF00F56DFE /* ProjectBCell.h */,
 				C91115AA1AAC36AF00F56DFE /* ProjectBCell.m */,
 				C91115AC1AAC3AE200F56DFE /* ProjectCCell.h */,
 				C91115AD1AAC3AE200F56DFE /* ProjectCCell.m */,
+				C9D2B7501AA8966200CF750D /* ProjectCell.h */,
+				C9D2B7511AA8966200CF750D /* ProjectCell.m */,
 				C9583FB31AAC89940043548B /* ProjectDCell.h */,
 				C9583FB41AAC89940043548B /* ProjectDCell.m */,
 				C90699BB1AAE984800E32C54 /* ProjectECell.h */,
@@ -766,9 +796,11 @@
 				C9AFBB801AAD808F008C7AE9 /* QiuzuDetailViewController.m in Sources */,
 				C9125AA81AA9FA12001396FF /* Common.m in Sources */,
 				C9DD46C21AA82731004AEAB7 /* LoginViewController.m in Sources */,
+				C9F11F4E1AB27AA80014E462 /* FeedbackViewController.m in Sources */,
 				C9E1FEBB1AA5543F00720AAC /* BaseViewController.m in Sources */,
 				C90699B11AAE836600E32C54 /* CollectionViewController.m in Sources */,
 				C9610DD71AB158B100CA8218 /* PublishQiuzuViewController.m in Sources */,
+				C9F11F511AB27AB20014E462 /* ModifyPasswordViewController.m in Sources */,
 				C9AFBB861AAD80BB008C7AE9 /* RecruitmentDetailViewController.m in Sources */,
 				C9D2B7521AA8966200CF750D /* ProjectCell.m in Sources */,
 				C9AFBB771AAD8039008C7AE9 /* RentalDetailViewController.m in Sources */,
@@ -776,6 +808,9 @@
 				C9D2B7451AA868BF00CF750D /* MyZPXXViewController.m in Sources */,
 				C9E1FEEC1AA555F000720AAC /* ATMSoundFX.m in Sources */,
 				C9DD46BF1AA8271E004AEAB7 /* RegisterViewController.m in Sources */,
+				C9F11F4B1AB2760A0014E462 /* CollectionCell.m in Sources */,
+				C9F11F541AB27AC10014E462 /* AboutUsViewController.m in Sources */,
+				C9F11F481AB275EB0014E462 /* MessageCell.m in Sources */,
 				C90699B71AAE83C700E32C54 /* IntegralViewController.m in Sources */,
 				C9E1FEEE1AA555F000720AAC /* MBProgressHUD.m in Sources */,
 				C9DB29A31AA9ACDF00D5893B /* SearchView.m in Sources */,
@@ -789,6 +824,7 @@
 				C9610DDD1AB158E300CA8218 /* PublishRecruitmentViewController.m in Sources */,
 				C9D2B74F1AA8912B00CF750D /* ListViewController.m in Sources */,
 				C922D0941AA444ED00F6DBA1 /* VIPViewController.m in Sources */,
+				C9F11F571AB27AD70014E462 /* ClauseViewController.m in Sources */,
 				C922D0911AA444E100F6DBA1 /* NearbyViewController.m in Sources */,
 				C99E82FD1AA997B20087D2F4 /* EGORefreshTableHeaderView.m in Sources */,
 				C9AFBB831AAD809B008C7AE9 /* EnterpriseDetailViewController.m in Sources */,
