@@ -78,7 +78,10 @@
 
 - (void)login:(id)sender
 {
-    NSLog(@"登陆");
+    [[User Instance]setIsLogin:YES];
+    [[self resultDelegate]onControllerResult:RESULTCODE_LOGIN data:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 @end

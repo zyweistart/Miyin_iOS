@@ -8,6 +8,7 @@
 
 #import "CollectionViewController.h"
 #import "ProjectBCell.h"
+#import "MessageDetailViewController.h"
 
 @interface CollectionViewController ()
 
@@ -60,6 +61,13 @@
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([self.dataItemArray count]>0){
+        [self.navigationController pushViewController:[[MessageDetailViewController alloc]initWithDictionary:[self.dataItemArray objectAtIndex:[indexPath row]]] animated:YES];
     }
 }
 

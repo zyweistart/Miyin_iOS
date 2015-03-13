@@ -88,6 +88,13 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([self.dataItemArray count]>0){
+        
+    }
+}
+
 - (BOOL)CategoryViewChange:(long long)index
 {
     if(!self.tableView.pullTableIsRefreshing) {

@@ -137,10 +137,9 @@ static CGFloat kImageOriginHight = 220.f;
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    [bLoginRegister setHidden:NO];
-    [bHead setHidden:YES];
-    
     self.expandZoomImageView.frame = CGRectMake(0, -kImageOriginHight, self.tableView.frame.size.width, kImageOriginHight);
+    
+    [self showUser];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -199,34 +198,37 @@ static CGFloat kImageOriginHight = 220.f;
 {
     NSInteger section=[indexPath section];
     NSInteger row=[indexPath row];
-//    if(![[User Instance]isLogin]){
-//        [Common alert:@"请先登陆"];
-//        [self presentViewController:[[LoginViewController alloc]init]];
-//        return;
-//    }
     if(section==0){
+        if(![[User Instance]isLogin]){
+            [self presentViewControllerNav:[[LoginViewController alloc]init]];
+            return;
+        }
         if(row==0){
-            [self presentViewController:[[MyCZViewController alloc]init]];
+            [self presentViewControllerNav:[[MyCZViewController alloc]init]];
         }else if(row==1){
-            [self presentViewController:[[MyQZViewController alloc]init]];
+            [self presentViewControllerNav:[[MyQZViewController alloc]init]];
         }else if(row==2){
-            [self presentViewController:[[MySBXSViewController alloc]init]];
+            [self presentViewControllerNav:[[MySBXSViewController alloc]init]];
         }else if(row==3){
-            [self presentViewController:[[MySBWXViewController alloc]init]];
+            [self presentViewControllerNav:[[MySBWXViewController alloc]init]];
         }else if(row==4){
-            [self presentViewController:[[MyBJXSViewController alloc]init]];
+            [self presentViewControllerNav:[[MyBJXSViewController alloc]init]];
         }else if(row==5){
-            [self presentViewController:[[MyVIPGCViewController alloc]init]];
+            [self presentViewControllerNav:[[MyVIPGCViewController alloc]init]];
         }
     }else if(section==1){
+        if(![[User Instance]isLogin]){
+            [self presentViewControllerNav:[[LoginViewController alloc]init]];
+            return;
+        }
         if(row==0){
-            [self presentViewController:[[MyZPXXViewController alloc]init]];
+            [self presentViewControllerNav:[[MyZPXXViewController alloc]init]];
         }else if(row==1){
-            [self presentViewController:[[MyQZYPViewController alloc]init]];
+            [self presentViewControllerNav:[[MyQZYPViewController alloc]init]];
         }
     }else{
         if(row==0){
-             [self presentViewController:[[MyHelpCenterViewController alloc]init]];
+             [self presentViewControllerNav:[[MyHelpCenterViewController alloc]init]];
         }else if(row==1){
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"tel://%@",@"057187071527"]]];
         }
@@ -235,37 +237,75 @@ static CGFloat kImageOriginHight = 220.f;
 
 - (void)goSetting:(id)sender
 {
-    [self presentViewController:[[SettingViewController alloc]init]];
+    if(![[User Instance]isLogin]){
+        [self presentViewControllerNav:[[LoginViewController alloc]init]];
+        return;
+    }
+    [self presentViewControllerNav:[[SettingViewController alloc]init]];
 }
 
 - (void)goLogin:(id)sender
 {
-    [self presentViewController:[[LoginViewController alloc]init]];
+    [self presentViewControllerNav:[[LoginViewController alloc]init]];
 }
 
 - (void)goRegister:(id)sender
 {
-    [self presentViewController:[[RegisterViewController alloc]init]];
+    [self presentViewControllerNav:[[RegisterViewController alloc]init]];
 }
 
 - (void)goCollection:(id)sender
 {
-    [self presentViewController:[[CollectionViewController alloc]init]];
+    if(![[User Instance]isLogin]){
+        [self presentViewControllerNav:[[LoginViewController alloc]init]];
+        return;
+    }
+    [self presentViewControllerNav:[[CollectionViewController alloc]init]];
 }
 
 - (void)goAccount:(id)sender
 {
-    [self presentViewController:[[AccountViewController alloc]init]];
+    if(![[User Instance]isLogin]){
+        [self presentViewControllerNav:[[LoginViewController alloc]init]];
+        return;
+    }
+    [self presentViewControllerNav:[[AccountViewController alloc]init]];
 }
 
 - (void)goIntegral:(id)sender
 {
-    [self presentViewController:[[IntegralViewController alloc]init]];
+    if(![[User Instance]isLogin]){
+        [self presentViewControllerNav:[[LoginViewController alloc]init]];
+        return;
+    }
+    [self presentViewControllerNav:[[IntegralViewController alloc]init]];
 }
 
 - (void)goMessage:(id)sender
 {
-    [self presentViewController:[[MessageViewController alloc]init]];
+    if(![[User Instance]isLogin]){
+        [self presentViewControllerNav:[[LoginViewController alloc]init]];
+        return;
+    }
+    [self presentViewControllerNav:[[MessageViewController alloc]init]];
+}
+
+- (void)onControllerResult:(NSInteger)resultCode data:(NSMutableDictionary*)result
+{
+    if(resultCode==RESULTCODE_LOGIN){
+        [self showUser];
+    }
+}
+
+- (void)showUser
+{
+    if([[User Instance]isLogin]){
+        [bHead setHidden:NO];
+        [bLoginRegister setHidden:YES];
+    }else{
+        [bHead setHidden:YES];
+        [bLoginRegister setHidden:NO];
+    }
 }
 
 @end

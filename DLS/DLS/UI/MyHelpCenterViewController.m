@@ -7,6 +7,7 @@
 //
 
 #import "MyHelpCenterViewController.h"
+#import "HelpDetailViewController.h"
 
 @interface MyHelpCenterViewController ()
 
@@ -58,6 +59,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if([self.dataItemArray count]>0){
+        [self.navigationController pushViewController:[[HelpDetailViewController alloc]initWithDictionary:[self.dataItemArray objectAtIndex:[indexPath row]]] animated:YES];
+    }
 }
 
 - (void)loadHttp

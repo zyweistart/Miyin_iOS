@@ -270,17 +270,17 @@
 //定位
 - (void)goLocation:(UIButton*)sender
 {
-    [self presentViewController:[[LocationViewController alloc]init]];
+    [self presentViewControllerNav:[[LocationViewController alloc]init]];
 }
 //搜索
 - (void)goSearch:(id)sender
 {
-//    [self presentViewController:[[ListViewController alloc]initWithTitle:@"出租列表" Type:2]];
+//    [self presentViewControllerNav:[[ListViewController alloc]initWithTitle:@"出租列表" Type:2]];
 }
 //消息
 - (void)goMessage:(UIButton*)sender
 {
-    [self presentViewController:[[MessageViewController alloc]init]];
+    [self presentViewControllerNav:[[MessageViewController alloc]init]];
 }
 
 //头部下拉刷新

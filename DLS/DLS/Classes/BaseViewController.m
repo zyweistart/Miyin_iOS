@@ -1,4 +1,5 @@
 #import "BaseViewController.h"
+#import "LoginViewController.h"
 #ifndef TEST
 #endif
 
@@ -29,17 +30,29 @@
     [super viewDidLoad];
 }
 
-- (void)presentViewController:(UIViewController*)viewController
+- (void)presentViewController:(BaseViewController*)viewController
 {
-    UINavigationController *myViewControllerNav = [[UINavigationController alloc] initWithRootViewController:viewController];
-    [[myViewControllerNav navigationBar]setBarTintColor:NAVBG];
-    [[myViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-    [self presentViewController:myViewControllerNav animated:YES completion:nil];
+    [viewController setResultDelegate:self];
+    [self presentViewController:viewController animated:YES completion:nil];
+}
+
+- (void)presentViewControllerNav:(BaseViewController*)viewController
+{
+    [viewController setResultDelegate:self];
+    UINavigationController *viewControllerNav = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [[viewControllerNav navigationBar]setBarTintColor:NAVBG];
+    [[viewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
+    [self presentViewController:viewControllerNav animated:YES completion:nil];
 }
 
 - (void)goBack:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)onControllerResult:(NSInteger)resultCode data:(NSMutableDictionary*)result
+{
+    
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode

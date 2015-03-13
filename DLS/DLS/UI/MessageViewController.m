@@ -67,7 +67,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.navigationController pushViewController:[[MessageDetailViewController alloc]initWithDictionary:nil] animated:YES];
+    if([self.dataItemArray count]>0){
+        [self.navigationController pushViewController:[[MessageDetailViewController alloc]initWithDictionary:[self.dataItemArray objectAtIndex:[indexPath row]]] animated:YES];
+    }
 }
 
 - (void)loadHttp
