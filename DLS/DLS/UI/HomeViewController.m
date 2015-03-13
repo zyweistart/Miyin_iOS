@@ -291,23 +291,21 @@
 //加载更多咨询数据
 - (void)loadMoreDataToTable
 {
-    
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     if(currentButtonIndex==1){
         self.currentPage1++;
-        [params setObject:@"3" forKey:@"Id"];
+        [params setObject:@"1" forKey:@"Id"];
     }else if(currentButtonIndex==2){
         self.currentPage2++;
         [params setObject:@"1" forKey:@"Id"];
     }else if(currentButtonIndex==3){
         self.currentPage3++;
+        [params setObject:@"1" forKey:@"Id"];
     }else{
         self.currentPage4++;
+        [params setObject:@"1" forKey:@"Id"];
     }
     [params setObject:[NSString stringWithFormat:@"%d",self.currentPage] forKey:@"index"];
-    NSMutableDictionary *search=[[NSMutableDictionary alloc]init];
-    [search setObject:@"2" forKey:@"xlValue"];
-    [params setObject:search forKey:@"search"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];

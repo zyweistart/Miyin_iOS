@@ -11,6 +11,7 @@
 @interface User : NSObject
 
 @property BOOL isLogin;
+@property NSMutableDictionary *info;
 
 + (User *) Instance;
 

@@ -21,9 +21,11 @@
 @property int requestCode;
 //是否为文件下载
 @property BOOL isFileDownload;
-//是否显示提示信息
+//是否显示等待信息框
 @property BOOL isShowMessage;
-//请求时的提示信息
+//多文件上传数据提交
+@property BOOL isMultipartFormDataSubmit;
+//等待信息框的提示信息
 @property (strong,nonatomic) NSString *message;
 //当前请求的控制器
 @property (strong,nonatomic) UIViewController *controller;

@@ -68,8 +68,8 @@
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"9" forKey:@"Id"];
-    [params setObject:[NSString stringWithFormat:@"%d",self.currentPage] forKey:@"index"];
+    [params setObject:@"1" forKey:@"Id"];
+    [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]] forKey:@"index"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];

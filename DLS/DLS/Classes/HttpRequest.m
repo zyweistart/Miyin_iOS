@@ -10,6 +10,18 @@
     NSMutableData *_data;
     long long downloadFileSize;
 }
+
+- (id)init
+{
+    self=[super init];
+    if(self){
+        self.isShowMessage=NO;
+        self.isFileDownload=NO;
+        self.isMultipartFormDataSubmit=NO;
+    }
+    return self;
+}
+
 //是否已连接网络
 + (BOOL)isNetworkConnection
 {
@@ -25,7 +37,6 @@
 - (void)handle:(NSString*)action requestParams:(NSMutableDictionary*)params
 {
     if ([HttpRequest isNetworkConnection]) {
-        NSString *bodyContent=[[NSString alloc] initWithData:[Common toJSONData:params] encoding:NSUTF8StringEncoding];
         //时间戳;
 //        NSString *timestamp=[NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]*1000];
         NSString *timestamp=@"1426145110208";
@@ -45,14 +56,55 @@
         request.HTTPMethod = @"POST";
         // 60秒请求超时
         request.timeoutInterval = 60;
-        // 对字符串进行编码后转成NSData对象
-        NSData *data = [bodyContent dataUsingEncoding:NSUTF8StringEncoding];
-        // 设置请求头信息-请求体长度
-//        [request setValue:[NSString stringWithFormat:@"%ld", data.length] forHTTPHeaderField:@"Content-Length"];
-        // 设置请求头信息-请求数据类型
-//        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-        // 设置请求主体
-        request.HTTPBody = data;
+        
+        if(self.isMultipartFormDataSubmit){
+            //主体数据POST提交
+            
+            NSStringEncoding gbkEncoding =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+            
+            NSString *boundary=@"AaB03x";
+            
+            // post body
+            NSMutableData *body = [NSMutableData data];
+            
+            // add params (all params are strings)
+            for (NSString *p in params) {
+                id data=[params objectForKey:p];
+                if(![data isKindOfClass:[NSData class]]){
+                    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:gbkEncoding]];
+                    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", [p stringByAddingPercentEscapesUsingEncoding:gbkEncoding]] dataUsingEncoding:gbkEncoding]];
+                    [body appendData:[[NSString stringWithFormat:@"%@\r\n", data] dataUsingEncoding:gbkEncoding]];
+                }
+            }
+            // add file data
+            for (NSString *p in params) {
+                id data=[params objectForKey:p];
+                if([data isKindOfClass:[NSData class]]){
+                    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:gbkEncoding]];
+                    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@.png\"\r\n",p,p] dataUsingEncoding:gbkEncoding]];
+                    [body appendData:[@"Content-Type: image/png\r\n\r\n" dataUsingEncoding:gbkEncoding]];
+                    [body appendData:data];
+                    [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:gbkEncoding]];
+                }
+            }
+            [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:gbkEncoding]];
+            
+//            NSLog(@"%@",[[NSString alloc] initWithData:body  encoding:gbkEncoding]);
+            
+            [request setValue:[NSString stringWithFormat:@"multipart/form-data, boundary=%@",boundary] forHTTPHeaderField: @"Content-Type"];
+            
+            // set the content-length
+            [request setValue:[NSString stringWithFormat:@"%d",[body length]] forHTTPHeaderField:@"Content-Length"];
+            
+            [request setHTTPBody:body];
+            
+        }else{
+            NSString *bodyContent=[[NSString alloc] initWithData:[Common toJSONData:params] encoding:NSUTF8StringEncoding];
+            // 对字符串进行编码后转成NSData对象
+            NSData *data = [bodyContent dataUsingEncoding:NSUTF8StringEncoding];
+            // 设置请求主体
+            request.HTTPBody = data;
+        }
         // 初始化一个连接
         NSURLConnection *conn = [NSURLConnection connectionWithRequest:request delegate:self];
         // 开始一个异步请求

@@ -30,7 +30,6 @@
 		C9610DE01AB15A0200CA8218 /* EquipmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9610DDF1AB15A0200CA8218 /* EquipmentViewController.m */; };
 		C96F13A81AB28D5500A500C1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C96F13A71AB28D5500A500C1 /* User.m */; };
 		C99A055E1AAC24F3004E5490 /* ProjectACell.m in Sources */ = {isa = PBXBuildFile; fileRef = C99A055D1AAC24F3004E5490 /* ProjectACell.m */; };
-		C99B9F7D1AB12338004CEF6D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99B9F7C1AB12338004CEF6D /* MainViewController.m */; };
 		C99E82FD1AA997B20087D2F4 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E82ED1AA997B20087D2F4 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C99E82FE1AA997B20087D2F4 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E82EF1AA997B20087D2F4 /* LoadMoreTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C99E82FF1AA997B20087D2F4 /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E82F11AA997B20087D2F4 /* MessageInterceptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -158,8 +157,6 @@
 		C96F13A71AB28D5500A500C1 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		C99A055C1AAC24F3004E5490 /* ProjectACell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectACell.h; sourceTree = "<group>"; };
 		C99A055D1AAC24F3004E5490 /* ProjectACell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectACell.m; sourceTree = "<group>"; };
-		C99B9F7B1AB12338004CEF6D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		C99B9F7C1AB12338004CEF6D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		C99E82EC1AA997B20087D2F4 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		C99E82ED1AA997B20087D2F4 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		C99E82EE1AA997B20087D2F4 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -380,8 +377,6 @@
 				C9DD46BC1AA8270F004AEAB7 /* User */,
 				C922D0921AA444ED00F6DBA1 /* VIPViewController.h */,
 				C922D0931AA444ED00F6DBA1 /* VIPViewController.m */,
-				C99B9F7B1AB12338004CEF6D /* MainViewController.h */,
-				C99B9F7C1AB12338004CEF6D /* MainViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -785,7 +780,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9AFBB8D1AAD8129008C7AE9 /* MessageDetailViewController.m in Sources */,
-				C99B9F7D1AB12338004CEF6D /* MainViewController.m in Sources */,
 				C9E1FEE71AA555F000720AAC /* Reachability.m in Sources */,
 				C9A82DDB1AB027C30063DF9B /* HomeCategoryView.m in Sources */,
 				C99E82FF1AA997B20087D2F4 /* MessageInterceptor.m in Sources */,
