@@ -24,7 +24,13 @@
 
 + (void)alert:(NSString*)message
 {
-    
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"信息"
+                          message:message
+                          delegate:nil
+                          cancelButtonTitle:@"确定"
+                          otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 + (UIImage*)createImageWithColor:(UIColor*)color

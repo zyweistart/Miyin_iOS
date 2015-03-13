@@ -124,6 +124,9 @@
         Response *response=[Response toData:responseString];
         //成功标记
         [response setSuccessFlag:[@"0" isEqualToString:[response code]]];
+        if(![response successFlag]){
+            [Common alert:[response msg]];
+        }
         [_delegate requestFinishedByResponse:response requestCode:self.requestCode];
     }
     //隐藏下载进度条

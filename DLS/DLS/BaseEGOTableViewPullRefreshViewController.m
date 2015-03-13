@@ -137,7 +137,7 @@
         UIButton *noData=[[UIButton alloc]initWithFrame:CGRectMake1(110, self.tableView.bounds.size.height/2-40, 100, 80)];
         [noData.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [noData setTitle:@"暂无数据" forImage:[UIImage imageNamed:@"nocollection"]];
-        [noData setTitleColor:[UIColor colorWithRed:(93/255.0) green:(93/255.0) blue:(93/255.0) alpha:1] forState:UIControlStateNormal];
+        [noData setTitleColor:[UIColor colorWithRed:(140/255.0) green:(140/255.0) blue:(140/255.0) alpha:1] forState:UIControlStateNormal];
         [cell addSubview:noData];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
