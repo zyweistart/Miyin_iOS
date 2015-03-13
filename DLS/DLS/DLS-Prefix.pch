@@ -19,6 +19,7 @@
 #import "BaseViewController.h"
 #import "AppDelegate.h"
 #import "Common.h"
+#import "User.h"
 
 #ifdef TEST
 //测试环境定义的常量

@@ -199,6 +199,11 @@ static CGFloat kImageOriginHight = 220.f;
 {
     NSInteger section=[indexPath section];
     NSInteger row=[indexPath row];
+//    if(![[User Instance]isLogin]){
+//        [Common alert:@"请先登陆"];
+//        [self presentViewController:[[LoginViewController alloc]init]];
+//        return;
+//    }
     if(section==0){
         if(row==0){
             [self presentViewController:[[MyCZViewController alloc]init]];

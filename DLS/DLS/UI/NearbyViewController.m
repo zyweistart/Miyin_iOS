@@ -104,15 +104,7 @@
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation {
-    if([annotation isKindOfClass:[MKUserLocation class]]){
-        //我的位置
-        static NSString* CUserLocation = @"CUserLocation";
-        MKPinAnnotationView* annView = (MKPinAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:CUserLocation];
-        if(nil == annView) {
-            annView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:CUserLocation];
-        }
-        return annView;
-    }else{
+    if([annotation isKindOfClass:[CustomAnnotation class]]){
         //附近点
         static NSString *CPinIdentifier = @"Pin";
         CustomAnnotation *myAnnotation = (CustomAnnotation*)annotation;
@@ -129,6 +121,8 @@
         [annView setEnabled:YES];
         [annView setCanShowCallout:YES];
         return annView;
+    }else{
+        return nil;
     }
 }
 
@@ -145,7 +139,7 @@
 - (void)goRefreshMapData
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"9" forKey:@"Id"];
+    [params setObject:@"1" forKey:@"Id"];
     [params setObject:@"1" forKey:@"index"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
@@ -164,8 +158,8 @@
         double longitude[9]={120.6018155523682,120.54001745666507,120.57194647277835,120.57537970031741,120.657433838501,120.58688101257327,120.65537390197757,120.44440206970218,120.5882543035889};
         for(int i=0;i<9;i++){
             CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude[i],longitude[i])];
-            annotation1.title = @"新能量e电工";
-            annotation1.subtitle = @"点击联系此电工";
+            annotation1.title = @"大力神出租";
+            annotation1.subtitle = @"点击联系此信息";
             [annotation1 setIndex:i];
             [self.mapView addAnnotation:annotation1];
         }
@@ -175,7 +169,7 @@
 - (void)onClickGoDetail:(UITapGestureRecognizer *)sender
 {
     NSInteger tag=[sender.view tag];
-    NSLog(@"tag=%d",tag);
+    NSLog(@"当前的tag=%d",tag);
 }
 
 //切换地图或列表

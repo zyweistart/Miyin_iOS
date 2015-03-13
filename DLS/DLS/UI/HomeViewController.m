@@ -213,6 +213,7 @@
         [cell.textLabel setFont:[UIFont systemFontOfSize:13]];
         [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
         cell.textLabel.text = @"继续拖动加载更多~";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if(currentButtonIndex==1){
             self.currentPage1=0;
         }else if(currentButtonIndex==2){
@@ -228,12 +229,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(currentButtonIndex==1){
-    }else if(currentButtonIndex==2){
-    }else if(currentButtonIndex==3){
-    }else{
+    if([[self dataItemArray]count]>0){
+        if(currentButtonIndex==1){
+        }else if(currentButtonIndex==2){
+        }else if(currentButtonIndex==3){
+        }else{
+        }
+        [self.navigationController pushViewController:[[NewsDetailViewController alloc]initWithDictionary:nil] animated:YES];
     }
-    [self.navigationController pushViewController:[[NewsDetailViewController alloc]initWithDictionary:nil] animated:YES];
 }
 
 - (void)switchCategory:(UIButton*)sender

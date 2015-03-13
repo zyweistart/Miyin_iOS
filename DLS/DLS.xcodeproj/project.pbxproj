@@ -28,6 +28,7 @@
 		C9610DDA1AB158C700CA8218 /* PublishRentalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9610DD91AB158C700CA8218 /* PublishRentalViewController.m */; };
 		C9610DDD1AB158E300CA8218 /* PublishRecruitmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9610DDC1AB158E300CA8218 /* PublishRecruitmentViewController.m */; };
 		C9610DE01AB15A0200CA8218 /* EquipmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9610DDF1AB15A0200CA8218 /* EquipmentViewController.m */; };
+		C96F13A81AB28D5500A500C1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C96F13A71AB28D5500A500C1 /* User.m */; };
 		C99A055E1AAC24F3004E5490 /* ProjectACell.m in Sources */ = {isa = PBXBuildFile; fileRef = C99A055D1AAC24F3004E5490 /* ProjectACell.m */; };
 		C99B9F7D1AB12338004CEF6D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99B9F7C1AB12338004CEF6D /* MainViewController.m */; };
 		C99E82FD1AA997B20087D2F4 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E82ED1AA997B20087D2F4 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -153,6 +154,8 @@
 		C9610DDC1AB158E300CA8218 /* PublishRecruitmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishRecruitmentViewController.m; sourceTree = "<group>"; };
 		C9610DDE1AB15A0200CA8218 /* EquipmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentViewController.h; sourceTree = "<group>"; };
 		C9610DDF1AB15A0200CA8218 /* EquipmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentViewController.m; sourceTree = "<group>"; };
+		C96F13A61AB28D5500A500C1 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		C96F13A71AB28D5500A500C1 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		C99A055C1AAC24F3004E5490 /* ProjectACell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectACell.h; sourceTree = "<group>"; };
 		C99A055D1AAC24F3004E5490 /* ProjectACell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectACell.m; sourceTree = "<group>"; };
 		C99B9F7B1AB12338004CEF6D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -331,6 +334,8 @@
 				C9125AA71AA9FA12001396FF /* Common.m */,
 				C90BC6951AAC6504001F9902 /* UIButton+TitleImage.h */,
 				C90BC6961AAC6504001F9902 /* UIButton+TitleImage.m */,
+				C96F13A61AB28D5500A500C1 /* User.h */,
+				C96F13A71AB28D5500A500C1 /* User.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -804,6 +809,7 @@
 				C9AFBB861AAD80BB008C7AE9 /* RecruitmentDetailViewController.m in Sources */,
 				C9D2B7521AA8966200CF750D /* ProjectCell.m in Sources */,
 				C9AFBB771AAD8039008C7AE9 /* RentalDetailViewController.m in Sources */,
+				C96F13A81AB28D5500A500C1 /* User.m in Sources */,
 				C9E1FEEA1AA555F000720AAC /* ATMHudView.m in Sources */,
 				C9D2B7451AA868BF00CF750D /* MyZPXXViewController.m in Sources */,
 				C9E1FEEC1AA555F000720AAC /* ATMSoundFX.m in Sources */,
