@@ -7,8 +7,8 @@
 //
 
 #import "MessageViewController.h"
-#import "ProjectBCell.h"
 #import "MessageDetailViewController.h"
+#import "MessageCell.h"
 
 @interface MessageViewController ()
 
@@ -44,7 +44,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
-        return 80;
+        return 65;
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
@@ -54,9 +54,9 @@
 {
     if([self.dataItemArray count]>0){
         static NSString *cellIdentifier = @"Cell";
-        ProjectBCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if(!cell) {
-            cell = [[ProjectBCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         [cell setData:[self.dataItemArray objectAtIndex:[indexPath row]]];
         return cell;

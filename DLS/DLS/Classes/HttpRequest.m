@@ -94,7 +94,7 @@
             [request setValue:[NSString stringWithFormat:@"multipart/form-data, boundary=%@",boundary] forHTTPHeaderField: @"Content-Type"];
             
             // set the content-length
-            [request setValue:[NSString stringWithFormat:@"%d",[body length]] forHTTPHeaderField:@"Content-Length"];
+            [request setValue:[NSString stringWithFormat:@"%ld",[body length]] forHTTPHeaderField:@"Content-Length"];
             
             [request setHTTPBody:body];
             

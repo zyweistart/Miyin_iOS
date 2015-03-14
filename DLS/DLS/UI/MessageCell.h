@@ -12,12 +12,7 @@
 
 @property UIImageView *image;
 @property UILabel *title;
-@property UILabel *address;
-@property UILabel *money;
-@property UILabel *status;
-@property UILabel *detail;
-
-- (void)setStatus:(NSString*)title Type:(int)type;
+@property UILabel *date;
 
 - (void)setData:(NSDictionary *)data;
 @end

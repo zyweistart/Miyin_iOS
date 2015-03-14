@@ -7,7 +7,7 @@
 //
 
 #import "CollectionViewController.h"
-#import "ProjectBCell.h"
+#import "CollectionCell.h"
 #import "MessageDetailViewController.h"
 
 @interface CollectionViewController ()
@@ -43,7 +43,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
-        return 80;
+        return 90;
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
@@ -53,9 +53,9 @@
 {
     if([self.dataItemArray count]>0){
         static NSString *cellIdentifier = @"Cell";
-        ProjectBCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        CollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if(!cell) {
-            cell = [[ProjectBCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell = [[CollectionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         [cell setData:[self.dataItemArray objectAtIndex:[indexPath row]]];
         return cell;
@@ -75,7 +75,7 @@
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"1" forKey:@"Id"];
-    [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]] forKey:@"index"];
+    [params setObject:[NSString stringWithFormat:@"%ld",[self currentPage]] forKey:@"index"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];
