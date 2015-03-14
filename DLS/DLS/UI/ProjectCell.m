@@ -69,7 +69,7 @@
 - (void)setData:(NSDictionary *)data
 {
     [self.image setImage:[UIImage imageNamed:@"category1"]];
-    self.title.text=[NSString stringWithFormat:@"%@",[data objectForKey:@"Name"]];
+    self.title.text=@"这是标题";
     self.address.text=@"萧山建设1路";
     self.money.text=@"40000元";
     [self setStatus:@"洽谈中" Type:1];

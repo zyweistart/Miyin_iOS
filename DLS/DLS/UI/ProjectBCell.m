@@ -41,8 +41,9 @@
 
 - (void)setData:(NSDictionary *)data
 {
-    NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,[data objectForKey:@"images"]];
-    [self.image setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default_image"]];
+//    NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,[data objectForKey:@"images"]];
+//    [self.image setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default_image"]];
+    [self.image setImage:[UIImage imageNamed:@"category1"]];
     self.title.text=@"履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天履带吊求租使用一天";
     self.money.text=@"￥4000";
 }

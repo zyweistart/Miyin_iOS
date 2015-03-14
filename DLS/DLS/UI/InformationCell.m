@@ -39,8 +39,9 @@
 
 - (void)setData:(NSDictionary *)data
 {
-    NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,[data objectForKey:@"images"]];
-    [self.image setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default_image"]];
+//    NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,[data objectForKey:@"images"]];
+//    [self.image setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default_image"]];
+    [self.image setImage:[UIImage imageNamed:@"category1"]];
     self.mainTitle.text=@"主标题";
     self.childTitle.text=@"这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题";
 }
