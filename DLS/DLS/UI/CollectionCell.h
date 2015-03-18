@@ -10,7 +10,7 @@
 
 @interface CollectionCell : UITableViewCell
 
-@property UIImageView *image;
+@property UIButton *more;
 @property UILabel *title;
 @property UILabel *content;
 

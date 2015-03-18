@@ -40,10 +40,50 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 25;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *mainView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 25)];
+    [mainView setBackgroundColor:[UIColor whiteColor]];
+    UILabel *title=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 250, 25)];
+    [title setFont:[UIFont systemFontOfSize:18]];
+    [title setTextColor:[UIColor blackColor]];
+    [title setTextAlignment:NSTextAlignmentLeft];
+    [mainView addSubview:title];
+    UIButton *more=[[UIButton alloc]initWithFrame:CGRectMake1(265, 0, 40, 25)];
+    [more setImage:[UIImage imageNamed:@"arrowdown"] forState:UIControlStateNormal];
+    [more addTarget:self action:@selector(more:) forControlEvents:UIControlEventTouchUpInside];
+    [mainView addSubview:more];
+    [title setText:@"jdlkjdls螺杆晒黑晒黑kjsl晒黑晒黑j"];
+    return mainView;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if([self.dataItemArray count]>0){
+        return [[self dataItemArray] count];
+    }else{
+        return 0;
+    }
+}
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if([self.dataItemArray count]>0){
+        return 1;
+    }else{
+        return [super tableView:tableView numberOfRowsInSection:section];
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
-        return 90;
+        return 65;
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
@@ -75,12 +115,17 @@
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"1" forKey:@"Id"];
-    [params setObject:[NSString stringWithFormat:@"%ld",[self currentPage]] forKey:@"index"];
+    [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]] forKey:@"index"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest handle:@"GetListALL" requestParams:params];
+}
+
+- (void)more:(id)sender
+{
+    NSLog(@"更多");
 }
 
 @end

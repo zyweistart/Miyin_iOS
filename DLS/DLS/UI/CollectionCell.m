@@ -17,28 +17,30 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
-        UIView *mainView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 90)];
-        [self addSubview:mainView];
-        self.image=[[UIImageView alloc]initWithFrame:CGRectMake1(285.f, 15.f, 10.f, 10.f)];
-        self.image.layer.cornerRadius = 5;
-        self.image.layer.masksToBounds = YES;
-        self.image.layer.borderWidth = 1.0;
-        self.image.layer.borderColor = [UIColor redColor].CGColor;
-        [self.image setBackgroundColor:[UIColor redColor]];
-        [mainView addSubview:self.image];
-        self.title=[[UILabel alloc]initWithFrame:CGRectMake1(10, 5, 250, 25)];
-        [self.title setFont:[UIFont systemFontOfSize:18]];
-        [self.title setTextColor:[UIColor blackColor]];
-        [self.title setTextAlignment:NSTextAlignmentLeft];
-        [mainView addSubview:self.title];
-        self.content=[[UILabel alloc]initWithFrame:CGRectMake1(10, 30, 300, 55)];
+//        UIView *mainView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 55)];
+//        [self addSubview:mainView];
+//        self.more=[[UIButton alloc]initWithFrame:CGRectMake1(265.f, 5.f, 40.f, 25.f)];
+//        [self.more setImage:[UIImage imageNamed:@"arrowdown"] forState:UIControlStateNormal];
+//        [self.more addTarget:self action:@selector(more:) forControlEvents:UIControlEventTouchUpInside];
+//        [mainView addSubview:self.more];
+//        self.title=[[UILabel alloc]initWithFrame:CGRectMake1(10, 5, 250, 25)];
+//        [self.title setFont:[UIFont systemFontOfSize:18]];
+//        [self.title setTextColor:[UIColor blackColor]];
+//        [self.title setTextAlignment:NSTextAlignmentLeft];
+//        [mainView addSubview:self.title];
+        self.content=[[UILabel alloc]initWithFrame:CGRectMake1(10, 5, 300, 55)];
         [self.content setFont:[UIFont systemFontOfSize:14]];
         [self.content setTextColor:CONTENTCOLOR];
         [self.content setTextAlignment:NSTextAlignmentLeft];
         [self.content setNumberOfLines:0];
-        [mainView addSubview:self.content];
+        [self addSubview:self.content];
     }
     return self;
+}
+
+- (void)more:(id)sender
+{
+    NSLog(@"更多");
 }
 
 - (void)setData:(NSDictionary *)data

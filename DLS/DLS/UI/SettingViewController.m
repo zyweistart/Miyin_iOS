@@ -100,13 +100,15 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1  reuseIdentifier: CMainCell];
     }
-    NSString *content=[[self.dataItemArray objectAtIndex:[indexPath section]]objectAtIndex:[indexPath row]];
+    NSInteger section=[indexPath section];
+    NSInteger row=[indexPath row];
+    NSString *content=[[self.dataItemArray objectAtIndex:section]objectAtIndex:row];
     [cell.imageView setImage:[UIImage imageNamed:content]];
     cell.textLabel.text = content;
-    if(([indexPath section]==1&&[indexPath row]==1)){
+    if((section==1&&row==1)){
         [cell.detailTextLabel setText:tmpv];
     }
-    if(!([indexPath section]==0&&[indexPath row]==0)){
+    if(!((section==0&&row==0)||(section==2&&row==2))){
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
     return cell;
@@ -153,6 +155,7 @@
 
 - (void)logout:(id)sender
 {
+    [[User Instance]setIsLogin:NO];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
