@@ -7,7 +7,10 @@
 //
 
 #import "BaseTableViewController.h"
+#import "SinglePickerView.h"
 
-@interface SettingViewController : BaseTableViewController
+@interface SettingViewController : BaseTableViewController<PickerViewDelegate>
+
+@property SinglePickerView *pv;
 
 @end

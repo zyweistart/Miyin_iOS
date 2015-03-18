@@ -7,10 +7,10 @@
     self=[super init];
     if(self){
         self.dataItemArray=[[NSMutableArray alloc]init];
-        [self.dataItemArray addObject:@"a1"];
-        [self.dataItemArray addObject:@"a2"];
-        [self.dataItemArray addObject:@"a3"];
-        [self.dataItemArray addObject:@"a4"];
+//        [self.dataItemArray addObject:@"a1"];
+//        [self.dataItemArray addObject:@"a2"];
+//        [self.dataItemArray addObject:@"a3"];
+//        [self.dataItemArray addObject:@"a4"];
         self.currentPage=0;
     }
     return self;

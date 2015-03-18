@@ -23,7 +23,7 @@
 
 #ifdef TEST
 //测试环境定义的常量
-#define HTTP_URL @"http://app.dlsjijian.com"
+#define HTTP_URL @"http://www.dlsjijian.com"
 #define ACCESSKEY @"cce0185ae7fdd00ca2f64b224b410666"
 #else
 //正式环境定义的常量

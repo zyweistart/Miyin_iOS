@@ -46,6 +46,7 @@
 		C99E830B1AA9983D0087D2F4 /* BaseEGOTableViewPullRefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E830A1AA9983D0087D2F4 /* BaseEGOTableViewPullRefreshViewController.m */; };
 		C9A82DD81AB0268E0063DF9B /* HomeBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A82DD71AB0268E0063DF9B /* HomeBannerView.m */; };
 		C9A82DDB1AB027C30063DF9B /* HomeCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A82DDA1AB027C30063DF9B /* HomeCategoryView.m */; };
+		C9AF9BEC1AB9231600482049 /* SinglePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AF9BEB1AB9231600482049 /* SinglePickerView.m */; };
 		C9AFBB691AAD458C008C7AE9 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AFBB681AAD458C008C7AE9 /* ImageIO.framework */; };
 		C9AFBB701AAD4941008C7AE9 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AFBB6F1AAD4941008C7AE9 /* SDWebImage.framework */; };
 		C9AFBB731AAD4B80008C7AE9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AFBB721AAD4B80008C7AE9 /* CoreGraphics.framework */; };
@@ -182,6 +183,8 @@
 		C9A82DD71AB0268E0063DF9B /* HomeBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerView.m; sourceTree = "<group>"; };
 		C9A82DD91AB027C30063DF9B /* HomeCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoryView.h; sourceTree = "<group>"; };
 		C9A82DDA1AB027C30063DF9B /* HomeCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoryView.m; sourceTree = "<group>"; };
+		C9AF9BEA1AB9231600482049 /* SinglePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePickerView.h; sourceTree = "<group>"; };
+		C9AF9BEB1AB9231600482049 /* SinglePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePickerView.m; sourceTree = "<group>"; };
 		C9AFBB681AAD458C008C7AE9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		C9AFBB6F1AAD4941008C7AE9 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		C9AFBB721AAD4B80008C7AE9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -395,6 +398,8 @@
 				C9A82DD71AB0268E0063DF9B /* HomeBannerView.m */,
 				C9A82DD91AB027C30063DF9B /* HomeCategoryView.h */,
 				C9A82DDA1AB027C30063DF9B /* HomeCategoryView.m */,
+				C9AF9BEA1AB9231600482049 /* SinglePickerView.h */,
+				C9AF9BEB1AB9231600482049 /* SinglePickerView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -814,6 +819,7 @@
 				C9E1FEEC1AA555F000720AAC /* ATMSoundFX.m in Sources */,
 				C9DD46BF1AA8271E004AEAB7 /* RegisterViewController.m in Sources */,
 				C9F11F4B1AB2760A0014E462 /* CollectionCell.m in Sources */,
+				C9AF9BEC1AB9231600482049 /* SinglePickerView.m in Sources */,
 				C9F11F541AB27AC10014E462 /* AboutUsViewController.m in Sources */,
 				C9F11F481AB275EB0014E462 /* MessageCell.m in Sources */,
 				C90699B71AAE83C700E32C54 /* IntegralViewController.m in Sources */,

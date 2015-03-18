@@ -19,7 +19,10 @@
 
 @end
 
-@implementation SettingViewController
+@implementation SettingViewController{
+    NSArray *searchData;
+    NSString *tmpv;
+}
 
 - (id)init{
     self=[super init];
@@ -55,6 +58,12 @@
         [bLogout addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
         [logoutView addSubview:bLogout];
         [self.tableView setTableFooterView:logoutView];
+        
+        searchData=[NSArray arrayWithObjects:@"1KM",@"2KM",@"3KM",@"4KM",@"5KM", nil];
+        self.pv=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData];
+        [self.pv setDelegate:self];
+        [self.view addSubview:self.pv];
+        tmpv=@"4KM";
     }
     return self;
 }
@@ -95,7 +104,7 @@
     [cell.imageView setImage:[UIImage imageNamed:content]];
     cell.textLabel.text = content;
     if(([indexPath section]==1&&[indexPath row]==1)){
-        [cell.detailTextLabel setText:@"4KM"];
+        [cell.detailTextLabel setText:tmpv];
     }
     if(!([indexPath section]==0&&[indexPath row]==0)){
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
@@ -118,7 +127,12 @@
             [self.navigationController pushViewController:[[ModifyPasswordViewController alloc]init] animated:YES];
         }else if(row==1){
             //搜索范围
-            NSLog(@"搜索范围");
+            if(self.pv.hidden){
+                [self.pv showView];
+                [self.pv.picker selectRow:[searchData indexOfObject:tmpv] inComponent:0 animated:YES];
+            }else{
+                [self.pv hiddenView];
+            }
         }
     }else if(section==2){
         if(row==0){
@@ -140,6 +154,12 @@
 - (void)logout:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)pickerViewDone:(int)code
+{
+    tmpv=[self.pv.pickerArray objectAtIndex:[self.pv.picker selectedRowInComponent:0]];
+    [self.tableView reloadData];
 }
 
 @end
