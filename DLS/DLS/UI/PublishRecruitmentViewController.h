@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "SinglePickerView.h"
 
-@interface PublishRecruitmentViewController : BaseViewController
+@interface PublishRecruitmentViewController : BaseViewController<PickerViewDelegate>
+
+@property SinglePickerView *pv1,*pv2,*pv3,*pv4,*pv5,*pv6;
 
 @end

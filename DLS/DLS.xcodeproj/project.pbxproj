@@ -101,6 +101,7 @@
 		C9F11F511AB27AB20014E462 /* ModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F11F501AB27AB20014E462 /* ModifyPasswordViewController.m */; };
 		C9F11F541AB27AC10014E462 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F11F531AB27AC10014E462 /* AboutUsViewController.m */; };
 		C9F11F571AB27AD70014E462 /* ClauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F11F561AB27AD70014E462 /* ClauseViewController.m */; };
+		C9F24D061AB9A1DB00D23C05 /* ButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F24D051AB9A1DB00D23C05 /* ButtonView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -288,6 +289,8 @@
 		C9F11F531AB27AC10014E462 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		C9F11F551AB27AD70014E462 /* ClauseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClauseViewController.h; sourceTree = "<group>"; };
 		C9F11F561AB27AD70014E462 /* ClauseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClauseViewController.m; sourceTree = "<group>"; };
+		C9F24D041AB9A1DB00D23C05 /* ButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonView.h; sourceTree = "<group>"; };
+		C9F24D051AB9A1DB00D23C05 /* ButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -400,6 +403,8 @@
 				C9A82DDA1AB027C30063DF9B /* HomeCategoryView.m */,
 				C9AF9BEA1AB9231600482049 /* SinglePickerView.h */,
 				C9AF9BEB1AB9231600482049 /* SinglePickerView.m */,
+				C9F24D041AB9A1DB00D23C05 /* ButtonView.h */,
+				C9F24D051AB9A1DB00D23C05 /* ButtonView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -790,6 +795,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9AFBB8D1AAD8129008C7AE9 /* MessageDetailViewController.m in Sources */,
+				C9F24D061AB9A1DB00D23C05 /* ButtonView.m in Sources */,
 				C9E1FEE71AA555F000720AAC /* Reachability.m in Sources */,
 				C9A82DDB1AB027C30063DF9B /* HomeCategoryView.m in Sources */,
 				C99E82FF1AA997B20087D2F4 /* MessageInterceptor.m in Sources */,

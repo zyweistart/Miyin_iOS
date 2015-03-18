@@ -48,4 +48,7 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 
 #define RESULTCODE_LOGIN 500
 
+#define BUTTONNORMALCOLOR [UIColor colorWithRed:(57/255.0) green:(87/255.0) blue:(207/255.0) alpha:1]
+#define BUTTONPRESENDCOLOR [UIColor colorWithRed:(107/255.0) green:(124/255.0) blue:(194/255.0) alpha:1]
+
 #endif
