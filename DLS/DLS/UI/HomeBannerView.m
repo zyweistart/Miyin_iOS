@@ -9,6 +9,7 @@
 #import "HomeBannerView.h"
 #import "UIButton+TitleImage.h"
 #import "ListViewController.h"
+#import "VIPViewController.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 
@@ -60,6 +61,11 @@
 }
 
 - (void)goToMain:(UIButton*)sender {
-    [self.controller.navigationController pushViewController:[[ListViewController alloc]initWithTitle:[data objectForKey:[NSString stringWithFormat:@"%d",sender.tag]] Type:sender.tag] animated:YES];
+    int tag=sender.tag;
+    if(tag==1||tag==2||tag==5||tag==6){
+        [self.controller.navigationController pushViewController:[[VIPViewController alloc]initWithType:tag] animated:YES];
+    }else{
+        [self.controller.navigationController pushViewController:[[ListViewController alloc]initWithTitle:[data objectForKey:[NSString stringWithFormat:@"%d",tag]] Type:sender.tag] animated:YES];
+    }
 }
 @end

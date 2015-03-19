@@ -14,4 +14,6 @@
 
 @property SinglePickerView *pv1,*pv2,*pv3,*pv4;
 
+- (id)initWithType:(int)type;
+
 @end

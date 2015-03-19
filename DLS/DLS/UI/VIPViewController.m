@@ -29,16 +29,6 @@
         SearchView *searchView=[[SearchView alloc]initWithFrame:CGRectMake1(0, 0, 250, 30)];
         [searchView setController:self];
         [self navigationItem].titleView=searchView;
-        //右消息按钮
-        UIButton *btnMap = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btnMap setBackgroundImage:[UIImage imageNamed:@"map"]forState:UIControlStateNormal];
-        [btnMap addTarget:self action:@selector(goMap:) forControlEvents:UIControlEventTouchUpInside];
-        btnMap.frame = CGRectMake(0, 0, 24, 20);
-        UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
-                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                                target:nil action:nil];
-        negativeSpacerRight.width = -5;
-        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:btnMap], nil];
         //分类
         categoryView=[[CategoryView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40) Title1:@"状态" Titlte2:@"类型" Title3:@"吨位" Title4:@"距离"];
         [categoryView setDelegate:self];
@@ -47,7 +37,7 @@
         [self.tableView setTableHeaderView:categoryView];
         
         searchData1=[NSArray arrayWithObjects:@"汽车吊",@"履带吊", nil];
-        searchData2=[NSArray arrayWithObjects:@"出租",@"求租", nil];
+        searchData2=[NSArray arrayWithObjects:@"求租",@"出租", nil];
         searchData3=[NSArray arrayWithObjects:@"8吨",@"12吨",@"20吨",@"25吨",@"30吨", nil];
         searchData4=[NSArray arrayWithObjects:@"1KM",@"2KM",@"3KM",@"4KM",@"5KM", nil];
         
@@ -70,6 +60,33 @@
         [self.pv4 setCode:4];
         [self.pv4 setDelegate:self];
         [self.view addSubview:self.pv4];
+        
+    }
+    return self;
+}
+
+- (id)initWithType:(int)type
+{
+    self=[self init];
+    if(self){
+        if(type==1||type==5){
+            //汽车吊求租汽车吊出租
+            [self.pv1.picker selectRow:0 inComponent:0 animated:YES];
+            [self pickerViewDone:1];
+        }else if(type==2||type==6){
+            //履带吊求租，履带吊出租
+            [self.pv1.picker selectRow:1 inComponent:0 animated:YES];
+            [self pickerViewDone:1];
+        }
+        if(type==1||type==2){
+            //汽车吊求租,履带吊求租
+            [self.pv2.picker selectRow:0 inComponent:0 animated:YES];
+            [self pickerViewDone:2];
+        }else if(type==5||type==6){
+            //汽车吊出租,履带吊出租
+            [self.pv2.picker selectRow:1 inComponent:0 animated:YES];
+            [self pickerViewDone:2];
+        }
     }
     return self;
 }
@@ -113,7 +130,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
-        
+        NSLog(@"跳转");
     }
 }
 
@@ -128,11 +145,6 @@
         [self.pv4 setHidden:index==4?NO:YES];
     }
     return YES;
-}
-//地图
-- (void)goMap:(UIButton*)sender
-{
-    
 }
 
 - (void)loadHttp
