@@ -24,7 +24,6 @@
 {
     self=[super init];
     if(self){
-        [self setTitle:@"VIP"];
         //搜索框架
         SearchView *searchView=[[SearchView alloc]initWithFrame:CGRectMake1(0, 0, 250, 30)];
         [searchView setController:self];

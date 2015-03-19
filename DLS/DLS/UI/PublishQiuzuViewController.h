@@ -6,8 +6,11 @@
 //  Copyright (c) 2015 Start. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
+#import "SinglePickerView.h"
 
-@interface PublishQiuzuViewController : BaseViewController
+@interface PublishQiuzuViewController : BaseTableViewController<PickerViewDelegate,UITextFieldDelegate,UITextViewDelegate>
+
+@property SinglePickerView *pv1,*pv2;
 
 @end

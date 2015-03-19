@@ -32,7 +32,7 @@
         [self.view setBackgroundColor:BGCOLOR];
         scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        scrollFrame.contentSize=CGSizeMake(320,1500);
+        scrollFrame.contentSize=CGSizeMake(320,710);
         [self.view addSubview:scrollFrame];
         
         lblJobName=[self addFrameType:10 Title:@"职位名称" Name:@"请选择" Tag:1];
@@ -208,25 +208,47 @@
     [self.pv6 setHidden:tag==6?NO:YES];
 }
 
-#pragma mark - UITextViewDelegate
+#pragma mark - UITextViewDelegate UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    CGPoint origin = textField.frame.origin;
+    CGPoint point = [textField.superview convertPoint:origin toView:scrollFrame];
+    float navBarHeight = self.navigationController.navigationBar.frame.size.height;
+    CGPoint offset = scrollFrame.contentOffset;
+    offset.y = (point.y - navBarHeight-40);
+    [scrollFrame setContentOffset:offset animated:YES];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    CGPoint origin = textView.frame.origin;
+    CGPoint point = [textView.superview convertPoint:origin toView:scrollFrame];
+    float navBarHeight = self.navigationController.navigationBar.frame.size.height;
+    CGPoint offset = scrollFrame.contentOffset;
+    offset.y = (point.y - navBarHeight-40);
+    [scrollFrame setContentOffset:offset animated:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+    [textField resignFirstResponder];
+    [scrollFrame setContentOffset:CGPointMake(0, 0) animated:YES];
+    return YES;
+}
 
 - (BOOL)textView:(UITextView*)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*) text
 {
     if([text isEqualToString:@"\n"]){
         [textView resignFirstResponder];
+        [scrollFrame setContentOffset:CGPointMake(0, 0) animated:YES];
         return NO;
     }else{
         return YES;
     }
 }
 
-#pragma mark - UITextFieldDelegate
 
-- (BOOL)textFieldShouldReturn:(UITextField*)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
 
 - (void)hideKeyBoard
 {
