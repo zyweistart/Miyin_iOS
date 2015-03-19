@@ -7,31 +7,39 @@
 //
 
 #import "SinglePickerView.h"
+#define BGCOLOR [UIColor colorWithRed:(55/255.0) green:(55/255.0) blue:(55/255.0) alpha:0.5]
 
 @implementation SinglePickerView
 
 - (id)initWithFrame:(CGRect)rect WithArray:(NSArray*)array{
     self=[super initWithFrame:rect];
     if(self){
-        [self setBackgroundColor:[UIColor whiteColor]];
+        [self setBackgroundColor:BGCOLOR];
         
         self.pickerArray=array;
         
         self.toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake1(0, 0, 320, 44)];
         self.toolBar.barStyle = UIBarStyleDefault;
         [self.toolBar sizeToFit];
+        UIBarButtonItem *btnCancel = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(cancel:)];
         UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         UIBarButtonItem *btnDone = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
-        NSArray *barItems=[NSArray arrayWithObjects:flexibleSpace,btnDone,nil];
+        NSArray *barItems=[NSArray arrayWithObjects:btnCancel,flexibleSpace,btnDone,nil];
         [self.toolBar setItems:barItems animated:YES];
         [self addSubview:self.toolBar];
         
         self.picker=[[UIPickerView alloc]initWithFrame:CGRectMake1(0, 44, 320, 216)];
+        [self.picker setBackgroundColor:[UIColor whiteColor]];
         [self.picker setShowsSelectionIndicator:YES];
         [self.picker setDelegate:self];
         [self.picker setDataSource:self];
         [self addSubview:self.picker];
         [self hiddenView];
+        
+        [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        
+        [self setUserInteractionEnabled:YES];
+        [self addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(cancel:)]];
     }
     return self;
 }
@@ -44,6 +52,12 @@
 - (void)hiddenView
 {
     [self setHidden:YES];
+}
+
+- (void)cancel:(id)sender
+{
+//    [self.delegate pickerViewCancel:self.code];
+    [self hiddenView];
 }
 
 - (void)done:(id)sender

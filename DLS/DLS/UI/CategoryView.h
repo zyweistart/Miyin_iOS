@@ -16,6 +16,10 @@
 
 @interface CategoryView : UIView
 
+@property UIButton *button1;
+@property UIButton *button2;
+@property UIButton *button3;
+@property UIButton *button4;
 @property long long currentIndex;
 @property NSObject<CategoryViewDelegate> *delegate;
 

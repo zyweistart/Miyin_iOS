@@ -8,7 +8,10 @@
 #import "BaseEGOTableViewPullRefreshViewController.h"
 #import "SearchView.h"
 #import "CategoryView.h"
+#import "SinglePickerView.h"
 
-@interface VIPViewController : BaseEGOTableViewPullRefreshViewController<CategoryViewDelegate>
+@interface VIPViewController : BaseEGOTableViewPullRefreshViewController<CategoryViewDelegate,PickerViewDelegate>
+
+@property SinglePickerView *pv1,*pv2,*pv3,*pv4;
 
 @end
