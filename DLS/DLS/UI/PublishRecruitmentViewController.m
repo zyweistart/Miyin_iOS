@@ -18,8 +18,11 @@
 
 @implementation PublishRecruitmentViewController{
     UIScrollView *scrollFrame;
+    NSInteger pvv1,pvv2,pvv3,pvv4,pvv5,pvv6;
     NSArray *searchData1,*searchData2,*searchData3,*searchData4,*searchData5,*searchData6;
     UILabel *lblJobName,*lblJobType,*lblJobNumber,*lblJobWage,*lblJobWorkYear,*lblJobMoney;
+    UITextView *tvRemark;
+    UITextField *tfContact,*tfPhone,*tfEmail,*tfAddress;
 }
 
 - (id)init{
@@ -28,7 +31,8 @@
         [self setTitle:@"发布招聘"];
         [self.view setBackgroundColor:BGCOLOR];
         scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
-        scrollFrame.contentSize=CGSizeMake(320,800);
+        [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        scrollFrame.contentSize=CGSizeMake(320,1500);
         [self.view addSubview:scrollFrame];
         
         lblJobName=[self addFrameType:10 Title:@"职位名称" Name:@"请选择" Tag:1];
@@ -41,22 +45,22 @@
         UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0,310,320,140)];
         [frame setBackgroundColor:[UIColor whiteColor]];
         [scrollFrame addSubview:frame];
-        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 100, 40)];
+        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 100, 30)];
         [lbl setText:@"任职要求"];
         [lbl setTextColor:TITLECOLOR];
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextAlignment:NSTextAlignmentLeft];
         [frame addSubview:lbl];
-        UITextField *tfContent=[[UITextField alloc]initWithFrame:CGRectMake1(10, 40, 300, 100)];
-        [tfContent setTextColor:TITLECOLOR];
-        [tfContent setFont:[UIFont systemFontOfSize:14]];
-        [tfContent setTextAlignment:NSTextAlignmentRight];
-        [frame addSubview:tfContent];
+        tvRemark=[[UITextView alloc]initWithFrame:CGRectMake1(10, 30, 300, 105)];
+        [tvRemark setTextColor:TITLECOLOR];
+        [tvRemark setDelegate:self];
+        [tvRemark setFont:[UIFont systemFontOfSize:14]];
+        [frame addSubview:tvRemark];
         
-        [self addFrameTypeTextField:460 Title:@"职位联系人"];
-        [self addFrameTypeTextField:510 Title:@"联系电话"];
-        [self addFrameTypeTextField:560 Title:@"简历接收邮箱"];
-        [self addFrameTypeTextField:610 Title:@"工作地址"];
+        tfContact=[self addFrameTypeTextField:460 Title:@"职位联系人"];
+        tfPhone=[self addFrameTypeTextField:510 Title:@"联系电话"];
+        tfEmail=[self addFrameTypeTextField:560 Title:@"简历接收邮箱"];
+        tfAddress=[self addFrameTypeTextField:610 Title:@"工作地址"];
         //发布
         ButtonView *button=[[ButtonView alloc]initWithFrame:CGRectMake1(10, 660, 300, 40) Name:@"发布"];
         [button addTarget:self action:@selector(publish:) forControlEvents:UIControlEventTouchUpInside];
@@ -64,10 +68,10 @@
         
         searchData1=[NSArray arrayWithObjects:@"1KM",@"2KM",@"3KM",@"4KM",@"5KM", nil];
         searchData2=[NSArray arrayWithObjects:@"2KM",@"2KM",@"3KM",@"4KM",@"5KM", nil];
-        searchData3=[NSArray arrayWithObjects:@"3KM",@"2KM",@"3KM",@"4KM",@"5KM", nil];
-        searchData4=[NSArray arrayWithObjects:@"4KM",@"2KM",@"3KM",@"4KM",@"5KM", nil];
-        searchData5=[NSArray arrayWithObjects:@"5KM",@"2KM",@"3KM",@"4KM",@"5KM", nil];
-        searchData6=[NSArray arrayWithObjects:@"6KM",@"2KM",@"3KM",@"4KM",@"5KM", nil];
+        searchData3=[NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"若干", nil];
+        searchData4=[NSArray arrayWithObjects:@"小学",@"高中",@"大专",@"本科",@"硕士",@"博士",@"不限", nil];
+        searchData5=[NSArray arrayWithObjects:@"1年~2年",@"2年~3年",@"3年以上",@"不限", nil];
+        searchData6=[NSArray arrayWithObjects:@"6KM",@"2KM",@"3KM",@"4KM",@"面试", nil];
         
         self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData1];
         [self.pv1 setCode:1];
@@ -139,7 +143,8 @@
     [lbl setFont:[UIFont systemFontOfSize:14]];
     [lbl setTextAlignment:NSTextAlignmentLeft];
     [frame addSubview:lbl];
-    UITextField *tfContent=[[UITextField alloc]initWithFrame:CGRectMake1(200, 0, 90, 40)];
+    UITextField *tfContent=[[UITextField alloc]initWithFrame:CGRectMake1(150, 0, 140, 40)];
+    [tfContent setDelegate:self];
     [tfContent setTextColor:TITLECOLOR];
     [tfContent setFont:[UIFont systemFontOfSize:14]];
     [tfContent setTextAlignment:NSTextAlignmentRight];
@@ -150,35 +155,47 @@
 - (void)pickerViewDone:(int)code
 {
     if(code==1){
-        NSString *value=[self.pv1.pickerArray objectAtIndex:[self.pv1.picker selectedRowInComponent:0]];
+        pvv1=[self.pv1.picker selectedRowInComponent:0];
+        NSString *value=[self.pv1.pickerArray objectAtIndex:pvv1];
         [lblJobName setText:value];
     }else if(code==2){
-        NSString *value=[self.pv2.pickerArray objectAtIndex:[self.pv2.picker selectedRowInComponent:0]];
+        pvv2=[self.pv2.picker selectedRowInComponent:0];
+        NSString *value=[self.pv2.pickerArray objectAtIndex:pvv2];
         [lblJobType setText:value];
     }else if(code==3){
-        NSString *value=[self.pv3.pickerArray objectAtIndex:[self.pv3.picker selectedRowInComponent:0]];
+        pvv3=[self.pv3.picker selectedRowInComponent:0];
+        NSString *value=[self.pv3.pickerArray objectAtIndex:pvv3];
         [lblJobNumber setText:value];
     }else if(code==4){
-        NSString *value=[self.pv4.pickerArray objectAtIndex:[self.pv4.picker selectedRowInComponent:0]];
+        pvv4=[self.pv4.picker selectedRowInComponent:0];
+        NSString *value=[self.pv4.pickerArray objectAtIndex:pvv4];
         [lblJobWage setText:value];
     }else if(code==5){
-        NSString *value=[self.pv5.pickerArray objectAtIndex:[self.pv5.picker selectedRowInComponent:0]];
+        pvv5=[self.pv5.picker selectedRowInComponent:0];
+        NSString *value=[self.pv5.pickerArray objectAtIndex:pvv5];
         [lblJobWorkYear setText:value];
     }else if(code==6){
-        NSString *value=[self.pv6.pickerArray objectAtIndex:[self.pv6.picker selectedRowInComponent:0]];
+        pvv6=[self.pv6.picker selectedRowInComponent:0];
+        NSString *value=[self.pv6.pickerArray objectAtIndex:pvv6];
         [lblJobMoney setText:value];
     }
 }
 
 - (void)selectorType:(UITapGestureRecognizer*)sender
 {
+    [self hideKeyBoard];
     NSInteger tag=[sender.view tag];
     [self showPickerView:tag];
 }
 
 - (void)publish:(id)sender
 {
-    NSLog(@"发布");
+    [self hideKeyBoard];
+    NSString *remark=[tvRemark text];
+    NSString *phone=[tfPhone text];
+    NSString *contact=[tfContact text];
+    NSString *address=[tfAddress text];
+    NSLog(@"pvv1=%d\npvv2=%d\npvv3=%d\npvv4=%d\npvv5=%d\npvv5=%d\nremark=%@\nphone=%@\ncontact=%@\naddress=%@",pvv1,pvv2,pvv3,pvv4,pvv5,pvv6,remark,phone,contact,address);
 }
 
 - (void)showPickerView:(NSInteger)tag
@@ -189,6 +206,35 @@
     [self.pv4 setHidden:tag==4?NO:YES];
     [self.pv5 setHidden:tag==5?NO:YES];
     [self.pv6 setHidden:tag==6?NO:YES];
+}
+
+#pragma mark - UITextViewDelegate
+
+- (BOOL)textView:(UITextView*)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*) text
+{
+    if([text isEqualToString:@"\n"]){
+        [textView resignFirstResponder];
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)hideKeyBoard
+{
+    [tvRemark resignFirstResponder];
+    [tfPhone resignFirstResponder];
+    [tfContact resignFirstResponder];
+    [tfAddress resignFirstResponder];
+    [tfEmail resignFirstResponder];
 }
 
 @end

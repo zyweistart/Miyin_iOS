@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 #import "SinglePickerView.h"
 
-@interface PublishRecruitmentViewController : BaseViewController<PickerViewDelegate>
+@interface PublishRecruitmentViewController : BaseViewController<PickerViewDelegate,UITextFieldDelegate,UITextViewDelegate>
 
 @property SinglePickerView *pv1,*pv2,*pv3,*pv4,*pv5,*pv6;
 
