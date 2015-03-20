@@ -8,9 +8,14 @@
 
 #import "PublishQiuzuViewController.h"
 #import "ButtonView.h"
+#import "SB1Cell.h"
+
+#define KEYCELL @"KEY"
+#define VALUECELL @"VALUE"
 
 #define BGCOLOR [UIColor colorWithRed:(246/255.0) green:(246/255.0) blue:(246/255.0) alpha:1]
 #define TITLECOLOR [UIColor colorWithRed:(127/255.0) green:(127/255.0) blue:(127/255.0) alpha:1]
+#define LINEBGCOLOR [UIColor colorWithRed:(225/255.0) green:(225/255.0) blue:(225/255.0) alpha:1]
 
 @interface PublishQiuzuViewController ()
 
@@ -22,7 +27,7 @@
     NSArray *searchData1,*searchData2;
     UILabel *lblRentalType,*lblSBType;
     UITextView *tvRemark;
-    UITextField *tfTitle,*tfContact,*tfPhone,*tfAddress;
+    UITextField *tfTitle,*tfContact,*tfPhone,*tfAddress,*tfSBNumber;
 }
 
 - (id)init
@@ -31,6 +36,8 @@
     if(self){
         [self setTitle:@"发布求租"];
         [self.view setBackgroundColor:BGCOLOR];
+        pvv1=-1;
+        pvv2=-1;
         
         headView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 110)];
         [headView setBackgroundColor:BGCOLOR];
@@ -41,7 +48,37 @@
         //
         tfTitle=[self addFrameTypeTextField:60 Title:@"标题" Frame:headView];
         //
-        lblSBType=[self addFrameType:10 Title:@"设备类型" Name:@"请选择" Tag:2 Frame:footView];
+        UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0,10,320,40)];
+        [frame setBackgroundColor:[UIColor whiteColor]];
+        [footView addSubview:frame];
+        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 100, 40)];
+        [lbl setText:@"设备类型"];
+        [lbl setTextColor:TITLECOLOR];
+        [lbl setFont:[UIFont systemFontOfSize:14]];
+        [lbl setTextAlignment:NSTextAlignmentLeft];
+        [frame addSubview:lbl];
+        lblSBType=[[UILabel alloc]initWithFrame:CGRectMake1(120, 0, 70, 40)];
+        [lblSBType setText:@"请选择"];
+        [lblSBType setTextColor:TITLECOLOR];
+        [lblSBType setFont:[UIFont systemFontOfSize:14]];
+        [lblSBType setTextAlignment:NSTextAlignmentRight];
+        [lblSBType setTag:2];
+        [lblSBType setUserInteractionEnabled:YES];
+        [lblSBType addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectorType:)]];
+        [frame addSubview:lblSBType];
+        UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(200, 11, 9, 18)];
+        [image setImage:[UIImage imageNamed:@"arrowright"]];
+        [frame addSubview:image];
+        UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(219, 0, 1, 40)];
+        [line setBackgroundColor:LINEBGCOLOR];
+        [frame addSubview:line];
+        tfSBNumber=[[UITextField alloc]initWithFrame:CGRectMake1(220, 0, 90, 40)];
+        [tfSBNumber setDelegate:self];
+        [tfSBNumber setPlaceholder:@"需要的数量"];
+        [tfSBNumber setTextColor:TITLECOLOR];
+        [tfSBNumber setFont:[UIFont systemFontOfSize:14]];
+        [tfSBNumber setTextAlignment:NSTextAlignmentCenter];
+        [frame addSubview:tfSBNumber];
         //添加
         ButtonView *buttonAdd=[[ButtonView alloc]initWithFrame:CGRectMake1(10, 60, 300, 40) Name:@"再添加设备"];
         [buttonAdd addTarget:self action:@selector(add:) forControlEvents:UIControlEventTouchUpInside];
@@ -55,10 +92,10 @@
         //
         tfPhone=[self addFrameTypeTextField:260 Title:@"电话" Frame:footView];
         //备注
-        UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0,310,320,140)];
+        frame=[[UIView alloc]initWithFrame:CGRectMake1(0,310,320,140)];
         [frame setBackgroundColor:[UIColor whiteColor]];
         [footView addSubview:frame];
-        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 100, 30)];
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 100, 30)];
         [lbl setText:@"备注"];
         [lbl setTextColor:TITLECOLOR];
         [lbl setFont:[UIFont systemFontOfSize:14]];
@@ -165,8 +202,23 @@
 
 - (void)add:(id)sender
 {
-    [self.dataItemArray addObject:@"1"];
+    [self hideKeyBoard];
+    if(pvv2==-1){
+        [Common alert:@"请选择设备类型"];
+        return;
+    }
+    NSString *number=[tfSBNumber text];
+    if([@"" isEqualToString:number]){
+        [Common alert:@"请输入设备数量"];
+        return;
+    }
+    NSString *value=[self.pv2.pickerArray objectAtIndex:pvv2];
+    [self.dataItemArray addObject:
+     [NSDictionary dictionaryWithObjectsAndKeys:value,KEYCELL,number,VALUECELL, nil]];
     [self.tableView reloadData];
+    pvv2=-1;
+    [lblSBType setText:@"请选择"];
+    [tfSBNumber setText:@""];
 }
 
 - (void)publish:(id)sender
@@ -187,6 +239,7 @@
 
 - (void)hideKeyBoard
 {
+    [tfSBNumber resignFirstResponder];
     [tfTitle resignFirstResponder];
     [tfPhone resignFirstResponder];
     [tfContact resignFirstResponder];
@@ -194,13 +247,16 @@
     [tvRemark resignFirstResponder];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *cellIdentifier = @"SAMPLECell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    SB1Cell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[SB1Cell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"Row %d", indexPath.row];
+    NSDictionary *data=[self.dataItemArray objectAtIndex:indexPath.row];
+    [cell.lblType setText:[data objectForKey:KEYCELL]];
+    [cell.lblNumber setText:[data objectForKey:VALUECELL]];
     return cell;
 }
 
@@ -241,6 +297,32 @@
         return NO;
     }else{
         return YES;
+    }
+}
+
+//要求委托方的编辑风格在表视图的一个特定的位置。
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //默认没有编辑风格
+    UITableViewCellEditingStyle result = UITableViewCellEditingStyleNone;
+    if ([tableView isEqual:self.tableView]) {
+        //设置编辑风格为删除风格
+        result = UITableViewCellEditingStyleDelete;
+    }
+    return result;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //请求数据源提交的插入或删除指定行接收者。
+    if (editingStyle ==UITableViewCellEditingStyleDelete) {
+        //如果编辑样式为删除样式
+        if (indexPath.row<[self.dataItemArray count]) {
+            //移除数据源的数据
+            [self.dataItemArray removeObjectAtIndex:indexPath.row];
+            //移除tableView中的数据
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        }
     }
 }
         

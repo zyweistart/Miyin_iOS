@@ -36,21 +36,6 @@
 - (id)init{
     self=[super init];
     if(self){
-        //定位信息
-        NSString *lTitle=@"杭州";
-        CGSize titleSize = [lTitle sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:15.0f],NSFontAttributeName, nil]];
-        UIButton *location = [UIButton buttonWithType:UIButtonTypeCustom];
-        [location setTitle:lTitle forState:UIControlStateNormal];
-        [location.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [location setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [location addTarget:self action:@selector(goLocation:) forControlEvents:UIControlEventTouchUpInside];
-        location.frame = CGRectMake(0, 0, titleSize.width, 30);
-        UIBarButtonItem *negativeSpacerLeft = [[UIBarButtonItem alloc]
-                                           initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                           target:nil action:nil];
-        negativeSpacerLeft.width = -10;
-        self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects: negativeSpacerLeft,[[UIBarButtonItem alloc] initWithCustomView:location],nil];
-        
         //搜索框架
         UIView *vSearchFramework=[[UIView alloc]initWithFrame:CGRectMake1(0, 25, 250, 30)];
         vSearchFramework.userInteractionEnabled=YES;
@@ -69,17 +54,21 @@
         [lbl setTextColor:SEARCHTIPCOLOR];
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [vSearchFramework addSubview:lbl];
-        
-        //右消息按钮
-        UIButton *btnMessage = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btnMessage setBackgroundImage:[UIImage imageNamed:@"message1"]forState:UIControlStateNormal];
-        [btnMessage addTarget:self action:@selector(goMessage:) forControlEvents:UIControlEventTouchUpInside];
-        btnMessage.frame = CGRectMake(0, 0, 24, 20);
+        //发布求租
+        UIButton *bPublish = [UIButton buttonWithType:UIButtonTypeCustom];
+        [bPublish setTitle:@"发布求租" forState:UIControlStateNormal];
+        [bPublish.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [bPublish setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [bPublish addTarget:self action:@selector(goPublish:) forControlEvents:UIControlEventTouchUpInside];
+        bPublish.frame = CGRectMake(0, 0, 70, 30);
+        bPublish.layer.cornerRadius = 5;
+        bPublish.layer.masksToBounds = YES;
+        [bPublish setBackgroundColor:[UIColor colorWithRed:(52/255.0) green:(177/255.0) blue:(59/255.0) alpha:1]];
         UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
-                                           initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                           target:nil action:nil];
-        negativeSpacerRight.width = -5;
-        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:btnMessage], nil];
+                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                target:nil action:nil];
+        negativeSpacerRight.width = -10;
+        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bPublish], nil];
         
         [self buildTableViewWithView:self.view];
         [self.tableView setBackgroundColor:BGCOLOR];
@@ -277,8 +266,8 @@
 {
 //    [self presentViewControllerNav:[[ListViewController alloc]initWithTitle:@"出租列表" Type:2]];
 }
-//消息
-- (void)goMessage:(UIButton*)sender
+//发布求租
+- (void)goPublish:(UIButton*)sender
 {
     [self presentViewControllerNav:[[MessageViewController alloc]init]];
 }
