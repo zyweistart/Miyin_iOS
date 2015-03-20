@@ -11,8 +11,8 @@
 #define BUTTON1NORMALCOLOR [UIColor colorWithRed:(57/255.0) green:(87/255.0) blue:(207/255.0) alpha:1]
 #define BUTTON1PRESENDCOLOR [UIColor colorWithRed:(107/255.0) green:(124/255.0) blue:(194/255.0) alpha:1]
 
-#define BUTTON2NORMALCOLOR [UIColor colorWithRed:(57/255.0) green:(87/255.0) blue:(207/255.0) alpha:1]
-#define BUTTON2PRESENDCOLOR [UIColor colorWithRed:(107/255.0) green:(124/255.0) blue:(194/255.0) alpha:1]
+#define BUTTON2NORMALCOLOR [UIColor colorWithRed:(254/255.0) green:(148/255.0) blue:(0/255.0) alpha:1]
+#define BUTTON2PRESENDCOLOR [UIColor colorWithRed:(233/255.0) green:(195/255.0) blue:(142/255.0) alpha:1]
 
 
 @implementation SVButton
@@ -29,8 +29,8 @@
             [self setBackgroundImage:[Common createImageWithColor:BUTTON1NORMALCOLOR] forState:UIControlStateNormal];
             [self setBackgroundImage:[Common createImageWithColor:BUTTON1PRESENDCOLOR] forState:UIControlStateHighlighted];
         }else{
-            [self setBackgroundImage:[Common createImageWithColor:BUTTON1NORMALCOLOR] forState:UIControlStateNormal];
-            [self setBackgroundImage:[Common createImageWithColor:BUTTON1PRESENDCOLOR] forState:UIControlStateHighlighted];
+            [self setBackgroundImage:[Common createImageWithColor:BUTTON2NORMALCOLOR] forState:UIControlStateNormal];
+            [self setBackgroundImage:[Common createImageWithColor:BUTTON2PRESENDCOLOR] forState:UIControlStateHighlighted];
         }
     }
     return self;
