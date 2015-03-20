@@ -24,6 +24,7 @@
 #define MAINTITLECOLOR [UIColor colorWithRed:(110/255.0) green:(139/255.0) blue:(205/255.0) alpha:1]
 #define CHILDTITLECOLOR [UIColor colorWithRed:(158/255.0) green:(158/255.0) blue:(158/255.0) alpha:1]
 #define TITLECOLOR [UIColor colorWithRed:(54/255.0) green:(54/255.0) blue:(54/255.0) alpha:1]
+
 @interface HomeViewController ()
 
 @end
