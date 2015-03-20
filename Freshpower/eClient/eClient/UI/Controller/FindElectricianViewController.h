@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 freshpower. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseEGOTableViewPullRefreshViewController.h"
 #import <MapKit/MapKit.h>
 
-@interface FindElectricianViewController : BaseViewController<MKMapViewDelegate,CLLocationManagerDelegate>
+@interface FindElectricianViewController : BaseEGOTableViewPullRefreshViewController<MKMapViewDelegate,CLLocationManagerDelegate>
 
 @property MKMapView *mapView;
 @property CLLocationManager *locationManager;

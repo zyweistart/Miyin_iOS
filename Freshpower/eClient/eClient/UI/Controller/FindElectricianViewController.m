@@ -16,12 +16,21 @@
 
 @end
 
-@implementation FindElectricianViewController
+@implementation FindElectricianViewController{
+    UIButton *btnSwitch;
+    BOOL isCurrentMap;
+}
 
 - (id)init{
     self=[super init];
     if(self){
         [self setTitle:@"找电工"];
+        //右切换按钮
+        btnSwitch = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnSwitch setBackgroundImage:[UIImage imageNamed:@"list"]forState:UIControlStateNormal];
+        [btnSwitch addTarget:self action:@selector(goMapOrList:) forControlEvents:UIControlEventTouchUpInside];
+        btnSwitch.frame = CGRectMake(0, 0, 24, 20);
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:btnSwitch];
         //创建地图
         self.mapView=[[MKMapView alloc]initWithFrame:[self.view bounds]];
         [self.mapView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
@@ -56,19 +65,27 @@
         [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
         [self.locationManager startUpdatingLocation];
         
+        [self buildTableViewWithView:self.view];
+        
+        isCurrentMap=YES;
+        [self.tableView setHidden:YES];
     }
     return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self goCurrentLocation];
+    if(isCurrentMap){
+        [self goCurrentLocation];
+    }else{
+        if([[self dataItemArray]count]==0){
+            if(!self.tableView.pullTableIsRefreshing) {
+                self.tableView.pullTableIsRefreshing=YES;
+                [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+            }
+        }
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
@@ -120,6 +137,20 @@
     region.span.longitudeDelta = ZOOMLEVEL;
     [self.mapView setRegion:region animated:YES];
 }
+
+//刷新列表数据
+- (void)loadHttp
+{
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"1" forKey:@"Id"];
+    [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]] forKey:@"index"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:501];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest handle:@"GetListALL" requestParams:params];
+}
+
 //刷新地图位置数据
 - (void)goRefreshMapData
 {
@@ -136,17 +167,21 @@
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
-    if([response successFlag]){
-        //清除地图上的位置点
-        [self.mapView removeAnnotations:[self.mapView annotations]];
-        double latitude[9]={29.997461006205593,29.990250398850474,29.936414481847535,29.942513384159106,29.987425482052284,29.985715624943672,30.168762870400922,29.948760652467562,29.968950031785944};
-        double longitude[9]={120.6018155523682,120.54001745666507,120.57194647277835,120.57537970031741,120.657433838501,120.58688101257327,120.65537390197757,120.44440206970218,120.5882543035889};
-        for(int i=0;i<9;i++){
-            CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude[i],longitude[i])];
-            annotation1.title = @"大力神出租";
-            annotation1.subtitle = @"点击联系此信息";
-            [annotation1 setIndex:i];
-            [self.mapView addAnnotation:annotation1];
+    if(reqCode==501){
+        [super requestFinishedByResponse:response requestCode:reqCode];
+    }else{
+        if([response successFlag]){
+            //清除地图上的位置点
+            [self.mapView removeAnnotations:[self.mapView annotations]];
+            double latitude[9]={29.997461006205593,29.990250398850474,29.936414481847535,29.942513384159106,29.987425482052284,29.985715624943672,30.168762870400922,29.948760652467562,29.968950031785944};
+            double longitude[9]={120.6018155523682,120.54001745666507,120.57194647277835,120.57537970031741,120.657433838501,120.58688101257327,120.65537390197757,120.44440206970218,120.5882543035889};
+            for(int i=0;i<9;i++){
+                CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude[i],longitude[i])];
+                annotation1.title = @"大力神出租";
+                annotation1.subtitle = @"点击联系此信息";
+                [annotation1 setIndex:i];
+                [self.mapView addAnnotation:annotation1];
+            }
         }
     }
 }
@@ -160,7 +195,38 @@
 //切换地图或列表
 - (void)goMapOrList:(UIButton*)sender
 {
-    NSLog(@"切换成功了");
+    if(isCurrentMap){
+        [btnSwitch setBackgroundImage:[UIImage imageNamed:@"map"]forState:UIControlStateNormal];
+        [self.mapView setHidden:YES];
+        [self.tableView setHidden:NO];
+    }else{
+        [btnSwitch setBackgroundImage:[UIImage imageNamed:@"list"]forState:UIControlStateNormal];
+        [self.mapView setHidden:NO];
+        [self.tableView setHidden:YES];
+    }
+    isCurrentMap=!isCurrentMap;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([self.dataItemArray count]>0){
+        static NSString *cellIdentifier = @"Cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        [cell.textLabel setText:@"这只是测试而已"];
+        return cell;
+    }else{
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([self.dataItemArray count]>0){
+        NSLog(@"didSelectRow");
+    }
 }
 
 @end
