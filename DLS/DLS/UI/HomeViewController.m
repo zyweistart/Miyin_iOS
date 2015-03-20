@@ -11,7 +11,7 @@
 #import "HomeCategoryView.h"
 #import "InformationCell.h"
 #import "LocationViewController.h"
-#import "MessageViewController.h"
+#import "PublishQiuzuViewController.h"
 #import "ListViewController.h"
 #import "NewsDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
@@ -270,7 +270,7 @@
 //发布求租
 - (void)goPublish:(UIButton*)sender
 {
-    [self presentViewControllerNav:[[MessageViewController alloc]init]];
+    [self presentViewControllerNav:[[PublishQiuzuViewController alloc]init]];
 }
 
 //头部下拉刷新

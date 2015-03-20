@@ -26,8 +26,10 @@
     NSInteger pvv1,pvv2;
     NSArray *searchData1,*searchData2;
     UILabel *lblRentalType,*lblSBType;
+    UITextField *tfTitle,*tfSBNumber,*tfAddress,*tfStartTime,*tfEndTime,*tfPrice,*tfPhone;
     UITextView *tvRemark;
-    UITextField *tfTitle,*tfContact,*tfPhone,*tfAddress,*tfSBNumber;
+    UIDatePicker *startDatePicker,*endDatePicker;
+    NSLocale *datelocale;
 }
 
 - (id)init
@@ -47,6 +49,7 @@
         lblRentalType=[self addFrameType:10 Title:@"选择类型" Name:@"请选择" Tag:1 Frame:headView];
         //
         tfTitle=[self addFrameTypeTextField:60 Title:@"标题" Frame:headView];
+        [tfTitle setPlaceholder:@"请输入你的标题"];
         //
         UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0,10,320,40)];
         [frame setBackgroundColor:[UIColor whiteColor]];
@@ -69,7 +72,7 @@
         UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(200, 11, 9, 18)];
         [image setImage:[UIImage imageNamed:@"arrowright"]];
         [frame addSubview:image];
-        UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(219, 0, 1, 40)];
+        UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(219, 5, 1, 30)];
         [line setBackgroundColor:LINEBGCOLOR];
         [frame addSubview:line];
         tfSBNumber=[[UITextField alloc]initWithFrame:CGRectMake1(220, 0, 90, 40)];
@@ -78,6 +81,7 @@
         [tfSBNumber setTextColor:TITLECOLOR];
         [tfSBNumber setFont:[UIFont systemFontOfSize:14]];
         [tfSBNumber setTextAlignment:NSTextAlignmentCenter];
+        [tfSBNumber setKeyboardType:UIKeyboardTypeNumberPad];
         [frame addSubview:tfSBNumber];
         //添加
         ButtonView *buttonAdd=[[ButtonView alloc]initWithFrame:CGRectMake1(10, 60, 300, 40) Name:@"再添加设备"];
@@ -85,12 +89,43 @@
         [footView addSubview:buttonAdd];
         //
         tfAddress=[self addFrameTypeTextField:110 Title:@"设备地址" Frame:footView];
+        [tfAddress setPlaceholder:@"请输入设备地址"];
+        [tfAddress setKeyboardType:UIKeyboardTypeDefault];
         //
-        tfContact=[self addFrameTypeTextField:160 Title:@"使用时间" Frame:footView];
+        frame=[[UIView alloc]initWithFrame:CGRectMake1(0,160,320,40)];
+        [frame setBackgroundColor:[UIColor whiteColor]];
+        [footView addSubview:frame];
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 100, 40)];
+        [lbl setText:@"使用时间"];
+        [lbl setTextColor:TITLECOLOR];
+        [lbl setFont:[UIFont systemFontOfSize:14]];
+        [lbl setTextAlignment:NSTextAlignmentLeft];
+        [frame addSubview:lbl];
+        tfStartTime=[[UITextField alloc]initWithFrame:CGRectMake1(120, 0, 90, 40)];
+        [tfStartTime setDelegate:self];
+        [tfStartTime setPlaceholder:@"开始时间"];
+        [tfStartTime setTextColor:TITLECOLOR];
+        [tfStartTime setFont:[UIFont systemFontOfSize:14]];
+        [tfStartTime setTextAlignment:NSTextAlignmentCenter];
+        [frame addSubview:tfStartTime];
+        line=[[UIView alloc]initWithFrame:CGRectMake1(219, 5, 1, 30)];
+        [line setBackgroundColor:LINEBGCOLOR];
+        [frame addSubview:line];
+        tfEndTime=[[UITextField alloc]initWithFrame:CGRectMake1(220, 0, 90, 40)];
+        [tfEndTime setDelegate:self];
+        [tfEndTime setPlaceholder:@"结束时间"];
+        [tfEndTime setTextColor:TITLECOLOR];
+        [tfEndTime setFont:[UIFont systemFontOfSize:14]];
+        [tfEndTime setTextAlignment:NSTextAlignmentCenter];
+        [frame addSubview:tfEndTime];
         //
-        tfContact=[self addFrameTypeTextField:210 Title:@"出价" Frame:footView];
+        tfPrice=[self addFrameTypeTextField:210 Title:@"出价" Frame:footView];
+        [tfPrice setPlaceholder:@"出价数目"];
+        [tfPrice setKeyboardType:UIKeyboardTypeDecimalPad];
         //
         tfPhone=[self addFrameTypeTextField:260 Title:@"电话" Frame:footView];
+        [tfPhone setPlaceholder:@"请输入联系人电话"];
+        [tfPhone setKeyboardType:UIKeyboardTypePhonePad];
         //备注
         frame=[[UIView alloc]initWithFrame:CGRectMake1(0,310,320,140)];
         [frame setBackgroundColor:[UIColor whiteColor]];
@@ -129,6 +164,11 @@
         [self.view addSubview:self.pv2];
         
         self.dataItemArray=[[NSMutableArray alloc]init];
+        
+        // 時區的問題請再找其他協助 不是本篇重點
+        datelocale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CH"];
+        startDatePicker=[self createPicker:tfStartTime doneAction:@selector(doneStartPicker) cancelAction:@selector(doneStartPicker)];
+        endDatePicker=[self createPicker:tfEndTime doneAction:@selector(doneEndPicker) cancelAction:@selector(doneEndPicker)];
         
     }
     return self;
@@ -224,11 +264,11 @@
 - (void)publish:(id)sender
 {
     [self hideKeyBoard];
-    NSString *remark=[tvRemark text];
-    NSString *phone=[tfPhone text];
-    NSString *contact=[tfContact text];
-    NSString *address=[tfAddress text];
-    NSLog(@"pvv1=%d\npvv2=%d\nremark=%@\nphone=%@\ncontact=%@\naddress=%@",pvv1,pvv2,remark,phone,contact,address);
+//    NSString *remark=[tvRemark text];
+//    NSString *phone=[tfPhone text];
+//    NSString *contact=[tfContact text];
+//    NSString *address=[tfAddress text];
+//    NSLog(@"pvv1=%d\npvv2=%d\nremark=%@\nphone=%@\ncontact=%@\naddress=%@",pvv1,pvv2,remark,phone,contact,address);
 }
 
 - (void)showPickerView:(NSInteger)tag
@@ -239,11 +279,13 @@
 
 - (void)hideKeyBoard
 {
-    [tfSBNumber resignFirstResponder];
     [tfTitle resignFirstResponder];
-    [tfPhone resignFirstResponder];
-    [tfContact resignFirstResponder];
+    [tfSBNumber resignFirstResponder];
     [tfAddress resignFirstResponder];
+    [tfStartTime resignFirstResponder];
+    [tfEndTime resignFirstResponder];
+    [tfPrice resignFirstResponder];
+    [tfPhone resignFirstResponder];
     [tvRemark resignFirstResponder];
 }
 
@@ -325,5 +367,50 @@
         }
     }
 }
-        
+
+- (UIDatePicker*)createPicker:(UITextField*)textField doneAction:(SEL)dAction cancelAction:(SEL)cAction
+{
+    // 建立 UIDatePicker
+    UIDatePicker *datePicker = [[UIDatePicker alloc]init];
+    datePicker.locale = datelocale;
+    datePicker.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    // 以下這行是重點 (螢光筆畫兩行) 將 UITextField 的 inputView 設定成 UIDatePicker
+    // 則原本會跳出鍵盤的地方 就改成選日期了
+    textField.inputView = datePicker;
+    // 建立 UIToolbar
+    UIToolbar *toolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    
+    // 選取日期完成鈕 並給他一個 selector
+//    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:dAction];
+    // 選取日期完成鈕 並給他一個 selector
+    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:cAction];
+    // 把按鈕加進 UIToolbar
+    toolBar.items = [NSArray arrayWithObject:right];
+    // 以下這行也是重點 (螢光筆畫兩行)
+    // 原本應該是鍵盤上方附帶內容的區塊 改成一個 UIToolbar 並加上完成鈕
+    textField.inputAccessoryView = toolBar;
+    return datePicker;
+}
+
+- (void)showDateValue:(UITextField*)pickerField DatePicker:(UIDatePicker*)datePicker
+{
+    if ([self.view endEditing:NO]) {
+        NSDateFormatter* fmt = [[NSDateFormatter alloc] init];
+        fmt.locale = datelocale;
+        fmt.dateFormat = @"yyyy-MM-dd";
+        pickerField.text = [fmt stringFromDate:datePicker.date];
+    }
+}
+
+- (void)doneStartPicker
+{
+    [self showDateValue:tfStartTime DatePicker:startDatePicker];
+}
+
+- (void)doneEndPicker
+{
+    [self showDateValue:tfEndTime DatePicker:endDatePicker];
+}
+
 @end
