@@ -7,7 +7,7 @@
 //
 
 #import "MaintainEnterpriseInformationViewController.h"
-#import "EnterpriseNameEditViewController.h"
+#import "EnterpriseNameModifyViewController.h"
 
 @interface MaintainEnterpriseInformationViewController ()
 
@@ -55,7 +55,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
-        [self.navigationController pushViewController:[[EnterpriseNameEditViewController alloc]init] animated:YES];
+        [self.navigationController pushViewController:[[EnterpriseNameModifyViewController alloc]init] animated:YES];
     }
 }
 

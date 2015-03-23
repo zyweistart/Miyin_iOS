@@ -60,7 +60,6 @@
 		C9BA43911ABC97E700B73485 /* JTDGGLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BA43901ABC97E700B73485 /* JTDGGLViewController.m */; };
 		C9BA43941ABC980200B73485 /* WBBPDZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BA43931ABC980200B73485 /* WBBPDZViewController.m */; };
 		C9BA43971ABC981D00B73485 /* DGSQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BA43961ABC981D00B73485 /* DGSQViewController.m */; };
-		C9E5A9851AC00ACF00FE38F0 /* EnterpriseNameEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E5A9841AC00ACF00FE38F0 /* EnterpriseNameEditViewController.m */; };
 		C9E5A98B1AC0137800FE38F0 /* EnterpriseNameModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E5A98A1AC0137800FE38F0 /* EnterpriseNameModifyViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -174,8 +173,6 @@
 		C9BA43931ABC980200B73485 /* WBBPDZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBBPDZViewController.m; sourceTree = "<group>"; };
 		C9BA43951ABC981D00B73485 /* DGSQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DGSQViewController.h; sourceTree = "<group>"; };
 		C9BA43961ABC981D00B73485 /* DGSQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DGSQViewController.m; sourceTree = "<group>"; };
-		C9E5A9831AC00ACF00FE38F0 /* EnterpriseNameEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseNameEditViewController.h; sourceTree = "<group>"; };
-		C9E5A9841AC00ACF00FE38F0 /* EnterpriseNameEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseNameEditViewController.m; sourceTree = "<group>"; };
 		C9E5A9891AC0137800FE38F0 /* EnterpriseNameModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseNameModifyViewController.h; sourceTree = "<group>"; };
 		C9E5A98A1AC0137800FE38F0 /* EnterpriseNameModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseNameModifyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -425,8 +422,6 @@
 				C9BA43961ABC981D00B73485 /* DGSQViewController.m */,
 				C94DFD651ABFEF970043B896 /* MaintainEnterpriseInformationViewController.h */,
 				C94DFD661ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m */,
-				C9E5A9831AC00ACF00FE38F0 /* EnterpriseNameEditViewController.h */,
-				C9E5A9841AC00ACF00FE38F0 /* EnterpriseNameEditViewController.m */,
 				C9E5A9891AC0137800FE38F0 /* EnterpriseNameModifyViewController.h */,
 				C9E5A98A1AC0137800FE38F0 /* EnterpriseNameModifyViewController.m */,
 			);
@@ -493,6 +488,7 @@
 				TargetAttributes = {
 					C9BA42DB1ABC775A00B73485 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = XLA7UCY3KD;
 					};
 					C9BA42F41ABC775A00B73485 = {
 						CreatedOnToolsVersion = 6.2;
@@ -581,7 +577,6 @@
 				C9BA43401ABC785C00B73485 /* BaseTableViewController.m in Sources */,
 				C9BA43521ABC785C00B73485 /* PullTableView.m in Sources */,
 				C9BA43501ABC785C00B73485 /* LoadMoreTableFooterView.m in Sources */,
-				C9E5A9851AC00ACF00FE38F0 /* EnterpriseNameEditViewController.m in Sources */,
 				C9BA438E1ABC97BD00B73485 /* FindElectricianViewController.m in Sources */,
 				C9BA43701ABC7B8F00B73485 /* HomeViewController.m in Sources */,
 				C9BA43451ABC785C00B73485 /* Response.m in Sources */,

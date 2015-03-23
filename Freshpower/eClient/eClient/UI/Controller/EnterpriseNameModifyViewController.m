@@ -32,10 +32,15 @@
     [self.view addSubview:frame];
     tfName=[[SVTextField alloc]initWithFrame:CGRectMake1(10, 5, 300, 40) Title:@"名称"];
     [frame addSubview:tfName];
+    //有监加盟商用户
     SVButton *bDefault=[[SVButton alloc]initWithFrame:CGRectMake1(10, 50, 145, 40) Title:@"设置默认" Type:2];
     [bDefault addTarget:self action:@selector(setDefault:) forControlEvents:UIControlEventTouchUpInside];
     [frame addSubview:bDefault];
-    SVButton *bSave=[[SVButton alloc]initWithFrame:CGRectMake1(165, 50, 145, 40) Title:@"保存" Type:2];
+    CGRect rect=CGRectMake1(165, 50, 145, 40);
+    //有监一般客户
+//    rect=CGRectMake(10, 50, 300, 40);
+    
+    SVButton *bSave=[[SVButton alloc]initWithFrame:rect Title:@"保存" Type:2];
     [bSave addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
     [frame addSubview:bSave];
 }
