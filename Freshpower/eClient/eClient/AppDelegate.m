@@ -11,6 +11,7 @@
 #import "ProductViewController.h"
 #import "AnswerViewController.h"
 #import "MyViewController.h"
+#import "aViewController.h"
 
 #define TAB_N_TEXTCOLOR [UIColor colorWithRed:(99/255.0) green:(111/255.0) blue:(125/255.0) alpha:1]
 #define TAB_P_TEXTCOLOR [UIColor colorWithRed:(46/255.0) green:(92/255.0) blue:(178/255.0) alpha:1]
@@ -56,7 +57,7 @@
     [[productViewControllerNav tabBarItem]setTitle:@"产品"];
     [[productViewControllerNav navigationBar]setBarTintColor:NAVBG];
     [[productViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
-    UINavigationController *answerViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[AnswerViewController alloc]init]];
+    UINavigationController *answerViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[aViewController alloc]init]];
     [[answerViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"ic_answer_n"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [[answerViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"ic_answer_p"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [[answerViewControllerNav tabBarItem] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: TAB_N_TEXTCOLOR,NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];

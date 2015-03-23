@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00AAEF1F1AC06C0100130EA1 /* aViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AAEF181AC06C0100130EA1 /* aViewController.m */; };
+		00AAEF201AC06C0100130EA1 /* DetialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AAEF1A1AC06C0100130EA1 /* DetialView.m */; };
+		00AAEF211AC06C0100130EA1 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AAEF1C1AC06C0100130EA1 /* Model.m */; };
+		00AAEF221AC06C0100130EA1 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AAEF1E1AC06C0100130EA1 /* MyTableViewCell.m */; };
 		00BAB6AE1AC0508100B1C849 /* EDGManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BAB6AD1AC0508100B1C849 /* EDGManagerCell.m */; };
 		00BAB6B11AC0520100B1C849 /* InspectionManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BAB6B01AC0520100B1C849 /* InspectionManagerCell.m */; };
 		00BAB6B41AC0608E00B1C849 /* InspectionSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BAB6B31AC0608E00B1C849 /* InspectionSettingViewController.m */; };
@@ -77,6 +81,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00AAEF171AC06C0100130EA1 /* aViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aViewController.h; sourceTree = "<group>"; };
+		00AAEF181AC06C0100130EA1 /* aViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = aViewController.m; sourceTree = "<group>"; };
+		00AAEF191AC06C0100130EA1 /* DetialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetialView.h; sourceTree = "<group>"; };
+		00AAEF1A1AC06C0100130EA1 /* DetialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetialView.m; sourceTree = "<group>"; };
+		00AAEF1B1AC06C0100130EA1 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		00AAEF1C1AC06C0100130EA1 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		00AAEF1D1AC06C0100130EA1 /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
+		00AAEF1E1AC06C0100130EA1 /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
 		00BAB6AC1AC0508100B1C849 /* EDGManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDGManagerCell.h; sourceTree = SOURCE_ROOT; };
 		00BAB6AD1AC0508100B1C849 /* EDGManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDGManagerCell.m; sourceTree = SOURCE_ROOT; };
 		00BAB6AF1AC0520100B1C849 /* InspectionManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionManagerCell.h; sourceTree = SOURCE_ROOT; };
@@ -205,6 +217,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00AAEF161AC06BE100130EA1 /* table */ = {
+			isa = PBXGroup;
+			children = (
+				00AAEF171AC06C0100130EA1 /* aViewController.h */,
+				00AAEF181AC06C0100130EA1 /* aViewController.m */,
+				00AAEF191AC06C0100130EA1 /* DetialView.h */,
+				00AAEF1A1AC06C0100130EA1 /* DetialView.m */,
+				00AAEF1B1AC06C0100130EA1 /* Model.h */,
+				00AAEF1C1AC06C0100130EA1 /* Model.m */,
+				00AAEF1D1AC06C0100130EA1 /* MyTableViewCell.h */,
+				00AAEF1E1AC06C0100130EA1 /* MyTableViewCell.m */,
+			);
+			name = table;
+			sourceTree = "<group>";
+		};
 		C9BA42D31ABC775A00B73485 = {
 			isa = PBXGroup;
 			children = (
@@ -386,6 +413,7 @@
 		C9BA43611ABC7AEF00B73485 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				00AAEF161AC06BE100130EA1 /* table */,
 				C9BA43621ABC7AEF00B73485 /* Cell */,
 				C9BA43631ABC7AEF00B73485 /* Controller */,
 				C9BA43641ABC7AEF00B73485 /* View */,
@@ -570,6 +598,7 @@
 				C9BA434C1ABC785C00B73485 /* ATMProgressLayer.m in Sources */,
 				C9BA435B1ABC785C00B73485 /* MBProgressHUD.m in Sources */,
 				C9BA43881ABC977100B73485 /* ElectricianManagerViewController.m in Sources */,
+				00AAEF211AC06C0100130EA1 /* Model.m in Sources */,
 				C9E5A98B1AC0137800FE38F0 /* EnterpriseNameModifyViewController.m in Sources */,
 				C9BA43421ABC785C00B73485 /* Common.m in Sources */,
 				C94DFD6A1ABFF9B20043B896 /* NSString+Utils.m in Sources */,
@@ -582,6 +611,8 @@
 				C9BA437C1ABC7E3800B73485 /* SVButton.m in Sources */,
 				C9BA434B1ABC785C00B73485 /* ATMHudView.m in Sources */,
 				C9BA436A1ABC7B1600B73485 /* RegisterViewController.m in Sources */,
+				00AAEF201AC06C0100130EA1 /* DetialView.m in Sources */,
+				00AAEF221AC06C0100130EA1 /* MyTableViewCell.m in Sources */,
 				C9BA43411ABC785C00B73485 /* BaseViewController.m in Sources */,
 				C9BA43971ABC981D00B73485 /* DGSQViewController.m in Sources */,
 				00BAB6AE1AC0508100B1C849 /* EDGManagerCell.m in Sources */,
@@ -594,6 +625,7 @@
 				C9BA43401ABC785C00B73485 /* BaseTableViewController.m in Sources */,
 				C9BA43521ABC785C00B73485 /* PullTableView.m in Sources */,
 				C9BA43501ABC785C00B73485 /* LoadMoreTableFooterView.m in Sources */,
+				00AAEF1F1AC06C0100130EA1 /* aViewController.m in Sources */,
 				C9BA438E1ABC97BD00B73485 /* FindElectricianViewController.m in Sources */,
 				C9BA43701ABC7B8F00B73485 /* HomeViewController.m in Sources */,
 				C9BA43451ABC785C00B73485 /* Response.m in Sources */,
