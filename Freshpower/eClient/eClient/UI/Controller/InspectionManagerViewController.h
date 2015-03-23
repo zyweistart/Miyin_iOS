@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 freshpower. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseEGOTableViewPullRefreshViewController.h"
 
-@interface InspectionManagerViewController : BaseViewController
+@interface InspectionManagerViewController : BaseEGOTableViewPullRefreshViewController
 
 @end

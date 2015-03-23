@@ -50,5 +50,12 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
     rect.size.width = width * myDelegate.autoSizeScaleX; rect.size.height = height * myDelegate.autoSizeScaleY;
     return rect;
 }
+CG_INLINE CGFloat
+CGHeight(CGFloat height)
+{
+    AppDelegate *myDelegate = [[UIApplication sharedApplication] delegate];
+    return height * myDelegate.autoSizeScaleY;
+}
+
 
 #endif
