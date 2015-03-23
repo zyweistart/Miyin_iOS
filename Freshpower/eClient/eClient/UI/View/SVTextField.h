@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SVTextField : UITextField
+@interface SVTextField : UIView<UITextFieldDelegate>
+
+@property UILabel *lbl;
+@property UITextField *tf;
+
+- (id)initWithFrame:(CGRect)rect Title:(NSString*)title;
 
 @end
