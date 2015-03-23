@@ -8,6 +8,10 @@
 
 #import "MyViewController.h"
 #import "SVButton.h"
+#import "LoginViewController.h"
+
+
+#define HEADTITLECOLOR [UIColor colorWithRed:(200/255.0) green:(200/255.0) blue:(200/255.0) alpha:1]
 
 @interface MyViewController ()
 
@@ -33,21 +37,44 @@
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
     [self.view addSubview:self.tableView];
-    UIView *topFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 80)];
+    UIView *topFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 55)];
+    [topFrame setBackgroundColor:[UIColor orangeColor]];
     [self.tableView setTableHeaderView:topFrame];
-    UILabel *lblAccount=[[UILabel alloc]initWithFrame:CGRectMake1(0, 10, 50, 30)];
+    UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
+    [image setImage:[UIImage imageNamed:@"category1"]];
+    [topFrame addSubview:image];
+    UILabel *lblAccount=[[UILabel alloc]initWithFrame:CGRectMake1(60, 5, 100, 20)];
     [lblAccount setText:@"15900010001"];
+    [lblAccount setFont:[UIFont systemFontOfSize:14]];
+    [lblAccount setTextColor:HEADTITLECOLOR];
     [topFrame addSubview:lblAccount];
-    UIButton *bModifyPwd=[[UIButton alloc]initWithFrame:CGRectMake1(0, 50, 100, 40)];
+    UIButton *bModifyPwd=[[UIButton alloc]initWithFrame:CGRectMake1(60, 30, 100, 20)];
     [bModifyPwd setTitle:@"修改密码" forState:UIControlStateNormal];
+    [bModifyPwd.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    [bModifyPwd setTitleColor:HEADTITLECOLOR forState:UIControlStateNormal];
+    [bModifyPwd setImage:[UIImage imageNamed:@"refresh"] forState:UIControlStateNormal];
+    [bModifyPwd addTarget:self action:@selector(modifyPwd:) forControlEvents:UIControlEventTouchUpInside];
     [topFrame addSubview:bModifyPwd];
-    
-    
-    
+    UIButton *bSwitchUser=[[UIButton alloc]initWithFrame:CGRectMake1(210, 15, 100, 25)];
+    [bSwitchUser setTitle:@"切换用户" forState:UIControlStateNormal];
+    [bSwitchUser.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [bSwitchUser setTitleColor:HEADTITLECOLOR forState:UIControlStateNormal];
+    bSwitchUser.contentHorizontalAlignment=UIControlContentHorizontalAlignmentRight;
+    [bSwitchUser addTarget:self action:@selector(switchUser:) forControlEvents:UIControlEventTouchUpInside];
+    [topFrame addSubview:bSwitchUser];
     UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
     [self.tableView setTableFooterView:bottomFrame];
     SVButton *bLogout=[[SVButton alloc]initWithFrame:CGRectMake1(10, 0, 300, 40) Title:@"安全退出" Type:2];
+    [bLogout addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
     [bottomFrame addSubview:bLogout];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if(![[User Instance]isLogin]){
+        [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
+    }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -62,7 +89,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 10;
+    return 0;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -93,6 +120,22 @@
 {
 //    NSInteger section=[indexPath section];
 //    NSInteger row=[indexPath row];
+}
+
+
+- (void)switchUser:(id)sender
+{
+    [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
+}
+
+- (void)modifyPwd:(id)sender
+{
+    
+}
+
+- (void)logout:(id)sender
+{
+    [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
 }
 
 @end

@@ -55,13 +55,13 @@
     UIView *middleFrame=[[UIView alloc]initWithFrame:CGRectMake1(0,100, 320, 180)];
     [middleFrame setBackgroundColor:[UIColor whiteColor]];
     [scrollFrame addSubview:middleFrame];
-    [self addModel:@"category1" Title:@"设备维护" Frame:middleFrame Tag:1 X:0 Y:0];
-    [self addModel:@"category2" Title:@"巡检任务" Frame:middleFrame Tag:2 X:80 Y:0];
-    [self addModel:@"category3" Title:@"企业电工" Frame:middleFrame Tag:3 X:160 Y:0];
-    [self addModel:@"category1" Title:@"报警信息" Frame:middleFrame Tag:4 X:0 Y:90];
-    [self addModel:@"category2" Title:@"电量电费" Frame:middleFrame Tag:5 X:80 Y:90];
-    [self addModel:@"category3" Title:@"运行状态" Frame:middleFrame Tag:6 X:160 Y:90];
-    [self addModel:@"category4" Title:@"企业负荷" Frame:middleFrame Tag:6 X:240 Y:90];
+    [self addModel:@"企业设备维护" Title:@"设备维护" Frame:middleFrame Tag:1 X:0 Y:0];
+    [self addModel:@"巡检任务管理" Title:@"巡检任务" Frame:middleFrame Tag:2 X:80 Y:0];
+    [self addModel:@"企业电工管理" Title:@"企业电工" Frame:middleFrame Tag:3 X:160 Y:0];
+    [self addModel:@"报警信息" Title:@"报警信息" Frame:middleFrame Tag:4 X:0 Y:90];
+    [self addModel:@"电量电费" Title:@"电量电费" Frame:middleFrame Tag:5 X:80 Y:90];
+    [self addModel:@"运行状态" Title:@"运行状态" Frame:middleFrame Tag:6 X:160 Y:90];
+    [self addModel:@"企业负荷" Title:@"企业负荷" Frame:middleFrame Tag:6 X:240 Y:90];
     UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(81, 10, 1, 80)];
     [line setBackgroundColor:LINECOLOR];
     [middleFrame addSubview:line];
@@ -90,10 +90,10 @@
     UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(0,290, 320, 270)];
     [bottomFrame setBackgroundColor:[UIColor whiteColor]];
     [scrollFrame addSubview:bottomFrame];
-    [bottomFrame addSubview:[self setFrameView:10 Y:10 byRoundingCorners:UIRectCornerTopLeft ImageNamed:@"list" MainTitle:@"外包变配电站" ChildTitle:@"让您省心、放心；享受更专业，更经济的服务" bgColor:MAIN1BGCOLOR Tag:1]];
-    [bottomFrame addSubview:[self setFrameView:165 Y:10 byRoundingCorners:UIRectCornerTopRight ImageNamed:@"list" MainTitle:@"找电工" ChildTitle:@"电工多，就是任性！" bgColor:MAIN2BGCOLOR Tag:2]];
-    [bottomFrame addSubview:[self setFrameView:10 Y:140 byRoundingCorners:UIRectCornerBottomLeft ImageNamed:@"list" MainTitle:@"集团电工管理" ChildTitle:@"适用大型企业或专业电力服务企业，帮您轻松管理电工和变配电站" bgColor:MAIN3BGCOLOR Tag:3]];
-    [bottomFrame addSubview:[self setFrameView:165 Y:140 byRoundingCorners:UIRectCornerBottomRight ImageNamed:@"list" MainTitle:@"电工神器" ChildTitle:@"e电工操作版，电工偷懒赚钱神器" bgColor:MAIN4BGCOLOR Tag:4]];
+    [bottomFrame addSubview:[self setFrameView:10 Y:10 byRoundingCorners:UIRectCornerTopLeft ImageNamed:@"外包变配电站" MainTitle:@"外包变配电站" ChildTitle:@"让您省心、放心；享受更专业，更经济的服务" bgColor:MAIN1BGCOLOR Tag:1]];
+    [bottomFrame addSubview:[self setFrameView:165 Y:10 byRoundingCorners:UIRectCornerTopRight ImageNamed:@"找电工" MainTitle:@"找电工" ChildTitle:@"电工多，就是任性！" bgColor:MAIN2BGCOLOR Tag:2]];
+    [bottomFrame addSubview:[self setFrameView:10 Y:140 byRoundingCorners:UIRectCornerBottomLeft ImageNamed:@"集团电工管理" MainTitle:@"集团电工管理" ChildTitle:@"适用大型企业或专业电力服务企业，帮您轻松管理电工和变配电站" bgColor:MAIN3BGCOLOR Tag:3]];
+    [bottomFrame addSubview:[self setFrameView:165 Y:140 byRoundingCorners:UIRectCornerBottomRight ImageNamed:@"电工神器" MainTitle:@"电工神器" ChildTitle:@"e电工操作版，电工偷懒赚钱神器" bgColor:MAIN4BGCOLOR Tag:4]];
     //中间图片
     UIImageView *iconImage=[[UIImageView alloc]initWithFrame:CGRectMake1(140, 115, 40, 40)];
     [iconImage setImage:[UIImage imageNamed:@"autocrane_o"]];

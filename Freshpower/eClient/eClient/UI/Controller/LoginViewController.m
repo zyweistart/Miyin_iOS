@@ -36,7 +36,14 @@
     svPassword=[[SVTextField alloc]initWithFrame:CGRectMake1(10, 50, 300, 40) Title:@"密码"];
     [frame addSubview:svPassword];
     SVButton *bLogin=[[SVButton alloc]initWithFrame:CGRectMake1(10, 100, 300, 40) Title:@"登陆" Type:2];
+    [bLogin addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
     [frame addSubview:bLogin];
+}
+
+- (void)login:(id)sender
+{
+    [[User Instance]setIsLogin:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end
