@@ -40,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIScrollView *scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
-    [scrollFrame setContentSize:CGSizeMake(320, 560)];
+    [scrollFrame setContentSize:CGSizeMake1(320, 560)];
     [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     [scrollFrame setBackgroundColor:LINECOLOR];
     [self.view addSubview:scrollFrame];
