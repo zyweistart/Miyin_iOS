@@ -12,6 +12,8 @@
 
 @property BOOL isLogin;
 @property (strong,nonatomic) NSDictionary *info;
+@property NSString *userName;
+@property NSString *passWord;
 
 + (User *) Instance;
 

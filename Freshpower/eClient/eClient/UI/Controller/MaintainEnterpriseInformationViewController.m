@@ -7,6 +7,7 @@
 //
 
 #import "MaintainEnterpriseInformationViewController.h"
+#import "EnterpriseNameEditViewController.h"
 
 @interface MaintainEnterpriseInformationViewController ()
 
@@ -34,15 +35,6 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if([self.dataItemArray count]>0){
-        return 55;
-    }else{
-        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-    }
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
@@ -51,7 +43,9 @@
         if(!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        [cell.textLabel setText:@"退出"];
+        NSDictionary *data= [self.dataItemArray objectAtIndex:[indexPath row]];
+        [cell.textLabel setText:[data objectForKey:@"NAME"]];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -61,21 +55,23 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
-        
+        [self.navigationController pushViewController:[[EnterpriseNameEditViewController alloc]init] animated:YES];
     }
 }
 
 - (void)loadHttp
 {
-//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-//    [params setObject:@"1" forKey:@"Id"];
-//    [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]] forKey:@"index"];
-//    self.hRequest=[[HttpRequest alloc]init];
-//    [self.hRequest setRequestCode:500];
-//    [self.hRequest setDelegate:self];
-//    [self.hRequest setController:self];
-//    [self.hRequest handle:@"GetListALL" requestParams:params];
-    
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:[[User Instance]userName] forKey:@"imei"];
+    [params setObject:[[User Instance]passWord] forKey:@"authentication"];
+    [params setObject:@"99010204" forKey:@"GNID"];
+    [params setObject:PAGESIZE forKey:@"QTPSIZE"];
+    [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]]  forKey:@"QTPINDEX"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest handle:SERVER_URL(etgWebSite,@"INSPT/appTaskingFps.aspx") requestParams:params];
     [self loadDone];
 }
 

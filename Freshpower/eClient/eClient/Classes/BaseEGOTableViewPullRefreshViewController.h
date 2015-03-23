@@ -10,7 +10,7 @@
 #import "BaseViewController.h"
 #import "PullTableView.h"
 
-#define PAGESIZE 8
+#define PAGESIZE @"8"
 
 @interface BaseEGOTableViewPullRefreshViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate, PullTableViewDelegate>
 

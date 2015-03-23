@@ -9,8 +9,8 @@
 #import "MyViewController.h"
 #import "SVButton.h"
 #import "MaintainEnterpriseInformationViewController.h"
+#import "EnterpriseNameModifyViewController.h"
 #import "LoginViewController.h"
-
 
 #define HEADTITLECOLOR [UIColor colorWithRed:(200/255.0) green:(200/255.0) blue:(200/255.0) alpha:1]
 
@@ -127,6 +127,7 @@
     if(section==0){
         if(row==0){
             [self.navigationController pushViewController:[[MaintainEnterpriseInformationViewController alloc]init] animated:YES];
+//            [self.navigationController pushViewController:[[EnterpriseNameModifyViewController alloc]init] animated:YES];
         }
     }
 }
@@ -144,6 +145,8 @@
 
 - (void)logout:(id)sender
 {
+    [[User Instance]setInfo:nil];
+    [[User Instance]setIsLogin:NO];
     [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
 }
 
