@@ -29,8 +29,9 @@
             NSDictionary *resultJSON=[NSJSONSerialization JSONObjectWithData:[response data] options:NSJSONReadingMutableLeaves error:nil];
             if(resultJSON!=nil){
                 [response setResultJSON:resultJSON];
-                [response setCode:[NSString stringWithFormat:@"%@",[resultJSON objectForKey:@"code"]]];
-                [response setMsg:[NSString stringWithFormat:@"%@",[resultJSON objectForKey:@"Message"]]];
+                NSDictionary *results=[resultJSON objectForKey:@"Results"];
+                [response setCode:[NSString stringWithFormat:@"%@",[results objectForKey:@"result"]]];
+                [response setMsg:[NSString stringWithFormat:@"%@",[results objectForKey:@"remark"]]];
             }
         }
     }

@@ -23,15 +23,19 @@
 
 #ifdef TEST
 //测试环境定义的常量
-#define HTTP_URL @"http://www.dlsjijian.com"
-#define ACCESSKEY @"cce0185ae7fdd00ca2f64b224b410666"
+#define etgWebSite @"http://122.224.247.221:7007/WEB/mobile"
+#define fpsWebSite @"http://122.224.247.221:7003/WEB/mobile"
+#define crmWebSite @"http://122.224.247.219:8083/Administrator"
 #else
 //正式环境定义的常量
-#define HTTP_URL @"http://api.020leader.com"
-#define ACCESSKEY @"930bb8937c42109377e73bea7b92f88c"
+#define etgWebSite @"http://122.224.247.221:7007/WEB/mobile"
+#define fpsWebSite @"http://122.224.247.221:7003/WEB/mobile"
+#define crmWebSite @"http://122.224.247.219:8083/Administrator"
 #endif
 
 #define HTTP_SERVER_URL(URL,SIGNATURE,TIMESTAMP,NONCE) [NSString stringWithFormat:@"%@/Ajax/API/%@.html?signature=%@&timestamp=%@&nonce=%@",HTTP_URL,URL,SIGNATURE,TIMESTAMP,NONCE]
+
+#define SERVER_URL(URL,ACTION) [NSString stringWithFormat:@"%@/%@",URL,ACTION]
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
@@ -46,5 +50,7 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
     rect.size.width = width * myDelegate.autoSizeScaleX; rect.size.height = height * myDelegate.autoSizeScaleY;
     return rect;
 }
+
+#define URL_LOGIN SERVER_URL(etgWebSite,@"appUserCenter.aspx")
 
 #endif

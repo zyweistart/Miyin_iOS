@@ -8,6 +8,7 @@
 
 #import "MyViewController.h"
 #import "SVButton.h"
+#import "MaintainEnterpriseInformationViewController.h"
 #import "LoginViewController.h"
 
 
@@ -17,7 +18,9 @@
 
 @end
 
-@implementation MyViewController
+@implementation MyViewController{
+    UILabel *lblAccount;
+}
 
 - (id)init{
     self=[super init];
@@ -41,10 +44,9 @@
     [topFrame setBackgroundColor:[UIColor orangeColor]];
     [self.tableView setTableHeaderView:topFrame];
     UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
-    [image setImage:[UIImage imageNamed:@"category1"]];
+    [image setImage:[UIImage imageNamed:@"报警信息"]];
     [topFrame addSubview:image];
-    UILabel *lblAccount=[[UILabel alloc]initWithFrame:CGRectMake1(60, 5, 100, 20)];
-    [lblAccount setText:@"15900010001"];
+    lblAccount=[[UILabel alloc]initWithFrame:CGRectMake1(60, 5, 100, 20)];
     [lblAccount setFont:[UIFont systemFontOfSize:14]];
     [lblAccount setTextColor:HEADTITLECOLOR];
     [topFrame addSubview:lblAccount];
@@ -72,7 +74,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(![[User Instance]isLogin]){
+    if([[User Instance]isLogin]){
+        [lblAccount setText:[[[User Instance]info]objectForKey:@"NAME"]];
+    }else{
         [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
     }
 }
@@ -118,8 +122,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSInteger section=[indexPath section];
-//    NSInteger row=[indexPath row];
+    NSInteger section=[indexPath section];
+    NSInteger row=[indexPath row];
+    if(section==0){
+        if(row==0){
+            [self.navigationController pushViewController:[[MaintainEnterpriseInformationViewController alloc]init] animated:YES];
+        }
+    }
 }
 
 

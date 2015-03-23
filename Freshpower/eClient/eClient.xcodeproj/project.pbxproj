@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C94DFD671ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94DFD661ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m */; };
+		C94DFD6A1ABFF9B20043B896 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C94DFD691ABFF9B20043B896 /* NSString+Utils.m */; };
 		C9BA42E21ABC775A00B73485 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BA42E11ABC775A00B73485 /* main.m */; };
 		C9BA42E51ABC775A00B73485 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BA42E41ABC775A00B73485 /* AppDelegate.m */; };
 		C9BA42EB1ABC775A00B73485 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9BA42E91ABC775A00B73485 /* Main.storyboard */; };
@@ -71,6 +73,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C94DFD651ABFEF970043B896 /* MaintainEnterpriseInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintainEnterpriseInformationViewController.h; sourceTree = "<group>"; };
+		C94DFD661ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintainEnterpriseInformationViewController.m; sourceTree = "<group>"; };
+		C94DFD681ABFF9B20043B896 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
+		C94DFD691ABFF9B20043B896 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
 		C9BA42DC1ABC775A00B73485 /* eClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9BA42E01ABC775A00B73485 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9BA42E11ABC775A00B73485 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -251,6 +257,8 @@
 		C9BA43051ABC785C00B73485 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C94DFD681ABFF9B20043B896 /* NSString+Utils.h */,
+				C94DFD691ABFF9B20043B896 /* NSString+Utils.m */,
 				C9BA435D1ABC787500B73485 /* BaseEGOTableViewPullRefreshViewController.h */,
 				C9BA435E1ABC787500B73485 /* BaseEGOTableViewPullRefreshViewController.m */,
 				C9BA43061ABC785C00B73485 /* BaseTableViewController.h */,
@@ -409,6 +417,8 @@
 				C9BA43931ABC980200B73485 /* WBBPDZViewController.m */,
 				C9BA43951ABC981D00B73485 /* DGSQViewController.h */,
 				C9BA43961ABC981D00B73485 /* DGSQViewController.m */,
+				C94DFD651ABFEF970043B896 /* MaintainEnterpriseInformationViewController.h */,
+				C94DFD661ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -533,11 +543,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9BA43461ABC785C00B73485 /* UIButton+TitleImage.m in Sources */,
+				C94DFD671ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m in Sources */,
 				C9BA43791ABC7E2900B73485 /* SVTextField.m in Sources */,
 				C9BA434C1ABC785C00B73485 /* ATMProgressLayer.m in Sources */,
 				C9BA435B1ABC785C00B73485 /* MBProgressHUD.m in Sources */,
 				C9BA43881ABC977100B73485 /* ElectricianManagerViewController.m in Sources */,
 				C9BA43421ABC785C00B73485 /* Common.m in Sources */,
+				C94DFD6A1ABFF9B20043B896 /* NSString+Utils.m in Sources */,
 				C9BA434D1ABC785C00B73485 /* ATMSoundFX.m in Sources */,
 				C9BA436D1ABC7B1F00B73485 /* LoginViewController.m in Sources */,
 				C9BA43441ABC785C00B73485 /* HttpRequest.m in Sources */,

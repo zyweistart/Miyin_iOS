@@ -37,21 +37,21 @@
 - (void)handle:(NSString*)action requestParams:(NSMutableDictionary*)params
 {
     if ([HttpRequest isNetworkConnection]) {
-        //时间戳;
-//        NSString *timestamp=[NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]*1000];
-        NSString *timestamp=@"1426145110208";
-        //随机数
-//        NSString *nonce=[NSString stringWithFormat:@"%d",arc4random() % 1000];
-        NSString *nonce=@"881";
-        //封装成数组
-//        NSString *arr[]={ACCESSKEY,timestamp,nonce};
-        //数组排序
-
-        //签名
-        NSString *signature=@"b1c6607d21672466a41aff9ca476722cd55a1bf8";
-        NSString *url=HTTP_SERVER_URL(action, signature, timestamp, nonce);
+        NSStringEncoding gbkEncoding =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+        NSMutableString *urlString=[[NSMutableString alloc]initWithString:action];
+        NSString *HTTP_URL=[NSString stringWithFormat:@"%@",urlString];
+        if(!self.isMultipartFormDataSubmit){
+            if(params!=nil&&[params count]>0){
+                [urlString appendString:@"?"];
+                for(NSString *key in params){
+                    NSString *value=[NSString stringWithFormat:@"%@",[params objectForKey:key]];
+                    [urlString appendFormat:@"%@=%@&",key,[value  stringByAddingPercentEscapesUsingEncoding:gbkEncoding]];
+                }
+                HTTP_URL=[urlString substringWithRange:NSMakeRange(0, [urlString length]-1)];
+            }
+        }
         // 初始化一个请求
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:HTTP_URL]];
         // 设置请求方法
         request.HTTPMethod = @"POST";
         // 60秒请求超时
@@ -98,12 +98,6 @@
             
             [request setHTTPBody:body];
             
-        }else{
-            NSString *bodyContent=[[NSString alloc] initWithData:[Common toJSONData:params] encoding:NSUTF8StringEncoding];
-            // 对字符串进行编码后转成NSData对象
-            NSData *data = [bodyContent dataUsingEncoding:NSUTF8StringEncoding];
-            // 设置请求主体
-            request.HTTPBody = data;
         }
         // 初始化一个连接
         NSURLConnection *conn = [NSURLConnection connectionWithRequest:request delegate:self];
@@ -172,14 +166,18 @@
     if( [_delegate respondsToSelector: @selector(connectionDidFinishLoading:)]) {
         [_delegate connectionDidFinishLoading:connection];
     } else if( [_delegate respondsToSelector: @selector(requestFinishedByResponse:requestCode:)]) {
-        NSString *responseString =[[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
-        Response *response=[Response toData:responseString];
-        //成功标记
-        [response setSuccessFlag:[@"0" isEqualToString:[response code]]];
-        if(![response successFlag]){
-            [Common alert:[response msg]];
+        NSStringEncoding gbkEncoding =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+        NSString*pageSource = [[NSString alloc] initWithData:_data encoding:gbkEncoding];
+        if(pageSource!=nil) {
+            NSString *responseString=[pageSource stringByReplacingPercentEscapesUsingEncoding:gbkEncoding];
+            Response *response=[Response toData:responseString];
+            //成功标记
+            [response setSuccessFlag:[@"1" isEqualToString:[response code]]];
+            if(![response successFlag]){
+                [Common alert:[response msg]];
+            }
+            [_delegate requestFinishedByResponse:response requestCode:self.requestCode];
         }
-        [_delegate requestFinishedByResponse:response requestCode:self.requestCode];
     }
     //隐藏下载进度条
     if(_atmHud) {
