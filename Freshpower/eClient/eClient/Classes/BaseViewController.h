@@ -12,4 +12,7 @@
 - (void)presentViewController:(BaseViewController*)viewController;
 - (void)presentViewControllerNav:(UIViewController*)viewController;
 
+@property NSMutableDictionary *paramData;
+- (id)initWithParams:(NSDictionary*)data;
+
 @end

@@ -39,7 +39,6 @@
     CGRect rect=CGRectMake1(165, 50, 145, 40);
     //有监一般客户
 //    rect=CGRectMake(10, 50, 300, 40);
-    
     SVButton *bSave=[[SVButton alloc]initWithFrame:rect Title:@"保存" Type:2];
     [bSave addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
     [frame addSubview:bSave];

@@ -41,8 +41,16 @@
     SVButton *bLogin=[[SVButton alloc]initWithFrame:CGRectMake1(10, 100, 300, 40) Title:@"登陆" Type:2];
     [bLogin addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
     [frame addSubview:bLogin];
-    [svUserName.tf setText:@"15900010001"];
-    [svPassword.tf setText:@"8888aa"];
+    [svUserName.tf setText:@"zhaox07"];
+    [svPassword.tf setText:@"111111"];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if([[User Instance]isLogin]){
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)login:(id)sender
@@ -70,7 +78,8 @@
         [[User Instance]setPassWord:PASSWORD];
         [[User Instance]setIsLogin:YES];
         [[User Instance]setInfo:[[response resultJSON]objectForKey:@"UserInfo"]];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }else{
         [Common alert:[response msg]];
     }

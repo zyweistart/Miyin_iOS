@@ -16,6 +16,14 @@
     return self;
 }
 
+- (id)initWithParams:(NSDictionary*)data{
+    self=[self init];
+    if(self){
+        self.paramData=[NSMutableDictionary  dictionaryWithDictionary:data];
+    }
+    return self;
+}
+
 //- (UIStatusBarStyle)preferredStatusBarStyle{
 //    return UIStatusBarStyleLightContent;
 //    [[UINavigationBar appearance] setTintColor:[UIColor redColor]];

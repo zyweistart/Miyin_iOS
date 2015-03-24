@@ -10,23 +10,13 @@
 
 @implementation EDGManagerCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
--(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
-    if (highlighted == YES) {
-        
-    }else{
-        
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
-    [super setHighlighted:highlighted animated:animated];
+    return self;
 }
 
 @end

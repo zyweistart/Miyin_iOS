@@ -135,6 +135,8 @@
 
 - (void)switchUser:(id)sender
 {
+    [[User Instance]setInfo:nil];
+    [[User Instance]setIsLogin:NO];
     [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
 }
 

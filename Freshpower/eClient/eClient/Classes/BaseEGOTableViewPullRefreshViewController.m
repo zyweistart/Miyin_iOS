@@ -79,13 +79,13 @@
 //调用该方法完成刷新状态
 - (void)loadDone
 {
+    [self.tableView reloadData];
     if(self.tableView.pullTableIsRefreshing){
         self.tableView.pullLastRefreshDate = [NSDate date];
         self.tableView.pullTableIsRefreshing = NO;
     }else if(self.tableView.pullTableIsLoadingMore){
         self.tableView.pullTableIsLoadingMore = NO;
     }
-    [self.tableView reloadData];
 }
 
 //创建PullTableView
@@ -116,7 +116,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([[self dataItemArray] count]>0){
-        return 45;
+        return CGHeight(45);
     }else{
         return self.tableView.bounds.size.height;
     }
@@ -156,17 +156,12 @@
             //当前页
             self.currentPage=[[NSString stringWithFormat:@"%@",[rData objectForKey:@"PageIndex"]] intValue];
         }
-        NSDictionary *tData=[[response resultJSON] objectForKey:@"table1"];
+        NSArray *tData=[[response resultJSON] objectForKey:@"table1"];
         if(tData){
-            //获取数据列表
-            NSMutableArray *nsArr=[[NSMutableArray alloc]init];
-            for(id data in tData){
-                [nsArr addObject:data];
-            }
             if([self currentPage]==1){
                 [[self dataItemArray] removeAllObjects];
             }
-            [[self dataItemArray] addObjectsFromArray:nsArr];
+            [[self dataItemArray] addObjectsFromArray:tData];
         }
     }
     [self loadDone];
