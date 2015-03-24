@@ -17,6 +17,7 @@
 #define BUTTON3NORMALCOLOR [UIColor colorWithRed:(254/255.0) green:(148/255.0) blue:(0/255.0) alpha:1]
 #define BUTTON3PRESENDCOLOR [UIColor colorWithRed:(233/255.0) green:(195/255.0) blue:(142/255.0) alpha:1]
 
+#define ENABLEDCOLOR [UIColor colorWithRed:(200/255.0) green:(200/255.0) blue:(200/255.0) alpha:1]
 
 @implementation SVButton
 
@@ -28,6 +29,7 @@
         [self setTitle:title forState:UIControlStateNormal];
         [self.titleLabel setFont:[UIFont systemFontOfSize:18]];
         [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [self setBackgroundImage:[Common createImageWithColor:ENABLEDCOLOR] forState:UIControlStateDisabled];
         if(type==1){
             [self setBackgroundImage:[Common createImageWithColor:BUTTON1NORMALCOLOR] forState:UIControlStateNormal];
             [self setBackgroundImage:[Common createImageWithColor:BUTTON1PRESENDCOLOR] forState:UIControlStateHighlighted];

@@ -21,6 +21,8 @@
 @property SVCheckbox *checkbox4;
 @property SVCheckbox *checkbox5;
 
+@property UILabel *lblName;
+
 @property BaseViewController *controller;
 
 @end

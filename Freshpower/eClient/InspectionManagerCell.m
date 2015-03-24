@@ -7,6 +7,7 @@
 //
 
 #import "InspectionManagerCell.h"
+#import "InspectionSettingViewController.h"
 
 #define LINECOLOR [UIColor colorWithRed:(220/255.0) green:(220/255.0) blue:(220/255.0) alpha:1]
 #define TITLECOLOR1NORMALCOLOR [UIColor colorWithRed:(170/255.0) green:(170/255.0) blue:(170/255.0) alpha:1]
@@ -28,17 +29,17 @@
         [line setBackgroundColor:LINECOLOR];
         [self addSubview:line];
         
-        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 187, 200, 25)];
-        [lbl setText:@"巡检人："];
-        [lbl setTextColor:TITLECOLOR2NORMALCOLOR];
-        [lbl setFont:[UIFont systemFontOfSize:14]];
-        [lbl setTextAlignment:NSTextAlignmentLeft];
-        [self addSubview:lbl];
+        self.lblName=[[UILabel alloc]initWithFrame:CGRectMake1(10, 187, 200, 25)];
+        [self.lblName setText:@"巡检人："];
+        [self.lblName setTextColor:TITLECOLOR2NORMALCOLOR];
+        [self.lblName setFont:[UIFont systemFontOfSize:14]];
+        [self.lblName setTextAlignment:NSTextAlignmentLeft];
+        [self addSubview:self.lblName];
         
-        self.pSend=[[SVButton alloc]initWithFrame:CGRectMake1(200, 187, 50, 25) Title:@"下发" Type:2];
+        self.pSend=[[SVButton alloc]initWithFrame:CGRectMake1(200, 187, 50, 25) Title:@"下发" Type:3];
         [self.pSend addTarget:self action:@selector(downSend:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.pSend];
-        self.pSetting=[[SVButton alloc]initWithFrame:CGRectMake1(255, 187, 50, 25) Title:@"设置" Type:2];
+        self.pSetting=[[SVButton alloc]initWithFrame:CGRectMake1(255, 187, 50, 25) Title:@"设置" Type:3];
         [self.pSetting addTarget:self action:@selector(setting:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.pSetting];
         
@@ -55,7 +56,7 @@
     [lbl setFont:[UIFont systemFontOfSize:14]];
     [lbl setTextAlignment:NSTextAlignmentLeft];
     [self addSubview:lbl];
-    SVCheckbox *onOff=[[SVCheckbox alloc]initWithFrame:CGRectMake1(260, y, 40, 30)];
+    SVCheckbox *onOff=[[SVCheckbox alloc]initWithFrame:CGRectMake1(280, y, 20, 15)];
     [self addSubview:onOff];
     return onOff;
 }
@@ -67,7 +68,7 @@
 
 - (void)setting:(id)sender
 {
-    NSLog(@"设置");
+    [[self.controller navigationController]pushViewController:[[InspectionSettingViewController alloc]init] animated:YES];
 }
 
 @end

@@ -75,6 +75,7 @@
     if(!cell) {
         cell = [[InspectionManagerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    [cell setController:self];
     //        NSDictionary *data= [self.dataItemArray objectAtIndex:[indexPath row]];
     //        [cell.textLabel setText:[data objectForKey:@"NAME"]];
     [cell setAccessoryType:UITableViewCellAccessoryNone];
