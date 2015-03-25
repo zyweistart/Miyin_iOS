@@ -69,7 +69,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGHeight(217.0);
+    NSDictionary *data= [self.dataItemArray objectAtIndex:[indexPath row]];
+    NSArray *MODEL_LIST=[data objectForKey:@"MODEL_LIST"];
+    int count=MODEL_LIST.count-1;
+    CGFloat height=5+count*30+count*5+35+39;
+    return CGHeight(height);
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -86,8 +90,7 @@
     }
     [cell setController:self];
     NSDictionary *data= [self.dataItemArray objectAtIndex:[indexPath row]];
-    NSLog(@"%@",data);
-//            [cell.textLabel setText:[data objectForKey:@"NAME"]];
+    [cell setData:data];
     [cell setAccessoryType:UITableViewCellAccessoryNone];
     return cell;
 }

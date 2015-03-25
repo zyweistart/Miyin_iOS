@@ -15,14 +15,10 @@
 @property SVButton *pSend;
 @property SVButton *pSetting;
 
-@property SVCheckbox *checkbox1;
-@property SVCheckbox *checkbox2;
-@property SVCheckbox *checkbox3;
-@property SVCheckbox *checkbox4;
-@property SVCheckbox *checkbox5;
-
 @property UILabel *lblName;
 
 @property BaseViewController *controller;
+
+- (void)setData:(NSDictionary*)data;
 
 @end
