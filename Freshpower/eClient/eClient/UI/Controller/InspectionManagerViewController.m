@@ -8,12 +8,16 @@
 
 #import "InspectionManagerViewController.h"
 #import "InspectionManagerCell.h"
+#import "LoginViewController.h"
 
 @interface InspectionManagerViewController ()
 
 @end
 
-@implementation InspectionManagerViewController
+@implementation InspectionManagerViewController{
+    NSMutableArray *_array;
+    NSMutableArray *_arrayData;
+}
 
 - (id)init{
     self=[super init];
@@ -27,11 +31,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if([[self dataItemArray]count]==0){
-        if(!self.tableView.pullTableIsRefreshing) {
-            self.tableView.pullTableIsRefreshing=YES;
-            [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+    if([[User Instance]isLogin]){
+        if([[self dataItemArray]count]==0){
+            if(!self.tableView.pullTableIsRefreshing) {
+                self.tableView.pullTableIsRefreshing=YES;
+                [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+            }
         }
+    }else{
+        [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
     }
 }
 
@@ -42,10 +50,11 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    NSDictionary *data=[[self dataItemArray]objectAtIndex:section];
     UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 30)];
     [frame setBackgroundColor:[UIColor colorWithRed:(220/255.0) green:(220/255.0) blue:(220/255.0) alpha:1]];
     UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 5, 320, 20)];
-    [lbl setText:@"顺电压力锅"];
+    [lbl setText:[data objectForKey:@"CP_NAME"]];
     [lbl setFont:[UIFont systemFontOfSize:14]];
     [lbl setTextColor:[UIColor blackColor]];
     [lbl setTextAlignment:NSTextAlignmentLeft];
@@ -76,8 +85,9 @@
         cell = [[InspectionManagerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     [cell setController:self];
-    //        NSDictionary *data= [self.dataItemArray objectAtIndex:[indexPath row]];
-    //        [cell.textLabel setText:[data objectForKey:@"NAME"]];
+    NSDictionary *data= [self.dataItemArray objectAtIndex:[indexPath row]];
+    NSLog(@"%@",data);
+//            [cell.textLabel setText:[data objectForKey:@"NAME"]];
     [cell setAccessoryType:UITableViewCellAccessoryNone];
     return cell;
 }
@@ -91,21 +101,17 @@
 
 - (void)loadHttp
 {
-    //    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    //    [params setObject:[[User Instance]userName] forKey:@"imei"];
-    //    [params setObject:[[User Instance]passWord] forKey:@"authentication"];
-    //    [params setObject:@"99010204" forKey:@"GNID"];
-    //    [params setObject:PAGESIZE forKey:@"QTPSIZE"];
-    //    [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]]  forKey:@"QTPINDEX"];
-    //    self.hRequest=[[HttpRequest alloc]init];
-    //    [self.hRequest setRequestCode:500];
-    //    [self.hRequest setDelegate:self];
-    //    [self.hRequest setController:self];
-    //    [self.hRequest handle:SERVER_URL(etgWebSite,@"INSPT/appTaskingFps.aspx") requestParams:params];
-    for(int i=0;i<10;i++){
-        [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"1111",@"NAME", nil]];
-    }
-    [self loadDone];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:[[User Instance]userName] forKey:@"imei"];
+    [params setObject:[[User Instance]passWord] forKey:@"authentication"];
+    [params setObject:@"TS001" forKey:@"GNID"];
+    [params setObject:PAGESIZE forKey:@"QTPSIZE"];
+    [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]]  forKey:@"QTPINDEX"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest handle:URL_appTaskingFps requestParams:params];
 }
 
 @end

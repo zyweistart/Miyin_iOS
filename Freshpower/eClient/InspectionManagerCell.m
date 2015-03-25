@@ -37,9 +37,11 @@
         [self addSubview:self.lblName];
         
         self.pSend=[[SVButton alloc]initWithFrame:CGRectMake1(200, 187, 50, 25) Title:@"下发" Type:3];
+        [self.pSend.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [self.pSend addTarget:self action:@selector(downSend:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.pSend];
         self.pSetting=[[SVButton alloc]initWithFrame:CGRectMake1(255, 187, 50, 25) Title:@"设置" Type:3];
+        [self.pSetting.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [self.pSetting addTarget:self action:@selector(setting:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.pSetting];
         
@@ -64,6 +66,7 @@
 - (void)downSend:(id)sender
 {
     NSLog(@"下发");
+    [self.pSend setEnabled:NO];
 }
 
 - (void)setting:(id)sender

@@ -156,11 +156,12 @@
             //当前页
             self.currentPage=[[NSString stringWithFormat:@"%@",[rData objectForKey:@"PageIndex"]] intValue];
         }
+        //获取数据列表
+        if([self currentPage]==1){
+            [self.dataItemArray removeAllObjects];
+        }
         NSArray *tData=[[response resultJSON] objectForKey:@"table1"];
         if(tData){
-            if([self currentPage]==1){
-                [[self dataItemArray] removeAllObjects];
-            }
             [[self dataItemArray] addObjectsFromArray:tData];
         }
     }
