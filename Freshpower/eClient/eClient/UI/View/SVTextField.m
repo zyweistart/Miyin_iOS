@@ -19,16 +19,21 @@
         self.layer.masksToBounds = YES;
         self.layer.borderWidth = 1;
         self.layer.borderColor = [TITLECOLOR CGColor];
-        self.lbl=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 50, height)];
-        [self.lbl setText:title];
-        [self.lbl setFont:[UIFont systemFontOfSize:14]];
-        [self.lbl setTextAlignment:NSTextAlignmentCenter];
-        [self.lbl setTextColor:TITLECOLOR];
-        [self addSubview:self.lbl];
-        self.tf=[[UITextField alloc]initWithFrame:CGRectMake1(50, 0,width-50, height)];
+        if(title){
+            self.lbl=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 50, height)];
+            [self.lbl setText:title];
+            [self.lbl setFont:[UIFont systemFontOfSize:14]];
+            [self.lbl setTextAlignment:NSTextAlignmentCenter];
+            [self.lbl setTextColor:TITLECOLOR];
+            [self addSubview:self.lbl];
+            self.tf=[[UITextField alloc]initWithFrame:CGRectMake1(50, 0,width-50, height)];
+        }else{
+            self.tf=[[UITextField alloc]initWithFrame:CGRectMake1(0, 0,width, height)];
+        }
         [self.tf setTextColor:TITLECOLOR];
         [self.tf setFont:[UIFont systemFontOfSize:14]];
         [self.tf setDelegate:self];
+        [self.tf setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
         [self.tf setClearButtonMode:UITextFieldViewModeWhileEditing];
         [self addSubview:self.tf];
     }

@@ -21,11 +21,6 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-//        self.checkbox1=[self createView:5 Title:@"变电站运行记录表"];
-//        self.checkbox2=[self createView:40 Title:@"变电站电气设备日常巡检"];
-//        self.checkbox3=[self createView:75 Title:@"高温季节配电房测温表"];
-//        self.checkbox4=[self createView:110 Title:@"梅雨季节巡视记录表"];
-//        self.checkbox5=[self createView:145 Title:@"特殊巡视记录表"];
         
         bottomFrame=[[UIView alloc]initWithFrame:CGRectZero];
         [self addSubview:bottomFrame];
@@ -34,7 +29,6 @@
         [bottomFrame addSubview:line];
         
         self.lblName=[[UILabel alloc]initWithFrame:CGRectMake1(10, 7, 200, 25)];
-        [self.lblName setText:@"巡检人："];
         [self.lblName setTextColor:TITLECOLOR2NORMALCOLOR];
         [self.lblName setFont:[UIFont systemFontOfSize:14]];
         [self.lblName setTextAlignment:NSTextAlignmentLeft];
@@ -69,6 +63,7 @@
 
 - (void)setData:(NSDictionary*)data
 {
+    [self.lblName setText:[NSString stringWithFormat:@"巡检人:%@",[data objectForKey:@"TASK_USER_NAME"]]];
     NSArray *MODEL_LIST=[data objectForKey:@"MODEL_LIST"];
     int count=MODEL_LIST.count;
     for(int i=0;i<count;i++){

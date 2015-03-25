@@ -89,7 +89,7 @@
         cell = [[InspectionManagerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     [cell setController:self];
-    NSDictionary *data= [self.dataItemArray objectAtIndex:[indexPath row]];
+    NSDictionary *data= [self.dataItemArray objectAtIndex:[indexPath section]];
     [cell setData:data];
     [cell setAccessoryType:UITableViewCellAccessoryNone];
     return cell;

@@ -14,8 +14,8 @@
 #define BUTTON2NORMALCOLOR [UIColor colorWithRed:(254/255.0) green:(148/255.0) blue:(0/255.0) alpha:1]
 #define BUTTON2PRESENDCOLOR [UIColor colorWithRed:(233/255.0) green:(195/255.0) blue:(142/255.0) alpha:1]
 
-#define BUTTON3NORMALCOLOR [UIColor colorWithRed:(254/255.0) green:(148/255.0) blue:(0/255.0) alpha:1]
-#define BUTTON3PRESENDCOLOR [UIColor colorWithRed:(233/255.0) green:(195/255.0) blue:(142/255.0) alpha:1]
+#define BUTTON3NORMALCOLOR [UIColor colorWithRed:(25/255.0) green:(10/255.0) blue:(164/255.0) alpha:1]
+#define BUTTON3PRESENDCOLOR [UIColor colorWithRed:(93/255.0) green:(86/255.0) blue:(165/255.0) alpha:1]
 
 #define ENABLEDCOLOR [UIColor colorWithRed:(200/255.0) green:(200/255.0) blue:(200/255.0) alpha:1]
 
