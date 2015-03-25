@@ -72,6 +72,7 @@
 		C9BA43971ABC981D00B73485 /* DGSQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BA43961ABC981D00B73485 /* DGSQViewController.m */; };
 		C9D1CCC81AC291450070FACC /* InspectionTipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D1CCC71AC291450070FACC /* InspectionTipCell.m */; };
 		C9D1CCCB1AC291550070FACC /* InspectionDownSendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D1CCCA1AC291550070FACC /* InspectionDownSendCell.m */; };
+		C9D1CCCE1AC2AE9E0070FACC /* TimeSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D1CCCD1AC2AE9E0070FACC /* TimeSelectViewController.m */; };
 		C9E5A98B1AC0137800FE38F0 /* EnterpriseNameModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E5A98A1AC0137800FE38F0 /* EnterpriseNameModifyViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -209,6 +210,8 @@
 		C9D1CCC71AC291450070FACC /* InspectionTipCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionTipCell.m; sourceTree = "<group>"; };
 		C9D1CCC91AC291550070FACC /* InspectionDownSendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionDownSendCell.h; sourceTree = "<group>"; };
 		C9D1CCCA1AC291550070FACC /* InspectionDownSendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionDownSendCell.m; sourceTree = "<group>"; };
+		C9D1CCCC1AC2AE9E0070FACC /* TimeSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSelectViewController.h; sourceTree = "<group>"; };
+		C9D1CCCD1AC2AE9E0070FACC /* TimeSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSelectViewController.m; sourceTree = "<group>"; };
 		C9E5A9891AC0137800FE38F0 /* EnterpriseNameModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseNameModifyViewController.h; sourceTree = "<group>"; };
 		C9E5A98A1AC0137800FE38F0 /* EnterpriseNameModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseNameModifyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -239,6 +242,8 @@
 				C9BA43841ABC975400B73485 /* InspectionManagerViewController.m */,
 				00BAB6B21AC0608E00B1C849 /* InspectionSettingViewController.h */,
 				00BAB6B31AC0608E00B1C849 /* InspectionSettingViewController.m */,
+				C9D1CCCC1AC2AE9E0070FACC /* TimeSelectViewController.h */,
+				C9D1CCCD1AC2AE9E0070FACC /* TimeSelectViewController.m */,
 			);
 			name = InspectionManager;
 			sourceTree = "<group>";
@@ -647,6 +652,7 @@
 				C9BA434D1ABC785C00B73485 /* ATMSoundFX.m in Sources */,
 				C9BA436D1ABC7B1F00B73485 /* LoginViewController.m in Sources */,
 				C92C27411AC13CE000E472C9 /* CRTableViewController.m in Sources */,
+				C9D1CCCE1AC2AE9E0070FACC /* TimeSelectViewController.m in Sources */,
 				C9BA43441ABC785C00B73485 /* HttpRequest.m in Sources */,
 				C9BA434A1ABC785C00B73485 /* ATMHudQueueItem.m in Sources */,
 				C9BA438B1ABC978500B73485 /* EquipmentMaintainViewController.m in Sources */,

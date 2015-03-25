@@ -7,6 +7,7 @@
 //
 
 #import "InspectionSettingViewController.h"
+#import "TimeSelectViewController.h"
 #import "InspectionTipCell.h"
 #import "InspectionDownSendCell.h"
 
@@ -102,6 +103,11 @@
         [cell setAccessoryType:UITableViewCellAccessoryNone];
         return cell;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.navigationController pushViewController:[[TimeSelectViewController alloc]init] animated:YES];
 }
 
 @end
