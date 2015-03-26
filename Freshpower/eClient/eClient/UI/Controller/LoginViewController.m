@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "RegisterViewController.h"
 #import "SVTextField.h"
 #import "SVButton.h"
 #import "NSString+Utils.h"
@@ -26,6 +27,15 @@
     self=[super init];
     if(self){
         [self setTitle:@"登陆"];
+        UIButton *bRegister = [UIButton buttonWithType:UIButtonTypeCustom];
+        [bRegister setTitle:@"注册" forState:UIControlStateNormal];
+        [bRegister.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [bRegister setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [bRegister addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
+        bRegister.frame = CGRectMake(0, 0, 70, 30);
+        bRegister.layer.cornerRadius = 5;
+        bRegister.layer.masksToBounds = YES;
+        self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:bRegister];
     }
     return self;
 }
@@ -69,6 +79,11 @@
     [self.hRequest setController:self];
     [self.hRequest setIsShowMessage:YES];
     [self.hRequest handle:SERVER_URL(etgWebSite,@"appUserCenter.aspx") requestParams:params];
+}
+
+- (void)goRegister:(id)sender
+{
+    [self.navigationController pushViewController:[[RegisterViewController alloc]init] animated:YES];
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
