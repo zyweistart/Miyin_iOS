@@ -23,6 +23,7 @@
 		C9B3243F1AC705800089A297 /* STNavigationWebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B3243E1AC705800089A297 /* STNavigationWebPageViewController.m */; };
 		C9B324421AC705C10089A297 /* page.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9B324411AC705C10089A297 /* page.bundle */; };
 		C9B324451AC70C9D0089A297 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B324441AC70C9D0089A297 /* FeedbackViewController.m */; };
+		C9B324481AC7187D0089A297 /* SVTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B324471AC7187D0089A297 /* SVTextView.m */; };
 		C9BA42E21ABC775A00B73485 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BA42E11ABC775A00B73485 /* main.m */; };
 		C9BA42E51ABC775A00B73485 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BA42E41ABC775A00B73485 /* AppDelegate.m */; };
 		C9BA42EB1ABC775A00B73485 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9BA42E91ABC775A00B73485 /* Main.storyboard */; };
@@ -122,6 +123,8 @@
 		C9B324411AC705C10089A297 /* page.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = page.bundle; sourceTree = "<group>"; };
 		C9B324431AC70C9D0089A297 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
 		C9B324441AC70C9D0089A297 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
+		C9B324461AC7187D0089A297 /* SVTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVTextView.h; sourceTree = "<group>"; };
+		C9B324471AC7187D0089A297 /* SVTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVTextView.m; sourceTree = "<group>"; };
 		C9BA42DC1ABC775A00B73485 /* eClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9BA42E01ABC775A00B73485 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9BA42E11ABC775A00B73485 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -558,6 +561,8 @@
 				C9BA437B1ABC7E3800B73485 /* SVButton.m */,
 				C92C27421AC15A7200E472C9 /* SVCheckbox.h */,
 				C92C27431AC15A7200E472C9 /* SVCheckbox.m */,
+				C9B324461AC7187D0089A297 /* SVTextView.h */,
+				C9B324471AC7187D0089A297 /* SVTextView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -700,6 +705,7 @@
 				C9BA436A1ABC7B1600B73485 /* RegisterViewController.m in Sources */,
 				C9BA43411ABC785C00B73485 /* BaseViewController.m in Sources */,
 				C9BA43971ABC981D00B73485 /* DGSQViewController.m in Sources */,
+				C9B324481AC7187D0089A297 /* SVTextView.m in Sources */,
 				C92C27441AC15A7200E472C9 /* SVCheckbox.m in Sources */,
 				00BAB6AE1AC0508100B1C849 /* EDGManagerCell.m in Sources */,
 				C92C27371AC1345700E472C9 /* ElectricianManagerSearchViewController.m in Sources */,

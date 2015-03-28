@@ -15,6 +15,7 @@
 #import "FindElectricianViewController.h"
 #import "JTDGGLViewController.h"
 #import "DGSQViewController.h"
+#import "FeedbackViewController.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 #define LINECOLOR  [UIColor colorWithRed:(230/255.0) green:(230/255.0) blue:(230/255.0) alpha:1]
@@ -163,7 +164,8 @@
     }else if(tag==3){
         [self.navigationController pushViewController:[[ElectricianManagerViewController alloc]init] animated:YES];
     }else if(tag==4){
-        NSLog(@"报警信息");
+        [self.navigationController pushViewController:[[FeedbackViewController alloc]init] animated:YES];
+//        NSLog(@"报警信息");
     }else if(tag==5){
         NSLog(@"电量电费");
     }else if(tag==6){

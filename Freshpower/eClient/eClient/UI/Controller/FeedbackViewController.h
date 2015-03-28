@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface FeedbackViewController : BaseViewController
+@interface FeedbackViewController : BaseViewController<UITextFieldDelegate,UITextViewDelegate>
 
 @end
