@@ -11,6 +11,7 @@
 #import "MaintainEnterpriseInformationViewController.h"
 #import "EnterpriseNameModifyViewController.h"
 #import "LoginViewController.h"
+#import "STAboutUsViewController.h"
 
 #define HEADTITLECOLOR [UIColor colorWithRed:(200/255.0) green:(200/255.0) blue:(200/255.0) alpha:1]
 
@@ -128,6 +129,13 @@
         if(row==0){
             [self.navigationController pushViewController:[[MaintainEnterpriseInformationViewController alloc]init] animated:YES];
 //            [self.navigationController pushViewController:[[EnterpriseNameModifyViewController alloc]init] animated:YES];
+        }
+    }else if(section==1){
+        if(row==0){
+            [self.navigationController pushViewController:[[STAboutUsViewController alloc]init] animated:YES];
+        }else if(row==1){
+            //联系新能量
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"tel://%@",CUSTOMERSERVICETEL]]];
         }
     }
 }

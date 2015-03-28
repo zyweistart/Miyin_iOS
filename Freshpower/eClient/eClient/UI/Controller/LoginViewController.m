@@ -35,7 +35,11 @@
         bRegister.frame = CGRectMake(0, 0, 70, 30);
         bRegister.layer.cornerRadius = 5;
         bRegister.layer.masksToBounds = YES;
-        self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:bRegister];
+        UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
+                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                target:nil action:nil];
+        negativeSpacerRight.width = -20;
+        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bRegister], nil];
     }
     return self;
 }

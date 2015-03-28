@@ -19,6 +19,10 @@
 		C92C27441AC15A7200E472C9 /* SVCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C27431AC15A7200E472C9 /* SVCheckbox.m */; };
 		C94DFD671ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94DFD661ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m */; };
 		C94DFD6A1ABFF9B20043B896 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C94DFD691ABFF9B20043B896 /* NSString+Utils.m */; };
+		C9B3243B1AC7053A0089A297 /* STAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B3243A1AC7053A0089A297 /* STAboutUsViewController.m */; };
+		C9B3243F1AC705800089A297 /* STNavigationWebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B3243E1AC705800089A297 /* STNavigationWebPageViewController.m */; };
+		C9B324421AC705C10089A297 /* page.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9B324411AC705C10089A297 /* page.bundle */; };
+		C9B324451AC70C9D0089A297 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B324441AC70C9D0089A297 /* FeedbackViewController.m */; };
 		C9BA42E21ABC775A00B73485 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BA42E11ABC775A00B73485 /* main.m */; };
 		C9BA42E51ABC775A00B73485 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BA42E41ABC775A00B73485 /* AppDelegate.m */; };
 		C9BA42EB1ABC775A00B73485 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9BA42E91ABC775A00B73485 /* Main.storyboard */; };
@@ -111,6 +115,13 @@
 		C94DFD661ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintainEnterpriseInformationViewController.m; sourceTree = "<group>"; };
 		C94DFD681ABFF9B20043B896 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
 		C94DFD691ABFF9B20043B896 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
+		C9B324391AC7053A0089A297 /* STAboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAboutUsViewController.h; sourceTree = "<group>"; };
+		C9B3243A1AC7053A0089A297 /* STAboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAboutUsViewController.m; sourceTree = "<group>"; };
+		C9B3243D1AC705800089A297 /* STNavigationWebPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STNavigationWebPageViewController.h; sourceTree = "<group>"; };
+		C9B3243E1AC705800089A297 /* STNavigationWebPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STNavigationWebPageViewController.m; sourceTree = "<group>"; };
+		C9B324411AC705C10089A297 /* page.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = page.bundle; sourceTree = "<group>"; };
+		C9B324431AC70C9D0089A297 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		C9B324441AC70C9D0089A297 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
 		C9BA42DC1ABC775A00B73485 /* eClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9BA42E01ABC775A00B73485 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9BA42E11ABC775A00B73485 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -274,6 +285,25 @@
 			name = ElectricianManager;
 			sourceTree = "<group>";
 		};
+		C9B3243C1AC705490089A297 /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				C9B3243D1AC705800089A297 /* STNavigationWebPageViewController.h */,
+				C9B3243E1AC705800089A297 /* STNavigationWebPageViewController.m */,
+				C9B324391AC7053A0089A297 /* STAboutUsViewController.h */,
+				C9B3243A1AC7053A0089A297 /* STAboutUsViewController.m */,
+			);
+			name = Old;
+			sourceTree = "<group>";
+		};
+		C9B324401AC7059F0089A297 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C9B324411AC705C10089A297 /* page.bundle */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
 		C9BA42D31ABC775A00B73485 = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +325,7 @@
 		C9BA42DE1ABC775A00B73485 /* eClient */ = {
 			isa = PBXGroup;
 			children = (
+				C9B324401AC7059F0089A297 /* Resource */,
 				C9BA42E31ABC775A00B73485 /* AppDelegate.h */,
 				C9BA42E41ABC775A00B73485 /* AppDelegate.m */,
 				C9BA43051ABC785C00B73485 /* Classes */,
@@ -483,6 +514,7 @@
 		C9BA43631ABC7AEF00B73485 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C9B3243C1AC705490089A297 /* Old */,
 				002319C01AC1BC6B00EF3DC5 /* InspectionManager */,
 				C92C273B1AC1349B00E472C9 /* ElectricianManager */,
 				C9BA436E1ABC7B8F00B73485 /* HomeViewController.h */,
@@ -511,6 +543,8 @@
 				C94DFD661ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m */,
 				C9E5A9891AC0137800FE38F0 /* EnterpriseNameModifyViewController.h */,
 				C9E5A98A1AC0137800FE38F0 /* EnterpriseNameModifyViewController.m */,
+				C9B324431AC70C9D0089A297 /* FeedbackViewController.h */,
+				C9B324441AC70C9D0089A297 /* FeedbackViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -617,6 +651,7 @@
 				C9BA43561ABC785C00B73485 /* blueArrow@2x.png in Resources */,
 				C9BA43551ABC785C00B73485 /* blueArrow.png in Resources */,
 				C9BA43541ABC785C00B73485 /* blackArrow@2x.png in Resources */,
+				C9B324421AC705C10089A297 /* page.bundle in Resources */,
 				C9BA43591ABC785C00B73485 /* whiteArrow.png in Resources */,
 				C9BA43571ABC785C00B73485 /* grayArrow.png in Resources */,
 				C9BA42ED1ABC775A00B73485 /* Images.xcassets in Resources */,
@@ -652,12 +687,15 @@
 				C9BA434D1ABC785C00B73485 /* ATMSoundFX.m in Sources */,
 				C9BA436D1ABC7B1F00B73485 /* LoginViewController.m in Sources */,
 				C92C27411AC13CE000E472C9 /* CRTableViewController.m in Sources */,
+				C9B3243F1AC705800089A297 /* STNavigationWebPageViewController.m in Sources */,
 				C9D1CCCE1AC2AE9E0070FACC /* TimeSelectViewController.m in Sources */,
 				C9BA43441ABC785C00B73485 /* HttpRequest.m in Sources */,
 				C9BA434A1ABC785C00B73485 /* ATMHudQueueItem.m in Sources */,
 				C9BA438B1ABC978500B73485 /* EquipmentMaintainViewController.m in Sources */,
+				C9B324451AC70C9D0089A297 /* FeedbackViewController.m in Sources */,
 				C9BA43511ABC785C00B73485 /* MessageInterceptor.m in Sources */,
 				C9BA437C1ABC7E3800B73485 /* SVButton.m in Sources */,
+				C9B3243B1AC7053A0089A297 /* STAboutUsViewController.m in Sources */,
 				C9BA434B1ABC785C00B73485 /* ATMHudView.m in Sources */,
 				C9BA436A1ABC7B1600B73485 /* RegisterViewController.m in Sources */,
 				C9BA43411ABC785C00B73485 /* BaseViewController.m in Sources */,

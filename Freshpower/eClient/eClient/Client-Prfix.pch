@@ -68,7 +68,8 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
     rect.size.height = CGHeight(height);
     return rect;
 }
-
+//新能量客服电话
+#define CUSTOMERSERVICETEL @"4008263365"
 #define URL_appTaskingFps SERVER_URL(etgWebSite,@"INSPT/appTaskingFps.aspx")
 
 #endif
