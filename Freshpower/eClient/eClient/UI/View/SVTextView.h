@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #define TITLECOLOR [UIColor colorWithRed:(200/255.0) green:(200/255.0) blue:(200/255.0) alpha:1]
 
-@interface SVTextView : UITextView<UITextViewDelegate>
+@interface SVTextView : UIView<UITextViewDelegate>
 
 @property UILabel *lbl;
 @property UITextView *tf;

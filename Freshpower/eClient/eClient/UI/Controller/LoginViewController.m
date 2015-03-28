@@ -55,8 +55,8 @@
     SVButton *bLogin=[[SVButton alloc]initWithFrame:CGRectMake1(10, 100, 300, 40) Title:@"登陆" Type:2];
     [bLogin addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
     [frame addSubview:bLogin];
-    [svUserName.tf setText:@"zhaox07"];
-    [svPassword.tf setText:@"111111"];
+    [svUserName.tf setText:@"15900010001"];
+    [svPassword.tf setText:@"8888aa"];
 }
 
 - (void)viewDidAppear:(BOOL)animated

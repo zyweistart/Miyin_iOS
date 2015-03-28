@@ -6,8 +6,6 @@
 //  Copyright (c) 2015年 freshpower. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
-
-@interface InspectionSettingViewController : BaseTableViewController
+@interface InspectionSettingViewController : BaseViewController
 
 @end
