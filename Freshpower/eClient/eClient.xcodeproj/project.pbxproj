@@ -75,6 +75,7 @@
 		C9BA43911ABC97E700B73485 /* JTDGGLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BA43901ABC97E700B73485 /* JTDGGLViewController.m */; };
 		C9BA43941ABC980200B73485 /* WBBPDZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BA43931ABC980200B73485 /* WBBPDZViewController.m */; };
 		C9BA43971ABC981D00B73485 /* DGSQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BA43961ABC981D00B73485 /* DGSQViewController.m */; };
+		C9C88B021AC8F27E0045361A /* PersonalSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C88B011AC8F27E0045361A /* PersonalSelectViewController.m */; };
 		C9D1CCC81AC291450070FACC /* InspectionTipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D1CCC71AC291450070FACC /* InspectionTipCell.m */; };
 		C9D1CCCB1AC291550070FACC /* InspectionDownSendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D1CCCA1AC291550070FACC /* InspectionDownSendCell.m */; };
 		C9D1CCCE1AC2AE9E0070FACC /* TimeSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D1CCCD1AC2AE9E0070FACC /* TimeSelectViewController.m */; };
@@ -220,6 +221,8 @@
 		C9BA43931ABC980200B73485 /* WBBPDZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBBPDZViewController.m; sourceTree = "<group>"; };
 		C9BA43951ABC981D00B73485 /* DGSQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DGSQViewController.h; sourceTree = "<group>"; };
 		C9BA43961ABC981D00B73485 /* DGSQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DGSQViewController.m; sourceTree = "<group>"; };
+		C9C88B001AC8F27E0045361A /* PersonalSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalSelectViewController.h; sourceTree = "<group>"; };
+		C9C88B011AC8F27E0045361A /* PersonalSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalSelectViewController.m; sourceTree = "<group>"; };
 		C9D1CCC61AC291450070FACC /* InspectionTipCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionTipCell.h; sourceTree = "<group>"; };
 		C9D1CCC71AC291450070FACC /* InspectionTipCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionTipCell.m; sourceTree = "<group>"; };
 		C9D1CCC91AC291550070FACC /* InspectionDownSendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionDownSendCell.h; sourceTree = "<group>"; };
@@ -258,6 +261,8 @@
 				00BAB6B31AC0608E00B1C849 /* InspectionSettingViewController.m */,
 				C9D1CCCC1AC2AE9E0070FACC /* TimeSelectViewController.h */,
 				C9D1CCCD1AC2AE9E0070FACC /* TimeSelectViewController.m */,
+				C9C88B001AC8F27E0045361A /* PersonalSelectViewController.h */,
+				C9C88B011AC8F27E0045361A /* PersonalSelectViewController.m */,
 			);
 			name = InspectionManager;
 			sourceTree = "<group>";
@@ -700,6 +705,7 @@
 				C9B324451AC70C9D0089A297 /* FeedbackViewController.m in Sources */,
 				C9BA43511ABC785C00B73485 /* MessageInterceptor.m in Sources */,
 				C9BA437C1ABC7E3800B73485 /* SVButton.m in Sources */,
+				C9C88B021AC8F27E0045361A /* PersonalSelectViewController.m in Sources */,
 				C9B3243B1AC7053A0089A297 /* STAboutUsViewController.m in Sources */,
 				C9BA434B1ABC785C00B73485 /* ATMHudView.m in Sources */,
 				C9BA436A1ABC7B1600B73485 /* RegisterViewController.m in Sources */,

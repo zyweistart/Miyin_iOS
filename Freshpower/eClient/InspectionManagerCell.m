@@ -14,6 +14,7 @@
 #define TITLECOLOR2NORMALCOLOR [UIColor colorWithRed:(254/255.0) green:(148/255.0) blue:(0/255.0) alpha:1]
 
 @implementation InspectionManagerCell{
+    NSDictionary *currentData;
     UIView *bottomFrame;
 }
 
@@ -63,6 +64,7 @@
 
 - (void)setData:(NSDictionary*)data
 {
+    currentData=data;
     [self.lblName setText:[NSString stringWithFormat:@"巡检人:%@",[data objectForKey:@"TASK_USER_NAME"]]];
     NSArray *MODEL_LIST=[data objectForKey:@"MODEL_LIST"];
     int count=MODEL_LIST.count;
@@ -82,7 +84,8 @@
 
 - (void)setting:(id)sender
 {
-    [[self.controller navigationController]pushViewController:[[InspectionSettingViewController alloc]init] animated:YES];
+    InspectionSettingViewController *inspectionSettingViewController=[[InspectionSettingViewController alloc]initWithData:currentData];
+    [[self.controller navigationController]pushViewController:inspectionSettingViewController animated:YES];
 }
 
 @end

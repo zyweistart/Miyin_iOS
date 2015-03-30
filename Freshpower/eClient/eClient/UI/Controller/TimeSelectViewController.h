@@ -13,4 +13,8 @@
     NSMutableArray *selectedMarks;
 }
 
+@property id<ResultDelegate> delegate;
+
+@property NSInteger resultCode;
+
 @end
