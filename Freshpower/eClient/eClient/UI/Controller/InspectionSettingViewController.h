@@ -13,4 +13,6 @@
 
 - (id)initWithData:(NSDictionary*)data;
 
+@property id<ResultDelegate> delegate;
+
 @end

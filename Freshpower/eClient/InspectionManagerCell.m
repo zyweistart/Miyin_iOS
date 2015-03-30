@@ -16,7 +16,7 @@
 @implementation InspectionManagerCell{
     NSMutableDictionary *currentData;
     UIView *bottomFrame;
-    SVCheckbox *svch1,*svch2,*svch3,*svch4,*svch5;
+    UIButton *svch1,*svch2,*svch3,*svch4,*svch5;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -50,7 +50,7 @@
     return self;
 }
 
-- (SVCheckbox*)createView:(CGFloat)y Title:(NSString*)title
+- (UIButton*)createView:(CGFloat)y Title:(NSString*)title Tag:(NSInteger)tag
 {
     UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, y, 200, 30)];
     [lbl setText:title];
@@ -58,7 +58,10 @@
     [lbl setFont:[UIFont systemFontOfSize:14]];
     [lbl setTextAlignment:NSTextAlignmentLeft];
     [self addSubview:lbl];
-    SVCheckbox *onOff=[[SVCheckbox alloc]initWithFrame:CGRectMake1(280, y, 30, 30)];
+    UIButton *onOff=[[UIButton alloc]initWithFrame:CGRectMake1(280, y, 30, 30)];
+    [onOff setImage:[UIImage imageNamed:@"未勾"] forState:UIControlStateNormal];
+    [onOff setImage:[UIImage imageNamed:@"勾"] forState:UIControlStateSelected];
+    [onOff setTag:tag];
     [onOff addTarget:self action:@selector(checkboxClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:onOff];
     return onOff;
@@ -73,19 +76,19 @@
     for(int i=0;i<count;i++){
         NSDictionary *d=[MODEL_LIST objectAtIndex:i];
         if(i==0){
-            svch1=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"]];
+            svch1=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"] Tag:i];
             [svch1 setSelected:![@"0" isEqualToString:[d objectForKey:@"MODEL_SET_ID"]]];
         }else if(i==1){
-            svch2=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"]];
+            svch2=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"] Tag:i];
             [svch2 setSelected:![@"0" isEqualToString:[d objectForKey:@"MODEL_SET_ID"]]];
         }else if(i==2){
-            svch3=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"]];
+            svch3=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"] Tag:i];
             [svch3 setSelected:![@"0" isEqualToString:[d objectForKey:@"MODEL_SET_ID"]]];
         }else if(i==3){
-            svch4=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"]];
+            svch4=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"] Tag:i];
             [svch4 setSelected:![@"0" isEqualToString:[d objectForKey:@"MODEL_SET_ID"]]];
         }else if(i==4){
-            svch5=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"]];
+            svch5=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"] Tag:i];
             [svch5 setSelected:![@"0" isEqualToString:[d objectForKey:@"MODEL_SET_ID"]]];
         }
     }
@@ -95,9 +98,14 @@
 
 -(void)checkboxClick:(UIButton *)sender
 {
+    NSInteger tag=[sender tag];
     NSMutableArray *MODEL_LIST=[currentData objectForKey:@"MODEL_LIST"];
-    NSMutableDictionary *d=[MODEL_LIST objectAtIndex:3];
-    [d setObject:@"123" forKey:@"MODEL_SET_ID"];
+    NSMutableDictionary *d=[MODEL_LIST objectAtIndex:tag];
+    if(sender.selected){
+        [d setObject:@"0" forKey:@"MODEL_SET_ID"];
+    }else{
+        [d setObject:@"1" forKey:@"MODEL_SET_ID"];
+    }
     sender.selected = !sender.selected;
 }
 
@@ -108,12 +116,15 @@
 
 - (void)setting:(id)sender
 {
-    
-    
-    
-    
-//    InspectionSettingViewController *inspectionSettingViewController=[[InspectionSettingViewController alloc]initWithData:currentData];
-//    [[self.controller navigationController]pushViewController:inspectionSettingViewController animated:YES];
+    InspectionSettingViewController *inspectionSettingViewController=[[InspectionSettingViewController alloc]initWithData:currentData];
+    [inspectionSettingViewController setDelegate:self];
+    [[self.controller navigationController]pushViewController:inspectionSettingViewController animated:YES];
+}
+
+- (void)onControllerResult:(NSInteger)resultCode data:(NSMutableDictionary*)result
+{
+    NSLog(@"成功么了%@",result);
+    [self.pSend setEnabled:NO];
 }
 
 @end

@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ResultDelegate.h"
 #import "SVCheckbox.h"
 #import "SVButton.h"
 
-@interface InspectionManagerCell : UITableViewCell
+@interface InspectionManagerCell : UITableViewCell<UITableViewDelegate,UITableViewDataSource,ResultDelegate>
+
+@property (strong,nonatomic) UITableView *tableView;
+@property (strong,nonatomic) NSMutableArray *dataItemArray;
 
 @property SVButton *pSend;
 @property SVButton *pSetting;

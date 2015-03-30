@@ -26,8 +26,7 @@
     SVTextField *svTextField1,*svTextField2,*svTextField3,*svTextField4;
     UIDatePicker *datePicker1,*datePicker2,*datePicker3,*datePicker4;
     SVCheckbox *autoDownSend,*manualSend;
-    NSInteger dSendType;
-    NSString *timeString,*taskUser;
+    NSString *dSET_TYPE,*timeString,*taskUser;
 }
 
 - (id)initWithData:(NSDictionary*)data
@@ -42,25 +41,39 @@
         CGFloat height=0;
         [scrollFrame addSubview:[self addHeadFrame:@"提醒设置" X:0]];
         height=height+30;
-        [scrollFrame addSubview:[self addTimeItem:height Title:@"变电站运行记录表"]];
-        height=height+155;
-        int headCount=4;
-        for(int i=0;i<headCount;i++){
-            if(i==0){
-                svTextField1=[self addTextFieldItem:scrollFrame X:height+i*70 Title:@"变电站电气设备日常巡检"];
-                datePicker1=[self createPicker:svTextField1.tf doneAction:@selector(doneDatePicker1) cancelAction:@selector(doneDatePicker1)];
-            }else if(i==1){
-                svTextField2=[self addTextFieldItem:scrollFrame X:height+i*70 Title:@"高温季节配电房测温表"];
-                datePicker2=[self createPicker:svTextField2.tf doneAction:@selector(doneDatePicker2) cancelAction:@selector(doneDatePicker2)];
-            }else if(i==2){
-                svTextField3=[self addTextFieldItem:scrollFrame X:height+i*70 Title:@"梅雨季节巡视记录表"];
-                datePicker3=[self createPicker:svTextField3.tf doneAction:@selector(doneDatePicker3) cancelAction:@selector(doneDatePicker3)];
-            }else if(i==3){
-                svTextField4=[self addTextFieldItem:scrollFrame X:height+i*70 Title:@"特殊巡视记录表"];
-                datePicker4=[self createPicker:svTextField4.tf doneAction:@selector(doneDatePicker4) cancelAction:@selector(doneDatePicker4)];
+        NSArray *MODEL_LIST=[data objectForKey:@"MODEL_LIST"];
+        NSMutableArray *headShow=[[NSMutableArray alloc]init];
+        for(int i=0;i<[MODEL_LIST count];i++){
+            NSDictionary *d=[MODEL_LIST objectAtIndex:i];
+            NSString *SETID=[d objectForKey:@"MODEL_SET_ID"];
+            if(![@"0" isEqualToString:SETID]){
+                [headShow addObject:d];
             }
         }
-        height=height+headCount*70;
+        for(int i=0;i<[headShow count];i++){
+            NSDictionary *d=[headShow objectAtIndex:i];
+            NSString *type=[d objectForKey:@"MODEL_TYPE"];
+            if([@"1" isEqualToString:type]){
+                [scrollFrame addSubview:[self addTimeItem:height Data:d]];
+                height=height+155;
+            }else if([@"2" isEqualToString:type]){
+                svTextField1=[self addTextFieldItem:scrollFrame X:height Data:d];
+                datePicker1=[self createPicker:svTextField1.tf doneAction:@selector(doneDatePicker1) cancelAction:@selector(doneDatePicker1)];
+                height=height+70;
+            }else if([@"3" isEqualToString:type]){
+                svTextField2=[self addTextFieldItem:scrollFrame X:height Data:d];
+                datePicker2=[self createPicker:svTextField2.tf doneAction:@selector(doneDatePicker2) cancelAction:@selector(doneDatePicker2)];
+                height=height+70;
+            }else if([@"4" isEqualToString:type]){
+                svTextField3=[self addTextFieldItem:scrollFrame X:height Data:d];
+                datePicker3=[self createPicker:svTextField3.tf doneAction:@selector(doneDatePicker3) cancelAction:@selector(doneDatePicker3)];
+                height=height+70;
+            }else if([@"5" isEqualToString:type]){
+                svTextField4=[self addTextFieldItem:scrollFrame X:height Data:d];
+                datePicker4=[self createPicker:svTextField4.tf doneAction:@selector(doneDatePicker4) cancelAction:@selector(doneDatePicker4)];
+                height=height+70;
+            }
+        }
         [scrollFrame addSubview:[self addHeadFrame:@"下发设置" X:height]];
         [self addSendSetting:scrollFrame X:height+30];
         height=height+30+115;
@@ -79,8 +92,10 @@
         [scrollFrame addSubview:submit];
         [scrollFrame setContentSize:CGSizeMake1(320, height+40+10)];
         
-        dSendType=1;
+        dSET_TYPE=[data objectForKey:@"SET_TYPE"];
         [self showSendTypeStatus];
+        taskUser=[data objectForKey:@"TASK_USER"];
+        [lblPersonalInfo setText:[data objectForKey:@"TASK_USER_NAME"]];
     }
     return self;
 }
@@ -98,11 +113,11 @@
     return frame;
 }
 
-- (UIView*)addTimeItem:(CGFloat)x Title:(NSString*)title
+- (UIView*)addTimeItem:(CGFloat)x Data:(NSDictionary*)da
 {
     UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0, x, 320, 100)];
     UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 5, 300, 20)];
-    [lbl setText:title];
+    [lbl setText:[da objectForKey:@"MODEL_NAME"]];
     [lbl setFont:[UIFont systemFontOfSize:14]];
     [lbl setNumberOfLines:0];
     [lbl setTextColor:TITLE1COLOR];
@@ -123,7 +138,8 @@
     [lbl addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(timeSelect:)]];
     [frame addSubview:lbl];
     lblTimeSelect=[[UILabel alloc]initWithFrame:CGRectMake1(50, 60, 260, 40)];
-//    [lbl setText:@"00:00-02:00-04:00-06:00-08:00-10:00-12:00-14:00-16:00-18:00-20:00-22:00"];
+    timeString=[da objectForKey:@"DATE_VALUE"];
+    [lblTimeSelect setText:timeString];
     [lblTimeSelect setFont:[UIFont systemFontOfSize:14]];
     [lblTimeSelect setTextColor:TITLE1COLOR];
     [lblTimeSelect setNumberOfLines:0];
@@ -140,12 +156,12 @@
     return frame;
 }
 
-- (SVTextField*)addTextFieldItem:(UIView*)frame X:(CGFloat)x Title:(NSString*)title
+- (SVTextField*)addTextFieldItem:(UIView*)frame X:(CGFloat)x Data:(NSDictionary*)da
 {
     UIView *f=[[UIView alloc]initWithFrame:CGRectMake1(0, x, 320, 70)];
     [frame addSubview:f];
     UILabel *lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(10, 5, 300, 20)];
-    [lblTitle setText:title];
+    [lblTitle setText:[da objectForKey:@"MODEL_NAME"]];
     [lblTitle setFont:[UIFont systemFontOfSize:14]];
     [lblTitle setNumberOfLines:0];
     [lblTitle setTextColor:TITLE1COLOR];
@@ -159,6 +175,7 @@
     [lblTitle setTextColor:TITLECOLOR];
     [f addSubview:lblTitle];
     SVTextField *timeDate=[[SVTextField alloc]initWithFrame:CGRectMake1(110, 30, 100, 30) Title:nil];
+    [timeDate.tf setText:[da objectForKey:@"DATE_VALUE"]];
     [f addSubview:timeDate];
     UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(0, 69, 320, 1)];
     [line setBackgroundColor:LINECOLOR];
@@ -210,8 +227,13 @@
 
 - (void)submit:(id)sender
 {
-    NSLog(@"%@",self.data);
-//    NSLog(@"%d\n%@\n%@",dSendType,timeString,taskUser);
+//    NSString *str1=[svTextField1.tf text];
+//    NSString *str2=[svTextField2.tf text];
+//    NSString *str3=[svTextField3.tf text];
+//    NSString *str4=[svTextField4.tf text];
+//    NSLog(@"1:%@\n2:%@\n3:%@\n4:%@\n5:%@\n6:%@\n7:%@",timeString,str1,str2,str3,str4,dSET_TYPE,taskUser);
+    [self.delegate onControllerResult:500 data:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (UIDatePicker*)createPicker:(UITextField*)textField doneAction:(SEL)dAction cancelAction:(SEL)cAction
@@ -273,7 +295,7 @@
 
 - (void)showSendTypeStatus
 {
-    if(dSendType==1){
+    if([@"1" isEqualToString:dSET_TYPE]){
         [autoDownSend setSelected:YES];
         [manualSend setSelected:NO];
     }else{
@@ -284,13 +306,13 @@
 
 - (void)sendSetting1:(id)sender
 {
-    dSendType=1;
+    dSET_TYPE=@"1";
     [self showSendTypeStatus];
 }
 
 - (void)sendSetting2:(id)sender
 {
-    dSendType=2;
+    dSET_TYPE=@"2";
     [self showSendTypeStatus];
 }
 
