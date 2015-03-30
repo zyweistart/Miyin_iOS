@@ -19,6 +19,6 @@
 
 @property BaseViewController *controller;
 
-- (void)setData:(NSDictionary*)data;
+- (void)setData:(NSMutableDictionary*)data;
 
 @end

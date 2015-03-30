@@ -89,7 +89,7 @@
         cell = [[InspectionManagerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     [cell setController:self];
-    NSDictionary *data= [self.dataItemArray objectAtIndex:[indexPath section]];
+    NSMutableDictionary *data= [self.dataItemArray objectAtIndex:[indexPath section]];
     [cell setData:data];
     [cell setAccessoryType:UITableViewCellAccessoryNone];
     return cell;
@@ -114,6 +114,35 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest handle:URL_appTaskingFps requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        NSDictionary *rData=[[response resultJSON] objectForKey:@"Results"];
+        if(rData){
+            //当前页
+            self.currentPage=[[NSString stringWithFormat:@"%@",[rData objectForKey:@"PageIndex"]] intValue];
+        }
+        //获取数据列表
+        if([self currentPage]==1){
+            [self.dataItemArray removeAllObjects];
+        }
+        NSArray *tData=[[response resultJSON] objectForKey:@"table1"];
+        if(tData){
+            for(id d in tData){
+                NSMutableDictionary *dic=[NSMutableDictionary dictionaryWithDictionary:d];
+                NSMutableArray *array=[[NSMutableArray alloc]init];
+                for(id d1 in [dic objectForKey:@"MODEL_LIST"]){
+                    [array addObject:[NSMutableDictionary dictionaryWithDictionary:d1]];
+                }
+                [dic setObject:array forKey:@"MODEL_LIST"];
+                [[self dataItemArray]addObject:dic];
+            }
+//            [[self dataItemArray] addObjectsFromArray:tData];
+        }
+    }
+    [self loadDone];
 }
 
 @end

@@ -14,8 +14,9 @@
 #define TITLECOLOR2NORMALCOLOR [UIColor colorWithRed:(254/255.0) green:(148/255.0) blue:(0/255.0) alpha:1]
 
 @implementation InspectionManagerCell{
-    NSDictionary *currentData;
+    NSMutableDictionary *currentData;
     UIView *bottomFrame;
+    SVCheckbox *svch1,*svch2,*svch3,*svch4,*svch5;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -58,11 +59,12 @@
     [lbl setTextAlignment:NSTextAlignmentLeft];
     [self addSubview:lbl];
     SVCheckbox *onOff=[[SVCheckbox alloc]initWithFrame:CGRectMake1(280, y, 30, 30)];
+    [onOff addTarget:self action:@selector(checkboxClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:onOff];
     return onOff;
 }
 
-- (void)setData:(NSDictionary*)data
+- (void)setData:(NSMutableDictionary*)data
 {
     currentData=data;
     [self.lblName setText:[NSString stringWithFormat:@"巡检人:%@",[data objectForKey:@"TASK_USER_NAME"]]];
@@ -70,22 +72,48 @@
     int count=MODEL_LIST.count;
     for(int i=0;i<count;i++){
         NSDictionary *d=[MODEL_LIST objectAtIndex:i];
-        [self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"]];
+        if(i==0){
+            svch1=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"]];
+            [svch1 setSelected:![@"0" isEqualToString:[d objectForKey:@"MODEL_SET_ID"]]];
+        }else if(i==1){
+            svch2=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"]];
+            [svch2 setSelected:![@"0" isEqualToString:[d objectForKey:@"MODEL_SET_ID"]]];
+        }else if(i==2){
+            svch3=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"]];
+            [svch3 setSelected:![@"0" isEqualToString:[d objectForKey:@"MODEL_SET_ID"]]];
+        }else if(i==3){
+            svch4=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"]];
+            [svch4 setSelected:![@"0" isEqualToString:[d objectForKey:@"MODEL_SET_ID"]]];
+        }else if(i==4){
+            svch5=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"]];
+            [svch5 setSelected:![@"0" isEqualToString:[d objectForKey:@"MODEL_SET_ID"]]];
+        }
     }
     CGFloat height=5+(count-1)*30+(count-1)*5+35;
     [bottomFrame setFrame:CGRectMake1(0, height, 320, 39)];
 }
 
+-(void)checkboxClick:(UIButton *)sender
+{
+    NSMutableArray *MODEL_LIST=[currentData objectForKey:@"MODEL_LIST"];
+    NSMutableDictionary *d=[MODEL_LIST objectAtIndex:3];
+    [d setObject:@"123" forKey:@"MODEL_SET_ID"];
+    sender.selected = !sender.selected;
+}
+
 - (void)downSend:(id)sender
 {
-    NSLog(@"下发");
     [self.pSend setEnabled:NO];
 }
 
 - (void)setting:(id)sender
 {
-    InspectionSettingViewController *inspectionSettingViewController=[[InspectionSettingViewController alloc]initWithData:currentData];
-    [[self.controller navigationController]pushViewController:inspectionSettingViewController animated:YES];
+    
+    
+    
+    
+//    InspectionSettingViewController *inspectionSettingViewController=[[InspectionSettingViewController alloc]initWithData:currentData];
+//    [[self.controller navigationController]pushViewController:inspectionSettingViewController animated:YES];
 }
 
 @end
