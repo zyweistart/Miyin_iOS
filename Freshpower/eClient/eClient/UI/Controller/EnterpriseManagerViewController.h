@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 freshpower. All rights reserved.
 //
 
-#import "BaseEGOTableViewPullRefreshViewController.h"
+#import "BaseTableViewController.h"
 
-@interface EnterpriseManagerViewController : BaseEGOTableViewPullRefreshViewController
+@interface EnterpriseManagerViewController : BaseTableViewController<UIActionSheetDelegate,UITextFieldDelegate>
 
-@property NSArray *companyArray;
-@property NSArray *heightArray;
-@property NSArray *lowArray;
+@property NSMutableArray *companyArray;
+@property NSMutableArray *heightArray;
+@property NSMutableArray *lowArray;
 
 @end

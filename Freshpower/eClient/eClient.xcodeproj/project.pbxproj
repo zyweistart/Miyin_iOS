@@ -12,6 +12,7 @@
 		00BAB6B41AC0608E00B1C849 /* InspectionSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BAB6B31AC0608E00B1C849 /* InspectionSettingViewController.m */; };
 		C910E5931ACA6EA4000084BD /* EnterpriseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C910E5921ACA6EA4000084BD /* EnterpriseDetailViewController.m */; };
 		C910E5961ACA7654000084BD /* EnterpriseHeightLowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C910E5951ACA7654000084BD /* EnterpriseHeightLowCell.m */; };
+		C91C043B1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91C043A1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m */; };
 		C92C27311AC1325F00E472C9 /* EDGButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C27301AC1325F00E472C9 /* EDGButtonCell.m */; };
 		C92C27341AC1344800E472C9 /* ElectricianManagerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C27331AC1344800E472C9 /* ElectricianManagerListViewController.m */; };
 		C92C27371AC1345700E472C9 /* ElectricianManagerSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C27361AC1345700E472C9 /* ElectricianManagerSearchViewController.m */; };
@@ -111,6 +112,8 @@
 		C910E5921ACA6EA4000084BD /* EnterpriseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseDetailViewController.m; sourceTree = "<group>"; };
 		C910E5941ACA7654000084BD /* EnterpriseHeightLowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseHeightLowCell.h; sourceTree = "<group>"; };
 		C910E5951ACA7654000084BD /* EnterpriseHeightLowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseHeightLowCell.m; sourceTree = "<group>"; };
+		C91C04391ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseHeightLowEditCell.h; sourceTree = "<group>"; };
+		C91C043A1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseHeightLowEditCell.m; sourceTree = "<group>"; };
 		C92C272F1AC1325F00E472C9 /* EDGButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDGButtonCell.h; sourceTree = "<group>"; };
 		C92C27301AC1325F00E472C9 /* EDGButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDGButtonCell.m; sourceTree = "<group>"; };
 		C92C27321AC1344800E472C9 /* ElectricianManagerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricianManagerListViewController.h; sourceTree = "<group>"; };
@@ -594,6 +597,8 @@
 				C9B0D1E41ACA4ADC0056E69A /* EnterpriseCell.m */,
 				C910E5941ACA7654000084BD /* EnterpriseHeightLowCell.h */,
 				C910E5951ACA7654000084BD /* EnterpriseHeightLowCell.m */,
+				C91C04391ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.h */,
+				C91C043A1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -760,6 +765,7 @@
 				C9BA43421ABC785C00B73485 /* Common.m in Sources */,
 				C94DFD6A1ABFF9B20043B896 /* NSString+Utils.m in Sources */,
 				C92C27341AC1344800E472C9 /* ElectricianManagerListViewController.m in Sources */,
+				C91C043B1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m in Sources */,
 				C9BA434D1ABC785C00B73485 /* ATMSoundFX.m in Sources */,
 				C9BA436D1ABC7B1F00B73485 /* LoginViewController.m in Sources */,
 				C92C27411AC13CE000E472C9 /* CRTableViewController.m in Sources */,

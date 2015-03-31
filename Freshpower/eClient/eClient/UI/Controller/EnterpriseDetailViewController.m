@@ -15,7 +15,7 @@
 @end
 
 @implementation EnterpriseDetailViewController{
-    NSArray *companyArray,*heightArray,*lowArray;
+    NSMutableArray *companyArray,*heightArray,*lowArray;
     
 }
 
@@ -152,9 +152,21 @@
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){
-        companyArray=[[response resultJSON]objectForKey:@"table1"];
-        heightArray=[[response resultJSON] objectForKey:@"tablehigh"];
-        lowArray=[[response resultJSON] objectForKey:@"tablelow"];
+        companyArray= [[NSMutableArray alloc]init];
+        NSArray *table1=[[response resultJSON]objectForKey:@"table1"];
+        for(id d in table1){
+            [companyArray addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
+        }
+        heightArray= [[NSMutableArray alloc]init];
+        NSArray *tablehigh=[[response resultJSON]objectForKey:@"tablehigh"];
+        for(id d in tablehigh){
+            [heightArray addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
+        }
+        lowArray= [[NSMutableArray alloc]init];
+        NSArray *tablelow=[[response resultJSON]objectForKey:@"tablelow"];
+        for(id d in tablelow){
+            [lowArray addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
+        }
         [self buildTableViewWithView:self.view];
     }
 }
