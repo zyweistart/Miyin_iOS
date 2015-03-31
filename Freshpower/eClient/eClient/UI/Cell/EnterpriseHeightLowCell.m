@@ -1,16 +1,16 @@
 //
-//  EnterpriseCell.m
+//  EnterpriseHeightLowCell.m
 //  eClient
 //
 //  Created by Start on 3/31/15.
 //  Copyright (c) 2015 freshpower. All rights reserved.
 //
 
-#import "EnterpriseCell.h"
+#import "EnterpriseHeightLowCell.h"
 #define TITLE1COLOR [UIColor colorWithRed:(140/255.0) green:(140/255.0) blue:(140/255.0) alpha:1]
 #define TITLE2COLOR [UIColor colorWithRed:(180/255.0) green:(180/255.0) blue:(180/255.0) alpha:1]
 
-@implementation EnterpriseCell
+@implementation EnterpriseHeightLowCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -33,16 +33,32 @@
         [self.lblPhone setFont:[UIFont systemFontOfSize:14]];
         [self.lblPhone setTextAlignment:NSTextAlignmentRight];
         [frame addSubview:self.lblPhone];
-        [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        [self setAccessoryType:UITableViewCellAccessoryNone];
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     return self;
 }
 
 - (void)setData:(NSDictionary*)data
 {
-    [self.lblName setText:[data objectForKey:@"NAME"]];
-    [self.lblCount setText:[NSString stringWithFormat:@"变压器数量:%@",[data objectForKey:@"EQ_COUNT"]]];
-    [self.lblPhone setText:[data objectForKey:@"TEL"]];
+    NSString *EQ_TYPE=[data objectForKey:@"EQ_TYPE"];
+    if([@"1" isEqualToString:EQ_TYPE]){
+        [self.lblName setText:[data objectForKey:@"EQ_NAME"]];
+        [self.lblCount setText:[NSString stringWithFormat:@"倍率%@",[data objectForKey:@"EQ_MULTIPLY"]]];
+        [self.lblPhone setHidden:YES];
+    }else if([@"3" isEqualToString:EQ_TYPE]){
+        [self.lblName setText:[data objectForKey:@"EQ_NAME"]];
+        [self.lblCount setText:[NSString stringWithFormat:@"电压等级%@",[data objectForKey:@"EQ_U_LEVEL"]]];
+        [self.lblPhone setText:[NSString stringWithFormat:@"倍率%@",[data objectForKey:@"EQ_MULTIPLY"]]];
+    }else if([@"4" isEqualToString:EQ_TYPE]){
+        [self.lblName setText:[data objectForKey:@"EQ_NAME"]];
+        [self.lblCount setText:[NSString stringWithFormat:@"电压等级%@",[data objectForKey:@"EQ_U_LEVEL"]]];
+        [self.lblPhone setHidden:YES];
+    }else if([@"5" isEqualToString:EQ_TYPE]){
+        [self.lblName setText:[data objectForKey:@"EQ_NAME"]];
+        [self.lblCount setHidden:YES];
+        [self.lblPhone setHidden:YES];
+    }
 }
 
 @end

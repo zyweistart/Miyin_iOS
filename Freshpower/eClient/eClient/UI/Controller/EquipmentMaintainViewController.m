@@ -7,6 +7,7 @@
 //
 
 #import "EquipmentMaintainViewController.h"
+#import "EnterpriseDetailViewController.h"
 #import "LoginViewController.h"
 #import "EnterpriseCell.h"
 
@@ -69,7 +70,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if([self.dataItemArray count]>0){
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:[[EnterpriseDetailViewController alloc]initWithData:data] animated:YES];
+    }
 }
 
 - (void)loadHttp
@@ -77,7 +81,7 @@
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:[[User Instance]getUserName] forKey:@"imei"];
     [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
-    [params setObject:@"AC16" forKey:@"GNID"];
+    [params setObject:@"AC03" forKey:@"GNID"];
     [params setObject:PAGESIZE forKey:@"QTPSIZE"];
     [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]]  forKey:@"QTPINDEX"];
     self.hRequest=[[HttpRequest alloc]init];

@@ -10,4 +10,8 @@
 
 @interface EnterpriseManagerViewController : BaseEGOTableViewPullRefreshViewController
 
+@property NSArray *companyArray;
+@property NSArray *heightArray;
+@property NSArray *lowArray;
+
 @end

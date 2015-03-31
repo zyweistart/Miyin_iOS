@@ -10,6 +10,8 @@
 		00BAB6AE1AC0508100B1C849 /* EDGManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BAB6AD1AC0508100B1C849 /* EDGManagerCell.m */; };
 		00BAB6B11AC0520100B1C849 /* InspectionManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BAB6B01AC0520100B1C849 /* InspectionManagerCell.m */; };
 		00BAB6B41AC0608E00B1C849 /* InspectionSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BAB6B31AC0608E00B1C849 /* InspectionSettingViewController.m */; };
+		C910E5931ACA6EA4000084BD /* EnterpriseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C910E5921ACA6EA4000084BD /* EnterpriseDetailViewController.m */; };
+		C910E5961ACA7654000084BD /* EnterpriseHeightLowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C910E5951ACA7654000084BD /* EnterpriseHeightLowCell.m */; };
 		C92C27311AC1325F00E472C9 /* EDGButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C27301AC1325F00E472C9 /* EDGButtonCell.m */; };
 		C92C27341AC1344800E472C9 /* ElectricianManagerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C27331AC1344800E472C9 /* ElectricianManagerListViewController.m */; };
 		C92C27371AC1345700E472C9 /* ElectricianManagerSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C27361AC1345700E472C9 /* ElectricianManagerSearchViewController.m */; };
@@ -105,6 +107,10 @@
 		00BAB6B01AC0520100B1C849 /* InspectionManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionManagerCell.m; sourceTree = SOURCE_ROOT; };
 		00BAB6B21AC0608E00B1C849 /* InspectionSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionSettingViewController.h; sourceTree = "<group>"; };
 		00BAB6B31AC0608E00B1C849 /* InspectionSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionSettingViewController.m; sourceTree = "<group>"; };
+		C910E5911ACA6EA4000084BD /* EnterpriseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseDetailViewController.h; sourceTree = "<group>"; };
+		C910E5921ACA6EA4000084BD /* EnterpriseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseDetailViewController.m; sourceTree = "<group>"; };
+		C910E5941ACA7654000084BD /* EnterpriseHeightLowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseHeightLowCell.h; sourceTree = "<group>"; };
+		C910E5951ACA7654000084BD /* EnterpriseHeightLowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseHeightLowCell.m; sourceTree = "<group>"; };
 		C92C272F1AC1325F00E472C9 /* EDGButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDGButtonCell.h; sourceTree = "<group>"; };
 		C92C27301AC1325F00E472C9 /* EDGButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDGButtonCell.m; sourceTree = "<group>"; };
 		C92C27321AC1344800E472C9 /* ElectricianManagerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricianManagerListViewController.h; sourceTree = "<group>"; };
@@ -350,6 +356,8 @@
 				C9BA438A1ABC978500B73485 /* EquipmentMaintainViewController.m */,
 				C9B0D1E01ACA49860056E69A /* EnterpriseManagerViewController.h */,
 				C9B0D1E11ACA49860056E69A /* EnterpriseManagerViewController.m */,
+				C910E5911ACA6EA4000084BD /* EnterpriseDetailViewController.h */,
+				C910E5921ACA6EA4000084BD /* EnterpriseDetailViewController.m */,
 			);
 			name = EnterpriseManager;
 			sourceTree = "<group>";
@@ -584,6 +592,8 @@
 				C9D1CCCA1AC291550070FACC /* InspectionDownSendCell.m */,
 				C9B0D1E31ACA4ADC0056E69A /* EnterpriseCell.h */,
 				C9B0D1E41ACA4ADC0056E69A /* EnterpriseCell.m */,
+				C910E5941ACA7654000084BD /* EnterpriseHeightLowCell.h */,
+				C910E5951ACA7654000084BD /* EnterpriseHeightLowCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -757,6 +767,7 @@
 				C9D1CCCE1AC2AE9E0070FACC /* TimeSelectViewController.m in Sources */,
 				C9BA43441ABC785C00B73485 /* HttpRequest.m in Sources */,
 				C9B0D1D51ACA43900056E69A /* STBurdenCell.m in Sources */,
+				C910E5961ACA7654000084BD /* EnterpriseHeightLowCell.m in Sources */,
 				C9BA434A1ABC785C00B73485 /* ATMHudQueueItem.m in Sources */,
 				C9BA438B1ABC978500B73485 /* EquipmentMaintainViewController.m in Sources */,
 				C9B324451AC70C9D0089A297 /* FeedbackViewController.m in Sources */,
@@ -782,6 +793,7 @@
 				C92C27311AC1325F00E472C9 /* EDGButtonCell.m in Sources */,
 				C9BA43911ABC97E700B73485 /* JTDGGLViewController.m in Sources */,
 				C9B0D1CA1ACA31280056E69A /* STWarnComapnyViewController.m in Sources */,
+				C910E5931ACA6EA4000084BD /* EnterpriseDetailViewController.m in Sources */,
 				C9BA43471ABC785C00B73485 /* User.m in Sources */,
 				C9BA43401ABC785C00B73485 /* BaseTableViewController.m in Sources */,
 				C9BA43521ABC785C00B73485 /* PullTableView.m in Sources */,
