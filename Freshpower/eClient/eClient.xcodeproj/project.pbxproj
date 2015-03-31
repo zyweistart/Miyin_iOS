@@ -21,6 +21,10 @@
 		C94DFD6A1ABFF9B20043B896 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C94DFD691ABFF9B20043B896 /* NSString+Utils.m */; };
 		C9B0D1CA1ACA31280056E69A /* STWarnComapnyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B0D1C91ACA31280056E69A /* STWarnComapnyViewController.m */; };
 		C9B0D1CD1ACA31B10056E69A /* STAlarmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B0D1CC1ACA31B10056E69A /* STAlarmCell.m */; };
+		C9B0D1D41ACA43900056E69A /* STBurdenDetailListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B0D1D11ACA43900056E69A /* STBurdenDetailListViewController.m */; };
+		C9B0D1D51ACA43900056E69A /* STBurdenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B0D1D31ACA43900056E69A /* STBurdenCell.m */; };
+		C9B0D1E21ACA49860056E69A /* EnterpriseManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B0D1E11ACA49860056E69A /* EnterpriseManagerViewController.m */; };
+		C9B0D1E51ACA4ADC0056E69A /* EnterpriseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B0D1E41ACA4ADC0056E69A /* EnterpriseCell.m */; };
 		C9B3243B1AC7053A0089A297 /* STAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B3243A1AC7053A0089A297 /* STAboutUsViewController.m */; };
 		C9B3243F1AC705800089A297 /* STNavigationWebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B3243E1AC705800089A297 /* STNavigationWebPageViewController.m */; };
 		C9B324421AC705C10089A297 /* page.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9B324411AC705C10089A297 /* page.bundle */; };
@@ -123,6 +127,14 @@
 		C9B0D1C91ACA31280056E69A /* STWarnComapnyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STWarnComapnyViewController.m; sourceTree = "<group>"; };
 		C9B0D1CB1ACA31B10056E69A /* STAlarmCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlarmCell.h; sourceTree = "<group>"; };
 		C9B0D1CC1ACA31B10056E69A /* STAlarmCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlarmCell.m; sourceTree = "<group>"; };
+		C9B0D1D01ACA43900056E69A /* STBurdenDetailListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STBurdenDetailListViewController.h; sourceTree = "<group>"; };
+		C9B0D1D11ACA43900056E69A /* STBurdenDetailListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STBurdenDetailListViewController.m; sourceTree = "<group>"; };
+		C9B0D1D21ACA43900056E69A /* STBurdenCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STBurdenCell.h; sourceTree = "<group>"; };
+		C9B0D1D31ACA43900056E69A /* STBurdenCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STBurdenCell.m; sourceTree = "<group>"; };
+		C9B0D1E01ACA49860056E69A /* EnterpriseManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseManagerViewController.h; sourceTree = "<group>"; };
+		C9B0D1E11ACA49860056E69A /* EnterpriseManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseManagerViewController.m; sourceTree = "<group>"; };
+		C9B0D1E31ACA4ADC0056E69A /* EnterpriseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseCell.h; sourceTree = "<group>"; };
+		C9B0D1E41ACA4ADC0056E69A /* EnterpriseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseCell.m; sourceTree = "<group>"; };
 		C9B324391AC7053A0089A297 /* STAboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAboutUsViewController.h; sourceTree = "<group>"; };
 		C9B3243A1AC7053A0089A297 /* STAboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAboutUsViewController.m; sourceTree = "<group>"; };
 		C9B3243D1AC705800089A297 /* STNavigationWebPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STNavigationWebPageViewController.h; sourceTree = "<group>"; };
@@ -331,13 +343,28 @@
 			name = User;
 			sourceTree = "<group>";
 		};
+		C9B0D1DF1ACA49470056E69A /* EnterpriseManager */ = {
+			isa = PBXGroup;
+			children = (
+				C9BA43891ABC978500B73485 /* EquipmentMaintainViewController.h */,
+				C9BA438A1ABC978500B73485 /* EquipmentMaintainViewController.m */,
+				C9B0D1E01ACA49860056E69A /* EnterpriseManagerViewController.h */,
+				C9B0D1E11ACA49860056E69A /* EnterpriseManagerViewController.m */,
+			);
+			name = EnterpriseManager;
+			sourceTree = "<group>";
+		};
 		C9B3243C1AC705490089A297 /* Old */ = {
 			isa = PBXGroup;
 			children = (
-				C9B3243D1AC705800089A297 /* STNavigationWebPageViewController.h */,
-				C9B3243E1AC705800089A297 /* STNavigationWebPageViewController.m */,
 				C9B324391AC7053A0089A297 /* STAboutUsViewController.h */,
 				C9B3243A1AC7053A0089A297 /* STAboutUsViewController.m */,
+				C9B0D1D21ACA43900056E69A /* STBurdenCell.h */,
+				C9B0D1D31ACA43900056E69A /* STBurdenCell.m */,
+				C9B0D1D01ACA43900056E69A /* STBurdenDetailListViewController.h */,
+				C9B0D1D11ACA43900056E69A /* STBurdenDetailListViewController.m */,
+				C9B3243D1AC705800089A297 /* STNavigationWebPageViewController.h */,
+				C9B3243E1AC705800089A297 /* STNavigationWebPageViewController.m */,
 			);
 			name = Old;
 			sourceTree = "<group>";
@@ -555,6 +582,8 @@
 				C9D1CCC71AC291450070FACC /* InspectionTipCell.m */,
 				C9D1CCC91AC291550070FACC /* InspectionDownSendCell.h */,
 				C9D1CCCA1AC291550070FACC /* InspectionDownSendCell.m */,
+				C9B0D1E31ACA4ADC0056E69A /* EnterpriseCell.h */,
+				C9B0D1E41ACA4ADC0056E69A /* EnterpriseCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -562,23 +591,22 @@
 		C9BA43631ABC7AEF00B73485 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C9B0D1CF1ACA3EDF0056E69A /* User */,
-				C9B0D1CE1ACA3EAB0056E69A /* Home */,
 				C9BA43741ABC7BB400B73485 /* AnswerViewController.h */,
 				C9BA43751ABC7BB400B73485 /* AnswerViewController.m */,
 				C92C273B1AC1349B00E472C9 /* ElectricianManager */,
+				C9B0D1DF1ACA49470056E69A /* EnterpriseManager */,
 				C9E5A9891AC0137800FE38F0 /* EnterpriseNameModifyViewController.h */,
 				C9E5A98A1AC0137800FE38F0 /* EnterpriseNameModifyViewController.m */,
-				C9BA43891ABC978500B73485 /* EquipmentMaintainViewController.h */,
-				C9BA438A1ABC978500B73485 /* EquipmentMaintainViewController.m */,
 				C9B324431AC70C9D0089A297 /* FeedbackViewController.h */,
 				C9B324441AC70C9D0089A297 /* FeedbackViewController.m */,
+				C9B0D1CE1ACA3EAB0056E69A /* Home */,
 				002319C01AC1BC6B00EF3DC5 /* InspectionManager */,
 				C94DFD651ABFEF970043B896 /* MaintainEnterpriseInformationViewController.h */,
 				C94DFD661ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m */,
 				C9B3243C1AC705490089A297 /* Old */,
 				C9BA43711ABC7BA500B73485 /* ProductViewController.h */,
 				C9BA43721ABC7BA500B73485 /* ProductViewController.m */,
+				C9B0D1CF1ACA3EDF0056E69A /* User */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -710,8 +738,10 @@
 			files = (
 				C9BA43461ABC785C00B73485 /* UIButton+TitleImage.m in Sources */,
 				00BAB6B11AC0520100B1C849 /* InspectionManagerCell.m in Sources */,
+				C9B0D1D41ACA43900056E69A /* STBurdenDetailListViewController.m in Sources */,
 				C94DFD671ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m in Sources */,
 				C9BA43791ABC7E2900B73485 /* SVTextField.m in Sources */,
+				C9B0D1E21ACA49860056E69A /* EnterpriseManagerViewController.m in Sources */,
 				C9BA434C1ABC785C00B73485 /* ATMProgressLayer.m in Sources */,
 				C9BA435B1ABC785C00B73485 /* MBProgressHUD.m in Sources */,
 				C9BA43881ABC977100B73485 /* ElectricianManagerViewController.m in Sources */,
@@ -726,6 +756,7 @@
 				C9B3243F1AC705800089A297 /* STNavigationWebPageViewController.m in Sources */,
 				C9D1CCCE1AC2AE9E0070FACC /* TimeSelectViewController.m in Sources */,
 				C9BA43441ABC785C00B73485 /* HttpRequest.m in Sources */,
+				C9B0D1D51ACA43900056E69A /* STBurdenCell.m in Sources */,
 				C9BA434A1ABC785C00B73485 /* ATMHudQueueItem.m in Sources */,
 				C9BA438B1ABC978500B73485 /* EquipmentMaintainViewController.m in Sources */,
 				C9B324451AC70C9D0089A297 /* FeedbackViewController.m in Sources */,
@@ -738,6 +769,7 @@
 				C9BA43411ABC785C00B73485 /* BaseViewController.m in Sources */,
 				C9BA43971ABC981D00B73485 /* DGSQViewController.m in Sources */,
 				C9B324481AC7187D0089A297 /* SVTextView.m in Sources */,
+				C9B0D1E51ACA4ADC0056E69A /* EnterpriseCell.m in Sources */,
 				C92C27441AC15A7200E472C9 /* SVCheckbox.m in Sources */,
 				00BAB6AE1AC0508100B1C849 /* EDGManagerCell.m in Sources */,
 				C92C27371AC1345700E472C9 /* ElectricianManagerSearchViewController.m in Sources */,

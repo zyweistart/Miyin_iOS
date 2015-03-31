@@ -12,6 +12,8 @@
 
 #define PAGESIZE @"8"
 
+static NSString *cellReuseIdentifier=@"Cell";
+
 @interface BaseEGOTableViewPullRefreshViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate, PullTableViewDelegate>
 
 @property NSInteger currentPage;

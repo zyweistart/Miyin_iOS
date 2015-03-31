@@ -17,6 +17,8 @@
 #import "DGSQViewController.h"
 #import "FeedbackViewController.h"
 #import "STWarnComapnyViewController.h"
+#import "EnterpriseManagerViewController.h"
+#import "STBurdenDetailListViewController.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 #define LINECOLOR  [UIColor colorWithRed:(230/255.0) green:(230/255.0) blue:(230/255.0) alpha:1]
@@ -63,7 +65,7 @@
     [self addModel:@"报警信息" Title:@"报警信息" Frame:middleFrame Tag:4 X:0 Y:90];
     [self addModel:@"电量电费" Title:@"电量电费" Frame:middleFrame Tag:5 X:80 Y:90];
     [self addModel:@"运行状态" Title:@"运行状态" Frame:middleFrame Tag:6 X:160 Y:90];
-    [self addModel:@"企业负荷" Title:@"企业负荷" Frame:middleFrame Tag:6 X:240 Y:90];
+    [self addModel:@"企业负荷" Title:@"企业负荷" Frame:middleFrame Tag:7 X:240 Y:90];
     UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(81, 10, 1, 80)];
     [line setBackgroundColor:LINECOLOR];
     [middleFrame addSubview:line];
@@ -182,7 +184,7 @@
     }else if(tag==6){
         NSLog(@"运行状态");
     }else if(tag==7){
-        NSLog(@"企业负荷");
+        [self.navigationController pushViewController:[[STBurdenDetailListViewController alloc]init] animated:YES];
     }
 }
 - (void)goToMainView:(UITapGestureRecognizer*)sender
