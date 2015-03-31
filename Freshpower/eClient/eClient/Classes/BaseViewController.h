@@ -15,4 +15,6 @@
 @property NSMutableDictionary *paramData;
 - (id)initWithParams:(NSDictionary*)data;
 
+- (void)back:(id)sender;
+
 @end

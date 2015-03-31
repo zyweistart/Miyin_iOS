@@ -16,6 +16,7 @@
 @property (strong,nonatomic) NSData *data;
 @property (strong,nonatomic) NSString *responseString;
 @property (strong,nonatomic) NSDictionary *resultJSON;
+@property (strong,nonatomic) NSDictionary *headJSON;
 
 + (Response*)toData:(NSString*)repsonseString;
 

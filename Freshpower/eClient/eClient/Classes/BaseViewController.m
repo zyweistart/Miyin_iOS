@@ -37,6 +37,11 @@
     [super viewDidLoad];
 }
 
+- (void)back:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)presentViewController:(BaseViewController*)viewController
 {
     [viewController setResultDelegate:self];

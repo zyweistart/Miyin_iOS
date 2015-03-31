@@ -119,10 +119,10 @@
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([@"1" isEqualToString:[response code]]){
-        [[User Instance]setUserName:USERNAME];
-        [[User Instance]setPassWord:PASSWORD];
-        [[User Instance]setIsLogin:YES];
-        [[User Instance]setInfo:[[response resultJSON]objectForKey:@"UserInfo"]];
+//        [[User Instance]setUserName:USERNAME];
+//        [[User Instance]setPassWord:PASSWORD];
+//        [[User Instance]setIsLogin:YES];
+//        [[User Instance]setInfo:[[response resultJSON]objectForKey:@"UserInfo"]];
         //        [self.navigationController popToRootViewControllerAnimated:YES];
         [self.navigationController popViewControllerAnimated:YES];
     }else{

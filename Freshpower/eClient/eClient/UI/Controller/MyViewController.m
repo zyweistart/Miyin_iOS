@@ -76,7 +76,7 @@
 {
     [super viewWillAppear:animated];
     if([[User Instance]isLogin]){
-        [lblAccount setText:[[[User Instance]info]objectForKey:@"NAME"]];
+        [lblAccount setText:[[[User Instance]getResultData]objectForKey:@"NAME"]];
     }else{
         [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
     }
@@ -143,8 +143,7 @@
 
 - (void)switchUser:(id)sender
 {
-    [[User Instance]setInfo:nil];
-    [[User Instance]setIsLogin:NO];
+    [[User Instance]clear];
     [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
 }
 
@@ -155,8 +154,7 @@
 
 - (void)logout:(id)sender
 {
-    [[User Instance]setInfo:nil];
-    [[User Instance]setIsLogin:NO];
+    [[User Instance]clear];
     [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
 }
 

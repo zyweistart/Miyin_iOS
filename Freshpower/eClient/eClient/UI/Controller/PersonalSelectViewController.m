@@ -80,8 +80,8 @@
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:[[User Instance]userName] forKey:@"imei"];
-    [params setObject:[[User Instance]passWord] forKey:@"authentication"];
+    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
+    [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
     [params setObject:@"TS005" forKey:@"GNID"];
     [params setObject:[[self data]objectForKey:@"CP_ID"] forKey:@"QTCP"];
     self.hRequest=[[HttpRequest alloc]init];

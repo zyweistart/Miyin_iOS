@@ -91,8 +91,8 @@
     NSRange deleteRange = {[ms length]-1,1};
     [ms deleteCharactersInRange:deleteRange];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:[[User Instance]userName] forKey:@"imei"];
-    [params setObject:[[User Instance]passWord] forKey:@"authentication"];
+    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
+    [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
     [params setObject:@"AC14" forKey:@"GNID"];
     [params setObject:[self.paramData objectForKey:@"CP_ID"] forKey:@"QTCP"];//
     [params setObject:[NSString stringWithFormat:@"%@",ms] forKey:@"QTUSER"];
@@ -107,8 +107,8 @@
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:[[User Instance]userName] forKey:@"imei"];
-    [params setObject:[[User Instance]passWord] forKey:@"authentication"];
+    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
+    [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
     [params setObject:[self.paramData objectForKey:@"CP_ID"] forKey:@"QTCP"];//
     [params setObject:[self.paramData objectForKey:@"PARAMSNAME"] forKey:@"QTKEY"];//姓名
     [params setObject:[self.paramData objectForKey:@"PARAMSPHONE"] forKey:@"QTVAL"];//手机号

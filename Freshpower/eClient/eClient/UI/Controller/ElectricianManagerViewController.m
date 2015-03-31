@@ -173,8 +173,8 @@
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:[[User Instance]userName] forKey:@"imei"];
-    [params setObject:[[User Instance]passWord] forKey:@"authentication"];
+    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
+    [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
     [params setObject:@"AC16" forKey:@"GNID"];
     [params setObject:PAGESIZE forKey:@"QTPSIZE"];
     [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]]  forKey:@"QTPINDEX"];
@@ -188,8 +188,8 @@
 - (void)deleteHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:[[User Instance]userName] forKey:@"imei"];
-    [params setObject:[[User Instance]passWord] forKey:@"authentication"];
+    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
+    [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
     [params setObject:@"AC16" forKey:@"GNID"];
     [params setObject:PAGESIZE forKey:@"QTPSIZE"];
     [params setObject:@"1"  forKey:@"QTPINDEX"];

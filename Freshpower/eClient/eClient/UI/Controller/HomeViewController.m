@@ -16,6 +16,7 @@
 #import "JTDGGLViewController.h"
 #import "DGSQViewController.h"
 #import "FeedbackViewController.h"
+#import "STWarnComapnyViewController.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 #define LINECOLOR  [UIColor colorWithRed:(230/255.0) green:(230/255.0) blue:(230/255.0) alpha:1]
@@ -164,8 +165,18 @@
     }else if(tag==3){
         [self.navigationController pushViewController:[[ElectricianManagerViewController alloc]init] animated:YES];
     }else if(tag==4){
-        [self.navigationController pushViewController:[[FeedbackViewController alloc]init] animated:YES];
-//        NSLog(@"报警信息");
+        UINavigationController *realTimeAlarmViewControllerNAV=[[UINavigationController alloc]initWithRootViewController:[[STWarnComapnyViewController alloc]initWithType:1]];
+        realTimeAlarmViewControllerNAV.tabBarItem.image=[UIImage imageNamed:@"bj"];
+        realTimeAlarmViewControllerNAV.tabBarItem.title=@"实时报警";
+        UINavigationController *historyAlarmViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[STWarnComapnyViewController alloc]initWithType:2]];
+        historyAlarmViewControllerNav.tabBarItem.image=[UIImage imageNamed:@"ls"];
+        historyAlarmViewControllerNav.tabBarItem.title=@"历史报警";
+        UITabBarController *alarmTableBarController=[[UITabBarController alloc]init];
+        [alarmTableBarController setViewControllers:[[NSArray alloc]initWithObjects:
+                                                     realTimeAlarmViewControllerNAV,
+                                                     historyAlarmViewControllerNav,nil]];
+        alarmTableBarController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:alarmTableBarController animated:YES];
     }else if(tag==5){
         NSLog(@"电量电费");
     }else if(tag==6){

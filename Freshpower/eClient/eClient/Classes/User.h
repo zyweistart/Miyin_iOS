@@ -7,14 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#define ACCOUNTUSERNAME @"ACCOUNTUSERNAME"
+#define ACCOUNTPASSWORD @"ACCOUNTPASSWORD"
+#define ISACCOUNTAUTOLOGIN @"ISACCOUNTLOGIN"
+#define ACCOUNTRESULTDATA @"ACCOUNTRESULTDATA"
 
 @interface User : NSObject
 
-@property BOOL isLogin;
-@property (strong,nonatomic) NSDictionary *info;
-@property (strong,nonatomic) NSString *userName;
-@property (strong,nonatomic) NSString *passWord;
-
 + (User *) Instance;
+
+- (void)LoginSuccessWithUserName:(NSString*)u Password:(NSString*)p Data:(NSDictionary*) d;
+
+- (BOOL)isLogin;
+- (NSString*)getUserName;
+- (NSString*)getPassword;
+- (NSDictionary*)getResultData;
+- (BOOL)isAuth:(NSString*)name;
+
+- (void)clear;
 
 @end

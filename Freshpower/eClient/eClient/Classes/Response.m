@@ -30,8 +30,12 @@
             if(resultJSON!=nil){
                 [response setResultJSON:resultJSON];
                 NSDictionary *results=[resultJSON objectForKey:@"Results"];
-                [response setCode:[NSString stringWithFormat:@"%@",[results objectForKey:@"result"]]];
-                [response setMsg:[NSString stringWithFormat:@"%@",[results objectForKey:@"remark"]]];
+                if(results==nil){
+                    results=[resultJSON objectForKey:@"Rows"];
+                }
+                [response setHeadJSON:results];
+                [response setCode:[NSString stringWithFormat:@"%@",[[response headJSON] objectForKey:@"result"]]];
+                [response setMsg:[NSString stringWithFormat:@"%@",[[response headJSON] objectForKey:@"remark"]]];
             }
         }
     }

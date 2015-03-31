@@ -93,14 +93,12 @@
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([@"1" isEqualToString:[response code]]){
-        [[User Instance]setUserName:USERNAME];
-        [[User Instance]setPassWord:PASSWORD];
-        [[User Instance]setIsLogin:YES];
-        [[User Instance]setInfo:[[response resultJSON]objectForKey:@"UserInfo"]];
-//        [self.navigationController popToRootViewControllerAnimated:YES];
+        NSDictionary *user=[[response resultJSON]objectForKey:@"UserInfo"];
+        [[User Instance] LoginSuccessWithUserName:USERNAME Password:PASSWORD Data:user];
         [self.navigationController popViewControllerAnimated:YES];
+        
     }else{
-        [Common alert:[response msg]];
+        [Common alert:[Common NSNullConvertEmptyString:[response msg]]];
     }
 }
 

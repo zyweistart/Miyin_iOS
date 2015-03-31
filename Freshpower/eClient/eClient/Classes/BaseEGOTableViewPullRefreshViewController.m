@@ -151,8 +151,8 @@
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){
-        NSDictionary *rData=[[response resultJSON] objectForKey:@"Results"];
-        if(rData){
+        NSDictionary *rData=[response headJSON];
+        if(rData==nil){
             //当前页
             self.currentPage=[[NSString stringWithFormat:@"%@",[rData objectForKey:@"PageIndex"]] intValue];
         }
