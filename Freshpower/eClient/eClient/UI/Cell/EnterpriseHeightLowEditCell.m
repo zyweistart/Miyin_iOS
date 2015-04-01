@@ -21,8 +21,8 @@
 #define rect5 CGRectMake1(30,15, 100, 25)
 
 @implementation EnterpriseHeightLowEditCell{
-    NSDictionary *currentData;
     UIButton *add;
+    NSDictionary *currentData;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -94,33 +94,35 @@
 
 - (void)add:(id)sender
 {
-    NSString *cname=@"这是测试aaaa";
-    NSMutableDictionary *data=[[NSMutableDictionary alloc]init];
-    //添加变压器
-    [data setObject:cname forKey:@"EQ_NAME"];
-    [data setObject:@"55.00" forKey:@"EQ_U_LEVEL"];
-    [data setObject:@"55.00" forKey:@"EQ_MULTIPLY"];
-    [data setObject:@"3" forKey:@"EQ_TYPE"];
-    [data setObject:@"0" forKey:@"EQ_SORTNO"];
-    for(id d in self.dataItemArray){
-        NSString *name=[d objectForKey:@"EQ_NAME"];
-        if([cname isEqualToString:name]){
-            [Common alert:[NSString stringWithFormat:@"%@已经存在，不能重复添加",cname]];
-            return;
-        }
-    }
-    NSString *name=[currentData objectForKey:@"EQ_NAME"];
-    NSMutableArray *tmpArray=[[NSMutableArray alloc]init];
-    for(id d in self.dataItemArray){
-        [tmpArray addObject:d];
-        NSString *tmpName=[d objectForKey:@"EQ_NAME"];
-        if([name isEqualToString:tmpName]){
-            [tmpArray addObject:data];
-        }
-    }
-    [self.dataItemArray removeAllObjects];
-    [self.dataItemArray addObjectsFromArray:tmpArray];
-    [self.tableView reloadData];
+    [self.controller addLine:currentData];
+//    NSString *cname=@"这是测试aaaa";
+//    NSMutableDictionary *data=[[NSMutableDictionary alloc]init];
+//    //添加变压器
+//    [data setObject:cname forKey:@"EQ_NAME"];
+//    [data setObject:@"55.00" forKey:@"EQ_U_LEVEL"];
+//    [data setObject:@"55.00" forKey:@"EQ_MULTIPLY"];
+//    [data setObject:@"3" forKey:@"EQ_TYPE"];
+//    [data setObject:@"0" forKey:@"EQ_SORTNO"];
+//    for(id d in self.dataItemArray){
+//        NSString *name=[d objectForKey:@"EQ_NAME"];
+//        if([cname isEqualToString:name]){
+//            [Common alert:[NSString stringWithFormat:@"%@已经存在，不能重复添加",cname]];
+//            return;
+//        }
+//    }
+//    NSString *name=[currentData objectForKey:@"EQ_NAME"];
+//    NSMutableArray *tmpArray=[[NSMutableArray alloc]init];
+//    for(id d in self.dataItemArray){
+//        [tmpArray addObject:d];
+//        NSString *tmpName=[d objectForKey:@"EQ_NAME"];
+//        if([name isEqualToString:tmpName]){
+//            [tmpArray addObject:data];
+//        }
+//    }
+//    [self.dataItemArray removeAllObjects];
+//    [self.dataItemArray addObjectsFromArray:tmpArray];
+//    [self.tableView reloadData];
+    
 }
 
 @end

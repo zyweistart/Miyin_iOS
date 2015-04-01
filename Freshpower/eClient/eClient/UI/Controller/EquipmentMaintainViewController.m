@@ -8,6 +8,7 @@
 
 #import "EquipmentMaintainViewController.h"
 #import "EnterpriseDetailViewController.h"
+#import "EnterpriseManagerViewController.h"
 #import "LoginViewController.h"
 #import "EnterpriseCell.h"
 
@@ -21,6 +22,19 @@
     self=[super init];
     if(self){
         [self setTitle:@"企业设备维护"];
+        UIButton *bAdd = [UIButton buttonWithType:UIButtonTypeCustom];
+        [bAdd setTitle:@"添加" forState:UIControlStateNormal];
+        [bAdd.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [bAdd setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [bAdd addTarget:self action:@selector(goAdd:) forControlEvents:UIControlEventTouchUpInside];
+        bAdd.frame = CGRectMake(0, 0, 70, 30);
+        bAdd.layer.cornerRadius = 5;
+        bAdd.layer.masksToBounds = YES;
+        UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
+                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                target:nil action:nil];
+        negativeSpacerRight.width = -20;
+        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bAdd], nil];
         [self buildTableViewWithView:self.view];
     }
     return self;
@@ -89,6 +103,11 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest handle:URL_appTaskingFps requestParams:params];
+}
+
+- (void)goAdd:(UIButton*)sender
+{
+    [self.navigationController pushViewController:[[EnterpriseManagerViewController alloc]initWithCompanyArray:nil] animated:YES];
 }
 
 @end

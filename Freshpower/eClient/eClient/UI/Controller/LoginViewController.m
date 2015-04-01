@@ -96,7 +96,6 @@
         NSDictionary *user=[[response resultJSON]objectForKey:@"UserInfo"];
         [[User Instance] LoginSuccessWithUserName:USERNAME Password:PASSWORD Data:user];
         [self.navigationController popViewControllerAnimated:YES];
-        
     }else{
         [Common alert:[Common NSNullConvertEmptyString:[response msg]]];
     }

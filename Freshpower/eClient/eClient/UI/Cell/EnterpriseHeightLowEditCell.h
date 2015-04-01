@@ -7,14 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EnterpriseManagerViewController.h"
 
 @interface EnterpriseHeightLowEditCell : UITableViewCell
 
 @property (strong,nonatomic) UILabel *lblName;
 @property (strong,nonatomic) UILabel *lblPhone;
 @property (strong,nonatomic) UILabel *lblCount;
-@property UITableView *tableView;
-@property NSMutableArray *dataItemArray;
+
+
+@property EnterpriseManagerViewController *controller;
 
 - (void)setData:(NSDictionary*)data;
 

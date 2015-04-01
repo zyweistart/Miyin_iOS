@@ -8,10 +8,14 @@
 
 #import "BaseTableViewController.h"
 
-@interface EnterpriseManagerViewController : BaseTableViewController<UIActionSheetDelegate,UITextFieldDelegate>
+@interface EnterpriseManagerViewController : BaseTableViewController<UIAlertViewDelegate,UIActionSheetDelegate,UITextFieldDelegate>
 
 @property NSMutableArray *companyArray;
 @property NSMutableArray *heightArray;
 @property NSMutableArray *lowArray;
+
+- (id)initWithCompanyArray:(NSMutableArray*)array;
+
+- (void)addLine:(NSDictionary*)data;
 
 @end

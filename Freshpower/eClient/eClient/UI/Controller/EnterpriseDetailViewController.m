@@ -173,8 +173,7 @@
 
 - (void)goEdit:(id)sender
 {
-    EnterpriseManagerViewController *enterpriseManagerViewController=[[EnterpriseManagerViewController alloc]init];
-    [enterpriseManagerViewController setCompanyArray:companyArray];
+    EnterpriseManagerViewController *enterpriseManagerViewController=[[EnterpriseManagerViewController alloc]initWithCompanyArray:companyArray];
     [enterpriseManagerViewController setHeightArray:heightArray];
     [enterpriseManagerViewController setLowArray:lowArray];
     [self.navigationController pushViewController:enterpriseManagerViewController animated:YES];

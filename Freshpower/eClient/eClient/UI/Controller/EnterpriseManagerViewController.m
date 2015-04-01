@@ -11,6 +11,7 @@
 #import "SVTextField.h"
 #import "SVButton.h"
 
+#define INPUTBGCOLOR [UIColor colorWithRed:(200/255.0) green:(200/255.0) blue:(200/255.0) alpha:0.5]
 #define LINECOLOR [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]
 
 @interface EnterpriseManagerViewController ()
@@ -20,16 +21,33 @@
 @implementation EnterpriseManagerViewController{
     UITextField *eName,*ePhone;
     SVButton *bAdd1,*bAdd2,*bSort,*bSubmit;
+    int tmpRow;
+    
+    UIView *inputView1,*inputView2;
+    SVTextField *eLName1,*eLMul1;
+    SVTextField *eLName2,*eLLevel,*eLMul2;
+    NSDictionary *currentData;
+    
 }
 
-- (id)init{
+
+- (id)initWithCompanyArray:(NSMutableArray*)array{
     self=[super init];
     if(self){
         [self setTitle:@"企业管理"];
+        
+        if(array){
+            [self setCompanyArray:array];
+        }else{
+            self.companyArray=[[NSMutableArray alloc]init];
+            self.heightArray=[[NSMutableArray alloc]init];
+            self.lowArray=[[NSMutableArray alloc]init];
+        }
+        
         [self buildTableViewWithView:self.view];
         UIView *topFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 95)];
         [self.tableView setTableHeaderView:topFrame];
-        
+        //头部
         UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 5, 80, 40)];
         [lbl setText:@"企业名称"];
         [lbl setFont:[UIFont systemFontOfSize:15]];
@@ -49,11 +67,21 @@
         ePhone=[[UITextField alloc]initWithFrame:CGRectMake1(90, 50, 200, 40)];
         [ePhone setDelegate:self];
         [topFrame addSubview:ePhone];
+        //如果为修改则
+        if([self.companyArray count]>0){
+            NSDictionary *data=[self.companyArray objectAtIndex:0];
+            [eName setText:[data objectForKey:@"NAME"]];
+            [ePhone setText:[data objectForKey:@"TEL"]];
+        }
+        //底部
         UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 50)];
         [self.tableView setTableFooterView:bottomFrame];
         bSubmit=[[SVButton alloc]initWithFrame:CGRectMake1(10, 5, 300, 40) Title:@"提交" Type:2];
         [bSubmit addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
         [bottomFrame addSubview:bSubmit];
+        
+        [self addInputFrame1];
+        [self addInputFrame2];
     }
     return self;
 }
@@ -129,8 +157,7 @@
         cell = [[EnterpriseHeightLowEditCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
     if(section==0){
-        [cell setTableView:self.tableView];
-        [cell setDataItemArray:self.heightArray];
+        [cell setController:self];
         [cell setData:[self.heightArray objectAtIndex:row]];
     }else{
         [cell setData:[self.lowArray objectAtIndex:row]];
@@ -164,6 +191,7 @@
         if(editingStyle ==UITableViewCellEditingStyleDelete){
             //如果编辑样式为删除样式
             if(row<[self.heightArray count]){
+                tmpRow=row;
                 NSDictionary *data=[self.heightArray objectAtIndex:row];
                 NSString *EQ_TYPE=[data objectForKey:@"EQ_TYPE"];
                 if([@"1" isEqualToString:EQ_TYPE]){
@@ -204,48 +232,24 @@
 
 - (void)add1:(UIButton*)sender
 {
-    NSString *cname=@"这是测试";
-    NSMutableDictionary *data=[[NSMutableDictionary alloc]init];    
-    //添加进线
-    [data setObject:cname forKey:@"EQ_NAME"];
-    [data setObject:@"55.00" forKey:@"EQ_MULTIPLY"];
-    [data setObject:@"1" forKey:@"EQ_TYPE"];
-    for(id d in self.heightArray){
-        NSString *name=[d objectForKey:@"EQ_NAME"];
-        if([cname isEqualToString:name]){
-            [Common alert:[NSString stringWithFormat:@"%@已经存在，不能重复添加",cname]];
-            return;
-        }
-    }
-    [self.heightArray addObject:data];
-    [self.tableView reloadData];
+    [inputView1 setHidden:NO];
 }
 
 - (void)add2:(UIButton*)sender
 {
-    NSString *cname=@"这是测试";
-    NSMutableDictionary *data=[[NSMutableDictionary alloc]init];
-    [data setObject:cname forKey:@"EQ_NAME"];
-    [data setObject:@"5" forKey:@"EQ_TYPE"];
-    for(id d in self.lowArray){
-        NSString *name=[d objectForKey:@"EQ_NAME"];
-        if([cname isEqualToString:name]){
-            [Common alert:[NSString stringWithFormat:@"%@已经存在，不能重复添加",cname]];
-            return;
-        }
-    }
-    [self.lowArray addObject:data];
-    [self.tableView reloadData];
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"添加直流屏"
+                          message:@""
+                          delegate:self
+                          cancelButtonTitle:@"取消"
+                          otherButtonTitles:@"确定",nil];
+    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    [alert show];
 }
 
 - (void)sort:(UIButton*)sender
 {
-    [self.tableView setEditing:!self.tableView.editing animated:YES];
-    if([self.tableView isEditing]){
-        [sender setTitle:@"提交" forState:UIControlStateNormal];
-    }else{
-        [sender setTitle:@"排序" forState:UIControlStateNormal];
-    }
+    NSLog(@"排序");
 }
 
 - (void)submit:(UIButton*)sender
@@ -266,44 +270,204 @@
     }
 }
 
+- (void)addLine:(NSDictionary*)data
+{
+    currentData=data;
+    [inputView2 setHidden:NO];
+}
+
+- (void)save:(UIButton*)sender
+{
+    if(sender.tag==1){
+        NSString *name=[eLName1.tf text];
+        NSString *mul=[eLMul1.tf text];
+        if([@"" isEqualToString:name]){
+            [Common alert:@"名称不能为空"];
+            return;
+        }
+        if([@"" isEqualToString:mul]){
+            [Common alert:@"倍率不能为空"];
+            return;
+        }
+        NSMutableDictionary *data=[[NSMutableDictionary alloc]init];
+        //添加进线
+        [data setObject:name forKey:@"EQ_NAME"];
+        [data setObject:mul forKey:@"EQ_MULTIPLY"];
+        [data setObject:@"1" forKey:@"EQ_TYPE"];
+        for(id d in self.heightArray){
+            NSString *n=[d objectForKey:@"EQ_NAME"];
+            if([name isEqualToString:n]){
+                [Common alert:[NSString stringWithFormat:@"%@已经存在，不能重复添加",name]];
+                return;
+            }
+        }
+        [self.heightArray addObject:data];
+        [self.tableView reloadData];
+        [eLName1.tf setText:@""];
+        [eLMul1.tf setText:@""];
+        [inputView1 setHidden:YES];
+    }else if(sender.tag==2){
+        NSString *name=[eLName2.tf text];
+        NSString *level=[eLLevel.tf text];
+        NSString *mul=[eLMul2.tf text];
+        if([@"" isEqualToString:name]){
+            [Common alert:@"名称不能为空"];
+            return;
+        }
+        if([@"" isEqualToString:level]){
+            [Common alert:@"等级不能为空"];
+            return;
+        }
+        if([@"" isEqualToString:mul]){
+            [Common alert:@"倍率不能为空"];
+            return;
+        }
+        NSMutableDictionary *data=[[NSMutableDictionary alloc]init];
+        //添加变压器
+        [data setObject:name forKey:@"EQ_NAME"];
+        [data setObject:level forKey:@"EQ_U_LEVEL"];
+        [data setObject:mul forKey:@"EQ_MULTIPLY"];
+        [data setObject:@"3" forKey:@"EQ_TYPE"];
+        [data setObject:@"0" forKey:@"EQ_SORTNO"];
+        for(id d in self.heightArray){
+            NSString *n=[d objectForKey:@"EQ_NAME"];
+            if([name isEqualToString:n]){
+                [Common alert:[NSString stringWithFormat:@"%@已经存在，不能重复添加",name]];
+                return;
+            }
+        }
+        NSString *n=[currentData objectForKey:@"EQ_NAME"];
+        NSMutableArray *tmpArray=[[NSMutableArray alloc]init];
+        for(id d in self.heightArray){
+            [tmpArray addObject:d];
+            NSString *tmpName=[d objectForKey:@"EQ_NAME"];
+            if([n isEqualToString:tmpName]){
+                [tmpArray addObject:data];
+            }
+        }
+        [self.heightArray removeAllObjects];
+        [self.heightArray addObjectsFromArray:tmpArray];
+        [self.tableView reloadData];
+        [eLName2.tf setText:@""];
+        [eLLevel.tf setText:@""];
+        [eLMul2.tf setText:@""];
+        [inputView2 setHidden:YES];
+    }
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex==0){
         //确定
+        NSMutableArray *delelist=[[NSMutableArray alloc]init];
+        [delelist addObject:[self.heightArray objectAtIndex:tmpRow]];
+        if(tmpRow>=0){
+            if(tmpRow<self.heightArray.count-1){
+                for(int i=tmpRow+1;i<self.heightArray.count;i++){
+                    NSDictionary *data=[self.heightArray objectAtIndex:i];
+                    NSString *EQ_TYPE=[data objectForKey:@"EQ_TYPE"];
+                    if([@"1" isEqualToString:EQ_TYPE]){
+                        break;
+                    }else if([@"3" isEqualToString:EQ_TYPE]){
+                        [delelist addObject:[self.heightArray objectAtIndex:i]];
+                    }
+                }
+            }
+            for(id d in delelist){
+                [self.heightArray removeObject:d];
+            }
+            [self.tableView reloadData];
+            tmpRow=0;
+        }
     }else{
         //取消
     }
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex==1){
+        NSString *cname=[[alertView textFieldAtIndex:0]text];
+        NSMutableDictionary *data=[[NSMutableDictionary alloc]init];
+        [data setObject:cname forKey:@"EQ_NAME"];
+        [data setObject:@"5" forKey:@"EQ_TYPE"];
+        for(id d in self.lowArray){
+            NSString *name=[d objectForKey:@"EQ_NAME"];
+            if([cname isEqualToString:name]){
+                [Common alert:[NSString stringWithFormat:@"%@已经存在，不能重复添加",cname]];
+                return;
+            }
+        }
+        [self.lowArray addObject:data];
+        [self.tableView reloadData];
+    }
+}
 
+- (void)goHiden:(id)sender
+{
+    [inputView1 setHidden:YES];
+    [inputView2 setHidden:YES];
+}
 
+- (void)addInputFrame1
+{
+    inputView1=[[UIView alloc]initWithFrame:self.view.bounds];
+    [inputView1 setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    [inputView1 setBackgroundColor:INPUTBGCOLOR];
+    [inputView1 setUserInteractionEnabled:YES];
+    [inputView1 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goHiden:)]];
+    [self.view addSubview:inputView1];
+    UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(10, 10, 300, 200)];
+    [frame setBackgroundColor:[UIColor whiteColor]];
+    [inputView1 addSubview:frame];
+    UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 10, 300, 30)];
+    [lbl setText:@"添加进线"];
+    [lbl setTextColor:[UIColor blackColor]];
+    [lbl setFont:[UIFont systemFontOfSize:15]];
+    [frame addSubview:lbl];
+    eLName1=[[SVTextField alloc]initWithFrame:CGRectMake1(20, 50, 260, 40) Title:@"名称"];
+    [eLName1.tf setPlaceholder:@"如：基线9500线"];
+    [frame addSubview:eLName1];
+    eLMul1=[[SVTextField alloc]initWithFrame:CGRectMake1(20, 100, 260, 40) Title:@"倍率"];
+    [eLMul1.tf setPlaceholder:@"如：100000"];
+    [frame addSubview:eLMul1];
+    SVButton *bSave=[[SVButton alloc]initWithFrame:CGRectMake1(10, 150, 280, 40) Title:@"提交" Type:2];
+    bSave.tag=1;
+    [bSave addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+    [frame addSubview:bSave];
+    [inputView1 setHidden:YES];
+}
 
+- (void)addInputFrame2
+{
+    inputView2=[[UIView alloc]initWithFrame:self.view.bounds];
+    [inputView2 setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    [inputView2 setBackgroundColor:INPUTBGCOLOR];
+    [inputView2 setUserInteractionEnabled:YES];
+    [inputView2 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goHiden:)]];
+    [self.view addSubview:inputView2];
+    UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(10, 10, 300, 250)];
+    [frame setBackgroundColor:[UIColor whiteColor]];
+    [inputView2 addSubview:frame];
+    UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 10, 300, 30)];
+    [lbl setText:@"添加变压器"];
+    [lbl setTextColor:[UIColor blackColor]];
+    [lbl setFont:[UIFont systemFontOfSize:15]];
+    [frame addSubview:lbl];
+    eLName2=[[SVTextField alloc]initWithFrame:CGRectMake1(20, 50, 260, 40) Title:@"名称"];
+    [eLName2.tf setPlaceholder:@"如：1号主变"];
+    [frame addSubview:eLName2];
+    eLLevel=[[SVTextField alloc]initWithFrame:CGRectMake1(20, 100, 260, 40) Title:@"电压等级"];
+    [eLLevel.tf setPlaceholder:@"如：10Kv"];
+    [frame addSubview:eLLevel];
+    eLMul2=[[SVTextField alloc]initWithFrame:CGRectMake1(20, 150, 260, 40) Title:@"倍率"];
+    [eLMul2.tf setPlaceholder:@"如：100000"];
+    [frame addSubview:eLMul2];
+    SVButton *bSave=[[SVButton alloc]initWithFrame:CGRectMake1(10, 200, 280, 40) Title:@"提交" Type:2];
+    bSave.tag=2;
+    [bSave addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+    [frame addSubview:bSave];
+    [inputView2 setHidden:YES];
+}
 
-
-
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return YES;
-//}
-//
-//-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSInteger section=[indexPath section];
-//    NSInteger row=[indexPath row];
-//    if(section==0){
-//        NSDictionary *data=[self.heightArray objectAtIndex:row];
-//        NSString *EQ_TYPE=[data objectForKey:@"EQ_TYPE"];
-//        if([@"1" isEqualToString:EQ_TYPE]){
-//            //子类
-//            return YES;
-//        }
-//    }else{
-//
-//    }
-//    return NO;
-//}
-//
-//- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
-//{
-//}
 @end
