@@ -28,7 +28,11 @@
         [bPublish.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [bPublish setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [bPublish addTarget:self action:@selector(done:) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bPublish];
+        UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
+                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                target:nil action:nil];
+        negativeSpacerRight.width = -20;
+        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bPublish], nil];
         self.selectedMarks = [NSMutableArray new];
         [self buildTableViewWithView:self.view];
     }

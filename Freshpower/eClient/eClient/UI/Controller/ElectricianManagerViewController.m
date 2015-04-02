@@ -39,11 +39,9 @@
     [super viewWillAppear:animated];
     
     if([[User Instance]isLogin]){
-        if([[self dataItemArray]count]==0){
-            if(!self.tableView.pullTableIsRefreshing) {
-                self.tableView.pullTableIsRefreshing=YES;
-                [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
-            }
+        if(!self.tableView.pullTableIsRefreshing) {
+            self.tableView.pullTableIsRefreshing=YES;
+            [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
         }
     }else{
         [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
@@ -187,12 +185,16 @@
 
 - (void)deleteHttp
 {
+    NSInteger section=[tmpIndexPath section];
+    NSInteger row=[tmpIndexPath row];
+    NSMutableArray *array=[self.dataItemArray objectAtIndex:section];
+    NSDictionary *data=[array objectAtIndex:row];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:[[User Instance]getUserName] forKey:@"imei"];
     [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
-    [params setObject:@"AC16" forKey:@"GNID"];
-    [params setObject:PAGESIZE forKey:@"QTPSIZE"];
-    [params setObject:@"1"  forKey:@"QTPINDEX"];
+    [params setObject:@"AC15" forKey:@"GNID"];
+    [params setObject:[data objectForKey:@"CP_ID"] forKey:@"QTCP"];
+    [params setObject:[data objectForKey:@"USER_ID"]  forKey:@"QTUSER"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:501];
     [self.hRequest setDelegate:self];

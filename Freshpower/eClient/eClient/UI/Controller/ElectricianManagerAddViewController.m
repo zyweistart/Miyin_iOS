@@ -55,7 +55,56 @@
 
 - (void)save:(id)sender
 {
-    
+    NSString *name=[svName.tf text];
+    NSString *phone=[svPhone.tf text];
+    NSString *card=[svCard.tf text];
+//    if([@"" isEqualToString:name]){
+//        [Common alert:@"请填写用户名"];
+//        return;
+//    }
+//    if([@"" isEqualToString:phone]){
+//        [Common alert:@"请填写手机号码"];
+//        return;
+//    }
+//    if([phone length]!=11){
+//        [Common alert:@"请填写正确的手机号码"];
+//        return;
+//    }
+//    if([@"" isEqualToString:card]){
+//        [Common alert:@"请填写身份证号码"];
+//        return;
+//    }
+//    if([card length]!=18){
+//        [Common alert:@"请填写正确的身份证号码"];
+//        return;
+//    }
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
+    [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
+    [params setObject:[self.paramData objectForKey:@"CP_ID"] forKey:@"QTCP"];//
+    [params setObject:@"AC11" forKey:@"GNID"];
+    [params setObject:@"" forKey:@"QTUSER"];
+    [params setObject:name forKey:@"QTKEY"];
+    [params setObject:phone forKey:@"QTVAL"];
+    [params setObject:card forKey:@"QTKEY1"];
+    if(svSex.selected){
+        [params setObject:@"1" forKey:@"QTVAL1"];
+    }else{
+        [params setObject:@"0" forKey:@"QTVAL1"];
+    }
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest handle:URL_appTaskingFps requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        [Common alert:[response msg]];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end
