@@ -14,7 +14,7 @@
 @property NSMutableArray *heightArray;
 @property NSMutableArray *lowArray;
 
-- (id)initWithCompanyArray:(NSMutableArray*)array;
+- (id)initWithCompanyArray:(NSMutableArray*)array Data:(NSDictionary*)pd;
 
 - (void)addLine:(NSDictionary*)data;
 

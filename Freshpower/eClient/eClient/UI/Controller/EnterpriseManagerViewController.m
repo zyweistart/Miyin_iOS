@@ -27,13 +27,14 @@
     SVTextField *eLName1,*eLMul1;
     SVTextField *eLName2,*eLLevel,*eLMul2;
     NSDictionary *currentData;
+    NSDictionary *parData;
     
 }
 
-
-- (id)initWithCompanyArray:(NSMutableArray*)array{
+- (id)initWithCompanyArray:(NSMutableArray*)array Data:(NSDictionary*)pd{
     self=[super init];
     if(self){
+        parData=pd;
         [self setTitle:@"企业管理"];
         
         if(array){
@@ -106,14 +107,14 @@
     [lbl setTextAlignment:NSTextAlignmentLeft];
     [frame addSubview:lbl];
     if(section==0){
-        bAdd1=[[SVButton alloc]initWithFrame:CGRectMake1(210, 5, 50,30) Title:@"添加" Type:3];
+        bAdd1=[[SVButton alloc]initWithFrame:CGRectMake1(265, 5, 50,30) Title:@"添加" Type:3];
         [bAdd1 addTarget:self action:@selector(add1:) forControlEvents:UIControlEventTouchUpInside];
         [[bAdd1 titleLabel]setFont:[UIFont systemFontOfSize:14]];
         [frame addSubview:bAdd1];
         bSort=[[SVButton alloc]initWithFrame:CGRectMake1(265, 5, 50,30) Title:@"排序" Type:3];
         [bSort addTarget:self action:@selector(sort:) forControlEvents:UIControlEventTouchUpInside];
         [[bSort titleLabel]setFont:[UIFont systemFontOfSize:14]];
-        [frame addSubview:bSort];
+//        [frame addSubview:bSort];
     }else if(section==1){
         bAdd2=[[SVButton alloc]initWithFrame:CGRectMake1(265, 5, 50,30) Title:@"添加" Type:3];
         [bAdd2 addTarget:self action:@selector(add2:) forControlEvents:UIControlEventTouchUpInside];
@@ -268,6 +269,77 @@
         [Common alert:@"高压侧进线和变压器信息不能为空"];
         return;
     }
+    NSMutableString *deviceTypeBuf=[[NSMutableString alloc]init];
+    NSMutableString *deviceNameBuf=[[NSMutableString alloc]init];
+    NSMutableString *deviceLevelBuf=[[NSMutableString alloc]init];
+    NSMutableString *deviceRateBuf=[[NSMutableString alloc]init];
+    NSMutableString *deviceIdBuf=[[NSMutableString alloc]init];
+    NSMutableString *deviceOrderBuf=[[NSMutableString alloc]init];
+    for(id d in self.heightArray){
+        [deviceNameBuf appendFormat:@"%@,",[d objectForKey:@"EQ_NAME"]];
+        [deviceLevelBuf appendFormat:@"%@,",[d objectForKey:@"EQ_U_LEVEL"]];
+        [deviceTypeBuf appendFormat:@"%@,",[d objectForKey:@"EQ_TYPE"]];
+        [deviceRateBuf appendFormat:@"%@,",[d objectForKey:@"EQ_MULTIPLY"]];
+        [deviceIdBuf appendFormat:@"%@,",[d objectForKey:@"EQ_NO"]];
+        [deviceOrderBuf appendFormat:@"%@,",[d objectForKey:@"EQ_SORTNO"]];
+    }
+    for(id d in self.lowArray){
+        [deviceNameBuf appendFormat:@"%@,",[d objectForKey:@"EQ_NAME"]];
+        [deviceLevelBuf appendFormat:@"%@,",[d objectForKey:@"EQ_U_LEVEL"]];
+        [deviceTypeBuf appendFormat:@"%@,",[d objectForKey:@"EQ_TYPE"]];
+        [deviceRateBuf appendFormat:@"%@,",[d objectForKey:@"EQ_MULTIPLY"]];
+        if([@"5" isEqualToString:[d objectForKey:@"EQ_TYPE"]]&&[@"" isEqualToString:[d objectForKey:@"EQ_NO"]]){
+            NSDictionary *d1=[self.heightArray objectAtIndex:0];
+            [d setObject:[d1 objectForKey:@"EQ_NO"] forKey:@"EQ_NO"];
+        }
+        [deviceIdBuf appendFormat:@"%@,",[d objectForKey:@"EQ_NO"]];
+        [deviceOrderBuf appendFormat:@"%@,",[d objectForKey:@"EQ_SORTNO"]];
+    }
+    NSRange deleteRange1 = {[deviceNameBuf length]-1,1};
+    [deviceNameBuf deleteCharactersInRange:deleteRange1];
+    NSRange deleteRange2 = {[deviceLevelBuf length]-1,1};
+    [deviceLevelBuf deleteCharactersInRange:deleteRange2];
+    NSRange deleteRange3 = {[deviceTypeBuf length]-1,1};
+    [deviceTypeBuf deleteCharactersInRange:deleteRange3];
+    NSRange deleteRange4 = {[deviceRateBuf length]-1,1};
+    [deviceRateBuf deleteCharactersInRange:deleteRange4];
+    NSRange deleteRange5 = {[deviceIdBuf length]-1,1};
+    [deviceIdBuf deleteCharactersInRange:deleteRange5];
+    NSRange deleteRange6 = {[deviceOrderBuf length]-1,1};
+    [deviceOrderBuf deleteCharactersInRange:deleteRange6];
+    
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
+    [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
+    [params setObject:@"EQ02" forKey:@"GNID"];
+    
+    if(parData){
+        [params setObject:[parData objectForKey:@"CP_ID"] forKey:@"QTCP"];
+    }else{
+        [params setObject:@"" forKey:@"QTCP"];
+    }
+    [params setObject:name forKey:@"QTKEY"];
+    [params setObject:phone forKey:@"QTVAL"];
+    [params setObject:deviceTypeBuf forKey:@"QTEQTYPE"];
+    [params setObject:deviceNameBuf forKey:@"QTKEY1"];
+    [params setObject:deviceLevelBuf forKey:@"QTVAL1"];
+    [params setObject:deviceIdBuf forKey:@"QTVAL2"];
+    [params setObject:deviceRateBuf forKey:@"QTKEY2"];
+    [params setObject:deviceOrderBuf forKey:@"QTSORT"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:501];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:URL_appTaskingFps requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        [Common alert:[response msg]];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)addLine:(NSDictionary*)data
@@ -294,6 +366,16 @@
         [data setObject:name forKey:@"EQ_NAME"];
         [data setObject:mul forKey:@"EQ_MULTIPLY"];
         [data setObject:@"1" forKey:@"EQ_TYPE"];
+        [data setObject:@"" forKey:@"EQ_U_LEVEL"];
+        if([self.heightArray count]>0){
+            //获取最后一个ID的值并加1
+            NSDictionary *d=[self.heightArray objectAtIndex:[self.heightArray count]-1];
+            int parentId=[[d objectForKey:@"EQ_NO"] intValue];
+            [data setObject:[NSString stringWithFormat:@"%d",parentId+1] forKey:@"EQ_NO"];
+        }else{
+           [data setObject:@"1" forKey:@"EQ_NO"];
+        }
+        [data setObject:@"-1" forKey:@"EQ_SORTNO"];
         for(id d in self.heightArray){
             NSString *n=[d objectForKey:@"EQ_NAME"];
             if([name isEqualToString:n]){
@@ -328,7 +410,9 @@
         [data setObject:level forKey:@"EQ_U_LEVEL"];
         [data setObject:mul forKey:@"EQ_MULTIPLY"];
         [data setObject:@"3" forKey:@"EQ_TYPE"];
-        [data setObject:@"0" forKey:@"EQ_SORTNO"];
+        int parentId=[[currentData objectForKey:@"EQ_NO"] intValue];
+        [data setObject:[NSString stringWithFormat:@"%d",parentId] forKey:@"EQ_NO"];
+        [data setObject:[NSString stringWithFormat:@"%d",[self.heightArray count]+1] forKey:@"EQ_SORTNO"];
         for(id d in self.heightArray){
             NSString *n=[d objectForKey:@"EQ_NAME"];
             if([name isEqualToString:n]){
@@ -390,7 +474,11 @@
         NSString *cname=[[alertView textFieldAtIndex:0]text];
         NSMutableDictionary *data=[[NSMutableDictionary alloc]init];
         [data setObject:cname forKey:@"EQ_NAME"];
+        [data setObject:@"" forKey:@"EQ_U_LEVEL"];
         [data setObject:@"5" forKey:@"EQ_TYPE"];
+        [data setObject:@"" forKey:@"EQ_NO"];
+        [data setObject:@"" forKey:@"EQ_MULTIPLY"];
+        [data setObject:@"0" forKey:@"EQ_SORTNO"];
         for(id d in self.lowArray){
             NSString *name=[d objectForKey:@"EQ_NAME"];
             if([cname isEqualToString:name]){
@@ -469,5 +557,20 @@
     [frame addSubview:bSave];
     [inputView2 setHidden:YES];
 }
+
+//重新加载列表数据
+- (void)reloadTableData
+{
+    NSMutableArray *tmpArrayMain=[[NSMutableArray alloc]init];
+    NSMutableArray *tmpArrayChild=[[NSMutableArray alloc]init];
+    for(id d in self.heightArray){
+        if(![@"1" isEqualToString:[d objectForKey:@"EQ_TYPE"]]){
+            [tmpArrayMain addObject:d];
+        }else if(![@"3" isEqualToString:[d objectForKey:@"EQ_TYPE"]]){
+            [tmpArrayChild addObject:d];
+        }
+    }
+}
+
 
 @end

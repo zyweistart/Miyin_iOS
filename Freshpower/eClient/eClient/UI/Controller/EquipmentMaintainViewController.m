@@ -43,13 +43,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     if([[User Instance]isLogin]){
-        if([[self dataItemArray]count]==0){
-            if(!self.tableView.pullTableIsRefreshing) {
-                self.tableView.pullTableIsRefreshing=YES;
-                [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
-            }
+        if(!self.tableView.pullTableIsRefreshing) {
+            self.tableView.pullTableIsRefreshing=YES;
+            [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
         }
     }else{
         [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
@@ -107,7 +104,7 @@
 
 - (void)goAdd:(UIButton*)sender
 {
-    [self.navigationController pushViewController:[[EnterpriseManagerViewController alloc]initWithCompanyArray:nil] animated:YES];
+    [self.navigationController pushViewController:[[EnterpriseManagerViewController alloc]initWithCompanyArray:nil Data:nil] animated:YES];
 }
 
 @end

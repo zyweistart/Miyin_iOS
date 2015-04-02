@@ -168,12 +168,13 @@
             [lowArray addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
         }
         [self buildTableViewWithView:self.view];
+        [self.tableView reloadData];
     }
 }
 
 - (void)goEdit:(id)sender
 {
-    EnterpriseManagerViewController *enterpriseManagerViewController=[[EnterpriseManagerViewController alloc]initWithCompanyArray:companyArray];
+    EnterpriseManagerViewController *enterpriseManagerViewController=[[EnterpriseManagerViewController alloc]initWithCompanyArray:companyArray Data:self.data];
     [enterpriseManagerViewController setHeightArray:heightArray];
     [enterpriseManagerViewController setLowArray:lowArray];
     [self.navigationController pushViewController:enterpriseManagerViewController animated:YES];
