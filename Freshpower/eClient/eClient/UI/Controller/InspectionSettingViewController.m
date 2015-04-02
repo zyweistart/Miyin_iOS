@@ -27,13 +27,14 @@
     UIDatePicker *datePicker1,*datePicker2,*datePicker3,*datePicker4;
     SVCheckbox *autoDownSend,*manualSend;
     NSString *dSET_TYPE,*timeString,*taskUser;
+    NSMutableArray *headShow;
 }
 
-- (id)initWithData:(NSDictionary*)data
+- (id)initWithData:(NSMutableDictionary*)data
 {
     self=[super init];
     if(self){
-        self.data=data;
+        self.paramData=data;
         [self setTitle:@"巡检设置"];
         UIScrollView *scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
@@ -42,7 +43,7 @@
         [scrollFrame addSubview:[self addHeadFrame:@"提醒设置" X:0]];
         height=height+30;
         NSArray *MODEL_LIST=[data objectForKey:@"MODEL_LIST"];
-        NSMutableArray *headShow=[[NSMutableArray alloc]init];
+        headShow=[[NSMutableArray alloc]init];
         for(int i=0;i<[MODEL_LIST count];i++){
             NSDictionary *d=[MODEL_LIST objectAtIndex:i];
             NSString *SETID=[d objectForKey:@"MODEL_SET_ID"];
@@ -91,8 +92,10 @@
         [submit addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
         [scrollFrame addSubview:submit];
         [scrollFrame setContentSize:CGSizeMake1(320, height+40+10)];
-        
         dSET_TYPE=[data objectForKey:@"SET_TYPE"];
+        if([@"-1" isEqualToString:dSET_TYPE]){
+            dSET_TYPE=@"1";
+        }
         [self showSendTypeStatus];
         taskUser=[data objectForKey:@"TASK_USER"];
         [lblPersonalInfo setText:[data objectForKey:@"TASK_USER_NAME"]];
@@ -219,7 +222,7 @@
 
 - (void)personalSelect:(id)sender
 {
-    PersonalSelectViewController *personalSelectViewController=[[PersonalSelectViewController alloc]initWithData:self.data];
+    PersonalSelectViewController *personalSelectViewController=[[PersonalSelectViewController alloc]initWithData:self.paramData];
     [personalSelectViewController setDelegate:self];
     [personalSelectViewController setResultCode:501];
     [self.navigationController pushViewController:personalSelectViewController animated:YES];
@@ -227,13 +230,44 @@
 
 - (void)submit:(id)sender
 {
+//    if([@"" isEqualToString:taskUser]){
+//        [Common alert:@"请设置巡检人员"];
+//        return;
+//    }
 //    NSString *str1=[svTextField1.tf text];
 //    NSString *str2=[svTextField2.tf text];
 //    NSString *str3=[svTextField3.tf text];
 //    NSString *str4=[svTextField4.tf text];
 //    NSLog(@"1:%@\n2:%@\n3:%@\n4:%@\n5:%@\n6:%@\n7:%@",timeString,str1,str2,str3,str4,dSET_TYPE,taskUser);
-    [self.delegate onControllerResult:500 data:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+
+    for(id d in headShow){
+        NSLog(@"%@",d);
+    }
+    
+//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+//    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
+//    [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
+//    [params setObject:@"TS004" forKey:@"GNID"];
+//    [params setObject:[self.paramData objectForKey:@"CP_ID"] forKey:@"QTCP"];
+//    [params setObject:@"" forKey:@"QTKEY"];
+//    [params setObject:@"" forKey:@"QTVAL"];
+//    [params setObject:@"" forKey:@"QTKEY1"];
+//    [params setObject:@"" forKey:@"QTUSER"];
+//    self.hRequest=[[HttpRequest alloc]init];
+//    [self.hRequest setRequestCode:500];
+//    [self.hRequest setDelegate:self];
+//    [self.hRequest setController:self];
+//    [self.hRequest handle:URL_appTaskingFps requestParams:params];
+//    [self.delegate onControllerResult:500 data:nil];
+//    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        [self.delegate onControllerResult:500 data:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (UIDatePicker*)createPicker:(UITextField*)textField doneAction:(SEL)dAction cancelAction:(SEL)cAction
@@ -298,7 +332,7 @@
     if([@"1" isEqualToString:dSET_TYPE]){
         [autoDownSend setSelected:YES];
         [manualSend setSelected:NO];
-    }else{
+    }else if([@"2" isEqualToString:dSET_TYPE]){
         [autoDownSend setSelected:NO];
         [manualSend setSelected:YES];
     }

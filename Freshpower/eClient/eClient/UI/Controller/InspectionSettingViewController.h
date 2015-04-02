@@ -9,9 +9,7 @@
 
 @interface InspectionSettingViewController : BaseViewController<ResultDelegate>
 
-@property NSDictionary *data;
-
-- (id)initWithData:(NSDictionary*)data;
+- (id)initWithData:(NSMutableDictionary*)data;
 
 @property id<ResultDelegate> delegate;
 
