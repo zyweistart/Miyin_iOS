@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Start. All rights reserved.
 //
 
-#import "BaseEGOTableViewPullRefreshViewController.h"
+#import "BaseEGOTableViewPullRefreshView_OldController.h"
 
-@interface STElectricityListViewController : BaseEGOTableViewPullRefreshViewController
+@interface STElectricityListViewController : BaseEGOTableViewPullRefreshView_OldController
 
 - (id)initWithSelectType:(int)selectType;
 

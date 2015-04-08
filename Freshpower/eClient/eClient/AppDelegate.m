@@ -81,7 +81,7 @@
     _tabBarController.viewControllers = [NSArray arrayWithObjects:
                                          homeViewControllerNav,
                                          productViewControllerNav,
-                                         answerViewControllerNav,
+//                                         answerViewControllerNav,
                                          myViewControllerNav,
                                          nil];
     self.window.rootViewController=_tabBarController;

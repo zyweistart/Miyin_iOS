@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseEGOTableViewPullRefreshViewController.h"
+#import "BaseEGOTableViewPullRefreshView_OldController.h"
 
-@interface STWarnComapnyViewController : BaseEGOTableViewPullRefreshViewController
+@interface STWarnComapnyViewController : BaseEGOTableViewPullRefreshView_OldController
 
 - (id)initWithType:(int)type;
 

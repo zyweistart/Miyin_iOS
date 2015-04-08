@@ -22,6 +22,7 @@
 #import "EnterpriseNameModifyViewController.h"
 #import "MaintainEnterpriseInformationViewController.h"
 #import "ElectricityTariffViewController.h"
+#import "RunOverviewViewController.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 #define LINECOLOR  [UIColor colorWithRed:(230/255.0) green:(230/255.0) blue:(230/255.0) alpha:1]
@@ -216,7 +217,7 @@
     }else if(tag==5){
         [self.navigationController pushViewController:[[ElectricityTariffViewController alloc]init] animated:YES];
     }else if(tag==6){
-        NSLog(@"运行状态");
+        [self.navigationController pushViewController:[[RunOverviewViewController alloc]init] animated:YES];
     }else if(tag==7){
         [self.navigationController pushViewController:[[STBurdenDetailListViewController alloc]init] animated:YES];
     }

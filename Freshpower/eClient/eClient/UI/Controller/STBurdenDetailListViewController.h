@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Start. All rights reserved.
 //
 
-#import "BaseEGOTableViewPullRefreshViewController.h"
+#import "BaseEGOTableViewPullRefreshView_OldController.h"
 
-@interface STBurdenDetailListViewController : BaseEGOTableViewPullRefreshViewController
+@interface STBurdenDetailListViewController : BaseEGOTableViewPullRefreshView_OldController
 
 @end
