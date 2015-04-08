@@ -20,7 +20,7 @@ static User * instance = nil;
     return instance;
 }
 
-- (void)LoginSuccessWithUserName:(NSString*)u Password:(NSString*)p Data:(NSDictionary*) d
+- (void)LoginSuccessWithUserName:(NSString*)u Password:(NSString*)p Data:(NSMutableDictionary*) d
 {
     [Common setCache:ACCOUNTUSERNAME data:u];
     [Common setCache:ACCOUNTPASSWORD data:p];

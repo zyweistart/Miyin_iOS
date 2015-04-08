@@ -74,5 +74,6 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 #define URL_AppMeterFhReport SERVER_URL(fpsWebSite,@"AppMeterFhReport.aspx")
 #define URL_AppAlertInfo SERVER_URL(fpsWebSite,@"AppAlertInfo.aspx")
 #define URL_appTaskingFps SERVER_URL(etgWebSite,@"INSPT/appTaskingFps.aspx")
+#define URL_appUserCenter SERVER_URL(etgWebSite,@"appUserCenter.aspx")
 
 #endif

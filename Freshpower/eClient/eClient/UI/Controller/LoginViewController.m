@@ -11,6 +11,8 @@
 #import "SVTextField.h"
 #import "SVButton.h"
 #import "NSString+Utils.h"
+#import "DGSQViewController.h"
+#import "EnterpriseNameModifyViewController.h"
 
 @interface LoginViewController ()
 
@@ -55,8 +57,8 @@
     SVButton *bLogin=[[SVButton alloc]initWithFrame:CGRectMake1(10, 100, 300, 40) Title:@"登陆" Type:2];
     [bLogin addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
     [frame addSubview:bLogin];
-    [svUserName.tf setText:@"zhaox07"];
-    [svPassword.tf setText:@"111111"];
+    [svUserName.tf setText:@"13175073002"];
+    [svPassword.tf setText:@"068770"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -82,7 +84,7 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest setIsShowMessage:YES];
-    [self.hRequest handle:SERVER_URL(etgWebSite,@"appUserCenter.aspx") requestParams:params];
+    [self.hRequest handle:URL_appUserCenter requestParams:params];
 }
 
 - (void)goRegister:(id)sender
@@ -94,8 +96,20 @@
 {
     if([@"1" isEqualToString:[response code]]){
         NSDictionary *user=[[response resultJSON]objectForKey:@"UserInfo"];
-        [[User Instance] LoginSuccessWithUserName:USERNAME Password:PASSWORD Data:user];
-        [self.navigationController popViewControllerAnimated:YES];
+        NSString *roleType=[user objectForKey:@"ROLETYPE"];
+        if([@"4" isEqualToString:roleType]){
+            //请下载e电工操作版
+            [self.navigationController pushViewController:[[DGSQViewController alloc]init] animated:YES];
+        }else{
+            [[User Instance] LoginSuccessWithUserName:USERNAME Password:PASSWORD Data:[NSMutableDictionary dictionaryWithDictionary:user]];
+            NSString *cp_Name=[user objectForKey:@"CP_NAME"];
+            if([@"" isEqualToString:cp_Name]){
+                //设置企业名称
+                [self.navigationController pushViewController:[[EnterpriseNameModifyViewController alloc]init] animated:YES];
+            }else{
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
     }else{
         [Common alert:[Common NSNullConvertEmptyString:[response msg]]];
     }

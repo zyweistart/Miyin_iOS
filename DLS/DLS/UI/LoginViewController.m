@@ -81,7 +81,16 @@
     [[User Instance]setIsLogin:YES];
     [[self resultDelegate]onControllerResult:RESULTCODE_LOGIN data:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
-}
 
+//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+//    [params setObject:@"" forKey:@"userName"];
+//    [params setObject:@"" forKey:@"pwd"];
+//    [params setObject:@"" forKey:@"clientid"];
+//    self.hRequest=[[HttpRequest alloc]init];
+//    [self.hRequest setRequestCode:500];
+//    [self.hRequest setDelegate:self];
+//    [self.hRequest setController:self];
+//    [self.hRequest handle:@"" requestParams:params];
+}
 
 @end

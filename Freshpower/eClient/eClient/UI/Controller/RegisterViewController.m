@@ -44,7 +44,7 @@
     UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0, 40, 320, 330)];
     [scrollFrame addSubview:frame];
     managerImage=[self createHeadTypeSwitch:frame X:52 imageName:@"manager" type:1];
-    elecImage=[self createHeadTypeSwitch:frame X:187 imageName:@"elec" type:2];
+    elecImage=[self createHeadTypeSwitch:frame X:187 imageName:@"elec" type:4];
     svUserName=[[SVTextField alloc]initWithFrame:CGRectMake1(10, 115, 300, 40) Title:@"账号"];
     [svUserName.tf setKeyboardType:UIKeyboardTypePhonePad];
     [frame addSubview:svUserName];
@@ -76,19 +76,19 @@
 - (void)get:(id)sender
 {
     USERNAME=[svUserName.tf text];
-    NSLog(@"%d,%@",type,USERNAME);
-//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-//    [params setObject:@"99010100" forKey:@"GNID"];
-//    [params setObject:USERNAME forKey:@"imei"];
-//    [params setObject:PASSWORD forKey:@"authentication"];
-//    [params setObject:@"01" forKey:@"QTKEY"];
-//    [params setObject:@"1" forKey:@"QTVAL"];
-//    self.hRequest=[[HttpRequest alloc]init];
-//    [self.hRequest setRequestCode:500];
-//    [self.hRequest setDelegate:self];
-//    [self.hRequest setController:self];
-//    [self.hRequest setIsShowMessage:YES];
-//    [self.hRequest handle:SERVER_URL(etgWebSite,@"appUserCenter.aspx") requestParams:params];
+    if([@"" isEqualToString:USERNAME]){
+        [Common alert:@"请输入手机号码"];
+        return;
+    }
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"99010199" forKey:@"GNID"];
+    [params setObject:USERNAME forKey:@"QTUSER"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:501];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:URL_appUserCenter requestParams:params];
 }
 
 
@@ -96,19 +96,22 @@
 {
     USERNAME=[svUserName.tf text];
     PASSWORD=[[[svPassword.tf text] uppercaseString] md5];
-    NSLog(@"%d,%@,%@",type,USERNAME,PASSWORD);
-//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-//    [params setObject:@"99010100" forKey:@"GNID"];
-//    [params setObject:USERNAME forKey:@"imei"];
-//    [params setObject:PASSWORD forKey:@"authentication"];
-//    [params setObject:@"01" forKey:@"QTKEY"];
-//    [params setObject:@"1" forKey:@"QTVAL"];
-//    self.hRequest=[[HttpRequest alloc]init];
-//    [self.hRequest setRequestCode:500];
-//    [self.hRequest setDelegate:self];
-//    [self.hRequest setController:self];
-//    [self.hRequest setIsShowMessage:YES];
-//    [self.hRequest handle:SERVER_URL(etgWebSite,@"appUserCenter.aspx") requestParams:params];
+    if([@"" isEqualToString:USERNAME]){
+        [Common alert:@"请输入手机号码"];
+        return;
+    }
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"99010101" forKey:@"GNID"];
+    [params setObject:USERNAME forKey:@"QTUSER"];
+    [params setObject:PASSWORD forKey:@"QTKEY"];
+    [params setObject:[NSString stringWithFormat:@"%d",type] forKey:@"QTKEY2"];
+    [params setObject:@"" forKey:@"QTVAL"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:502];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:URL_appUserCenter requestParams:params];
 }
 
 - (void)readMe:(id)sender
@@ -118,15 +121,14 @@
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
-    if([@"1" isEqualToString:[response code]]){
-//        [[User Instance]setUserName:USERNAME];
-//        [[User Instance]setPassWord:PASSWORD];
-//        [[User Instance]setIsLogin:YES];
-//        [[User Instance]setInfo:[[response resultJSON]objectForKey:@"UserInfo"]];
-        //        [self.navigationController popToRootViewControllerAnimated:YES];
-        [self.navigationController popViewControllerAnimated:YES];
-    }else{
-        [Common alert:[response msg]];
+    if(501==reqCode){
+        if([response successFlag]){
+            [Common alert:[response msg]];
+        }
+    }else if(502==reqCode){
+        if([response successFlag]){
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 
@@ -155,7 +157,7 @@
     if(type==1) {
         [managerImage setImage:[UIImage imageNamed:@"勾"]];
         [elecImage setImage:[UIImage imageNamed:@"未勾"]];
-    }else{
+    }else if(type==4){
         [managerImage setImage:[UIImage imageNamed:@"未勾"]];
         [elecImage setImage:[UIImage imageNamed:@"勾"]];
     }

@@ -16,12 +16,12 @@
 
 + (User *) Instance;
 
-- (void)LoginSuccessWithUserName:(NSString*)u Password:(NSString*)p Data:(NSDictionary*) d;
+- (void)LoginSuccessWithUserName:(NSString*)u Password:(NSString*)p Data:(NSMutableDictionary*) d;
 
 - (BOOL)isLogin;
 - (NSString*)getUserName;
 - (NSString*)getPassword;
-- (NSDictionary*)getResultData;
+- (NSMutableDictionary*)getResultData;
 - (BOOL)isAuth:(NSString*)name;
 
 - (void)clear;

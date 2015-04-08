@@ -55,27 +55,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
-        [self.navigationController pushViewController:[[EnterpriseNameModifyViewController alloc]init] animated:YES];
+        NSDictionary *data= [self.dataItemArray objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:[[EnterpriseNameModifyViewController alloc]initWithParams:data] animated:YES];
     }
 }
 
 - (void)loadHttp
 {
-//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-//    [params setObject:[[User Instance]userName] forKey:@"imei"];
-//    [params setObject:[[User Instance]passWord] forKey:@"authentication"];
-//    [params setObject:@"99010204" forKey:@"GNID"];
-//    [params setObject:PAGESIZE forKey:@"QTPSIZE"];
-//    [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]]  forKey:@"QTPINDEX"];
-//    self.hRequest=[[HttpRequest alloc]init];
-//    [self.hRequest setRequestCode:500];
-//    [self.hRequest setDelegate:self];
-//    [self.hRequest setController:self];
-//    [self.hRequest handle:SERVER_URL(etgWebSite,@"INSPT/appTaskingFps.aspx") requestParams:params];
-    for(int i=0;i<10;i++){
-        [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"1111",@"NAME", nil]];
-    }
-    [self loadDone];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
+    [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
+    [params setObject:@"99010204" forKey:@"GNID"];
+    [params setObject:PAGESIZE forKey:@"QTPSIZE"];
+    [params setObject:[NSString stringWithFormat:@"%ld",[self currentPage]]  forKey:@"QTPINDEX"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest handle:URL_appTaskingFps requestParams:params];
 }
 
 @end
