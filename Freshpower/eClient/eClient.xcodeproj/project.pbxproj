@@ -14,6 +14,9 @@
 		C910E5961ACA7654000084BD /* EnterpriseHeightLowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C910E5951ACA7654000084BD /* EnterpriseHeightLowCell.m */; };
 		C9147B1D1AD575F500955F2A /* BaseEGOTableViewPullRefreshView_OldController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9147B1C1AD575F500955F2A /* BaseEGOTableViewPullRefreshView_OldController.m */; };
 		C9147B201AD5781D00955F2A /* RunOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9147B1F1AD5781D00955F2A /* RunOverviewViewController.m */; };
+		C9147B241AD57C7700955F2A /* ETFoursquareImages.m in Sources */ = {isa = PBXBuildFile; fileRef = C9147B231AD57C7700955F2A /* ETFoursquareImages.m */; };
+		C9147B271AD57C9400955F2A /* SQLiteOperate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9147B261AD57C9400955F2A /* SQLiteOperate.m */; };
+		C9147B291AD57CD000955F2A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9147B281AD57CD000955F2A /* libsqlite3.dylib */; };
 		C91C043B1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91C043A1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m */; };
 		C92C27311AC1325F00E472C9 /* EDGButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C27301AC1325F00E472C9 /* EDGButtonCell.m */; };
 		C92C27341AC1344800E472C9 /* ElectricianManagerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C27331AC1344800E472C9 /* ElectricianManagerListViewController.m */; };
@@ -129,6 +132,11 @@
 		C9147B1C1AD575F500955F2A /* BaseEGOTableViewPullRefreshView_OldController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseEGOTableViewPullRefreshView_OldController.m; sourceTree = "<group>"; };
 		C9147B1E1AD5781D00955F2A /* RunOverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunOverviewViewController.h; sourceTree = "<group>"; };
 		C9147B1F1AD5781D00955F2A /* RunOverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunOverviewViewController.m; sourceTree = "<group>"; };
+		C9147B221AD57C7700955F2A /* ETFoursquareImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETFoursquareImages.h; sourceTree = "<group>"; };
+		C9147B231AD57C7700955F2A /* ETFoursquareImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ETFoursquareImages.m; sourceTree = "<group>"; };
+		C9147B251AD57C9400955F2A /* SQLiteOperate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteOperate.h; sourceTree = "<group>"; };
+		C9147B261AD57C9400955F2A /* SQLiteOperate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteOperate.m; sourceTree = "<group>"; };
+		C9147B281AD57CD000955F2A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		C91C04391ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseHeightLowEditCell.h; sourceTree = "<group>"; };
 		C91C043A1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseHeightLowEditCell.m; sourceTree = "<group>"; };
 		C92C272F1AC1325F00E472C9 /* EDGButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDGButtonCell.h; sourceTree = "<group>"; };
@@ -303,6 +311,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9147B291AD57CD000955F2A /* libsqlite3.dylib in Frameworks */,
 				C9BA435C1ABC785C00B73485 /* SDWebImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,6 +508,15 @@
 			name = "产品";
 			sourceTree = "<group>";
 		};
+		C9147B211AD57C7700955F2A /* ETFoursquareImages */ = {
+			isa = PBXGroup;
+			children = (
+				C9147B221AD57C7700955F2A /* ETFoursquareImages.h */,
+				C9147B231AD57C7700955F2A /* ETFoursquareImages.m */,
+			);
+			path = ETFoursquareImages;
+			sourceTree = "<group>";
+		};
 		C9B324401AC7059F0089A297 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,6 +529,7 @@
 		C9BA42D31ABC775A00B73485 = {
 			isa = PBXGroup;
 			children = (
+				C9147B281AD57CD000955F2A /* libsqlite3.dylib */,
 				C9BA42DE1ABC775A00B73485 /* eClient */,
 				C9BA42F81ABC775A00B73485 /* eClientTests */,
 				C9BA42DD1ABC775A00B73485 /* Products */,
@@ -573,6 +592,8 @@
 		C9BA43051ABC785C00B73485 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C9147B251AD57C9400955F2A /* SQLiteOperate.h */,
+				C9147B261AD57C9400955F2A /* SQLiteOperate.m */,
 				C94DFD681ABFF9B20043B896 /* NSString+Utils.h */,
 				C94DFD691ABFF9B20043B896 /* NSString+Utils.m */,
 				C9BA435D1ABC787500B73485 /* BaseEGOTableViewPullRefreshViewController.h */,
@@ -601,6 +622,7 @@
 		C9BA43171ABC785C00B73485 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C9147B211AD57C7700955F2A /* ETFoursquareImages */,
 				C9BA43181ABC785C00B73485 /* ASIHTTP */,
 				C9BA431B1ABC785C00B73485 /* ATMHud */,
 				C9BA43291ABC785C00B73485 /* EGOTableViewPullRefresh */,
@@ -889,6 +911,7 @@
 				C92C27341AC1344800E472C9 /* ElectricianManagerListViewController.m in Sources */,
 				C9C54A1D1AD57189004CA911 /* STElectricityView.m in Sources */,
 				C9147B201AD5781D00955F2A /* RunOverviewViewController.m in Sources */,
+				C9147B241AD57C7700955F2A /* ETFoursquareImages.m in Sources */,
 				C9C54A1A1AD5715B004CA911 /* STRows4View.m in Sources */,
 				C91C043B1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m in Sources */,
 				C9BA434D1ABC785C00B73485 /* ATMSoundFX.m in Sources */,
@@ -926,6 +949,7 @@
 				C9BA434F1ABC785C00B73485 /* EGORefreshTableHeaderView.m in Sources */,
 				C9BA42E51ABC775A00B73485 /* AppDelegate.m in Sources */,
 				C9BA43761ABC7BB400B73485 /* AnswerViewController.m in Sources */,
+				C9147B271AD57C9400955F2A /* SQLiteOperate.m in Sources */,
 				C92C27401AC13CE000E472C9 /* CRTableViewCell.m in Sources */,
 				C9D1CCCB1AC291550070FACC /* InspectionDownSendCell.m in Sources */,
 				C92C27311AC1325F00E472C9 /* EDGButtonCell.m in Sources */,

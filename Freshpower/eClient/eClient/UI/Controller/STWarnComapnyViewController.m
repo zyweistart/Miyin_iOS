@@ -89,7 +89,6 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest handle:URL_AppAlertInfo requestParams:params];
-    
 }
 
 @end

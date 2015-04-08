@@ -23,6 +23,8 @@
 #import "MaintainEnterpriseInformationViewController.h"
 #import "ElectricityTariffViewController.h"
 #import "RunOverviewViewController.h"
+#import "ETFoursquareImages.h"
+#import "SQLiteOperate.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 #define LINECOLOR  [UIColor colorWithRed:(230/255.0) green:(230/255.0) blue:(230/255.0) alpha:1]
@@ -31,12 +33,15 @@
 #define MAIN3BGCOLOR [UIColor colorWithRed:(90/255.0) green:(170/255.0) blue:(230/255.0) alpha:1]
 #define MAIN4BGCOLOR [UIColor colorWithRed:(254/255.0) green:(158/255.0) blue:(25/255.0) alpha:1]
 
+#define TOPIMAGENUM 3
+
 @interface HomeViewController ()
 
 @end
 
 @implementation HomeViewController{
     UIButton *bCpName;
+    SQLiteOperate *db;
 }
 
 - (id)init{
@@ -58,19 +63,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIScrollView *scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
-    [scrollFrame setContentSize:CGSizeMake1(320, 560)];
+    [scrollFrame setContentSize:CGSizeMake1(320, 659)];
     [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     [scrollFrame setBackgroundColor:LINECOLOR];
     [self.view addSubview:scrollFrame];
     //上
-    UIView *topFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 100)];
-    [topFrame setBackgroundColor:[UIColor whiteColor]];
-    [scrollFrame addSubview:topFrame];
-    UIImageView *bannerImage=[[UIImageView alloc]initWithFrame:topFrame.bounds];
-    [bannerImage setImage:[UIImage imageNamed:@"banner"]];
-    [topFrame addSubview:bannerImage];
+    int IMAGEHEIGHT=199;
+    ETFoursquareImages *foursquareImages = [[ETFoursquareImages alloc] initWithFrame:CGRectMake1(0, 0, 320,IMAGEHEIGHT)];
+    [foursquareImages setImagesHeight:IMAGEHEIGHT];
+    
+    NSMutableArray *images=[[NSMutableArray alloc]init];
+    
+    db=[[SQLiteOperate alloc]init];
+    if([db openDB]){
+        //创建文件管理器
+        NSFileManager* fileManager = [NSFileManager defaultManager];
+        //获取Documents主目录
+        NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        //得到相应的Documents的路径
+        NSString* docDir = [paths objectAtIndex:0];
+        //更改到待操作的目录下
+        [fileManager changeCurrentDirectoryPath:[docDir stringByExpandingTildeInPath]];
+        NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * FROM PIC ORDER BY ID limit %d offset 0",TOPIMAGENUM];
+        NSMutableArray *indata=[db query1:sqlQuery];
+        if(indata!=nil&&[indata count]>0){
+            for(int i=0;i<[indata count];i++){
+                NSString *name=[[indata objectAtIndex:i] objectForKey:@"name"];
+                NSString *path = [docDir stringByAppendingPathComponent:name];
+                //如果图标文件已经存在则进行显示否则进行下载
+                if([fileManager fileExistsAtPath:path]){
+                    [images addObject:[UIImage imageWithContentsOfFile:path]];
+                }
+            }
+        }
+    }
+    //如果不够则加载默认的图片
+    if([images count]==0){
+        for(int i=0;i<TOPIMAGENUM;i++){
+            [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"image%d",i+1]]];
+        }
+    }
+    [foursquareImages setImages:images];
+    [scrollFrame addSubview:foursquareImages];
     //中
-    UIView *middleFrame=[[UIView alloc]initWithFrame:CGRectMake1(0,100, 320, 180)];
+    UIView *middleFrame=[[UIView alloc]initWithFrame:CGRectMake1(0,IMAGEHEIGHT, 320, 180)];
     [middleFrame setBackgroundColor:[UIColor whiteColor]];
     [scrollFrame addSubview:middleFrame];
     [self addModel:@"企业设备维护" Title:@"设备维护" Frame:middleFrame Tag:1 X:0 Y:0];
@@ -105,7 +141,7 @@
     [line setBackgroundColor:LINECOLOR];
     [middleFrame addSubview:line];
     //下
-    UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(0,290, 320, 270)];
+    UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(0,389, 320, 270)];
     [bottomFrame setBackgroundColor:[UIColor whiteColor]];
     [scrollFrame addSubview:bottomFrame];
     [bottomFrame addSubview:[self setFrameView:10 Y:10 byRoundingCorners:UIRectCornerTopLeft ImageNamed:@"外包变配电站" MainTitle:@"外包变配电站" ChildTitle:@"让您省心、放心；享受更专业，更经济的服务" bgColor:MAIN1BGCOLOR Tag:1]];
