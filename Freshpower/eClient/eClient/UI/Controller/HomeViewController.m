@@ -40,7 +40,6 @@
 - (id)init{
     self=[super init];
     if(self){
-        [self setTitle:@"首页"];
         if([[User Instance]isLogin]){
             bCpName = [UIButton buttonWithType:UIButtonTypeCustom];
             [bCpName addTarget:self action:@selector(switchCpName:) forControlEvents:UIControlEventTouchUpInside];
