@@ -19,6 +19,8 @@
 #import "STWarnComapnyViewController.h"
 #import "EnterpriseManagerViewController.h"
 #import "STBurdenDetailListViewController.h"
+#import "EnterpriseNameModifyViewController.h"
+#import "MaintainEnterpriseInformationViewController.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 #define LINECOLOR  [UIColor colorWithRed:(230/255.0) green:(230/255.0) blue:(230/255.0) alpha:1]
@@ -31,12 +33,23 @@
 
 @end
 
-@implementation HomeViewController
+@implementation HomeViewController{
+    UIButton *bCpName;
+}
 
 - (id)init{
     self=[super init];
     if(self){
         [self setTitle:@"首页"];
+        if([[User Instance]isLogin]){
+            bCpName = [UIButton buttonWithType:UIButtonTypeCustom];
+            [bCpName addTarget:self action:@selector(switchCpName:) forControlEvents:UIControlEventTouchUpInside];
+            UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
+                                                    initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                    target:nil action:nil];
+            negativeSpacerRight.width = -5;
+            self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bCpName], nil];
+        }
     }
     return self;
 }
@@ -103,6 +116,27 @@
     [iconImage setImage:[UIImage imageNamed:@"autocrane_o"]];
     [iconImage setContentMode:UIViewContentModeCenter];
     [bottomFrame addSubview:iconImage];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if([[User Instance]isLogin]){
+        NSString *cpName=[[[User Instance]getResultData] objectForKey:@"CP_NAME"];
+        //如果企业为空则设置企业
+        if([@"" isEqualToString:cpName]){
+            [self.navigationController pushViewController:[[EnterpriseNameModifyViewController alloc]init] animated:YES];
+        }else{
+            UIFont *font=[UIFont systemFontOfSize:15];
+            //设定宽度，高度无限高
+            CGSize constraintSize = CGSizeMake(FLT_MAX,FLT_MAX);
+            //计算实际需要得视图大小
+            CGSize labelSize = [cpName sizeWithFont:font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByClipping];
+            [bCpName setTitle:cpName forState:UIControlStateNormal];
+            bCpName.frame = CGRectMake(0, 0, labelSize.width, labelSize.height);
+            [bCpName.titleLabel setFont:font];
+        }
+    }
 }
 
 - (void)addModel:(NSString*)image Title:(NSString*)title Frame:(UIView*)frame Tag:(NSUInteger)tag X:(CGFloat)x Y:(CGFloat)y
@@ -187,6 +221,7 @@
         [self.navigationController pushViewController:[[STBurdenDetailListViewController alloc]init] animated:YES];
     }
 }
+
 - (void)goToMainView:(UITapGestureRecognizer*)sender
 {
     NSInteger tag=[sender.view tag];
@@ -200,4 +235,10 @@
         [self.navigationController pushViewController:[[DGSQViewController alloc]init] animated:YES];
     }
 }
+
+- (void)switchCpName:(id)sender
+{
+    [self.navigationController pushViewController:[[MaintainEnterpriseInformationViewController alloc]init] animated:YES];
+}
+
 @end
