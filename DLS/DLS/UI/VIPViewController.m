@@ -18,6 +18,7 @@
     CategoryView *categoryView;
     NSArray *searchData1,*searchData2,*searchData3,*searchData4;
     NSInteger pvs1,pvs2,pvs3,pvs4;
+    int currentType;
 }
 
 - (id)init
@@ -35,10 +36,10 @@
         [self buildTableViewWithView:self.view];
         [self.tableView setTableHeaderView:categoryView];
         
-        searchData1=[NSArray arrayWithObjects:@"汽车吊",@"履带吊", nil];
-        searchData2=[NSArray arrayWithObjects:@"求租",@"出租", nil];
-        searchData3=[NSArray arrayWithObjects:@"8吨",@"12吨",@"20吨",@"25吨",@"30吨", nil];
-        searchData4=[NSArray arrayWithObjects:@"1KM",@"2KM",@"3KM",@"4KM",@"5KM", nil];
+        searchData1=[NSArray arrayWithObjects:@"不限",@"新发布",@"洽谈中",@"已成交", nil];
+        searchData2=[NSArray arrayWithObjects:@"不限",@"履带吊",@"汽车吊", nil];
+        searchData3=[NSArray arrayWithObjects:@"不限",@"8吨",@"12吨",@"25吨",@"35吨",@"50吨",@"65吨",@"70吨",@"90吨",@"100吨",@"120吨",@"130吨",@"150吨",@"180吨",@"200吨",@"220吨",@"260吨",@"300吨",@"350吨",@"400吨",@"500吨",@"600吨",@"800",@"1000吨",@"1200吨", nil];
+        searchData4=[NSArray arrayWithObjects:@"不限",@"3KM",@"5KM",@"10KM",@"20KM",@"30KM",@"50KM",@"100KM",@"150KM",@"200KM", nil];
         
         self.pv1=[[SinglePickerView alloc]initWithFrame:self.view.bounds WithArray:searchData1];
         [self.pv1 setCode:1];
@@ -68,24 +69,25 @@
 {
     self=[self init];
     if(self){
-        if(type==1||type==5){
-            //汽车吊求租汽车吊出租
-            [self.pv1.picker selectRow:0 inComponent:0 animated:YES];
-            [self pickerViewDone:1];
-        }else if(type==2||type==6){
-            //履带吊求租，履带吊出租
-            [self.pv1.picker selectRow:1 inComponent:0 animated:YES];
-            [self pickerViewDone:1];
-        }
-        if(type==1||type==2){
-            //汽车吊求租,履带吊求租
-            [self.pv2.picker selectRow:0 inComponent:0 animated:YES];
-            [self pickerViewDone:2];
-        }else if(type==5||type==6){
-            //汽车吊出租,履带吊出租
-            [self.pv2.picker selectRow:1 inComponent:0 animated:YES];
-            [self pickerViewDone:2];
-        }
+        currentType=type;
+//        if(type==1||type==5){
+//            //汽车吊求租汽车吊出租
+//            [self.pv1.picker selectRow:0 inComponent:0 animated:YES];
+//            [self pickerViewDone:1];
+//        }else if(type==2||type==6){
+//            //履带吊求租，履带吊出租
+//            [self.pv1.picker selectRow:1 inComponent:0 animated:YES];
+//            [self pickerViewDone:1];
+//        }
+//        if(type==1||type==2){
+//            //汽车吊求租,履带吊求租
+//            [self.pv2.picker selectRow:0 inComponent:0 animated:YES];
+//            [self pickerViewDone:2];
+//        }else if(type==5||type==6){
+//            //汽车吊出租,履带吊出租
+//            [self.pv2.picker selectRow:1 inComponent:0 animated:YES];
+//            [self pickerViewDone:2];
+//        }
     }
     return self;
 }
@@ -149,7 +151,22 @@
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"1" forKey:@"Id"];
+    if(currentType==1){
+        //汽车吊求租
+        [params setObject:@"1" forKey:@"Id"];
+    }else if(currentType==5){
+        //汽车吊出租
+        [params setObject:@"3" forKey:@"Id"];
+    }else if(currentType==2){
+        //履带吊求租
+        [params setObject:@"1" forKey:@"Id"];
+    }else if(currentType==6){
+        //履带吊出租
+        [params setObject:@"1" forKey:@"Id"];
+    }else{
+        //VIP工程
+        [params setObject:@"4" forKey:@"Id"];
+    }
     [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]] forKey:@"index"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];

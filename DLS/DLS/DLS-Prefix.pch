@@ -31,6 +31,8 @@
 #define ACCESSKEY @"930bb8937c42109377e73bea7b92f88c"
 #endif
 
+#define IMAGE_URL(URL) [NSString stringWithFormat:@"%@%@",HTTP_URL,URL]
+
 #define HTTP_SERVER_URL(URL,SIGNATURE,TIMESTAMP,NONCE) [NSString stringWithFormat:@"%@/Ajax/API/%@.html?signature=%@&timestamp=%@&nonce=%@",HTTP_URL,URL,SIGNATURE,TIMESTAMP,NONCE]
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)

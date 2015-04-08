@@ -68,11 +68,20 @@
 
 - (void)setData:(NSDictionary *)data
 {
+//    NSURL *url = [NSURL URLWithString:IMAGE_URL([data objectForKey:@"images"])];
+//    UIImage *image = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
     [self.image setImage:[UIImage imageNamed:@"category1"]];
-    self.title.text=@"这是标题";
-    self.address.text=@"萧山建设1路";
-    self.money.text=@"40000元";
-    [self setStatus:@"洽谈中" Type:1];
+    self.title.text=[data objectForKey:@"Name"];
+    self.address.text=[data objectForKey:@"address"];
+    self.money.text=[NSString stringWithFormat:@"%@",[data objectForKey:@"price"]];
+    int status=[[data objectForKey:@"status"]intValue];
+    if(status==1){
+        [self setStatus:@"洽谈中" Type:1];
+    }else if(status==2){
+        [self setStatus:@"新发布" Type:2];
+    }else{
+        [self setStatus:@"洽谈中" Type:3];
+    }
 }
 
 @end
