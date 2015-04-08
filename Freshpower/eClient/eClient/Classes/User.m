@@ -26,6 +26,9 @@ static User * instance = nil;
     [Common setCache:ACCOUNTPASSWORD data:p];
     [Common setCacheByBool:ISACCOUNTAUTOLOGIN data:YES];
     [Common setCache:ACCOUNTRESULTDATA data:d];
+    [self setCPNameId:[[self getResultData]objectForKey:@"CP_ID"]];
+    [self setCPName:[[self getResultData]objectForKey:@"CP_NAME"]];
+    [self setRoleType:[[self getResultData]objectForKey:@"ROLETYPE"]];
 }
 
 - (BOOL)isLogin
@@ -58,6 +61,48 @@ static User * instance = nil;
 - (NSDictionary*)getResultData
 {
     NSDictionary *data=[Common getCache:ACCOUNTRESULTDATA];
+    if(data){
+        return data;
+    }
+    return nil;
+}
+
+- (void)setCPName:(NSString*)name
+{
+    [Common setCache:ACCOUNTCPNAMEDATA data:name];
+}
+
+- (void)setCPNameId:(NSString*)nameId
+{
+    [Common setCache:ACCOUNTCPNAMEIDDATA data:nameId];
+}
+
+- (void)setRoleType:(NSString *)roleType
+{
+    [Common setCache:ACCOUNTROLETYPEDATA data:roleType];
+}
+
+- (NSString*)getCPName
+{
+    NSString *data=[Common getCache:ACCOUNTCPNAMEDATA];
+    if(data){
+        return data;
+    }
+    return nil;
+}
+
+- (NSString*)getCPNameId
+{
+    NSString *data=[Common getCache:ACCOUNTCPNAMEIDDATA];
+    if(data){
+        return data;
+    }
+    return nil;
+}
+
+- (NSString*)getRoleType
+{
+    NSString *data=[Common getCache:ACCOUNTROLETYPEDATA];
     if(data){
         return data;
     }

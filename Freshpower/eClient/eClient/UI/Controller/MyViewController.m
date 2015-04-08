@@ -12,6 +12,7 @@
 #import "EnterpriseNameModifyViewController.h"
 #import "LoginViewController.h"
 #import "STAboutUsViewController.h"
+#import "ModifyPwdViewController.h"
 
 #define HEADTITLECOLOR [UIColor colorWithRed:(200/255.0) green:(200/255.0) blue:(200/255.0) alpha:1]
 
@@ -112,11 +113,24 @@
     static NSString *CMainCell = @"CMainCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CMainCell];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CMainCell];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle  reuseIdentifier: CMainCell];
     }
     NSString *content=[[self.dataItemArray objectAtIndex:[indexPath section]]objectAtIndex:[indexPath row]];
     [cell.imageView setImage:[UIImage imageNamed:content]];
     cell.textLabel.text = content;
+    NSInteger section=[indexPath section];
+    NSInteger row=[indexPath row];
+    if(section==0){
+        if(row==0){
+            NSString *role=[[User Instance]getRoleType];
+            NSString *cpName=[[User Instance]getCPName];
+            if([@"2"isEqualToString:role]||[@"4"isEqualToString:role]){
+                cell.detailTextLabel.text=@"切企业换后，负荷和电量等用电数据会发生变化";
+            }else if([@"1" isEqualToString:role]&&[@"" isEqualToString:cpName]){
+                cell.detailTextLabel.text=@"请先维护企业名称信息方可进行巡检任务下发操作";
+            }
+        }
+    }
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
 }
@@ -127,8 +141,11 @@
     NSInteger row=[indexPath row];
     if(section==0){
         if(row==0){
-            [self.navigationController pushViewController:[[MaintainEnterpriseInformationViewController alloc]init] animated:YES];
-//            [self.navigationController pushViewController:[[EnterpriseNameModifyViewController alloc]init] animated:YES];
+            if([@"" isEqualToString:[[User Instance]getCPName]]){
+                [self.navigationController pushViewController:[[EnterpriseNameModifyViewController alloc]init] animated:YES];
+            }else{
+                [self.navigationController pushViewController:[[MaintainEnterpriseInformationViewController alloc]init] animated:YES];
+            }
         }
     }else if(section==1){
         if(row==0){
@@ -140,7 +157,6 @@
     }
 }
 
-
 - (void)switchUser:(id)sender
 {
     [[User Instance]clear];
@@ -149,7 +165,7 @@
 
 - (void)modifyPwd:(id)sender
 {
-    
+    [self.navigationController pushViewController:[[ModifyPwdViewController alloc]init] animated:YES];
 }
 
 - (void)logout:(id)sender

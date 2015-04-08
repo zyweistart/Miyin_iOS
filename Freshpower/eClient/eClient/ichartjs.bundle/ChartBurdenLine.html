@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>进出线负荷曲线图</title>
+		<script type="text/javascript" src="ichart.1.2.min.js"></script>
+		<script type="text/javascript">
+            var chart;
+            $(function(){
+              chart = new iChart.LineBasic2D({
+                                                        render : 'canvasDiv',
+                                                        width : 1000,
+                                                        height : 450,
+                                                        coordinate:{height:'90%',background_color:'#f6f9fa'},tip:{
+                                                        enable:true,
+                                                        shadow:true
+                                                        },
+                                                        legend : {
+                                                        enable : true,
+                                                        row:1,//设置在一行上显示，与column配合使用
+                                                        column : 'max',
+                                                        valign:'top',
+                                                        sign:'bar',
+                                                        background_color:null,//设置透明背景
+                                                        offsetx:-80,//设置x轴偏移，满足位置需要
+                                                        border : true
+                                             },border : {
+                                             enable : false
+                                             },
+                                                        crosshair:{
+                                                        enable:true,
+                                                        line_color:'#62bce9'
+                                                        },
+                                             labels:["1","2","3","4","5","6","7","8","9","10","11","12"],
+                                             footnote : {
+                                             text : '时间（单位：小时）',
+                                             color : '#000000',
+                                             fontsize : 22,
+                                             padding : '10 84'
+                                             }
+                                                        });
+              
+              chart.plugin(new iChart.Custom({
+                                             drawFn:function(){
+                                             /**
+                                              *计算位置
+                                              */
+                                             var coo = chart.getCoordinate(),
+                                             x = coo.get('originx'),
+                                             y = coo.get('originy'),
+                                             H = coo.height;
+                                             /**
+                                              *在左侧的位置，设置逆时针90度的旋转，渲染文字。
+                                              */
+                                             chart.target.textAlign('center')
+                                             .textBaseline('middle')
+                                             .textFont('600 20px Verdana')
+                                             .fillText('负荷(单位:KW)',x-60,y+H/2,false,'#000000', false,false,false,-90);
+                                             
+                                             }
+                                             }));
+              
+                chart.draw();
+                });
+              function refresh(data1){
+                  var jsonObjects = eval(data1);
+                  chart.push("data",jsonObjects);
+                  chart.setUp();
+                  chart.draw();
+              }
+        </script>
+    </head>
+    <body>
+        <div id='canvasDiv'></div>
+    </body>
+</html>

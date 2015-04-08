@@ -7,7 +7,7 @@
 //
 
 #import "STBurdenDetailListViewController.h"
-//#import "STBurdenDetailChartViewController.h"
+#import "STBurdenDetailChartViewController.h"
 #import "STBurdenCell.h"
 #import "LoginViewController.h"
 #define DISPLAYLINESTR1 @"ia=%.2f;ib=%.2f;ic=%.2f;"
@@ -101,16 +101,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if([[self dataItemArray] count]>0){
+        NSDictionary *dictionary=[self.dataItemArray objectAtIndex:[indexPath row]];
+        STBurdenDetailChartViewController *burdenDetailChartViewController=[[STBurdenDetailChartViewController alloc]initWithData:dictionary];
+        [self.navigationController pushViewController:burdenDetailChartViewController animated:YES];
     }
-//    NSDictionary *dictionary=[self.dataItemArray objectAtIndex:[indexPath row]];
-//    STBurdenDetailChartViewController *burdenDetailChartViewController=[[STBurdenDetailChartViewController alloc]initWithData:dictionary];
-//    [self.navigationController pushViewController:burdenDetailChartViewController animated:YES];
 }
 
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:[[[User Instance] getResultData]objectForKey:@"CP_ID"] forKey:@"CP_ID"];
+    [params setObject:[[User Instance] getCPNameId] forKey:@"CP_ID"];
     NSString *MeterName=[searchData objectForKey:@"MeterName"];
     if(![@"" isEqualToString:MeterName]){
         [params setObject:MeterName forKey:@"MeterName"];
@@ -123,6 +123,50 @@
     [self.hRequest setController:self];
     [self.hRequest handle:URL_AppMeterFhReport requestParams:params];
     
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if(self.dataItemArray==nil){
+        self.dataItemArray=[[NSMutableArray alloc]init];
+    }
+    NSDictionary *data=[response resultJSON];
+    if(data!=nil){
+        NSDictionary *rows=[data objectForKey:@"Rows"];
+        int result=[[rows objectForKey:@"result"] intValue];
+        if(result==1){
+            int totalCount=[[rows objectForKey:@"TotalCount"]intValue];
+            if(totalCount==0){
+                [[self dataItemArray]removeAllObjects];
+                [self.tableView reloadData];
+            }else{
+                for(NSString *key in data){
+                    if(![@"Rows" isEqualToString:key]){
+                        NSArray *tmpData=[data objectForKey:key];
+                        if([self currentPage]==1){
+                            self.dataItemArray=[[NSMutableArray alloc]initWithArray:tmpData];
+                        } else {
+                            [self.dataItemArray addObjectsFromArray:tmpData];
+                        }
+                        if([tmpData count]>0){
+                            // 刷新表格
+                            [self.tableView reloadData];
+                        }
+                        break;
+                    }
+                }
+            }
+        } else {
+//            [Common alert:[rows objectForKey:@"remark"]];
+            if([self currentPage]==1){
+                [[self dataItemArray]removeAllObjects];
+                [self.tableView reloadData];
+            }
+        }
+    }else{
+        [Common alert:@"数据解析异常"];
+    }
+    [self loadDone];
 }
 
 - (void)search:(id)sender

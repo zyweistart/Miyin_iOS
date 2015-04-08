@@ -21,6 +21,7 @@
 #import "STBurdenDetailListViewController.h"
 #import "EnterpriseNameModifyViewController.h"
 #import "MaintainEnterpriseInformationViewController.h"
+#import "ElectricityTariffViewController.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 #define LINECOLOR  [UIColor colorWithRed:(230/255.0) green:(230/255.0) blue:(230/255.0) alpha:1]
@@ -121,7 +122,7 @@
 {
     [super viewDidAppear:animated];
     if([[User Instance]isLogin]){
-        NSString *cpName=[[[User Instance]getResultData] objectForKey:@"CP_NAME"];
+        NSString *cpName=[[User Instance]getCPName];
         //如果企业为空则设置企业
         if([@"" isEqualToString:cpName]){
             [self.navigationController pushViewController:[[EnterpriseNameModifyViewController alloc]init] animated:YES];
@@ -213,7 +214,7 @@
         alarmTableBarController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:alarmTableBarController animated:YES];
     }else if(tag==5){
-        NSLog(@"电量电费");
+        [self.navigationController pushViewController:[[ElectricityTariffViewController alloc]init] animated:YES];
     }else if(tag==6){
         NSLog(@"运行状态");
     }else if(tag==7){

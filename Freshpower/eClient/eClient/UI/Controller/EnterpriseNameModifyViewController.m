@@ -51,12 +51,11 @@
 
 - (void)setDefault:(id)sender
 {
-    NSDictionary *data=[[User Instance]getResultData];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:[[User Instance]getUserName] forKey:@"imei"];
     [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
     [params setObject:@"99010205" forKey:@"GNID"];
-    [params setObject:[data objectForKey:@"CP_ID"] forKey:@"QTCP"];
+    [params setObject:[currentData objectForKey:@"CP_ID"] forKey:@"QTCP"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:501];
     [self.hRequest setDelegate:self];
@@ -72,30 +71,30 @@
         [Common alert:@"企业名称不能为空"];
         return;
     }
-    NSDictionary *data=[[User Instance]getResultData];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:[[User Instance]getUserName] forKey:@"imei"];
     [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
     [params setObject:@"99010104" forKey:@"GNID"];
-    [params setObject:[data objectForKey:@"CP_ID"] forKey:@"QTCP"];
+    [params setObject:[currentData objectForKey:@"CP_ID"] forKey:@"QTCP"];
     [params setObject:name forKey:@"QTKEY"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest setIsShowMessage:YES];
-    [self.hRequest handle:URL_appTaskingFps requestParams:params];
+    [self.hRequest handle:URL_appUserCenter requestParams:params];
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if(reqCode==500){
         if([response successFlag]){
-            [[[User Instance]getResultData] setObject:[tfName.tf text] forKey:@"CP_NAME"];
+            [[User Instance] setCPName:[tfName.tf text]];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }else if(reqCode==501){
         if([response successFlag]){
+            [[User Instance] setCPName:[tfName.tf text]];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }

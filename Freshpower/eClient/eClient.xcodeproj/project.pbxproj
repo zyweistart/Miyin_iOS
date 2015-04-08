@@ -84,6 +84,17 @@
 		C9BA43911ABC97E700B73485 /* JTDGGLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BA43901ABC97E700B73485 /* JTDGGLViewController.m */; };
 		C9BA43941ABC980200B73485 /* WBBPDZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BA43931ABC980200B73485 /* WBBPDZViewController.m */; };
 		C9BA43971ABC981D00B73485 /* DGSQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BA43961ABC981D00B73485 /* DGSQViewController.m */; };
+		C9C549FD1AD55026004CA911 /* ModifyPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C549FC1AD55026004CA911 /* ModifyPwdViewController.m */; };
+		C9C54A031AD55C5F004CA911 /* STBurdenDetailChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C54A021AD55C5F004CA911 /* STBurdenDetailChartViewController.m */; };
+		C9C54A081AD55CB7004CA911 /* DataPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C54A051AD55CB7004CA911 /* DataPickerView.m */; };
+		C9C54A091AD55CB7004CA911 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C54A071AD55CB7004CA911 /* DatePickerView.m */; };
+		C9C54A0B1AD55DDA004CA911 /* ichartjs.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9C54A0A1AD55DDA004CA911 /* ichartjs.bundle */; };
+		C9C54A0E1AD56314004CA911 /* ElectricityTariffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C54A0D1AD56314004CA911 /* ElectricityTariffViewController.m */; };
+		C9C54A111AD56E39004CA911 /* STElectricityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C54A101AD56E39004CA911 /* STElectricityListViewController.m */; };
+		C9C54A141AD56E73004CA911 /* STElectricityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C54A131AD56E73004CA911 /* STElectricityCell.m */; };
+		C9C54A171AD570FF004CA911 /* STElectricityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C54A161AD570FF004CA911 /* STElectricityDetailViewController.m */; };
+		C9C54A1A1AD5715B004CA911 /* STRows4View.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C54A181AD5715B004CA911 /* STRows4View.m */; };
+		C9C54A1D1AD57189004CA911 /* STElectricityView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C54A1B1AD57189004CA911 /* STElectricityView.m */; };
 		C9C88B021AC8F27E0045361A /* PersonalSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C88B011AC8F27E0045361A /* PersonalSelectViewController.m */; };
 		C9D1CCC81AC291450070FACC /* InspectionTipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D1CCC71AC291450070FACC /* InspectionTipCell.m */; };
 		C9D1CCCB1AC291550070FACC /* InspectionDownSendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D1CCCA1AC291550070FACC /* InspectionDownSendCell.m */; };
@@ -248,6 +259,27 @@
 		C9BA43931ABC980200B73485 /* WBBPDZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBBPDZViewController.m; sourceTree = "<group>"; };
 		C9BA43951ABC981D00B73485 /* DGSQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DGSQViewController.h; sourceTree = "<group>"; };
 		C9BA43961ABC981D00B73485 /* DGSQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DGSQViewController.m; sourceTree = "<group>"; };
+		C9C549FB1AD55026004CA911 /* ModifyPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPwdViewController.h; sourceTree = "<group>"; };
+		C9C549FC1AD55026004CA911 /* ModifyPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPwdViewController.m; sourceTree = "<group>"; };
+		C9C54A011AD55C5F004CA911 /* STBurdenDetailChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STBurdenDetailChartViewController.h; sourceTree = "<group>"; };
+		C9C54A021AD55C5F004CA911 /* STBurdenDetailChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STBurdenDetailChartViewController.m; sourceTree = "<group>"; };
+		C9C54A041AD55CB7004CA911 /* DataPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataPickerView.h; sourceTree = "<group>"; };
+		C9C54A051AD55CB7004CA911 /* DataPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataPickerView.m; sourceTree = "<group>"; };
+		C9C54A061AD55CB7004CA911 /* DatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerView.h; sourceTree = "<group>"; };
+		C9C54A071AD55CB7004CA911 /* DatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerView.m; sourceTree = "<group>"; };
+		C9C54A0A1AD55DDA004CA911 /* ichartjs.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ichartjs.bundle; sourceTree = "<group>"; };
+		C9C54A0C1AD56314004CA911 /* ElectricityTariffViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricityTariffViewController.h; sourceTree = "<group>"; };
+		C9C54A0D1AD56314004CA911 /* ElectricityTariffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricityTariffViewController.m; sourceTree = "<group>"; };
+		C9C54A0F1AD56E39004CA911 /* STElectricityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STElectricityListViewController.h; sourceTree = "<group>"; };
+		C9C54A101AD56E39004CA911 /* STElectricityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STElectricityListViewController.m; sourceTree = "<group>"; };
+		C9C54A121AD56E73004CA911 /* STElectricityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STElectricityCell.h; sourceTree = "<group>"; };
+		C9C54A131AD56E73004CA911 /* STElectricityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STElectricityCell.m; sourceTree = "<group>"; };
+		C9C54A151AD570FF004CA911 /* STElectricityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STElectricityDetailViewController.h; sourceTree = "<group>"; };
+		C9C54A161AD570FF004CA911 /* STElectricityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STElectricityDetailViewController.m; sourceTree = "<group>"; };
+		C9C54A181AD5715B004CA911 /* STRows4View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STRows4View.m; sourceTree = "<group>"; };
+		C9C54A191AD5715B004CA911 /* STRows4View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STRows4View.h; sourceTree = "<group>"; };
+		C9C54A1B1AD57189004CA911 /* STElectricityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STElectricityView.m; sourceTree = "<group>"; };
+		C9C54A1C1AD57189004CA911 /* STElectricityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STElectricityView.h; sourceTree = "<group>"; };
 		C9C88B001AC8F27E0045361A /* PersonalSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalSelectViewController.h; sourceTree = "<group>"; };
 		C9C88B011AC8F27E0045361A /* PersonalSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalSelectViewController.m; sourceTree = "<group>"; };
 		C9D1CCC61AC291450070FACC /* InspectionTipCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionTipCell.h; sourceTree = "<group>"; };
@@ -323,6 +355,10 @@
 		C9B0D1CE1ACA3EAB0056E69A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C9C54A151AD570FF004CA911 /* STElectricityDetailViewController.h */,
+				C9C54A161AD570FF004CA911 /* STElectricityDetailViewController.m */,
+				C9C54A0F1AD56E39004CA911 /* STElectricityListViewController.h */,
+				C9C54A101AD56E39004CA911 /* STElectricityListViewController.m */,
 				C9BA43951ABC981D00B73485 /* DGSQViewController.h */,
 				C9BA43961ABC981D00B73485 /* DGSQViewController.m */,
 				C9BA438C1ABC97BD00B73485 /* FindElectricianViewController.h */,
@@ -335,6 +371,8 @@
 				C9B0D1C91ACA31280056E69A /* STWarnComapnyViewController.m */,
 				C9BA43921ABC980200B73485 /* WBBPDZViewController.h */,
 				C9BA43931ABC980200B73485 /* WBBPDZViewController.m */,
+				C9C54A0C1AD56314004CA911 /* ElectricityTariffViewController.h */,
+				C9C54A0D1AD56314004CA911 /* ElectricityTariffViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -348,6 +386,8 @@
 				C9BA436C1ABC7B1F00B73485 /* LoginViewController.m */,
 				C9BA43651ABC7B0D00B73485 /* MyViewController.h */,
 				C9BA43661ABC7B0D00B73485 /* MyViewController.m */,
+				C9C549FB1AD55026004CA911 /* ModifyPwdViewController.h */,
+				C9C549FC1AD55026004CA911 /* ModifyPwdViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -368,6 +408,8 @@
 		C9B3243C1AC705490089A297 /* Old */ = {
 			isa = PBXGroup;
 			children = (
+				C9C54A011AD55C5F004CA911 /* STBurdenDetailChartViewController.h */,
+				C9C54A021AD55C5F004CA911 /* STBurdenDetailChartViewController.m */,
 				C9B324391AC7053A0089A297 /* STAboutUsViewController.h */,
 				C9B3243A1AC7053A0089A297 /* STAboutUsViewController.m */,
 				C9B0D1D21ACA43900056E69A /* STBurdenCell.h */,
@@ -383,6 +425,7 @@
 		C9B324401AC7059F0089A297 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C9C54A0A1AD55DDA004CA911 /* ichartjs.bundle */,
 				C9B324411AC705C10089A297 /* page.bundle */,
 			);
 			name = Resource;
@@ -581,6 +624,8 @@
 		C9BA43621ABC7AEF00B73485 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				C9C54A121AD56E73004CA911 /* STElectricityCell.h */,
+				C9C54A131AD56E73004CA911 /* STElectricityCell.m */,
 				C9B0D1CB1ACA31B10056E69A /* STAlarmCell.h */,
 				C9B0D1CC1ACA31B10056E69A /* STAlarmCell.m */,
 				C92C272F1AC1325F00E472C9 /* EDGButtonCell.h */,
@@ -629,6 +674,14 @@
 		C9BA43641ABC7AEF00B73485 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C9C54A1B1AD57189004CA911 /* STElectricityView.m */,
+				C9C54A1C1AD57189004CA911 /* STElectricityView.h */,
+				C9C54A181AD5715B004CA911 /* STRows4View.m */,
+				C9C54A191AD5715B004CA911 /* STRows4View.h */,
+				C9C54A041AD55CB7004CA911 /* DataPickerView.h */,
+				C9C54A051AD55CB7004CA911 /* DataPickerView.m */,
+				C9C54A061AD55CB7004CA911 /* DatePickerView.h */,
+				C9C54A071AD55CB7004CA911 /* DatePickerView.m */,
 				C9BA43771ABC7E2900B73485 /* SVTextField.h */,
 				C9BA43781ABC7E2900B73485 /* SVTextField.m */,
 				C9BA437A1ABC7E3800B73485 /* SVButton.h */,
@@ -729,6 +782,7 @@
 				C9BA43581ABC785C00B73485 /* grayArrow@2x.png in Resources */,
 				C9BA43561ABC785C00B73485 /* blueArrow@2x.png in Resources */,
 				C9BA43551ABC785C00B73485 /* blueArrow.png in Resources */,
+				C9C54A0B1AD55DDA004CA911 /* ichartjs.bundle in Resources */,
 				C9BA43541ABC785C00B73485 /* blackArrow@2x.png in Resources */,
 				C9B324421AC705C10089A297 /* page.bundle in Resources */,
 				C9BA43591ABC785C00B73485 /* whiteArrow.png in Resources */,
@@ -753,6 +807,7 @@
 			files = (
 				C9BA43461ABC785C00B73485 /* UIButton+TitleImage.m in Sources */,
 				00BAB6B11AC0520100B1C849 /* InspectionManagerCell.m in Sources */,
+				C9C549FD1AD55026004CA911 /* ModifyPwdViewController.m in Sources */,
 				C9B0D1D41ACA43900056E69A /* STBurdenDetailListViewController.m in Sources */,
 				C94DFD671ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m in Sources */,
 				C9BA43791ABC7E2900B73485 /* SVTextField.m in Sources */,
@@ -765,30 +820,39 @@
 				C9BA43421ABC785C00B73485 /* Common.m in Sources */,
 				C94DFD6A1ABFF9B20043B896 /* NSString+Utils.m in Sources */,
 				C92C27341AC1344800E472C9 /* ElectricianManagerListViewController.m in Sources */,
+				C9C54A1D1AD57189004CA911 /* STElectricityView.m in Sources */,
+				C9C54A1A1AD5715B004CA911 /* STRows4View.m in Sources */,
 				C91C043B1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m in Sources */,
 				C9BA434D1ABC785C00B73485 /* ATMSoundFX.m in Sources */,
 				C9BA436D1ABC7B1F00B73485 /* LoginViewController.m in Sources */,
 				C92C27411AC13CE000E472C9 /* CRTableViewController.m in Sources */,
+				C9C54A0E1AD56314004CA911 /* ElectricityTariffViewController.m in Sources */,
 				C9B3243F1AC705800089A297 /* STNavigationWebPageViewController.m in Sources */,
+				C9C54A081AD55CB7004CA911 /* DataPickerView.m in Sources */,
 				C9D1CCCE1AC2AE9E0070FACC /* TimeSelectViewController.m in Sources */,
 				C9BA43441ABC785C00B73485 /* HttpRequest.m in Sources */,
 				C9B0D1D51ACA43900056E69A /* STBurdenCell.m in Sources */,
 				C910E5961ACA7654000084BD /* EnterpriseHeightLowCell.m in Sources */,
 				C9BA434A1ABC785C00B73485 /* ATMHudQueueItem.m in Sources */,
+				C9C54A091AD55CB7004CA911 /* DatePickerView.m in Sources */,
 				C9BA438B1ABC978500B73485 /* EquipmentMaintainViewController.m in Sources */,
 				C9B324451AC70C9D0089A297 /* FeedbackViewController.m in Sources */,
 				C9BA43511ABC785C00B73485 /* MessageInterceptor.m in Sources */,
 				C9BA437C1ABC7E3800B73485 /* SVButton.m in Sources */,
+				C9C54A171AD570FF004CA911 /* STElectricityDetailViewController.m in Sources */,
+				C9C54A031AD55C5F004CA911 /* STBurdenDetailChartViewController.m in Sources */,
 				C9C88B021AC8F27E0045361A /* PersonalSelectViewController.m in Sources */,
 				C9B3243B1AC7053A0089A297 /* STAboutUsViewController.m in Sources */,
 				C9BA434B1ABC785C00B73485 /* ATMHudView.m in Sources */,
 				C9BA436A1ABC7B1600B73485 /* RegisterViewController.m in Sources */,
+				C9C54A141AD56E73004CA911 /* STElectricityCell.m in Sources */,
 				C9BA43411ABC785C00B73485 /* BaseViewController.m in Sources */,
 				C9BA43971ABC981D00B73485 /* DGSQViewController.m in Sources */,
 				C9B324481AC7187D0089A297 /* SVTextView.m in Sources */,
 				C9B0D1E51ACA4ADC0056E69A /* EnterpriseCell.m in Sources */,
 				C92C27441AC15A7200E472C9 /* SVCheckbox.m in Sources */,
 				00BAB6AE1AC0508100B1C849 /* EDGManagerCell.m in Sources */,
+				C9C54A111AD56E39004CA911 /* STElectricityListViewController.m in Sources */,
 				C92C27371AC1345700E472C9 /* ElectricianManagerSearchViewController.m in Sources */,
 				C9BA43731ABC7BA500B73485 /* ProductViewController.m in Sources */,
 				C9BA434F1ABC785C00B73485 /* EGORefreshTableHeaderView.m in Sources */,

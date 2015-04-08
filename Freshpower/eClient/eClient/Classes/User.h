@@ -12,6 +12,10 @@
 #define ISACCOUNTAUTOLOGIN @"ISACCOUNTLOGIN"
 #define ACCOUNTRESULTDATA @"ACCOUNTRESULTDATA"
 
+#define ACCOUNTCPNAMEDATA @"ACCOUNTCPNAMEDATA"
+#define ACCOUNTCPNAMEIDDATA @"ACCOUNTCPNAMEIDDATA"
+#define ACCOUNTROLETYPEDATA @"ACCOUNTROLETYPEDATA"
+
 @interface User : NSObject
 
 + (User *) Instance;
@@ -21,6 +25,15 @@
 - (BOOL)isLogin;
 - (NSString*)getUserName;
 - (NSString*)getPassword;
+
+- (void)setCPName:(NSString*)name;
+- (void)setCPNameId:(NSString*)nameId;
+- (void)setRoleType:(NSString*)roleType;
+- (NSString*)getCPName;
+- (NSString*)getCPNameId;
+- (NSString*)getRoleType;
+
+
 - (NSMutableDictionary*)getResultData;
 - (BOOL)isAuth:(NSString*)name;
 

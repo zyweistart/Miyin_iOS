@@ -57,8 +57,13 @@
     SVButton *bLogin=[[SVButton alloc]initWithFrame:CGRectMake1(10, 100, 300, 40) Title:@"登陆" Type:2];
     [bLogin addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
     [frame addSubview:bLogin];
-    [svUserName.tf setText:@"zhaox07"];
-    [svPassword.tf setText:@"111111"];
+    
+//    有监测类型用户(安装我们设备的用户)：cshh   8888aa
+//    无监测类型用户（可以增加多个企业的）：zhaox07 111111
+//    无监测类型用户（只一个企业的）：15900010001  8888aa
+//    电工：15900010010  8888aa
+    [svUserName.tf setText:@"cshh"];
+    [svPassword.tf setText:@"8888aa"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -102,7 +107,7 @@
             [self.navigationController pushViewController:[[DGSQViewController alloc]init] animated:YES];
         }else{
             [[User Instance] LoginSuccessWithUserName:USERNAME Password:PASSWORD Data:[NSMutableDictionary dictionaryWithDictionary:user]];
-            NSString *cp_Name=[user objectForKey:@"CP_NAME"];
+            NSString *cp_Name=[[User Instance]getCPName];
             if([@"" isEqualToString:cp_Name]){
                 //设置企业名称
                 [self.navigationController pushViewController:[[EnterpriseNameModifyViewController alloc]init] animated:YES];
