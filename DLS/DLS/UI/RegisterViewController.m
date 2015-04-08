@@ -25,7 +25,6 @@
     UITextField *tfIDCard;
     UITextField *tfPhone;
     UITextField *tfCode;
-    
 }
 
 - (id)init{
@@ -51,16 +50,17 @@
         
         UIView *vFrame=[[UIView alloc]initWithFrame:CGRectMake1(10, 210, 300, 40)];
         [scrollFrame addSubview:vFrame];
-        UITextField *tfContent=[[UITextField alloc]initWithFrame:CGRectMake1(0, 0,190, 40)];
-        [tfContent setFont:[UIFont systemFontOfSize:14]];
-        [tfContent setTextAlignment:NSTextAlignmentCenter];
-        [tfContent setPlaceholder:@"请输入手机号码"];
-        [tfContent setTextColor:TITLECOLOR];
-        tfContent.layer.cornerRadius = 5;
-        tfContent.layer.masksToBounds = YES;
-        tfContent.layer.borderWidth = 1;
-        tfContent.layer.borderColor = [TITLECOLOR CGColor];
-        [vFrame addSubview:tfContent];
+        tfPhone=[[UITextField alloc]initWithFrame:CGRectMake1(0, 0,190, 40)];
+        [tfPhone setFont:[UIFont systemFontOfSize:14]];
+        [tfPhone setTextAlignment:NSTextAlignmentCenter];
+        [tfPhone setPlaceholder:@"请输入手机号码"];
+        [tfPhone setTextColor:TITLECOLOR];
+        [tfPhone setDelegate:self];
+        tfPhone.layer.cornerRadius = 5;
+        tfPhone.layer.masksToBounds = YES;
+        tfPhone.layer.borderWidth = 1;
+        tfPhone.layer.borderColor = [TITLECOLOR CGColor];
+        [vFrame addSubview:tfPhone];
         UIButton *bGet = [UIButton buttonWithType:UIButtonTypeCustom];
         [bGet setTitle:@"获取验证码" forState:UIControlStateNormal];
         [bGet.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -84,18 +84,13 @@
         [bLogin setBackgroundImage:[Common createImageWithColor:REGISTERPRESENDCOLOR] forState:UIControlStateHighlighted];
         [bLogin addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
         [scrollFrame addSubview:bLogin];
+        
+        
+        [tfUserName setText:@"4544242"];
+        [tfPassword setText:@"4544242"];
+        [tfPhone setText:@"13750820210"];
     }
     return self;
-}
-
-- (void)goGet:(id)sender
-{
-    NSLog(@"获取验证码");
-}
-
-- (void)goRegister:(id)sender
-{
-    NSLog(@"注册");
 }
 
 - (UITextField*)addContentFrame:(NSString*)title Placeholder:(NSString*)placeholder TopX:(CGFloat)topx
@@ -116,9 +111,96 @@
     [tfContent setPlaceholder:placeholder];
     [tfContent setFont:[UIFont systemFontOfSize:14]];
     [tfContent setTextColor:TITLECOLOR];
+    [tfContent setDelegate:self];
     [vFrame addSubview:tfContent];
     return tfContent;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)goGet:(id)sender
+{
+    NSString *phone=[tfPhone text];
+    if([@""isEqualToString:phone]){
+        [Common alert:@"手机号码不能为空"];
+        return;
+    }
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:phone forKey:@"phone"];
+    [params setObject:@"717747" forKey:@"SMSId"];
+    NSMutableDictionary *params1=[[NSMutableDictionary alloc]init];
+    [params1 setObject:@"1234" forKey:@"code"];
+    [params setObject:params1 forKey:@"parJson"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:501];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:@"SendSMS" requestParams:params];
+}
+
+- (void)goRegister:(id)sender
+{
+    NSString *username=[tfUserName text];
+    NSString *password=[tfPassword text];
+//    NSString *name=[tfName text];
+//    NSString *idcard=[tfIDCard text];
+    NSString *phone=[tfPhone text];
+    NSString *code=[tfCode text];
+    if([@""isEqualToString:username]){
+        [Common alert:@"账号不能为空"];
+        return;
+    }
+    if([@""isEqualToString:password]){
+        [Common alert:@"密码不能为空"];
+        return;
+    }
+    if([@""isEqualToString:phone]){
+        [Common alert:@"手机号不能为空"];
+        return;
+    }
+    if([@""isEqualToString:code]){
+        [Common alert:@"验证码不能为空"];
+        return;
+    }
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:username forKey:@"userName"];
+    [params setObject:password forKey:@"pwd"];
+    [params setObject:password forKey:@"pwd2"];
+    [params setObject:phone forKey:@"phone"];
+    [params setObject:code forKey:@"SMSCode"];
+//    [params setObject:name forKey:@"name"];
+//    [params setObject:idcard forKey:@"idcard"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:502];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:@"SendSMS" requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if(reqCode==501){
+        if([response successFlag]){
+            [Common alert:@"校验码发送成功"];
+        }
+    }else if(reqCode==502){
+        if([response successFlag]){
+            [Common alert:@"注册成功"];
+            [[User Instance]setIsLogin:YES];
+            [[self resultDelegate]onControllerResult:RESULTCODE_LOGIN data:nil];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }
+}
 
 @end

@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface RegisterViewController : BaseViewController
+@interface RegisterViewController : BaseViewController<UITextFieldDelegate>
 
 @end

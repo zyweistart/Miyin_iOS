@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "NSString+Utils.h"
 #define TITLECOLOR [UIColor colorWithRed:(200/255.0) green:(200/255.0) blue:(200/255.0) alpha:1]
 #define LOGINNORMALCOLOR [UIColor colorWithRed:(57/255.0) green:(87/255.0) blue:(207/255.0) alpha:1]
 #define LOGINPRESENDCOLOR [UIColor colorWithRed:(107/255.0) green:(124/255.0) blue:(194/255.0) alpha:1]
@@ -15,7 +16,10 @@
 
 @end
 
-@implementation LoginViewController
+@implementation LoginViewController{
+    UITextField *tfUserName;
+    UITextField *tfPassword;
+}
 
 - (id)init{
     self=[super init];
@@ -40,7 +44,7 @@
         [lblUserName setTextAlignment:NSTextAlignmentCenter];
         [lblUserName setTextColor:TITLECOLOR];
         [vUserNameFrame addSubview:lblUserName];
-        UITextField *tfUserName=[[UITextField alloc]initWithFrame:CGRectMake1(50, 0,250, 40)];
+        tfUserName=[[UITextField alloc]initWithFrame:CGRectMake1(50, 0,250, 40)];
         [tfUserName setPlaceholder:@"请输入账号"];
         [tfUserName setTextColor:TITLECOLOR];
         [vUserNameFrame addSubview:tfUserName];
@@ -57,7 +61,7 @@
         [lblPassword setTextAlignment:NSTextAlignmentCenter];
         [lblPassword setTextColor:TITLECOLOR];
         [vPasswordFrame addSubview:lblPassword];
-        UITextField *tfPassword=[[UITextField alloc]initWithFrame:CGRectMake1(50, 0,250, 40)];
+        tfPassword=[[UITextField alloc]initWithFrame:CGRectMake1(50, 0,250, 40)];
         [tfPassword setPlaceholder:@"请输入密码"];
         [tfPassword setTextColor:TITLECOLOR];
         [vPasswordFrame addSubview:tfPassword];
@@ -72,25 +76,45 @@
         [bLogin setBackgroundImage:[Common createImageWithColor:LOGINPRESENDCOLOR] forState:UIControlStateHighlighted];
         [bLogin addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:bLogin];
+        
+        [tfUserName setText:@"13750820210"];
+        [tfPassword setText:@"123456@"];
     }
     return self;
 }
 
 - (void)login:(id)sender
 {
-    [[User Instance]setIsLogin:YES];
-    [[self resultDelegate]onControllerResult:RESULTCODE_LOGIN data:nil];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSString *userName=[tfUserName text];
+    NSString *password=[tfPassword text];
+    if([@"" isEqualToString:userName]){
+        [Common alert:@"账号不能为空"];
+        return;
+    }
+    if([@"" isEqualToString:password]){
+        [Common alert:@"密码不能为空"];
+        return;
+    }
+    password=[[[password md5] lowercaseString] substringWithRange:NSMakeRange(6, 22)];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:userName forKey:@"userName"];
+    [params setObject:password forKey:@"pwd"];
+    [params setObject:@"1" forKey:@"clientid"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:@"UserLogin" requestParams:params];
+}
 
-//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-//    [params setObject:@"" forKey:@"userName"];
-//    [params setObject:@"" forKey:@"pwd"];
-//    [params setObject:@"" forKey:@"clientid"];
-//    self.hRequest=[[HttpRequest alloc]init];
-//    [self.hRequest setRequestCode:500];
-//    [self.hRequest setDelegate:self];
-//    [self.hRequest setController:self];
-//    [self.hRequest handle:@"" requestParams:params];
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        [[User Instance]setIsLogin:YES];
+        [[self resultDelegate]onControllerResult:RESULTCODE_LOGIN data:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end
