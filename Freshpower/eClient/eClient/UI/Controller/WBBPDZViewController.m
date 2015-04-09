@@ -18,7 +18,8 @@
     self=[super init];
     if(self){
         [self setTitle:@"外包变配电站"];
-        UIView *frame=[[UIView alloc]initWithFrame:self.view.bounds];
+        UIScrollView *frame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
+        [frame setContentSize:CGSizeMake1(320, 400)];
         [frame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.view addSubview:frame];
         UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(0, 20, 320, 30)];

@@ -142,13 +142,18 @@
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"1" forKey:@"Id"];
-    [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]] forKey:@"index"];
+    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
+    [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
+    [params setObject:@"600202" forKey:@"GNID"];
+    [params setObject:PAGESIZE forKey:@"QTPSIZE"];
+    [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]]  forKey:@"QTPINDEX"];
+    [params setObject:@"" forKey:@"QTKEY"];
+    [params setObject:@"" forKey:@"QTVAL"];
     self.hRequest=[[HttpRequest alloc]init];
-    [self.hRequest setRequestCode:501];
+    [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
-    [self.hRequest handle:@"GetListALL" requestParams:params];
+    [self.hRequest handle:URL_appDistributeTasks requestParams:params];
 }
 
 //刷新地图位置数据
