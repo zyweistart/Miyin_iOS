@@ -184,14 +184,14 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest setIsShowMessage:YES];
-    [self.hRequest handle:@"SendSMS" requestParams:params];
+    [self.hRequest handle:@"RegUser" requestParams:params];
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if(reqCode==501){
         if([response successFlag]){
-            [Common alert:@"校验码发送成功"];
+            [Common alert:[response msg]];
         }
     }else if(reqCode==502){
         if([response successFlag]){

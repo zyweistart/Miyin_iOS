@@ -105,6 +105,15 @@
     }
 }
 
+//MapView委托方法，当定位自身时调用
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
+    CLLocationCoordinate2D loc = [userLocation coordinate];
+    NSLog(@"%lf,%lf",loc.latitude,loc.longitude);
+    //放大地图到自身的经纬度位置。
+//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
+//    [self.mapView setRegion:region animated:YES];
+}
+
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation {
     if([annotation isKindOfClass:[CustomAnnotation class]]){
         //附近点
