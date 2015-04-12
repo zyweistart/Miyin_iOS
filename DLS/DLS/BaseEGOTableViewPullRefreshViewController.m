@@ -79,13 +79,13 @@
 //调用该方法完成刷新状态
 - (void)loadDone
 {
+    [self.tableView reloadData];
     if(self.tableView.pullTableIsRefreshing){
         self.tableView.pullLastRefreshDate = [NSDate date];
         self.tableView.pullTableIsRefreshing = NO;
     }else if(self.tableView.pullTableIsLoadingMore){
         self.tableView.pullTableIsLoadingMore = NO;
     }
-    [self.tableView reloadData];
 }
 
 //创建PullTableView

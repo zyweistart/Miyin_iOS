@@ -75,12 +75,12 @@
     self.address.text=[data objectForKey:@"address"];
     self.money.text=[NSString stringWithFormat:@"%@",[data objectForKey:@"price"]];
     int status=[[data objectForKey:@"status"]intValue];
-    if(status==1){
-        [self setStatus:@"洽谈中" Type:1];
-    }else if(status==2){
+    if(status==0){
         [self setStatus:@"新发布" Type:2];
+    }else if(status==1){
+        [self setStatus:@"洽谈中" Type:1];
     }else{
-        [self setStatus:@"洽谈中" Type:3];
+        [self setStatus:@"已成交" Type:3];
     }
 }
 

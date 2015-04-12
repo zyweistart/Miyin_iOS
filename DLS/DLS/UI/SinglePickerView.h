@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#define MKEY @"KEY"
+#define MVALUE @"MVALUE"
 
 @protocol PickerViewDelegate
 

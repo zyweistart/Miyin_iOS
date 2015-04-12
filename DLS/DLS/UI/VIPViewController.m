@@ -36,10 +36,52 @@
         [self buildTableViewWithView:self.view];
         [self.tableView setTableHeaderView:categoryView];
         
-        searchData1=[NSArray arrayWithObjects:@"不限",@"新发布",@"洽谈中",@"已成交", nil];
-        searchData2=[NSArray arrayWithObjects:@"不限",@"履带吊",@"汽车吊", nil];
-        searchData3=[NSArray arrayWithObjects:@"不限",@"8吨",@"12吨",@"25吨",@"35吨",@"50吨",@"65吨",@"70吨",@"90吨",@"100吨",@"120吨",@"130吨",@"150吨",@"180吨",@"200吨",@"220吨",@"260吨",@"300吨",@"350吨",@"400吨",@"500吨",@"600吨",@"800",@"1000吨",@"1200吨", nil];
-        searchData4=[NSArray arrayWithObjects:@"不限",@"3KM",@"5KM",@"10KM",@"20KM",@"30KM",@"50KM",@"100KM",@"150KM",@"200KM", nil];
+        searchData1=[NSArray arrayWithObjects:
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"-1",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"新发布",MKEY,@"0",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"洽谈中",MKEY,@"1",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"已成交",MKEY,@"2",MVALUE, nil], nil];
+        searchData2=[NSArray arrayWithObjects:
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"-1",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"汽车吊",MKEY,@"1",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"履带吊",MKEY,@"2",MVALUE, nil],nil];
+        searchData3=[NSArray arrayWithObjects:
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"-1",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"8吨",MKEY,@"8",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"12吨",MKEY,@"12",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"25吨",MKEY,@"25",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"35吨",MKEY,@"35",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"50吨",MKEY,@"50",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"65吨",MKEY,@"65",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"70吨",MKEY,@"70",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"90吨",MKEY,@"90",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"100吨",MKEY,@"100",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"120吨",MKEY,@"120",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"130吨",MKEY,@"130",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"150吨",MKEY,@"150",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"180吨",MKEY,@"180",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"200吨",MKEY,@"200",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"220吨",MKEY,@"220",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"260吨",MKEY,@"260",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"300吨",MKEY,@"300",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"350吨",MKEY,@"350",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"400吨",MKEY,@"400",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"500吨",MKEY,@"500",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"600吨",MKEY,@"600",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"800吨",MKEY,@"800",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"1000吨",MKEY,@"1000",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"1200吨",MKEY,@"1200",MVALUE, nil],nil];
+        searchData4=[NSArray arrayWithObjects:
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"-1",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"3KM",MKEY,@"1",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"5KM",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"10KM",MKEY,@"3",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"20KM",MKEY,@"4",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"30KM",MKEY,@"5",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"50KM",MKEY,@"6",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"100KM",MKEY,@"7",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"150KM",MKEY,@"8",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"200KM",MKEY,@"9",MVALUE, nil],nil];
         
         self.pv1=[[SinglePickerView alloc]initWithFrame:self.view.bounds WithArray:searchData1];
         [self.pv1 setCode:1];
@@ -70,24 +112,15 @@
     self=[self init];
     if(self){
         currentType=type;
-//        if(type==1||type==5){
-//            //汽车吊求租汽车吊出租
-//            [self.pv1.picker selectRow:0 inComponent:0 animated:YES];
-//            [self pickerViewDone:1];
-//        }else if(type==2||type==6){
-//            //履带吊求租，履带吊出租
-//            [self.pv1.picker selectRow:1 inComponent:0 animated:YES];
-//            [self pickerViewDone:1];
-//        }
-//        if(type==1||type==2){
-//            //汽车吊求租,履带吊求租
-//            [self.pv2.picker selectRow:0 inComponent:0 animated:YES];
-//            [self pickerViewDone:2];
-//        }else if(type==5||type==6){
-//            //汽车吊出租,履带吊出租
-//            [self.pv2.picker selectRow:1 inComponent:0 animated:YES];
-//            [self pickerViewDone:2];
-//        }
+        if(type==1||type==5){
+            //汽车吊求租汽车吊出租
+            [self.pv2.picker selectRow:1 inComponent:0 animated:YES];
+            [self pickerViewDone:2];
+        }else if(type==2||type==6){
+            //履带吊求租，履带吊出租
+            [self.pv2.picker selectRow:2 inComponent:0 animated:YES];
+            [self pickerViewDone:2];
+        }
     }
     return self;
 }
@@ -121,7 +154,9 @@
         if (cell == nil) {
             cell = [[ProjectCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CProjectCell];
         }
-        [cell setData:[self.dataItemArray objectAtIndex:[indexPath row]]];
+        int row=[indexPath row];
+        NSDictionary *d=[self.dataItemArray objectAtIndex:row];
+        [cell setData:d];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -151,6 +186,24 @@
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    NSMutableDictionary *search=[[NSMutableDictionary alloc]init];
+    if(pvs1>0){
+        NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvs1];
+        [search setObject:[d objectForKey:MVALUE] forKey:@"status"];
+    }
+    if(pvs2>0){
+        NSDictionary *d=[self.pv2.pickerArray objectAtIndex:pvs2];
+        [search setObject:[d objectForKey:MVALUE] forKey:@"xlValue"];
+    }
+    if(pvs3>0){
+        NSDictionary *d=[self.pv3.pickerArray objectAtIndex:pvs3];
+        [search setObject:[d objectForKey:MVALUE] forKey:@"weight"];
+    }
+    if(pvs4>0){
+        NSDictionary *d=[self.pv4.pickerArray objectAtIndex:pvs4];
+        [search setObject:[d objectForKey:MVALUE] forKey:@"distance"];
+    }
+    [params setObject:search forKey:@"search"];
     if(currentType==1){
         //汽车吊求租
         [params setObject:@"1" forKey:@"Id"];
@@ -162,7 +215,7 @@
         [params setObject:@"1" forKey:@"Id"];
     }else if(currentType==6){
         //履带吊出租
-        [params setObject:@"1" forKey:@"Id"];
+        [params setObject:@"3" forKey:@"Id"];
     }else{
         //VIP工程
         [params setObject:@"4" forKey:@"Id"];
@@ -179,20 +232,20 @@
 {
     if(code==1){
         pvs1=[self.pv1.picker selectedRowInComponent:0];
-        NSString *value=[self.pv1.pickerArray objectAtIndex:pvs1];
-        [categoryView.button1 setTitle:value forState:UIControlStateNormal];
+        NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvs1];
+        [categoryView.button1 setTitle:[d objectForKey:MKEY] forState:UIControlStateNormal];
     }else if(code==2){
         pvs2=[self.pv2.picker selectedRowInComponent:0];
-        NSString *value=[self.pv2.pickerArray objectAtIndex:pvs2];
-        [categoryView.button2 setTitle:value forState:UIControlStateNormal];
+        NSDictionary *d=[self.pv2.pickerArray objectAtIndex:pvs2];
+        [categoryView.button2 setTitle:[d objectForKey:MKEY] forState:UIControlStateNormal];
     }else if(code==3){
         pvs3=[self.pv3.picker selectedRowInComponent:0];
-        NSString *value=[self.pv3.pickerArray objectAtIndex:pvs3];
-        [categoryView.button3 setTitle:value forState:UIControlStateNormal];
+        NSDictionary *d=[self.pv3.pickerArray objectAtIndex:pvs3];
+        [categoryView.button3 setTitle:[d objectForKey:MKEY] forState:UIControlStateNormal];
     }else if(code==4){
         pvs4=[self.pv4.picker selectedRowInComponent:0];
-        NSString *value=[self.pv4.pickerArray objectAtIndex:pvs4];
-        [categoryView.button4 setTitle:value forState:UIControlStateNormal];
+        NSDictionary *d=[self.pv4.pickerArray objectAtIndex:pvs4];
+        [categoryView.button4 setTitle:[d objectForKey:MKEY] forState:UIControlStateNormal];
     }
     //刷新
     if(!self.tableView.pullTableIsRefreshing) {

@@ -78,7 +78,9 @@
 
 -(NSString*) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [self.pickerArray objectAtIndex:row];
+    NSDictionary *d= [self.pickerArray objectAtIndex:row];
+//    return [self.pickerArray objectAtIndex:row];
+    return [d objectForKey:MKEY];
 }
 
 @end
