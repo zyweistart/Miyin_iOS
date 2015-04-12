@@ -155,7 +155,7 @@
 
 - (void)logout:(id)sender
 {
-    [[User Instance]setIsLogin:NO];
+    [[User Instance]clear];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

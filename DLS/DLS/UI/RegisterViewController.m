@@ -196,7 +196,6 @@
     }else if(reqCode==502){
         if([response successFlag]){
             [Common alert:@"注册成功"];
-            [[User Instance]setIsLogin:YES];
             [[self resultDelegate]onControllerResult:RESULTCODE_LOGIN data:nil];
             [self dismissViewControllerAnimated:YES completion:nil];
         }

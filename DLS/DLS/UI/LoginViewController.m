@@ -77,8 +77,8 @@
         [bLogin addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:bLogin];
         
-        [tfUserName setText:@"13750820210"];
-        [tfPassword setText:@"123456@"];
+        [tfUserName setText:@"11111111"];
+        [tfPassword setText:@"123456"];
     }
     return self;
 }
@@ -95,7 +95,7 @@
         [Common alert:@"密码不能为空"];
         return;
     }
-    password=[[[password md5] lowercaseString] substringWithRange:NSMakeRange(6, 22)];
+    password=[[[password md5] lowercaseString] substringWithRange:NSMakeRange(6, 16)];
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:userName forKey:@"userName"];
     [params setObject:password forKey:@"pwd"];
@@ -111,7 +111,7 @@
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){
-        [[User Instance]setIsLogin:YES];
+        [[User Instance]LoginSuccessWithUserName:@"" Password:@"" Data:[[response resultJSON]objectForKey:@"Data"]];
         [[self resultDelegate]onControllerResult:RESULTCODE_LOGIN data:nil];
         [self dismissViewControllerAnimated:YES completion:nil];
     }

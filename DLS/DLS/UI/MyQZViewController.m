@@ -89,7 +89,7 @@
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:@"19" forKey:@"Id"];
-    [params setObject:[[User Instance]identifier] forKey:@"access_token"];
+    [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
     [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]] forKey:@"index"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
