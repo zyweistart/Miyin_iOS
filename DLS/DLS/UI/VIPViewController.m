@@ -129,11 +129,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(!ISFIRSTINFLAG){
-        [categoryView setIndex:1];
-        if(!self.tableView.pullTableIsRefreshing) {
-            self.tableView.pullTableIsRefreshing=YES;
-            [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+    if(![[User Instance]isLogin]){
+        [self presentViewControllerNav:[[LoginViewController alloc]init]];
+    }else{
+        if(!ISFIRSTINFLAG){
+            [categoryView setIndex:1];
+            if(!self.tableView.pullTableIsRefreshing) {
+                self.tableView.pullTableIsRefreshing=YES;
+                [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+            }
         }
     }
 }
@@ -141,7 +145,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
-        return 80;
+        return CGHeight(80);
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
@@ -186,10 +190,6 @@
 
 - (void)loadHttp
 {
-    if(![[User Instance]isLogin]){
-        [self presentViewControllerNav:[[LoginViewController alloc]init]];
-        return;
-    }
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     NSMutableDictionary *search=[[NSMutableDictionary alloc]init];
     if(pvs1>0){

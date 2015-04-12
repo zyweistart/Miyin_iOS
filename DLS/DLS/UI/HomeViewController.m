@@ -119,7 +119,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 40.0;
+    return CGHeight(40.0);
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -283,7 +283,7 @@
 //发布求租
 - (void)goPublish:(UIButton*)sender
 {
-    [self presentViewControllerNav:[[PublishQiuzuViewController alloc]init]];
+    [self.navigationController pushViewController:[[PublishQiuzuViewController alloc]init] animated:YES];
 }
 
 //头部下拉刷新

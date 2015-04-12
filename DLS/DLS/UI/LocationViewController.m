@@ -73,7 +73,7 @@
 #pragma mark - tableView
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20.0;
+    return CGHeight(20.0);
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

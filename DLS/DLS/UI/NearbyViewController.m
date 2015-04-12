@@ -17,7 +17,9 @@
 
 @end
 
-@implementation NearbyViewController
+@implementation NearbyViewController{
+    NSArray *dataItemArray;
+}
 
 - (id)init{
     self=[super init];
@@ -112,11 +114,18 @@
         if(nil == annView) {
             annView = [[MKPinAnnotationView alloc] initWithAnnotation:myAnnotation reuseIdentifier:CPinIdentifier];
         }
-        [annView setImage:[UIImage imageNamed:@"category1"]];
+        int tag=[myAnnotation index];
+        NSDictionary *data=[dataItemArray objectAtIndex:tag];
+        NSString *ClassId=[NSString stringWithFormat:@"%@",[data objectForKey:@"ClassId"]];
+        if([@"41" isEqualToString:ClassId]){
+            [annView setImage:[UIImage imageNamed:@"求租点"]];
+        }else{
+            [annView setImage:[UIImage imageNamed:@"出租点"]];
+        }
         UIButton *icon=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20,20)];
         [icon setImage:[UIImage imageNamed:@"category2"] forState:UIControlStateNormal];
         annView.rightCalloutAccessoryView=icon;
-        [[annView rightCalloutAccessoryView] setTag:[myAnnotation index]];
+        [[annView rightCalloutAccessoryView] setTag:tag];
         [[annView rightCalloutAccessoryView] addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickGoDetail:)]];
         [annView setEnabled:YES];
         [annView setCanShowCallout:YES];
@@ -139,14 +148,18 @@
 - (void)goRefreshMapData
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"1" forKey:@"Id"];
+    [params setObject:@"30.33088" forKey:@"Latitude"];
+    [params setObject:@"120.198387" forKey:@"longitude"];
+    [params setObject:@"500000" forKey:@"scope"];
     [params setObject:@"1" forKey:@"index"];
+    [params setObject:@"41,42" forKey:@"classId"];
+    [params setObject:@"0" forKey:@"size"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest setIsShowMessage:YES];
-    [self.hRequest handle:@"GetListALL" requestParams:params];
+    [self.hRequest handle:@"GetListPageMap" requestParams:params];
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
@@ -154,11 +167,16 @@
     if([response successFlag]){
         //清除地图上的位置点
         [self.mapView removeAnnotations:[self.mapView annotations]];
-        double latitude[9]={29.997461006205593,29.990250398850474,29.936414481847535,29.942513384159106,29.987425482052284,29.985715624943672,30.168762870400922,29.948760652467562,29.968950031785944};
-        double longitude[9]={120.6018155523682,120.54001745666507,120.57194647277835,120.57537970031741,120.657433838501,120.58688101257327,120.65537390197757,120.44440206970218,120.5882543035889};
-        for(int i=0;i<9;i++){
-            CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude[i],longitude[i])];
-            annotation1.title = @"大力神出租";
+        
+        dataItemArray=[[[response resultJSON]objectForKey:@"Data"]objectForKey:@"Tab"];
+        for(int i=0;i<[dataItemArray count];i++){
+            NSDictionary *data=[dataItemArray objectAtIndex:i];
+            NSString *location=[data objectForKey:@"location"];
+            NSArray *array=[location componentsSeparatedByString:@","];
+            NSString *latitude=[array objectAtIndex:0];
+            NSString *longitude=[array objectAtIndex:1];
+            CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake([longitude doubleValue],[latitude doubleValue])];
+            annotation1.title = [data objectForKey:@"Name"];
             annotation1.subtitle = @"点击联系此信息";
             [annotation1 setIndex:i];
             [self.mapView addAnnotation:annotation1];

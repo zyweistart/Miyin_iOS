@@ -35,6 +35,9 @@
         [self setTitle:@"发布出租"];
         [self.view setBackgroundColor:BGCOLOR];
         
+        pvv1=-1;
+        pvv2=-1;
+        
         headView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 110)];
         [headView setBackgroundColor:BGCOLOR];
         footView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 610)];

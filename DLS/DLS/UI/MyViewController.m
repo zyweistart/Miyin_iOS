@@ -172,7 +172,7 @@ static CGFloat kImageOriginHight = 220.f;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 10;
+    return CGHeight(10);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

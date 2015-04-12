@@ -65,11 +65,11 @@
 {
     if([self.dataItemArray count]>0){
         if(self.type==7){
-            return 80;
+            return CGHeight(80);
         }else if(self.type==8){
-            return 70;
+            return CGHeight(70);
         }else{
-            return 80;
+            return CGHeight(80);
         }
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
