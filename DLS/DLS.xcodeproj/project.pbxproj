@@ -70,7 +70,6 @@
 		C9D2B7391AA8687000CF750D /* MyCZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B7381AA8687000CF750D /* MyCZViewController.m */; };
 		C9D2B73C1AA8688600CF750D /* MySBXSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B73B1AA8688600CF750D /* MySBXSViewController.m */; };
 		C9D2B73F1AA8689C00CF750D /* MyBJXSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B73E1AA8689C00CF750D /* MyBJXSViewController.m */; };
-		C9D2B7421AA868AC00CF750D /* MyVIPGCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B7411AA868AC00CF750D /* MyVIPGCViewController.m */; };
 		C9D2B7451AA868BF00CF750D /* MyZPXXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B7441AA868BF00CF750D /* MyZPXXViewController.m */; };
 		C9D2B7481AA868EB00CF750D /* MyQZYPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B7471AA868EB00CF750D /* MyQZYPViewController.m */; };
 		C9D2B74B1AA8690D00CF750D /* MyHelpCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B74A1AA8690D00CF750D /* MyHelpCenterViewController.m */; };
@@ -230,8 +229,6 @@
 		C9D2B73B1AA8688600CF750D /* MySBXSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySBXSViewController.m; sourceTree = "<group>"; };
 		C9D2B73D1AA8689C00CF750D /* MyBJXSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBJXSViewController.h; sourceTree = "<group>"; };
 		C9D2B73E1AA8689C00CF750D /* MyBJXSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBJXSViewController.m; sourceTree = "<group>"; };
-		C9D2B7401AA868AC00CF750D /* MyVIPGCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyVIPGCViewController.h; sourceTree = "<group>"; };
-		C9D2B7411AA868AC00CF750D /* MyVIPGCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyVIPGCViewController.m; sourceTree = "<group>"; };
 		C9D2B7431AA868BF00CF750D /* MyZPXXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyZPXXViewController.h; sourceTree = "<group>"; };
 		C9D2B7441AA868BF00CF750D /* MyZPXXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyZPXXViewController.m; sourceTree = "<group>"; };
 		C9D2B7461AA868EB00CF750D /* MyQZYPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyQZYPViewController.h; sourceTree = "<group>"; };
@@ -326,6 +323,88 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		008BEC7C1ADA2CDF0082A1E5 /* 首页 */ = {
+			isa = PBXGroup;
+			children = (
+				C922D08C1AA444B600F6DBA1 /* HomeViewController.h */,
+				C922D08D1AA444B600F6DBA1 /* HomeViewController.m */,
+				C9D2B74D1AA8912B00CF750D /* ListViewController.h */,
+				C9D2B74E1AA8912B00CF750D /* ListViewController.m */,
+				C90699B81AAE956300E32C54 /* LocationViewController.h */,
+				C90699B91AAE956300E32C54 /* LocationViewController.m */,
+			);
+			name = "首页";
+			sourceTree = "<group>";
+		};
+		008BEC7D1ADA2CE90082A1E5 /* VIP工程 */ = {
+			isa = PBXGroup;
+			children = (
+				C922D0921AA444ED00F6DBA1 /* VIPViewController.h */,
+				C922D0931AA444ED00F6DBA1 /* VIPViewController.m */,
+			);
+			name = "VIP工程";
+			sourceTree = "<group>";
+		};
+		008BEC7E1ADA2CF90082A1E5 /* 我的 */ = {
+			isa = PBXGroup;
+			children = (
+				C9DD46C31AA82781004AEAB7 /* AccountViewController.h */,
+				C9DD46C41AA82781004AEAB7 /* AccountViewController.m */,
+				C90699AF1AAE836600E32C54 /* CollectionViewController.h */,
+				C90699B01AAE836600E32C54 /* CollectionViewController.m */,
+				C90699B51AAE83C700E32C54 /* IntegralViewController.h */,
+				C90699B61AAE83C700E32C54 /* IntegralViewController.m */,
+				C909FC191AA6E03A008E68FB /* MessageViewController.h */,
+				C909FC1A1AA6E03A008E68FB /* MessageViewController.m */,
+				C9D2B73D1AA8689C00CF750D /* MyBJXSViewController.h */,
+				C9D2B73E1AA8689C00CF750D /* MyBJXSViewController.m */,
+				C9D2B7371AA8687000CF750D /* MyCZViewController.h */,
+				C9D2B7381AA8687000CF750D /* MyCZViewController.m */,
+				C9D2B7491AA8690D00CF750D /* MyHelpCenterViewController.h */,
+				C9D2B74A1AA8690D00CF750D /* MyHelpCenterViewController.m */,
+				C9D2B7341AA8686400CF750D /* MyQZViewController.h */,
+				C9D2B7351AA8686400CF750D /* MyQZViewController.m */,
+				C9D2B7461AA868EB00CF750D /* MyQZYPViewController.h */,
+				C9D2B7471AA868EB00CF750D /* MyQZYPViewController.m */,
+				C9D2B7311AA8684C00CF750D /* MySBWXViewController.h */,
+				C9D2B7321AA8684C00CF750D /* MySBWXViewController.m */,
+				C9D2B73A1AA8688600CF750D /* MySBXSViewController.h */,
+				C9D2B73B1AA8688600CF750D /* MySBXSViewController.m */,
+				C922D0951AA444FB00F6DBA1 /* MyViewController.h */,
+				C922D0961AA444FB00F6DBA1 /* MyViewController.m */,
+				C9D2B7431AA868BF00CF750D /* MyZPXXViewController.h */,
+				C9D2B7441AA868BF00CF750D /* MyZPXXViewController.m */,
+				C9610DD51AB158B100CA8218 /* PublishQiuzuViewController.h */,
+				C9610DD61AB158B100CA8218 /* PublishQiuzuViewController.m */,
+				C9610DDB1AB158E300CA8218 /* PublishRecruitmentViewController.h */,
+				C9610DDC1AB158E300CA8218 /* PublishRecruitmentViewController.m */,
+				C9610DD81AB158C700CA8218 /* PublishRentalViewController.h */,
+				C9610DD91AB158C700CA8218 /* PublishRentalViewController.m */,
+				C90699B21AAE83A300E32C54 /* SettingViewController.h */,
+				C90699B31AAE83A300E32C54 /* SettingViewController.m */,
+			);
+			name = "我的";
+			sourceTree = "<group>";
+		};
+		008BEC7F1ADA2D0A0082A1E5 /* 用户 */ = {
+			isa = PBXGroup;
+			children = (
+				C9DD46BD1AA8271E004AEAB7 /* RegisterViewController.h */,
+				C9DD46BE1AA8271E004AEAB7 /* RegisterViewController.m */,
+				C9DD46C01AA82731004AEAB7 /* LoginViewController.h */,
+				C9DD46C11AA82731004AEAB7 /* LoginViewController.m */,
+				C9F11F4C1AB27AA80014E462 /* FeedbackViewController.h */,
+				C9F11F4D1AB27AA80014E462 /* FeedbackViewController.m */,
+				C9F11F4F1AB27AB20014E462 /* ModifyPasswordViewController.h */,
+				C9F11F501AB27AB20014E462 /* ModifyPasswordViewController.m */,
+				C9F11F521AB27AC10014E462 /* AboutUsViewController.h */,
+				C9F11F531AB27AC10014E462 /* AboutUsViewController.m */,
+				C9F11F551AB27AD70014E462 /* ClauseViewController.h */,
+				C9F11F561AB27AD70014E462 /* ClauseViewController.m */,
+			);
+			name = "用户";
+			sourceTree = "<group>";
+		};
 		C922D0861AA4396F00F6DBA1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,9 +455,13 @@
 		C922D0891AA4396F00F6DBA1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				008BEC7C1ADA2CDF0082A1E5 /* 首页 */,
+				008BEC7E1ADA2CF90082A1E5 /* 我的 */,
+				008BEC7F1ADA2D0A0082A1E5 /* 用户 */,
 				C9E1FF0C1AA5A3DD00720AAC /* Cell */,
 				C922D08A1AA4398700F6DBA1 /* Controller */,
 				C922D08B1AA4399A00F6DBA1 /* View */,
+				008BEC7D1ADA2CE90082A1E5 /* VIP工程 */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -391,9 +474,6 @@
 				C9D2B74C1AA86A7C00CF750D /* My */,
 				C922D08F1AA444E100F6DBA1 /* NearbyViewController.h */,
 				C922D0901AA444E100F6DBA1 /* NearbyViewController.m */,
-				C9DD46BC1AA8270F004AEAB7 /* User */,
-				C922D0921AA444ED00F6DBA1 /* VIPViewController.h */,
-				C922D0931AA444ED00F6DBA1 /* VIPViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -544,42 +624,6 @@
 		C9D2B74C1AA86A7C00CF750D /* My */ = {
 			isa = PBXGroup;
 			children = (
-				C9DD46C31AA82781004AEAB7 /* AccountViewController.h */,
-				C9DD46C41AA82781004AEAB7 /* AccountViewController.m */,
-				C90699AF1AAE836600E32C54 /* CollectionViewController.h */,
-				C90699B01AAE836600E32C54 /* CollectionViewController.m */,
-				C90699B51AAE83C700E32C54 /* IntegralViewController.h */,
-				C90699B61AAE83C700E32C54 /* IntegralViewController.m */,
-				C909FC191AA6E03A008E68FB /* MessageViewController.h */,
-				C909FC1A1AA6E03A008E68FB /* MessageViewController.m */,
-				C9D2B73D1AA8689C00CF750D /* MyBJXSViewController.h */,
-				C9D2B73E1AA8689C00CF750D /* MyBJXSViewController.m */,
-				C9D2B7371AA8687000CF750D /* MyCZViewController.h */,
-				C9D2B7381AA8687000CF750D /* MyCZViewController.m */,
-				C9D2B7491AA8690D00CF750D /* MyHelpCenterViewController.h */,
-				C9D2B74A1AA8690D00CF750D /* MyHelpCenterViewController.m */,
-				C9D2B7341AA8686400CF750D /* MyQZViewController.h */,
-				C9D2B7351AA8686400CF750D /* MyQZViewController.m */,
-				C9D2B7461AA868EB00CF750D /* MyQZYPViewController.h */,
-				C9D2B7471AA868EB00CF750D /* MyQZYPViewController.m */,
-				C9D2B7311AA8684C00CF750D /* MySBWXViewController.h */,
-				C9D2B7321AA8684C00CF750D /* MySBWXViewController.m */,
-				C9D2B73A1AA8688600CF750D /* MySBXSViewController.h */,
-				C9D2B73B1AA8688600CF750D /* MySBXSViewController.m */,
-				C922D0951AA444FB00F6DBA1 /* MyViewController.h */,
-				C922D0961AA444FB00F6DBA1 /* MyViewController.m */,
-				C9D2B7401AA868AC00CF750D /* MyVIPGCViewController.h */,
-				C9D2B7411AA868AC00CF750D /* MyVIPGCViewController.m */,
-				C9D2B7431AA868BF00CF750D /* MyZPXXViewController.h */,
-				C9D2B7441AA868BF00CF750D /* MyZPXXViewController.m */,
-				C9610DD51AB158B100CA8218 /* PublishQiuzuViewController.h */,
-				C9610DD61AB158B100CA8218 /* PublishQiuzuViewController.m */,
-				C9610DDB1AB158E300CA8218 /* PublishRecruitmentViewController.h */,
-				C9610DDC1AB158E300CA8218 /* PublishRecruitmentViewController.m */,
-				C9610DD81AB158C700CA8218 /* PublishRentalViewController.h */,
-				C9610DD91AB158C700CA8218 /* PublishRentalViewController.m */,
-				C90699B21AAE83A300E32C54 /* SettingViewController.h */,
-				C90699B31AAE83A300E32C54 /* SettingViewController.m */,
 			);
 			name = My;
 			sourceTree = "<group>";
@@ -587,33 +631,8 @@
 		C9DD46BB1AA82704004AEAB7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				C922D08C1AA444B600F6DBA1 /* HomeViewController.h */,
-				C922D08D1AA444B600F6DBA1 /* HomeViewController.m */,
-				C9D2B74D1AA8912B00CF750D /* ListViewController.h */,
-				C9D2B74E1AA8912B00CF750D /* ListViewController.m */,
-				C90699B81AAE956300E32C54 /* LocationViewController.h */,
-				C90699B91AAE956300E32C54 /* LocationViewController.m */,
 			);
 			name = Home;
-			sourceTree = "<group>";
-		};
-		C9DD46BC1AA8270F004AEAB7 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				C9DD46BD1AA8271E004AEAB7 /* RegisterViewController.h */,
-				C9DD46BE1AA8271E004AEAB7 /* RegisterViewController.m */,
-				C9DD46C01AA82731004AEAB7 /* LoginViewController.h */,
-				C9DD46C11AA82731004AEAB7 /* LoginViewController.m */,
-				C9F11F4C1AB27AA80014E462 /* FeedbackViewController.h */,
-				C9F11F4D1AB27AA80014E462 /* FeedbackViewController.m */,
-				C9F11F4F1AB27AB20014E462 /* ModifyPasswordViewController.h */,
-				C9F11F501AB27AB20014E462 /* ModifyPasswordViewController.m */,
-				C9F11F521AB27AC10014E462 /* AboutUsViewController.h */,
-				C9F11F531AB27AC10014E462 /* AboutUsViewController.m */,
-				C9F11F551AB27AD70014E462 /* ClauseViewController.h */,
-				C9F11F561AB27AD70014E462 /* ClauseViewController.m */,
-			);
-			name = User;
 			sourceTree = "<group>";
 		};
 		C9E1FED31AA555F000720AAC /* ASIHTTP */ = {
@@ -879,7 +898,6 @@
 				C9265BF71AB2D03D00897CF0 /* HelpDetailViewController.m in Sources */,
 				C91115AE1AAC3AE200F56DFE /* ProjectCCell.m in Sources */,
 				C90699B41AAE83A300E32C54 /* SettingViewController.m in Sources */,
-				C9D2B7421AA868AC00CF750D /* MyVIPGCViewController.m in Sources */,
 				C9583FB51AAC89940043548B /* ProjectDCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -219,6 +219,7 @@
     }else{
         //VIP工程
         [params setObject:@"4" forKey:@"Id"];
+        [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
     }
     [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]] forKey:@"index"];
     self.hRequest=[[HttpRequest alloc]init];

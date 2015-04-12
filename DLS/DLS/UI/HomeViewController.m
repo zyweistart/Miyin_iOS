@@ -15,6 +15,7 @@
 #import "ListViewController.h"
 #import "NewsDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ProjectCell.h"
 
 #define SEARCHTIPCOLOR [UIColor colorWithRed:(88/255.0) green:(130/255.0) blue:(216/255.0) alpha:1]
 #define BGCOLOR [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]
@@ -164,35 +165,47 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([[self dataItemArray] count]>0){
-        return 80;
+        return CGHeight(80);
     }else{
-        return 45;
+        return CGHeight(45);
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([[self dataItemArray] count]>0){
-        static NSString *CELL = @"CInformationCell";
-        InformationCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL];
-        if (cell == nil) {
-            cell = [[InformationCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CELL];
-        }
-        [cell.childTitle setText:@"这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题"];
-        if(currentButtonIndex==1){
-            [cell.image setImage:[UIImage imageNamed:@"category1"]];
-            [cell.mainTitle setText:@"这是主标题11"];
-        }else if(currentButtonIndex==2){
-            [cell.image setImage:[UIImage imageNamed:@"category2"]];
-            [cell.mainTitle setText:@"这是主标题22"];
-        }else if(currentButtonIndex==3){
-            [cell.image setImage:[UIImage imageNamed:@"category3"]];
-            [cell.mainTitle setText:@"这是主标题33"];
+        if(currentButtonIndex==1||currentButtonIndex==2){
+            static NSString *CProjectCell = @"CProjectCell";
+            ProjectCell *cell = [tableView dequeueReusableCellWithIdentifier:CProjectCell];
+            if (cell == nil) {
+                cell = [[ProjectCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CProjectCell];
+            }
+            int row=[indexPath row];
+            NSDictionary *d=[self.dataItemArray objectAtIndex:row];
+            [cell setData:d];
+            return cell;
         }else{
-            [cell.image setImage:[UIImage imageNamed:@"category4"]];
-            [cell.mainTitle setText:@"这是主标题44"];
+            static NSString *CELL = @"CInformationCell";
+            InformationCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL];
+            if (cell == nil) {
+                cell = [[InformationCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CELL];
+            }
+            [cell.childTitle setText:@"这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题这是子标题"];
+            if(currentButtonIndex==1){
+                [cell.image setImage:[UIImage imageNamed:@"category1"]];
+                [cell.mainTitle setText:@"这是主标题11"];
+            }else if(currentButtonIndex==2){
+                [cell.image setImage:[UIImage imageNamed:@"category2"]];
+                [cell.mainTitle setText:@"这是主标题22"];
+            }else if(currentButtonIndex==3){
+                [cell.image setImage:[UIImage imageNamed:@"category3"]];
+                [cell.mainTitle setText:@"这是主标题33"];
+            }else{
+                [cell.image setImage:[UIImage imageNamed:@"category4"]];
+                [cell.mainTitle setText:@"这是主标题44"];
+            }
+            return cell;
         }
-        return cell;
     }else{
         static NSString *cellIdentifier = @"SAMPLECell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -287,7 +300,7 @@
         [params setObject:@"1" forKey:@"Id"];
     }else if(currentButtonIndex==2){
         self.currentPage2++;
-        [params setObject:@"1" forKey:@"Id"];
+        [params setObject:@"3" forKey:@"Id"];
     }else if(currentButtonIndex==3){
         self.currentPage3++;
         [params setObject:@"1" forKey:@"Id"];

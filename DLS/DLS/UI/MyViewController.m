@@ -12,7 +12,6 @@
 #import "MySBXSViewController.h"
 #import "MySBWXViewController.h"
 #import "MyBJXSViewController.h"
-#import "MyVIPGCViewController.h"
 #import "MyZPXXViewController.h"
 #import "MyQZYPViewController.h"
 #import "MyHelpCenterViewController.h"
@@ -48,8 +47,11 @@ static CGFloat kImageOriginHight = 220.f;
     if(self){
         [self setTitle:@"我的"];
         self.dataItemArray=[[NSMutableArray alloc]init];
-        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"我的出租",@"我的求租",@"设备销售",@"设备维修",@"配件销售",@"VIP工程", nil]];
-        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"招聘信息",@"我的求职", nil]];
+        
+        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"我的出租",@"我的求租",@"VIP工程", nil]];
+        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"招聘信息", nil]];
+//        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"我的出租",@"我的求租",@"设备销售",@"设备维修",@"配件销售",@"VIP工程", nil]];
+//        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"招聘信息",@"我的求职", nil]];
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"帮助中心",@"得力手客服中心", nil]];
 
         self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
@@ -165,7 +167,7 @@ static CGFloat kImageOriginHight = 220.f;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 10;
+    return CGHeight(10);
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -175,7 +177,7 @@ static CGFloat kImageOriginHight = 220.f;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 45;
+    return CGHeight(45);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -208,13 +210,13 @@ static CGFloat kImageOriginHight = 220.f;
         }else if(row==1){
             [self presentViewControllerNav:[[MyQZViewController alloc]init]];
         }else if(row==2){
-            [self presentViewControllerNav:[[MySBXSViewController alloc]init]];
-        }else if(row==3){
-            [self presentViewControllerNav:[[MySBWXViewController alloc]init]];
-        }else if(row==4){
-            [self presentViewControllerNav:[[MyBJXSViewController alloc]init]];
-        }else if(row==5){
-            [self presentViewControllerNav:[[MyVIPGCViewController alloc]init]];
+//            [self presentViewControllerNav:[[MySBXSViewController alloc]init]];
+//        }else if(row==3){
+//            [self presentViewControllerNav:[[MySBWXViewController alloc]init]];
+//        }else if(row==4){
+//            [self presentViewControllerNav:[[MyBJXSViewController alloc]init]];
+//        }else if(row==5){
+            [self.tabBarController setSelectedIndex:2];
         }
     }else if(section==1){
         if(![[User Instance]isLogin]){
