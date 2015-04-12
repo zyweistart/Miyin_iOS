@@ -23,6 +23,9 @@
     UILabel *lblRentalType,*lblSBType;
     UITextView *tvRemark;
     UITextField *tfTitle,*tfContact,*tfPhone,*tfAddress;
+    UIButton *bAdd;
+    UIImageView *image1,*image2,*image3,*image4,*image5;
+    NSMutableArray *imageList;
 }
 
 - (id)init
@@ -49,9 +52,39 @@
         //
         tfAddress=[self addFrameTypeTextField:110 Title:@"设备地址" Frame:footView];
         //
-        UIView *imageView=[[UIView alloc]initWithFrame:CGRectMake1(0, 160, 320, 140)];
-        [imageView setBackgroundColor:BGCOLOR];
-        [footView addSubview:imageView];
+        UIView *imageViewFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 160, 320, 140)];
+        [imageViewFrame setBackgroundColor:BGCOLOR];
+        [footView addSubview:imageViewFrame];
+        
+        image1=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 0, 52, 52)];
+        [image1 setImage:[UIImage imageNamed:@"配件销售"]];
+        [imageViewFrame addSubview:image1];
+        [image1 setHidden:YES];
+        
+        image2=[[UIImageView alloc]initWithFrame:CGRectMake1(72, 0, 52, 52)];
+        [image2 setImage:[UIImage imageNamed:@"配件销售"]];
+        [imageViewFrame addSubview:image2];
+        [image2 setHidden:YES];
+        
+        image3=[[UIImageView alloc]initWithFrame:CGRectMake1(134, 0, 52, 52)];
+        [image3 setImage:[UIImage imageNamed:@"配件销售"]];
+        [imageViewFrame addSubview:image3];
+        [image3 setHidden:YES];
+        
+        image4=[[UIImageView alloc]initWithFrame:CGRectMake1(196, 0, 52, 52)];
+        [image4 setImage:[UIImage imageNamed:@"配件销售"]];
+        [imageViewFrame addSubview:image4];
+        [image4 setHidden:YES];
+        
+        image5=[[UIImageView alloc]initWithFrame:CGRectMake1(258, 0, 52, 52)];
+        [image5 setImage:[UIImage imageNamed:@"配件销售"]];
+        [imageViewFrame addSubview:image5];
+        [image5 setHidden:YES];
+        
+        bAdd=[[UIButton alloc]initWithFrame:image1.frame];
+        [bAdd addTarget:self action:@selector(addImage:) forControlEvents:UIControlEventTouchUpInside];
+        [bAdd setImage:[UIImage imageNamed:@"addimg"] forState:UIControlStateNormal];
+        [imageViewFrame addSubview:bAdd];
         //
         tfContact=[self addFrameTypeTextField:310 Title:@"联系人" Frame:footView];
         //
@@ -73,27 +106,55 @@
         [frame addSubview:tvRemark];
         //发布
         ButtonView *button=[[ButtonView alloc]initWithFrame:CGRectMake1(10, 560, 300, 40) Name:@"发布"];
-        [button addTarget:self action:@selector(add:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(publish:) forControlEvents:UIControlEventTouchUpInside];
         [footView addSubview:button];
         
         [self buildTableViewWithView:self.view];
         [self.tableView setTableHeaderView:headView];
         [self.tableView setTableFooterView:footView];
         
-        searchData1=[NSArray arrayWithObjects:@"1KM",@"2KM",@"3KM",@"4KM",@"5KM", nil];
-        searchData2=[NSArray arrayWithObjects:@"2KM",@"2KM",@"3KM",@"4KM",@"5KM", nil];
+        searchData1=[NSArray arrayWithObjects:
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"汽车吊",MKEY,@"1",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"履带吊",MKEY,@"2",MVALUE, nil], nil];
+        searchData2=[NSArray arrayWithObjects:
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"8吨",MKEY,@"8",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"12吨",MKEY,@"12",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"25吨",MKEY,@"25",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"35吨",MKEY,@"35",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"50吨",MKEY,@"50",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"65吨",MKEY,@"65",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"70吨",MKEY,@"70",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"90吨",MKEY,@"90",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"100吨",MKEY,@"100",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"120吨",MKEY,@"120",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"130吨",MKEY,@"130",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"150吨",MKEY,@"150",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"180吨",MKEY,@"180",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"200吨",MKEY,@"200",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"220吨",MKEY,@"220",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"260吨",MKEY,@"260",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"300吨",MKEY,@"300",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"350吨",MKEY,@"350",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"400吨",MKEY,@"400",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"500吨",MKEY,@"500",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"600吨",MKEY,@"600",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"800吨",MKEY,@"800",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"1000吨",MKEY,@"1000",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"1200吨",MKEY,@"1200",MVALUE, nil],nil];
         
-        self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData1];
+        self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake1(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData1];
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
         [self.view addSubview:self.pv1];
         
-        self.pv2=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData2];
+        self.pv2=[[SinglePickerView alloc]initWithFrame:CGRectMake1(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData2];
         [self.pv2 setCode:2];
         [self.pv2 setDelegate:self];
         [self.view addSubview:self.pv2];
         
         self.dataItemArray=[[NSMutableArray alloc]init];
+        
+        imageList=[[NSMutableArray alloc]init];
         
     }
     return self;
@@ -149,12 +210,12 @@
 {
     if(code==1){
         pvv1=[self.pv1.picker selectedRowInComponent:0];
-        NSString *value=[self.pv1.pickerArray objectAtIndex:pvv1];
-        [lblRentalType setText:value];
+        NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvv1];
+        [lblRentalType setText:[d objectForKey:MKEY]];
     }else if(code==2){
         pvv2=[self.pv2.picker selectedRowInComponent:0];
-        NSString *value=[self.pv2.pickerArray objectAtIndex:pvv2];
-        [lblSBType setText:value];
+        NSDictionary *d=[self.pv2.pickerArray objectAtIndex:pvv2];
+        [lblSBType setText:[d objectForKey:MKEY]];
     }
 }
 
@@ -167,18 +228,46 @@
 
 - (void)add:(id)sender
 {
-    [self.dataItemArray addObject:@"1"];
+    [self hideKeyBoard];
+    if(pvv2==-1){
+        [Common alert:@"请选择设备类型"];
+        return;
+    }
+    [self.dataItemArray addObject:[NSString stringWithFormat:@"%d",pvv2]];
     [self.tableView reloadData];
+    pvv2=-1;
+    [lblSBType setText:@"请选择"];
 }
 
 - (void)publish:(id)sender
 {
     [self hideKeyBoard];
-    NSString *remark=[tvRemark text];
-    NSString *phone=[tfPhone text];
-    NSString *contact=[tfContact text];
+    NSString *title=[tfTitle text];
     NSString *address=[tfAddress text];
-    NSLog(@"pvv1=%d\npvv2=%d\nremark=%@\nphone=%@\ncontact=%@\naddress=%@",pvv1,pvv2,remark,phone,contact,address);
+    NSString *contact=[tfContact text];
+    NSString *phone=[tfPhone text];
+    NSString *remark=[tvRemark text];
+    if(pvv1==-1){
+        [Common alert:@"请选择类型"];
+        return;
+    }
+    if([self.dataItemArray count]==0){
+        [Common alert:@"请先添加设备"];
+        return;
+    }
+    NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvv1];
+    NSString *pvv1v=[d objectForKey:MVALUE];
+    NSMutableString *weights=[[NSMutableString alloc]init];
+    for(id data in self.dataItemArray){
+        NSDictionary *d1=[self.pv2.pickerArray objectAtIndex:[data intValue]];
+        NSString *key=[d1 objectForKey:MVALUE];
+        //        NSLog(@"设备类型＝%@",key);
+        [weights appendFormat:@"%@,",key];
+    }
+    NSRange deleteRange = {[weights length]-1,1};
+    [weights deleteCharactersInRange:deleteRange];
+    
+    NSLog(@"选择类型=%@\n标题=%@\n设备地址=%@\n联系人=%@\n电话=%@\n备注=%@\n纯位＝%@\n",pvv1v,title,address,contact,phone,remark,weights);
 }
 
 - (void)showPickerView:(NSInteger)tag
@@ -240,10 +329,35 @@
     static NSString *cellIdentifier = @"SAMPLECell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"Row %d", indexPath.row];
+    NSString *key=[self.dataItemArray objectAtIndex:indexPath.row];
+    NSDictionary *d=[self.pv2.pickerArray objectAtIndex:[key intValue]];
+    cell.textLabel.text = @"设备类型";
+    cell.detailTextLabel.text=[d objectForKey:MKEY];
     return cell;
+}
+
+- (void)addImage:(UIButton*)sender
+{
+    [imageList addObject:@"1"];
+    int count=[imageList count];
+    if(count==5){
+        [image5 setHidden:NO];
+        [sender setHidden:YES];
+    }else if(count==1){
+        [image1 setHidden:NO];
+        [sender setFrame:image2.frame];
+    }else if(count==2){
+        [image2 setHidden:NO];
+        [sender setFrame:image3.frame];
+    }else if(count==3){
+        [image3 setHidden:NO];
+        [sender setFrame:image4.frame];
+    }else if(count==4){
+        [image4 setHidden:NO];
+        [sender setFrame:image5.frame];
+    }
 }
 
 @end

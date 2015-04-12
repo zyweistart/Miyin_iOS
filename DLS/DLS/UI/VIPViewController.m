@@ -7,6 +7,7 @@
 //
 
 #import "VIPViewController.h"
+#import "LoginViewController.h"
 #import "ProjectCell.h"
 
 @interface VIPViewController ()
@@ -185,6 +186,10 @@
 
 - (void)loadHttp
 {
+    if(![[User Instance]isLogin]){
+        [self presentViewControllerNav:[[LoginViewController alloc]init]];
+        return;
+    }
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     NSMutableDictionary *search=[[NSMutableDictionary alloc]init];
     if(pvs1>0){

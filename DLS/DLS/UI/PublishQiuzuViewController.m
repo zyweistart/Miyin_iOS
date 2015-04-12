@@ -143,15 +143,41 @@
         [frame addSubview:tvRemark];
         //发布
         ButtonView *button=[[ButtonView alloc]initWithFrame:CGRectMake1(10, 460, 300, 40) Name:@"发布"];
-        [button addTarget:self action:@selector(add:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(publish:) forControlEvents:UIControlEventTouchUpInside];
         [footView addSubview:button];
         
         [self buildTableViewWithView:self.view];
         [self.tableView setTableHeaderView:headView];
         [self.tableView setTableFooterView:footView];
         
-        searchData1=[NSArray arrayWithObjects:@"1KM",@"2KM",@"3KM",@"4KM",@"5KM", nil];
-        searchData2=[NSArray arrayWithObjects:@"2KM",@"2KM",@"3KM",@"4KM",@"5KM", nil];
+        searchData1=[NSArray arrayWithObjects:
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"汽车吊",MKEY,@"1",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"履带吊",MKEY,@"2",MVALUE, nil], nil];
+        searchData2=[NSArray arrayWithObjects:
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"8吨",MKEY,@"8",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"12吨",MKEY,@"12",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"25吨",MKEY,@"25",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"35吨",MKEY,@"35",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"50吨",MKEY,@"50",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"65吨",MKEY,@"65",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"70吨",MKEY,@"70",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"90吨",MKEY,@"90",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"100吨",MKEY,@"100",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"120吨",MKEY,@"120",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"130吨",MKEY,@"130",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"150吨",MKEY,@"150",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"180吨",MKEY,@"180",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"200吨",MKEY,@"200",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"220吨",MKEY,@"220",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"260吨",MKEY,@"260",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"300吨",MKEY,@"300",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"350吨",MKEY,@"350",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"400吨",MKEY,@"400",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"500吨",MKEY,@"500",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"600吨",MKEY,@"600",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"800吨",MKEY,@"800",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"1000吨",MKEY,@"1000",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"1200吨",MKEY,@"1200",MVALUE, nil],nil];
         
         self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData1];
         [self.pv1 setCode:1];
@@ -224,12 +250,12 @@
 {
     if(code==1){
         pvv1=[self.pv1.picker selectedRowInComponent:0];
-        NSString *value=[self.pv1.pickerArray objectAtIndex:pvv1];
-        [lblRentalType setText:value];
+        NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvv1];
+        [lblRentalType setText:[d objectForKey:MKEY]];
     }else if(code==2){
         pvv2=[self.pv2.picker selectedRowInComponent:0];
-        NSString *value=[self.pv2.pickerArray objectAtIndex:pvv2];
-        [lblSBType setText:value];
+        NSDictionary *d=[self.pv2.pickerArray objectAtIndex:pvv2];
+        [lblSBType setText:[d objectForKey:MKEY]];
     }
 }
 
@@ -252,9 +278,9 @@
         [Common alert:@"请输入设备数量"];
         return;
     }
-    NSString *value=[self.pv2.pickerArray objectAtIndex:pvv2];
+    
     [self.dataItemArray addObject:
-     [NSDictionary dictionaryWithObjectsAndKeys:value,KEYCELL,number,VALUECELL, nil]];
+     [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",pvv2],KEYCELL,number,VALUECELL, nil]];
     [self.tableView reloadData];
     pvv2=-1;
     [lblSBType setText:@"请选择"];
@@ -264,11 +290,69 @@
 - (void)publish:(id)sender
 {
     [self hideKeyBoard];
-//    NSString *remark=[tvRemark text];
-//    NSString *phone=[tfPhone text];
-//    NSString *contact=[tfContact text];
-//    NSString *address=[tfAddress text];
-//    NSLog(@"pvv1=%d\npvv2=%d\nremark=%@\nphone=%@\ncontact=%@\naddress=%@",pvv1,pvv2,remark,phone,contact,address);
+    NSString *title=[tfTitle text];
+    NSString *address=[tfAddress text];
+    NSString *startTime=[tfStartTime text];
+    NSString *endTime=[tfEndTime text];
+    NSString *price=[tfPrice text];
+    NSString *phone=[tfPhone text];
+    NSString *remark=[tvRemark text];
+    if(pvv1==-1){
+        [Common alert:@"请选择类型"];
+        return;
+    }
+    if([self.dataItemArray count]==0){
+        [Common alert:@"请先添加设备"];
+        return;
+    }
+    NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvv1];
+    NSString *pvv1v=[d objectForKey:MVALUE];
+//    NSLog(@"选择类型=%@\n标题=%@\n设备地址=%@\n使用时间=%@---%@\n出价=%@\n电话=%@\n备注=%@\n\n\n",pvv1v,title,address,startTime,endTime,price,phone,remark);
+    
+    NSMutableString *weights=[[NSMutableString alloc]init];
+    NSMutableString *equipments=[[NSMutableString alloc]init];
+    for(id data in self.dataItemArray){
+        NSString *index=[data objectForKey:KEYCELL];
+        NSString *value=[data objectForKey:VALUECELL];
+        NSDictionary *d1=[self.pv2.pickerArray objectAtIndex:[index intValue]];
+        NSString *key=[d1 objectForKey:MVALUE];
+//        NSLog(@"设备类型＝%@，，，，数量＝%@",key,value);
+        [weights appendFormat:@"%@,",key];
+        [equipments appendFormat:@"%@,",value];
+    }
+    NSRange deleteRange1 = {[weights length]-1,1};
+    [weights deleteCharactersInRange:deleteRange1];
+    NSRange deleteRange2 = {[equipments length]-1,1};
+    [equipments deleteCharactersInRange:deleteRange2];
+    
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
+    [params setObject:@"41" forKey:@"classId"];
+    [params setObject:@"0" forKey:@"Id"];
+    [params setObject:pvv1v forKey:@"xlValue"];
+    [params setObject:title forKey:@"Name"];
+    [params setObject:price forKey:@"price"];
+    [params setObject:weights forKey:@"weight"];
+    [params setObject:equipments forKey:@"equipment_Num"];
+    [params setObject:phone forKey:@"contact_phone"];
+    [params setObject:address forKey:@"address"];
+    [params setObject:startTime forKey:@"startTiem"];
+    [params setObject:endTime forKey:@"endTime"];
+    [params setObject:remark forKey:@"notes"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:@"SaveForm" requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        [Common alert:@"发布成功"];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)showPickerView:(NSInteger)tag
@@ -297,7 +381,9 @@
         cell = [[SB1Cell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     NSDictionary *data=[self.dataItemArray objectAtIndex:indexPath.row];
-    [cell.lblType setText:[data objectForKey:KEYCELL]];
+    NSString *key=[data objectForKey:KEYCELL];
+    NSDictionary *d=[self.pv2.pickerArray objectAtIndex:[key intValue]];
+    [cell.lblType setText:[d objectForKey:MKEY]];
     [cell.lblNumber setText:[data objectForKey:VALUECELL]];
     return cell;
 }

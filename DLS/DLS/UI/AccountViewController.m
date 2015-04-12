@@ -26,9 +26,9 @@
                                                target:self
                                                action:@selector(goBack:)];
         self.dataItemArray=[[NSMutableArray alloc]init];
-        [self.dataItemArray addObject:@"zywei_624"];
-        [self.dataItemArray addObject:@"周小龙"];
-        [self.dataItemArray addObject:@"33048191283740287432"];
+        [self.dataItemArray addObject:[[[User Instance]resultData]objectForKey:@"Name"]];
+        [self.dataItemArray addObject:[[[User Instance]resultData]objectForKey:@"userName"]];
+        [self.dataItemArray addObject:[[[User Instance]resultData]objectForKey:@"address1"]];
         [self buildTableViewWithView:self.view];
     }
     return self;

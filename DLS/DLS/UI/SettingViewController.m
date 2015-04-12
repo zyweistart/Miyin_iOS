@@ -21,7 +21,7 @@
 
 @implementation SettingViewController{
     NSArray *searchData;
-    NSString *tmpv;
+    int tmpv;
 }
 
 - (id)init{
@@ -59,11 +59,16 @@
         [logoutView addSubview:bLogout];
         [self.tableView setTableFooterView:logoutView];
         
-        searchData=[NSArray arrayWithObjects:@"1KM",@"2KM",@"3KM",@"4KM",@"5KM", nil];
+        searchData=[NSArray arrayWithObjects:
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"1KM",MKEY,@"1",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"2KM",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"3KM",MKEY,@"3",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"4KM",MKEY,@"4",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"5KM",MKEY,@"5",MVALUE, nil], nil];
         self.pv=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData];
         [self.pv setDelegate:self];
         [self.view addSubview:self.pv];
-        tmpv=@"4KM";
+        tmpv=3;
     }
     return self;
 }
@@ -106,7 +111,9 @@
     [cell.imageView setImage:[UIImage imageNamed:content]];
     cell.textLabel.text = content;
     if((section==1&&row==1)){
-        [cell.detailTextLabel setText:tmpv];
+        NSDictionary *d=[self.pv.pickerArray objectAtIndex:tmpv];
+        NSString *pvv1v=[d objectForKey:MKEY];
+        [cell.detailTextLabel setText:pvv1v];
     }
     if(!((section==0&&row==0)||(section==2&&row==2))){
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
@@ -131,7 +138,8 @@
             //搜索范围
             if(self.pv.hidden){
                 [self.pv showView];
-                [self.pv.picker selectRow:[searchData indexOfObject:tmpv] inComponent:0 animated:YES];
+                NSDictionary *d=[self.pv.pickerArray objectAtIndex:tmpv];
+                [self.pv.picker selectRow:d inComponent:0 animated:YES];
             }else{
                 [self.pv hiddenView];
             }
@@ -161,7 +169,8 @@
 
 - (void)pickerViewDone:(int)code
 {
-    tmpv=[self.pv.pickerArray objectAtIndex:[self.pv.picker selectedRowInComponent:0]];
+    NSDictionary *d=[self.pv.pickerArray objectAtIndex:[self.pv.picker selectedRowInComponent:0]];
+    tmpv=[d objectForKey:MKEY];
     [self.tableView reloadData];
 }
 

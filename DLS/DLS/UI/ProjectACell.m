@@ -40,9 +40,9 @@
 
 - (void)setData:(NSDictionary *)data
 {
-    self.title.text=@"履带吊求租使用一天";
-    self.address.text=@"萧山建设1路";
-    self.date.text=@"20-21";
+    self.title.text=[data objectForKey:@"Name"];
+    self.address.text=[data objectForKey:@"address"];
+//    self.date.text=[data objectForKey:@"Name"];
 }
 
 @end

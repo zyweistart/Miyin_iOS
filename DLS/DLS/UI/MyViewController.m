@@ -25,6 +25,7 @@
 #import "RegisterViewController.h"
 
 #import "UIButton+TitleImage.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #define LOGINREGISTERBGCOLOR [UIColor colorWithRed:(58/255.0) green:(117/255.0) blue:(207/255.0) alpha:0.5]
 #define LINEBGCOLOR [UIColor colorWithRed:(167/255.0) green:(183/255.0) blue:(216/255.0) alpha:0.5]
@@ -98,7 +99,6 @@ static CGFloat kImageOriginHight = 220.f;
         [bLoginRegister addSubview:bRegister];
         //头像
         bHead=[[UIButton alloc]initWithFrame:CGRectMake1(120, 20, 80, 80)];
-        [bHead setTitle:@"我是得力手" forImage:[UIImage imageNamed:@"头像"]];
         [bHead.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [personalFrame addSubview:bHead];
         
@@ -303,6 +303,13 @@ static CGFloat kImageOriginHight = 220.f;
 {
     if([[User Instance]isLogin]){
         [bHead setHidden:NO];
+        NSString *name=[[[User Instance]resultData] objectForKey:@"Name"];
+//        NSString *headImage=[[[User Instance]resultData] objectForKey:@"HeadImage"];
+//        NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,headImage];
+//        UIImageView *iv=[[UIImageView alloc]init];
+//        [iv setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"头像"]];
+//        [bHead setTitle:name forImage:[iv image]];
+        [bHead setTitle:name forImage:[UIImage imageNamed:@"头像"]];
         [bLoginRegister setHidden:YES];
     }else{
         [bHead setHidden:YES];
