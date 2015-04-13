@@ -25,6 +25,7 @@
 #import "RunOverviewViewController.h"
 #import "ETFoursquareImages.h"
 #import "SQLiteOperate.h"
+#import "LoginViewController.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 #define LINECOLOR  [UIColor colorWithRed:(230/255.0) green:(230/255.0) blue:(230/255.0) alpha:1]
@@ -230,6 +231,10 @@
 
 - (void)goToMainView1:(UIButton*)sender
 {
+    if(![[User Instance]isLogin]){
+        [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
+        return;
+    }
     NSInteger tag=[sender tag];
     if(tag==1){
         [self.navigationController pushViewController:[[EquipmentMaintainViewController alloc]init] animated:YES];
@@ -238,18 +243,33 @@
     }else if(tag==3){
         [self.navigationController pushViewController:[[ElectricianManagerViewController alloc]init] animated:YES];
     }else if(tag==4){
-        UINavigationController *realTimeAlarmViewControllerNAV=[[UINavigationController alloc]initWithRootViewController:[[STWarnComapnyViewController alloc]initWithType:1]];
-        realTimeAlarmViewControllerNAV.tabBarItem.image=[UIImage imageNamed:@"bj"];
-        realTimeAlarmViewControllerNAV.tabBarItem.title=@"实时报警";
-        UINavigationController *historyAlarmViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[STWarnComapnyViewController alloc]initWithType:2]];
-        historyAlarmViewControllerNav.tabBarItem.image=[UIImage imageNamed:@"ls"];
-        historyAlarmViewControllerNav.tabBarItem.title=@"历史报警";
-        UITabBarController *alarmTableBarController=[[UITabBarController alloc]init];
-        [alarmTableBarController setViewControllers:[[NSArray alloc]initWithObjects:
-                                                     realTimeAlarmViewControllerNAV,
-                                                     historyAlarmViewControllerNav,nil]];
-        alarmTableBarController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:alarmTableBarController animated:YES];
+        NSString *roleType=[[User Instance]getRoleType];
+        //判断用户类型
+        if([@"1" isEqualToString:roleType]||[@"2" isEqualToString:roleType]){
+            NSString *usedTrms=[[[User Instance]getResultData]objectForKey:@"USED_TRMS"];
+            //判断是否为企业自管
+            if([@"1" isEqualToString:usedTrms]||[@"2" isEqualToString:usedTrms]){
+                //有监测
+                UINavigationController *realTimeAlarmViewControllerNAV=[[UINavigationController alloc]initWithRootViewController:[[STWarnComapnyViewController alloc]initWithType:1]];
+                realTimeAlarmViewControllerNAV.tabBarItem.image=[UIImage imageNamed:@"bj"];
+                realTimeAlarmViewControllerNAV.tabBarItem.title=@"实时报警";
+                UINavigationController *historyAlarmViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[STWarnComapnyViewController alloc]initWithType:2]];
+                historyAlarmViewControllerNav.tabBarItem.image=[UIImage imageNamed:@"ls"];
+                historyAlarmViewControllerNav.tabBarItem.title=@"历史报警";
+                UITabBarController *alarmTableBarController=[[UITabBarController alloc]init];
+                [alarmTableBarController setViewControllers:[[NSArray alloc]initWithObjects:
+                                                             realTimeAlarmViewControllerNAV,
+                                                             historyAlarmViewControllerNav,nil]];
+                alarmTableBarController.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:alarmTableBarController animated:YES];
+            }else{
+                //无监测
+                NSLog(@"无监测");
+            }
+        }else{
+            //无监测
+            NSLog(@"---无监测");
+        }
     }else if(tag==5){
         [self.navigationController pushViewController:[[ElectricityTariffViewController alloc]init] animated:YES];
     }else if(tag==6){
@@ -265,6 +285,10 @@
     if(tag==1){
         [self.navigationController pushViewController:[[WBBPDZViewController alloc]init] animated:YES];
     }else if(tag==2){
+        if(![[User Instance]isLogin]){
+            [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
+            return;
+        }
         [self.navigationController pushViewController:[[FindElectricianViewController alloc]init] animated:YES];
     }else if(tag==3){
         [self.navigationController pushViewController:[[JTDGGLViewController alloc]init] animated:YES];

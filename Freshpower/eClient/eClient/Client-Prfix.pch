@@ -71,7 +71,6 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 //新能量客服电话
 #define CUSTOMERSERVICETEL @"4008263365"
 
-#define URL_appDistributeTasks SERVER_URL(fpsWebSite,@"tasks/appDistributeTasks.aspx")
 #define URL_AppIndexRunStatus SERVER_URL(fpsWebSite,@"AppIndexRunStatus.aspx")
 #define URL_AppHisMeterElec SERVER_URL(fpsWebSite,@"AppHisMeterElec.aspx")
 #define URL_AppMeterElec SERVER_URL(fpsWebSite,@"AppMeterElec.aspx")
@@ -81,5 +80,6 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 #define URL_AppAlertInfo SERVER_URL(fpsWebSite,@"AppAlertInfo.aspx")
 #define URL_appTaskingFps SERVER_URL(etgWebSite,@"INSPT/appTaskingFps.aspx")
 #define URL_appUserCenter SERVER_URL(etgWebSite,@"appUserCenter.aspx")
+#define URL_appDistributeTasks SERVER_URL(etgWebSite,@"tasks/appDistributeTasks.aspx")
 
 #endif

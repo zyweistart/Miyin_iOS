@@ -19,6 +19,7 @@
 @implementation FindElectricianViewController{
     UIButton *btnSwitch;
     BOOL isCurrentMap;
+    double latitude,longitude;
 }
 
 - (id)init{
@@ -79,12 +80,12 @@
     if(isCurrentMap){
         [self goCurrentLocation];
     }else{
-        if([[self dataItemArray]count]==0){
-            if(!self.tableView.pullTableIsRefreshing) {
-                self.tableView.pullTableIsRefreshing=YES;
-                [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
-            }
-        }
+        //        if([[self dataItemArray]count]==0){
+        //            if(!self.tableView.pullTableIsRefreshing) {
+        //                self.tableView.pullTableIsRefreshing=YES;
+        //                [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+        //            }
+        //        }
     }
 }
 
@@ -108,10 +109,11 @@
 //MapView委托方法，当定位自身时调用
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
     CLLocationCoordinate2D loc = [userLocation coordinate];
-    NSLog(@"%lf,%lf",loc.latitude,loc.longitude);
+    latitude=loc.latitude;
+    longitude=loc.longitude;
     //放大地图到自身的经纬度位置。
-//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
-//    [self.mapView setRegion:region animated:YES];
+    //    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
+    //    [self.mapView setRegion:region animated:YES];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation {
@@ -153,13 +155,11 @@
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:[[User Instance]getUserName] forKey:@"imei"];
     [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
-    [params setObject:@"600202" forKey:@"GNID"];
-    [params setObject:PAGESIZE forKey:@"QTPSIZE"];
-    [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]]  forKey:@"QTPINDEX"];
-    [params setObject:@"" forKey:@"QTKEY"];
-    [params setObject:@"" forKey:@"QTVAL"];
+    [params setObject:@"600201" forKey:@"GNID"];
+    [params setObject:[NSString stringWithFormat:@"%lf",longitude] forKey:@"QTKEY"];
+    [params setObject:[NSString stringWithFormat:@"%lf",latitude] forKey:@"QTVAL"];
     self.hRequest=[[HttpRequest alloc]init];
-    [self.hRequest setRequestCode:500];
+    [self.hRequest setRequestCode:501];
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest handle:URL_appDistributeTasks requestParams:params];
@@ -169,14 +169,17 @@
 - (void)goRefreshMapData
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"1" forKey:@"Id"];
-    [params setObject:@"1" forKey:@"index"];
+    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
+    [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
+    [params setObject:@"600201" forKey:@"GNID"];
+    [params setObject:[NSString stringWithFormat:@"%lf",longitude] forKey:@"QTKEY"];
+    [params setObject:[NSString stringWithFormat:@"%lf",latitude] forKey:@"QTVAL"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest setIsShowMessage:YES];
-    [self.hRequest handle:@"GetListALL" requestParams:params];
+    [self.hRequest handle:URL_appDistributeTasks requestParams:params];
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
@@ -186,16 +189,34 @@
     }else{
         if([response successFlag]){
             //清除地图上的位置点
+            //            NSLog(@"=========%lf,,,,%lf",latitude,longitude);
             [self.mapView removeAnnotations:[self.mapView annotations]];
-            double latitude[9]={29.997461006205593,29.990250398850474,29.936414481847535,29.942513384159106,29.987425482052284,29.985715624943672,30.168762870400922,29.948760652467562,29.968950031785944};
-            double longitude[9]={120.6018155523682,120.54001745666507,120.57194647277835,120.57537970031741,120.657433838501,120.58688101257327,120.65537390197757,120.44440206970218,120.5882543035889};
+            //            NSArray *dataItems=[[response resultJSON]objectForKey:@"table1"];
+            //            for(int i=0;i<[dataItems count];i++){
+            //                NSDictionary *d=[dataItems objectAtIndex:i];
+            //                double lat=[[d objectForKey:@"LATITUDE"]doubleValue];
+            //                double longit=[[d objectForKey:@"LONGITUDE"]doubleValue];
+            //                NSLog(@"%lf,,,,%lf",lat,longit);
+            //                NSString *name=[d objectForKey:@"NAME"];
+            //                NSString *MB=[d objectForKey:@"MB"];
+            //                CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(lat,longit)];
+            //                annotation1.title = name;
+            //                annotation1.subtitle = MB;
+            //                [annotation1 setIndex:i];
+            //                [self.mapView addAnnotation:annotation1];
+            //            }
+            
+            double latitudes[9]={29.997461006205593,29.990250398850474,29.936414481847535,29.942513384159106,29.987425482052284,29.985715624943672,30.168762870400922,29.948760652467562,29.968950031785944};
+            double longitudes[9]={120.6018155523682,120.54001745666507,120.57194647277835,120.57537970031741,120.657433838501,120.58688101257327,120.65537390197757,120.44440206970218,120.5882543035889};
             for(int i=0;i<9;i++){
-                CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude[i],longitude[i])];
+                CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitudes[i],longitudes[i])];
                 annotation1.title = @"大力神出租";
                 annotation1.subtitle = @"点击联系此信息";
                 [annotation1 setIndex:i];
                 [self.mapView addAnnotation:annotation1];
             }
+            
+            
         }
     }
 }
@@ -203,7 +224,7 @@
 - (void)onClickGoDetail:(UITapGestureRecognizer *)sender
 {
     NSInteger tag=[sender.view tag];
-    NSLog(@"当前的tag=%d",tag);
+    NSLog(@"当前的tag=%ld",tag);
 }
 
 //切换地图或列表
