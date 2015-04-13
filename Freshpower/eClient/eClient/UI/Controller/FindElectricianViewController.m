@@ -8,6 +8,7 @@
 
 #import "FindElectricianViewController.h"
 #import "CustomAnnotation.h"
+#import "ElectricianDetailViewController.h"
 
 #define ZOOMLEVEL 0.05f
 #define SEARCHTIPCOLOR [UIColor colorWithRed:(88/255.0) green:(130/255.0) blue:(216/255.0) alpha:1]
@@ -20,6 +21,7 @@
     UIButton *btnSwitch;
     BOOL isCurrentMap;
     double latitude,longitude;
+//    NSArray *currentPoints;
 }
 
 - (id)init{
@@ -80,12 +82,12 @@
     if(isCurrentMap){
         [self goCurrentLocation];
     }else{
-        //        if([[self dataItemArray]count]==0){
-        //            if(!self.tableView.pullTableIsRefreshing) {
-        //                self.tableView.pullTableIsRefreshing=YES;
-        //                [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
-        //            }
-        //        }
+        if([[self dataItemArray]count]==0){
+            if(!self.tableView.pullTableIsRefreshing) {
+                self.tableView.pullTableIsRefreshing=YES;
+                [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+            }
+        }
     }
 }
 
@@ -125,9 +127,9 @@
         if(nil == annView) {
             annView = [[MKPinAnnotationView alloc] initWithAnnotation:myAnnotation reuseIdentifier:CPinIdentifier];
         }
-        [annView setImage:[UIImage imageNamed:@"category1"]];
+        [annView setImage:[UIImage imageNamed:@"勾"]];
         UIButton *icon=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20,20)];
-        [icon setImage:[UIImage imageNamed:@"category2"] forState:UIControlStateNormal];
+        [icon setImage:[UIImage imageNamed:@"心"] forState:UIControlStateNormal];
         annView.rightCalloutAccessoryView=icon;
         [[annView rightCalloutAccessoryView] setTag:[myAnnotation index]];
         [[annView rightCalloutAccessoryView] addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickGoDetail:)]];
@@ -162,6 +164,7 @@
     [self.hRequest setRequestCode:501];
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
     [self.hRequest handle:URL_appDistributeTasks requestParams:params];
 }
 
@@ -189,34 +192,20 @@
     }else{
         if([response successFlag]){
             //清除地图上的位置点
-            //            NSLog(@"=========%lf,,,,%lf",latitude,longitude);
             [self.mapView removeAnnotations:[self.mapView annotations]];
-            //            NSArray *dataItems=[[response resultJSON]objectForKey:@"table1"];
-            //            for(int i=0;i<[dataItems count];i++){
-            //                NSDictionary *d=[dataItems objectAtIndex:i];
-            //                double lat=[[d objectForKey:@"LATITUDE"]doubleValue];
-            //                double longit=[[d objectForKey:@"LONGITUDE"]doubleValue];
-            //                NSLog(@"%lf,,,,%lf",lat,longit);
-            //                NSString *name=[d objectForKey:@"NAME"];
-            //                NSString *MB=[d objectForKey:@"MB"];
-            //                CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(lat,longit)];
-            //                annotation1.title = name;
-            //                annotation1.subtitle = MB;
-            //                [annotation1 setIndex:i];
-            //                [self.mapView addAnnotation:annotation1];
-            //            }
-            
-            double latitudes[9]={29.997461006205593,29.990250398850474,29.936414481847535,29.942513384159106,29.987425482052284,29.985715624943672,30.168762870400922,29.948760652467562,29.968950031785944};
-            double longitudes[9]={120.6018155523682,120.54001745666507,120.57194647277835,120.57537970031741,120.657433838501,120.58688101257327,120.65537390197757,120.44440206970218,120.5882543035889};
-            for(int i=0;i<9;i++){
-                CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitudes[i],longitudes[i])];
-                annotation1.title = @"大力神出租";
-                annotation1.subtitle = @"点击联系此信息";
+            self.dataItemArray=[[response resultJSON]objectForKey:@"table1"];
+            for(int i=0;i<[self.dataItemArray count];i++){
+                NSDictionary *d=[self.dataItemArray objectAtIndex:i];
+                double lat=[[d objectForKey:@"LATITUDE"]doubleValue];
+                double longit=[[d objectForKey:@"LONGITUDE"]doubleValue];
+                NSString *name=[d objectForKey:@"NAME"];
+                NSString *MB=[d objectForKey:@"MB"];
+                CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(lat,longit)];
+                annotation1.title = name;
+                annotation1.subtitle = MB;
                 [annotation1 setIndex:i];
                 [self.mapView addAnnotation:annotation1];
             }
-            
-            
         }
     }
 }
@@ -224,7 +213,8 @@
 - (void)onClickGoDetail:(UITapGestureRecognizer *)sender
 {
     NSInteger tag=[sender.view tag];
-    NSLog(@"当前的tag=%ld",tag);
+    NSDictionary *data=[self.dataItemArray objectAtIndex:tag];
+    [self.navigationController pushViewController:[[ElectricianDetailViewController alloc]initWithParams:data] animated:YES];
 }
 
 //切换地图或列表
