@@ -36,6 +36,8 @@
         [frame addSubview:lbl];
         
         UIButton *bImage=[[UIButton alloc]initWithFrame:CGRectMake1(110, 80, 100, 100)];
+        bImage.tag=1;
+        [bImage addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
         [bImage setImage:[UIImage imageNamed:@"manager"] forState:UIControlStateNormal];
         [frame addSubview:bImage];
         UILabel *lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(10,80,100,100)];
@@ -47,6 +49,8 @@
         [frame addSubview:lblTitle];
         
         bImage=[[UIButton alloc]initWithFrame:CGRectMake1(110, 190, 100, 100)];
+        bImage.tag=2;
+        [bImage addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
         [bImage setImage:[UIImage imageNamed:@"manager"] forState:UIControlStateNormal];
         [frame addSubview:bImage];
         lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(210,190,100,100)];
@@ -59,6 +63,11 @@
         
     }
     return self;
+}
+
+- (void)goDetail:(UIButton*)sender
+{
+    NSLog(@"%ld",[sender tag]);
 }
 
 @end
