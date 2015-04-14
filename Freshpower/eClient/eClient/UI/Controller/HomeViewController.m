@@ -23,6 +23,7 @@
 #import "MaintainEnterpriseInformationViewController.h"
 #import "ElectricityTariffViewController.h"
 #import "RunOverviewViewController.h"
+#import "RunStatusInfoViewController.h"
 #import "ETFoursquareImages.h"
 #import "SQLiteOperate.h"
 #import "LoginViewController.h"
@@ -273,7 +274,18 @@
     }else if(tag==5){
         [self.navigationController pushViewController:[[ElectricityTariffViewController alloc]init] animated:YES];
     }else if(tag==6){
-        [self.navigationController pushViewController:[[RunOverviewViewController alloc]init] animated:YES];
+        NSString *roleType=[[User Instance]getRoleType];
+        //判断用户类型
+        if([@"1" isEqualToString:roleType]||[@"2" isEqualToString:roleType]){
+            [self.navigationController pushViewController:[[RunOverviewViewController alloc]init] animated:YES];
+            }else{
+                //无监测
+                [self.navigationController pushViewController:[[RunStatusInfoViewController alloc]init] animated:YES];
+            }
+        }else{
+            //无监测
+            [self.navigationController pushViewController:[[RunStatusInfoViewController alloc]init] animated:YES];
+        }
     }else if(tag==7){
         [self.navigationController pushViewController:[[STBurdenDetailListViewController alloc]init] animated:YES];
     }
