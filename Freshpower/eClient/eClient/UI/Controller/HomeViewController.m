@@ -71,7 +71,7 @@
     //上
     int IMAGEHEIGHT=199;
     ETFoursquareImages *foursquareImages = [[ETFoursquareImages alloc] initWithFrame:CGRectMake1(0, 0, 320,IMAGEHEIGHT)];
-    [foursquareImages setImagesHeight:IMAGEHEIGHT];
+    [foursquareImages setImagesHeight:CGHeight(IMAGEHEIGHT)];
     
     NSMutableArray *images=[[NSMutableArray alloc]init];
     
