@@ -21,7 +21,7 @@
     UIButton *btnSwitch;
     BOOL isCurrentMap;
     double latitude,longitude;
-//    NSArray *currentPoints;
+    NSArray *currentPoints;
 }
 
 - (id)init{
@@ -114,8 +114,8 @@
     latitude=loc.latitude;
     longitude=loc.longitude;
     //放大地图到自身的经纬度位置。
-    //    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
-    //    [self.mapView setRegion:region animated:YES];
+//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
+//    [self.mapView setRegion:region animated:YES];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation {
@@ -127,9 +127,9 @@
         if(nil == annView) {
             annView = [[MKPinAnnotationView alloc] initWithAnnotation:myAnnotation reuseIdentifier:CPinIdentifier];
         }
-        [annView setImage:[UIImage imageNamed:@"勾"]];
+        [annView setImage:[UIImage imageNamed:@"point"]];
         UIButton *icon=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20,20)];
-        [icon setImage:[UIImage imageNamed:@"心"] forState:UIControlStateNormal];
+        [icon setImage:[UIImage imageNamed:@"勾"] forState:UIControlStateNormal];
         annView.rightCalloutAccessoryView=icon;
         [[annView rightCalloutAccessoryView] setTag:[myAnnotation index]];
         [[annView rightCalloutAccessoryView] addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickGoDetail:)]];
@@ -154,22 +154,16 @@
 //刷新列表数据
 - (void)loadHttp
 {
-    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
-    [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
-    [params setObject:@"600201" forKey:@"GNID"];
-    [params setObject:[NSString stringWithFormat:@"%lf",longitude] forKey:@"QTKEY"];
-    [params setObject:[NSString stringWithFormat:@"%lf",latitude] forKey:@"QTVAL"];
-    self.hRequest=[[HttpRequest alloc]init];
-    [self.hRequest setRequestCode:501];
-    [self.hRequest setDelegate:self];
-    [self.hRequest setController:self];
-    [self.hRequest setIsShowMessage:YES];
-    [self.hRequest handle:URL_appDistributeTasks requestParams:params];
+    [self goMapData:500];
 }
 
 //刷新地图位置数据
 - (void)goRefreshMapData
+{
+    [self goMapData:501];
+}
+
+- (void)goMapData:(int)reqCode
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:[[User Instance]getUserName] forKey:@"imei"];
@@ -178,7 +172,7 @@
     [params setObject:[NSString stringWithFormat:@"%lf",longitude] forKey:@"QTKEY"];
     [params setObject:[NSString stringWithFormat:@"%lf",latitude] forKey:@"QTVAL"];
     self.hRequest=[[HttpRequest alloc]init];
-    [self.hRequest setRequestCode:500];
+    [self.hRequest setRequestCode:reqCode];
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest setIsShowMessage:YES];
@@ -187,15 +181,15 @@
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
-    if(reqCode==501){
+    if(reqCode==500){
         [super requestFinishedByResponse:response requestCode:reqCode];
-    }else{
+    }else if(reqCode==501){
         if([response successFlag]){
             //清除地图上的位置点
             [self.mapView removeAnnotations:[self.mapView annotations]];
-            self.dataItemArray=[[response resultJSON]objectForKey:@"table1"];
-            for(int i=0;i<[self.dataItemArray count];i++){
-                NSDictionary *d=[self.dataItemArray objectAtIndex:i];
+            currentPoints=[[response resultJSON]objectForKey:@"table1"];
+            for(int i=0;i<[currentPoints count];i++){
+                NSDictionary *d=[currentPoints objectAtIndex:i];
                 double lat=[[d objectForKey:@"LATITUDE"]doubleValue];
                 double longit=[[d objectForKey:@"LONGITUDE"]doubleValue];
                 NSString *name=[d objectForKey:@"NAME"];
@@ -213,7 +207,7 @@
 - (void)onClickGoDetail:(UITapGestureRecognizer *)sender
 {
     NSInteger tag=[sender.view tag];
-    NSDictionary *data=[self.dataItemArray objectAtIndex:tag];
+    NSDictionary *data=[currentPoints objectAtIndex:tag];
     [self.navigationController pushViewController:[[ElectricianDetailViewController alloc]initWithParams:data] animated:YES];
 }
 
@@ -240,7 +234,9 @@
         if(!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        [cell.textLabel setText:@"这只是测试而已"];
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        NSLog(@"%@",data);
+        [cell.textLabel setText:[data objectForKey:@"MB"]];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];

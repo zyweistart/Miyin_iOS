@@ -7,6 +7,7 @@
 //
 
 #import "ProductViewController.h"
+#import "DetailIntroductionViewController.h"
 
 @interface ProductViewController ()
 
@@ -118,7 +119,28 @@
 
 - (void)goDetail:(UIButton*)sender
 {
-    NSLog(@"%ld",[sender tag]);
+    NSString *title,*image;
+    NSInteger tag=sender.tag;
+    if(tag==1){
+        title=@"白云运维服务";
+        image=@"manager";
+    }else if(tag==2){
+        title=@"白云监测服务";
+        image=@"manager";
+    }else if(tag==3){
+        title=@"白云报警服务";
+        image=@"manager";
+    }else if(tag==4){
+        title=@"彩云监测服务";
+        image=@"manager";
+    }else if(tag==5){
+        title=@"人工巡检服务";
+        image=@"manager";
+    }else{
+        title=@"人工维保服务";
+        image=@"manager";
+    }
+    [self.navigationController pushViewController:[[DetailIntroductionViewController alloc]initWithTitle:title WithImage:image WithType:1] animated:YES];
 }
 
 @end

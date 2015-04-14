@@ -7,6 +7,7 @@
 //
 
 #import "WBBPDZViewController.h"
+#import "DetailIntroductionViewController.h"
 
 @interface WBBPDZViewController ()
 
@@ -80,7 +81,19 @@
 
 - (void)goDetail:(UIButton*)sender
 {
-    NSLog(@"%ld",[sender tag]);
+    NSString *title,*image;
+    NSInteger tag=sender.tag;
+    if(tag==1){
+        title=@"变电站24小时值守服务";
+        image=@"manager";
+    }else if(tag==2){
+        title=@"变电站巡检服务";
+        image=@"manager";
+    }else{
+        title=@"变电站维保服务";
+        image=@"manager";
+    }
+    [self.navigationController pushViewController:[[DetailIntroductionViewController alloc]initWithTitle:title WithImage:image WithType:1] animated:YES];
 }
 
 @end

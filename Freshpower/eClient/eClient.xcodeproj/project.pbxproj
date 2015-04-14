@@ -28,6 +28,7 @@
 		C92C27441AC15A7200E472C9 /* SVCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C27431AC15A7200E472C9 /* SVCheckbox.m */; };
 		C94DFD671ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94DFD661ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m */; };
 		C94DFD6A1ABFF9B20043B896 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C94DFD691ABFF9B20043B896 /* NSString+Utils.m */; };
+		C9705BFF1ADCF038009B4D95 /* DetailIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9705BFE1ADCF038009B4D95 /* DetailIntroductionViewController.m */; };
 		C9B0D1CA1ACA31280056E69A /* STWarnComapnyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B0D1C91ACA31280056E69A /* STWarnComapnyViewController.m */; };
 		C9B0D1CD1ACA31B10056E69A /* STAlarmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B0D1CC1ACA31B10056E69A /* STAlarmCell.m */; };
 		C9B0D1D41ACA43900056E69A /* STBurdenDetailListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B0D1D11ACA43900056E69A /* STBurdenDetailListViewController.m */; };
@@ -160,6 +161,8 @@
 		C94DFD661ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaintainEnterpriseInformationViewController.m; path = Controller/MaintainEnterpriseInformationViewController.m; sourceTree = "<group>"; };
 		C94DFD681ABFF9B20043B896 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
 		C94DFD691ABFF9B20043B896 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
+		C9705BFD1ADCF038009B4D95 /* DetailIntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailIntroductionViewController.h; sourceTree = "<group>"; };
+		C9705BFE1ADCF038009B4D95 /* DetailIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailIntroductionViewController.m; sourceTree = "<group>"; };
 		C9B0D1C81ACA31280056E69A /* STWarnComapnyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STWarnComapnyViewController.h; path = Controller/STWarnComapnyViewController.h; sourceTree = "<group>"; };
 		C9B0D1C91ACA31280056E69A /* STWarnComapnyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STWarnComapnyViewController.m; path = Controller/STWarnComapnyViewController.m; sourceTree = "<group>"; };
 		C9B0D1CB1ACA31B10056E69A /* STAlarmCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlarmCell.h; sourceTree = "<group>"; };
@@ -447,6 +450,8 @@
 				C9BA43901ABC97E700B73485 /* JTDGGLViewController.m */,
 				C9BA43921ABC980200B73485 /* WBBPDZViewController.h */,
 				C9BA43931ABC980200B73485 /* WBBPDZViewController.m */,
+				C9705BFD1ADCF038009B4D95 /* DetailIntroductionViewController.h */,
+				C9705BFE1ADCF038009B4D95 /* DetailIntroductionViewController.m */,
 			);
 			name = "首页";
 			sourceTree = "<group>";
@@ -513,6 +518,14 @@
 			path = ETFoursquareImages;
 			sourceTree = "<group>";
 		};
+		C9705BFC1ADCEAAB009B4D95 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C9147B281AD57CD000955F2A /* libsqlite3.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C9B324401AC7059F0089A297 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,9 +538,9 @@
 		C9BA42D31ABC775A00B73485 = {
 			isa = PBXGroup;
 			children = (
-				C9147B281AD57CD000955F2A /* libsqlite3.dylib */,
 				C9BA42DE1ABC775A00B73485 /* eClient */,
 				C9BA42F81ABC775A00B73485 /* eClientTests */,
+				C9705BFC1ADCEAAB009B4D95 /* Frameworks */,
 				C9BA42DD1ABC775A00B73485 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -959,6 +972,7 @@
 				C9BA43521ABC785C00B73485 /* PullTableView.m in Sources */,
 				C9BA43501ABC785C00B73485 /* LoadMoreTableFooterView.m in Sources */,
 				C9BA438E1ABC97BD00B73485 /* FindElectricianViewController.m in Sources */,
+				C9705BFF1ADCF038009B4D95 /* DetailIntroductionViewController.m in Sources */,
 				C9BA43701ABC7B8F00B73485 /* HomeViewController.m in Sources */,
 				C9BA43451ABC785C00B73485 /* Response.m in Sources */,
 				C9BA43941ABC980200B73485 /* WBBPDZViewController.m in Sources */,
