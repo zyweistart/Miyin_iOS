@@ -74,13 +74,12 @@
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
-//    if([response successFlag]){
-//        NSLog(@"%@",[response responseString]);
-//    }
-    NSArray *table1=[[response resultJSON]objectForKey:@"table1"];
-    NSArray *table2=[[response resultJSON]objectForKey:@"table2"];
-    NSLog(@"%@",table1);
-    NSLog(@"%@",table2);
+    if([response successFlag]){
+        NSArray *table1=[[response resultJSON]objectForKey:@"table1"];
+        NSArray *table2=[[response resultJSON]objectForKey:@"table2"];
+        NSLog(@"%@",table1);
+        NSLog(@"%@",table2);
+    }
 }
 
 

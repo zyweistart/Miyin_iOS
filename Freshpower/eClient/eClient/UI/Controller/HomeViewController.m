@@ -29,6 +29,7 @@
 #import "LoginViewController.h"
 #import "WarnComapnyInfoViewController.h"
 #import "ElectricityContrastViewController.h"
+#import "BurdenContrastViewController.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 #define LINECOLOR  [UIColor colorWithRed:(230/255.0) green:(230/255.0) blue:(230/255.0) alpha:1]
@@ -321,7 +322,25 @@
             [self.navigationController pushViewController:runStatusInfoViewController animated:YES];
         }
     }else if(tag==7){
-        [self.navigationController pushViewController:[[STBurdenDetailListViewController alloc]init] animated:YES];
+        NSString *roleType=[[User Instance]getRoleType];
+        //判断用户类型
+        if([@"1" isEqualToString:roleType]||[@"2" isEqualToString:roleType]){
+            NSString *usedTrms=[[[User Instance]getResultData]objectForKey:@"USED_TRMS"];
+            //判断是否为企业自管
+            if([@"1" isEqualToString:usedTrms]||[@"2" isEqualToString:usedTrms]){
+                [self.navigationController pushViewController:[[STBurdenDetailListViewController alloc]init] animated:YES];
+            }else{
+                //无监测
+                BurdenContrastViewController *burdenContrastViewController=[[BurdenContrastViewController alloc]init];
+                [burdenContrastViewController setCurrentUrl:@"无监测111"];
+                [self.navigationController pushViewController:burdenContrastViewController animated:YES];
+            }
+        }else{
+            //无监测
+            BurdenContrastViewController *burdenContrastViewController=[[BurdenContrastViewController alloc]init];
+            [burdenContrastViewController setCurrentUrl:@"无监测111"];
+            [self.navigationController pushViewController:burdenContrastViewController animated:YES];
+        }
     }
 }
 
