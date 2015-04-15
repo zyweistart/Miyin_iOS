@@ -57,6 +57,7 @@
     [bModifyPwd.titleLabel setFont:[UIFont systemFontOfSize:15]];
     [bModifyPwd setTitleColor:HEADTITLECOLOR forState:UIControlStateNormal];
     [bModifyPwd setImage:[UIImage imageNamed:@"s"] forState:UIControlStateNormal];
+    [bModifyPwd setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
     [bModifyPwd addTarget:self action:@selector(modifyPwd:) forControlEvents:UIControlEventTouchUpInside];
     [topFrame addSubview:bModifyPwd];
     UIButton *bSwitchUser=[[UIButton alloc]initWithFrame:CGRectMake1(210, 15, 100, 25)];

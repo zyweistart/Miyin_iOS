@@ -47,6 +47,8 @@
     [lbl setFont:[UIFont systemFontOfSize:14]];
     [frame addSubview:lbl];
     svSex=[[SVCheckbox alloc]initWithFrame:CGRectMake1(260, 150, 40, 40)];
+    [svSex setImage:[UIImage imageNamed:@"男"] forState:UIControlStateNormal];
+    [svSex setImage:[UIImage imageNamed:@"nv"] forState:UIControlStateSelected];
     [frame addSubview:svSex];
     SVButton *bSave=[[SVButton alloc]initWithFrame:CGRectMake1(10, 200, 300, 40) Title:@"保存" Type:2];
     [bSave addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
@@ -87,7 +89,7 @@
     [params setObject:name forKey:@"QTKEY"];
     [params setObject:phone forKey:@"QTVAL"];
     [params setObject:card forKey:@"QTKEY1"];
-    if(svSex.selected){
+    if(!svSex.selected){
         [params setObject:@"1" forKey:@"QTVAL1"];
     }else{
         [params setObject:@"0" forKey:@"QTVAL1"];

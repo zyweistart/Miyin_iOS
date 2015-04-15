@@ -78,7 +78,7 @@
         bImage=[[UIButton alloc]initWithFrame:CGRectMake1(110, 410, 100, 100)];
         bImage.tag=4;
         [bImage addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
-        [bImage setImage:[UIImage imageNamed:@"sh"] forState:UIControlStateNormal];
+        [bImage setImage:[UIImage imageNamed:@"xf3"] forState:UIControlStateNormal];
         [frame addSubview:bImage];
         lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(210,410,100,100)];
         [lblTitle setText:@"彩云监测服务"];
@@ -132,7 +132,7 @@
         image=@"bj-1";
     }else if(tag==4){
         title=@"彩云监测服务";
-        image=@"sh";
+        image=@"xf3";
     }else if(tag==5){
         title=@"人工巡检服务";
         image=@"xf";

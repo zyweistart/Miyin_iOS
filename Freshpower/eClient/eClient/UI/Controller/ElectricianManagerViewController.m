@@ -74,7 +74,7 @@
     UIButton *bTitle = [[UIButton alloc]initWithFrame:CGRectMake1(10, 0, 300, 40)];
     bTitle.tag = section;
     if([[self.dataItemArray objectAtIndex:section] isEqualToArray:@[]]){
-        [bTitle setImage:[UIImage imageNamed:@"jt2"] forState:UIControlStateNormal];
+        [bTitle setImage:[UIImage imageNamed:@"jt2up"] forState:UIControlStateNormal];
     } else {
         [bTitle setImage:[UIImage imageNamed:@"jt2"] forState:UIControlStateNormal];
     }
