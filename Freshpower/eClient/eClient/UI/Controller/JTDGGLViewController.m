@@ -39,7 +39,7 @@
         UIButton *bImage=[[UIButton alloc]initWithFrame:CGRectMake1(110, 80, 100, 100)];
         bImage.tag=1;
         [bImage addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
-        [bImage setImage:[UIImage imageNamed:@"manager"] forState:UIControlStateNormal];
+        [bImage setImage:[UIImage imageNamed:@"cy"] forState:UIControlStateNormal];
         [frame addSubview:bImage];
         UILabel *lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(10,80,100,100)];
         [lblTitle setText:@"彩云运维服务"];
@@ -52,7 +52,7 @@
         bImage=[[UIButton alloc]initWithFrame:CGRectMake1(110, 190, 100, 100)];
         bImage.tag=2;
         [bImage addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
-        [bImage setImage:[UIImage imageNamed:@"manager"] forState:UIControlStateNormal];
+        [bImage setImage:[UIImage imageNamed:@"bdfw"] forState:UIControlStateNormal];
         [frame addSubview:bImage];
         lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(210,190,100,100)];
         [lblTitle setText:@"彩云集团服务"];
@@ -72,10 +72,10 @@
     NSInteger tag=sender.tag;
     if(tag==1){
         title=@"彩云运维服务";
-        image=@"manager";
+        image=@"cy";
     }else{
         title=@"彩云集团服务";
-        image=@"manager";
+        image=@"bdfw";
     }
     [self.navigationController pushViewController:[[DetailIntroductionViewController alloc]initWithTitle:title WithImage:image WithType:1] animated:YES];
 }

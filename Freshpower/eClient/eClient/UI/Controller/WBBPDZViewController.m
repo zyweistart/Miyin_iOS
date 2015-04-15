@@ -39,7 +39,7 @@
         UIButton *bImage=[[UIButton alloc]initWithFrame:CGRectMake1(110, 80, 100, 100)];
         bImage.tag=1;
         [bImage addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
-        [bImage setImage:[UIImage imageNamed:@"manager"] forState:UIControlStateNormal];
+        [bImage setImage:[UIImage imageNamed:@"sh"] forState:UIControlStateNormal];
         [frame addSubview:bImage];
         UILabel *lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(210,80,100,100)];
         [lblTitle setText:@"变电站24小时值守服务"];
@@ -52,7 +52,7 @@
         bImage=[[UIButton alloc]initWithFrame:CGRectMake1(110, 190, 100, 100)];
         bImage.tag=2;
         [bImage addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
-        [bImage setImage:[UIImage imageNamed:@"manager"] forState:UIControlStateNormal];
+        [bImage setImage:[UIImage imageNamed:@"xf"] forState:UIControlStateNormal];
         [frame addSubview:bImage];
         lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(10,190,100,100)];
         [lblTitle setText:@"变电站巡检服务"];
@@ -65,7 +65,7 @@
         bImage=[[UIButton alloc]initWithFrame:CGRectMake1(110, 300, 100, 100)];
         bImage.tag=3;
         [bImage addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
-        [bImage setImage:[UIImage imageNamed:@"manager"] forState:UIControlStateNormal];
+        [bImage setImage:[UIImage imageNamed:@"bdfw"] forState:UIControlStateNormal];
         [frame addSubview:bImage];
         lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(210,300,100,100)];
         [lblTitle setText:@"变电站维保服务"];
@@ -85,13 +85,13 @@
     NSInteger tag=sender.tag;
     if(tag==1){
         title=@"变电站24小时值守服务";
-        image=@"manager";
+        image=@"sh";
     }else if(tag==2){
         title=@"变电站巡检服务";
-        image=@"manager";
+        image=@"xf";
     }else{
         title=@"变电站维保服务";
-        image=@"manager";
+        image=@"bdfw";
     }
     [self.navigationController pushViewController:[[DetailIntroductionViewController alloc]initWithTitle:title WithImage:image WithType:1] animated:YES];
 }

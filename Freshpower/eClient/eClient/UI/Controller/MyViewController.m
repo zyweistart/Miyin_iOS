@@ -46,7 +46,7 @@
     [topFrame setBackgroundColor:[UIColor orangeColor]];
     [self.tableView setTableHeaderView:topFrame];
     UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 40, 40)];
-    [image setImage:[UIImage imageNamed:@"报警信息"]];
+    [image setImage:[UIImage imageNamed:@"tx"]];
     [topFrame addSubview:image];
     lblAccount=[[UILabel alloc]initWithFrame:CGRectMake1(60, 5, 100, 20)];
     [lblAccount setFont:[UIFont systemFontOfSize:14]];
@@ -56,7 +56,7 @@
     [bModifyPwd setTitle:@"修改密码" forState:UIControlStateNormal];
     [bModifyPwd.titleLabel setFont:[UIFont systemFontOfSize:15]];
     [bModifyPwd setTitleColor:HEADTITLECOLOR forState:UIControlStateNormal];
-    [bModifyPwd setImage:[UIImage imageNamed:@"refresh"] forState:UIControlStateNormal];
+    [bModifyPwd setImage:[UIImage imageNamed:@"s"] forState:UIControlStateNormal];
     [bModifyPwd addTarget:self action:@selector(modifyPwd:) forControlEvents:UIControlEventTouchUpInside];
     [topFrame addSubview:bModifyPwd];
     UIButton *bSwitchUser=[[UIButton alloc]initWithFrame:CGRectMake1(210, 15, 100, 25)];
@@ -78,6 +78,7 @@
     [super viewWillAppear:animated];
     if([[User Instance]isLogin]){
         [lblAccount setText:[[[User Instance]getResultData]objectForKey:@"NAME"]];
+        [self.tableView reloadData];
     }else{
         [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
     }

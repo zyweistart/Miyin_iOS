@@ -46,11 +46,11 @@
         topView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
         [topView setBackgroundColor:MIDDLEBGCOLOR];
         [middleView addSubview:topView];
-        UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(60, 10, 200, 50)];
-        [button setImage:[UIImage imageNamed:@"manager"] forState:UIControlStateNormal];
+        UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(110, 10, 100, 100)];
+        [button setImage:[UIImage imageNamed:@"h"] forState:UIControlStateNormal];
         [middleView addSubview:button];
         
-        UIWebView *webView=[[UIWebView alloc]initWithFrame:CGRectMake1(0, 60, 320, 440)];
+        UIWebView *webView=[[UIWebView alloc]initWithFrame:CGRectMake1(0, 110, 320, 440)];
         [middleView addSubview:webView];
         
         NSString *resourcePath=@"变电站（配电房）运行合作协议";

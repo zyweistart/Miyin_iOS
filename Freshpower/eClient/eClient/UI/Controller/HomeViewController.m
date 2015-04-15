@@ -27,6 +27,7 @@
 #import "ETFoursquareImages.h"
 #import "SQLiteOperate.h"
 #import "LoginViewController.h"
+#import "WarnComapnyInfoViewController.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 #define LINECOLOR  [UIColor colorWithRed:(230/255.0) green:(230/255.0) blue:(230/255.0) alpha:1]
@@ -114,10 +115,15 @@
     [self addModel:@"企业设备维护" Title:@"设备维护" Frame:middleFrame Tag:1 X:0 Y:0];
     [self addModel:@"巡检任务管理" Title:@"巡检任务" Frame:middleFrame Tag:2 X:80 Y:0];
     [self addModel:@"企业电工管理" Title:@"企业电工" Frame:middleFrame Tag:3 X:160 Y:0];
-    [self addModel:@"报警信息" Title:@"报警信息" Frame:middleFrame Tag:4 X:0 Y:90];
-    [self addModel:@"电量电费" Title:@"电量电费" Frame:middleFrame Tag:5 X:80 Y:90];
-    [self addModel:@"运行状态" Title:@"运行状态" Frame:middleFrame Tag:6 X:160 Y:90];
-    [self addModel:@"企业负荷" Title:@"企业负荷" Frame:middleFrame Tag:7 X:240 Y:90];
+    
+//    [self addModel:@"报警信息" Title:@"报警信息" Frame:middleFrame Tag:4 X:0 Y:90];
+//    [self addModel:@"电量电费" Title:@"电量电费" Frame:middleFrame Tag:5 X:80 Y:90];
+//    [self addModel:@"运行状态" Title:@"运行状态" Frame:middleFrame Tag:6 X:160 Y:90];
+//    [self addModel:@"企业负荷" Title:@"企业负荷" Frame:middleFrame Tag:7 X:240 Y:90];
+    [self addModel:@"企业负荷" Title:@"企业负荷" Frame:middleFrame Tag:7 X:0 Y:90];
+    [self addModel:@"报警信息" Title:@"报警信息" Frame:middleFrame Tag:4 X:80 Y:90];
+    [self addModel:@"电量电费" Title:@"电量电费" Frame:middleFrame Tag:5 X:160 Y:90];
+    [self addModel:@"运行状态" Title:@"运行状态" Frame:middleFrame Tag:6 X:240 Y:90];
     UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(81, 10, 1, 80)];
     [line setBackgroundColor:LINECOLOR];
     [middleFrame addSubview:line];
@@ -266,10 +272,16 @@
             }else{
                 //无监测
                 NSLog(@"无监测");
+                WarnComapnyInfoViewController *warnComapnyInfoViewController=[[WarnComapnyInfoViewController alloc]init];
+                [warnComapnyInfoViewController setCurrentUrl:@"无监测111"];
+                [self.navigationController pushViewController:warnComapnyInfoViewController animated:YES];
+                
             }
         }else{
             //无监测
-            NSLog(@"---无监测");
+            WarnComapnyInfoViewController *warnComapnyInfoViewController=[[WarnComapnyInfoViewController alloc]init];
+            [warnComapnyInfoViewController setCurrentUrl:@"无监测2222"];
+            [self.navigationController pushViewController:warnComapnyInfoViewController animated:YES];
         }
     }else if(tag==5){
         [self.navigationController pushViewController:[[ElectricityTariffViewController alloc]init] animated:YES];
@@ -277,14 +289,21 @@
         NSString *roleType=[[User Instance]getRoleType];
         //判断用户类型
         if([@"1" isEqualToString:roleType]||[@"2" isEqualToString:roleType]){
-            [self.navigationController pushViewController:[[RunOverviewViewController alloc]init] animated:YES];
+            NSString *usedTrms=[[[User Instance]getResultData]objectForKey:@"USED_TRMS"];
+            //判断是否为企业自管
+            if([@"1" isEqualToString:usedTrms]||[@"2" isEqualToString:usedTrms]){
+                [self.navigationController pushViewController:[[RunOverviewViewController alloc]init] animated:YES];
             }else{
                 //无监测
-                [self.navigationController pushViewController:[[RunStatusInfoViewController alloc]init] animated:YES];
+                RunStatusInfoViewController *runStatusInfoViewController=[[RunStatusInfoViewController alloc]init];
+                [runStatusInfoViewController setCurrentUrl:@"无监测111"];
+                [self.navigationController pushViewController:runStatusInfoViewController animated:YES];
             }
         }else{
             //无监测
-            [self.navigationController pushViewController:[[RunStatusInfoViewController alloc]init] animated:YES];
+            RunStatusInfoViewController *runStatusInfoViewController=[[RunStatusInfoViewController alloc]init];
+            [runStatusInfoViewController setCurrentUrl:@"无监测222"];
+            [self.navigationController pushViewController:runStatusInfoViewController animated:YES];
         }
     }else if(tag==7){
         [self.navigationController pushViewController:[[STBurdenDetailListViewController alloc]init] animated:YES];

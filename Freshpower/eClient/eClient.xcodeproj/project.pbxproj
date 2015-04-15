@@ -30,6 +30,7 @@
 		C94DFD6A1ABFF9B20043B896 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C94DFD691ABFF9B20043B896 /* NSString+Utils.m */; };
 		C9705BFF1ADCF038009B4D95 /* DetailIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9705BFE1ADCF038009B4D95 /* DetailIntroductionViewController.m */; };
 		C9705C021ADCFEBD009B4D95 /* RunStatusInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9705C011ADCFEBD009B4D95 /* RunStatusInfoViewController.m */; };
+		C97520361ADDFF7D001B973B /* WarnComapnyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C97520351ADDFF7D001B973B /* WarnComapnyInfoViewController.m */; };
 		C9B0D1CA1ACA31280056E69A /* STWarnComapnyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B0D1C91ACA31280056E69A /* STWarnComapnyViewController.m */; };
 		C9B0D1CD1ACA31B10056E69A /* STAlarmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B0D1CC1ACA31B10056E69A /* STAlarmCell.m */; };
 		C9B0D1D41ACA43900056E69A /* STBurdenDetailListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B0D1D11ACA43900056E69A /* STBurdenDetailListViewController.m */; };
@@ -166,6 +167,8 @@
 		C9705BFE1ADCF038009B4D95 /* DetailIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailIntroductionViewController.m; sourceTree = "<group>"; };
 		C9705C001ADCFEBD009B4D95 /* RunStatusInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunStatusInfoViewController.h; sourceTree = "<group>"; };
 		C9705C011ADCFEBD009B4D95 /* RunStatusInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunStatusInfoViewController.m; sourceTree = "<group>"; };
+		C97520341ADDFF7D001B973B /* WarnComapnyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarnComapnyInfoViewController.h; sourceTree = "<group>"; };
+		C97520351ADDFF7D001B973B /* WarnComapnyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarnComapnyInfoViewController.m; sourceTree = "<group>"; };
 		C9B0D1C81ACA31280056E69A /* STWarnComapnyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STWarnComapnyViewController.h; path = Controller/STWarnComapnyViewController.h; sourceTree = "<group>"; };
 		C9B0D1C91ACA31280056E69A /* STWarnComapnyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STWarnComapnyViewController.m; path = Controller/STWarnComapnyViewController.m; sourceTree = "<group>"; };
 		C9B0D1CB1ACA31B10056E69A /* STAlarmCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlarmCell.h; sourceTree = "<group>"; };
@@ -407,6 +410,8 @@
 			children = (
 				C9B0D1C81ACA31280056E69A /* STWarnComapnyViewController.h */,
 				C9B0D1C91ACA31280056E69A /* STWarnComapnyViewController.m */,
+				C97520341ADDFF7D001B973B /* WarnComapnyInfoViewController.h */,
+				C97520351ADDFF7D001B973B /* WarnComapnyInfoViewController.m */,
 			);
 			name = "报警信息";
 			sourceTree = "<group>";
@@ -978,6 +983,7 @@
 				C9BA43521ABC785C00B73485 /* PullTableView.m in Sources */,
 				C9BA43501ABC785C00B73485 /* LoadMoreTableFooterView.m in Sources */,
 				C9BA438E1ABC97BD00B73485 /* FindElectricianViewController.m in Sources */,
+				C97520361ADDFF7D001B973B /* WarnComapnyInfoViewController.m in Sources */,
 				C9705BFF1ADCF038009B4D95 /* DetailIntroductionViewController.m in Sources */,
 				C9BA43701ABC7B8F00B73485 /* HomeViewController.m in Sources */,
 				C9BA43451ABC785C00B73485 /* Response.m in Sources */,

@@ -39,7 +39,7 @@
         UIButton *bImage=[[UIButton alloc]initWithFrame:CGRectMake1(110, 80, 100, 100)];
         bImage.tag=1;
         [bImage addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
-        [bImage setImage:[UIImage imageNamed:@"manager"] forState:UIControlStateNormal];
+        [bImage setImage:[UIImage imageNamed:@"cy"] forState:UIControlStateNormal];
         [frame addSubview:bImage];
         UILabel *lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(10,80,100,100)];
         [lblTitle setText:@"白云运维服务"];
@@ -52,7 +52,7 @@
         bImage=[[UIButton alloc]initWithFrame:CGRectMake1(110, 190, 100, 100)];
         bImage.tag=2;
         [bImage addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
-        [bImage setImage:[UIImage imageNamed:@"manager"] forState:UIControlStateNormal];
+        [bImage setImage:[UIImage imageNamed:@"sh"] forState:UIControlStateNormal];
         [frame addSubview:bImage];
         lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(210,190,100,100)];
         [lblTitle setText:@"白云监测服务"];
@@ -65,7 +65,7 @@
         bImage=[[UIButton alloc]initWithFrame:CGRectMake1(110, 300, 100, 100)];
         bImage.tag=3;
         [bImage addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
-        [bImage setImage:[UIImage imageNamed:@"manager"] forState:UIControlStateNormal];
+        [bImage setImage:[UIImage imageNamed:@"bj-1"] forState:UIControlStateNormal];
         [frame addSubview:bImage];
         lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(10,300,100,100)];
         [lblTitle setText:@"白云报警服务"];
@@ -78,7 +78,7 @@
         bImage=[[UIButton alloc]initWithFrame:CGRectMake1(110, 410, 100, 100)];
         bImage.tag=4;
         [bImage addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
-        [bImage setImage:[UIImage imageNamed:@"manager"] forState:UIControlStateNormal];
+        [bImage setImage:[UIImage imageNamed:@"sh"] forState:UIControlStateNormal];
         [frame addSubview:bImage];
         lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(210,410,100,100)];
         [lblTitle setText:@"彩云监测服务"];
@@ -91,7 +91,7 @@
         bImage=[[UIButton alloc]initWithFrame:CGRectMake1(110, 520, 100, 100)];
         bImage.tag=5;
         [bImage addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
-        [bImage setImage:[UIImage imageNamed:@"manager"] forState:UIControlStateNormal];
+        [bImage setImage:[UIImage imageNamed:@"xf"] forState:UIControlStateNormal];
         [frame addSubview:bImage];
         lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(10,520,100,100)];
         [lblTitle setText:@"人工巡检服务"];
@@ -104,7 +104,7 @@
         bImage=[[UIButton alloc]initWithFrame:CGRectMake1(110, 640, 100, 100)];
         bImage.tag=6;
         [bImage addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
-        [bImage setImage:[UIImage imageNamed:@"manager"] forState:UIControlStateNormal];
+        [bImage setImage:[UIImage imageNamed:@"bdfw"] forState:UIControlStateNormal];
         [frame addSubview:bImage];
         lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(210,640,100,100)];
         [lblTitle setText:@"人工维保服务"];
@@ -123,22 +123,22 @@
     NSInteger tag=sender.tag;
     if(tag==1){
         title=@"白云运维服务";
-        image=@"manager";
+        image=@"cy";
     }else if(tag==2){
         title=@"白云监测服务";
-        image=@"manager";
+        image=@"sh";
     }else if(tag==3){
         title=@"白云报警服务";
-        image=@"manager";
+        image=@"bj-1";
     }else if(tag==4){
         title=@"彩云监测服务";
-        image=@"manager";
+        image=@"sh";
     }else if(tag==5){
         title=@"人工巡检服务";
-        image=@"manager";
+        image=@"xf";
     }else{
         title=@"人工维保服务";
-        image=@"manager";
+        image=@"bdfw";
     }
     [self.navigationController pushViewController:[[DetailIntroductionViewController alloc]initWithTitle:title WithImage:image WithType:1] animated:YES];
 }

@@ -74,9 +74,9 @@
     UIButton *bTitle = [[UIButton alloc]initWithFrame:CGRectMake1(10, 0, 300, 40)];
     bTitle.tag = section;
     if([[self.dataItemArray objectAtIndex:section] isEqualToArray:@[]]){
-        [bTitle setImage:[UIImage imageNamed:@"ic_answer_n"] forState:UIControlStateNormal];
+        [bTitle setImage:[UIImage imageNamed:@"jt2"] forState:UIControlStateNormal];
     } else {
-        [bTitle setImage:[UIImage imageNamed:@"ic_answer_p"] forState:UIControlStateNormal];
+        [bTitle setImage:[UIImage imageNamed:@"jt2"] forState:UIControlStateNormal];
     }
     [bTitle setTitle:[data objectForKey:@"NAME"] forState:UIControlStateNormal];
     [bTitle.titleLabel setFont:[UIFont systemFontOfSize:16]];
