@@ -34,10 +34,14 @@
     UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 150)];
     [self.view addSubview:frame];
     svOldPassword=[[SVTextField alloc]initWithFrame:CGRectMake1(10, 5, 300, 40) Title:@"旧密码"];
+    [svOldPassword.tf setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [svOldPassword.tf setSecureTextEntry:YES];
     [frame addSubview:svOldPassword];
     svNewPassword=[[SVTextField alloc]initWithFrame:CGRectMake1(10, 50, 300, 40) Title:@"新密码"];
+    [svNewPassword.tf setSecureTextEntry:YES];
     [frame addSubview:svNewPassword];
     svRePassword=[[SVTextField alloc]initWithFrame:CGRectMake1(10, 100, 300, 40) Title:@"新密码"];
+    [svRePassword.tf setSecureTextEntry:YES];
     [frame addSubview:svRePassword];
     SVButton *bSure=[[SVButton alloc]initWithFrame:CGRectMake1(10, 150, 300, 40) Title:@"确认" Type:2];
     [bSure addTarget:self action:@selector(modify:) forControlEvents:UIControlEventTouchUpInside];
@@ -47,7 +51,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if([[User Instance]isLogin]){
+    if(![[User Instance]isLogin]){
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -72,6 +76,7 @@
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
+    
 }
 
 @end

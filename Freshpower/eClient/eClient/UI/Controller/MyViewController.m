@@ -123,6 +123,7 @@
     NSInteger row=[indexPath row];
     if(section==0){
         if(row==0){
+            [cell.imageView setImage:[UIImage imageNamed:@"wh"]];
             NSString *role=[[User Instance]getRoleType];
             NSString *cpName=[[User Instance]getCPName];
             if([@"2"isEqualToString:role]||[@"4"isEqualToString:role]){
@@ -130,6 +131,14 @@
             }else if([@"1" isEqualToString:role]&&[@"" isEqualToString:cpName]){
                 cell.detailTextLabel.text=@"请先维护企业名称信息方可进行巡检任务下发操作";
             }
+        }
+    }else{
+        if(row==0){
+            [cell.imageView setImage:[UIImage imageNamed:@"gywm"]];
+        }else if(row==1){
+            [cell.imageView setImage:[UIImage imageNamed:@"dh"]];
+        }else if(row==2){
+            [cell.imageView setImage:[UIImage imageNamed:@"tjhy"]];
         }
     }
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];

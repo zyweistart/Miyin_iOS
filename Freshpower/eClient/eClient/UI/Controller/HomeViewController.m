@@ -116,10 +116,6 @@
     [self addModel:@"巡检任务管理" Title:@"巡检任务" Frame:middleFrame Tag:2 X:80 Y:0];
     [self addModel:@"企业电工管理" Title:@"企业电工" Frame:middleFrame Tag:3 X:160 Y:0];
     
-//    [self addModel:@"报警信息" Title:@"报警信息" Frame:middleFrame Tag:4 X:0 Y:90];
-//    [self addModel:@"电量电费" Title:@"电量电费" Frame:middleFrame Tag:5 X:80 Y:90];
-//    [self addModel:@"运行状态" Title:@"运行状态" Frame:middleFrame Tag:6 X:160 Y:90];
-//    [self addModel:@"企业负荷" Title:@"企业负荷" Frame:middleFrame Tag:7 X:240 Y:90];
     [self addModel:@"企业负荷" Title:@"企业负荷" Frame:middleFrame Tag:7 X:0 Y:90];
     [self addModel:@"报警信息" Title:@"报警信息" Frame:middleFrame Tag:4 X:80 Y:90];
     [self addModel:@"电量电费" Title:@"电量电费" Frame:middleFrame Tag:5 X:160 Y:90];
@@ -158,7 +154,7 @@
     [bottomFrame addSubview:[self setFrameView:165 Y:140 byRoundingCorners:UIRectCornerBottomRight ImageNamed:@"电工神器" MainTitle:@"电工神器" ChildTitle:@"e电工操作版，电工偷懒赚钱神器" bgColor:MAIN4BGCOLOR Tag:4]];
     //中间图片
     UIImageView *iconImage=[[UIImageView alloc]initWithFrame:CGRectMake1(140, 115, 40, 40)];
-    [iconImage setImage:[UIImage imageNamed:@"autocrane_o"]];
+    [iconImage setImage:[UIImage imageNamed:@"tx"]];
     [iconImage setContentMode:UIViewContentModeCenter];
     [bottomFrame addSubview:iconImage];
 }
