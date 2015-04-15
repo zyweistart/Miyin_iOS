@@ -28,6 +28,7 @@
 #import "SQLiteOperate.h"
 #import "LoginViewController.h"
 #import "WarnComapnyInfoViewController.h"
+#import "ElectricityContrastViewController.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 #define LINECOLOR  [UIColor colorWithRed:(230/255.0) green:(230/255.0) blue:(230/255.0) alpha:1]
@@ -280,7 +281,25 @@
             [self.navigationController pushViewController:warnComapnyInfoViewController animated:YES];
         }
     }else if(tag==5){
-        [self.navigationController pushViewController:[[ElectricityTariffViewController alloc]init] animated:YES];
+        NSString *roleType=[[User Instance]getRoleType];
+        //判断用户类型
+        if([@"1" isEqualToString:roleType]||[@"2" isEqualToString:roleType]){
+            NSString *usedTrms=[[[User Instance]getResultData]objectForKey:@"USED_TRMS"];
+            //判断是否为企业自管
+            if([@"1" isEqualToString:usedTrms]||[@"2" isEqualToString:usedTrms]){
+                [self.navigationController pushViewController:[[ElectricityTariffViewController alloc]init] animated:YES];
+            }else{
+                //无监测
+                ElectricityContrastViewController *electricityContrastViewController=[[ElectricityContrastViewController alloc]init];
+                [electricityContrastViewController setCurrentUrl:@"无监测2222"];
+                [self.navigationController pushViewController:electricityContrastViewController animated:YES];
+            }
+        }else{
+            //无监测
+            ElectricityContrastViewController *electricityContrastViewController=[[ElectricityContrastViewController alloc]init];
+            [electricityContrastViewController setCurrentUrl:@"无监测2222"];
+            [self.navigationController pushViewController:electricityContrastViewController animated:YES];
+        }
     }else if(tag==6){
         NSString *roleType=[[User Instance]getRoleType];
         //判断用户类型
