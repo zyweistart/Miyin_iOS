@@ -7,6 +7,7 @@
 //
 
 #import "DetailIntroductionViewController.h"
+#import "FeedbackViewController.h"
 #import "UIButton+TitleImage.h"
 #define TOPBGCOLOR [UIColor colorWithRed:(49/255.0) green:(154/255.0) blue:(16/255.0) alpha:1]
 #define MIDDLEBGCOLOR [UIColor colorWithRed:(20/255.0) green:(25/255.0) blue:(95/255.0) alpha:1]
@@ -47,6 +48,7 @@
         [topView setBackgroundColor:MIDDLEBGCOLOR];
         [middleView addSubview:topView];
         UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(110, 10, 100, 100)];
+        [button addTarget:self action:@selector(feedBack:) forControlEvents:UIControlEventTouchUpInside];
         [button setImage:[UIImage imageNamed:@"h"] forState:UIControlStateNormal];
         [middleView addSubview:button];
         
@@ -61,6 +63,11 @@
         [webView loadRequest:request];
     }
     return self;
+}
+
+- (void)feedBack:(id)sender
+{
+    [self.navigationController pushViewController:[[FeedbackViewController alloc]init] animated:YES];
 }
 
 @end
