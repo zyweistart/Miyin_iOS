@@ -70,6 +70,12 @@
 - (void)setData:(NSMutableDictionary*)data
 {
     currentData=data;
+    int create=[[currentData objectForKey:@"IS_CREATE"]intValue];
+    if(create>0){
+        [self.pSend setEnabled:NO];
+    }else{
+        [self.pSend setEnabled:YES];
+    }
     [self.lblName setText:[NSString stringWithFormat:@"巡检人:%@",[data objectForKey:@"TASK_USER_NAME"]]];
     NSArray *MODEL_LIST=[data objectForKey:@"MODEL_LIST"];
     int count=MODEL_LIST.count;
@@ -111,7 +117,24 @@
 
 - (void)downSend:(id)sender
 {
-    [self.pSend setEnabled:NO];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
+    [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
+    [params setObject:@"TS007" forKey:@"GNID"];
+    [params setObject:[currentData objectForKey:@"CP_ID"] forKey:@"QTCP"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self.controller];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:URL_appTaskingFps requestParams:params];
+}
+    
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        [self.pSend setEnabled:NO];
+    }
 }
 
 - (void)setting:(id)sender

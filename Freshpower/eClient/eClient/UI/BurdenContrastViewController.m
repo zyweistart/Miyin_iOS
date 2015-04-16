@@ -27,16 +27,6 @@
     self=[super init];
     if(self){
         [self setTitle:@"企业负荷"];
-//        bSwitchType = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [bSwitchType setFrame:CGRectMake1(0, 0, 50, 40)];
-//        [bSwitchType setTitle:@"按日" forState:UIControlStateNormal];
-//        [bSwitchType addTarget:self action:@selector(switchType:) forControlEvents:UIControlEventTouchUpInside];
-//        UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
-//                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-//                                                target:nil action:nil];
-//        negativeSpacerRight.width = -5;
-//        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects: [[UIBarButtonItem alloc] initWithCustomView:bSwitchType],negativeSpacerRight, nil];
-        
         UIImageView *headView=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
         [headView setImage:[UIImage imageNamed:@"burdenbanner"]];
         UIView *mainFrame=[[UIView alloc]initWithFrame:self.view.bounds];
@@ -47,7 +37,7 @@
         bSwitchType=[[UIButton alloc]initWithFrame:CGRectMake1(5, 45, 80, 30)];
         [bSwitchType setTitle:@"按日查询" forState:UIControlStateNormal];
         [bSwitchType.titleLabel setFont:[UIFont systemFontOfSize:14]];
-        [bSwitchType setTitleColor:TITLECOLOR forState:UIControlStateNormal];
+        [bSwitchType setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [bSwitchType addTarget:self action:@selector(switchType:) forControlEvents:UIControlEventTouchUpInside];
         [mainFrame addSubview:bSwitchType];
         

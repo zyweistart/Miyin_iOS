@@ -32,11 +32,9 @@
 {
     [super viewWillAppear:animated];
     if([[User Instance]isLogin]){
-        if([[self dataItemArray]count]==0){
-            if(!self.tableView.pullTableIsRefreshing) {
-                self.tableView.pullTableIsRefreshing=YES;
-                [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
-            }
+        if(!self.tableView.pullTableIsRefreshing) {
+            self.tableView.pullTableIsRefreshing=YES;
+            [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
         }
     }else{
         [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];

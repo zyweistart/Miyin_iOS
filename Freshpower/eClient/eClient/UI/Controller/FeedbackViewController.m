@@ -56,16 +56,16 @@
     [scrollFrame addSubview:lbl];
     
     cb1=[self addCheckBox:scrollFrame Title:@"我要加盟" X:0 Y:100];
-    cb2=[self addCheckBox:scrollFrame Title:@"人工维保服务" X:160 Y:100];
-    cb3=[self addCheckBox:scrollFrame Title:@"白云运维服务" X:0 Y:140];
-    cb4=[self addCheckBox:scrollFrame Title:@"变电站巡检服务" X:160 Y:140];
-    cb5=[self addCheckBox:scrollFrame Title:@"白云监测服务" X:0 Y:180];
-    cb6=[self addCheckBox:scrollFrame Title:@"变电站维保服务" X:160 Y:180];
-    cb7=[self addCheckBox:scrollFrame Title:@"白云报警服务" X:0 Y:220];
-    cb8=[self addCheckBox:scrollFrame Title:@"变电站24小时值守服务" X:160 Y:220];
-    cb9=[self addCheckBox:scrollFrame Title:@"彩云监测服务" X:0 Y:260];
-    cb10=[self addCheckBox:scrollFrame Title:@"彩云运维服务" X:160 Y:260];
-    cb11=[self addCheckBox:scrollFrame Title:@"人工巡检服务" X:0 Y:300];
+    cb7=[self addCheckBox:scrollFrame Title:@"人工维保服务" X:160 Y:100];
+    cb2=[self addCheckBox:scrollFrame Title:@"白云运维服务" X:0 Y:140];
+    cb8=[self addCheckBox:scrollFrame Title:@"变电站巡检服务" X:160 Y:140];
+    cb3=[self addCheckBox:scrollFrame Title:@"白云监测服务" X:0 Y:180];
+    cb9=[self addCheckBox:scrollFrame Title:@"变电站维保服务" X:160 Y:180];
+    cb4=[self addCheckBox:scrollFrame Title:@"白云报警服务" X:0 Y:220];
+    cb10=[self addCheckBox:scrollFrame Title:@"变电站24小时值守服务" X:160 Y:220];
+    cb5=[self addCheckBox:scrollFrame Title:@"彩云监测服务" X:0 Y:260];
+    cb11=[self addCheckBox:scrollFrame Title:@"彩云运维服务" X:160 Y:260];
+    cb6=[self addCheckBox:scrollFrame Title:@"人工巡检服务" X:0 Y:300];
     cb12=[self addCheckBox:scrollFrame Title:@"彩云集团服务" X:160 Y:300];
     
     svName=[[SVTextField alloc]initWithFrame:CGRectMake1(20, 350, 280, 40) Title:@"姓名"];
@@ -83,6 +83,12 @@
     [scrollFrame addSubview:svSubmit];
     
     [cb1 setSelected:YES];
+    
+    if([[User Instance]isLogin]){
+        NSDictionary *data=[[User Instance]getResultData];
+        [svName.tf setText:[data objectForKey:@"NAME"]];
+        [svPhone.tf setText:[data objectForKey:@"MB"]];
+    }
 }
 
 - (SVCheckbox*)addCheckBox:(UIView*)frame Title:(NSString*)title X:(CGFloat)x Y:(CGFloat)y
@@ -103,7 +109,85 @@
 
 - (void)submit:(id)sender
 {
-    NSLog(@"提交");
+    NSMutableString *mutableString=[[NSMutableString alloc]init];
+    if([cb1 isSelected]){
+        [mutableString appendString:@"_0|"];
+    }
+    if([cb2 isSelected]){
+        [mutableString appendString:@"_1|"];
+    }
+    if([cb3 isSelected]){
+        [mutableString appendString:@"_2|"];
+    }
+    if([cb4 isSelected]){
+        [mutableString appendString:@"_3|"];
+    }
+    if([cb5 isSelected]){
+        [mutableString appendString:@"_4|"];
+    }
+    if([cb6 isSelected]){
+        [mutableString appendString:@"_5|"];
+    }
+    if([cb7 isSelected]){
+        [mutableString appendString:@"_6|"];
+    }
+    if([cb8 isSelected]){
+        [mutableString appendString:@"_7|"];
+    }
+    if([cb9 isSelected]){
+        [mutableString appendString:@"_8|"];
+    }
+    if([cb10 isSelected]){
+        [mutableString appendString:@"_9|"];
+    }
+    if([cb11 isSelected]){
+        [mutableString appendString:@"_10|"];
+    }
+    if([cb12 isSelected]){
+        [mutableString appendString:@"_11|"];
+    }
+    NSRange deleteRange = {[mutableString length]-1,1};
+    [mutableString deleteCharactersInRange:deleteRange];
+    NSString *name=[svName.tf text];
+    NSString *phone=[svPhone.tf text];
+    NSString *content=[tvContent.tf text];
+    if([@""isEqualToString:mutableString]){
+        [Common alert:@"请选择感兴趣的栏目"];
+        return;
+    }
+    if([@""isEqualToString:name]){
+        [Common alert:@"请输入姓名"];
+        return;
+    }
+    if([@""isEqualToString:phone]){
+        [Common alert:@"请输入号码"];
+        return;
+    }
+    if([@""isEqualToString:content]){
+        [Common alert:@"请输入留言内容"];
+        return;
+    }
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
+    [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
+    [params setObject:@"TL11" forKey:@"GNID"];
+    [params setObject:phone forKey:@"QTKEY1"];
+    [params setObject:name forKey:@"QTVAL1"];
+    [params setObject:content forKey:@"QTVAL"];
+    [params setObject:mutableString forKey:@"QTKEY2"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:URL_AppCustomerInterface requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 - (void)backgroundDoneEditing:(id)sender {

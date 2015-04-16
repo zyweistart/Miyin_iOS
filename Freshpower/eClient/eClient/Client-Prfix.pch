@@ -82,5 +82,6 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 #define URL_appUserCenter SERVER_URL(etgWebSite,@"appUserCenter.aspx")
 #define URL_appDistributeTasks SERVER_URL(etgWebSite,@"tasks/appDistributeTasks.aspx")
 #define URL_appTaskingPower SERVER_URL(etgWebSite,@"INSPT/appTaskingPower.aspx")
+#define URL_AppCustomerInterface SERVER_URL(etgWebSite,@"AppCustomerInterface.aspx")
 
 #endif

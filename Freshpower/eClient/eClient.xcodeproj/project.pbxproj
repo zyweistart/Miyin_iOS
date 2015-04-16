@@ -26,6 +26,7 @@
 		C92C273A1AC1346100E472C9 /* ElectricianManagerAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C27391AC1346100E472C9 /* ElectricianManagerAddViewController.m */; };
 		C92C27401AC13CE000E472C9 /* CRTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C273D1AC13CE000E472C9 /* CRTableViewCell.m */; };
 		C92C27441AC15A7200E472C9 /* SVCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C27431AC15A7200E472C9 /* SVCheckbox.m */; };
+		C94DC03E1ADFB6550058033A /* WebDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94DC03D1ADFB6550058033A /* WebDetailViewController.m */; };
 		C94DFD671ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94DFD661ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m */; };
 		C94DFD6A1ABFF9B20043B896 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C94DFD691ABFF9B20043B896 /* NSString+Utils.m */; };
 		C962208B1ADE58F900F7E92E /* ElectricityContrastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C962208A1ADE58F900F7E92E /* ElectricityContrastViewController.m */; };
@@ -163,6 +164,8 @@
 		C92C273D1AC13CE000E472C9 /* CRTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CRTableViewCell.m; path = ../CRTableViewCell.m; sourceTree = "<group>"; };
 		C92C27421AC15A7200E472C9 /* SVCheckbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVCheckbox.h; sourceTree = "<group>"; };
 		C92C27431AC15A7200E472C9 /* SVCheckbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVCheckbox.m; sourceTree = "<group>"; };
+		C94DC03C1ADFB6550058033A /* WebDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebDetailViewController.h; sourceTree = "<group>"; };
+		C94DC03D1ADFB6550058033A /* WebDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebDetailViewController.m; sourceTree = "<group>"; };
 		C94DFD651ABFEF970043B896 /* MaintainEnterpriseInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaintainEnterpriseInformationViewController.h; path = Controller/MaintainEnterpriseInformationViewController.h; sourceTree = "<group>"; };
 		C94DFD661ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaintainEnterpriseInformationViewController.m; path = Controller/MaintainEnterpriseInformationViewController.m; sourceTree = "<group>"; };
 		C94DFD681ABFF9B20043B896 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
@@ -527,6 +530,8 @@
 				C9B3243E1AC705800089A297 /* STNavigationWebPageViewController.m */,
 				C9147B1B1AD575F500955F2A /* BaseEGOTableViewPullRefreshView_OldController.h */,
 				C9147B1C1AD575F500955F2A /* BaseEGOTableViewPullRefreshView_OldController.m */,
+				C94DC03C1ADFB6550058033A /* WebDetailViewController.h */,
+				C94DC03D1ADFB6550058033A /* WebDetailViewController.m */,
 			);
 			name = "公共";
 			sourceTree = "<group>";
@@ -950,6 +955,7 @@
 				C9BA43881ABC977100B73485 /* ElectricianManagerViewController.m in Sources */,
 				C9E5A98B1AC0137800FE38F0 /* EnterpriseNameModifyViewController.m in Sources */,
 				C92C273A1AC1346100E472C9 /* ElectricianManagerAddViewController.m in Sources */,
+				C94DC03E1ADFB6550058033A /* WebDetailViewController.m in Sources */,
 				C971A8321ADF939F0046D428 /* ElecLoadDetailChartViewController.m in Sources */,
 				C9BA43421ABC785C00B73485 /* Common.m in Sources */,
 				C94DFD6A1ABFF9B20043B896 /* NSString+Utils.m in Sources */,

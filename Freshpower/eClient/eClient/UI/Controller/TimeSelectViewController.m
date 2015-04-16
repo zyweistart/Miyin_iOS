@@ -97,7 +97,7 @@
     }
     NSMutableString *ms=[[NSMutableString alloc]init];
     for(id str in selectedMarks){
-        [ms appendFormat:@"%@,",str];
+        [ms appendFormat:@"%@-",str];
     }
     NSRange deleteRange = {[ms length]-1,1};
     [ms deleteCharactersInRange:deleteRange];

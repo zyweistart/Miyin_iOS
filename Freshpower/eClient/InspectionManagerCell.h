@@ -11,7 +11,9 @@
 #import "SVCheckbox.h"
 #import "SVButton.h"
 
-@interface InspectionManagerCell : UITableViewCell<UITableViewDelegate,UITableViewDataSource,ResultDelegate>
+@interface InspectionManagerCell : UITableViewCell<UITableViewDelegate,UITableViewDataSource,ResultDelegate,HttpViewDelegate>
+
+@property (strong,nonatomic) HttpRequest *hRequest;
 
 @property (strong,nonatomic) UITableView *tableView;
 @property (strong,nonatomic) NSMutableArray *dataItemArray;

@@ -230,42 +230,82 @@
 
 - (void)submit:(id)sender
 {
-//    if([@"" isEqualToString:taskUser]){
-//        [Common alert:@"请设置巡检人员"];
-//        return;
-//    }
-//    NSString *str1=[svTextField1.tf text];
-//    NSString *str2=[svTextField2.tf text];
-//    NSString *str3=[svTextField3.tf text];
-//    NSString *str4=[svTextField4.tf text];
-//    NSLog(@"1:%@\n2:%@\n3:%@\n4:%@\n5:%@\n6:%@\n7:%@",timeString,str1,str2,str3,str4,dSET_TYPE,taskUser);
-
-    for(id d in headShow){
-        NSLog(@"%@",d);
+    if([@"" isEqualToString:taskUser]){
+        [Common alert:@"请设置巡检人员"];
+        return;
     }
-    
-//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-//    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
-//    [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
-//    [params setObject:@"TS004" forKey:@"GNID"];
-//    [params setObject:[self.paramData objectForKey:@"CP_ID"] forKey:@"QTCP"];
-//    [params setObject:@"" forKey:@"QTKEY"];
-//    [params setObject:@"" forKey:@"QTVAL"];
-//    [params setObject:@"" forKey:@"QTKEY1"];
-//    [params setObject:@"" forKey:@"QTUSER"];
-//    self.hRequest=[[HttpRequest alloc]init];
-//    [self.hRequest setRequestCode:500];
-//    [self.hRequest setDelegate:self];
-//    [self.hRequest setController:self];
-//    [self.hRequest handle:URL_appTaskingFps requestParams:params];
-//    [self.delegate onControllerResult:500 data:nil];
-//    [self.navigationController popViewControllerAnimated:YES];
+    NSString *str1=[svTextField1.tf text];
+    NSString *str2=[svTextField2.tf text];
+    NSString *str3=[svTextField3.tf text];
+    NSString *str4=[svTextField4.tf text];
+//    NSLog(@"1:%@\n2:%@\n3:%@\n4:%@\n5:%@\n6:%@\n7:%@",timeString,str1,str2,str3,str4,dSET_TYPE,taskUser);
+    NSMutableString *ms=[[NSMutableString alloc]init];
+    NSMutableString *types=[[NSMutableString alloc]init];
+    for(id d in headShow){
+        NSString *TYPE=[d objectForKey:@"MODEL_TYPE"];
+        if([@"1"isEqualToString:TYPE]){
+            if(![@"" isEqualToString:timeString]){
+                [ms appendFormat:@"%@,",timeString];
+            }else{
+                [Common alert:@"变电站运行记录产表不能为空"];
+                return;
+            }
+        }else if([@"2"isEqualToString:TYPE]){
+            if(![@"" isEqualToString:str1]){
+                [ms appendFormat:@"%@,",str1];
+            }else{
+                [Common alert:@"变电站电气设备日常巡检不能为空"];
+                return;
+            }
+        }else if([@"3"isEqualToString:TYPE]){
+            if(![@"" isEqualToString:str2]){
+                [ms appendFormat:@"%@,",str2];
+            }else{
+                [Common alert:@"高温季节配电房测温表不能为空"];
+                return;
+            }
+        }else if([@"4"isEqualToString:TYPE]){
+            if(![@"" isEqualToString:str3]){
+                [ms appendFormat:@"%@,",str3];
+            }else{
+                [Common alert:@"梅雨季节巡视记录表不能为空"];
+                return;
+            }
+        }else if([@"5"isEqualToString:TYPE]){
+            if(![@"" isEqualToString:str4]){
+                [ms appendFormat:@"%@,",str4];
+            }else{
+                [Common alert:@"特殊巡视记录表不能为空"];
+                return;
+            }
+        }
+        [types appendFormat:@"%@,",TYPE];
+    }
+    NSRange deleteRange1 = {[types length]-1,1};
+    [types deleteCharactersInRange:deleteRange1];
+    NSRange deleteRange = {[ms length]-1,1};
+    [ms deleteCharactersInRange:deleteRange];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
+    [params setObject:[[User Instance]getPassword] forKey:@"authentication"];
+    [params setObject:@"TS004" forKey:@"GNID"];
+    [params setObject:[self.paramData objectForKey:@"CP_ID"] forKey:@"QTCP"];
+    [params setObject:types forKey:@"QTKEY"];
+    [params setObject:ms forKey:@"QTVAL"];
+    [params setObject:dSET_TYPE forKey:@"QTKEY1"];
+    [params setObject:taskUser forKey:@"QTUSER"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:URL_appTaskingFps requestParams:params];
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){
-        [self.delegate onControllerResult:500 data:nil];
+//        [self.delegate onControllerResult:500 data:nil];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
