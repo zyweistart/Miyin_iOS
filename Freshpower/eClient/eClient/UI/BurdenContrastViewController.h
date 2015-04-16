@@ -8,7 +8,7 @@
 
 #import "BaseTableViewController.h"
 
-@interface BurdenContrastViewController : BaseTableViewController
+@interface BurdenContrastViewController : BaseTableViewController<UIActionSheetDelegate>
 
 @property (strong,nonatomic) NSString *currentUrl;
 

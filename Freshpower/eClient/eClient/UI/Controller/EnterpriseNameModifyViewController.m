@@ -101,7 +101,8 @@
     }else if(reqCode==501){
         if([response successFlag]){
             [[User Instance] setCPName:[tfName.tf text]];
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+//            [self.navigationController popViewControllerAnimated:YES];
         }
     }
 }

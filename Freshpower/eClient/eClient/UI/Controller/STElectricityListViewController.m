@@ -112,15 +112,13 @@
     }
 }
 
-
-
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:[[User Instance] getCPNameId] forKey:@"CP_ID"];
     [params setObject:[searchData objectForKey:@"MeterName"] forKey:@"MeterName"];
     [params setObject:selectTypeValue==0?@"Day":@"Month" forKey:@"SelectType"];
-    [params setObject:[NSString stringWithFormat: @"%d",[self currentPage]] forKey:@"PageIndex"];
+    [params setObject:[NSString stringWithFormat: @"%ld",[self currentPage]] forKey:@"PageIndex"];
     [params setObject:[NSString stringWithFormat: @"%@",PAGESIZE] forKey:@"PageSize"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];

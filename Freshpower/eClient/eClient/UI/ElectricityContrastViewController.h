@@ -8,7 +8,7 @@
 
 #import "BaseTableViewController.h"
 
-@interface ElectricityContrastViewController : BaseTableViewController
+@interface ElectricityContrastViewController : BaseTableViewController<UIActionSheetDelegate>
 
 @property (strong,nonatomic) NSString *currentUrl;
 
