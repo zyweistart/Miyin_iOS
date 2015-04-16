@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 freshpower. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseViewController.h"
 
-@interface BurdenContrastViewController : BaseTableViewController<UIActionSheetDelegate>
+@interface BurdenContrastViewController : BaseViewController<UIActionSheetDelegate,UIWebViewDelegate>
 
 @property (strong,nonatomic) NSString *currentUrl;
 

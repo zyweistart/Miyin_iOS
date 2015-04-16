@@ -32,6 +32,9 @@
 		C962208E1ADE634100F7E92E /* BurdenContrastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C962208D1ADE634100F7E92E /* BurdenContrastViewController.m */; };
 		C9705BFF1ADCF038009B4D95 /* DetailIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9705BFE1ADCF038009B4D95 /* DetailIntroductionViewController.m */; };
 		C9705C021ADCFEBD009B4D95 /* RunStatusInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9705C011ADCFEBD009B4D95 /* RunStatusInfoViewController.m */; };
+		C971A82C1ADF8DBB0046D428 /* ElecLoadDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A82B1ADF8DBB0046D428 /* ElecLoadDetailViewController.m */; };
+		C971A82F1ADF90D20046D428 /* ElecLoadDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A82E1ADF90D20046D428 /* ElecLoadDetailCell.m */; };
+		C971A8321ADF939F0046D428 /* ElecLoadDetailChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C971A8311ADF939F0046D428 /* ElecLoadDetailChartViewController.m */; };
 		C97520361ADDFF7D001B973B /* WarnComapnyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C97520351ADDFF7D001B973B /* WarnComapnyInfoViewController.m */; };
 		C9B0D1CA1ACA31280056E69A /* STWarnComapnyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B0D1C91ACA31280056E69A /* STWarnComapnyViewController.m */; };
 		C9B0D1CD1ACA31B10056E69A /* STAlarmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B0D1CC1ACA31B10056E69A /* STAlarmCell.m */; };
@@ -172,6 +175,12 @@
 		C9705BFE1ADCF038009B4D95 /* DetailIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailIntroductionViewController.m; sourceTree = "<group>"; };
 		C9705C001ADCFEBD009B4D95 /* RunStatusInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunStatusInfoViewController.h; sourceTree = "<group>"; };
 		C9705C011ADCFEBD009B4D95 /* RunStatusInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunStatusInfoViewController.m; sourceTree = "<group>"; };
+		C971A82A1ADF8DBB0046D428 /* ElecLoadDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElecLoadDetailViewController.h; sourceTree = "<group>"; };
+		C971A82B1ADF8DBB0046D428 /* ElecLoadDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElecLoadDetailViewController.m; sourceTree = "<group>"; };
+		C971A82D1ADF90D20046D428 /* ElecLoadDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElecLoadDetailCell.h; sourceTree = "<group>"; };
+		C971A82E1ADF90D20046D428 /* ElecLoadDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElecLoadDetailCell.m; sourceTree = "<group>"; };
+		C971A8301ADF939F0046D428 /* ElecLoadDetailChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElecLoadDetailChartViewController.h; sourceTree = "<group>"; };
+		C971A8311ADF939F0046D428 /* ElecLoadDetailChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElecLoadDetailChartViewController.m; sourceTree = "<group>"; };
 		C97520341ADDFF7D001B973B /* WarnComapnyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarnComapnyInfoViewController.h; sourceTree = "<group>"; };
 		C97520351ADDFF7D001B973B /* WarnComapnyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarnComapnyInfoViewController.m; sourceTree = "<group>"; };
 		C9B0D1C81ACA31280056E69A /* STWarnComapnyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STWarnComapnyViewController.h; path = Controller/STWarnComapnyViewController.h; sourceTree = "<group>"; };
@@ -353,6 +362,10 @@
 				C9B0D1D11ACA43900056E69A /* STBurdenDetailListViewController.m */,
 				C962208C1ADE634100F7E92E /* BurdenContrastViewController.h */,
 				C962208D1ADE634100F7E92E /* BurdenContrastViewController.m */,
+				C971A82A1ADF8DBB0046D428 /* ElecLoadDetailViewController.h */,
+				C971A82B1ADF8DBB0046D428 /* ElecLoadDetailViewController.m */,
+				C971A8301ADF939F0046D428 /* ElecLoadDetailChartViewController.h */,
+				C971A8311ADF939F0046D428 /* ElecLoadDetailChartViewController.m */,
 			);
 			name = "企业负荷";
 			sourceTree = "<group>";
@@ -782,6 +795,8 @@
 				C9B0D1CC1ACA31B10056E69A /* STAlarmCell.m */,
 				C9C54A121AD56E73004CA911 /* STElectricityCell.h */,
 				C9C54A131AD56E73004CA911 /* STElectricityCell.m */,
+				C971A82D1ADF90D20046D428 /* ElecLoadDetailCell.h */,
+				C971A82E1ADF90D20046D428 /* ElecLoadDetailCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -921,6 +936,7 @@
 			files = (
 				C9BA43461ABC785C00B73485 /* UIButton+TitleImage.m in Sources */,
 				00BAB6B11AC0520100B1C849 /* InspectionManagerCell.m in Sources */,
+				C971A82C1ADF8DBB0046D428 /* ElecLoadDetailViewController.m in Sources */,
 				C9C549FD1AD55026004CA911 /* ModifyPwdViewController.m in Sources */,
 				C9B0D1D41ACA43900056E69A /* STBurdenDetailListViewController.m in Sources */,
 				C94DFD671ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m in Sources */,
@@ -934,6 +950,7 @@
 				C9BA43881ABC977100B73485 /* ElectricianManagerViewController.m in Sources */,
 				C9E5A98B1AC0137800FE38F0 /* EnterpriseNameModifyViewController.m in Sources */,
 				C92C273A1AC1346100E472C9 /* ElectricianManagerAddViewController.m in Sources */,
+				C971A8321ADF939F0046D428 /* ElecLoadDetailChartViewController.m in Sources */,
 				C9BA43421ABC785C00B73485 /* Common.m in Sources */,
 				C94DFD6A1ABFF9B20043B896 /* NSString+Utils.m in Sources */,
 				C92C27341AC1344800E472C9 /* ElectricianManagerListViewController.m in Sources */,
@@ -969,6 +986,7 @@
 				C9BA43971ABC981D00B73485 /* DGSQViewController.m in Sources */,
 				C9B324481AC7187D0089A297 /* SVTextView.m in Sources */,
 				C9B0D1E51ACA4ADC0056E69A /* EnterpriseCell.m in Sources */,
+				C971A82F1ADF90D20046D428 /* ElecLoadDetailCell.m in Sources */,
 				C92C27441AC15A7200E472C9 /* SVCheckbox.m in Sources */,
 				00BAB6AE1AC0508100B1C849 /* EDGManagerCell.m in Sources */,
 				C9C54A111AD56E39004CA911 /* STElectricityListViewController.m in Sources */,

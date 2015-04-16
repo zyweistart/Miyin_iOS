@@ -28,7 +28,7 @@
         
         UIScrollView *scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        [scrollFrame setContentSize:CGSizeMake1(320, 600)];
+        [scrollFrame setContentSize:CGSizeMake1(320, 650)];
         [self.view addSubview:scrollFrame];
         UIView *topView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 100)];
         [topView setBackgroundColor:TOPBGCOLOR];
@@ -42,7 +42,7 @@
         [lbl setFont:[UIFont systemFontOfSize:17]];
         [lbl setTextColor:[UIColor whiteColor]];
         [topView addSubview:lbl];
-        UIView *middleView=[[UIView alloc]initWithFrame:CGRectMake1(0, 100, 320, 500)];
+        UIView *middleView=[[UIView alloc]initWithFrame:CGRectMake1(0, 100, 320, 550)];
         [scrollFrame addSubview:middleView];
         topView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
         [topView setBackgroundColor:MIDDLEBGCOLOR];
