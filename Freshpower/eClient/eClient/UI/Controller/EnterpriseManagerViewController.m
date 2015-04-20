@@ -239,8 +239,8 @@
 - (void)add2:(UIButton*)sender
 {
     UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@"添加直流屏"
-                          message:@""
+                          initWithTitle:@""
+                          message:@"添加直流屏"
                           delegate:self
                           cancelButtonTitle:@"取消"
                           otherButtonTitles:@"确定",nil];
@@ -387,6 +387,8 @@
         [self.tableView reloadData];
         [eLName1.tf setText:@""];
         [eLMul1.tf setText:@""];
+        [eLName1 resignFirstResponder];
+        [eLMul1 resignFirstResponder];
         [inputView1 setHidden:YES];
     }else if(sender.tag==2){
         NSString *name=[eLName2.tf text];
@@ -435,6 +437,9 @@
         [eLName2.tf setText:@""];
         [eLLevel.tf setText:@""];
         [eLMul2.tf setText:@""];
+        [eLName2.tf resignFirstResponder];
+        [eLLevel.tf resignFirstResponder];
+        [eLMul2.tf resignFirstResponder];
         [inputView2 setHidden:YES];
     }
 }

@@ -57,6 +57,16 @@
     if(self){
         if([[User Instance]isLogin]){
             bCpName = [UIButton buttonWithType:UIButtonTypeCustom];
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             [bCpName addTarget:self action:@selector(switchCpName:) forControlEvents:UIControlEventTouchUpInside];
             UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
                                                     initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
@@ -195,8 +205,11 @@
             //计算实际需要得视图大小
             CGSize labelSize = [cpName sizeWithFont:font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByClipping];
             [bCpName setTitle:cpName forState:UIControlStateNormal];
-            bCpName.frame = CGRectMake(0, 0, labelSize.width, labelSize.height);
+            bCpName.frame = CGRectMake(0, 0, labelSize.width+23, labelSize.height);
             [bCpName.titleLabel setFont:font];
+            [bCpName setImage:[UIImage imageNamed:@"arrowdown"] forState:UIControlStateNormal];
+            [bCpName setTitleEdgeInsets:UIEdgeInsetsMake(0, -23, 0, 23)];
+            [bCpName setImageEdgeInsets:UIEdgeInsetsMake(0, labelSize.width, 0, -labelSize.width)];
         }
     }
 }
@@ -471,7 +484,7 @@
 
 - (void)goForWeb:(id)sender
 {
-    [self.navigationController pushViewController:[[WebDetailViewController alloc]initWithType:1 Url:@"http://www.baidu.com"] animated:YES];
+    [self.navigationController pushViewController:[[WebDetailViewController alloc]initWithType:1 Url:nil] animated:YES];
 }
 
 @end

@@ -127,7 +127,15 @@
         if(nil == annView) {
             annView = [[MKPinAnnotationView alloc] initWithAnnotation:myAnnotation reuseIdentifier:CPinIdentifier];
         }
-        [annView setImage:[UIImage imageNamed:@"point"]];
+        NSDictionary *data=[currentPoints objectAtIndex:[myAnnotation index]];
+        NSString *IS_ONLINE=[NSString stringWithFormat:@"%@",[data objectForKey:@"IS_ONLINE"]];
+        if([@"0" isEqualToString:IS_ONLINE]){
+            //在线
+            [annView setImage:[UIImage imageNamed:@"point"]];
+        }else{
+            //不在线
+            [annView setImage:[UIImage imageNamed:@"nopoint"]];
+        }
         UIButton *icon=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20,20)];
         [icon setImage:[UIImage imageNamed:@"勾"] forState:UIControlStateNormal];
         annView.rightCalloutAccessoryView=icon;
@@ -192,11 +200,16 @@
                 NSDictionary *d=[currentPoints objectAtIndex:i];
                 double lat=[[d objectForKey:@"LATITUDE"]doubleValue];
                 double longit=[[d objectForKey:@"LONGITUDE"]doubleValue];
-                NSString *name=[d objectForKey:@"NAME"];
                 NSString *MB=[d objectForKey:@"MB"];
+                NSString *GRAB_COUNT=[d objectForKey:@"GRAB_COUNT"];
+                NSString *IS_ONLINE=[NSString stringWithFormat:@"%@",[d objectForKey:@"IS_ONLINE"]];
+                if([@"0" isEqualToString:IS_ONLINE]){
+                    //在线
+                    MB=[d objectForKey:@"mb2"];
+                }
                 CustomAnnotation *annotation1 = [[CustomAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(lat,longit)];
-                annotation1.title = name;
-                annotation1.subtitle = MB;
+                annotation1.title = MB;
+                annotation1.subtitle =[NSString stringWithFormat:@"接单数:%@",GRAB_COUNT];
                 [annotation1 setIndex:i];
                 [self.mapView addAnnotation:annotation1];
             }
@@ -218,6 +231,10 @@
         [btnSwitch setBackgroundImage:[UIImage imageNamed:@"map"]forState:UIControlStateNormal];
         [self.mapView setHidden:YES];
         [self.tableView setHidden:NO];
+        if(!self.tableView.pullTableIsRefreshing) {
+            self.tableView.pullTableIsRefreshing=YES;
+            [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+        }
     }else{
         [btnSwitch setBackgroundImage:[UIImage imageNamed:@"list"]forState:UIControlStateNormal];
         [self.mapView setHidden:NO];
@@ -236,7 +253,13 @@
         }
         NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
         NSLog(@"%@",data);
-        [cell.textLabel setText:[data objectForKey:@"MB"]];
+        NSString *IS_ONLINE=[NSString stringWithFormat:@"%@",[data objectForKey:@"IS_ONLINE"]];
+        if([@"0" isEqualToString:IS_ONLINE]){
+            [cell.textLabel setText:[data objectForKey:@"mb2"]];
+        }else{
+            [cell.textLabel setText:[data objectForKey:@"MB"]];
+        }
+        [cell.detailTextLabel setText:[NSString stringWithFormat:@"接单数:%@",[data objectForKey:@"GRAB_COUNT"]]];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];

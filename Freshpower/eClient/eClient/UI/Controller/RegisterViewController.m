@@ -11,6 +11,7 @@
 #import "SVButton.h"
 #import "SVCheckbox.h"
 #import "NSString+Utils.h"
+#import "WebDetailViewController.h"
 
 #define TITLE1COLOR [UIColor colorWithRed:(150/255.0) green:(150/255.0) blue:(150/255.0) alpha:1]
 #define LINECOLOR [UIColor colorWithRed:(41/255.0) green:(129/255.0) blue:(228/255.0) alpha:1]
@@ -116,7 +117,7 @@
 
 - (void)readMe:(id)sender
 {
-    NSLog(@"服务条款");
+    [self.navigationController pushViewController:[[WebDetailViewController alloc]initWithType:6 Url:nil] animated:YES];
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode

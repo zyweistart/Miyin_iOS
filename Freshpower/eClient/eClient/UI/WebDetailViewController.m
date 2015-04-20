@@ -19,12 +19,7 @@
     self = [super init];
     if (self) {
         [self setTitle:@"产品介绍"];
-        UIImageView *headView=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
-        [headView setImage:[UIImage imageNamed:@"buy"]];
-        [headView setUserInteractionEnabled:YES];
-        [headView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goFeedBack:)]];
         self.webView1 = [[UIWebView alloc] initWithFrame:self.view.bounds];
-        [self.webView1 addSubview:headView];
         [self.webView1 setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.webView1 setUserInteractionEnabled:YES];
         [self.webView1 setScalesPageToFit:YES];
@@ -45,11 +40,16 @@
             }else if(type==5){
                 urlName=@"www.bundle/process.html";
             }else if(type==6){
-                urlName=@"www.bundle/loss_power_Setup.html";
+                urlName=@"www.bundle/registerAgreement.html";
             }
             NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:urlName];
             [self.webView1 loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath: path]]];
         }else{
+            UIImageView *headView=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
+            [headView setImage:[UIImage imageNamed:@"buy"]];
+            [headView setUserInteractionEnabled:YES];
+            [headView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goFeedBack:)]];
+            [self.webView1 addSubview:headView];
             [self.webView1 loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
         }
     }
