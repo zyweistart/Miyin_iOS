@@ -8,6 +8,11 @@
 
 #import "BaseViewController.h"
 
-@interface WebDetailViewController : BaseViewController
+@interface WebDetailViewController : BaseViewController<UIWebViewDelegate>
+
+
+- (id)initWithType:(int)type Url:(NSString*)url;
+
+@property UIWebView *webView1;
 
 @end

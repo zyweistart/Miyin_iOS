@@ -28,9 +28,9 @@
 #define crmWebSite @"http://122.224.247.219:8083/Administrator"
 #else
 //正式环境定义的常量
-#define etgWebSite @"http://122.224.247.221:7007/WEB/mobile"
-#define fpsWebSite @"http://122.224.247.221:7003/WEB/mobile"
-#define crmWebSite @"http://122.224.247.219:8083/Administrator"
+#define etgWebSite @"http://60.191.92.132:7006/web/mobile/"
+#define fpsWebSite @"http://60.191.92.132:7003/web/mobile/"
+#define crmWebSite @"http://122.224.247.219:8081/Administrator/"
 #endif
 
 #define SERVER_URL(URL,ACTION) [NSString stringWithFormat:@"%@/%@",URL,ACTION]
@@ -70,6 +70,7 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 }
 //新能量客服电话
 #define CUSTOMERSERVICETEL @"4008263365"
+#define DEFAULTDATA_LASTVERSIONNO @"DEFAULTDATA_LASTVERSIONNO"
 
 #define URL_AppIndexRunStatus SERVER_URL(fpsWebSite,@"AppIndexRunStatus.aspx")
 #define URL_AppHisMeterElec SERVER_URL(fpsWebSite,@"AppHisMeterElec.aspx")
@@ -83,5 +84,5 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 #define URL_appDistributeTasks SERVER_URL(etgWebSite,@"tasks/appDistributeTasks.aspx")
 #define URL_appTaskingPower SERVER_URL(etgWebSite,@"INSPT/appTaskingPower.aspx")
 #define URL_AppCustomerInterface SERVER_URL(etgWebSite,@"AppCustomerInterface.aspx")
-
+#define URL_news SERVER_URL(fpsWebSite,@"news.aspx")
 #endif

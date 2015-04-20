@@ -1,0 +1,32 @@
+/*====================================================================
+Title : style.css
+Author : piglet 
+URL : 
+Description : For all pages
+Created : 2015/1/8
+Modified : 
+====================================================================*/
+
+body{
+	background:#F7F7F7;
+	font-family:"Microsoft YaHei",SimHei;
+	margin:0px;
+}
+.fullwidth{
+	display:block;
+	min-width:100%;
+	max-width:100%;
+}
+img.fullwidth,
+img.btnwidth {
+	image-rendering:optimizeQuality;
+	-ms-interpolation-mode:bicubic;
+}
+.btnwidth{
+	display:block;
+	min-width:90%;
+	max-width:90%;
+}
+.btnBox{
+	margin:1.5em 0;
+}

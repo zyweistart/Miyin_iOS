@@ -172,9 +172,11 @@
             NSString *responseString=[pageSource stringByReplacingPercentEscapesUsingEncoding:gbkEncoding];
             Response *response=[Response toData:responseString];
             //成功标记
-            [response setSuccessFlag:[@"1" isEqualToString:[response code]]];
-            if(![response successFlag]){
-                [Common alert:[response msg]];
+            if([response code]){
+                [response setSuccessFlag:[@"1" isEqualToString:[response code]]];
+                if(![response successFlag]){
+                    [Common alert:[response msg]];
+                }
             }
             [_delegate requestFinishedByResponse:response requestCode:self.requestCode];
         }

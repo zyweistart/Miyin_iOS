@@ -7,6 +7,7 @@
 //
 
 #import "WarnComapnyInfoViewController.h"
+#import "WebDetailViewController.h"
 
 #define TITLE1COLOR [UIColor colorWithRed:(220/255.0) green:(220/255.0) blue:(220/255.0) alpha:1]
 
@@ -54,7 +55,8 @@
 
 - (void)goOpen:(id)sender
 {
-    NSLog(@"url%@",self.currentUrl);
+    [self.navigationController pushViewController:[[WebDetailViewController alloc]initWithType:1 Url:@""] animated:YES];
+//    NSLog(@"url%@",self.currentUrl);
 }
 
 @end

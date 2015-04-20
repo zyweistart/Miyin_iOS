@@ -30,6 +30,7 @@
 #import "WarnComapnyInfoViewController.h"
 #import "ElectricityContrastViewController.h"
 #import "BurdenContrastViewController.h"
+#import "WebDetailViewController.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 #define LINECOLOR  [UIColor colorWithRed:(230/255.0) green:(230/255.0) blue:(230/255.0) alpha:1]
@@ -37,8 +38,10 @@
 #define MAIN2BGCOLOR [UIColor colorWithRed:(155/255.0) green:(207/255.0) blue:(64/255.0) alpha:1]
 #define MAIN3BGCOLOR [UIColor colorWithRed:(90/255.0) green:(170/255.0) blue:(230/255.0) alpha:1]
 #define MAIN4BGCOLOR [UIColor colorWithRed:(254/255.0) green:(158/255.0) blue:(25/255.0) alpha:1]
+#define BRCOLOR [UIColor colorWithRed:(120/255.0) green:(120/255.0) blue:(120/255.0) alpha:0.5]
 
 #define TOPIMAGENUM 3
+#define DOWNLOADPIC 500
 
 @interface HomeViewController ()
 
@@ -68,12 +71,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIScrollView *scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
-    [scrollFrame setContentSize:CGSizeMake1(320, 659)];
+    [scrollFrame setContentSize:CGSizeMake1(320, 610)];
     [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     [scrollFrame setBackgroundColor:LINECOLOR];
     [self.view addSubview:scrollFrame];
     //上
-    int IMAGEHEIGHT=199;
+    int IMAGEHEIGHT=150;
     ETFoursquareImages *foursquareImages = [[ETFoursquareImages alloc] initWithFrame:CGRectMake1(0, 0, 320,IMAGEHEIGHT)];
     [foursquareImages setImagesHeight:CGHeight(IMAGEHEIGHT)];
     
@@ -110,6 +113,20 @@
     }
     [foursquareImages setImages:images];
     [scrollFrame addSubview:foursquareImages];
+    
+    UIView *fourView=[[UIView alloc]initWithFrame:CGRectMake1(0, IMAGEHEIGHT-40, 320, 40)];
+    [fourView setBackgroundColor:BRCOLOR];
+    UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 180, 40)];
+    [lbl setText:@"我的变配电管理"];
+    [lbl setFont:[UIFont systemFontOfSize:15]];
+    [lbl setTextColor:[UIColor whiteColor]];
+    [lbl setTextAlignment:NSTextAlignmentLeft];
+    [fourView addSubview:lbl];
+    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(270, 0, 40, 40)];
+    [button setImage:[UIImage imageNamed:@"ic_answer_p"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(goForWeb:) forControlEvents:UIControlEventTouchUpInside];
+    [fourView addSubview:button];
+    [foursquareImages addSubview:fourView];
     //中
     UIView *middleFrame=[[UIView alloc]initWithFrame:CGRectMake1(0,IMAGEHEIGHT, 320, 180)];
     [middleFrame setBackgroundColor:[UIColor whiteColor]];
@@ -147,7 +164,7 @@
     [line setBackgroundColor:LINECOLOR];
     [middleFrame addSubview:line];
     //下
-    UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(0,389, 320, 270)];
+    UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(0,340, 320, 270)];
     [bottomFrame setBackgroundColor:[UIColor whiteColor]];
     [scrollFrame addSubview:bottomFrame];
     [bottomFrame addSubview:[self setFrameView:10 Y:10 byRoundingCorners:UIRectCornerTopLeft ImageNamed:@"外包变配电站" MainTitle:@"外包变配电站" ChildTitle:@"让您省心、放心；享受更专业，更经济的服务" bgColor:MAIN1BGCOLOR Tag:1]];
@@ -159,6 +176,8 @@
     [iconImage setImage:[UIImage imageNamed:@"tx"]];
     [iconImage setContentMode:UIViewContentModeCenter];
     [bottomFrame addSubview:iconImage];
+    
+    [self downLoadPicture];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -365,6 +384,94 @@
 - (void)switchCpName:(id)sender
 {
     [self.navigationController pushViewController:[[MaintainEnterpriseInformationViewController alloc]init] animated:YES];
+}
+
+//下载图片
+- (void)downLoadPicture
+{
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"2" forKey:@"type"];
+    [params setObject:[NSString stringWithFormat:@"%d",TOPIMAGENUM] forKey:@"num"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:DOWNLOADPIC];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest handle:URL_news requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if(reqCode==DOWNLOADPIC){
+        NSArray *array=[[response resultJSON]objectForKey:@"FILE_NAMES"];
+        if(array==nil){
+            return;
+        }
+        NSString *URL=[[response resultJSON]objectForKey:@"URL"];
+        db=[[SQLiteOperate alloc]init];
+        [db openDB];
+        [db createTable1];
+        for(int i=0;i<[array count];i++){
+            NSDictionary *data=[array objectAtIndex:i];
+            NSString *FILE_URL=[data objectForKey:@"FILE_URL"];
+            NSString *FILE_NAME=[data objectForKey:@"FILE_NAME"];
+            NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * FROM PIC WHERE URL='%@'",FILE_URL];
+            NSMutableArray *indata=[db query1:sqlQuery];
+            if([indata count]==0){
+                NSString *sql = [NSString stringWithFormat:
+                                 @"INSERT INTO PIC (URL,NAME) VALUES ('%@', '%@')",FILE_URL, FILE_NAME];
+                if([db execSql:sql]){
+                    NSString *DOWN_FILE_NAME=[NSString stringWithFormat:@"%@%@",URL,FILE_NAME];
+                    [self AsynchronousDownloadWithUrl:DOWN_FILE_NAME FileName:FILE_NAME];
+                }
+            }
+        }
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    
+}
+
+- (void)AsynchronousDownloadWithUrl:(NSString *)u FileName:(NSString *)fName
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+    dispatch_async(queue, ^{
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:u]];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            if (data) {
+                //创建文件管理器
+                NSFileManager* fileManager = [NSFileManager defaultManager];
+                //获取临时目录
+                NSString* tmpDir=NSTemporaryDirectory();
+                //更改到待操作的临时目录
+                [fileManager changeCurrentDirectoryPath:[tmpDir stringByExpandingTildeInPath]];
+                NSString *tmpPath = [tmpDir stringByAppendingPathComponent:fName];
+                //创建数据缓冲区
+                NSMutableData* writer = [[NSMutableData alloc] init];
+                //将字符串添加到缓冲中
+                [writer appendData: data];
+                //将其他数据添加到缓冲中
+                //将缓冲的数据写入到临时文件中
+                [writer writeToFile:tmpPath atomically:YES];
+                //获取Documents主目录
+                NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+                //得到相应的Documents的路径
+                NSString* docDir = [paths objectAtIndex:0];
+                //更改到待操作的目录下
+                [fileManager changeCurrentDirectoryPath:[docDir stringByExpandingTildeInPath]];
+                NSString *path = [docDir stringByAppendingPathComponent:fName];
+                //把临时下载好的文件移动到主文档目录下
+                [fileManager moveItemAtPath:tmpPath toPath:path error:nil];
+            }
+        });
+    });
+}
+
+
+- (void)goForWeb:(id)sender
+{
+    [self.navigationController pushViewController:[[WebDetailViewController alloc]initWithType:1 Url:@"http://www.baidu.com"] animated:YES];
 }
 
 @end

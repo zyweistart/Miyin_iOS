@@ -17,6 +17,9 @@
 		C9147B241AD57C7700955F2A /* ETFoursquareImages.m in Sources */ = {isa = PBXBuildFile; fileRef = C9147B231AD57C7700955F2A /* ETFoursquareImages.m */; };
 		C9147B271AD57C9400955F2A /* SQLiteOperate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9147B261AD57C9400955F2A /* SQLiteOperate.m */; };
 		C9147B291AD57CD000955F2A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9147B281AD57CD000955F2A /* libsqlite3.dylib */; };
+		C915F38B1AE4BA4600FC8B4A /* STGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C915F38A1AE4BA4600FC8B4A /* STGuideViewController.m */; };
+		C915F3911AE4BA7800FC8B4A /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = C915F38E1AE4BA7800FC8B4A /* EAIntroPage.m */; };
+		C915F3921AE4BA7800FC8B4A /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = C915F3901AE4BA7800FC8B4A /* EAIntroView.m */; };
 		C91C043B1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91C043A1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m */; };
 		C9277AB81ADB58080019BB7D /* ElectricianMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9277AB71ADB58080019BB7D /* ElectricianMapViewController.m */; };
 		C9277ABB1ADBA93B0019BB7D /* ElectricianDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9277ABA1ADBA93B0019BB7D /* ElectricianDetailViewController.m */; };
@@ -27,6 +30,7 @@
 		C92C27401AC13CE000E472C9 /* CRTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C273D1AC13CE000E472C9 /* CRTableViewCell.m */; };
 		C92C27441AC15A7200E472C9 /* SVCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C27431AC15A7200E472C9 /* SVCheckbox.m */; };
 		C94DC03E1ADFB6550058033A /* WebDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94DC03D1ADFB6550058033A /* WebDetailViewController.m */; };
+		C94DC0401ADFBAB60058033A /* www.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C94DC03F1ADFBAB60058033A /* www.bundle */; };
 		C94DFD671ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94DFD661ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m */; };
 		C94DFD6A1ABFF9B20043B896 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C94DFD691ABFF9B20043B896 /* NSString+Utils.m */; };
 		C962208B1ADE58F900F7E92E /* ElectricityContrastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C962208A1ADE58F900F7E92E /* ElectricityContrastViewController.m */; };
@@ -146,6 +150,12 @@
 		C9147B251AD57C9400955F2A /* SQLiteOperate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteOperate.h; sourceTree = "<group>"; };
 		C9147B261AD57C9400955F2A /* SQLiteOperate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteOperate.m; sourceTree = "<group>"; };
 		C9147B281AD57CD000955F2A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		C915F3891AE4BA4600FC8B4A /* STGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STGuideViewController.h; sourceTree = "<group>"; };
+		C915F38A1AE4BA4600FC8B4A /* STGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STGuideViewController.m; sourceTree = "<group>"; };
+		C915F38D1AE4BA7800FC8B4A /* EAIntroPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroPage.h; sourceTree = "<group>"; };
+		C915F38E1AE4BA7800FC8B4A /* EAIntroPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroPage.m; sourceTree = "<group>"; };
+		C915F38F1AE4BA7800FC8B4A /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
+		C915F3901AE4BA7800FC8B4A /* EAIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroView.m; sourceTree = "<group>"; };
 		C91C04391ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseHeightLowEditCell.h; sourceTree = "<group>"; };
 		C91C043A1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseHeightLowEditCell.m; sourceTree = "<group>"; };
 		C9277AB61ADB58080019BB7D /* ElectricianMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricianMapViewController.h; sourceTree = "<group>"; };
@@ -166,6 +176,7 @@
 		C92C27431AC15A7200E472C9 /* SVCheckbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVCheckbox.m; sourceTree = "<group>"; };
 		C94DC03C1ADFB6550058033A /* WebDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebDetailViewController.h; sourceTree = "<group>"; };
 		C94DC03D1ADFB6550058033A /* WebDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebDetailViewController.m; sourceTree = "<group>"; };
+		C94DC03F1ADFBAB60058033A /* www.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = www.bundle; sourceTree = "<group>"; };
 		C94DFD651ABFEF970043B896 /* MaintainEnterpriseInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaintainEnterpriseInformationViewController.h; path = Controller/MaintainEnterpriseInformationViewController.h; sourceTree = "<group>"; };
 		C94DFD661ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaintainEnterpriseInformationViewController.m; path = Controller/MaintainEnterpriseInformationViewController.m; sourceTree = "<group>"; };
 		C94DFD681ABFF9B20043B896 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
@@ -476,6 +487,8 @@
 		C9147B151AD573C500955F2A /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				C915F3891AE4BA4600FC8B4A /* STGuideViewController.h */,
+				C915F38A1AE4BA4600FC8B4A /* STGuideViewController.m */,
 				C9BA43951ABC981D00B73485 /* DGSQViewController.h */,
 				C9BA43961ABC981D00B73485 /* DGSQViewController.m */,
 				C9BA436E1ABC7B8F00B73485 /* HomeViewController.h */,
@@ -554,6 +567,17 @@
 			path = ETFoursquareImages;
 			sourceTree = "<group>";
 		};
+		C915F38C1AE4BA7800FC8B4A /* EAIntroView */ = {
+			isa = PBXGroup;
+			children = (
+				C915F38D1AE4BA7800FC8B4A /* EAIntroPage.h */,
+				C915F38E1AE4BA7800FC8B4A /* EAIntroPage.m */,
+				C915F38F1AE4BA7800FC8B4A /* EAIntroView.h */,
+				C915F3901AE4BA7800FC8B4A /* EAIntroView.m */,
+			);
+			path = EAIntroView;
+			sourceTree = "<group>";
+		};
 		C9705BFC1ADCEAAB009B4D95 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -565,6 +589,7 @@
 		C9B324401AC7059F0089A297 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C94DC03F1ADFBAB60058033A /* www.bundle */,
 				C9C54A0A1AD55DDA004CA911 /* ichartjs.bundle */,
 				C9B324411AC705C10089A297 /* page.bundle */,
 			);
@@ -666,6 +691,7 @@
 		C9BA43171ABC785C00B73485 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C915F38C1AE4BA7800FC8B4A /* EAIntroView */,
 				C9147B211AD57C7700955F2A /* ETFoursquareImages */,
 				C9BA43181ABC785C00B73485 /* ASIHTTP */,
 				C9BA431B1ABC785C00B73485 /* ATMHud */,
@@ -915,6 +941,7 @@
 				C9BA435A1ABC785C00B73485 /* whiteArrow@2x.png in Resources */,
 				C9BA43581ABC785C00B73485 /* grayArrow@2x.png in Resources */,
 				C9BA43561ABC785C00B73485 /* blueArrow@2x.png in Resources */,
+				C94DC0401ADFBAB60058033A /* www.bundle in Resources */,
 				C9BA43551ABC785C00B73485 /* blueArrow.png in Resources */,
 				C9C54A0B1AD55DDA004CA911 /* ichartjs.bundle in Resources */,
 				C9BA43541ABC785C00B73485 /* blackArrow@2x.png in Resources */,
@@ -953,7 +980,9 @@
 				C9BA434C1ABC785C00B73485 /* ATMProgressLayer.m in Sources */,
 				C9BA435B1ABC785C00B73485 /* MBProgressHUD.m in Sources */,
 				C9BA43881ABC977100B73485 /* ElectricianManagerViewController.m in Sources */,
+				C915F3921AE4BA7800FC8B4A /* EAIntroView.m in Sources */,
 				C9E5A98B1AC0137800FE38F0 /* EnterpriseNameModifyViewController.m in Sources */,
+				C915F38B1AE4BA4600FC8B4A /* STGuideViewController.m in Sources */,
 				C92C273A1AC1346100E472C9 /* ElectricianManagerAddViewController.m in Sources */,
 				C94DC03E1ADFB6550058033A /* WebDetailViewController.m in Sources */,
 				C971A8321ADF939F0046D428 /* ElecLoadDetailChartViewController.m in Sources */,
@@ -961,6 +990,7 @@
 				C94DFD6A1ABFF9B20043B896 /* NSString+Utils.m in Sources */,
 				C92C27341AC1344800E472C9 /* ElectricianManagerListViewController.m in Sources */,
 				C9C54A1D1AD57189004CA911 /* STElectricityView.m in Sources */,
+				C915F3911AE4BA7800FC8B4A /* EAIntroPage.m in Sources */,
 				C9147B201AD5781D00955F2A /* RunOverviewViewController.m in Sources */,
 				C9147B241AD57C7700955F2A /* ETFoursquareImages.m in Sources */,
 				C9C54A1A1AD5715B004CA911 /* STRows4View.m in Sources */,
