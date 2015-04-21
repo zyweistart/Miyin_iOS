@@ -141,9 +141,9 @@
     UIView *middleFrame=[[UIView alloc]initWithFrame:CGRectMake1(0,IMAGEHEIGHT, 320, 180)];
     [middleFrame setBackgroundColor:[UIColor whiteColor]];
     [scrollFrame addSubview:middleFrame];
-    [self addModel:@"企业设备维护" Title:@"设备维护" Frame:middleFrame Tag:1 X:0 Y:0];
-    [self addModel:@"巡检任务管理" Title:@"巡检任务" Frame:middleFrame Tag:2 X:80 Y:0];
-    [self addModel:@"企业电工管理" Title:@"企业电工" Frame:middleFrame Tag:3 X:160 Y:0];
+    [self addModel:@"企业设备维护" Title:@"企业设备维护" Frame:middleFrame Tag:1 X:0 Y:0];
+    [self addModel:@"巡检任务管理" Title:@"巡检任务管理" Frame:middleFrame Tag:2 X:80 Y:0];
+    [self addModel:@"企业电工管理" Title:@"企业电工管理" Frame:middleFrame Tag:3 X:160 Y:0];
     
     [self addModel:@"企业负荷" Title:@"企业负荷" Frame:middleFrame Tag:7 X:0 Y:90];
     [self addModel:@"报警信息" Title:@"报警信息" Frame:middleFrame Tag:4 X:80 Y:90];

@@ -9,6 +9,7 @@
 #import "FindElectricianViewController.h"
 #import "CustomAnnotation.h"
 #import "ElectricianDetailViewController.h"
+#import "MapCell.h"
 
 #define ZOOMLEVEL 0.05f
 #define SEARCHTIPCOLOR [UIColor colorWithRed:(88/255.0) green:(130/255.0) blue:(216/255.0) alpha:1]
@@ -191,6 +192,7 @@
 {
     if(reqCode==500){
         [super requestFinishedByResponse:response requestCode:reqCode];
+        NSLog(@"%@",self.dataItemArray);
     }else if(reqCode==501){
         if([response successFlag]){
             //清除地图上的位置点
@@ -243,23 +245,37 @@
     isCurrentMap=!isCurrentMap;
 }
 
+- (CGFloat)tableView:tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([self.dataItemArray count]>0){
+        return CGHeight(50);
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
         static NSString *cellIdentifier = @"Cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        MapCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if(!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell = [[MapCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
-        NSLog(@"%@",data);
         NSString *IS_ONLINE=[NSString stringWithFormat:@"%@",[data objectForKey:@"IS_ONLINE"]];
         if([@"0" isEqualToString:IS_ONLINE]){
-            [cell.textLabel setText:[data objectForKey:@"mb2"]];
+            [cell.image setImage:[UIImage imageNamed:@"point"]];
+            NSString *md2=[data objectForKey:@"mb2"];
+            [cell.lbl1 setText:[NSString stringWithFormat:@"电话:%@",md2]];
         }else{
-            [cell.textLabel setText:[data objectForKey:@"MB"]];
+            [cell.image setImage:[UIImage imageNamed:@"nopoint"]];
+            NSString *MB=[data objectForKey:@"MB"];
+            [cell.lbl1 setText:[NSString stringWithFormat:@"电话:%@",MB]];
         }
-        [cell.detailTextLabel setText:[NSString stringWithFormat:@"接单数:%@",[data objectForKey:@"GRAB_COUNT"]]];
+        [cell.lbl2 setText:[NSString stringWithFormat:@"评价:%@",[data objectForKey:@"NUM"]]];
+        [cell.lbl3 setText:[NSString stringWithFormat:@"距离:%@",[data objectForKey:@"DISTANCE"]]];
+        [cell.lbl4 setText:[NSString stringWithFormat:@"接单:%@",[data objectForKey:@"GRAB_COUNT"]]];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
