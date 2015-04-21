@@ -10,6 +10,7 @@
 		00BAB6AE1AC0508100B1C849 /* EDGManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BAB6AD1AC0508100B1C849 /* EDGManagerCell.m */; };
 		00BAB6B11AC0520100B1C849 /* InspectionManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BAB6B01AC0520100B1C849 /* InspectionManagerCell.m */; };
 		00BAB6B41AC0608E00B1C849 /* InspectionSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BAB6B31AC0608E00B1C849 /* InspectionSettingViewController.m */; };
+		C91002581AE5D8D000F51562 /* product.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C91002571AE5D8D000F51562 /* product.bundle */; };
 		C910E5931ACA6EA4000084BD /* EnterpriseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C910E5921ACA6EA4000084BD /* EnterpriseDetailViewController.m */; };
 		C910E5961ACA7654000084BD /* EnterpriseHeightLowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C910E5951ACA7654000084BD /* EnterpriseHeightLowCell.m */; };
 		C9147B1D1AD575F500955F2A /* BaseEGOTableViewPullRefreshView_OldController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9147B1C1AD575F500955F2A /* BaseEGOTableViewPullRefreshView_OldController.m */; };
@@ -20,6 +21,7 @@
 		C915F38B1AE4BA4600FC8B4A /* STGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C915F38A1AE4BA4600FC8B4A /* STGuideViewController.m */; };
 		C915F3911AE4BA7800FC8B4A /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = C915F38E1AE4BA7800FC8B4A /* EAIntroPage.m */; };
 		C915F3921AE4BA7800FC8B4A /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = C915F3901AE4BA7800FC8B4A /* EAIntroView.m */; };
+		C915F3951AE4F8A000FC8B4A /* MapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C915F3941AE4F8A000FC8B4A /* MapCell.m */; };
 		C91C043B1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91C043A1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m */; };
 		C9277AB81ADB58080019BB7D /* ElectricianMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9277AB71ADB58080019BB7D /* ElectricianMapViewController.m */; };
 		C9277ABB1ADBA93B0019BB7D /* ElectricianDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9277ABA1ADBA93B0019BB7D /* ElectricianDetailViewController.m */; };
@@ -137,6 +139,7 @@
 		00BAB6B01AC0520100B1C849 /* InspectionManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionManagerCell.m; sourceTree = SOURCE_ROOT; };
 		00BAB6B21AC0608E00B1C849 /* InspectionSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InspectionSettingViewController.h; path = Controller/InspectionSettingViewController.h; sourceTree = "<group>"; };
 		00BAB6B31AC0608E00B1C849 /* InspectionSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InspectionSettingViewController.m; path = Controller/InspectionSettingViewController.m; sourceTree = "<group>"; };
+		C91002571AE5D8D000F51562 /* product.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = product.bundle; sourceTree = "<group>"; };
 		C910E5911ACA6EA4000084BD /* EnterpriseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnterpriseDetailViewController.h; path = Controller/EnterpriseDetailViewController.h; sourceTree = "<group>"; };
 		C910E5921ACA6EA4000084BD /* EnterpriseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EnterpriseDetailViewController.m; path = Controller/EnterpriseDetailViewController.m; sourceTree = "<group>"; };
 		C910E5941ACA7654000084BD /* EnterpriseHeightLowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseHeightLowCell.h; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 		C915F38E1AE4BA7800FC8B4A /* EAIntroPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroPage.m; sourceTree = "<group>"; };
 		C915F38F1AE4BA7800FC8B4A /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
 		C915F3901AE4BA7800FC8B4A /* EAIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroView.m; sourceTree = "<group>"; };
+		C915F3931AE4F8A000FC8B4A /* MapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapCell.h; sourceTree = "<group>"; };
+		C915F3941AE4F8A000FC8B4A /* MapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapCell.m; sourceTree = "<group>"; };
 		C91C04391ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseHeightLowEditCell.h; sourceTree = "<group>"; };
 		C91C043A1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseHeightLowEditCell.m; sourceTree = "<group>"; };
 		C9277AB61ADB58080019BB7D /* ElectricianMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricianMapViewController.h; sourceTree = "<group>"; };
@@ -589,6 +594,7 @@
 		C9B324401AC7059F0089A297 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C91002571AE5D8D000F51562 /* product.bundle */,
 				C94DC03F1ADFBAB60058033A /* www.bundle */,
 				C9C54A0A1AD55DDA004CA911 /* ichartjs.bundle */,
 				C9B324411AC705C10089A297 /* page.bundle */,
@@ -828,6 +834,8 @@
 				C9C54A131AD56E73004CA911 /* STElectricityCell.m */,
 				C971A82D1ADF90D20046D428 /* ElecLoadDetailCell.h */,
 				C971A82E1ADF90D20046D428 /* ElecLoadDetailCell.m */,
+				C915F3931AE4F8A000FC8B4A /* MapCell.h */,
+				C915F3941AE4F8A000FC8B4A /* MapCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -943,6 +951,7 @@
 				C9BA43561ABC785C00B73485 /* blueArrow@2x.png in Resources */,
 				C94DC0401ADFBAB60058033A /* www.bundle in Resources */,
 				C9BA43551ABC785C00B73485 /* blueArrow.png in Resources */,
+				C91002581AE5D8D000F51562 /* product.bundle in Resources */,
 				C9C54A0B1AD55DDA004CA911 /* ichartjs.bundle in Resources */,
 				C9BA43541ABC785C00B73485 /* blackArrow@2x.png in Resources */,
 				C9B324421AC705C10089A297 /* page.bundle in Resources */,
@@ -1000,6 +1009,7 @@
 				C9C54A0E1AD56314004CA911 /* ElectricityTariffViewController.m in Sources */,
 				C9B3243F1AC705800089A297 /* STNavigationWebPageViewController.m in Sources */,
 				C9C54A081AD55CB7004CA911 /* DataPickerView.m in Sources */,
+				C915F3951AE4F8A000FC8B4A /* MapCell.m in Sources */,
 				C9D1CCCE1AC2AE9E0070FACC /* TimeSelectViewController.m in Sources */,
 				C9BA43441ABC785C00B73485 /* HttpRequest.m in Sources */,
 				C9B0D1D51ACA43900056E69A /* STBurdenCell.m in Sources */,

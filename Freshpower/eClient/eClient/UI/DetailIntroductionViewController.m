@@ -55,8 +55,7 @@
         UIWebView *webView=[[UIWebView alloc]initWithFrame:CGRectMake1(0, 110, 320, 440)];
         [middleView addSubview:webView];
         
-        NSString *resourcePath=@"变电站（配电房）运行合作协议";
-        NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"page.bundle/%@.html",resourcePath]];
+        NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"product.bundle/%@.html",title]];
         
         NSURL* url = [NSURL fileURLWithPath:path];
         NSURLRequest* request = [NSURLRequest requestWithURL:url] ;
