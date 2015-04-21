@@ -70,8 +70,8 @@
 - (void)setData:(NSMutableDictionary*)data
 {
     currentData=data;
-    int create=[[currentData objectForKey:@"IS_CREATE"]intValue];
-    if(create>0){
+    NSString *SET_TYPE=[currentData objectForKey:@"SET_TYPE"];
+    if([@"1" isEqualToString:SET_TYPE]){
         [self.pSend setEnabled:NO];
     }else{
         [self.pSend setEnabled:YES];
@@ -146,8 +146,13 @@
 
 - (void)onControllerResult:(NSInteger)resultCode data:(NSMutableDictionary*)result
 {
-    NSLog(@"成功么了%@",result);
-    [self.pSend setEnabled:NO];
+//    NSString *dSET_TYPE=[result objectForKey:@"dSET_TYPE"];
+//    [currentData setObject:dSET_TYPE forKey:@"IS_CREATE"];
+//    if([@"1" isEqualToString:dSET_TYPE]){
+//        [self.pSend setEnabled:NO];
+//    }else{
+//        [self.pSend setEnabled:YES];
+//    }
 }
 
 @end

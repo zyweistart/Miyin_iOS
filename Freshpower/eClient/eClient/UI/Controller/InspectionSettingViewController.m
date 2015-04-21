@@ -103,6 +103,15 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if([headShow count]==0){
+        [Common alert:@"选项为空"];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 - (UIView*)addHeadFrame:(NSString*)title X:(CGFloat)x
 {
     UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0, x, 320, 30)];
@@ -305,7 +314,9 @@
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){
-//        [self.delegate onControllerResult:500 data:nil];
+        NSMutableDictionary *da=[[NSMutableDictionary alloc]init];
+        [da setObject:dSET_TYPE forKey:@"dSET_TYPE"];
+        [self.delegate onControllerResult:500 data:da];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

@@ -443,7 +443,7 @@
         [eLLevel.tf resignFirstResponder];
         [eLMul2.tf resignFirstResponder];
         [inputView2 setHidden:YES];
-    }else{
+    }else if(sender.tag==3){
         NSString *cname=[elName.tf text];
         NSMutableDictionary *data=[[NSMutableDictionary alloc]init];
         [data setObject:cname forKey:@"EQ_NAME"];
@@ -461,6 +461,9 @@
         }
         [self.lowArray addObject:data];
         [self.tableView reloadData];
+        [elName.tf setText:@""];
+        [elName.tf resignFirstResponder];
+        [inputView3 setHidden:YES];
     }
 }
 
