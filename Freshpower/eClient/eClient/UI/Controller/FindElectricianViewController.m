@@ -130,7 +130,7 @@
         }
         NSDictionary *data=[currentPoints objectAtIndex:[myAnnotation index]];
         NSString *IS_ONLINE=[NSString stringWithFormat:@"%@",[data objectForKey:@"IS_ONLINE"]];
-        if([@"0" isEqualToString:IS_ONLINE]){
+        if([@"1" isEqualToString:IS_ONLINE]){
             //在线
             [annView setImage:[UIImage imageNamed:@"point"]];
         }else{
@@ -192,7 +192,6 @@
 {
     if(reqCode==500){
         [super requestFinishedByResponse:response requestCode:reqCode];
-        NSLog(@"%@",self.dataItemArray);
     }else if(reqCode==501){
         if([response successFlag]){
             //清除地图上的位置点
@@ -205,7 +204,7 @@
                 NSString *MB=[d objectForKey:@"MB"];
                 NSString *GRAB_COUNT=[d objectForKey:@"GRAB_COUNT"];
                 NSString *IS_ONLINE=[NSString stringWithFormat:@"%@",[d objectForKey:@"IS_ONLINE"]];
-                if([@"0" isEqualToString:IS_ONLINE]){
+                if([@"1" isEqualToString:IS_ONLINE]){
                     //在线
                     MB=[d objectForKey:@"mb2"];
                 }
@@ -264,7 +263,7 @@
         }
         NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
         NSString *IS_ONLINE=[NSString stringWithFormat:@"%@",[data objectForKey:@"IS_ONLINE"]];
-        if([@"0" isEqualToString:IS_ONLINE]){
+        if([@"1" isEqualToString:IS_ONLINE]){
             [cell.image setImage:[UIImage imageNamed:@"point"]];
             NSString *md2=[data objectForKey:@"mb2"];
             [cell.lbl1 setText:[NSString stringWithFormat:@"电话:%@",md2]];
@@ -274,7 +273,7 @@
             [cell.lbl1 setText:[NSString stringWithFormat:@"电话:%@",MB]];
         }
         [cell.lbl2 setText:[NSString stringWithFormat:@"评价:%@",[data objectForKey:@"NUM"]]];
-        [cell.lbl3 setText:[NSString stringWithFormat:@"距离:%@",[data objectForKey:@"DISTANCE"]]];
+//        [cell.lbl3 setText:[NSString stringWithFormat:@"距离:%@",[data objectForKey:@"DISTANCE"]]];
         [cell.lbl4 setText:[NSString stringWithFormat:@"接单:%@",[data objectForKey:@"GRAB_COUNT"]]];
         return cell;
     }else{

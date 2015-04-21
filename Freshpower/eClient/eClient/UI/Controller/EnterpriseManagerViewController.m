@@ -23,8 +23,8 @@
     SVButton *bAdd1,*bAdd2,*bSort,*bSubmit;
     int tmpRow;
     
-    UIView *inputView1,*inputView2;
-    SVTextField *eLName1,*eLMul1;
+    UIView *inputView1,*inputView2,*inputView3;
+    SVTextField *eLName1,*eLMul1,*elName;
     SVTextField *eLName2,*eLLevel,*eLMul2;
     NSDictionary *currentData;
     NSDictionary *parData;
@@ -83,6 +83,7 @@
         
         [self addInputFrame1];
         [self addInputFrame2];
+        [self addInputFrame3];
     }
     return self;
 }
@@ -238,14 +239,15 @@
 
 - (void)add2:(UIButton*)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@""
-                          message:@"添加直流屏"
-                          delegate:self
-                          cancelButtonTitle:@"取消"
-                          otherButtonTitles:@"确定",nil];
-    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc]
+//                          initWithTitle:@""
+//                          message:@"添加直流屏"
+//                          delegate:self
+//                          cancelButtonTitle:@"取消"
+//                          otherButtonTitles:@"确定",nil];
+//    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+//    [alert show];
+    [inputView3 setHidden:NO];
 }
 
 - (void)sort:(UIButton*)sender
@@ -441,6 +443,24 @@
         [eLLevel.tf resignFirstResponder];
         [eLMul2.tf resignFirstResponder];
         [inputView2 setHidden:YES];
+    }else{
+        NSString *cname=[elName.tf text];
+        NSMutableDictionary *data=[[NSMutableDictionary alloc]init];
+        [data setObject:cname forKey:@"EQ_NAME"];
+        [data setObject:@"" forKey:@"EQ_U_LEVEL"];
+        [data setObject:@"5" forKey:@"EQ_TYPE"];
+        [data setObject:@"" forKey:@"EQ_NO"];
+        [data setObject:@"" forKey:@"EQ_MULTIPLY"];
+        [data setObject:@"0" forKey:@"EQ_SORTNO"];
+        for(id d in self.lowArray){
+            NSString *name=[d objectForKey:@"EQ_NAME"];
+            if([cname isEqualToString:name]){
+                [Common alert:[NSString stringWithFormat:@"%@已经存在，不能重复添加",cname]];
+                return;
+            }
+        }
+        [self.lowArray addObject:data];
+        [self.tableView reloadData];
     }
 }
 
@@ -500,6 +520,7 @@
 {
     [inputView1 setHidden:YES];
     [inputView2 setHidden:YES];
+    [inputView3 setHidden:YES];
 }
 
 - (void)addInputFrame1
@@ -561,6 +582,32 @@
     [bSave addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
     [frame addSubview:bSave];
     [inputView2 setHidden:YES];
+}
+
+- (void)addInputFrame3
+{
+    inputView3=[[UIView alloc]initWithFrame:self.view.bounds];
+    [inputView3 setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    [inputView3 setBackgroundColor:INPUTBGCOLOR];
+    [inputView3 setUserInteractionEnabled:YES];
+    [inputView3 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goHiden:)]];
+    [self.view addSubview:inputView3];
+    UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(10, 10, 300, 150)];
+    [frame setBackgroundColor:[UIColor whiteColor]];
+    [inputView3 addSubview:frame];
+    UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 10, 300, 30)];
+    [lbl setText:@"添加直流屏"];
+    [lbl setTextColor:[UIColor blackColor]];
+    [lbl setFont:[UIFont systemFontOfSize:15]];
+    [frame addSubview:lbl];
+    elName=[[SVTextField alloc]initWithFrame:CGRectMake1(20, 50, 260, 40) Title:@"名称"];
+    [elName.tf setPlaceholder:@"直流屏名称"];
+    [frame addSubview:elName];
+    SVButton *bSave=[[SVButton alloc]initWithFrame:CGRectMake1(10, 100, 280, 40) Title:@"提交" Type:2];
+    bSave.tag=3;
+    [bSave addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+    [frame addSubview:bSave];
+    [inputView3 setHidden:YES];
 }
 
 //重新加载列表数据

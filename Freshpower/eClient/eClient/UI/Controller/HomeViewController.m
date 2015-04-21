@@ -57,16 +57,6 @@
     if(self){
         if([[User Instance]isLogin]){
             bCpName = [UIButton buttonWithType:UIButtonTypeCustom];
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             [bCpName addTarget:self action:@selector(switchCpName:) forControlEvents:UIControlEventTouchUpInside];
             UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
                                                     initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
