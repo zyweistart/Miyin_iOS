@@ -206,12 +206,17 @@
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if(reqCode==500){
-        
         if([response successFlag]){
             NSDictionary *rData=[[response resultJSON] objectForKey:@"Results"];
+            
             if(rData){
                 //当前页
                 self.currentPage=[[NSString stringWithFormat:@"%@",[rData objectForKey:@"PageIndex"]] intValue];
+                int totalCount=[[rData objectForKey:@"TotalCount"]intValue];
+                if([self.dataItemArray count]==totalCount){
+                    [self loadDone];
+                    return;
+                }
             }
             //获取数据列表
             if([self currentPage]==1){
