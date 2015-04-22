@@ -28,8 +28,10 @@
         self.title=@"电量电费";
         [self.view setBackgroundColor:BGCOLOR];
         
+        NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ichartjs.bundle/ChartElectricityTariff.html"];
+        
         UIScrollView *frame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
-        [frame setContentSize:CGSizeMake1(320, 330)];
+        [frame setContentSize:CGSizeMake1(320, 870)];
         [frame setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:frame];
         
@@ -38,15 +40,40 @@
         lblDetailA2=[self addDetail:frame X:70 Title:@"高峰电量"];
         lblDetailA3=[self addDetail:frame X:100 Title:@"低谷电量"];
         lblDetailA4=[self addDetail:frame X:130 Title:@"累计电量"];
-        lblHead2=[self addHead:frame X:170 Title:@"当月电量" Tag:2];
-        lblDetailB1=[self addDetail:frame X:210 Title:@"尖峰电量"];
-        lblDetailB2=[self addDetail:frame X:240 Title:@"高峰电量"];
-        lblDetailB3=[self addDetail:frame X:270 Title:@"低谷电量"];
-        lblDetailB4=[self addDetail:frame X:300 Title:@"累计电量"];
+        
+        UIWebView *webView1 = [[UIWebView alloc] initWithFrame:CGRectMake(0, 170, 320, 250)];
+        [webView1 setUserInteractionEnabled:YES];
+        [webView1 setScalesPageToFit:YES];
+        [webView1 setBackgroundColor:[UIColor clearColor]];
+        [webView1 setOpaque:NO];//使网页透明
+        [webView1 setDelegate:self];
+        [frame addSubview:webView1];
+        [webView1 loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath: path]]];
+        
+        lblHead2=[self addHead:frame X:420 Title:@"当月电量" Tag:2];
+        lblDetailB1=[self addDetail:frame X:460 Title:@"尖峰电量"];
+        lblDetailB2=[self addDetail:frame X:500 Title:@"高峰电量"];
+        lblDetailB3=[self addDetail:frame X:540 Title:@"低谷电量"];
+        lblDetailB4=[self addDetail:frame X:580 Title:@"累计电量"];
+        
+        UIWebView *webView2 = [[UIWebView alloc] initWithFrame:CGRectMake(0, 620, 320, 250)];
+        [webView2 setUserInteractionEnabled:YES];
+        [webView2 setScalesPageToFit:YES];
+        [webView2 setBackgroundColor:[UIColor clearColor]];
+        [webView2 setOpaque:NO];//使网页透明
+        [webView2 setDelegate:self];
+        [frame addSubview:webView2];
+        [webView2 loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath: path]]];
+        
         [self get:0];
         [self get:1];
     }
     return self;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+//    [self performSelector:@selector(loadHttp) withObject:nil afterDelay:0.5];
 }
 
 - (UILabel *)addHead:(UIView *)frame X:(CGFloat)x Title:(NSString*)title Tag:(int)tag

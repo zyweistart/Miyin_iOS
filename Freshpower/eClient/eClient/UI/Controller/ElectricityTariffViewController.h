@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface ElectricityTariffViewController : BaseViewController
+@interface ElectricityTariffViewController : BaseViewController<UIWebViewDelegate>
 
 @end

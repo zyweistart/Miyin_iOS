@@ -31,6 +31,7 @@
 		C92C273A1AC1346100E472C9 /* ElectricianManagerAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C27391AC1346100E472C9 /* ElectricianManagerAddViewController.m */; };
 		C92C27401AC13CE000E472C9 /* CRTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C273D1AC13CE000E472C9 /* CRTableViewCell.m */; };
 		C92C27441AC15A7200E472C9 /* SVCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C27431AC15A7200E472C9 /* SVCheckbox.m */; };
+		C937756B1AE74D080066E3E8 /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C937756A1AE74D080066E3E8 /* XYPieChart.m */; };
 		C94DC03E1ADFB6550058033A /* WebDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94DC03D1ADFB6550058033A /* WebDetailViewController.m */; };
 		C94DC0401ADFBAB60058033A /* www.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C94DC03F1ADFBAB60058033A /* www.bundle */; };
 		C94DFD671ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94DFD661ABFEF970043B896 /* MaintainEnterpriseInformationViewController.m */; };
@@ -179,6 +180,8 @@
 		C92C273D1AC13CE000E472C9 /* CRTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CRTableViewCell.m; path = ../CRTableViewCell.m; sourceTree = "<group>"; };
 		C92C27421AC15A7200E472C9 /* SVCheckbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVCheckbox.h; sourceTree = "<group>"; };
 		C92C27431AC15A7200E472C9 /* SVCheckbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVCheckbox.m; sourceTree = "<group>"; };
+		C93775691AE74D080066E3E8 /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChart.h; sourceTree = "<group>"; };
+		C937756A1AE74D080066E3E8 /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPieChart.m; sourceTree = "<group>"; };
 		C94DC03C1ADFB6550058033A /* WebDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebDetailViewController.h; sourceTree = "<group>"; };
 		C94DC03D1ADFB6550058033A /* WebDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebDetailViewController.m; sourceTree = "<group>"; };
 		C94DC03F1ADFBAB60058033A /* www.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = www.bundle; sourceTree = "<group>"; };
@@ -583,6 +586,15 @@
 			path = EAIntroView;
 			sourceTree = "<group>";
 		};
+		C93775681AE74D080066E3E8 /* XYPieChart */ = {
+			isa = PBXGroup;
+			children = (
+				C93775691AE74D080066E3E8 /* XYPieChart.h */,
+				C937756A1AE74D080066E3E8 /* XYPieChart.m */,
+			);
+			path = XYPieChart;
+			sourceTree = "<group>";
+		};
 		C9705BFC1ADCEAAB009B4D95 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -697,6 +709,7 @@
 		C9BA43171ABC785C00B73485 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C93775681AE74D080066E3E8 /* XYPieChart */,
 				C915F38C1AE4BA7800FC8B4A /* EAIntroView */,
 				C9147B211AD57C7700955F2A /* ETFoursquareImages */,
 				C9BA43181ABC785C00B73485 /* ASIHTTP */,
@@ -1039,6 +1052,7 @@
 				C92C27371AC1345700E472C9 /* ElectricianManagerSearchViewController.m in Sources */,
 				C9BA43731ABC7BA500B73485 /* ProductViewController.m in Sources */,
 				C9BA434F1ABC785C00B73485 /* EGORefreshTableHeaderView.m in Sources */,
+				C937756B1AE74D080066E3E8 /* XYPieChart.m in Sources */,
 				C9BA42E51ABC775A00B73485 /* AppDelegate.m in Sources */,
 				C9BA43761ABC7BB400B73485 /* AnswerViewController.m in Sources */,
 				C9147B271AD57C9400955F2A /* SQLiteOperate.m in Sources */,
