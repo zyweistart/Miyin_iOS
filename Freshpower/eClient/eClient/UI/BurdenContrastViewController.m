@@ -157,6 +157,9 @@
             for(int i=0;i<[table1 count];i++){
                 NSDictionary *d=[table1 objectAtIndex:i];
                 float value=[[Common NSNullConvertEmptyString:[d objectForKey:@"LOAD"]]floatValue];
+                if(type==2||type==3){
+                    value=[[Common NSNullConvertEmptyString:[d objectForKey:@"AVG_LOAD"]]floatValue];
+                }
                 if([table1 count]-1==i&&value<=0){
                     break;
                 }

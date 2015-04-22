@@ -63,8 +63,8 @@
 //    无监测类型用户（可以增加多个企业的）：zhaox07 111111
 //    无监测类型用户（只一个企业的）：15900010001  8888aa
 //    电工：15900010010  8888aa
-    [svUserName.tf setText:@"mn1"];
-    [svPassword.tf setText:@"8888aa"];
+//    [svUserName.tf setText:@"mn1"];
+//    [svPassword.tf setText:@"8888aa"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
