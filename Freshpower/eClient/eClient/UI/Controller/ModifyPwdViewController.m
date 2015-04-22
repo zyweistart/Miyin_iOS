@@ -32,7 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 200)];
+    UIControl *frame=[[UIControl alloc]initWithFrame:CGRectMake1(0, 0, 320, 200)];
+    [frame addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:frame];
     svOldPassword=[[SVTextField alloc]initWithFrame:CGRectMake1(10, 5, 300, 40) Title:@"旧密码"];
     [svOldPassword.tf setClearButtonMode:UITextFieldViewModeWhileEditing];
@@ -98,6 +99,12 @@
     }else{
         [Common alert:@"修改失败"];
     }
+}
+
+- (void)backgroundDoneEditing:(id)sender {
+    [svOldPassword.tf resignFirstResponder];
+    [svNewPassword.tf resignFirstResponder];
+    [svRePassword.tf resignFirstResponder];
 }
 
 @end

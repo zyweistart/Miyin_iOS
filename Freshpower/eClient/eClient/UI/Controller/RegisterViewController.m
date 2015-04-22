@@ -40,9 +40,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIScrollView *scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
+    [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     [scrollFrame setContentSize:CGSizeMake1(320, 330)];
     [self.view addSubview:scrollFrame];
-    UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0, 40, 320, 330)];
+    UIControl *frame=[[UIControl alloc]initWithFrame:CGRectMake1(0, 40, 320, 330)];
+    [frame addTarget:self action:@selector(backgroundDoneEditing:) forControlEvents:UIControlEventTouchDown];
     [scrollFrame addSubview:frame];
     managerImage=[self createHeadTypeSwitch:frame X:52 imageName:@"manager" type:1];
     elecImage=[self createHeadTypeSwitch:frame X:187 imageName:@"elec" type:4];
@@ -168,6 +170,11 @@
 {
     type=[sender.view tag];
     [self showHeadImageType];
+}
+
+- (void)backgroundDoneEditing:(id)sender {
+    [svUserName.tf resignFirstResponder];
+    [svPassword.tf resignFirstResponder];
 }
 
 @end
