@@ -103,9 +103,9 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     if([headShow count]==0){
         [Common alert:@"选项为空"];
         [self.navigationController popViewControllerAnimated:YES];

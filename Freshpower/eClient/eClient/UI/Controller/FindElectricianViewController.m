@@ -77,9 +77,9 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     if(isCurrentMap){
         [self goCurrentLocation];
     }else{

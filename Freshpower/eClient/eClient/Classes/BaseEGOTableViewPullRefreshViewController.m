@@ -23,9 +23,9 @@
 //    [self buildTableViewWithView:self.view];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
 //    if(!self.tableView.pullTableIsRefreshing) {
 //        self.tableView.pullTableIsRefreshing = YES;
 //        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3.0f];

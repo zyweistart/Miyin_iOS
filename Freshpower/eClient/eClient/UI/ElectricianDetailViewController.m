@@ -65,9 +65,9 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     if([[self dataItemArray]count]==0){
         if(!self.tableView.pullTableIsRefreshing) {
             self.tableView.pullTableIsRefreshing=YES;

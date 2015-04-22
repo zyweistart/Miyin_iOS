@@ -74,9 +74,9 @@
     [bottomFrame addSubview:bLogout];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     if([[User Instance]isLogin]){
         [lblAccount setText:[[[User Instance]getResultData]objectForKey:@"NAME"]];
         [self.tableView reloadData];

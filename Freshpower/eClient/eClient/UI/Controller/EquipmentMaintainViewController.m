@@ -42,9 +42,9 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     if([[User Instance]isLogin]){
         if(!self.tableView.pullTableIsRefreshing) {
             self.tableView.pullTableIsRefreshing=YES;

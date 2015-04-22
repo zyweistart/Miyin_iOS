@@ -12,6 +12,7 @@
     self=[super init];
     if(self){
         [self.view setBackgroundColor:[UIColor whiteColor]];
+        
     }
     return self;
 }
@@ -31,10 +32,10 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars = NO;
     self.modalPresentationCapturesStatusBarAppearance = NO;
-    [super viewDidLoad];
 }
 
 - (void)back:(id)sender
