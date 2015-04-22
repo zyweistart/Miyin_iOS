@@ -20,6 +20,9 @@
     BOOL pageControlIsChangingPage;
 }
 
+@property (strong,nonatomic) BaseViewController *controller;
+@property (strong,nonatomic) NSMutableArray *array;
+
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic) int pageControlHeight;
 

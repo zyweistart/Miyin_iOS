@@ -7,6 +7,7 @@
 //
 
 #import "ETFoursquareImages.h"
+#import "WebDetailViewController.h"
 
 @implementation ETFoursquareImages
 
@@ -37,6 +38,10 @@
             UIImage *image = [_imagesArray objectAtIndex:i];
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * self.frame.size.width, 0, self.frame.size.width, imagesHeight)];
             [imageView setImage:image];
+            
+            [imageView setUserInteractionEnabled:YES];
+            [imageView setTag:i];
+            [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToURL:)]];
             [imagesScrollView addSubview:imageView];
         }
         imagesScrollView.contentSize = CGSizeMake(_imagesArray.count * self.frame.size.width, imagesHeight);
@@ -46,6 +51,16 @@
 
 -(void)setImagesHeight:(int)_imagesHeight{
     imagesHeight = _imagesHeight;
+}
+
+- (void)goToURL:(UITapGestureRecognizer*)sender
+{
+    NSInteger tag=[sender.view tag];
+    if(self.array){
+        NSDictionary *data=[self.array objectAtIndex:tag];
+        NSString *url=[data objectForKey:@"url"];
+        [self.controller.navigationController pushViewController:[[WebDetailViewController alloc]initWithType:1 Url:url] animated:YES];
+    }
 }
 
 @end

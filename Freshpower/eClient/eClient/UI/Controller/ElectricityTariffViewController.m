@@ -60,7 +60,7 @@
     [lbl setTextAlignment:NSTextAlignmentLeft];
     [lbl setTextColor:[UIColor blackColor]];
     [head addSubview:lbl];
-    UILabel *lblTotal=[[UILabel alloc]initWithFrame:CGRectMake1(180, 0, 60, 40)];
+    UILabel *lblTotal=[[UILabel alloc]initWithFrame:CGRectMake1(130, 0, 90, 40)];
     [lblTotal setFont:[UIFont systemFontOfSize:14]];
     [lblTotal setText:@"0"];
     [lblTotal setTextAlignment:NSTextAlignmentCenter];
@@ -123,13 +123,14 @@
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
+    NSLog(@"%@",[response responseString]);
     if(reqCode==500){
         NSArray *ComElec=[[response resultJSON]objectForKey:@"ComElec"];
         if([ComElec count]>0){
             NSDictionary *data=[ComElec objectAtIndex:0];
             [lblHead1 setText:[NSString stringWithFormat:@"%@",[data objectForKey:@"AvgPrice"]]];
-            [lblDetailA1 setText:[data objectForKey:@"PeakFee"]];
-            [lblDetailA2 setText:[data objectForKey:@"TipFee"]];
+            [lblDetailA1 setText:[data objectForKey:@"TipFee"]];
+            [lblDetailA2 setText:[data objectForKey:@"PeakFee"]];
             [lblDetailA3 setText:[data objectForKey:@"ValleyFee"]];
             [lblDetailA4 setText:[data objectForKey:@"TotalFee"]];
         }
@@ -138,8 +139,8 @@
         if([ComElec count]>0){
             NSDictionary *data=[ComElec objectAtIndex:0];
             [lblHead2 setText:[NSString stringWithFormat:@"%@",[data objectForKey:@"AvgPrice"]]];
-            [lblDetailB1 setText:[data objectForKey:@"PeakFee"]];
-            [lblDetailB2 setText:[data objectForKey:@"TipFee"]];
+            [lblDetailB1 setText:[data objectForKey:@"TipFee"]];
+            [lblDetailB2 setText:[data objectForKey:@"PeakFee"]];
             [lblDetailB3 setText:[data objectForKey:@"ValleyFee"]];
             [lblDetailB4 setText:[data objectForKey:@"TotalFee"]];
         }

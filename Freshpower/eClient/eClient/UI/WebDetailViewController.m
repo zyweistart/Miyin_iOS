@@ -19,7 +19,7 @@
     self = [super init];
     if (self) {
         [self setTitle:@"产品介绍"];
-        self.webView1 = [[UIWebView alloc] initWithFrame:self.view.bounds];
+        self.webView1 = [[UIWebView alloc] init];
         [self.webView1 setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.webView1 setUserInteractionEnabled:YES];
         [self.webView1 setScalesPageToFit:YES];
@@ -28,6 +28,7 @@
         [self.webView1 setDelegate:self];
         [self.view addSubview:self.webView1];
         if(url==nil){
+            [self.webView1 setFrame:self.view.bounds];
             NSString *urlName;
             if(type==1){
                 urlName=@"www.bundle/process.html";
@@ -49,7 +50,8 @@
             [headView setImage:[UIImage imageNamed:@"buy"]];
             [headView setUserInteractionEnabled:YES];
             [headView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goFeedBack:)]];
-            [self.webView1 addSubview:headView];
+            [self.view addSubview:headView];
+            [self.webView1 setFrame:CGRectMake1(0, 40, 320, self.view.bounds.size.height-40)];
             [self.webView1 loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
         }
     }

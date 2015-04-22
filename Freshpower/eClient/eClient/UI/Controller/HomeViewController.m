@@ -96,6 +96,8 @@
         NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * FROM PIC ORDER BY ID limit %d offset 0",TOPIMAGENUM];
         NSMutableArray *indata=[db query1:sqlQuery];
         if(indata!=nil&&[indata count]>0){
+            [foursquareImages setController:self];
+            [foursquareImages setArray:indata];
             for(int i=0;i<[indata count];i++){
                 NSDictionary *data=[indata objectAtIndex:i];
                 NSString *name=[data objectForKey:@"name"];
