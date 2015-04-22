@@ -87,13 +87,14 @@
 - (void)setData:(NSMutableDictionary*)data
 {
     currentData=data;
+    NSString *TASK_USER_NAME=[data objectForKey:@"TASK_USER_NAME"];
+    [self.lblName setText:[NSString stringWithFormat:@"巡检人:%@",TASK_USER_NAME]];
     NSString *SET_TYPE=[currentData objectForKey:@"SET_TYPE"];
-    if([@"1" isEqualToString:SET_TYPE]){
-        [self.pSend setEnabled:NO];
-    }else{
+    if([@"2" isEqualToString:SET_TYPE]&&![@""isEqualToString:TASK_USER_NAME]){
         [self.pSend setEnabled:YES];
+    }else{
+        [self.pSend setEnabled:NO];
     }
-    [self.lblName setText:[NSString stringWithFormat:@"巡检人:%@",[data objectForKey:@"TASK_USER_NAME"]]];
     NSArray *MODEL_LIST=[data objectForKey:@"MODEL_LIST"];
     NSUInteger count=MODEL_LIST.count;
     for(int i=0;i<count;i++){
