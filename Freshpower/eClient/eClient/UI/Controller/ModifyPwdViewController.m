@@ -19,6 +19,7 @@
     SVTextField *svOldPassword;
     SVTextField *svNewPassword;
     SVTextField *svRePassword;
+    NSString *PASSWORD;
 }
 
 - (id)init{
@@ -31,7 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 150)];
+    UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 200)];
     [self.view addSubview:frame];
     svOldPassword=[[SVTextField alloc]initWithFrame:CGRectMake1(10, 5, 300, 40) Title:@"旧密码"];
     [svOldPassword.tf setClearButtonMode:UITextFieldViewModeWhileEditing];
@@ -58,25 +59,45 @@
 
 - (void)modify:(id)sender
 {
-//    USERNAME=[svUserName.tf text];
-//    PASSWORD=[[[svPassword.tf text] uppercaseString] md5];
-//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-//    [params setObject:@"99010100" forKey:@"GNID"];
-//    [params setObject:USERNAME forKey:@"imei"];
-//    [params setObject:PASSWORD forKey:@"authentication"];
-//    [params setObject:@"01" forKey:@"QTKEY"];
-//    [params setObject:@"1" forKey:@"QTVAL"];
-//    self.hRequest=[[HttpRequest alloc]init];
-//    [self.hRequest setRequestCode:500];
-//    [self.hRequest setDelegate:self];
-//    [self.hRequest setController:self];
-//    [self.hRequest setIsShowMessage:YES];
-//    [self.hRequest handle:URL_appUserCenter requestParams:params];
+    NSString *oldPassword=[svOldPassword.tf text];
+    if([@"" isEqualToString:oldPassword]){
+        [Common alert:@"旧密码不能为空"];
+        return;
+    }
+    oldPassword=[[oldPassword uppercaseString] md5];
+    PASSWORD=[svNewPassword.tf text];
+    NSString *rePASSWORD=[svRePassword.tf text];
+    if([@"" isEqualToString:PASSWORD]){
+        [Common alert:@"新密码不能为空"];
+        return;
+    }
+    if(![PASSWORD isEqualToString:rePASSWORD]){
+        [Common alert:@"两次密码不相同"];
+        return;
+    }
+    PASSWORD=[[PASSWORD uppercaseString] md5];
+    rePASSWORD=[[rePASSWORD uppercaseString] md5];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:[[User Instance]getUserName] forKey:@"imei"];
+    [params setObject:oldPassword forKey:@"authentication"];
+    [params setObject:PASSWORD forKey:@"Password"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:URL_appUpdatePwd requestParams:params];
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
-    
+    if([@"1" isEqualToString:[[response resultJSON]objectForKey:@"rs"]]){
+        [Common alert:@"修改成功"];
+        [Common setCache:ACCOUNTPASSWORD data:PASSWORD];
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        [Common alert:@"修改失败"];
+    }
 }
 
 @end

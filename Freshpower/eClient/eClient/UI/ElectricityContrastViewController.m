@@ -7,6 +7,7 @@
 //
 
 #import "ElectricityContrastViewController.h"
+#import "WebDetailViewController.h"
 
 #define HEADBGCOLOR [UIColor colorWithRed:(220/255.0) green:(220/255.0) blue:(220/255.0) alpha:1]
 
@@ -39,6 +40,8 @@
         [self buildTableViewWithView:self.view];
         UIImageView *headView=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
         [headView setImage:[UIImage imageNamed:@"electricitybanner"]];
+        [headView setUserInteractionEnabled:YES];
+        [headView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToUrl:)]];
         [self.tableView setTableHeaderView:headView];
     }
     return self;
@@ -204,6 +207,11 @@
         [bSwitchType setTitle:@"按月" forState:UIControlStateNormal];
         [self loadHttp];
     }
+}
+
+- (void)goToUrl:(id)sender
+{
+    [self.navigationController pushViewController:[[WebDetailViewController alloc]initWithType:1 Url:self.currentUrl] animated:YES];
 }
 
 @end

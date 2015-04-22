@@ -284,7 +284,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
-        NSLog(@"didSelectRow");
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:[[ElectricianDetailViewController alloc]initWithParams:data] animated:YES];
     }
 }
 

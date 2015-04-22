@@ -55,7 +55,7 @@
 
 - (void)goOpen:(id)sender
 {
-    [self.navigationController pushViewController:[[WebDetailViewController alloc]initWithType:1 Url:nil] animated:YES];
+    [self.navigationController pushViewController:[[WebDetailViewController alloc]initWithType:1 Url:self.currentUrl] animated:YES];
 }
 
 @end

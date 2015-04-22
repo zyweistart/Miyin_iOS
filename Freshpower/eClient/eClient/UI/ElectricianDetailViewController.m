@@ -93,7 +93,8 @@
         if(!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        [cell.textLabel setText:@"历在历哪里有罪罪因"];
+        NSDictionary *data =[self.dataItemArray objectAtIndex:[indexPath row]];
+        [cell.textLabel setText:[data objectForKey:@"EVALUATE_NOTE"]];
         [cell setAccessoryType:UITableViewCellAccessoryNone];
         return cell;
     }else{

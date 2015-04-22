@@ -8,6 +8,7 @@
 
 #import "BurdenContrastViewController.h"
 #import "ElecLoadDetailViewController.h"
+#import "WebDetailViewController.h"
 #import "SVButton.h"
 #define TITLECOLOR [UIColor colorWithRed:(200/255.0) green:(200/255.0) blue:(200/255.0) alpha:1]
 
@@ -29,6 +30,8 @@
         [self setTitle:@"企业负荷"];
         UIImageView *headView=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
         [headView setImage:[UIImage imageNamed:@"burdenbanner"]];
+        [headView setUserInteractionEnabled:YES];
+        [headView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToUrl:)]];
         UIView *mainFrame=[[UIView alloc]initWithFrame:self.view.bounds];
         [mainFrame setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:mainFrame];
@@ -48,7 +51,7 @@
         noDataView=[[UIView alloc]initWithFrame:CGRectMake1(0, 80, 320, 300)];
         [mainFrame addSubview:noDataView];
         UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(135, 90, 50, 50)];
-        [image setImage:[UIImage imageNamed:@"manager"]];
+        [image setImage:[UIImage imageNamed:@"warning"]];
         [noDataView addSubview:image];
         UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(80, 150, 150, 30)];
         [lbl setText:@"变电站运行监测服务"];
@@ -64,7 +67,7 @@
         [noDataView addSubview:lbl];
         UIButton *bGo=[[UIButton alloc]initWithFrame:CGRectMake1(90, 210, 150, 30)];
         [bGo setTitle:@"了解详情>>" forState:UIControlStateNormal];
-        [bGo addTarget:self action:@selector(goDetail:) forControlEvents:UIControlEventTouchUpInside];
+        [bGo addTarget:self action:@selector(goToUrl:) forControlEvents:UIControlEventTouchUpInside];
         [bGo.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [bGo setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
         [noDataView addSubview:bGo];
@@ -87,14 +90,9 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [super viewWillAppear:animated];
     [self loadHttp];
-}
-
-- (void)goDetail:(id)sender
-{
 }
 
 - (void)goDetailBurden:(id)sender
@@ -180,6 +178,11 @@
         [lineView setHidden:YES];
         [noDataView setHidden:NO];
     }
+}
+
+- (void)goToUrl:(id)sender
+{
+    [self.navigationController pushViewController:[[WebDetailViewController alloc]initWithType:1 Url:self.currentUrl] animated:YES];
 }
 
 @end

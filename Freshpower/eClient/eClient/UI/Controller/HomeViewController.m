@@ -50,6 +50,7 @@
 @implementation HomeViewController{
     UIButton *bCpName;
     SQLiteOperate *db;
+    NSString *currentURL;
 }
 
 - (id)init{
@@ -96,7 +97,11 @@
         NSMutableArray *indata=[db query1:sqlQuery];
         if(indata!=nil&&[indata count]>0){
             for(int i=0;i<[indata count];i++){
-                NSString *name=[[indata objectAtIndex:i] objectForKey:@"name"];
+                NSDictionary *data=[indata objectAtIndex:i];
+                NSString *name=[data objectForKey:@"name"];
+                if(i==0){
+                    currentURL=[data objectForKey:@"url"];
+                }
                 NSString *path = [docDir stringByAppendingPathComponent:name];
                 //如果图标文件已经存在则进行显示否则进行下载
                 if([fileManager fileExistsAtPath:path]){
@@ -291,16 +296,15 @@
                 [self.navigationController pushViewController:alarmTableBarController animated:YES];
             }else{
                 //无监测
-                NSLog(@"无监测");
                 WarnComapnyInfoViewController *warnComapnyInfoViewController=[[WarnComapnyInfoViewController alloc]init];
-                [warnComapnyInfoViewController setCurrentUrl:@"无监测111"];
+                [warnComapnyInfoViewController setCurrentUrl:currentURL];
                 [self.navigationController pushViewController:warnComapnyInfoViewController animated:YES];
                 
             }
         }else{
             //无监测
             WarnComapnyInfoViewController *warnComapnyInfoViewController=[[WarnComapnyInfoViewController alloc]init];
-            [warnComapnyInfoViewController setCurrentUrl:@"无监测2222"];
+            [warnComapnyInfoViewController setCurrentUrl:currentURL];
             [self.navigationController pushViewController:warnComapnyInfoViewController animated:YES];
         }
     }else if(tag==5){
@@ -314,13 +318,13 @@
             }else{
                 //无监测
                 ElectricityContrastViewController *electricityContrastViewController=[[ElectricityContrastViewController alloc]init];
-                [electricityContrastViewController setCurrentUrl:@"无监测2222"];
+                [electricityContrastViewController setCurrentUrl:currentURL];
                 [self.navigationController pushViewController:electricityContrastViewController animated:YES];
             }
         }else{
             //无监测
             ElectricityContrastViewController *electricityContrastViewController=[[ElectricityContrastViewController alloc]init];
-            [electricityContrastViewController setCurrentUrl:@"无监测2222"];
+            [electricityContrastViewController setCurrentUrl:currentURL];
             [self.navigationController pushViewController:electricityContrastViewController animated:YES];
         }
     }else if(tag==6){
@@ -334,13 +338,13 @@
             }else{
                 //无监测
                 RunStatusInfoViewController *runStatusInfoViewController=[[RunStatusInfoViewController alloc]init];
-                [runStatusInfoViewController setCurrentUrl:@"无监测111"];
+                [runStatusInfoViewController setCurrentUrl:currentURL];
                 [self.navigationController pushViewController:runStatusInfoViewController animated:YES];
             }
         }else{
             //无监测
             RunStatusInfoViewController *runStatusInfoViewController=[[RunStatusInfoViewController alloc]init];
-            [runStatusInfoViewController setCurrentUrl:@"无监测222"];
+            [runStatusInfoViewController setCurrentUrl:currentURL];
             [self.navigationController pushViewController:runStatusInfoViewController animated:YES];
         }
     }else if(tag==7){
@@ -354,13 +358,13 @@
             }else{
                 //无监测
                 BurdenContrastViewController *burdenContrastViewController=[[BurdenContrastViewController alloc]init];
-                [burdenContrastViewController setCurrentUrl:@"无监测111"];
+                [burdenContrastViewController setCurrentUrl:currentURL];
                 [self.navigationController pushViewController:burdenContrastViewController animated:YES];
             }
         }else{
             //无监测
             BurdenContrastViewController *burdenContrastViewController=[[BurdenContrastViewController alloc]init];
-            [burdenContrastViewController setCurrentUrl:@"无监测111"];
+            [burdenContrastViewController setCurrentUrl:currentURL];
             [self.navigationController pushViewController:burdenContrastViewController animated:YES];
         }
     }
