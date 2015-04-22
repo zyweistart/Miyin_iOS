@@ -212,10 +212,12 @@
             if(rData){
                 //当前页
                 self.currentPage=[[NSString stringWithFormat:@"%@",[rData objectForKey:@"PageIndex"]] intValue];
-                int totalCount=[[rData objectForKey:@"TotalCount"]intValue];
-                if([self.dataItemArray count]==totalCount){
-                    [self loadDone];
-                    return;
+                NSString *TotalCount=[rData objectForKey:@"TotalCount"];
+                if(TotalCount){
+                    if([self.dataItemArray count]==[TotalCount intValue]){
+                        [self loadDone];
+                        return;
+                    }
                 }
             }
             //获取数据列表

@@ -45,6 +45,23 @@
         [self.pSetting addTarget:self action:@selector(setting:) forControlEvents:UIControlEventTouchUpInside];
         [bottomFrame addSubview:self.pSetting];
         
+        int count=5;
+        for(int i=0;i<count;i++){
+            if(i==0){
+                svch1=[self createView:5+i*30+i*5 Title:@"变电站运行记录表" Tag:i];
+            }else if(i==1){
+                svch2=[self createView:5+i*30+i*5 Title:@"变电站电气设备日常巡检" Tag:i];
+            }else if(i==2){
+                svch3=[self createView:5+i*30+i*5 Title:@"高温季节巡视记录表" Tag:i];
+            }else if(i==3){
+                svch4=[self createView:5+i*30+i*5 Title:@"梅雨季节巡视记录表" Tag:i];
+            }else if(i==4){
+                svch5=[self createView:5+i*30+i*5 Title:@"特殊巡视记录表" Tag:i];
+            }
+        }
+        CGFloat height=5+(count-1)*30+(count-1)*5+35;
+        [bottomFrame setFrame:CGRectMake1(0, height, 320, 39)];
+        
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     return self;
@@ -78,28 +95,28 @@
     }
     [self.lblName setText:[NSString stringWithFormat:@"巡检人:%@",[data objectForKey:@"TASK_USER_NAME"]]];
     NSArray *MODEL_LIST=[data objectForKey:@"MODEL_LIST"];
-    int count=MODEL_LIST.count;
+    NSUInteger count=MODEL_LIST.count;
     for(int i=0;i<count;i++){
         NSDictionary *d=[MODEL_LIST objectAtIndex:i];
         if(i==0){
-            svch1=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"] Tag:i];
+//            svch1=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"] Tag:i];
             [svch1 setSelected:![@"0" isEqualToString:[d objectForKey:@"MODEL_SET_ID"]]];
         }else if(i==1){
-            svch2=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"] Tag:i];
+//            svch2=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"] Tag:i];
             [svch2 setSelected:![@"0" isEqualToString:[d objectForKey:@"MODEL_SET_ID"]]];
         }else if(i==2){
-            svch3=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"] Tag:i];
+//            svch3=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"] Tag:i];
             [svch3 setSelected:![@"0" isEqualToString:[d objectForKey:@"MODEL_SET_ID"]]];
         }else if(i==3){
-            svch4=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"] Tag:i];
+//            svch4=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"] Tag:i];
             [svch4 setSelected:![@"0" isEqualToString:[d objectForKey:@"MODEL_SET_ID"]]];
         }else if(i==4){
-            svch5=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"] Tag:i];
+//            svch5=[self createView:5+i*30+i*5 Title:[d objectForKey:@"MODEL_NAME"] Tag:i];
             [svch5 setSelected:![@"0" isEqualToString:[d objectForKey:@"MODEL_SET_ID"]]];
         }
     }
-    CGFloat height=5+(count-1)*30+(count-1)*5+35;
-    [bottomFrame setFrame:CGRectMake1(0, height, 320, 39)];
+//    CGFloat height=5+(count-1)*30+(count-1)*5+35;
+//    [bottomFrame setFrame:CGRectMake1(0, height, 320, 39)];
 }
 
 -(void)checkboxClick:(UIButton *)sender

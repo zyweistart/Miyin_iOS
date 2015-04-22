@@ -152,9 +152,16 @@
 {
     if([response successFlag]){
         NSDictionary *rData=[response headJSON];
-        if(rData==nil){
+        if(rData){
             //当前页
             self.currentPage=[[NSString stringWithFormat:@"%@",[rData objectForKey:@"PageIndex"]] intValue];
+            NSString *TotalCount=[rData objectForKey:@"TotalCount"];
+            if(TotalCount){
+                if([self.dataItemArray count]==[TotalCount intValue]){
+                    [self loadDone];
+                    return;
+                }
+            }
         }
         //获取数据列表
         if([self currentPage]==1){
