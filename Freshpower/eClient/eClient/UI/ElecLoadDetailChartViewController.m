@@ -35,10 +35,9 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [super viewWillAppear:animated];
-    [self loadHttp];
+    [self performSelector:@selector(loadHttp) withObject:nil afterDelay:0.5];
 }
 
 - (void)loadHttp

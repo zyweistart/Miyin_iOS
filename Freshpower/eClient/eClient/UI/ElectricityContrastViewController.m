@@ -25,6 +25,7 @@
 {
     self=[super init];
     if(self){
+        self.dataItemArray=[[NSMutableArray alloc]init];
         headNumberArray=[[NSMutableArray alloc]init];
         [self setTitle:@"电量电费"];
         type=1;
@@ -100,10 +101,10 @@
     NSDictionary *data=[self.dataItemArray objectAtIndex:section];
     if(row==0){
         [cell.textLabel setText:@"尖峰电量"];
-        [cell.detailTextLabel setText:[data objectForKey:@"PEAK_POWER"]];
+        [cell.detailTextLabel setText:[data objectForKey:@"TIP_POWER"]];
     }else if(row==1){
         [cell.textLabel setText:@"高峰电量"];
-        [cell.detailTextLabel setText:[data objectForKey:@"TIP_POWER"]];
+        [cell.detailTextLabel setText:[data objectForKey:@"PEAK_POWER"]];
     }else{
         [cell.textLabel setText:@"低谷电量"];
         [cell.detailTextLabel setText:[data objectForKey:@"VALLEY_POWER"]];

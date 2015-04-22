@@ -36,7 +36,7 @@
     [super viewDidLoad];
     self.dataItemArray=[[NSMutableArray alloc]init];
     [self.dataItemArray addObject:[NSArray arrayWithObjects:@"维护企业信息", nil]];
-    [self.dataItemArray addObject:[NSArray arrayWithObjects:@"关于e电工",@"联系新能量",@"推荐给好友", nil]];
+    [self.dataItemArray addObject:[NSArray arrayWithObjects:@"关于e电工",@"联系新能量", nil]];
     self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     [self.tableView setDelegate:self];

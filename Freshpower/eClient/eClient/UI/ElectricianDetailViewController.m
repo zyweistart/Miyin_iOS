@@ -59,6 +59,7 @@
         UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 40)];
         [self.tableView setTableFooterView:bottomView];
         SVButton *caButton=[[SVButton alloc]initWithFrame:CGRectMake1(10,5, 300, 30) Title:@"联系他" Type:3];
+        [caButton addTarget:self action:@selector(call:) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:caButton];
     }
     return self;
@@ -124,6 +125,12 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest handle:URL_appDistributeTasks requestParams:params];
+}
+
+- (void)call:(id)sender
+{
+    NSString *tel=[self.paramData objectForKey:@"mb2"];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"tel://%@",tel]]];
 }
 
 @end
