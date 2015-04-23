@@ -40,7 +40,7 @@
 #define MAIN4BGCOLOR [UIColor colorWithRed:(254/255.0) green:(158/255.0) blue:(25/255.0) alpha:1]
 #define BRCOLOR [UIColor colorWithRed:(120/255.0) green:(120/255.0) blue:(120/255.0) alpha:0.5]
 
-#define TOPIMAGENUM 3
+#define TOPIMAGENUM 5
 #define DOWNLOADPIC 500
 
 @interface HomeViewController ()
@@ -114,7 +114,7 @@
     }
     //如果不够则加载默认的图片
     if([images count]==0){
-        for(int i=0;i<TOPIMAGENUM;i++){
+        for(int i=0;i<3;i++){
             [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"image%d",i+1]]];
         }
     }
