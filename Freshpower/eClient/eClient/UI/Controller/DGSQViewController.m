@@ -42,7 +42,7 @@
         [bRegister addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
         [scrollFrame addSubview:bRegister];
         
-        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(20, 380, 250, 30)];
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(20, 380, 280, 30)];
         [lbl setText:@"e电工操作版，更适用于您的管电神器。"];
         [lbl setTextColor:TITLECOLOR];
         [lbl setFont:[UIFont systemFontOfSize:15]];
