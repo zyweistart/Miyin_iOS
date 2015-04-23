@@ -72,7 +72,7 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 #define CUSTOMERSERVICETEL @"4008263365"
 #define DEFAULTDATA_LASTVERSIONNO @"DEFAULTDATA_LASTVERSIONNO"
 
-
+#define URL_news SERVER_URL(fpsWebSite,@"news.aspx")
 #define URL_appUpdatePwd SERVER_URL(fpsWebSite,@"appUpdatePwd.aspx")
 #define URL_AppIndexRunStatus SERVER_URL(fpsWebSite,@"AppIndexRunStatus.aspx")
 #define URL_AppHisMeterElec SERVER_URL(fpsWebSite,@"AppHisMeterElec.aspx")
@@ -86,5 +86,5 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 #define URL_appDistributeTasks SERVER_URL(etgWebSite,@"tasks/appDistributeTasks.aspx")
 #define URL_appTaskingPower SERVER_URL(etgWebSite,@"INSPT/appTaskingPower.aspx")
 #define URL_AppCustomerInterface SERVER_URL(etgWebSite,@"AppCustomerInterface.aspx")
-#define URL_news SERVER_URL(fpsWebSite,@"news.aspx")
+
 #endif
