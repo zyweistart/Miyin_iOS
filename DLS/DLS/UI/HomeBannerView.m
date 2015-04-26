@@ -10,6 +10,7 @@
 #import "UIButton+TitleImage.h"
 #import "ListViewController.h"
 #import "VIPViewController.h"
+#import "ETFoursquareImages.h"
 
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
 
@@ -21,10 +22,20 @@
     self = [super initWithFrame:frame];
     if (self) {
 //        CGRectMake(0, 0, 320, 270)
-        UIImageView *banner=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, 90)];
-        [banner setImage:[UIImage imageNamed:@"banner"]];
-        [self addSubview:banner];
-        UIView *mainFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 90, 320, 180)];
+        int IMAGEHEIGHT=120;
+        ETFoursquareImages *foursquareImages = [[ETFoursquareImages alloc] initWithFrame:CGRectMake1(0, 0, 320,IMAGEHEIGHT)];
+        [foursquareImages setImagesHeight:CGHeight(IMAGEHEIGHT)];
+        [self addSubview:foursquareImages];
+        NSMutableArray *images=[[NSMutableArray alloc]init];
+        //如果不够则加载默认的图片
+        if([images count]==0){
+            for(int i=0;i<3;i++){
+                [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"image%d",i+1]]];
+            }
+        }
+        [foursquareImages setImages:images];
+        
+        UIView *mainFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, IMAGEHEIGHT, 320, 180)];
         [mainFrame setBackgroundColor:[UIColor whiteColor]];
         [self addSubview:mainFrame];
         [self addModel:@"autocrane_i" Title:@"汽车吊求租" Frame:mainFrame Tag:1 X:0 Y:0];

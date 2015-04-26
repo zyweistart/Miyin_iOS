@@ -36,7 +36,6 @@
 #define HTTP_SERVER_URL(URL,SIGNATURE,TIMESTAMP,NONCE) [NSString stringWithFormat:@"%@/Ajax/API/%@.html?signature=%@&timestamp=%@&nonce=%@",HTTP_URL,URL,SIGNATURE,TIMESTAMP,NONCE]
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-#define NAVBG [UIColor colorWithRed:(46/255.0) green:(92/255.0) blue:(178/255.0) alpha:1]
 
 CG_INLINE CGFloat
 CGWidth(CGFloat width)
@@ -72,7 +71,11 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 
 #define RESULTCODE_LOGIN 500
 
-#define BUTTONNORMALCOLOR [UIColor colorWithRed:(57/255.0) green:(87/255.0) blue:(207/255.0) alpha:1]
-#define BUTTONPRESENDCOLOR [UIColor colorWithRed:(107/255.0) green:(124/255.0) blue:(194/255.0) alpha:1]
+#define NAVBG [UIColor colorWithRed:(46/255.0) green:(92/255.0) blue:(178/255.0) alpha:1]
+
+#define DEFAUL1COLOR [UIColor colorWithRed:(190/255.0) green:(190/255.0) blue:(190/255.0) alpha:1]
+#define DEFAUL2COLOR [UIColor colorWithRed:(220/255.0) green:(220/255.0) blue:(220/255.0) alpha:1]
+#define DEFAUL3COLOR [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]
+
 
 #endif

@@ -43,64 +43,17 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return CGHeight(25);
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *mainView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 25)];
-    [mainView setBackgroundColor:[UIColor whiteColor]];
-    UILabel *title=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 250, 25)];
-    [title setFont:[UIFont systemFontOfSize:18]];
-    [title setTextColor:[UIColor blackColor]];
-    [title setTextAlignment:NSTextAlignmentLeft];
-    [mainView addSubview:title];
-    UIButton *more=[[UIButton alloc]initWithFrame:CGRectMake1(265, 0, 40, 25)];
-    [more setImage:[UIImage imageNamed:@"arrowdown"] forState:UIControlStateNormal];
-    [more addTarget:self action:@selector(more:) forControlEvents:UIControlEventTouchUpInside];
-    [mainView addSubview:more];
-    [title setText:@"jdlkjdls螺杆晒黑晒黑kjsl晒黑晒黑j"];
-    return mainView;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    if([self.dataItemArray count]>0){
-        return [[self dataItemArray] count];
-    }else{
-        return 0;
-    }
-}
-
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if([self.dataItemArray count]>0){
-        return 1;
-    }else{
-        return [super tableView:tableView numberOfRowsInSection:section];
-    }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if([self.dataItemArray count]>0){
-        return CGHeight(65);
-    }else{
-        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-    }
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
         static NSString *cellIdentifier = @"Cell";
-        CollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if(!cell) {
-            cell = [[CollectionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         }
-        [cell setData:[self.dataItemArray objectAtIndex:[indexPath row]]];
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        [cell.textLabel setText:[data objectForKey:@"title"]];
+        [cell.detailTextLabel setText:[data objectForKey:@"Introduction"]];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];

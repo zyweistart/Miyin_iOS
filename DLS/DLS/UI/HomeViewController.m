@@ -16,6 +16,7 @@
 #import "NewsDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ProjectCell.h"
+#import "RentalDetailViewController.h"
 
 #define SEARCHTIPCOLOR [UIColor colorWithRed:(88/255.0) green:(130/255.0) blue:(216/255.0) alpha:1]
 #define BGCOLOR [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]
@@ -74,21 +75,21 @@
         
         [self buildTableViewWithView:self.view];
         [self.tableView setBackgroundColor:BGCOLOR];
-        UIView *header=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 516)];
+        UIView *header=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 546)];
         [self.tableView setTableHeaderView:header];
-        HomeBannerView *banner=[[HomeBannerView alloc]initWithFrame:CGRectMake(0, 0, 320, 270)];
+        HomeBannerView *banner=[[HomeBannerView alloc]initWithFrame:CGRectMake(0, 0, 320, 300)];
         [banner setController:self];
         [header addSubview:banner];
         //空格
-        UIView *spaceFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 270, 320, 10)];
+        UIView *spaceFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 300, 320, 10)];
         [spaceFrame setBackgroundColor:BGCOLOR];
         [header addSubview:spaceFrame];
         //功能
-        HomeCategoryView *category=[[HomeCategoryView alloc]initWithFrame:CGRectMake(0, 280, 320, 226)];
+        HomeCategoryView *category=[[HomeCategoryView alloc]initWithFrame:CGRectMake(0, 310, 320, 226)];
         [category setController:self];
         [header addSubview:category];
         //空格
-        spaceFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 506, 320, 10)];
+        spaceFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 536, 320, 10)];
         [spaceFrame setBackgroundColor:BGCOLOR];
         [header addSubview:spaceFrame];
         
@@ -233,12 +234,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([[self dataItemArray]count]>0){
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
         if(currentButtonIndex==1){
+            [self.navigationController pushViewController:[[RentalDetailViewController alloc]initWithDictionary:data] animated:YES];
         }else if(currentButtonIndex==2){
         }else if(currentButtonIndex==3){
         }else{
+            [self.navigationController pushViewController:[[NewsDetailViewController alloc]initWithDictionary:nil] animated:YES];
         }
-        [self.navigationController pushViewController:[[NewsDetailViewController alloc]initWithDictionary:nil] animated:YES];
     }
 }
 

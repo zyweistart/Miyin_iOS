@@ -20,6 +20,7 @@
 		C91115AB1AAC36AF00F56DFE /* ProjectBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91115AA1AAC36AF00F56DFE /* ProjectBCell.m */; };
 		C91115AE1AAC3AE200F56DFE /* ProjectCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91115AD1AAC3AE200F56DFE /* ProjectCCell.m */; };
 		C9125AA81AA9FA12001396FF /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = C9125AA71AA9FA12001396FF /* Common.m */; };
+		C91CC7BD1AEBC4E700EAE6CB /* ETFoursquareImages.m in Sources */ = {isa = PBXBuildFile; fileRef = C91CC7BC1AEBC4E700EAE6CB /* ETFoursquareImages.m */; };
 		C922D08E1AA444B600F6DBA1 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C922D08D1AA444B600F6DBA1 /* HomeViewController.m */; };
 		C922D0911AA444E100F6DBA1 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C922D0901AA444E100F6DBA1 /* NearbyViewController.m */; };
 		C922D0941AA444ED00F6DBA1 /* VIPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C922D0931AA444ED00F6DBA1 /* VIPViewController.m */; };
@@ -141,6 +142,8 @@
 		C91115AD1AAC3AE200F56DFE /* ProjectCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCCell.m; sourceTree = "<group>"; };
 		C9125AA61AA9FA12001396FF /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		C9125AA71AA9FA12001396FF /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
+		C91CC7BB1AEBC4E700EAE6CB /* ETFoursquareImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETFoursquareImages.h; sourceTree = "<group>"; };
+		C91CC7BC1AEBC4E700EAE6CB /* ETFoursquareImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ETFoursquareImages.m; sourceTree = "<group>"; };
 		C922D08C1AA444B600F6DBA1 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		C922D08D1AA444B600F6DBA1 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		C922D08F1AA444E100F6DBA1 /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyViewController.h; sourceTree = "<group>"; };
@@ -405,6 +408,15 @@
 			name = "用户";
 			sourceTree = "<group>";
 		};
+		C91CC7BA1AEBC4E700EAE6CB /* ETFoursquareImages */ = {
+			isa = PBXGroup;
+			children = (
+				C91CC7BB1AEBC4E700EAE6CB /* ETFoursquareImages.h */,
+				C91CC7BC1AEBC4E700EAE6CB /* ETFoursquareImages.m */,
+			);
+			path = ETFoursquareImages;
+			sourceTree = "<group>";
+		};
 		C922D0861AA4396F00F6DBA1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,6 +448,7 @@
 		C922D0871AA4396F00F6DBA1 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C91CC7BA1AEBC4E700EAE6CB /* ETFoursquareImages */,
 				C9E1FED31AA555F000720AAC /* ASIHTTP */,
 				C9E1FED61AA555F000720AAC /* ATMHud */,
 				C99E82EA1AA997B20087D2F4 /* EGOTableViewPullRefresh */,
@@ -764,7 +777,6 @@
 				TargetAttributes = {
 					C9B85F5D1AA432E1008A56F0 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = XLA7UCY3KD;
 					};
 					C9B85F761AA432E1008A56F0 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -835,6 +847,7 @@
 				C9DD46C51AA82781004AEAB7 /* AccountViewController.m in Sources */,
 				C9C2B1111ABBBAE30013E27C /* SB1Cell.m in Sources */,
 				C99E830B1AA9983D0087D2F4 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
+				C91CC7BD1AEBC4E700EAE6CB /* ETFoursquareImages.m in Sources */,
 				C9D2B73F1AA8689C00CF750D /* MyBJXSViewController.m in Sources */,
 				C909FC1B1AA6E03A008E68FB /* MessageViewController.m in Sources */,
 				C9A82DD81AB0268E0063DF9B /* HomeBannerView.m in Sources */,
