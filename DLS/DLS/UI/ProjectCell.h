@@ -15,6 +15,7 @@
 @property UILabel *address;
 @property UILabel *money;
 @property UILabel *status;
+@property UILabel *date;
 
 - (void)setStatus:(NSString*)title Type:(int)type;
 

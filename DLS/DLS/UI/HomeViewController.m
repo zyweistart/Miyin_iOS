@@ -16,6 +16,7 @@
 #import "NewsDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ProjectCell.h"
+#import "QiuzuDetailViewController.h"
 #import "RentalDetailViewController.h"
 
 #define SEARCHTIPCOLOR [UIColor colorWithRed:(88/255.0) green:(130/255.0) blue:(216/255.0) alpha:1]
@@ -130,13 +131,13 @@
     [categoryFrame setBackgroundColor:BGCOLOR];
     self.button1=[[UIButton alloc]initWithFrame:CGRectMake1(10, 0, 75, 40)];
     [[self.button1 titleLabel]setFont:[UIFont systemFontOfSize:14]];
-    [self.button1 setTitle:@"最新出租" forState:UIControlStateNormal];
+    [self.button1 setTitle:@"最新求租" forState:UIControlStateNormal];
     self.button1.tag=1;
     [self.button1 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
     [categoryFrame addSubview:self.button1];
     self.button2=[[UIButton alloc]initWithFrame:CGRectMake1(85, 0, 75, 40)];
     [[self.button2 titleLabel]setFont:[UIFont systemFontOfSize:14]];
-    [self.button2 setTitle:@"最新求租" forState:UIControlStateNormal];
+    [self.button2 setTitle:@"最新出租" forState:UIControlStateNormal];
     self.button2.tag=2;
     [self.button2 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
     [categoryFrame addSubview:self.button2];
@@ -166,7 +167,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([[self dataItemArray] count]>0){
-        return CGHeight(80);
+        return CGHeight(85);
     }else{
         return CGHeight(45);
     }
@@ -236,8 +237,9 @@
     if([[self dataItemArray]count]>0){
         NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
         if(currentButtonIndex==1){
-            [self.navigationController pushViewController:[[RentalDetailViewController alloc]initWithDictionary:data] animated:YES];
+            [self.navigationController pushViewController:[[QiuzuDetailViewController alloc]initWithDictionary:data] animated:YES];
         }else if(currentButtonIndex==2){
+            [self.navigationController pushViewController:[[RentalDetailViewController alloc]initWithDictionary:data] animated:YES];
         }else if(currentButtonIndex==3){
         }else{
             [self.navigationController pushViewController:[[NewsDetailViewController alloc]initWithDictionary:nil] animated:YES];

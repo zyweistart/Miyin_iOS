@@ -19,22 +19,20 @@
     self=[super init];
     if(self){
         self.data=data;
-        NSLog(@"%@",self.data);
-        
         
         NSString *name=[data objectForKey:@"Name"];
         NSString *startTime=[data objectForKey:@"startTime"];
-        NSString *endTime=[data objectForKey:@"endTime"];
         NSString *weight=[data objectForKey:@"weight"];
         NSString *contact=[data objectForKey:@"contact"];
         NSString *address=[data objectForKey:@"address"];
+        NSString *region=[data objectForKey:@"region"];
         NSString *notes=[data objectForKey:@"notes"];
         
         [self setTitle:@"出租详情"];
         
         UIScrollView *scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        [scrollFrame setContentSize:CGSizeMake1(320, 330)];
+        [scrollFrame setContentSize:CGSizeMake1(320, 390)];
         [self.view addSubview:scrollFrame];
         
         UIView *topView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 80)];
@@ -84,29 +82,12 @@
         [mainView addSubview:lbl];
         
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 150, 100, 60)];
-        [lbl setText:@"使用时间"];
-        [lbl setFont:[UIFont systemFontOfSize:14]];
-        [lbl setTextColor:DEFAUL1COLOR];
-        [lbl setTextAlignment:NSTextAlignmentCenter];
-        [mainView addSubview:lbl];
-        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(120, 150, 150, 60)];
-        if([@""isEqualToString:startTime]||[@""isEqualToString:endTime]){
-            [lbl setText:@"该用户未填此信息"];
-        }else{
-            [lbl setText:[NSString stringWithFormat:@"%@-%@",startTime,endTime]];
-        }
-        [lbl setFont:[UIFont systemFontOfSize:14]];
-        [lbl setTextColor:[UIColor blackColor]];
-        [lbl setTextAlignment:NSTextAlignmentLeft];
-        [mainView addSubview:lbl];
-        
-        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 210, 100, 60)];
         [lbl setText:@"设备所在地"];
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:DEFAUL1COLOR];
         [lbl setTextAlignment:NSTextAlignmentCenter];
         [mainView addSubview:lbl];
-        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(120, 210, 150, 60)];
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(120, 150, 150, 60)];
         if([@""isEqualToString:address]){
             [lbl setText:@"该用户未填此信息"];
         }else{
@@ -116,18 +97,47 @@
         [lbl setTextColor:[UIColor blackColor]];
         [lbl setTextAlignment:NSTextAlignmentLeft];
         [mainView addSubview:lbl];
-        UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(280, 210, 40, 60)];
+        UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(280, 150, 40, 60)];
         [button setImage:[UIImage imageNamed:@"求租点"] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(goLocation:) forControlEvents:UIControlEventTouchUpInside];
         [mainView addSubview:button];
         
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 210, 100, 60)];
+        [lbl setText:@"使用范围"];
+        [lbl setFont:[UIFont systemFontOfSize:14]];
+        [lbl setTextColor:DEFAUL1COLOR];
+        [lbl setTextAlignment:NSTextAlignmentCenter];
+        [mainView addSubview:lbl];
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(120, 210, 150, 60)];
+        if([@""isEqualToString:region]){
+            [lbl setText:@"该用户未填此信息"];
+        }else{
+            [lbl setText:[NSString stringWithFormat:@"%@",region]];
+        }
+        [lbl setFont:[UIFont systemFontOfSize:14]];
+        [lbl setTextColor:[UIColor blackColor]];
+        [lbl setTextAlignment:NSTextAlignmentLeft];
+        [mainView addSubview:lbl];
+        
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 270, 100, 60)];
-        [lbl setText:@"其他描述"];
+        [lbl setText:@"设备照片"];
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:DEFAUL1COLOR];
         [lbl setTextAlignment:NSTextAlignmentCenter];
         [mainView addSubview:lbl];
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(120, 270, 150, 60)];
+        [lbl setFont:[UIFont systemFontOfSize:14]];
+        [lbl setTextColor:[UIColor blackColor]];
+        [lbl setTextAlignment:NSTextAlignmentLeft];
+        [mainView addSubview:lbl];
+        
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 330, 100, 60)];
+        [lbl setText:@"其他描述"];
+        [lbl setFont:[UIFont systemFontOfSize:14]];
+        [lbl setTextColor:DEFAUL1COLOR];
+        [lbl setTextAlignment:NSTextAlignmentCenter];
+        [mainView addSubview:lbl];
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(120, 330, 150, 60)];
         if([@""isEqualToString:notes]){
             [lbl setText:@"该用户未填此信息"];
         }else{
@@ -138,7 +148,7 @@
         [lbl setTextAlignment:NSTextAlignmentLeft];
         [mainView addSubview:lbl];
         
-        UIView *vline=[[UIView alloc]initWithFrame:CGRectMake1(110, 90, 1, 330)];
+        UIView *vline=[[UIView alloc]initWithFrame:CGRectMake1(110, 90, 1, 390)];
         [vline setBackgroundColor:DEFAUL2COLOR];
         [mainView addSubview:vline];
         vline=[[UIView alloc]initWithFrame:CGRectMake1(0, 90, 320, 1)];
@@ -154,6 +164,9 @@
         [vline setBackgroundColor:DEFAUL2COLOR];
         [mainView addSubview:vline];
         vline=[[UIView alloc]initWithFrame:CGRectMake1(0, 330, 320, 1)];
+        [vline setBackgroundColor:DEFAUL2COLOR];
+        [mainView addSubview:vline];
+        vline=[[UIView alloc]initWithFrame:CGRectMake1(0, 390, 320, 1)];
         [vline setBackgroundColor:DEFAUL2COLOR];
         [mainView addSubview:vline];
         

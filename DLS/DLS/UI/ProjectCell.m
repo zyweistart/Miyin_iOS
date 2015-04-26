@@ -21,28 +21,28 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
-        UIView *mainView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 80)];
+        UIView *mainView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 85)];
         [self addSubview:mainView];
         self.image=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 10, 60, 60)];
-        [mainView addSubview:self.image];
-        self.title=[[UILabel alloc]initWithFrame:CGRectMake1(80, 10, 230, 25)];
+        //        [mainView addSubview:self.image];
+        self.title=[[UILabel alloc]initWithFrame:CGRectMake1(10, 10, 300, 25)];
         [self.title setFont:[UIFont systemFontOfSize:17]];
         [self.title setTextColor:TITLECOLOR];
         [self.title setTextAlignment:NSTextAlignmentLeft];
         [mainView addSubview:self.title];
-        self.address=[[UILabel alloc]initWithFrame:CGRectMake1(80, 35, 230, 20)];
+        self.address=[[UILabel alloc]initWithFrame:CGRectMake1(10, 35, 240, 25)];
         [self.address setFont:[UIFont systemFontOfSize:13]];
         [self.address setTextColor:ADDRESSCOLOR];
         [self.address setNumberOfLines:2];
         [self.address setTextAlignment:NSTextAlignmentLeft];
         [mainView addSubview:self.address];
-        self.money=[[UILabel alloc]initWithFrame:CGRectMake1(80, 55, 230, 20)];
-        [self.money setFont:[UIFont systemFontOfSize:17]];
-        [self.money setTextColor:MONEYCOLOR];
+        self.money=[[UILabel alloc]initWithFrame:CGRectMake1(10, 60, 210, 25)];
+        [self.money setFont:[UIFont systemFontOfSize:13]];
+        [self.money setTextColor:ADDRESSCOLOR];
         [self.money setNumberOfLines:2];
         [self.money setTextAlignment:NSTextAlignmentLeft];
         [mainView addSubview:self.money];
-        self.status=[[UILabel alloc]initWithFrame:CGRectMake1(255, 40, 55, 25)];
+        self.status=[[UILabel alloc]initWithFrame:CGRectMake1(255, 35, 55, 25)];
         self.status.layer.cornerRadius = 2;
         self.status.layer.masksToBounds = YES;
         [self.status setFont:[UIFont systemFontOfSize:15]];
@@ -50,6 +50,12 @@
         [self.status setNumberOfLines:2];
         [self.status setTextAlignment:NSTextAlignmentCenter];
         [mainView addSubview:self.status];
+        self.date=[[UILabel alloc]initWithFrame:CGRectMake1(225, 60, 85, 25)];
+        [self.date setFont:[UIFont systemFontOfSize:13]];
+        [self.date setTextColor:ADDRESSCOLOR];
+        [self.date setNumberOfLines:2];
+        [self.date setTextAlignment:NSTextAlignmentRight];
+        [mainView addSubview:self.date];
     }
     return self;
 }
@@ -68,12 +74,10 @@
 
 - (void)setData:(NSDictionary *)data
 {
-//    NSURL *url = [NSURL URLWithString:IMAGE_URL([data objectForKey:@"images"])];
-//    UIImage *image = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
-    [self.image setImage:[UIImage imageNamed:@"category1"]];
     self.title.text=[data objectForKey:@"Name"];
-    self.address.text=[data objectForKey:@"address"];
-    self.money.text=[NSString stringWithFormat:@"%@",[data objectForKey:@"price"]];
+    self.address.text=[NSString stringWithFormat:@"设备地址:%@",[data objectForKey:@"address"]];
+    self.money.text=[NSString stringWithFormat:@"备注:%@",[data objectForKey:@"notes"]];
+    [self.date setText:[data objectForKey:@"startTime"]];
     NSString *status=[data objectForKey:@"status"];
     if([@"2" isEqualToString:status]){
         [self setStatus:@"已成交" Type:3];
