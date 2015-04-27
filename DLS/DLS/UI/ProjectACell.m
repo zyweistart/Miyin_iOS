@@ -28,8 +28,8 @@
         [self.address setTextColor:CHILDCOLOR];
         [self.address setTextAlignment:NSTextAlignmentLeft];
         [mainView addSubview:self.address];
-        self.date=[[UILabel alloc]initWithFrame:CGRectMake1(205, 15, 85, 25)];
-        [self.date setFont:[UIFont systemFontOfSize:15]];
+        self.date=[[UILabel alloc]initWithFrame:CGRectMake1(205, 15, 85, 20)];
+        [self.date setFont:[UIFont systemFontOfSize:13]];
         [self.date setTextColor:CHILDCOLOR];
         [self.date setTextAlignment:NSTextAlignmentCenter];
         [mainView addSubview:self.date];
