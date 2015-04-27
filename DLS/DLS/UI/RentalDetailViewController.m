@@ -32,7 +32,7 @@
         
         UIScrollView *scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        [scrollFrame setContentSize:CGSizeMake1(320, 390)];
+        [scrollFrame setContentSize:CGSizeMake1(320, 480)];
         [self.view addSubview:scrollFrame];
         
         UIView *topView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 80)];
@@ -74,7 +74,11 @@
         if([@""isEqualToString:weight]){
             [lbl setText:@"该用户未填此信息"];
         }else{
-            [lbl setText:weight];
+            weight=[weight stringByReplacingOccurrencesOfString:@"," withString:@"吨"];
+            NSMutableString *ms=[[NSMutableString alloc]initWithString:weight];
+            NSRange deleteRange = {0,1};
+            [ms deleteCharactersInRange:deleteRange];
+            [lbl setText:ms];
         }
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:[UIColor blackColor]];
@@ -148,7 +152,7 @@
         [lbl setTextAlignment:NSTextAlignmentLeft];
         [mainView addSubview:lbl];
         
-        UIView *vline=[[UIView alloc]initWithFrame:CGRectMake1(110, 90, 1, 390)];
+        UIView *vline=[[UIView alloc]initWithFrame:CGRectMake1(110, 90, 1, 300)];
         [vline setBackgroundColor:DEFAUL2COLOR];
         [mainView addSubview:vline];
         vline=[[UIView alloc]initWithFrame:CGRectMake1(0, 90, 320, 1)];

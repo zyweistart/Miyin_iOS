@@ -141,7 +141,7 @@
         [lbl setTextAlignment:NSTextAlignmentLeft];
         [mainView addSubview:lbl];
         
-        UIView *vline=[[UIView alloc]initWithFrame:CGRectMake1(110, 90, 1, 330)];
+        UIView *vline=[[UIView alloc]initWithFrame:CGRectMake1(110, 90, 1, 240)];
         [vline setBackgroundColor:DEFAUL2COLOR];
         [mainView addSubview:vline];
         vline=[[UIView alloc]initWithFrame:CGRectMake1(0, 90, 320, 1)];

@@ -18,6 +18,7 @@
     self=[super init];
     if(self){
         self.data=data;
+        NSLog(@"%@",self.data);
         [self setTitle:@"招聘详情"];
     }
     return self;

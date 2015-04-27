@@ -18,17 +18,17 @@
         [self setBackgroundColor:[UIColor clearColor]];
         UIView *mainView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 55)];
         [self addSubview:mainView];
-        self.title=[[UILabel alloc]initWithFrame:CGRectMake1(10, 5, 230, 25)];
+        self.title=[[UILabel alloc]initWithFrame:CGRectMake1(10, 5, 195, 25)];
         [self.title setFont:[UIFont systemFontOfSize:17]];
         [self.title setTextColor:TITLECOLOR];
         [self.title setTextAlignment:NSTextAlignmentLeft];
         [mainView addSubview:self.title];
-        self.address=[[UILabel alloc]initWithFrame:CGRectMake1(10, 30, 230, 20)];
+        self.address=[[UILabel alloc]initWithFrame:CGRectMake1(10, 30, 195, 20)];
         [self.address setFont:[UIFont systemFontOfSize:13]];
         [self.address setTextColor:CHILDCOLOR];
         [self.address setTextAlignment:NSTextAlignmentLeft];
         [mainView addSubview:self.address];
-        self.date=[[UILabel alloc]initWithFrame:CGRectMake1(240, 15, 50, 25)];
+        self.date=[[UILabel alloc]initWithFrame:CGRectMake1(205, 15, 85, 25)];
         [self.date setFont:[UIFont systemFontOfSize:15]];
         [self.date setTextColor:CHILDCOLOR];
         [self.date setTextAlignment:NSTextAlignmentCenter];
@@ -40,9 +40,9 @@
 
 - (void)setData:(NSDictionary *)data
 {
-    self.title.text=[data objectForKey:@"Name"];
+    self.title.text=[data objectForKey:@"job_title"];
     self.address.text=[data objectForKey:@"address"];
-//    self.date.text=[data objectForKey:@"Name"];
+    self.date.text=[data objectForKey:@"CreateDate"];
 }
 
 @end
