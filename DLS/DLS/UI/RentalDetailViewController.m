@@ -21,12 +21,13 @@
         self.data=data;
         
         NSString *name=[data objectForKey:@"Name"];
-        NSString *startTime=[data objectForKey:@"startTime"];
+        NSString *CreateDate=[data objectForKey:@"CreateDate"];
         NSString *weight=[data objectForKey:@"weight"];
         NSString *contact=[data objectForKey:@"contact"];
         NSString *address=[data objectForKey:@"address"];
         NSString *region=[data objectForKey:@"region"];
         NSString *notes=[data objectForKey:@"notes"];
+//        NSString *location=[data objectForKey:@"location"];
         
         [self setTitle:@"出租详情"];
         
@@ -44,7 +45,7 @@
         [lblMainTitle setTextColor:[UIColor blackColor]];
         [topView addSubview:lblMainTitle];
         UILabel *lblTime=[[UILabel alloc]initWithFrame:CGRectMake1(10, 50, 300, 20)];
-        [lblTime setText:[NSString stringWithFormat:@"发布时间:%@",startTime]];
+        [lblTime setText:[NSString stringWithFormat:@"发布时间:%@",CreateDate]];
         [lblTime setFont:[UIFont systemFontOfSize:14]];
         [lblTime setTextColor:DEFAUL1COLOR];
         [topView addSubview:lblTime];
@@ -74,10 +75,14 @@
         if([@""isEqualToString:weight]){
             [lbl setText:@"该用户未填此信息"];
         }else{
-            weight=[weight stringByReplacingOccurrencesOfString:@"," withString:@"吨"];
-            NSMutableString *ms=[[NSMutableString alloc]initWithString:weight];
-            NSRange deleteRange = {0,1};
-            [ms deleteCharactersInRange:deleteRange];
+            NSMutableString *ms=[[NSMutableString alloc]init];
+            NSArray *array=[weight componentsSeparatedByString:@","];
+            for(int i=0;i<[array count];i++){
+                NSString *wei=[array objectAtIndex:i];
+                if(![@"" isEqualToString:wei]){
+                    [ms appendFormat:@"%@吨 ",wei];
+                }
+            }
             [lbl setText:ms];
         }
         [lbl setFont:[UIFont systemFontOfSize:14]];

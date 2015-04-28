@@ -27,6 +27,7 @@
         NSString *contact=[data objectForKey:@"contact"];
         NSString *address=[data objectForKey:@"address"];
         NSString *notes=[data objectForKey:@"notes"];
+//        NSString *location=[data objectForKey:@"location"];
         
         [self setTitle:@"求租详情"];
         
@@ -74,10 +75,14 @@
         if([@""isEqualToString:weight]){
             [lbl setText:@"该用户未填此信息"];
         }else{
-            weight=[weight stringByReplacingOccurrencesOfString:@"," withString:@"吨"];
-            NSMutableString *ms=[[NSMutableString alloc]initWithString:weight];
-            NSRange deleteRange = {0,1};
-            [ms deleteCharactersInRange:deleteRange];
+            NSMutableString *ms=[[NSMutableString alloc]init];
+            NSArray *array=[weight componentsSeparatedByString:@","];
+            for(int i=0;i<[array count];i++){
+                NSString *wei=[array objectAtIndex:i];
+                if(![@"" isEqualToString:wei]){
+                    [ms appendFormat:@"%@吨 ",wei];
+                }
+            }
             [lbl setText:ms];
         }
         [lbl setFont:[UIFont systemFontOfSize:14]];
@@ -165,12 +170,18 @@
 
 - (void)goTell:(id)sender
 {
-    
+    NSString *phone=[self.data objectForKey:@"contact_phone"];
+    if(![@"" isEqualToString:phone]){
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"tel://%@",phone]]];
+    }
 }
 
 - (void)goSendMessage:(id)sender
 {
-    
+    NSString *phone=[self.data objectForKey:@"contact_phone"];
+    if(![@"" isEqualToString:phone]){
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@",phone]]];
+    }
 }
 
 - (void)goLocation:(id)sender

@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseEGOTableViewPullRefreshViewController.h"
 #import <MapKit/MapKit.h>
 
-@interface NearbyViewController : BaseViewController<MKMapViewDelegate,CLLocationManagerDelegate>
+@interface NearbyViewController : BaseEGOTableViewPullRefreshViewController<MKMapViewDelegate,CLLocationManagerDelegate>
 
 @property MKMapView *mapView;
 @property CLLocationManager *locationManager;
