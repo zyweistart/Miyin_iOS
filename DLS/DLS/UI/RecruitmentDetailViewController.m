@@ -27,6 +27,7 @@
         NSString *phone=[data objectForKey:@"phone"];
         //薪资
         NSString *XingZhi=[data objectForKey:@"XingZhi"];
+        NSString *month_salary=[data objectForKey:@"month_salary"];
         NSString *contact=[data objectForKey:@"contact"];
         NSString *address=[data objectForKey:@"address"];
         NSString *cName=[data objectForKey:@"cName"];
@@ -60,7 +61,7 @@
         UIView *view2=[[UIView alloc]initWithFrame:CGRectMake1(0, 90, 320, 110)];
         [self.view addSubview:view2];
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 5, 300, 30)];
-        [lbl setText:[NSString stringWithFormat:@"%@",XingZhi]];
+        [lbl setText:[NSString stringWithFormat:@"%@",month_salary]];
         [lbl setFont:[UIFont systemFontOfSize:18]];
         [lbl setTextColor:[UIColor orangeColor]];
         [view2 addSubview:lbl];
@@ -75,7 +76,7 @@
         [lbl setTextColor:[UIColor blackColor]];
         [view2 addSubview:lbl];
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 85, 300, 20)];
-        [lbl setText:[NSString stringWithFormat:@"招聘条件:%@",contact_person]];
+        [lbl setText:[NSString stringWithFormat:@"招聘条件:%@",job_category]];
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:[UIColor blackColor]];
         [view2 addSubview:lbl];

@@ -71,7 +71,10 @@
         if(!cell) {
             cell = [[ProjectACell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        [cell setData:[self.dataItemArray objectAtIndex:[indexPath row]]];
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        cell.title.text=[data objectForKey:@"Name"];
+        cell.address.text=[data objectForKey:@"address"];
+        cell.date.text=[data objectForKey:@"CreateDate"];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];

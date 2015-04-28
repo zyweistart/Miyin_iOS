@@ -9,6 +9,8 @@
 #import "VIPViewController.h"
 #import "LoginViewController.h"
 #import "ProjectCell.h"
+#import "QiuzuDetailViewController.h"
+#import "RentalDetailViewController.h"
 
 @interface VIPViewController ()
 
@@ -39,13 +41,14 @@
         
         searchData1=[NSArray arrayWithObjects:
                      [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"-1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"新发布",MKEY,@"0",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"洽谈中",MKEY,@"1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"已成交",MKEY,@"2",MVALUE, nil], nil];
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"新发布",MKEY,@"1",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"洽谈中",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"已成交",MKEY,@"3",MVALUE, nil], nil];
         searchData2=[NSArray arrayWithObjects:
                      [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"-1",MVALUE, nil],
                      [NSDictionary dictionaryWithObjectsAndKeys:@"汽车吊",MKEY,@"1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"履带吊",MKEY,@"2",MVALUE, nil],nil];
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"履带吊",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"塔吊",MKEY,@"3",MVALUE, nil],nil];
         searchData3=[NSArray arrayWithObjects:
                      [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"-1",MVALUE, nil],
                      [NSDictionary dictionaryWithObjectsAndKeys:@"8吨",MKEY,@"8",MVALUE, nil],
@@ -159,9 +162,14 @@
         if (cell == nil) {
             cell = [[ProjectCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CProjectCell];
         }
-        int row=[indexPath row];
+        NSUInteger row=[indexPath row];
         NSDictionary *d=[self.dataItemArray objectAtIndex:row];
         [cell setData:d];
+        if(currentType==1||currentType==5||currentType==2||currentType==6){
+            [[cell status]setHidden:NO];
+        }else{
+            [[cell status]setHidden:YES];
+        }
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -171,7 +179,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
-        NSLog(@"跳转");
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        NSString *ClassId=[NSString stringWithFormat:@"%@",[data objectForKey:@"ClassId"]];
+        if([@"41" isEqualToString:ClassId]){
+            //出租
+            [self.navigationController pushViewController:[[QiuzuDetailViewController alloc]initWithDictionary:data] animated:YES];
+        }else if([@"42" isEqualToString:ClassId]){
+            //求租
+            [self.navigationController pushViewController:[[RentalDetailViewController alloc]initWithDictionary:data] animated:YES];
+        }else if([@"44" isEqualToString:ClassId]){
+            //VIP
+            [self.navigationController pushViewController:[[QiuzuDetailViewController alloc]initWithDictionary:data] animated:YES];
+        }
     }
 }
 
@@ -226,7 +245,7 @@
         [params setObject:@"4" forKey:@"Id"];
         [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
     }
-    [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]] forKey:@"index"];
+    [params setObject:[NSString stringWithFormat:@"%ld",[self currentPage]] forKey:@"index"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];
