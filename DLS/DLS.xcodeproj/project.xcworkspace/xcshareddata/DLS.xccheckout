@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>D428F4E9-BF3C-4BB7-A4F5-83E5B531833D</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>DLS</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>142F90E583E31EEE4C816EABE6B037C19DB4AD77</key>
 		<string>https://github.com/zyweistart/Miyin_iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>DLS/DLS.xcodeproj/project.xcworkspace</string>
+	<string>DLS/DLS.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>142F90E583E31EEE4C816EABE6B037C19DB4AD77</key>
