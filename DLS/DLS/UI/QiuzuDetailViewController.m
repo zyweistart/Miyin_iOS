@@ -20,13 +20,13 @@
     if(self){
         self.data=data;
         
-        NSString *name=[data objectForKey:@"Name"];
-        NSString *startTime=[data objectForKey:@"startTime"];
-        NSString *endTime=[data objectForKey:@"endTime"];
-        NSString *weight=[data objectForKey:@"weight"];
-        NSString *contact=[data objectForKey:@"contact"];
-        NSString *address=[data objectForKey:@"address"];
-        NSString *notes=[data objectForKey:@"notes"];
+        NSString *name=[Common getString:[data objectForKey:@"Name"]];
+        NSString *startTime=[Common getString:[data objectForKey:@"startTime"]];
+        NSString *endTime=[Common getString:[data objectForKey:@"endTime"]];
+        NSString *weight=[Common getString:[data objectForKey:@"weight"]];
+        NSString *contact=[Common getString:[data objectForKey:@"contact"]];
+        NSString *address=[Common getString:[data objectForKey:@"address"]];
+        NSString *notes=[Common getString:[data objectForKey:@"notes"]];
 //        NSString *location=[data objectForKey:@"location"];
         
         [self setTitle:@"求租详情"];
@@ -96,7 +96,7 @@
         [lbl setTextColor:DEFAUL1COLOR];
         [lbl setTextAlignment:NSTextAlignmentCenter];
         [mainView addSubview:lbl];
-        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(120, 150, 150, 60)];
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(120, 150, 180, 60)];
         if([@""isEqualToString:startTime]||[@""isEqualToString:endTime]){
             [lbl setText:@"该用户未填此信息"];
         }else{

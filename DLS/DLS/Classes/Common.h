@@ -24,4 +24,6 @@
 
 + (UIImage*)createImageWithColor:(UIColor*)color;
 
++ (NSString*)getString:(NSString*)data;
+
 @end

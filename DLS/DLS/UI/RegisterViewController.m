@@ -86,9 +86,9 @@
         [scrollFrame addSubview:bLogin];
         
         
-        [tfUserName setText:@"4544242"];
-        [tfPassword setText:@"4544242"];
-        [tfPhone setText:@"13750820210"];
+//        [tfUserName setText:@"4544242"];
+//        [tfPassword setText:@"4544242"];
+//        [tfPhone setText:@"13750820210"];
     }
     return self;
 }

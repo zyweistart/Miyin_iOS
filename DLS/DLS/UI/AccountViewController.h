@@ -8,6 +8,6 @@
 
 #import "BaseTableViewController.h"
 
-@interface AccountViewController : BaseTableViewController
+@interface AccountViewController : BaseTableViewController<UIAlertViewDelegate>
 
 @end

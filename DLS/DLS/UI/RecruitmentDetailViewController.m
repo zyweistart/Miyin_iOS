@@ -20,19 +20,19 @@
     if(self){
         self.data=data;
         NSLog(@"%@",self.data);
-        NSString *job_title=[data objectForKey:@"job_title"];
-        NSString *job_category=[data objectForKey:@"job_category"];
+        NSString *job_title=[Common getString:[data objectForKey:@"job_title"]];
+        NSString *job_category=[Common getString:[data objectForKey:@"job_category"]];
         
-        NSString *CreateDate=[data objectForKey:@"CreateDate"];
-        NSString *phone=[data objectForKey:@"phone"];
+        NSString *CreateDate=[Common getString:[data objectForKey:@"CreateDate"]];
+        NSString *phone=[Common getString:[data objectForKey:@"phone"]];
         //薪资
-        NSString *XingZhi=[data objectForKey:@"XingZhi"];
-        NSString *month_salary=[data objectForKey:@"month_salary"];
-        NSString *contact=[data objectForKey:@"contact"];
-        NSString *address=[data objectForKey:@"address"];
-        NSString *cName=[data objectForKey:@"cName"];
-        NSString *contact_person=[data objectForKey:@"contact_person"];
-        NSString *job_specification=[data objectForKey:@"job_specification"];
+        NSString *XingZhi=[Common getString:[data objectForKey:@"XingZhi"]];
+        NSString *month_salary=[Common getString:[data objectForKey:@"month_salary"]];
+        NSString *contact=[Common getString:[data objectForKey:@"contact"]];
+        NSString *address=[Common getString:[data objectForKey:@"address"]];
+        NSString *cName=[Common getString:[data objectForKey:@"cName"]];
+        NSString *contact_person=[Common getString:[data objectForKey:@"contact_person"]];
+        NSString *job_specification=[Common getString:[data objectForKey:@"job_specification"]];
 
         [self setTitle:@"招聘详情"];
 

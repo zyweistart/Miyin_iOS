@@ -124,22 +124,36 @@
             //履带吊求租，履带吊出租
             [self.pv2.picker selectRow:2 inComponent:0 animated:YES];
             [self pickerViewDone:2];
+        }else if(type==3||type==7){
+            //履带吊求租，履带吊出租
+            [self.pv2.picker selectRow:3 inComponent:0 animated:YES];
+            [self pickerViewDone:2];
         }
     }
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    if(![[User Instance]isLogin]){
-        [self presentViewControllerNav:[[LoginViewController alloc]init]];
-    }else{
+    [super viewDidAppear:animated];
+    if(currentType==1||currentType==5||currentType==2||currentType==6||currentType==3||currentType==7){
         if(!ISFIRSTINFLAG){
             [categoryView setIndex:1];
             if(!self.tableView.pullTableIsRefreshing) {
                 self.tableView.pullTableIsRefreshing=YES;
                 [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+            }
+        }
+    }else{
+        if(![[User Instance]isLogin]){
+            [self presentViewControllerNav:[[LoginViewController alloc]init]];
+        }else{
+            if(!ISFIRSTINFLAG){
+                [categoryView setIndex:1];
+                if(!self.tableView.pullTableIsRefreshing) {
+                    self.tableView.pullTableIsRefreshing=YES;
+                    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+                }
             }
         }
     }
@@ -165,7 +179,7 @@
         NSUInteger row=[indexPath row];
         NSDictionary *d=[self.dataItemArray objectAtIndex:row];
         [cell setData:d];
-        if(currentType==1||currentType==5||currentType==2||currentType==6){
+        if(currentType==1||currentType==5||currentType==2||currentType==6||currentType==3||currentType==7){
             [[cell status]setHidden:NO];
         }else{
             [[cell status]setHidden:YES];
@@ -240,12 +254,18 @@
     }else if(currentType==6){
         //履带吊出租
         [params setObject:@"3" forKey:@"Id"];
+    }else if(currentType==3){
+        //塔吊求租
+        [params setObject:@"1" forKey:@"Id"];
+    }else if(currentType==7){
+        //塔吊出租
+        [params setObject:@"3" forKey:@"Id"];
     }else{
         //VIP工程
         [params setObject:@"4" forKey:@"Id"];
         [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
     }
-    [params setObject:[NSString stringWithFormat:@"%ld",[self currentPage]] forKey:@"index"];
+    [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]] forKey:@"index"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];

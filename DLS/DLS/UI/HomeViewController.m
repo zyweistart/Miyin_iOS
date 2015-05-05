@@ -76,23 +76,23 @@
         
         [self buildTableViewWithView:self.view];
         [self.tableView setBackgroundColor:BGCOLOR];
-        UIView *header=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 546)];
+        UIView *header=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 330)];
         [self.tableView setTableHeaderView:header];
-        HomeBannerView *banner=[[HomeBannerView alloc]initWithFrame:CGRectMake(0, 0, 320, 300)];
+        HomeBannerView *banner=[[HomeBannerView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
         [banner setController:self];
         [header addSubview:banner];
         //空格
-        UIView *spaceFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 300, 320, 10)];
+        UIView *spaceFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 320, 320, 10)];
         [spaceFrame setBackgroundColor:BGCOLOR];
         [header addSubview:spaceFrame];
         //功能
         HomeCategoryView *category=[[HomeCategoryView alloc]initWithFrame:CGRectMake(0, 310, 320, 226)];
         [category setController:self];
-        [header addSubview:category];
+//        [header addSubview:category];
         //空格
-        spaceFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 536, 320, 10)];
+        spaceFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 312, 320, 10)];
         [spaceFrame setBackgroundColor:BGCOLOR];
-        [header addSubview:spaceFrame];
+//        [header addSubview:spaceFrame];
         
         currentButtonIndex=1;
         self.currentPage1=0;
@@ -129,13 +129,13 @@
     //分类
     UIView *categoryFrame =[[UIView alloc] initWithFrame:CGRectMake1(0, 0, 320, 40)] ;
     [categoryFrame setBackgroundColor:BGCOLOR];
-    self.button1=[[UIButton alloc]initWithFrame:CGRectMake1(10, 0, 75, 40)];
+    self.button1=[[UIButton alloc]initWithFrame:CGRectMake1(10, 0, 150, 40)];
     [[self.button1 titleLabel]setFont:[UIFont systemFontOfSize:14]];
     [self.button1 setTitle:@"最新求租" forState:UIControlStateNormal];
     self.button1.tag=1;
     [self.button1 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
     [categoryFrame addSubview:self.button1];
-    self.button2=[[UIButton alloc]initWithFrame:CGRectMake1(85, 0, 75, 40)];
+    self.button2=[[UIButton alloc]initWithFrame:CGRectMake1(160, 0, 150, 40)];
     [[self.button2 titleLabel]setFont:[UIFont systemFontOfSize:14]];
     [self.button2 setTitle:@"最新出租" forState:UIControlStateNormal];
     self.button2.tag=2;
@@ -146,13 +146,13 @@
     [self.button3 setTitle:@"中标结果" forState:UIControlStateNormal];
     self.button3.tag=3;
     [self.button3 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
-    [categoryFrame addSubview:self.button3];
+//    [categoryFrame addSubview:self.button3];
     self.button4=[[UIButton alloc]initWithFrame:CGRectMake1(235, 0, 75, 40)];
     [[self.button4 titleLabel]setFont:[UIFont systemFontOfSize:14]];
     [self.button4 setTitle:@"行业资讯" forState:UIControlStateNormal];
     self.button4.tag=4;
     [self.button4 addTarget:self action:@selector(switchCategory:) forControlEvents:UIControlEventTouchDown];
-    [categoryFrame addSubview:self.button4];
+//    [categoryFrame addSubview:self.button4];
     
     [self showCategoryStatus];
 
@@ -185,6 +185,11 @@
             int row=[indexPath row];
             NSDictionary *d=[self.dataItemArray objectAtIndex:row];
             [cell setData:d];
+            if(currentButtonIndex==2){
+                [cell.status setHidden:YES];
+            }else{
+                [cell.status setHidden:NO];
+            }
             return cell;
         }else{
             static NSString *CELL = @"CInformationCell";

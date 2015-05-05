@@ -67,4 +67,15 @@
     return theImage;
 }
 
++ (NSString*)getString:(NSString*)data
+{
+    if(data==nil){
+        return @"";
+    }
+    if([data isKindOfClass:[NSNull class]]){
+        return @"";
+    }
+    return data;
+}
+
 @end

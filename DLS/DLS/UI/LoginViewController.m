@@ -64,6 +64,7 @@
         tfPassword=[[UITextField alloc]initWithFrame:CGRectMake1(50, 0,250, 40)];
         [tfPassword setPlaceholder:@"请输入密码"];
         [tfPassword setTextColor:TITLECOLOR];
+        [tfPassword setSecureTextEntry:YES];
         [vPasswordFrame addSubview:tfPassword];
         //登陆
         UIButton *bLogin=[[UIButton alloc]initWithFrame:CGRectMake1(10, 110, 300, 40)];
@@ -77,8 +78,8 @@
         [bLogin addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:bLogin];
         
-        [tfUserName setText:@"11111111"];
-        [tfPassword setText:@"123456"];
+        [tfUserName setText:[[User Instance]getUserName]];
+        [tfPassword setText:[[User Instance]getPassword]];
     }
     return self;
 }
@@ -111,7 +112,9 @@
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){
-        [[User Instance]LoginSuccessWithUserName:@"" Password:@"" Data:[[response resultJSON]objectForKey:@"Data"]];
+        NSString *userName=[tfUserName text];
+        NSString *password=[tfPassword text];
+        [[User Instance]LoginSuccessWithUserName:userName Password:password Data:[[response resultJSON]objectForKey:@"Data"]];
         [[self resultDelegate]onControllerResult:RESULTCODE_LOGIN data:nil];
         [self dismissViewControllerAnimated:YES completion:nil];
     }

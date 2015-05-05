@@ -303,7 +303,7 @@ static CGFloat kImageOriginHight = 220.f;
 {
     if([[User Instance]isLogin]){
         [bHead setHidden:NO];
-        NSString *name=[[[User Instance]resultData] objectForKey:@"Name"];
+        NSString *name=[Common getString:[[[User Instance]resultData] objectForKey:@"Name"]];
 //        NSString *headImage=[[[User Instance]resultData] objectForKey:@"HeadImage"];
 //        NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,headImage];
 //        UIImageView *iv=[[UIImageView alloc]init];

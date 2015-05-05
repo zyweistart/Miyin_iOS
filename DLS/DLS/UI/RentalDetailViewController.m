@@ -20,13 +20,13 @@
     if(self){
         self.data=data;
         
-        NSString *name=[data objectForKey:@"Name"];
-        NSString *CreateDate=[data objectForKey:@"CreateDate"];
-        NSString *weight=[data objectForKey:@"weight"];
-        NSString *contact=[data objectForKey:@"contact"];
-        NSString *address=[data objectForKey:@"address"];
-        NSString *region=[data objectForKey:@"region"];
-        NSString *notes=[data objectForKey:@"notes"];
+        NSString *name=[Common getString:[data objectForKey:@"Name"]];
+        NSString *CreateDate=[Common getString:[data objectForKey:@"CreateDate"]];
+        NSString *weight=[Common getString:[data objectForKey:@"weight"]];
+        NSString *contact=[Common getString:[data objectForKey:@"contact"]];
+        NSString *address=[Common getString:[data objectForKey:@"address"]];
+        NSString *region=[Common getString:[data objectForKey:@"region"]];
+        NSString *notes=[Common getString:[data objectForKey:@"notes"]];
 //        NSString *location=[data objectForKey:@"location"];
         
         [self setTitle:@"出租详情"];
