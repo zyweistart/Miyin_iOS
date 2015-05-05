@@ -18,6 +18,7 @@
 #import "ProjectCell.h"
 #import "QiuzuDetailViewController.h"
 #import "RentalDetailViewController.h"
+#import "LoginViewController.h"
 
 #define SEARCHTIPCOLOR [UIColor colorWithRed:(88/255.0) green:(130/255.0) blue:(216/255.0) alpha:1]
 #define BGCOLOR [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]
@@ -293,7 +294,13 @@
 //发布求租
 - (void)goPublish:(UIButton*)sender
 {
-    [self.navigationController pushViewController:[[PublishQiuzuViewController alloc]init] animated:YES];
+    if([[User Instance]isLogin]){
+        PublishQiuzuViewController *publishQiuzuViewController=[[PublishQiuzuViewController alloc]init];
+        [publishQiuzuViewController setHidesBottomBarWhenPushed:YES];
+        [self.navigationController pushViewController:publishQiuzuViewController animated:YES];
+    }else{
+        [self presentViewControllerNav:[[LoginViewController alloc]init]];
+    }
 }
 
 //头部下拉刷新

@@ -186,7 +186,7 @@
 
 - (void)goLocation:(id)sender
 {
-    
+    NSLog(@"location");
 }
 
 @end

@@ -185,17 +185,23 @@
 
 - (void)goTell:(id)sender
 {
-    
+    NSString *phone=[self.data objectForKey:@"contact_phone"];
+    if(![@"" isEqualToString:phone]){
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"tel://%@",phone]]];
+    }
 }
 
 - (void)goSendMessage:(id)sender
 {
-    
+    NSString *phone=[self.data objectForKey:@"contact_phone"];
+    if(![@"" isEqualToString:phone]){
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@",phone]]];
+    }
 }
 
 - (void)goLocation:(id)sender
 {
-    
+    NSLog(@"location");
 }
 
 @end
