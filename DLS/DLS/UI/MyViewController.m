@@ -61,10 +61,10 @@ static CGFloat kImageOriginHight = 220.f;
         [self.tableView setDataSource:self];
         [self.view addSubview:self.tableView];
         
-        self.expandZoomImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, kImageOriginHight)];
+        self.expandZoomImageView=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, kImageOriginHight)];
         self.expandZoomImageView.userInteractionEnabled=YES;
         [self.expandZoomImageView setImage:[UIImage imageNamed:@"personalbg"]];
-        self.tableView.contentInset = UIEdgeInsetsMake(kImageOriginHight, 0, 0, 0);
+        self.tableView.contentInset = UIEdgeInsetsMake(CGHeight(kImageOriginHight), 0, 0, 0);
         [self.tableView addSubview:self.expandZoomImageView];
         
         //设置
@@ -139,7 +139,7 @@ static CGFloat kImageOriginHight = 220.f;
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    self.expandZoomImageView.frame = CGRectMake(0, -kImageOriginHight, self.tableView.frame.size.width, kImageOriginHight);
+    self.expandZoomImageView.frame = CGRectMake1(0, -kImageOriginHight, self.tableView.frame.size.width, kImageOriginHight);
     
     [self showUser];
 }
