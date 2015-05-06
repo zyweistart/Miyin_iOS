@@ -13,6 +13,7 @@
 #import "NSString+Utils.h"
 #import "DGSQViewController.h"
 #import "EnterpriseNameModifyViewController.h"
+#import "ForgetPwdViewController.h"
 
 @interface LoginViewController ()
 
@@ -48,7 +49,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 150)];
+    UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 200)];
     [self.view addSubview:frame];
     svUserName=[[SVTextField alloc]initWithFrame:CGRectMake1(10, 5, 300, 40) Title:@"账号"];
     [frame addSubview:svUserName];
@@ -58,6 +59,15 @@
     SVButton *bLogin=[[SVButton alloc]initWithFrame:CGRectMake1(10, 100, 300, 40) Title:@"登陆" Type:2];
     [bLogin addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
     [frame addSubview:bLogin];
+    
+    UIButton *bForgetPwd = [[UIButton alloc]initWithFrame:CGRectMake1(210, 150, 100, 40)];
+    [bForgetPwd setTitle:@"找回密码?" forState:UIControlStateNormal];
+    [bForgetPwd.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [bForgetPwd setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [bForgetPwd.titleLabel setTextAlignment:NSTextAlignmentRight];
+    [bForgetPwd addTarget:self action:@selector(goForget:) forControlEvents:UIControlEventTouchUpInside];
+    [frame addSubview:bForgetPwd];
+    
     
 //    有监测类型用户(安装我们设备的用户)：cshh   8888aa
 //    无监测类型用户（可以增加多个企业的）：zhaox07 111111
@@ -119,6 +129,11 @@
     }else{
         [Common alert:[Common NSNullConvertEmptyString:[response msg]]];
     }
+}
+
+- (void)goForget:(id)sender
+{
+    [self.navigationController pushViewController:[[ForgetPwdViewController alloc]init] animated:YES];
 }
 
 @end

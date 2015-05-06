@@ -23,6 +23,7 @@
 		C915F3921AE4BA7800FC8B4A /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = C915F3901AE4BA7800FC8B4A /* EAIntroView.m */; };
 		C915F3951AE4F8A000FC8B4A /* MapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C915F3941AE4F8A000FC8B4A /* MapCell.m */; };
 		C91C043B1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91C043A1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m */; };
+		C926A2F91AF9AB4100175BAA /* ForgetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C926A2F81AF9AB4100175BAA /* ForgetPwdViewController.m */; };
 		C9277AB81ADB58080019BB7D /* ElectricianMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9277AB71ADB58080019BB7D /* ElectricianMapViewController.m */; };
 		C9277ABB1ADBA93B0019BB7D /* ElectricianDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9277ABA1ADBA93B0019BB7D /* ElectricianDetailViewController.m */; };
 		C92C27311AC1325F00E472C9 /* EDGButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C92C27301AC1325F00E472C9 /* EDGButtonCell.m */; };
@@ -163,6 +164,8 @@
 		C915F3941AE4F8A000FC8B4A /* MapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapCell.m; sourceTree = "<group>"; };
 		C91C04391ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseHeightLowEditCell.h; sourceTree = "<group>"; };
 		C91C043A1ACA993A00ECBAEC /* EnterpriseHeightLowEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseHeightLowEditCell.m; sourceTree = "<group>"; };
+		C926A2F71AF9AB4100175BAA /* ForgetPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdViewController.h; sourceTree = "<group>"; };
+		C926A2F81AF9AB4100175BAA /* ForgetPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdViewController.m; sourceTree = "<group>"; };
 		C9277AB61ADB58080019BB7D /* ElectricianMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricianMapViewController.h; sourceTree = "<group>"; };
 		C9277AB71ADB58080019BB7D /* ElectricianMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricianMapViewController.m; sourceTree = "<group>"; };
 		C9277AB91ADBA93B0019BB7D /* ElectricianDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricianDetailViewController.h; sourceTree = "<group>"; };
@@ -485,6 +488,8 @@
 				C9BA43691ABC7B1600B73485 /* RegisterViewController.m */,
 				C9B324391AC7053A0089A297 /* STAboutUsViewController.h */,
 				C9B3243A1AC7053A0089A297 /* STAboutUsViewController.m */,
+				C926A2F71AF9AB4100175BAA /* ForgetPwdViewController.h */,
+				C926A2F81AF9AB4100175BAA /* ForgetPwdViewController.m */,
 			);
 			name = "我的";
 			sourceTree = "<group>";
@@ -992,6 +997,7 @@
 				C915F3921AE4BA7800FC8B4A /* EAIntroView.m in Sources */,
 				C9E5A98B1AC0137800FE38F0 /* EnterpriseNameModifyViewController.m in Sources */,
 				C915F38B1AE4BA4600FC8B4A /* STGuideViewController.m in Sources */,
+				C926A2F91AF9AB4100175BAA /* ForgetPwdViewController.m in Sources */,
 				C92C273A1AC1346100E472C9 /* ElectricianManagerAddViewController.m in Sources */,
 				C94DC03E1ADFB6550058033A /* WebDetailViewController.m in Sources */,
 				C971A8321ADF939F0046D428 /* ElecLoadDetailChartViewController.m in Sources */,

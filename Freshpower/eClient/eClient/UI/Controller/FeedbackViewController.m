@@ -7,6 +7,7 @@
 //
 
 #import "FeedbackViewController.h"
+#import "LoginViewController.h"
 #import "SVButton.h"
 #import "SVTextField.h"
 #import "SVTextView.h"
@@ -31,6 +32,14 @@
         [self setTitle:@"电工神器"];
     }
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if(![[User Instance]isLogin]){
+        [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
+    }
 }
 
 - (void)viewDidLoad {
