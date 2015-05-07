@@ -8,9 +8,14 @@
 
 #import "PublishRentalViewController.h"
 #import "ButtonView.h"
+#import "SB1Cell.h"
+
+#define KEYCELL @"KEY"
+#define VALUECELL @"VALUE"
 
 #define BGCOLOR [UIColor colorWithRed:(246/255.0) green:(246/255.0) blue:(246/255.0) alpha:1]
 #define TITLECOLOR [UIColor colorWithRed:(127/255.0) green:(127/255.0) blue:(127/255.0) alpha:1]
+#define LINEBGCOLOR [UIColor colorWithRed:(225/255.0) green:(225/255.0) blue:(225/255.0) alpha:1]
 
 @interface PublishRentalViewController ()
 
@@ -22,7 +27,7 @@
     NSArray *searchData1,*searchData2;
     UILabel *lblRentalType,*lblSBType;
     UITextView *tvRemark;
-    UITextField *tfTitle,*tfContact,*tfPhone,*tfAddress;
+    UITextField *tfTitle,*tfSBNumber,*tfContact,*tfPhone,*tfAddress;
     UIButton *bAdd;
     UIImageView *image1,*image2,*image3,*image4,*image5;
     NSMutableArray *imageList;
@@ -47,7 +52,40 @@
         //
         tfTitle=[self addFrameTypeTextField:60 Title:@"标题" Frame:headView];
         //
-        lblSBType=[self addFrameType:10 Title:@"设备类型" Name:@"请选择" Tag:2 Frame:footView];
+//        lblSBType=[self addFrameType:10 Title:@"设备类型" Name:@"请选择" Tag:2 Frame:footView];
+        
+        UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0,10,320,40)];
+        [frame setBackgroundColor:[UIColor whiteColor]];
+        [footView addSubview:frame];
+        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 100, 40)];
+        [lbl setText:@"设备类型"];
+        [lbl setTextColor:TITLECOLOR];
+        [lbl setFont:[UIFont systemFontOfSize:14]];
+        [lbl setTextAlignment:NSTextAlignmentLeft];
+        [frame addSubview:lbl];
+        lblSBType=[[UILabel alloc]initWithFrame:CGRectMake1(120, 0, 70, 40)];
+        [lblSBType setText:@"请选择"];
+        [lblSBType setTextColor:TITLECOLOR];
+        [lblSBType setFont:[UIFont systemFontOfSize:14]];
+        [lblSBType setTextAlignment:NSTextAlignmentRight];
+        [lblSBType setTag:2];
+        [lblSBType setUserInteractionEnabled:YES];
+        [lblSBType addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectorType:)]];
+        [frame addSubview:lblSBType];
+        UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(200, 11, 9, 18)];
+        [image setImage:[UIImage imageNamed:@"arrowright"]];
+        [frame addSubview:image];
+        UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(219, 5, 1, 30)];
+        [line setBackgroundColor:LINEBGCOLOR];
+        [frame addSubview:line];
+        tfSBNumber=[[UITextField alloc]initWithFrame:CGRectMake1(220, 0, 90, 40)];
+        [tfSBNumber setDelegate:self];
+        [tfSBNumber setPlaceholder:@"需要的数量"];
+        [tfSBNumber setTextColor:TITLECOLOR];
+        [tfSBNumber setFont:[UIFont systemFontOfSize:14]];
+        [tfSBNumber setTextAlignment:NSTextAlignmentCenter];
+        [tfSBNumber setKeyboardType:UIKeyboardTypeNumberPad];
+        [frame addSubview:tfSBNumber];
         //添加
         ButtonView *buttonAdd=[[ButtonView alloc]initWithFrame:CGRectMake1(10, 60, 300, 40) Name:@"再添加设备"];
         [buttonAdd addTarget:self action:@selector(add:) forControlEvents:UIControlEventTouchUpInside];
@@ -93,10 +131,10 @@
         //
         tfPhone=[self addFrameTypeTextField:360 Title:@"电话" Frame:footView];
         //备注
-        UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0,410,320,140)];
+        frame=[[UIView alloc]initWithFrame:CGRectMake1(0,410,320,140)];
         [frame setBackgroundColor:[UIColor whiteColor]];
         [footView addSubview:frame];
-        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 100, 30)];
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 100, 30)];
         [lbl setText:@"备注"];
         [lbl setTextColor:TITLECOLOR];
         [lbl setFont:[UIFont systemFontOfSize:14]];
@@ -118,7 +156,8 @@
         
         searchData1=[NSArray arrayWithObjects:
                      [NSDictionary dictionaryWithObjectsAndKeys:@"汽车吊",MKEY,@"1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"履带吊",MKEY,@"2",MVALUE, nil], nil];
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"履带吊",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"塔吊",MKEY,@"3",MVALUE, nil], nil];
         searchData2=[NSArray arrayWithObjects:
                      [NSDictionary dictionaryWithObjectsAndKeys:@"8吨",MKEY,@"8",MVALUE, nil],
                      [NSDictionary dictionaryWithObjectsAndKeys:@"12吨",MKEY,@"12",MVALUE, nil],
@@ -231,15 +270,32 @@
 
 - (void)add:(id)sender
 {
+//    [self hideKeyBoard];
+//    if(pvv2==-1){
+//        [Common alert:@"请选择设备类型"];
+//        return;
+//    }
+//    [self.dataItemArray addObject:[NSString stringWithFormat:@"%d",pvv2]];
+//    [self.tableView reloadData];
+//    pvv2=-1;
+//    [lblSBType setText:@"请选择"];
     [self hideKeyBoard];
     if(pvv2==-1){
         [Common alert:@"请选择设备类型"];
         return;
     }
-    [self.dataItemArray addObject:[NSString stringWithFormat:@"%d",pvv2]];
+    NSString *number=[tfSBNumber text];
+    if([@"" isEqualToString:number]){
+        [Common alert:@"请输入设备数量"];
+        return;
+    }
+    
+    [self.dataItemArray addObject:
+     [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",pvv2],KEYCELL,number,VALUECELL, nil]];
     [self.tableView reloadData];
     pvv2=-1;
     [lblSBType setText:@"请选择"];
+    [tfSBNumber setText:@""];
 }
 
 - (void)publish:(id)sender
@@ -260,17 +316,63 @@
     }
     NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvv1];
     NSString *pvv1v=[d objectForKey:MVALUE];
-    NSMutableString *weights=[[NSMutableString alloc]init];
-    for(id data in self.dataItemArray){
-        NSDictionary *d1=[self.pv2.pickerArray objectAtIndex:[data intValue]];
-        NSString *key=[d1 objectForKey:MVALUE];
-        //        NSLog(@"设备类型＝%@",key);
-        [weights appendFormat:@"%@,",key];
-    }
-    NSRange deleteRange = {[weights length]-1,1};
-    [weights deleteCharactersInRange:deleteRange];
     
-    NSLog(@"选择类型=%@\n标题=%@\n设备地址=%@\n联系人=%@\n电话=%@\n备注=%@\n纯位＝%@\n",pvv1v,title,address,contact,phone,remark,weights);
+//    NSMutableString *weights=[[NSMutableString alloc]init];
+//    for(id data in self.dataItemArray){
+//        NSDictionary *d1=[self.pv2.pickerArray objectAtIndex:[data intValue]];
+//        NSString *key=[d1 objectForKey:MVALUE];
+//        [weights appendFormat:@"%@,",key];
+//    }
+//    NSRange deleteRange = {[weights length]-1,1};
+//    [weights deleteCharactersInRange:deleteRange];
+    
+    
+    
+    
+    NSMutableString *weights=[[NSMutableString alloc]init];
+    NSMutableString *equipments=[[NSMutableString alloc]init];
+    for(id data in self.dataItemArray){
+        NSString *index=[data objectForKey:KEYCELL];
+        NSString *value=[data objectForKey:VALUECELL];
+        NSDictionary *d1=[self.pv2.pickerArray objectAtIndex:[index intValue]];
+        NSString *key=[d1 objectForKey:MVALUE];
+        //        NSLog(@"设备类型＝%@，，，，数量＝%@",key,value);
+        [weights appendFormat:@"%@,",key];
+        [equipments appendFormat:@"%@,",value];
+    }
+    NSRange deleteRange1 = {[weights length]-1,1};
+    [weights deleteCharactersInRange:deleteRange1];
+    NSRange deleteRange2 = {[equipments length]-1,1};
+    [equipments deleteCharactersInRange:deleteRange2];
+//    NSLog(@"选择类型=%@\n标题=%@\n设备地址=%@\n联系人=%@\n电话=%@\n备注=%@\n纯位＝%@\n数量=%@",pvv1v,title,address,contact,phone,remark,weights,equipments);
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
+    [params setObject:@"0" forKey:@"Id"];
+    [params setObject:@"42" forKey:@"classId"];
+    [params setObject:title forKey:@"Name"];
+    [params setObject:pvv1v forKey:@"xlValue"];
+    [params setObject:address forKey:@"address"];
+    [params setObject:contact forKey:@"contact"];
+    [params setObject:phone forKey:@"contact_phone"];
+    [params setObject:remark forKey:@"notes"];
+    [params setObject:weights forKey:@"weight"];
+    [params setObject:equipments forKey:@"equipment_Num"];
+    [params setObject:@"1" forKey:@"region"];
+    [params setObject:@"" forKey:@"imageList"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:@"SaveForm" requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        [Common alert:@"发布成功"];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)showPickerView:(NSInteger)tag
@@ -283,6 +385,7 @@
 {
     [tfTitle resignFirstResponder];
     [tfPhone resignFirstResponder];
+    [tfSBNumber resignFirstResponder];
     [tfContact resignFirstResponder];
     [tfAddress resignFirstResponder];
     [tvRemark resignFirstResponder];
@@ -330,14 +433,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"SAMPLECell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    SB1Cell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+        cell = [[SB1Cell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    NSString *key=[self.dataItemArray objectAtIndex:indexPath.row];
+    NSDictionary *data=[self.dataItemArray objectAtIndex:indexPath.row];
+    NSString *key=[data objectForKey:KEYCELL];
     NSDictionary *d=[self.pv2.pickerArray objectAtIndex:[key intValue]];
-    cell.textLabel.text = @"设备类型";
-    cell.detailTextLabel.text=[d objectForKey:MKEY];
+    [cell.lblType setText:[d objectForKey:MKEY]];
+    [cell.lblNumber setText:[data objectForKey:VALUECELL]];
     return cell;
 }
 

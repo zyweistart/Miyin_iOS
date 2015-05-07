@@ -8,7 +8,6 @@
 
 #import "MessageViewController.h"
 #import "MessageDetailViewController.h"
-#import "MessageCell.h"
 
 @interface MessageViewController ()
 
@@ -44,7 +43,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
-        return CGHeight(65);
+        return CGHeight(45);
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
@@ -54,11 +53,14 @@
 {
     if([self.dataItemArray count]>0){
         static NSString *cellIdentifier = @"Cell";
-        MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if(!cell) {
-            cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         }
-        [cell setData:[self.dataItemArray objectAtIndex:[indexPath row]]];
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        [cell.textLabel setText:[data objectForKey:@"title"]];
+        [cell.detailTextLabel setText:[data objectForKey:@"CreateDate"]];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -68,7 +70,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
-        [self.navigationController pushViewController:[[MessageDetailViewController alloc]initWithDictionary:[self.dataItemArray objectAtIndex:[indexPath row]]] animated:YES];
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:[[MessageDetailViewController alloc]initWithDictionary:data] animated:YES];
     }
 }
 
