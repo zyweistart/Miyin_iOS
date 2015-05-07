@@ -14,7 +14,6 @@
 
 #define TITLE1COLOR  [UIColor colorWithRed:(76/255.0) green:(121/255.0) blue:(206/255.0) alpha:1]
 #define TITLECOLOR  [UIColor colorWithRed:(124/255.0) green:(124/255.0) blue:(124/255.0) alpha:1]
-#define CATEGORYBGCOLOR  [UIColor colorWithRed:(243/255.0) green:(248/255.0) blue:(255/255.0) alpha:1]
 
 @implementation HomeBannerView{
     NSDictionary *data;
@@ -81,12 +80,12 @@
 //    [button addTarget:self action:@selector(goToMain:) forControlEvents:UIControlEventTouchUpInside];
 //    button.tag=tag;
 //    [frame addSubview:button];
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake1(x, y, 150, 60)];
+    UIImageView *view=[[UIImageView alloc]initWithFrame:CGRectMake1(x, y, 150, 60)];
     view.tag=tag;
     [view setUserInteractionEnabled:YES];
     [view addGestureRecognizer:[[UITapGestureRecognizer alloc]
                                 initWithTarget:self action:@selector(goToMain:)]];
-    [view setBackgroundColor:CATEGORYBGCOLOR];
+    [view setImage:[UIImage imageNamed:@"dh"]];
     UIImageView *uiimage=[[UIImageView alloc]initWithFrame:CGRectMake1(2, 10, 40, 40)];
     [uiimage setImage:[UIImage imageNamed:image]];
     [view addSubview:uiimage];

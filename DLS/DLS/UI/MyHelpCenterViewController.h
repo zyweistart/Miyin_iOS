@@ -6,8 +6,10 @@
 //  Copyright (c) 2015 Start. All rights reserved.
 //
 
-#import "BaseEGOTableViewPullRefreshViewController.h"
+#import "BaseViewController.h"
 
-@interface MyHelpCenterViewController : BaseEGOTableViewPullRefreshViewController
+@interface MyHelpCenterViewController : BaseViewController<UIWebViewDelegate>
+
+@property (strong,nonatomic)UIWebView *webView1;
 
 @end

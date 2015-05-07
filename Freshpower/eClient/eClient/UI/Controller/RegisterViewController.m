@@ -126,7 +126,7 @@
 {
     if(501==reqCode){
         if([response successFlag]){
-            [Common alert:[response msg]];
+            [Common alert:@"验证密码已发送，请输入短信收到的验证密码进行注"];
         }
     }else if(502==reqCode){
         if([response successFlag]){

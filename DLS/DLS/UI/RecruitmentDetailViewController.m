@@ -19,7 +19,6 @@
     self=[super init];
     if(self){
         self.data=data;
-        NSLog(@"%@",self.data);
         NSString *job_title=[Common getString:[data objectForKey:@"job_title"]];
         NSString *job_category=[Common getString:[data objectForKey:@"job_category"]];
         
@@ -99,15 +98,18 @@
         [vline setBackgroundColor:DEFAUL3COLOR];
         [view3 addSubview:vline];
         
-        UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake1(0, 360, 320, 50)];
+        UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake1(0, 360, 320, 200)];
+        [bottomView setBackgroundColor:DEFAUL2COLOR];
         [self.view addSubview:bottomView];
         
         ButtonView *button=[[ButtonView alloc]initWithFrame:CGRectMake1(10, 10, 100, 30) Name:@"申请职位"];
+        [button setHidden:YES];
         [button addTarget:self action:@selector(apply:) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:button];
         
         if(![@"" isEqualToString:phone]){
-            ButtonView *call=[[ButtonView alloc]initWithFrame:CGRectMake1(270, 10, 40, 30) Name:@"拨号"];
+            UIButton *call=[[UIButton alloc]initWithFrame:CGRectMake1(270, 10, 40, 30)];
+            [call setImage:[UIImage imageNamed:@"call"] forState:UIControlStateNormal];
             [call addTarget:self action:@selector(call:) forControlEvents:UIControlEventTouchUpInside];
             [bottomView addSubview:call];
         }

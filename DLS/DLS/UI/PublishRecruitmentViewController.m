@@ -22,7 +22,7 @@
     NSArray *searchData2,*searchData4,*searchData5,*searchData6;
     UILabel *lblJobName,*lblJobType,*lblJobNumber,*lblJobWage,*lblJobWorkYear,*lblJobMoney;
     UITextView *tvRemark;
-    UITextField *tfName,*tfPeopleNum,*tfContact,*tfPhone,*tfEmail,*tfAddress;
+    UITextField *tfName,*tfPeopleNum,*tfContact,*tfPhone,*tfEmail,*tfAddress,*tfCompanyName;
 }
 
 - (id)init{
@@ -32,17 +32,18 @@
         [self.view setBackgroundColor:BGCOLOR];
         scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        scrollFrame.contentSize=CGSizeMake(320,710);
+        scrollFrame.contentSize=CGSizeMake(320,760);
         [self.view addSubview:scrollFrame];
         tfName=[self addFrameTypeTextField:10 Title:@"职位名称"];
         lblJobType=[self addFrameType:60 Title:@"职位类别" Name:@"请选择" Tag:2];
-        tfPeopleNum=[self addFrameTypeTextField:110 Title:@"招聘人数"];
+        tfCompanyName=[self addFrameTypeTextField:110 Title:@"公司名称"];
+        tfPeopleNum=[self addFrameTypeTextField:160 Title:@"招聘人数"];
         [tfPeopleNum setKeyboardType:UIKeyboardTypeNumberPad];
-        lblJobWage=[self addFrameType:160 Title:@"学历要求" Name:@"不限" Tag:4];
-        lblJobWorkYear=[self addFrameType:210 Title:@"工作年限" Name:@"不限" Tag:5];
-        lblJobMoney=[self addFrameType:260 Title:@"每月薪资" Name:@"面议" Tag:6];
+        lblJobWage=[self addFrameType:210 Title:@"学历要求" Name:@"不限" Tag:4];
+        lblJobWorkYear=[self addFrameType:260 Title:@"工作年限" Name:@"不限" Tag:5];
+        lblJobMoney=[self addFrameType:310 Title:@"每月薪资" Name:@"面议" Tag:6];
         
-        UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0,310,320,140)];
+        UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0,360,320,140)];
         [frame setBackgroundColor:[UIColor whiteColor]];
         [scrollFrame addSubview:frame];
         UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 100, 30)];
@@ -57,13 +58,13 @@
         [tvRemark setFont:[UIFont systemFontOfSize:14]];
         [frame addSubview:tvRemark];
         
-        tfContact=[self addFrameTypeTextField:460 Title:@"职位联系人"];
-        tfPhone=[self addFrameTypeTextField:510 Title:@"联系电话"];
+        tfContact=[self addFrameTypeTextField:510 Title:@"职位联系人"];
+        tfPhone=[self addFrameTypeTextField:560 Title:@"联系电话"];
         [tfPhone setKeyboardType:UIKeyboardTypeNumberPad];
-        tfEmail=[self addFrameTypeTextField:560 Title:@"简历接收邮箱"];
-        tfAddress=[self addFrameTypeTextField:610 Title:@"工作地址"];
+        tfEmail=[self addFrameTypeTextField:610 Title:@"简历接收邮箱"];
+        tfAddress=[self addFrameTypeTextField:660 Title:@"工作地址"];
         //发布
-        ButtonView *button=[[ButtonView alloc]initWithFrame:CGRectMake1(10, 660, 300, 40) Name:@"发布"];
+        ButtonView *button=[[ButtonView alloc]initWithFrame:CGRectMake1(10, 710, 300, 40) Name:@"发布"];
         [button addTarget:self action:@selector(publish:) forControlEvents:UIControlEventTouchUpInside];
         [scrollFrame addSubview:button];
         
@@ -191,6 +192,8 @@
     NSString *phone=[tfPhone text];
     NSString *contact=[tfContact text];
     NSString *address=[tfAddress text];
+    NSString *email=[tfEmail text];
+    NSString *companyName=[tfCompanyName text];
     
     NSDictionary *d2=[self.pv2.pickerArray objectAtIndex:pvv2];
     NSString *pvv2v=[d2 objectForKey:MKEY];
@@ -201,7 +204,34 @@
     NSDictionary *d6=[self.pv6.pickerArray objectAtIndex:pvv6];
     NSString *pvv6v=[d6 objectForKey:MKEY];
     
-    NSLog(@"职位名称=%@\n职位类别=%@\n招聘人数=%@\n学历要求=%@\n工作年限=%@\n每月薪资=%@\n任职要求=%@\n联系人=%@\n联系电话=%@\n地址=%@",name,pvv2v,peopleNum,pvv4v,pvv5v,pvv6v,remark,phone,contact,address);
+//    NSLog(@"职位名称=%@\n职位类别=%@\n招聘人数=%@\n学历要求=%@\n工作年限=%@\n每月薪资=%@\n任职要求=%@\n联系人=%@\n联系电话=%@\n地址=%@",name,pvv2v,peopleNum,pvv4v,pvv5v,pvv6v,remark,phone,contact,address);
+    
+    
+//    {"work_year":"3","phone":"15906614216","job_category":"1","classId":111,"degree_required":"5","contact_person":"联系人","cName":"公司名称","address":"地址","email":"17855@qq.com","job_title":"标题","hiring":"1","Id":0,"month_salary":"2","access_token":"access_token_984f374857327df90d71f1c0353391e2","job_specification":"要求"}
+    
+    
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
+    [params setObject:pvv5v forKey:@"work_year"];
+    [params setObject:phone forKey:@"phone"];
+    [params setObject:pvv2v forKey:@"job_category"];
+    [params setObject:@"0" forKey:@"Id"];
+    [params setObject:@"111" forKey:@"classId"];
+    [params setObject:pvv4v forKey:@"degree_required"];
+    [params setObject:contact forKey:@"contact_person"];
+    [params setObject:address forKey:@"address"];
+    [params setObject:companyName forKey:@"cName"];
+    [params setObject:email forKey:@"email"];
+    [params setObject:name forKey:@"job_title"];
+    [params setObject:peopleNum forKey:@"hiring"];
+    [params setObject:pvv6v forKey:@"month_salary"];
+    [params setObject:remark forKey:@"job_specification"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:@"SaveForm" requestParams:params];
 }
 
 - (void)showPickerView:(NSInteger)tag
@@ -256,11 +286,20 @@
 {
     [tfName resignFirstResponder];
     [tfPeopleNum resignFirstResponder];
+    [tfCompanyName resignFirstResponder];
     [tvRemark resignFirstResponder];
     [tfPhone resignFirstResponder];
     [tfContact resignFirstResponder];
     [tfAddress resignFirstResponder];
     [tfEmail resignFirstResponder];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        [Common alert:@"发布成功"];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

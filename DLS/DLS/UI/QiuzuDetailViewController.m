@@ -126,6 +126,7 @@
         [mainView addSubview:lbl];
         UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(280, 210, 40, 60)];
         [button setImage:[UIImage imageNamed:@"求租点"] forState:UIControlStateNormal];
+        [button setHidden:YES];
         [button addTarget:self action:@selector(goLocation:) forControlEvents:UIControlEventTouchUpInside];
         [mainView addSubview:button];
         

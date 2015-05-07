@@ -7,7 +7,6 @@
 //
 
 #import "MyHelpCenterViewController.h"
-#import "HelpDetailViewController.h"
 
 @interface MyHelpCenterViewController ()
 
@@ -25,55 +24,18 @@
                                                style:UIBarButtonItemStyleBordered
                                                target:self
                                                action:@selector(goBack:)];
-        [self buildTableViewWithView:self.view];
+        self.webView1 = [[UIWebView alloc] initWithFrame:self.view.bounds];
+        [self.webView1 setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        [self.webView1 setUserInteractionEnabled:YES];
+        [self.webView1 setScalesPageToFit:YES];
+        [self.webView1 setBackgroundColor:[UIColor clearColor]];
+        [self.webView1 setOpaque:NO];//使网页透明
+        [self.webView1 setDelegate:self];
+        [self.view addSubview:self.webView1];
+        
+        [self.webView1 loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: @"http://www.dlsjijian.com/98/m_ThelpC.html"]]];
     }
     return self;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    if([[self dataItemArray]count]==0){
-        if(!self.tableView.pullTableIsRefreshing) {
-            self.tableView.pullTableIsRefreshing=YES;
-            [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
-        }
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if([self.dataItemArray count]>0){
-        static NSString *cellIdentifier = @"Cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if(!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        }
-        cell.textLabel.text = [NSString stringWithFormat:@"帮助中心%d", indexPath.row];
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        return cell;
-    }else{
-        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
-    }
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if([self.dataItemArray count]>0){
-        [self.navigationController pushViewController:[[HelpDetailViewController alloc]initWithDictionary:[self.dataItemArray objectAtIndex:[indexPath row]]] animated:YES];
-    }
-}
-
-- (void)loadHttp
-{
-    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"1" forKey:@"Id"];
-    [params setObject:[NSString stringWithFormat:@"%d",[self currentPage]] forKey:@"index"];
-    self.hRequest=[[HttpRequest alloc]init];
-    [self.hRequest setRequestCode:500];
-    [self.hRequest setDelegate:self];
-    [self.hRequest setController:self];
-    [self.hRequest handle:@"GetListALL" requestParams:params];
 }
 
 

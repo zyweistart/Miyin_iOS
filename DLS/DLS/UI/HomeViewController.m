@@ -79,7 +79,7 @@
         [self.tableView setBackgroundColor:BGCOLOR];
         UIView *header=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 330)];
         [self.tableView setTableHeaderView:header];
-        HomeBannerView *banner=[[HomeBannerView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
+        HomeBannerView *banner=[[HomeBannerView alloc]initWithFrame:CGRectMake1(0, 0, 320, 320)];
         [banner setController:self];
         [header addSubview:banner];
         //空格
@@ -87,7 +87,7 @@
         [spaceFrame setBackgroundColor:BGCOLOR];
         [header addSubview:spaceFrame];
         //功能
-        HomeCategoryView *category=[[HomeCategoryView alloc]initWithFrame:CGRectMake(0, 310, 320, 226)];
+        HomeCategoryView *category=[[HomeCategoryView alloc]initWithFrame:CGRectMake1(0, 310, 320, 226)];
         [category setController:self];
 //        [header addSubview:category];
         //空格

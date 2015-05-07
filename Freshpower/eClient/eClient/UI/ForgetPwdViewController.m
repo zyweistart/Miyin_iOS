@@ -63,7 +63,7 @@
 {
     if(reqCode==500){
         if([response successFlag]){
-            [Common alert:[Common NSNullConvertEmptyString:[response msg]]];
+            [Common alert:@"获取成功，请注意查收短信！"];
         }
     }
 }
