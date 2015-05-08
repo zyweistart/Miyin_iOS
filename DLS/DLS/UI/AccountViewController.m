@@ -13,7 +13,9 @@
 
 @end
 
-@implementation AccountViewController
+@implementation AccountViewController{
+    NSString *content;
+}
 
 - (id)init{
     self=[super init];
@@ -33,6 +35,15 @@
         [self buildTableViewWithView:self.view];
     }
     return self;
+}
+
+- (void)loadTableData{
+    [self.dataItemArray removeAllObjects];
+    [self.dataItemArray addObject:[[[User Instance]resultData]objectForKey:@"userName"]];
+    [self.dataItemArray addObject:[[[User Instance]resultData]objectForKey:@"Name"]];
+    [self.dataItemArray addObject:[[[User Instance]resultData]objectForKey:@"shenfenzheng"]];
+    [self.dataItemArray addObject:[[[User Instance]resultData]objectForKey:@"per_roles"]];
+    [self.tableView reloadData];
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -81,22 +92,46 @@
 {
     NSUInteger tag=[alertView tag];
     if(buttonIndex==1){
-        NSString *content=[[alertView textFieldAtIndex:0] text];
+        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+        [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
+        self.hRequest=[[HttpRequest alloc]init];
+        content=[[alertView textFieldAtIndex:0] text];
         if([@"" isEqualToString:content]){
             return;
         }
         if(tag==1){
             //姓名
-            
+            [params setObject:content forKey:@"Name"];
+            [self.hRequest setRequestCode:500];
         }else if(tag==2){
             //身份证
-            
+            [params setObject:content forKey:@"shenfenzheng"];
+            [self.hRequest setRequestCode:501];
         }else if(tag==3){
             //个人角色
-            
+            [params setObject:content forKey:@"per_roles"];
+            [self.hRequest setRequestCode:502];
         }
+        [self.hRequest setDelegate:self];
+        [self.hRequest setController:self];
+        [self.hRequest handle:@"UpdateUser" requestParams:params];
     }
     
 }
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        if(reqCode==500){
+            [[[User Instance]resultData] setObject:content forKey:@"Name"];
+        }else if(reqCode==501){
+            [[[User Instance]resultData] setObject:content forKey:@"shenfenzheng"];
+        }else if(reqCode==502){
+            [[[User Instance]resultData] setObject:content forKey:@"per_roles"];
+        }
+        [self loadTableData];
+    }
+}
+
 
 @end
