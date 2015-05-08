@@ -40,9 +40,9 @@
 
 - (void)setData:(NSDictionary *)data
 {
-    self.title.text=[data objectForKey:@"job_title"];
-    self.address.text=[data objectForKey:@"address"];
-    self.date.text=[data objectForKey:@"CreateDate"];
+    self.title.text=[Common getString:[data objectForKey:@"job_title"]];
+    self.address.text=[Common getString:[data objectForKey:@"address"]];
+    self.date.text=[Common convertTime:[data objectForKey:@"CreateDate"]];
 }
 
 @end
