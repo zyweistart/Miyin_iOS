@@ -7,7 +7,7 @@
 //
 
 #import "SearchView.h"
-#import "ListViewController.h"
+#import "SearchViewController.h"
 
 #define SEARCHTIPCOLOR [UIColor colorWithRed:(88/255.0) green:(130/255.0) blue:(216/255.0) alpha:1]
 
@@ -40,7 +40,7 @@
 //搜索
 - (void)goSearch:(id)sender
 {
-    [[self.controller navigationController]pushViewController:[[ListViewController alloc]initWithTitle:@"出租列表" Type:2] animated:YES];
+    [[self.controller navigationController]pushViewController:[[SearchViewController alloc]init] animated:YES];
 }
 
 @end

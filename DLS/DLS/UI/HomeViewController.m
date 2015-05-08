@@ -19,6 +19,7 @@
 #import "QiuzuDetailViewController.h"
 #import "RentalDetailViewController.h"
 #import "LoginViewController.h"
+#import "SearchViewController.h"
 
 #define SEARCHTIPCOLOR [UIColor colorWithRed:(88/255.0) green:(130/255.0) blue:(216/255.0) alpha:1]
 #define BGCOLOR [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]
@@ -289,7 +290,7 @@
 //搜索
 - (void)goSearch:(id)sender
 {
-//    [self presentViewControllerNav:[[ListViewController alloc]initWithTitle:@"出租列表" Type:2]];
+    [self.navigationController pushViewController:[[SearchViewController alloc]init] animated:YES];
 }
 //发布求租
 - (void)goPublish:(UIButton*)sender

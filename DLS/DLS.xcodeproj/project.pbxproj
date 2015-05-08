@@ -31,6 +31,7 @@
 		C9610DDA1AB158C700CA8218 /* PublishRentalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9610DD91AB158C700CA8218 /* PublishRentalViewController.m */; };
 		C9610DDD1AB158E300CA8218 /* PublishRecruitmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9610DDC1AB158E300CA8218 /* PublishRecruitmentViewController.m */; };
 		C9610DE01AB15A0200CA8218 /* EquipmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9610DDF1AB15A0200CA8218 /* EquipmentViewController.m */; };
+		C989A0091AFC8FE700EC3228 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C989A0081AFC8FE700EC3228 /* SearchViewController.m */; };
 		C99A055E1AAC24F3004E5490 /* ProjectACell.m in Sources */ = {isa = PBXBuildFile; fileRef = C99A055D1AAC24F3004E5490 /* ProjectACell.m */; };
 		C99E82FD1AA997B20087D2F4 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E82ED1AA997B20087D2F4 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C99E82FE1AA997B20087D2F4 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E82EF1AA997B20087D2F4 /* LoadMoreTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -164,6 +165,8 @@
 		C9610DDC1AB158E300CA8218 /* PublishRecruitmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishRecruitmentViewController.m; sourceTree = "<group>"; };
 		C9610DDE1AB15A0200CA8218 /* EquipmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentViewController.h; sourceTree = "<group>"; };
 		C9610DDF1AB15A0200CA8218 /* EquipmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentViewController.m; sourceTree = "<group>"; };
+		C989A0071AFC8FE700EC3228 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		C989A0081AFC8FE700EC3228 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		C99A055C1AAC24F3004E5490 /* ProjectACell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectACell.h; sourceTree = "<group>"; };
 		C99A055D1AAC24F3004E5490 /* ProjectACell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectACell.m; sourceTree = "<group>"; };
 		C99E82EC1AA997B20087D2F4 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -344,6 +347,8 @@
 			children = (
 				C922D0921AA444ED00F6DBA1 /* VIPViewController.h */,
 				C922D0931AA444ED00F6DBA1 /* VIPViewController.m */,
+				C989A0071AFC8FE700EC3228 /* SearchViewController.h */,
+				C989A0081AFC8FE700EC3228 /* SearchViewController.m */,
 			);
 			name = "VIP工程";
 			sourceTree = "<group>";
@@ -483,8 +488,6 @@
 			isa = PBXGroup;
 			children = (
 				C9AFBB8A1AAD80F3008C7AE9 /* Detail */,
-				C9DD46BB1AA82704004AEAB7 /* Home */,
-				C9D2B74C1AA86A7C00CF750D /* My */,
 				C922D08F1AA444E100F6DBA1 /* NearbyViewController.h */,
 				C922D0901AA444E100F6DBA1 /* NearbyViewController.m */,
 			);
@@ -632,20 +635,6 @@
 				C9B85F7C1AA432E1008A56F0 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C9D2B74C1AA86A7C00CF750D /* My */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = My;
-			sourceTree = "<group>";
-		};
-		C9DD46BB1AA82704004AEAB7 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Home;
 			sourceTree = "<group>";
 		};
 		C9E1FED31AA555F000720AAC /* ASIHTTP */ = {
@@ -876,6 +865,7 @@
 				C9DB29A31AA9ACDF00D5893B /* SearchView.m in Sources */,
 				C9E1FED11AA554E200720AAC /* HttpRequest.m in Sources */,
 				C9D2B74B1AA8690D00CF750D /* MyHelpCenterViewController.m in Sources */,
+				C989A0091AFC8FE700EC3228 /* SearchViewController.m in Sources */,
 				C9E1FEED1AA555F000720AAC /* ATMTextLayer.m in Sources */,
 				C9E1FEE81AA555F000720AAC /* ATMHud.m in Sources */,
 				C90699BD1AAE984800E32C54 /* ProjectECell.m in Sources */,
