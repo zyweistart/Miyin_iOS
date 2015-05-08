@@ -7,6 +7,7 @@
 //
 
 #import "IntegralViewController.h"
+#import "IntegralVCell.h"
 
 @interface IntegralViewController ()
 
@@ -91,11 +92,18 @@
 {
     if([self.dataItemArray count]>0){
         static NSString *cellIdentifier = @"Cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        IntegralVCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if(!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell = [[IntegralVCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        [cell.textLabel setText:@"积分"];
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        NSString *CreateDate=[Common convertTime:[data objectForKey:@"CreateDate"]];
+        NSString *whyTxt=[Common getString:[data objectForKey:@"whyTxt"]];
+        NSString *BOrPay=[Common getString:[data objectForKey:@"BOrPay"]];
+        NSLog(@"%@",data);
+        [cell.lbl1 setText:CreateDate];
+        [cell.lbl2 setText:whyTxt];
+        [cell.lbl3 setText:BOrPay];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -105,7 +113,7 @@
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"17" forKey:@"Id"];
+    [params setObject:@"33" forKey:@"Id"];
     [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
     [params setObject:[NSString stringWithFormat:@"%ld",[self currentPage]] forKey:@"index"];
     self.hRequest=[[HttpRequest alloc]init];

@@ -467,4 +467,9 @@
     }
 }
 
+- (void)uploadImage:(id)sender
+{
+//    http://www.dlsjijian.com?access_token＝1&dir=image&Type=1
+}
+
 @end

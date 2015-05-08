@@ -75,7 +75,7 @@
     if([data isKindOfClass:[NSNull class]]){
         return @"";
     }
-    return data;
+    return [NSString stringWithFormat:@"%@",data];
 }
 
 + (NSString*)convertTime:(NSString*)time

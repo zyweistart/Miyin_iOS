@@ -32,6 +32,7 @@
 		C9610DDD1AB158E300CA8218 /* PublishRecruitmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9610DDC1AB158E300CA8218 /* PublishRecruitmentViewController.m */; };
 		C9610DE01AB15A0200CA8218 /* EquipmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9610DDF1AB15A0200CA8218 /* EquipmentViewController.m */; };
 		C989A0091AFC8FE700EC3228 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C989A0081AFC8FE700EC3228 /* SearchViewController.m */; };
+		C989A00C1AFC983300EC3228 /* IntegralVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C989A00B1AFC983300EC3228 /* IntegralVCell.m */; };
 		C99A055E1AAC24F3004E5490 /* ProjectACell.m in Sources */ = {isa = PBXBuildFile; fileRef = C99A055D1AAC24F3004E5490 /* ProjectACell.m */; };
 		C99E82FD1AA997B20087D2F4 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E82ED1AA997B20087D2F4 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C99E82FE1AA997B20087D2F4 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E82EF1AA997B20087D2F4 /* LoadMoreTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -167,6 +168,8 @@
 		C9610DDF1AB15A0200CA8218 /* EquipmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentViewController.m; sourceTree = "<group>"; };
 		C989A0071AFC8FE700EC3228 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		C989A0081AFC8FE700EC3228 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		C989A00A1AFC983300EC3228 /* IntegralVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralVCell.h; sourceTree = "<group>"; };
+		C989A00B1AFC983300EC3228 /* IntegralVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralVCell.m; sourceTree = "<group>"; };
 		C99A055C1AAC24F3004E5490 /* ProjectACell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectACell.h; sourceTree = "<group>"; };
 		C99A055D1AAC24F3004E5490 /* ProjectACell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectACell.m; sourceTree = "<group>"; };
 		C99E82EC1AA997B20087D2F4 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -697,6 +700,8 @@
 				C9F11F4A1AB2760A0014E462 /* CollectionCell.m */,
 				C909FC161AA6D72A008E68FB /* InformationCell.h */,
 				C909FC171AA6D72A008E68FB /* InformationCell.m */,
+				C989A00A1AFC983300EC3228 /* IntegralVCell.h */,
+				C989A00B1AFC983300EC3228 /* IntegralVCell.m */,
 				C9F11F461AB275EB0014E462 /* MessageCell.h */,
 				C9F11F471AB275EB0014E462 /* MessageCell.m */,
 				C99A055C1AAC24F3004E5490 /* ProjectACell.h */,
@@ -898,6 +903,7 @@
 				C9C23CF71AA9445D007A9A27 /* CustomAnnotation.m in Sources */,
 				C9D2B7361AA8686400CF750D /* MyQZViewController.m in Sources */,
 				C9E1FEEB1AA555F000720AAC /* ATMProgressLayer.m in Sources */,
+				C989A00C1AFC983300EC3228 /* IntegralVCell.m in Sources */,
 				C922D0971AA444FB00F6DBA1 /* MyViewController.m in Sources */,
 				C9265BF71AB2D03D00897CF0 /* HelpDetailViewController.m in Sources */,
 				C91115AE1AAC3AE200F56DFE /* ProjectCCell.m in Sources */,
