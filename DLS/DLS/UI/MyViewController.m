@@ -41,6 +41,7 @@ static CGFloat kImageOriginHight = 220.f;
     UIView *personalFrame;
     UIView *bLoginRegister;
     UIButton *bHead;
+    UIButton *bSign;
 }
 
 - (id)init{
@@ -98,10 +99,20 @@ static CGFloat kImageOriginHight = 220.f;
         [bRegister addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
         [bLoginRegister addSubview:bRegister];
         //头像
-        bHead=[[UIButton alloc]initWithFrame:CGRectMake1(120, 20, 80, 80)];
+        bHead=[[UIButton alloc]initWithFrame:CGRectMake1(120, 0, 80, 80)];
         [bHead.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [personalFrame addSubview:bHead];
-        
+        //签到
+        bSign=[[UIButton alloc]initWithFrame:CGRectMake1(110, 90, 100, 20)];
+        bSign.layer.cornerRadius = 10;
+        bSign.layer.masksToBounds = YES;
+        bSign.layer.borderWidth=1;
+        bSign.layer.borderColor= [[UIColor whiteColor]CGColor];
+        [bSign setTitle:@"签到" forState:UIControlStateNormal];
+        [bSign.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [bSign setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [bSign addTarget:self action:@selector(sign:) forControlEvents:UIControlEventTouchUpInside];
+        [personalFrame addSubview:bSign];
         //底部功能
         UIView *bottomFrame=[[UIView alloc]initWithFrame:CGRectMake1(0, 120, 320, 40)];
         [personalFrame addSubview:bottomFrame];
@@ -303,6 +314,7 @@ static CGFloat kImageOriginHight = 220.f;
 {
     if([[User Instance]isLogin]){
         [bHead setHidden:NO];
+        [bSign setHidden:NO];
         NSString *name=[Common getString:[[[User Instance]resultData] objectForKey:@"Name"]];
 //        NSString *headImage=[[[User Instance]resultData] objectForKey:@"HeadImage"];
 //        NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,headImage];
@@ -313,7 +325,32 @@ static CGFloat kImageOriginHight = 220.f;
         [bLoginRegister setHidden:YES];
     }else{
         [bHead setHidden:YES];
+        [bSign setHidden:YES];
         [bLoginRegister setHidden:NO];
+    }
+}
+
+-(void)sign:(id)sender
+{
+    if([[User Instance]isLogin]){
+        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+        [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
+        self.hRequest=[[HttpRequest alloc]init];
+        [self.hRequest setRequestCode:500];
+        [self.hRequest setDelegate:self];
+        [self.hRequest setController:self];
+        [self.hRequest setIsShowMessage:YES];
+        [self.hRequest handle:@"UserSignIn" requestParams:params];
+    }
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        [bSign setTitle:@"已签到" forState:UIControlStateNormal];
+        [bSign setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        bSign.layer.borderColor= [[UIColor grayColor]CGColor];
+        [Common alert:[response msg]];
     }
 }
 

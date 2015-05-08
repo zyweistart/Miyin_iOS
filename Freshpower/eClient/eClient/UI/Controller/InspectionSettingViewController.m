@@ -239,7 +239,7 @@
 
 - (void)submit:(id)sender
 {
-    if([@"" isEqualToString:taskUser]){
+    if(taskUser==nil||[@"" isEqualToString:taskUser]||[@"0" isEqualToString:taskUser]){
         [Common alert:@"请设置巡检人员"];
         return;
     }

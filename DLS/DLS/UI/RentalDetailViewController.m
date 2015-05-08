@@ -21,7 +21,7 @@
         self.data=data;
         
         NSString *name=[Common getString:[data objectForKey:@"Name"]];
-        NSString *CreateDate=[Common getString:[data objectForKey:@"CreateDate"]];
+        NSString *CreateDate=[Common convertTime:[data objectForKey:@"CreateDate"]];
         NSString *weight=[Common getString:[data objectForKey:@"weight"]];
         NSString *contact=[Common getString:[data objectForKey:@"contact"]];
         NSString *address=[Common getString:[data objectForKey:@"address"]];
@@ -88,6 +88,7 @@
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:[UIColor blackColor]];
         [lbl setTextAlignment:NSTextAlignmentLeft];
+        [lbl setNumberOfLines:0];
         [mainView addSubview:lbl];
         
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 150, 100, 60)];
@@ -105,6 +106,7 @@
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:[UIColor blackColor]];
         [lbl setTextAlignment:NSTextAlignmentLeft];
+        [lbl setNumberOfLines:0];
         [mainView addSubview:lbl];
         UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(280, 150, 40, 60)];
         [button setImage:[UIImage imageNamed:@"求租点"] forState:UIControlStateNormal];
@@ -127,6 +129,7 @@
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:[UIColor blackColor]];
         [lbl setTextAlignment:NSTextAlignmentLeft];
+        [lbl setNumberOfLines:0];
         [mainView addSubview:lbl];
         
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 270, 100, 60)];
@@ -156,6 +159,7 @@
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:[UIColor blackColor]];
         [lbl setTextAlignment:NSTextAlignmentLeft];
+        [lbl setNumberOfLines:0];
         [mainView addSubview:lbl];
         
         UIView *vline=[[UIView alloc]initWithFrame:CGRectMake1(110, 90, 1, 300)];

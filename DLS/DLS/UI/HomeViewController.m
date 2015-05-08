@@ -183,7 +183,7 @@
             if (cell == nil) {
                 cell = [[ProjectCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier: CProjectCell];
             }
-            int row=[indexPath row];
+            NSUInteger row=[indexPath row];
             NSDictionary *d=[self.dataItemArray objectAtIndex:row];
             [cell setData:d];
             if(currentButtonIndex==2){
@@ -325,7 +325,7 @@
         self.currentPage4++;
         [params setObject:@"1" forKey:@"Id"];
     }
-    [params setObject:[NSString stringWithFormat:@"%d",self.currentPage] forKey:@"index"];
+    [params setObject:[NSString stringWithFormat:@"%ld",self.currentPage] forKey:@"index"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];

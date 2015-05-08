@@ -22,7 +22,7 @@
         NSString *job_title=[Common getString:[data objectForKey:@"job_title"]];
         NSString *job_category=[Common getString:[data objectForKey:@"job_category"]];
         
-        NSString *CreateDate=[Common getString:[data objectForKey:@"CreateDate"]];
+        NSString *CreateDate=[Common convertTime:[data objectForKey:@"CreateDate"]];
         NSString *phone=[Common getString:[data objectForKey:@"phone"]];
         //薪资
         NSString *XingZhi=[Common getString:[data objectForKey:@"XingZhi"]];

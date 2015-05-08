@@ -26,4 +26,6 @@
 
 + (NSString*)getString:(NSString*)data;
 
++ (NSString*)convertTime:(NSString*)time;
+
 @end

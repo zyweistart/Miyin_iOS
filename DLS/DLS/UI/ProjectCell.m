@@ -77,7 +77,7 @@
     self.title.text=[NSString stringWithFormat:@"%@",[data objectForKey:@"Name"]];
     self.address.text=[NSString stringWithFormat:@"设备地址:%@",[data objectForKey:@"address"]];
     self.money.text=[NSString stringWithFormat:@"备注:%@",[data objectForKey:@"notes"]];
-    [self.date setText:[NSString stringWithFormat:@"%@",[data objectForKey:@"CreateDate"]]];
+    [self.date setText:[Common convertTime:[data objectForKey:@"CreateDate"]]];
     NSString *status=[NSString stringWithFormat:@"%@",[data objectForKey:@"status"]];
     if([@"3" isEqualToString:status]){
         [self setStatus:@"已成交" Type:3];
