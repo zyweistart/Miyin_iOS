@@ -9,7 +9,7 @@
 #import "BaseTableViewController.h"
 #import "SinglePickerView.h"
 
-@interface PublishRentalViewController : BaseTableViewController<PickerViewDelegate,UITextFieldDelegate,UITextViewDelegate>
+@interface PublishRentalViewController : BaseTableViewController<PickerViewDelegate,UITextFieldDelegate,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property SinglePickerView *pv1,*pv2;
 

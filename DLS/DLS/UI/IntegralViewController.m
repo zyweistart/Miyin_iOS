@@ -100,7 +100,6 @@
         NSString *CreateDate=[Common convertTime:[data objectForKey:@"CreateDate"]];
         NSString *whyTxt=[Common getString:[data objectForKey:@"whyTxt"]];
         NSString *BOrPay=[Common getString:[data objectForKey:@"BOrPay"]];
-        NSLog(@"%@",data);
         [cell.lbl1 setText:CreateDate];
         [cell.lbl2 setText:whyTxt];
         [cell.lbl3 setText:BOrPay];

@@ -31,6 +31,7 @@
     UIButton *bAdd;
     UIImageView *image1,*image2,*image3,*image4,*image5;
     NSMutableArray *imageList;
+    BOOL isFullScreen;
 }
 
 - (id)init
@@ -369,9 +370,13 @@
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
-    if([response successFlag]){
-        [Common alert:@"发布成功"];
-        [self.navigationController popViewControllerAnimated:YES];
+    if(reqCode==501){
+        
+    }else{
+        if([response successFlag]){
+            [Common alert:@"发布成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 
@@ -447,29 +452,121 @@
 
 - (void)addImage:(UIButton*)sender
 {
+//    [imageList addObject:@"1"];
+    UIActionSheet *sheet;
+    // 判断是否支持相机
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+        sheet  = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择", nil];
+    } else {
+        sheet = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择", nil];
+    }
+    sheet.tag = 255;
+    [sheet showInView:self.view];
+}
+
+#pragma mark - actionsheet delegate
+-(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == 255) {
+        NSUInteger sourceType = 0;
+        // 判断是否支持相机
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            switch (buttonIndex) {
+                case 0:
+                    // 相机
+                    sourceType = UIImagePickerControllerSourceTypeCamera;
+                    break;
+                case 1:
+                    // 相册
+                    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                    break;
+                default:
+                    return;
+            }
+        } else {
+            if (buttonIndex == 0) {
+                sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            } else {
+                return;
+            }
+        }
+        // 跳转到相机或相册页面
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        imagePickerController.delegate = self;
+        imagePickerController.allowsEditing = YES;
+        imagePickerController.sourceType = sourceType;
+        [self presentViewController:imagePickerController animated:YES completion:^{}];
+    }
+}
+
+#pragma mark - 保存图片至沙盒
+- (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
+{
+    NSData *imageData = UIImageJPEGRepresentation(currentImage, 0.5);
+    // 获取沙盒目录
+    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
+    // 将图片写入文件
+    [imageData writeToFile:fullPath atomically:NO];
+}
+
+#pragma mark - image picker delegte
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [self saveImage:image withName:@"currentImage.png"];
+    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"currentImage.png"];
+    UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
+    isFullScreen = NO;
+    [self uploadImage:savedImage];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:^{}];
+}
+
+- (void)uploadImage:(UIImage*)image
+{
+//    NSString *URL=[NSString stringWithFormat:@"access_token＝%@&dir=image&Type=1",[[User Instance]accessToken]];
+//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+//    [params setObject:image forKey:@"image"];
+//    self.hRequest=[[HttpRequest alloc]init];
+//    [self.hRequest setRequestCode:501];
+//    [self.hRequest setDelegate:self];
+//    [self.hRequest setController:self];
+//    [self.hRequest setIsShowMessage:YES];
+//    [self.hRequest handle:URL requestParams:params];    
+    //成功后执行
+    [self showImage:image];
+}
+
+//上传成功之后调用
+- (void)showImage:(UIImage*)image
+{
     [imageList addObject:@"1"];
     NSUInteger count=[imageList count];
     if(count==5){
         [image5 setHidden:NO];
-        [sender setHidden:YES];
+        [bAdd setHidden:YES];
+        [image5 setImage:image];
     }else if(count==1){
         [image1 setHidden:NO];
-        [sender setFrame:image2.frame];
+        [bAdd setFrame:image2.frame];
+        [image1 setImage:image];
     }else if(count==2){
         [image2 setHidden:NO];
-        [sender setFrame:image3.frame];
+        [bAdd setFrame:image3.frame];
+        [image2 setImage:image];
     }else if(count==3){
         [image3 setHidden:NO];
-        [sender setFrame:image4.frame];
+        [bAdd setFrame:image4.frame];
+        [image3 setImage:image];
     }else if(count==4){
         [image4 setHidden:NO];
-        [sender setFrame:image5.frame];
+        [bAdd setFrame:image5.frame];
+        [image4 setImage:image];
     }
-}
-
-- (void)uploadImage:(id)sender
-{
-//    http://www.dlsjijian.com?access_token＝1&dir=image&Type=1
 }
 
 @end
