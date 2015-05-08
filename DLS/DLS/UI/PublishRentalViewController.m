@@ -528,6 +528,8 @@
 
 - (void)uploadImage:(UIImage*)image
 {
+//    http://www.dlsjijian.com/Ajax/API/Upload.html?signature=154efa86c3466d09ac2f3058b0246f4eb42f4d5b&timestamp=1431074370208&nonce=173&access_token=access_token_197db6a1572ec82ba928ffbf04b14d0e&dir=image&Type=1
+    
 //    NSString *URL=[NSString stringWithFormat:@"access_token＝%@&dir=image&Type=1",[[User Instance]accessToken]];
 //    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
 //    [params setObject:image forKey:@"image"];

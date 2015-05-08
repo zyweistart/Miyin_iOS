@@ -13,7 +13,10 @@
 
 @end
 
-@implementation RentalDetailViewController
+@implementation RentalDetailViewController{
+    UIImageView *image1,*image2,*image3,*image4,*image5;
+    NSArray *imagelist;
+}
 
 - (id)initWithDictionary:(NSDictionary*)data{
     self=[super init];
@@ -27,6 +30,8 @@
         NSString *address=[Common getString:[data objectForKey:@"address"]];
         NSString *region=[Common getString:[data objectForKey:@"region"]];
         NSString *notes=[Common getString:[data objectForKey:@"notes"]];
+        NSString *imageListStr=[Common getString:[data objectForKey:@"imageList"]];
+        imagelist=[imageListStr componentsSeparatedByString:@"{-}1{-}#,"];
 //        NSString *location=[data objectForKey:@"location"];
         
         [self setTitle:@"出租详情"];
@@ -138,11 +143,31 @@
         [lbl setTextColor:DEFAUL1COLOR];
         [lbl setTextAlignment:NSTextAlignmentCenter];
         [mainView addSubview:lbl];
-        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(120, 270, 150, 60)];
-        [lbl setFont:[UIFont systemFontOfSize:14]];
-        [lbl setTextColor:[UIColor blackColor]];
-        [lbl setTextAlignment:NSTextAlignmentLeft];
-        [mainView addSubview:lbl];
+        UIView *imagelistFrame=[[UILabel alloc]initWithFrame:CGRectMake1(120, 270, 200, 60)];
+        [mainView addSubview:imagelistFrame];
+        for(int i=0;i<[imagelist count];i++){
+            if(i==0){
+                image1=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 12.5, 35, 35)];
+                [image1 setImage:[UIImage imageNamed:@"category1"]];
+                [imagelistFrame addSubview:image1];
+            }else if(i==1){
+                image2=[[UIImageView alloc]initWithFrame:CGRectMake1(40, 12.5, 35, 35)];
+                [image2 setImage:[UIImage imageNamed:@"category1"]];
+                [imagelistFrame addSubview:image2];
+            }else if(i==2){
+                image3=[[UIImageView alloc]initWithFrame:CGRectMake1(80, 12.5, 35, 35)];
+                [image3 setImage:[UIImage imageNamed:@"category1"]];
+                [imagelistFrame addSubview:image3];
+            }else if(i==3){
+                image4=[[UIImageView alloc]initWithFrame:CGRectMake1(120, 12.5, 35, 35)];
+                [image4 setImage:[UIImage imageNamed:@"category1"]];
+                [imagelistFrame addSubview:image4];
+            }else if(i==4){
+                image5=[[UIImageView alloc]initWithFrame:CGRectMake1(160, 12.5, 35, 35)];
+                [image5 setImage:[UIImage imageNamed:@"category1"]];
+                [imagelistFrame addSubview:image5];
+            }
+        }
         
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 330, 100, 60)];
         [lbl setText:@"其他描述"];
@@ -184,6 +209,9 @@
         [vline setBackgroundColor:DEFAUL2COLOR];
         [mainView addSubview:vline];
         
+        NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
+        NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(downloadImage) object:nil];
+        [operationQueue addOperation:op];
     }
     return self;
 }
@@ -207,6 +235,25 @@
 - (void)goLocation:(id)sender
 {
     NSLog(@"location");
+}
+
+- (void)downloadImage
+{
+    for(int i=0;i<[imagelist count];i++){
+        NSString *URL=[NSString stringWithFormat:@"%@%@",HTTP_URL,[imagelist objectAtIndex:i]];
+        UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:URL]]];
+        if(i==0){
+            [image1 setImage:image];
+        }else if(i==1){
+            [image2 setImage:image];
+        }else if(i==2){
+            [image3 setImage:image];
+        }else if(i==3){
+            [image4 setImage:image];
+        }else if(i==4){
+            [image5 setImage:image];
+        }
+    }
 }
 
 @end
