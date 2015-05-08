@@ -148,23 +148,23 @@
         for(int i=0;i<[imagelist count];i++){
             if(i==0){
                 image1=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 12.5, 35, 35)];
-                [image1 setImage:[UIImage imageNamed:@"category1"]];
+                [image1 setImage:[UIImage imageNamed:@"imageloading"]];
                 [imagelistFrame addSubview:image1];
             }else if(i==1){
                 image2=[[UIImageView alloc]initWithFrame:CGRectMake1(40, 12.5, 35, 35)];
-                [image2 setImage:[UIImage imageNamed:@"category1"]];
+                [image2 setImage:[UIImage imageNamed:@"imageloading"]];
                 [imagelistFrame addSubview:image2];
             }else if(i==2){
                 image3=[[UIImageView alloc]initWithFrame:CGRectMake1(80, 12.5, 35, 35)];
-                [image3 setImage:[UIImage imageNamed:@"category1"]];
+                [image3 setImage:[UIImage imageNamed:@"imageloading"]];
                 [imagelistFrame addSubview:image3];
             }else if(i==3){
                 image4=[[UIImageView alloc]initWithFrame:CGRectMake1(120, 12.5, 35, 35)];
-                [image4 setImage:[UIImage imageNamed:@"category1"]];
+                [image4 setImage:[UIImage imageNamed:@"imageloading"]];
                 [imagelistFrame addSubview:image4];
             }else if(i==4){
                 image5=[[UIImageView alloc]initWithFrame:CGRectMake1(160, 12.5, 35, 35)];
-                [image5 setImage:[UIImage imageNamed:@"category1"]];
+                [image5 setImage:[UIImage imageNamed:@"imageloading"]];
                 [imagelistFrame addSubview:image5];
             }
         }

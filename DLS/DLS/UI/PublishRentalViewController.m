@@ -32,6 +32,7 @@
     UIImageView *image1,*image2,*image3,*image4,*image5;
     NSMutableArray *imageList;
     BOOL isFullScreen;
+    UIImage *currentImage;
 }
 
 - (id)init
@@ -371,7 +372,10 @@
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if(reqCode==501){
-        
+        if([response successFlag]){
+            //成功后执行
+            [self showImage:currentImage];
+        }
     }else{
         if([response successFlag]){
             [Common alert:@"发布成功"];
@@ -528,19 +532,17 @@
 
 - (void)uploadImage:(UIImage*)image
 {
-//    http://www.dlsjijian.com/Ajax/API/Upload.html?signature=154efa86c3466d09ac2f3058b0246f4eb42f4d5b&timestamp=1431074370208&nonce=173&access_token=access_token_197db6a1572ec82ba928ffbf04b14d0e&dir=image&Type=1
-    
-//    NSString *URL=[NSString stringWithFormat:@"access_token＝%@&dir=image&Type=1",[[User Instance]accessToken]];
-//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-//    [params setObject:image forKey:@"image"];
-//    self.hRequest=[[HttpRequest alloc]init];
-//    [self.hRequest setRequestCode:501];
-//    [self.hRequest setDelegate:self];
-//    [self.hRequest setController:self];
-//    [self.hRequest setIsShowMessage:YES];
-//    [self.hRequest handle:URL requestParams:params];    
-    //成功后执行
-    [self showImage:image];
+    currentImage=image;
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
+    [params setObject:UIImageJPEGRepresentation(image, 1.0) forKey:@"image"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:501];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest setIsMultipartFormDataSubmit:YES];
+    [self.hRequest handle:@"Upload" requestParams:params];
 }
 
 //上传成功之后调用
