@@ -41,6 +41,7 @@
     if([[User Instance]isLogin]){
         if(!self.tableView.pullTableIsRefreshing) {
             self.tableView.pullTableIsRefreshing=YES;
+            [self.dataItemArray removeAllObjects];
             [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
         }
     }else{

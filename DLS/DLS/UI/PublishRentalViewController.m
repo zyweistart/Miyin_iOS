@@ -448,7 +448,7 @@
 - (void)addImage:(UIButton*)sender
 {
     [imageList addObject:@"1"];
-    int count=[imageList count];
+    NSUInteger count=[imageList count];
     if(count==5){
         [image5 setHidden:NO];
         [sender setHidden:YES];

@@ -107,7 +107,7 @@
 {
     [super viewDidAppear:animated];
     if([headShow count]==0){
-        [Common alert:@"选项为空"];
+        [Common alert:@"请选择您要下发的巡检模板"];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

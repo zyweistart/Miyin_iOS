@@ -175,7 +175,9 @@
             if([response code]){
                 [response setSuccessFlag:[@"1" isEqualToString:[response code]]];
                 if(![response successFlag]){
-                    [Common alert:[response msg]];
+                    if([response msg]!=nil&&![@"" isEqualToString:[response msg]]){
+                        [Common alert:[response msg]];
+                    }
                 }
             }
             [_delegate requestFinishedByResponse:response requestCode:self.requestCode];

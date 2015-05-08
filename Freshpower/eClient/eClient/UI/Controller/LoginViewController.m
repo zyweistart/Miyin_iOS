@@ -127,7 +127,7 @@
             }
         }
     }else{
-        [Common alert:[Common NSNullConvertEmptyString:[response msg]]];
+//        [Common alert:[Common NSNullConvertEmptyString:[response msg]]];
     }
 }
 
