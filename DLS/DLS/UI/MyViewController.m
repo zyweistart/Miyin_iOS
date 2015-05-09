@@ -150,19 +150,19 @@ static CGFloat kImageOriginHight = 220.f;
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    self.expandZoomImageView.frame = CGRectMake1(0, -kImageOriginHight, self.tableView.frame.size.width, kImageOriginHight);
+    self.expandZoomImageView.frame = CGRectMake(0, -CGHeight(kImageOriginHight), self.tableView.frame.size.width, CGHeight(kImageOriginHight));
     
     [self showUser];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat yOffset  = scrollView.contentOffset.y;
-    if (yOffset < -kImageOriginHight) {
+    if (yOffset < -CGHeight(kImageOriginHight)) {
         CGRect f = self.expandZoomImageView.frame;
         f.origin.y = yOffset;
         f.size.height =  -yOffset;
         self.expandZoomImageView.frame = f;
-        [personalFrame setFrame:CGRectMake1(0, f.size.height-170, 320, 160)];
+        [personalFrame setFrame:CGRectMake(0, f.size.height-CGHeight(170), CGWidth(320), CGHeight(160))];
     }
 }
 
@@ -350,6 +350,7 @@ static CGFloat kImageOriginHight = 220.f;
         [bSign setTitle:@"已签到" forState:UIControlStateNormal];
         [bSign setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         bSign.layer.borderColor= [[UIColor grayColor]CGColor];
+        [bSign setEnabled:NO];
         [Common alert:[response msg]];
     }
 }

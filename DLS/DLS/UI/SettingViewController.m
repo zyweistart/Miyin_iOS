@@ -38,7 +38,7 @@
         self.dataItemArray=[[NSMutableArray alloc]init];
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"把得力手分享给朋友", nil]];
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"修改密码",@"搜索范围", nil]];
-        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"意见反馈",@"服务条款",@"检查更新",@"关于我们", nil]];
+        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"意见反馈",@"服务条款",@"关于我们", nil]];
         
         self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
@@ -115,7 +115,7 @@
         NSString *pvv1v=[d objectForKey:MKEY];
         [cell.detailTextLabel setText:pvv1v];
     }
-    if(!((section==0&&row==0)||(section==2&&row==2))){
+    if(!((section==0&&row==0))){
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
     return cell;
@@ -128,7 +128,7 @@
     if(section==0){
         if(row==0){
             //分享
-            NSLog(@"分享");
+            [Common alert:@"即将上线"];
         }
     }else if(section==1){
         if(row==0){
@@ -152,9 +152,6 @@
             //服务条款
             [self.navigationController pushViewController:[[ClauseViewController alloc]init] animated:YES];
         }else if(row==2){
-            //检查更新
-            NSLog(@"检查更新");
-        }else if(row==3){
             //关于我们
             [self.navigationController pushViewController:[[AboutUsViewController alloc]init] animated:YES];
         }

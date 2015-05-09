@@ -72,9 +72,9 @@
             cell = [[ProjectACell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
-        cell.title.text=[data objectForKey:@"Name"];
-        cell.address.text=[data objectForKey:@"address"];
-        cell.date.text=[data objectForKey:@"CreateDate"];
+        cell.title.text=[Common getString:[data objectForKey:@"Name"]];
+        cell.address.text=[Common getString:[data objectForKey:@"address"]];
+        cell.date.text=[Common convertTime:[data objectForKey:@"CreateDate"]];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];

@@ -52,8 +52,10 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         }
         NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
-        [cell.textLabel setText:[data objectForKey:@"title"]];
-        [cell.detailTextLabel setText:[data objectForKey:@"Introduction"]];
+        NSString *title=[Common getString:[data objectForKey:@"title"]];
+        NSString *Introduction=[Common getString:[data objectForKey:@"Introduction"]];
+        [cell.textLabel setText:title];
+        [cell.detailTextLabel setText:Introduction];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -78,11 +80,6 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest handle:@"GetListALL" requestParams:params];
-}
-
-- (void)more:(id)sender
-{
-    NSLog(@"更多");
 }
 
 @end

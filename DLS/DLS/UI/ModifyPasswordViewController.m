@@ -42,12 +42,6 @@
     return self;
 }
 
-- (void)modifyPwd:(id)sender
-{
-    NSLog(@"%@,%@,%@",[tfNewPwd text],[tfOldPwd text],[tfReNewPwd text]);
-    [[self resultDelegate]onControllerResult:RESULTCODE_LOGIN data:nil];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 - (UITextField*)addTextFieldFrame:(CGFloat)y Title:(NSString*)title Placeholder:(NSString*)placeholder
 {
@@ -69,6 +63,34 @@
     [tfPassword setTextColor:TITLECOLOR];
     [vFrame addSubview:tfPassword];
     return tfPassword;
+}
+
+- (void)modifyPwd:(id)sender
+{
+    NSString *newPwd=[tfNewPwd text];
+    NSString *oldPwd=[tfOldPwd text];
+    NSString *reNewPwd=[tfReNewPwd text];
+    NSLog(@"%@,%@,%@",newPwd,oldPwd,reNewPwd);
+    [Common alert:@"密码修改成功"];
+    [self.navigationController popViewControllerAnimated:YES];
+//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+//    [params setObject:newPwd forKey:@"userName"];
+//    [params setObject:oldPwd forKey:@"pwd"];
+//    [params setObject:reNewPwd forKey:@"clientid"];
+//    self.hRequest=[[HttpRequest alloc]init];
+//    [self.hRequest setRequestCode:500];
+//    [self.hRequest setDelegate:self];
+//    [self.hRequest setController:self];
+//    [self.hRequest setIsShowMessage:YES];
+//    [self.hRequest handle:@"UserLogin" requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        [Common alert:@"密码修改成功"];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

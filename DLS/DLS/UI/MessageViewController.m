@@ -58,8 +58,10 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         }
         NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
-        [cell.textLabel setText:[data objectForKey:@"title"]];
-        [cell.detailTextLabel setText:[data objectForKey:@"CreateDate"]];
+        NSString *title=[Common getString:[data objectForKey:@"title"]];
+        NSString *CreateDate=[Common convertTime:[data objectForKey:@"CreateDate"]];
+        [cell.textLabel setText:title];
+        [cell.detailTextLabel setText:CreateDate];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         return cell;
     }else{

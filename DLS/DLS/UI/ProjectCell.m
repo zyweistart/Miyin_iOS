@@ -74,11 +74,15 @@
 
 - (void)setData:(NSDictionary *)data
 {
-    self.title.text=[NSString stringWithFormat:@"%@",[data objectForKey:@"Name"]];
-    self.address.text=[NSString stringWithFormat:@"设备地址:%@",[data objectForKey:@"address"]];
-    self.money.text=[NSString stringWithFormat:@"备注:%@",[data objectForKey:@"notes"]];
-    [self.date setText:[Common convertTime:[data objectForKey:@"CreateDate"]]];
-    NSString *status=[NSString stringWithFormat:@"%@",[data objectForKey:@"status"]];
+    NSString *name=[Common getString:[data objectForKey:@"Name"]];
+    NSString *address=[Common getString:[data objectForKey:@"address"]];
+    NSString *notes=[Common getString:[data objectForKey:@"notes"]];
+    NSString *CreateDate=[Common convertTime:[data objectForKey:@"CreateDate"]];
+    NSString *status=[Common getString:[data objectForKey:@"status"]];
+    self.title.text=[NSString stringWithFormat:@"%@",name];
+    self.address.text=[NSString stringWithFormat:@"设备地址:%@",address];
+    self.money.text=[NSString stringWithFormat:@"备注:%@",notes];
+    [self.date setText:CreateDate];
     if([@"3" isEqualToString:status]){
         [self setStatus:@"已成交" Type:3];
     }else if([@"2" isEqualToString:status]){

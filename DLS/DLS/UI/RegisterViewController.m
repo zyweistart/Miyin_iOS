@@ -66,7 +66,7 @@
         [bGet.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [bGet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [bGet addTarget:self action:@selector(goGet:) forControlEvents:UIControlEventTouchUpInside];
-        bGet.frame = CGRectMake(200, 0, 100, 40);
+        bGet.frame = CGRectMake1(200, 0, 100, 40);
         bGet.layer.cornerRadius = 5;
         bGet.layer.masksToBounds = YES;
         [bGet setBackgroundImage:[Common createImageWithColor:GETNORMALCOLOR] forState:UIControlStateNormal];
@@ -77,7 +77,7 @@
         UIButton *bLogin=[[UIButton alloc]initWithFrame:CGRectMake1(10, 310, 300, 40)];
         bLogin.layer.cornerRadius = 5;
         bLogin.layer.masksToBounds = YES;
-        [bLogin setTitle:@"登陆" forState:UIControlStateNormal];
+        [bLogin setTitle:@"注册" forState:UIControlStateNormal];
         [bLogin.titleLabel setFont:[UIFont systemFontOfSize:18]];
         [bLogin.titleLabel setTextAlignment:NSTextAlignmentCenter];
         [bLogin setBackgroundImage:[Common createImageWithColor:REGISTERNORMALCOLOR] forState:UIControlStateNormal];

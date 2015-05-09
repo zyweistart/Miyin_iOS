@@ -49,6 +49,7 @@
 		C99E830B1AA9983D0087D2F4 /* BaseEGOTableViewPullRefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E830A1AA9983D0087D2F4 /* BaseEGOTableViewPullRefreshViewController.m */; };
 		C9A82DD81AB0268E0063DF9B /* HomeBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A82DD71AB0268E0063DF9B /* HomeBannerView.m */; };
 		C9A82DDB1AB027C30063DF9B /* HomeCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A82DDA1AB027C30063DF9B /* HomeCategoryView.m */; };
+		C9A8A1211AFE498400AADEC2 /* page.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9A8A1201AFE498400AADEC2 /* page.bundle */; };
 		C9AF9BEC1AB9231600482049 /* SinglePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AF9BEB1AB9231600482049 /* SinglePickerView.m */; };
 		C9AFBB691AAD458C008C7AE9 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AFBB681AAD458C008C7AE9 /* ImageIO.framework */; };
 		C9AFBB701AAD4941008C7AE9 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AFBB6F1AAD4941008C7AE9 /* SDWebImage.framework */; };
@@ -194,6 +195,7 @@
 		C9A82DD71AB0268E0063DF9B /* HomeBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerView.m; sourceTree = "<group>"; };
 		C9A82DD91AB027C30063DF9B /* HomeCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoryView.h; sourceTree = "<group>"; };
 		C9A82DDA1AB027C30063DF9B /* HomeCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoryView.m; sourceTree = "<group>"; };
+		C9A8A1201AFE498400AADEC2 /* page.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = page.bundle; sourceTree = "<group>"; };
 		C9AF9BEA1AB9231600482049 /* SinglePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePickerView.h; sourceTree = "<group>"; };
 		C9AF9BEB1AB9231600482049 /* SinglePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePickerView.m; sourceTree = "<group>"; };
 		C9AFBB681AAD458C008C7AE9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -600,6 +602,7 @@
 		C9B85F601AA432E1008A56F0 /* DLS */ = {
 			isa = PBXGroup;
 			children = (
+				C9A8A1201AFE498400AADEC2 /* page.bundle */,
 				C9B85F651AA432E1008A56F0 /* AppDelegate.h */,
 				C9B85F661AA432E1008A56F0 /* AppDelegate.m */,
 				C922D0861AA4396F00F6DBA1 /* Classes */,
@@ -803,6 +806,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9A8A1211AFE498400AADEC2 /* page.bundle in Resources */,
 				C99E83051AA997B20087D2F4 /* grayArrow.png in Resources */,
 				C9B85F6F1AA432E1008A56F0 /* Images.xcassets in Resources */,
 				C99E83011AA997B20087D2F4 /* blackArrow.png in Resources */,
