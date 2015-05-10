@@ -506,7 +506,7 @@
 #pragma mark - 保存图片至沙盒
 - (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
 {
-    NSData *imageData = UIImageJPEGRepresentation(currentImage, 0.5);
+    NSData *imageData = UIImagePNGRepresentation(currentImage);
     // 获取沙盒目录
     NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
     // 将图片写入文件
@@ -535,7 +535,7 @@
     currentImage=image;
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
-    [params setObject:UIImageJPEGRepresentation(image, 1.0) forKey:@"image"];
+    [params setObject:UIImagePNGRepresentation(image) forKey:@"image"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:501];
     [self.hRequest setDelegate:self];
