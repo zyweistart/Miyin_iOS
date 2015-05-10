@@ -323,6 +323,9 @@ static CGFloat kImageOriginHight = 220.f;
 //        [bHead setTitle:name forImage:[iv image]];
         [bHead setTitle:name forImage:[UIImage imageNamed:@"头像"]];
         [bLoginRegister setHidden:YES];
+        NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
+        NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(downloadImage) object:nil];
+        [operationQueue addOperation:op];
     }else{
         [bHead setHidden:YES];
         [bSign setHidden:YES];
@@ -353,6 +356,17 @@ static CGFloat kImageOriginHight = 220.f;
         [bSign setEnabled:NO];
         [Common alert:[response msg]];
     }
+}
+
+- (void)downloadImage
+{
+//    NSString *name=[Common getString:[[[User Instance]resultData] objectForKey:@"Name"]];
+//    NSString *HeadImage=[[[User Instance]resultData] objectForKey:@"HeadImage"];
+//    if(![@"" isEqualToString:HeadImage]){
+//        NSString *URL=[NSString stringWithFormat:@"%@%@",HTTP_URL,HeadImage];
+//        UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:URL]]];
+//        [bHead setTitle:name forImage:image];
+//    }
 }
 
 @end

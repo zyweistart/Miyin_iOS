@@ -535,7 +535,7 @@
     currentImage=image;
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
-    [params setObject:UIImagePNGRepresentation(image) forKey:@"image"];
+    [params setObject:UIImagePNGRepresentation(image) forKey:@"imgFile"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:501];
     [self.hRequest setDelegate:self];
