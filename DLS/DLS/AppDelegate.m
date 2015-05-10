@@ -25,7 +25,7 @@
 #define ScreenWidth [[UIScreen mainScreen] bounds].size.width
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    AppDelegate *myDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *myDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(ScreenHeight > 480){
         myDelegate.autoSizeScaleX = ScreenWidth/320;
         myDelegate.autoSizeScaleY = ScreenHeight/568;

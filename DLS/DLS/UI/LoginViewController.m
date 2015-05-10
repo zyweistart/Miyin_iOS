@@ -47,6 +47,7 @@
         tfUserName=[[UITextField alloc]initWithFrame:CGRectMake1(50, 0,250, 40)];
         [tfUserName setPlaceholder:@"请输入账号"];
         [tfUserName setTextColor:TITLECOLOR];
+        [tfUserName setClearButtonMode:UITextFieldViewModeWhileEditing];
         [vUserNameFrame addSubview:tfUserName];
         //密码框架
         UIView *vPasswordFrame=[[UIView alloc]initWithFrame:CGRectMake1(10, 60, 300, 40)];
@@ -64,6 +65,7 @@
         tfPassword=[[UITextField alloc]initWithFrame:CGRectMake1(50, 0,250, 40)];
         [tfPassword setPlaceholder:@"请输入密码"];
         [tfPassword setTextColor:TITLECOLOR];
+        [tfPassword setClearButtonMode:UITextFieldViewModeWhileEditing];
         [tfPassword setSecureTextEntry:YES];
         [vPasswordFrame addSubview:tfPassword];
         //登陆

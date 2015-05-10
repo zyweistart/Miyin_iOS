@@ -7,6 +7,8 @@
 //
 
 #import "ModifyPasswordViewController.h"
+#import "NSString+Utils.h"
+
 #define TITLECOLOR [UIColor colorWithRed:(200/255.0) green:(200/255.0) blue:(200/255.0) alpha:1]
 #define MPNORMALCOLOR [UIColor colorWithRed:(57/255.0) green:(87/255.0) blue:(207/255.0) alpha:1]
 #define MPPRESENDCOLOR [UIColor colorWithRed:(107/255.0) green:(124/255.0) blue:(194/255.0) alpha:1]
@@ -61,34 +63,47 @@
     [tfPassword setFont:[UIFont systemFontOfSize:14]];
     [tfPassword setPlaceholder:placeholder];
     [tfPassword setTextColor:TITLECOLOR];
+    [tfPassword setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [tfPassword setSecureTextEntry:YES];
     [vFrame addSubview:tfPassword];
     return tfPassword;
 }
 
 - (void)modifyPwd:(id)sender
 {
-    NSString *newPwd=[tfNewPwd text];
     NSString *oldPwd=[tfOldPwd text];
+    if([@""isEqualToString:oldPwd]){
+        [Common alert:@"旧密码不能为空"];
+        return;
+    }
+    NSString *newPwd=[tfNewPwd text];
+    if([@""isEqualToString:newPwd]){
+        [Common alert:@"新密码不能为空"];
+        return;
+    }
     NSString *reNewPwd=[tfReNewPwd text];
-    NSLog(@"%@,%@,%@",newPwd,oldPwd,reNewPwd);
-    [Common alert:@"密码修改成功"];
-    [self.navigationController popViewControllerAnimated:YES];
-//    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-//    [params setObject:newPwd forKey:@"userName"];
-//    [params setObject:oldPwd forKey:@"pwd"];
-//    [params setObject:reNewPwd forKey:@"clientid"];
-//    self.hRequest=[[HttpRequest alloc]init];
-//    [self.hRequest setRequestCode:500];
-//    [self.hRequest setDelegate:self];
-//    [self.hRequest setController:self];
-//    [self.hRequest setIsShowMessage:YES];
-//    [self.hRequest handle:@"UserLogin" requestParams:params];
+    if(![newPwd isEqualToString:reNewPwd]){
+        [Common alert:@"两次密码不相同"];
+        return;
+    }
+    newPwd=[[[newPwd md5] lowercaseString] substringWithRange:NSMakeRange(6, 16)];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
+    [params setObject:newPwd forKey:@"pwd"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:@"UpdateUser" requestParams:params];
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){
         [Common alert:@"密码修改成功"];
+        NSString *newPwd=[tfNewPwd text];
+        [Common setCache:ACCOUNTPASSWORD data:newPwd];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
