@@ -62,17 +62,41 @@
         request.timeoutInterval = 60;
         
         if(self.isMultipartFormDataSubmit){
-            //主体数据POST提交
+            NSStringEncoding gbkEncoding =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+            
+            NSString *boundary=@"AaB03x";
             
             // post body
             NSMutableData *body = [NSMutableData data];
-            // add file data
-            for (NSString *p in params) {
-                id data=[params objectForKey:p];
-                if([data isKindOfClass:[NSData class]]){
-                    [body appendData:data];
+            
+            // add params (all params are strings)
+            for (NSString *param in params) {
+                id value=[params objectForKey:param];
+                if(![value isKindOfClass:[NSData class]]){
+                    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:gbkEncoding]];
+                    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", [param stringByAddingPercentEscapesUsingEncoding:gbkEncoding]] dataUsingEncoding:gbkEncoding]];
+                    [body appendData:[[NSString stringWithFormat:@"%@\r\n", value] dataUsingEncoding:gbkEncoding]];
                 }
             }
+            // add image data
+            for (NSString *param in params) {
+                id value=[params objectForKey:param];
+                if([value isKindOfClass:[NSData class]]){
+                    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:gbkEncoding]];
+                    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@.png\"\r\n",param,param] dataUsingEncoding:gbkEncoding]];
+                    [body appendData:[@"Content-Type: image/png\r\n\r\n" dataUsingEncoding:gbkEncoding]];
+                    [body appendData:value];
+                    [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:gbkEncoding]];
+                }
+            }
+            [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:gbkEncoding]];
+            
+            //        NSLog(@"%@",[[NSString alloc] initWithData:body  encoding:gbkEncoding]);
+            
+            [request setValue:[NSString stringWithFormat:@"multipart/form-data, boundary=%@",boundary] forHTTPHeaderField: @"Content-Type"];
+            
+            // set the content-length
+            [request setValue:[NSString stringWithFormat:@"%ld",[body length]] forHTTPHeaderField:@"Content-Length"];
             
             [request setHTTPBody:body];
             

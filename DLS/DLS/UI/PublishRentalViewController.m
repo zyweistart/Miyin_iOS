@@ -132,6 +132,7 @@
         tfContact=[self addFrameTypeTextField:310 Title:@"联系人" Frame:footView];
         //
         tfPhone=[self addFrameTypeTextField:360 Title:@"电话" Frame:footView];
+        [tfPhone setKeyboardType:UIKeyboardTypePhonePad];
         //备注
         frame=[[UIView alloc]initWithFrame:CGRectMake1(0,410,320,140)];
         [frame setBackgroundColor:[UIColor whiteColor]];
@@ -346,6 +347,17 @@
     [weights deleteCharactersInRange:deleteRange1];
     NSRange deleteRange2 = {[equipments length]-1,1};
     [equipments deleteCharactersInRange:deleteRange2];
+    
+    
+    
+    
+    NSMutableString *urls=[[NSMutableString alloc]init];
+    for(id url in imageList){
+        [urls appendFormat:@"%@{-}1{-}#,",url];
+    }
+    NSRange urlRange1 = {[urls length]-9,9};
+    [urls deleteCharactersInRange:urlRange1];
+    
 //    NSLog(@"选择类型=%@\n标题=%@\n设备地址=%@\n联系人=%@\n电话=%@\n备注=%@\n纯位＝%@\n数量=%@",pvv1v,title,address,contact,phone,remark,weights,equipments);
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
@@ -356,11 +368,12 @@
     [params setObject:address forKey:@"address"];
     [params setObject:contact forKey:@"contact"];
     [params setObject:phone forKey:@"contact_phone"];
+    [params setObject:urls forKey:@"imageList"];
+    NSLog(@"%@",urls);
     [params setObject:remark forKey:@"notes"];
     [params setObject:weights forKey:@"weight"];
     [params setObject:equipments forKey:@"equipment_Num"];
     [params setObject:@"1" forKey:@"region"];
-    [params setObject:@"" forKey:@"imageList"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];
@@ -373,6 +386,9 @@
 {
     if(reqCode==501){
         if([response successFlag]){
+            
+            NSString *url=[NSString stringWithFormat:@"%@",[[response resultJSON]objectForKey:@"Data"]];
+            [imageList addObject:url];
             //成功后执行
             [self showImage:currentImage];
         }
@@ -535,7 +551,8 @@
     currentImage=image;
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
-    [params setObject:UIImagePNGRepresentation(image) forKey:@"imgFile"];
+    [params setObject:UIImageJPEGRepresentation(image,0.00001) forKey:@"imgFile"];
+//    [params setObject:UIImagePNGRepresentation(image) forKey:@"imgFile"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:501];
     [self.hRequest setDelegate:self];
@@ -548,7 +565,6 @@
 //上传成功之后调用
 - (void)showImage:(UIImage*)image
 {
-    [imageList addObject:@"1"];
     NSUInteger count=[imageList count];
     if(count==5){
         [image5 setHidden:NO];

@@ -25,6 +25,7 @@
     UITextField *tfIDCard;
     UITextField *tfPhone;
     UITextField *tfCode;
+    UITextField *tfRole;
 }
 
 - (id)init{
@@ -46,9 +47,10 @@
         tfPassword=[self addContentFrame:@"密码" Placeholder:@"请输入密码" TopX:60];
         tfName=[self addContentFrame:@"姓名" Placeholder:@"请输入姓名" TopX:110];
         tfIDCard=[self addContentFrame:@"身份证" Placeholder:@"请输入身份证号码" TopX:160];
-        tfCode=[self addContentFrame:@"验证码" Placeholder:@"请输入验证码" TopX:260];
+        tfRole=[self addContentFrame:@"角色" Placeholder:@"请输入角色" TopX:210];
+        tfCode=[self addContentFrame:@"验证码" Placeholder:@"请输入验证码" TopX:310];
         
-        UIView *vFrame=[[UIView alloc]initWithFrame:CGRectMake1(10, 210, 300, 40)];
+        UIView *vFrame=[[UIView alloc]initWithFrame:CGRectMake1(10, 260, 300, 40)];
         [scrollFrame addSubview:vFrame];
         tfPhone=[[UITextField alloc]initWithFrame:CGRectMake1(0, 0,190, 40)];
         [tfPhone setFont:[UIFont systemFontOfSize:14]];
@@ -74,7 +76,7 @@
         [vFrame addSubview:bGet];
         
         //登陆
-        UIButton *bLogin=[[UIButton alloc]initWithFrame:CGRectMake1(10, 310, 300, 40)];
+        UIButton *bLogin=[[UIButton alloc]initWithFrame:CGRectMake1(10, 360, 300, 40)];
         bLogin.layer.cornerRadius = 5;
         bLogin.layer.masksToBounds = YES;
         [bLogin setTitle:@"注册" forState:UIControlStateNormal];
@@ -155,12 +157,17 @@
 //    NSString *idcard=[tfIDCard text];
     NSString *phone=[tfPhone text];
     NSString *code=[tfCode text];
+    NSString *role=[tfRole text];
     if([@""isEqualToString:username]){
         [Common alert:@"账号不能为空"];
         return;
     }
     if([@""isEqualToString:password]){
         [Common alert:@"密码不能为空"];
+        return;
+    }
+    if([@""isEqualToString:role]){
+        [Common alert:@"个人角色不能为空"];
         return;
     }
     if([@""isEqualToString:phone]){
@@ -176,6 +183,7 @@
     [params setObject:password forKey:@"pwd"];
     [params setObject:password forKey:@"pwd2"];
     [params setObject:phone forKey:@"phone"];
+    [params setObject:role forKey:@"per_roles"];
     [params setObject:code forKey:@"SMSCode"];
 //    [params setObject:name forKey:@"name"];
 //    [params setObject:idcard forKey:@"idcard"];
