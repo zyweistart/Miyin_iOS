@@ -19,7 +19,6 @@
 @implementation VIPViewController {
     BOOL ISFIRSTINFLAG;
     CategoryView *categoryView;
-    NSArray *searchData1,*searchData2,*searchData3,*searchData4;
     NSInteger pvs1,pvs2,pvs3,pvs4;
     int currentType;
 }
@@ -39,70 +38,22 @@
         [self buildTableViewWithView:self.view];
         [self.tableView setTableHeaderView:categoryView];
         
-        searchData1=[NSArray arrayWithObjects:
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"-1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"新发布",MKEY,@"1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"洽谈中",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"已成交",MKEY,@"3",MVALUE, nil], nil];
-        searchData2=[NSArray arrayWithObjects:
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"-1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"汽车吊",MKEY,@"1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"履带吊",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"塔吊",MKEY,@"3",MVALUE, nil],nil];
-        searchData3=[NSArray arrayWithObjects:
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"-1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"8吨",MKEY,@"8",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"12吨",MKEY,@"12",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"25吨",MKEY,@"25",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"35吨",MKEY,@"35",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"50吨",MKEY,@"50",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"65吨",MKEY,@"65",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"70吨",MKEY,@"70",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"90吨",MKEY,@"90",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"100吨",MKEY,@"100",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"120吨",MKEY,@"120",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"130吨",MKEY,@"130",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"150吨",MKEY,@"150",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"180吨",MKEY,@"180",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"200吨",MKEY,@"200",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"220吨",MKEY,@"220",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"260吨",MKEY,@"260",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"300吨",MKEY,@"300",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"350吨",MKEY,@"350",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"400吨",MKEY,@"400",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"500吨",MKEY,@"500",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"600吨",MKEY,@"600",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"800吨",MKEY,@"800",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"1000吨",MKEY,@"1000",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"1200吨",MKEY,@"1200",MVALUE, nil],nil];
-        searchData4=[NSArray arrayWithObjects:
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"-1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"3KM",MKEY,@"1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"5KM",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"10KM",MKEY,@"3",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"20KM",MKEY,@"4",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"30KM",MKEY,@"5",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"50KM",MKEY,@"6",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"100KM",MKEY,@"7",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"150KM",MKEY,@"8",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"200KM",MKEY,@"9",MVALUE, nil],nil];
-        
-        self.pv1=[[SinglePickerView alloc]initWithFrame:self.view.bounds WithArray:searchData1];
+        self.pv1=[[SinglePickerView alloc]initWithFrame:self.view.bounds WithArray:[CommonData getStatus]];
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
         [self.view addSubview:self.pv1];
         
-        self.pv2=[[SinglePickerView alloc]initWithFrame:self.view.bounds WithArray:searchData2];
+        self.pv2=[[SinglePickerView alloc]initWithFrame:self.view.bounds WithArray:[CommonData getType1]];
         [self.pv2 setCode:2];
         [self.pv2 setDelegate:self];
         [self.view addSubview:self.pv2];
         
-        self.pv3=[[SinglePickerView alloc]initWithFrame:self.view.bounds WithArray:searchData3];
+        self.pv3=[[SinglePickerView alloc]initWithFrame:self.view.bounds WithArray:[CommonData getSearchTon]];
         [self.pv3 setCode:3];
         [self.pv3 setDelegate:self];
         [self.view addSubview:self.pv3];
         
-        self.pv4=[[SinglePickerView alloc]initWithFrame:self.view.bounds WithArray:searchData4];
+        self.pv4=[[SinglePickerView alloc]initWithFrame:self.view.bounds WithArray:[CommonData getDistance]];
         [self.pv4 setCode:4];
         [self.pv4 setDelegate:self];
         [self.view addSubview:self.pv4];

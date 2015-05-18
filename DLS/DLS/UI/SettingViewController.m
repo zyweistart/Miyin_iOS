@@ -20,8 +20,7 @@
 @end
 
 @implementation SettingViewController{
-    NSArray *searchData;
-    int tmpv;
+    NSInteger tmpv;
 }
 
 - (id)init{
@@ -60,13 +59,7 @@
         [logoutView addSubview:bLogout];
         [self.tableView setTableFooterView:logoutView];
         
-        searchData=[NSArray arrayWithObjects:
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"1KM",MKEY,@"1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"2KM",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"3KM",MKEY,@"3",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"4KM",MKEY,@"4",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"5KM",MKEY,@"5",MVALUE, nil], nil];
-        self.pv=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData];
+        self.pv=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:[CommonData getDistance2]];
         [self.pv setDelegate:self];
         [self.view addSubview:self.pv];
         tmpv=3;

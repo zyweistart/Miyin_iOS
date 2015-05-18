@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommonData.h"
 #define MKEY @"KEY"
 #define MVALUE @"MVALUE"
 

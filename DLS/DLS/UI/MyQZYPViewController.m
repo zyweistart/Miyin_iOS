@@ -71,7 +71,11 @@
         if(!cell) {
             cell = [[ProjectACell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        [cell setData:[self.dataItemArray objectAtIndex:[indexPath row]]];
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+//        [cell setData:[self.dataItemArray objectAtIndex:[indexPath row]]];
+        cell.title.text=[Common getString:[data objectForKey:@"title"]];
+        cell.address.text=[Common getString:[NSString stringWithFormat:@"联系人:%@",[data objectForKey:@"contact"]]];
+        cell.date.text=[Common convertTime:[data objectForKey:@"CreateDate"]];
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];

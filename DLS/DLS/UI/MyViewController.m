@@ -15,6 +15,7 @@
 #import "MyZPXXViewController.h"
 #import "MyQZYPViewController.h"
 #import "MyHelpCenterViewController.h"
+#import "CustomerServiceViewController.h"
 
 #import "SettingViewController.h"
 #import "CollectionViewController.h"
@@ -54,7 +55,7 @@ static CGFloat kImageOriginHight = 220.f;
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"招聘信息",@"求职信息", nil]];
 //        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"我的出租",@"我的求租",@"设备销售",@"设备维修",@"配件销售",@"VIP工程", nil]];
 //        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"招聘信息",@"我的求职", nil]];
-        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"帮助中心",@"得力手客服中心", nil]];
+        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"帮助中心",@"客服中心", nil]];
 
         self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
@@ -236,7 +237,8 @@ static CGFloat kImageOriginHight = 220.f;
         if(row==0){
              [self presentViewControllerNav:[[MyHelpCenterViewController alloc]init]];
         }else if(row==1){
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"tel://%@",@"057187071527"]]];
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"tel://%@",@"057187071527"]]];
+            [self presentViewControllerNav:[[CustomerServiceViewController alloc]init]];
         }
     }
 }

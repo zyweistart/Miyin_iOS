@@ -19,11 +19,10 @@
 @implementation PublishQZViewController{
     UIScrollView *scrollFrame;
     NSInteger pvv1,pvv2;
-    NSArray *searchData1,*searchData2;
     
-    UILabel *lblJobName,*lblJobType,*lblJobNumber,*lblJobWage,*lblJobWorkYear,*lblJobMoney;
+    UILabel *lblSex,*lblJobWage;
+    UITextField *tfTitle,*tfName,*tfAge,*tfPhone,*tfResion,*tfHistory;
     UITextView *tvRemark;
-    UITextField *tfName,*tfPeopleNum,*tfContact,*tfPhone,*tfEmail,*tfAddress,*tfCompanyName;
 }
 
 - (id)init{
@@ -33,18 +32,20 @@
         [self.view setBackgroundColor:BGCOLOR];
         scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        scrollFrame.contentSize=CGSizeMake(320,560);
+        scrollFrame.contentSize=CGSizeMake(320,600);
         [self.view addSubview:scrollFrame];
-        tfName=[self addFrameTypeTextField:10 Title:@"姓名"];
-        [self addFrameTypeTextField:60 Title:@"年龄"];
-        [self addFrameTypeTextField:110 Title:@"性别"];
-        tfPeopleNum=[self addFrameTypeTextField:160 Title:@"手机号码"];
-        [tfPeopleNum setKeyboardType:UIKeyboardTypeNumberPad];
-        lblJobWage=[self addFrameType:210 Title:@"职位类型" Name:@"请选择职位类别" Tag:4];
-        tfPeopleNum=[self addFrameTypeTextField:260 Title:@"期望地区"];
-        tfPeopleNum=[self addFrameTypeTextField:310 Title:@"工作经历"];
+        tfTitle=[self addFrameTypeTextField:10 Title:@"标题"];
+        tfName=[self addFrameTypeTextField:60 Title:@"姓名"];
+        tfAge=[self addFrameTypeTextField:110 Title:@"年龄"];
+        [tfAge setKeyboardType:UIKeyboardTypeNumberPad];
+        lblSex=[self addFrameType:160 Title:@"性别" Name:@"请选择" Tag:1];
+        tfPhone=[self addFrameTypeTextField:210 Title:@"手机号码"];
+        [tfPhone setKeyboardType:UIKeyboardTypeNumberPad];
+        lblJobWage=[self addFrameType:260 Title:@"职位类型" Name:@"请选择" Tag:2];
+        tfResion=[self addFrameTypeTextField:310 Title:@"期望地区"];
+        tfHistory=[self addFrameTypeTextField:360 Title:@"工作经历"];
         
-        UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0,360,320,140)];
+        UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0,410,320,140)];
         [frame setBackgroundColor:[UIColor whiteColor]];
         [scrollFrame addSubview:frame];
         UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 100, 30)];
@@ -59,23 +60,17 @@
         [tvRemark setFont:[UIFont systemFontOfSize:14]];
         [frame addSubview:tvRemark];
         //发布
-        ButtonView *button=[[ButtonView alloc]initWithFrame:CGRectMake1(10, 510, 300, 40) Name:@"发布"];
+        ButtonView *button=[[ButtonView alloc]initWithFrame:CGRectMake1(10, 560, 300, 40) Name:@"发布"];
         [button addTarget:self action:@selector(publish:) forControlEvents:UIControlEventTouchUpInside];
+        
         [scrollFrame addSubview:button];
         
-        searchData1=[NSArray arrayWithObjects:
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"教师",MKEY,@"1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"技术员",MKEY,@"2",MVALUE, nil], nil];
-        searchData2=[NSArray arrayWithObjects:
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"男",MKEY,@"0",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"女",MKEY,@"1",MVALUE, nil], nil];
-        
-        self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData1];
+        self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:[CommonData getSex]];
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
         [self.view addSubview:self.pv1];
         
-        self.pv2=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData2];
+        self.pv2=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:[CommonData getJob]];
         [self.pv2 setCode:2];
         [self.pv2 setDelegate:self];
         [self.view addSubview:self.pv2];
@@ -134,7 +129,7 @@
     if(code==1){
         pvv1=[self.pv1.picker selectedRowInComponent:0];
         NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvv1];
-        [lblJobType setText:[d objectForKey:MKEY]];
+        [lblSex setText:[d objectForKey:MKEY]];
     }else if(code==2){
         pvv2=[self.pv2.picker selectedRowInComponent:0];
         NSDictionary *d=[self.pv2.pickerArray objectAtIndex:pvv2];
@@ -152,40 +147,39 @@
 - (void)publish:(id)sender
 {
     [self hideKeyBoard];
+    
+    NSString *title=[tfTitle text];
     NSString *name=[tfName text];
-    NSString *peopleNum=[tfPeopleNum text];
-    NSString *remark=[tvRemark text];
+    NSString *age=[tfAge text];
     NSString *phone=[tfPhone text];
-    NSString *contact=[tfContact text];
-    NSString *address=[tfAddress text];
-    NSString *email=[tfEmail text];
-    NSString *companyName=[tfCompanyName text];
+    NSString *resion=[tfResion text];
+    NSString *history=[tfHistory text];
+    NSString *remark=[tvRemark text];
     
     NSDictionary *d1=[self.pv1.pickerArray objectAtIndex:pvv1];
-    NSString *pvv1v=[d1 objectForKey:MKEY];
+    NSString *pvv1v=[d1 objectForKey:MVALUE];
     NSDictionary *d2=[self.pv2.pickerArray objectAtIndex:pvv2];
-    NSString *pvv2v=[d2 objectForKey:MKEY];
+    NSString *pvv2v=[d2 objectForKey:MVALUE];
     
-    //    NSLog(@"职位名称=%@\n职位类别=%@\n招聘人数=%@\n学历要求=%@\n工作年限=%@\n每月薪资=%@\n任职要求=%@\n联系人=%@\n联系电话=%@\n地址=%@",name,pvv2v,peopleNum,pvv4v,pvv5v,pvv6v,remark,phone,contact,address);
-    
-    
+//    NSLog(@"名称=%@\n年龄=%@\n电话=%@\n地区=%@\n工作经历=%@\n自我描述=%@\n性别=%@\n类型=%@",name,age,phone,resion,history,remark,pvv1v,pvv2v);
     //    {"work_year":"3","phone":"15906614216","job_category":"1","classId":111,"degree_required":"5","contact_person":"联系人","cName":"公司名称","address":"地址","email":"17855@qq.com","job_title":"标题","hiring":"1","Id":0,"month_salary":"2","access_token":"access_token_984f374857327df90d71f1c0353391e2","job_specification":"要求"}
+//    {content='安了, sex=1, title=123, phone=13588713117, job_category=2, classId=171, address=杭州, monthlypay=, age=52, Id=0, experience=刺激了, contact=芭比, access_token=access_token_93afc5c208eadfcf006cc7bdee403ef5}
     
     
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
-    [params setObject:pvv1v forKey:@"work_year"];
-    [params setObject:phone forKey:@"phone"];
-    [params setObject:pvv2v forKey:@"job_category"];
     [params setObject:@"0" forKey:@"Id"];
-    [params setObject:@"111" forKey:@"classId"];
-    [params setObject:contact forKey:@"contact_person"];
-    [params setObject:address forKey:@"address"];
-    [params setObject:companyName forKey:@"cName"];
-    [params setObject:email forKey:@"email"];
-    [params setObject:name forKey:@"job_title"];
-    [params setObject:peopleNum forKey:@"hiring"];
-    [params setObject:remark forKey:@"job_specification"];
+    [params setObject:@"171" forKey:@"classId"];
+    [params setObject:title forKey:@"title"];
+    [params setObject:name forKey:@"contact"];
+    [params setObject:history forKey:@"experience"];
+    [params setObject:age forKey:@"age"];
+    [params setObject:resion forKey:@"address"];
+    [params setObject:pvv2v forKey:@"job_category"];
+    [params setObject:phone forKey:@"phone"];
+    [params setObject:pvv1v forKey:@"sex"];
+    [params setObject:remark forKey:@"content"];
+//    [params setObject:@"" forKey:@"monthlypay"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];
@@ -196,8 +190,8 @@
 
 - (void)showPickerView:(NSInteger)tag
 {
-    [self.pv1 setHidden:tag==2?NO:YES];
-    [self.pv2 setHidden:tag==4?NO:YES];
+    [self.pv1 setHidden:tag==1?NO:YES];
+    [self.pv2 setHidden:tag==2?NO:YES];
 }
 
 #pragma mark - UITextViewDelegate UITextFieldDelegate
@@ -243,13 +237,11 @@
 - (void)hideKeyBoard
 {
     [tfName resignFirstResponder];
-    [tfPeopleNum resignFirstResponder];
-    [tfCompanyName resignFirstResponder];
-    [tvRemark resignFirstResponder];
+    [tfAge resignFirstResponder];
     [tfPhone resignFirstResponder];
-    [tfContact resignFirstResponder];
-    [tfAddress resignFirstResponder];
-    [tfEmail resignFirstResponder];
+    [tfResion resignFirstResponder];
+    [tfHistory resignFirstResponder];
+    [tvRemark resignFirstResponder];
 }
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode

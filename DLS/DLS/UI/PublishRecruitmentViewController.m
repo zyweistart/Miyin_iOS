@@ -19,7 +19,7 @@
 @implementation PublishRecruitmentViewController{
     UIScrollView *scrollFrame;
     NSInteger pvv2,pvv4,pvv5,pvv6;
-    NSArray *searchData2,*searchData4,*searchData5,*searchData6;
+//    NSArray *searchData2,*searchData4,*searchData5,*searchData6;
     UILabel *lblJobName,*lblJobType,*lblJobNumber,*lblJobWage,*lblJobWorkYear,*lblJobMoney;
     UITextView *tvRemark;
     UITextField *tfName,*tfPeopleNum,*tfContact,*tfPhone,*tfEmail,*tfAddress,*tfCompanyName;
@@ -68,40 +68,22 @@
         [button addTarget:self action:@selector(publish:) forControlEvents:UIControlEventTouchUpInside];
         [scrollFrame addSubview:button];
         
-        searchData2=[NSArray arrayWithObjects:
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"教师",MKEY,@"1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"技术员",MKEY,@"2",MVALUE, nil], nil];
-        searchData4=[NSArray arrayWithObjects:
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"0",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"专科",MKEY,@"1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"本科",MKEY,@"2",MVALUE, nil], nil];
-        searchData5=[NSArray arrayWithObjects:
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"0",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"一年",MKEY,@"1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"两年",MKEY,@"2",MVALUE, nil], nil];
-        searchData6=[NSArray arrayWithObjects:
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"面议",MKEY,@"0",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"5000-10000元",MKEY,@"1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"3000-5000",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"1500-3000",MKEY,@"3",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"1500以下",MKEY,@"4",MVALUE, nil], nil];
-        
-        self.pv2=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData2];
+        self.pv2=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:[CommonData getJob]];
         [self.pv2 setCode:2];
         [self.pv2 setDelegate:self];
         [self.view addSubview:self.pv2];
         
-        self.pv4=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData4];
+        self.pv4=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:[CommonData getEducation]];
         [self.pv4 setCode:4];
         [self.pv4 setDelegate:self];
         [self.view addSubview:self.pv4];
         
-        self.pv5=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData5];
+        self.pv5=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:[CommonData getYears]];
         [self.pv5 setCode:5];
         [self.pv5 setDelegate:self];
         [self.view addSubview:self.pv5];
         
-        self.pv6=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData6];
+        self.pv6=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:[CommonData getSalary]];
         [self.pv6 setCode:6];
         [self.pv6 setDelegate:self];
         [self.view addSubview:self.pv6];

@@ -85,6 +85,8 @@
 		C9DD46C21AA82731004AEAB7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DD46C11AA82731004AEAB7 /* LoginViewController.m */; };
 		C9DD46C51AA82781004AEAB7 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DD46C41AA82781004AEAB7 /* AccountViewController.m */; };
 		C9DFA84F1B098F6E00365CD4 /* PublishQZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DFA84E1B098F6E00365CD4 /* PublishQZViewController.m */; };
+		C9DFA8521B09CF6C00365CD4 /* CustomerServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DFA8511B09CF6C00365CD4 /* CustomerServiceViewController.m */; };
+		C9DFA8551B09D4AD00365CD4 /* CommonData.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DFA8541B09D4AD00365CD4 /* CommonData.m */; };
 		C9E1FEBA1AA5543F00720AAC /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1FEB61AA5543F00720AAC /* BaseTableViewController.m */; };
 		C9E1FEBB1AA5543F00720AAC /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1FEB81AA5543F00720AAC /* BaseViewController.m */; };
 		C9E1FED11AA554E200720AAC /* HttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1FECD1AA554E200720AAC /* HttpRequest.m */; };
@@ -263,6 +265,10 @@
 		C9DD46C41AA82781004AEAB7 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
 		C9DFA84D1B098F6E00365CD4 /* PublishQZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishQZViewController.h; sourceTree = "<group>"; };
 		C9DFA84E1B098F6E00365CD4 /* PublishQZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishQZViewController.m; sourceTree = "<group>"; };
+		C9DFA8501B09CF6C00365CD4 /* CustomerServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerServiceViewController.h; sourceTree = "<group>"; };
+		C9DFA8511B09CF6C00365CD4 /* CustomerServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerServiceViewController.m; sourceTree = "<group>"; };
+		C9DFA8531B09D4AD00365CD4 /* CommonData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonData.h; sourceTree = "<group>"; };
+		C9DFA8541B09D4AD00365CD4 /* CommonData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonData.m; sourceTree = "<group>"; };
 		C9E1FEB51AA5543F00720AAC /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C9E1FEB61AA5543F00720AAC /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C9E1FEB71AA5543F00720AAC /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -368,6 +374,8 @@
 				C9DD46C41AA82781004AEAB7 /* AccountViewController.m */,
 				C90699AF1AAE836600E32C54 /* CollectionViewController.h */,
 				C90699B01AAE836600E32C54 /* CollectionViewController.m */,
+				C9DFA8501B09CF6C00365CD4 /* CustomerServiceViewController.h */,
+				C9DFA8511B09CF6C00365CD4 /* CustomerServiceViewController.m */,
 				C90699B51AAE83C700E32C54 /* IntegralViewController.h */,
 				C90699B61AAE83C700E32C54 /* IntegralViewController.m */,
 				C909FC191AA6E03A008E68FB /* MessageViewController.h */,
@@ -392,14 +400,14 @@
 				C9D2B7441AA868BF00CF750D /* MyZPXXViewController.m */,
 				C9610DD51AB158B100CA8218 /* PublishQiuzuViewController.h */,
 				C9610DD61AB158B100CA8218 /* PublishQiuzuViewController.m */,
+				C9DFA84D1B098F6E00365CD4 /* PublishQZViewController.h */,
+				C9DFA84E1B098F6E00365CD4 /* PublishQZViewController.m */,
 				C9610DDB1AB158E300CA8218 /* PublishRecruitmentViewController.h */,
 				C9610DDC1AB158E300CA8218 /* PublishRecruitmentViewController.m */,
 				C9610DD81AB158C700CA8218 /* PublishRentalViewController.h */,
 				C9610DD91AB158C700CA8218 /* PublishRentalViewController.m */,
 				C90699B21AAE83A300E32C54 /* SettingViewController.h */,
 				C90699B31AAE83A300E32C54 /* SettingViewController.m */,
-				C9DFA84D1B098F6E00365CD4 /* PublishQZViewController.h */,
-				C9DFA84E1B098F6E00365CD4 /* PublishQZViewController.m */,
 			);
 			name = "我的";
 			sourceTree = "<group>";
@@ -456,6 +464,8 @@
 				C9125AA71AA9FA12001396FF /* Common.m */,
 				C90BC6951AAC6504001F9902 /* UIButton+TitleImage.h */,
 				C90BC6961AAC6504001F9902 /* UIButton+TitleImage.m */,
+				C9DFA8531B09D4AD00365CD4 /* CommonData.h */,
+				C9DFA8541B09D4AD00365CD4 /* CommonData.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -869,6 +879,7 @@
 				C9E1FEEA1AA555F000720AAC /* ATMHudView.m in Sources */,
 				C9D2B7451AA868BF00CF750D /* MyZPXXViewController.m in Sources */,
 				C9E1FEEC1AA555F000720AAC /* ATMSoundFX.m in Sources */,
+				C9DFA8551B09D4AD00365CD4 /* CommonData.m in Sources */,
 				C9DD46BF1AA8271E004AEAB7 /* RegisterViewController.m in Sources */,
 				C9F11F4B1AB2760A0014E462 /* CollectionCell.m in Sources */,
 				C9AF9BEC1AB9231600482049 /* SinglePickerView.m in Sources */,
@@ -912,6 +923,7 @@
 				C9E1FEBA1AA5543F00720AAC /* BaseTableViewController.m in Sources */,
 				C9C23CF71AA9445D007A9A27 /* CustomAnnotation.m in Sources */,
 				C9D2B7361AA8686400CF750D /* MyQZViewController.m in Sources */,
+				C9DFA8521B09CF6C00365CD4 /* CustomerServiceViewController.m in Sources */,
 				C9E1FEEB1AA555F000720AAC /* ATMProgressLayer.m in Sources */,
 				C989A00C1AFC983300EC3228 /* IntegralVCell.m in Sources */,
 				C922D0971AA444FB00F6DBA1 /* MyViewController.m in Sources */,
