@@ -15,6 +15,8 @@
 
 @implementation AccountViewController{
     NSString *content;
+    NSInteger pvv1;
+    NSArray *searchData1;
 }
 
 - (id)init{
@@ -33,6 +35,21 @@
         [self.dataItemArray addObject:[[[User Instance]resultData]objectForKey:@"shenfenzheng"]];
         [self.dataItemArray addObject:[[[User Instance]resultData]objectForKey:@"per_roles"]];
         [self buildTableViewWithView:self.view];
+        
+        searchData1=[NSArray arrayWithObjects:
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"个人",MKEY,@"1",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"机手",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"项目经理",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"其他公司",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"配件公司",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"维修公司",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"吊装公司",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"工程公司",MKEY,@"2",MVALUE, nil],nil];
+        
+        self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData1];
+        [self.pv1 setCode:1];
+        [self.pv1 setDelegate:self];
+        [self.view addSubview:self.pv1];
     }
     return self;
 }
@@ -70,6 +87,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger row=[indexPath row];
+    [self.pv1 setHidden:row==3?NO:YES];
     if(row==1){
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"姓名" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alert  setAlertViewStyle:UIAlertViewStylePlainTextInput];
@@ -81,10 +99,10 @@
         alert.tag=2;
         [alert show];
     }else if(row==3){
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"个人角色" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        [alert  setAlertViewStyle:UIAlertViewStylePlainTextInput];
-        alert.tag=3;
-        [alert show];
+//        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"个人角色" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//        [alert  setAlertViewStyle:UIAlertViewStylePlainTextInput];
+//        alert.tag=3;
+//        [alert show];
     }
 }
 
@@ -114,6 +132,7 @@
         }
         [self.hRequest setDelegate:self];
         [self.hRequest setController:self];
+        [self.hRequest setIsShowMessage:YES];
         [self.hRequest handle:@"UpdateUser" requestParams:params];
     }
     
@@ -133,5 +152,22 @@
     }
 }
 
+- (void)pickerViewDone:(int)code
+{
+    if(code==1){
+        pvv1=[self.pv1.picker selectedRowInComponent:0];
+        NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvv1];
+        content=[d objectForKey:MKEY];
+        NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+        [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
+        [params setObject:content forKey:@"per_roles"];
+        self.hRequest=[[HttpRequest alloc]init];
+        [self.hRequest setRequestCode:502];
+        [self.hRequest setDelegate:self];
+        [self.hRequest setController:self];
+        [self.hRequest setIsShowMessage:YES];
+        [self.hRequest handle:@"UpdateUser" requestParams:params];
+    }
+}
 
 @end

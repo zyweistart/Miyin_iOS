@@ -26,6 +26,8 @@
     UITextField *tfPhone;
     UITextField *tfCode;
     UITextField *tfRole;
+    NSInteger pvv1;
+    NSArray *searchData1;
 }
 
 - (id)init{
@@ -48,6 +50,8 @@
         tfName=[self addContentFrame:@"姓名" Placeholder:@"请输入姓名" TopX:110];
         tfIDCard=[self addContentFrame:@"身份证" Placeholder:@"请输入身份证号码" TopX:160];
         tfRole=[self addContentFrame:@"角色" Placeholder:@"请输入角色" TopX:210];
+        [tfRole addTarget:self action:@selector(goSRole:) forControlEvents:UIControlEventEditingDidBegin];
+        
         tfCode=[self addContentFrame:@"验证码" Placeholder:@"请输入验证码" TopX:310];
         
         UIView *vFrame=[[UIView alloc]initWithFrame:CGRectMake1(10, 260, 300, 40)];
@@ -86,6 +90,21 @@
         [bLogin setBackgroundImage:[Common createImageWithColor:REGISTERPRESENDCOLOR] forState:UIControlStateHighlighted];
         [bLogin addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
         [scrollFrame addSubview:bLogin];
+        
+        searchData1=[NSArray arrayWithObjects:
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"个人",MKEY,@"1",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"机手",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"项目经理",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"其他公司",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"配件公司",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"维修公司",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"吊装公司",MKEY,@"2",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"工程公司",MKEY,@"2",MVALUE, nil],nil];
+        
+        self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData1];
+        [self.pv1 setCode:1];
+        [self.pv1 setDelegate:self];
+        [self.view addSubview:self.pv1];
         
         
 //        [tfUserName setText:@"4544242"];
@@ -207,6 +226,20 @@
             [[self resultDelegate]onControllerResult:RESULTCODE_LOGIN data:nil];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
+    }
+}
+
+- (void)goSRole:(id)sender
+{
+    [self.pv1 setHidden:![self.pv1 isHidden]];
+}
+
+- (void)pickerViewDone:(int)code
+{
+    if(code==1){
+        pvv1=[self.pv1.picker selectedRowInComponent:0];
+        NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvv1];
+        [tfRole setText:[d objectForKey:MKEY]];
     }
 }
 

@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "SinglePickerView.h"
 
-@interface RegisterViewController : BaseViewController<UITextFieldDelegate>
+@interface RegisterViewController : BaseViewController<UITextFieldDelegate,PickerViewDelegate>
+
+@property SinglePickerView *pv1;
 
 @end

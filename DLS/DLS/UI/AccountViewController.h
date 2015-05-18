@@ -7,7 +7,10 @@
 //
 
 #import "BaseTableViewController.h"
+#import "SinglePickerView.h"
 
-@interface AccountViewController : BaseTableViewController<UIAlertViewDelegate>
+@interface AccountViewController : BaseTableViewController<UIAlertViewDelegate,PickerViewDelegate>
+
+@property SinglePickerView *pv1;
 
 @end

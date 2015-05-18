@@ -80,8 +80,15 @@
         [bLogin addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:bLogin];
         
-        [tfUserName setText:[[User Instance]getUserName]];
-        [tfPassword setText:[[User Instance]getPassword]];
+        
+        NSString *userName=[[User Instance]getUserName];
+        NSString *password=[[User Instance]getPassword];
+        [tfUserName setText:userName];
+        [tfPassword setText:password];
+        if(![@"" isEqualToString:userName]&&![@"" isEqualToString:password]){
+            [self login:nil];
+        }
+        
     }
     return self;
 }

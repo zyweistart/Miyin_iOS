@@ -50,8 +50,8 @@ static CGFloat kImageOriginHight = 220.f;
         [self setTitle:@"我的"];
         self.dataItemArray=[[NSMutableArray alloc]init];
         
-        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"我的出租",@"我的求租",@"VIP工程", nil]];
-        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"招聘信息", nil]];
+        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"我的出租",@"我的求租", nil]];
+        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"招聘信息",@"求职信息", nil]];
 //        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"我的出租",@"我的求租",@"设备销售",@"设备维修",@"配件销售",@"VIP工程", nil]];
 //        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"招聘信息",@"我的求职", nil]];
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"帮助中心",@"得力手客服中心", nil]];
@@ -101,6 +101,7 @@ static CGFloat kImageOriginHight = 220.f;
         //头像
         bHead=[[UIButton alloc]initWithFrame:CGRectMake1(120, 0, 80, 80)];
         [bHead.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [bHead addTarget:self action:@selector(goPersonalInfo:) forControlEvents:UIControlEventTouchUpInside];
         [personalFrame addSubview:bHead];
         //签到
         bSign=[[UIButton alloc]initWithFrame:CGRectMake1(110, 90, 100, 20)];
@@ -220,14 +221,6 @@ static CGFloat kImageOriginHight = 220.f;
             [self presentViewControllerNav:[[MyCZViewController alloc]init]];
         }else if(row==1){
             [self presentViewControllerNav:[[MyQZViewController alloc]init]];
-        }else if(row==2){
-//            [self presentViewControllerNav:[[MySBXSViewController alloc]init]];
-//        }else if(row==3){
-//            [self presentViewControllerNav:[[MySBWXViewController alloc]init]];
-//        }else if(row==4){
-//            [self presentViewControllerNav:[[MyBJXSViewController alloc]init]];
-//        }else if(row==5){
-            [self.tabBarController setSelectedIndex:2];
         }
     }else if(section==1){
         if(![[User Instance]isLogin]){
@@ -356,6 +349,15 @@ static CGFloat kImageOriginHight = 220.f;
         [bSign setEnabled:NO];
         [Common alert:[response msg]];
     }
+}
+
+- (void)goPersonalInfo:(id)sender
+{
+    if(![[User Instance]isLogin]){
+        [self presentViewControllerNav:[[LoginViewController alloc]init]];
+        return;
+    }
+    [self presentViewControllerNav:[[AccountViewController alloc]init]];
 }
 
 - (void)downloadImage

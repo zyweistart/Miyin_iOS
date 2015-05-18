@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "SinglePickerView.h"
 
 @interface LoginViewController : BaseViewController
 
