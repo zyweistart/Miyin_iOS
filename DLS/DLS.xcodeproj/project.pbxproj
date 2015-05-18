@@ -84,6 +84,7 @@
 		C9DD46BF1AA8271E004AEAB7 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DD46BE1AA8271E004AEAB7 /* RegisterViewController.m */; };
 		C9DD46C21AA82731004AEAB7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DD46C11AA82731004AEAB7 /* LoginViewController.m */; };
 		C9DD46C51AA82781004AEAB7 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DD46C41AA82781004AEAB7 /* AccountViewController.m */; };
+		C9DFA84F1B098F6E00365CD4 /* PublishQZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DFA84E1B098F6E00365CD4 /* PublishQZViewController.m */; };
 		C9E1FEBA1AA5543F00720AAC /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1FEB61AA5543F00720AAC /* BaseTableViewController.m */; };
 		C9E1FEBB1AA5543F00720AAC /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1FEB81AA5543F00720AAC /* BaseViewController.m */; };
 		C9E1FED11AA554E200720AAC /* HttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1FECD1AA554E200720AAC /* HttpRequest.m */; };
@@ -260,6 +261,8 @@
 		C9DD46C11AA82731004AEAB7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C9DD46C31AA82781004AEAB7 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
 		C9DD46C41AA82781004AEAB7 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
+		C9DFA84D1B098F6E00365CD4 /* PublishQZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishQZViewController.h; sourceTree = "<group>"; };
+		C9DFA84E1B098F6E00365CD4 /* PublishQZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishQZViewController.m; sourceTree = "<group>"; };
 		C9E1FEB51AA5543F00720AAC /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C9E1FEB61AA5543F00720AAC /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C9E1FEB71AA5543F00720AAC /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -395,6 +398,8 @@
 				C9610DD91AB158C700CA8218 /* PublishRentalViewController.m */,
 				C90699B21AAE83A300E32C54 /* SettingViewController.h */,
 				C90699B31AAE83A300E32C54 /* SettingViewController.m */,
+				C9DFA84D1B098F6E00365CD4 /* PublishQZViewController.h */,
+				C9DFA84E1B098F6E00365CD4 /* PublishQZViewController.m */,
 			);
 			name = "我的";
 			sourceTree = "<group>";
@@ -887,6 +892,7 @@
 				C9F11F571AB27AD70014E462 /* ClauseViewController.m in Sources */,
 				C922D0911AA444E100F6DBA1 /* NearbyViewController.m in Sources */,
 				008BEC7B1ADA0DD30082A1E5 /* User.m in Sources */,
+				C9DFA84F1B098F6E00365CD4 /* PublishQZViewController.m in Sources */,
 				C99E82FD1AA997B20087D2F4 /* EGORefreshTableHeaderView.m in Sources */,
 				C9AFBB831AAD809B008C7AE9 /* EnterpriseDetailViewController.m in Sources */,
 				C9AFBB891AAD80DD008C7AE9 /* NewsDetailViewController.m in Sources */,

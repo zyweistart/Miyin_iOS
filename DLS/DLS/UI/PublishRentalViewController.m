@@ -23,9 +23,9 @@
 
 @implementation PublishRentalViewController{
     UIView *headView,*footView;
-    NSInteger pvv1,pvv2;
-    NSArray *searchData1,*searchData2;
-    UILabel *lblRentalType,*lblSBType;
+    NSInteger pvv1,pvv2,pvv3;
+    NSArray *searchData1,*searchData2,*searchData3;
+    UILabel *lblRentalType,*lblSBType,*lblArea;
     UITextView *tvRemark;
     UITextField *tfTitle,*tfSBNumber,*tfContact,*tfPhone,*tfAddress;
     UIButton *bAdd;
@@ -47,7 +47,7 @@
         
         headView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 110)];
         [headView setBackgroundColor:BGCOLOR];
-        footView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 610)];
+        footView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 660)];
         [footView setBackgroundColor:BGCOLOR];
         //
         lblRentalType=[self addFrameType:10 Title:@"选择类型" Name:@"请选择" Tag:1 Frame:headView];
@@ -129,12 +129,13 @@
         [bAdd setImage:[UIImage imageNamed:@"addimg"] forState:UIControlStateNormal];
         [imageViewFrame addSubview:bAdd];
         //
-        tfContact=[self addFrameTypeTextField:310 Title:@"联系人" Frame:footView];
+        lblArea=[self addFrameType:310 Title:@"使用范围" Name:@"请选择使用区域" Tag:3 Frame:footView];
+        tfContact=[self addFrameTypeTextField:360 Title:@"联系人" Frame:footView];
         //
-        tfPhone=[self addFrameTypeTextField:360 Title:@"电话" Frame:footView];
+        tfPhone=[self addFrameTypeTextField:410 Title:@"电话" Frame:footView];
         [tfPhone setKeyboardType:UIKeyboardTypePhonePad];
         //备注
-        frame=[[UIView alloc]initWithFrame:CGRectMake1(0,410,320,140)];
+        frame=[[UIView alloc]initWithFrame:CGRectMake1(0,460,320,140)];
         [frame setBackgroundColor:[UIColor whiteColor]];
         [footView addSubview:frame];
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 100, 30)];
@@ -149,7 +150,7 @@
         [tvRemark setFont:[UIFont systemFontOfSize:14]];
         [frame addSubview:tvRemark];
         //发布
-        ButtonView *button=[[ButtonView alloc]initWithFrame:CGRectMake1(10, 560, 300, 40) Name:@"发布"];
+        ButtonView *button=[[ButtonView alloc]initWithFrame:CGRectMake1(10, 610, 300, 40) Name:@"发布"];
         [button addTarget:self action:@selector(publish:) forControlEvents:UIControlEventTouchUpInside];
         [footView addSubview:button];
         
@@ -186,6 +187,11 @@
                      [NSDictionary dictionaryWithObjectsAndKeys:@"800吨",MKEY,@"800",MVALUE, nil],
                      [NSDictionary dictionaryWithObjectsAndKeys:@"1000吨",MKEY,@"1000",MVALUE, nil],
                      [NSDictionary dictionaryWithObjectsAndKeys:@"1200吨",MKEY,@"1200",MVALUE, nil],nil];
+        searchData3=[NSArray arrayWithObjects:
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"杭州",MKEY,@"8",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"上海",MKEY,@"12",MVALUE, nil],
+                     [NSDictionary dictionaryWithObjectsAndKeys:@"北京",MKEY,@"25",MVALUE, nil],nil];
+        
         
         self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake1(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData1];
         [self.pv1 setCode:1];
@@ -196,6 +202,11 @@
         [self.pv2 setCode:2];
         [self.pv2 setDelegate:self];
         [self.view addSubview:self.pv2];
+        
+        self.pv3=[[SinglePickerView alloc]initWithFrame:CGRectMake1(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData3];
+        [self.pv3 setCode:3];
+        [self.pv3 setDelegate:self];
+        [self.view addSubview:self.pv3];
         
         self.dataItemArray=[[NSMutableArray alloc]init];
         
@@ -261,6 +272,10 @@
         pvv2=[self.pv2.picker selectedRowInComponent:0];
         NSDictionary *d=[self.pv2.pickerArray objectAtIndex:pvv2];
         [lblSBType setText:[d objectForKey:MKEY]];
+    }else if(code==3){
+        pvv3=[self.pv3.picker selectedRowInComponent:0];
+        NSDictionary *d=[self.pv3.pickerArray objectAtIndex:pvv3];
+        [lblArea setText:[d objectForKey:MKEY]];
     }
 }
 
@@ -313,12 +328,18 @@
         [Common alert:@"请选择类型"];
         return;
     }
+    if(pvv3==-1){
+        [Common alert:@"请选择使用范围"];
+        return;
+    }
     if([self.dataItemArray count]==0){
         [Common alert:@"请先添加设备"];
         return;
     }
     NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvv1];
     NSString *pvv1v=[d objectForKey:MVALUE];
+    NSDictionary *d3=[self.pv3.pickerArray objectAtIndex:pvv3];
+    NSString *pvv3v=[d3 objectForKey:MVALUE];
     
 //    NSMutableString *weights=[[NSMutableString alloc]init];
 //    for(id data in self.dataItemArray){
@@ -328,9 +349,6 @@
 //    }
 //    NSRange deleteRange = {[weights length]-1,1};
 //    [weights deleteCharactersInRange:deleteRange];
-    
-    
-    
     
     NSMutableString *weights=[[NSMutableString alloc]init];
     NSMutableString *equipments=[[NSMutableString alloc]init];
@@ -347,8 +365,6 @@
     [weights deleteCharactersInRange:deleteRange1];
     NSRange deleteRange2 = {[equipments length]-1,1};
     [equipments deleteCharactersInRange:deleteRange2];
-    
-    
     
     
     NSMutableString *urls=[[NSMutableString alloc]init];
@@ -369,11 +385,10 @@
     [params setObject:contact forKey:@"contact"];
     [params setObject:phone forKey:@"contact_phone"];
     [params setObject:urls forKey:@"imageList"];
-    NSLog(@"%@",urls);
     [params setObject:remark forKey:@"notes"];
     [params setObject:weights forKey:@"weight"];
     [params setObject:equipments forKey:@"equipment_Num"];
-    [params setObject:@"1" forKey:@"region"];
+    [params setObject:pvv3v forKey:@"region"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:500];
     [self.hRequest setDelegate:self];
@@ -404,6 +419,7 @@
 {
     [self.pv1 setHidden:tag==1?NO:YES];
     [self.pv2 setHidden:tag==2?NO:YES];
+    [self.pv3 setHidden:tag==3?NO:YES];
 }
 
 - (void)hideKeyBoard

@@ -11,6 +11,6 @@
 
 @interface PublishRentalViewController : BaseTableViewController<PickerViewDelegate,UITextFieldDelegate,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
-@property SinglePickerView *pv1,*pv2;
+@property SinglePickerView *pv1,*pv2,*pv3;
 
 @end
