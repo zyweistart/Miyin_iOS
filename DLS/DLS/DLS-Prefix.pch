@@ -77,5 +77,6 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 #define DEFAUL2COLOR [UIColor colorWithRed:(220/255.0) green:(220/255.0) blue:(220/255.0) alpha:1]
 #define DEFAUL3COLOR [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]
 
+#define DEFAULTDATA_LASTVERSIONNO @"DEFAULTDATA_LASTVERSIONNO"
 
 #endif
