@@ -185,7 +185,7 @@
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-    [params setObject:@"1" forKey:@"Id"];
+    [params setObject:@"35" forKey:@"Id"];
     [params setObject:@"1" forKey:@"access_token"];
     [params setObject:[NSString stringWithFormat:@"%ld",[self currentPage]] forKey:@"index"];
 
@@ -229,8 +229,8 @@
 
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
+    [super requestFinishedByResponse:response requestCode:reqCode];
     if([response successFlag]){
-        [super requestFinishedByResponse:response requestCode:reqCode];
         if(type==1){
             //清除地图上的位置点
             [self.mapView removeAnnotations:[self.mapView annotations]];
