@@ -7,6 +7,7 @@
 //
 
 #import "QiuzuDetailViewController.h"
+#import "MapViewController.h"
 #import "ButtonView.h"
 #import "CommonData.h"
 
@@ -87,17 +88,23 @@
         //备注
         view1=[[UIView alloc]initWithFrame:CGRectMake1(0, 290, 320, 80)];
         [scrollFrame addSubview:view1];
-        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 300, 30)];
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 0, 300, 20)];
         [lbl setText:@"备     注"];
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:DEFAULCOLOR(100)];
         [view1 addSubview:lbl];
-        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 30, 300, 50)];
-        [lbl setText:[NSString stringWithFormat:@"%@",notes]];
-        [lbl setFont:[UIFont systemFontOfSize:14]];
-        [lbl setTextColor:DEFAULCOLOR(100)];
-        [lbl setNumberOfLines:0];
-        [view1 addSubview:lbl];
+        UITextView *tv=[[UITextView alloc]initWithFrame:CGRectMake1(10, 30, 300, 50)];
+        [tv setEditable:NO];
+        [tv setText:[NSString stringWithFormat:@"%@",notes]];
+        [tv setFont:[UIFont systemFontOfSize:14]];
+        [tv setTextColor:DEFAULCOLOR(100)];
+        [view1 addSubview:tv];
+//        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 30, 300, 50)];
+//        [lbl setText:[NSString stringWithFormat:@"%@",notes]];
+//        [lbl setFont:[UIFont systemFontOfSize:14]];
+//        [lbl setTextColor:DEFAULCOLOR(100)];
+//        [lbl setNumberOfLines:0];
+//        [view1 addSubview:lbl];
         line=[[UIView alloc]initWithFrame:CGRectMake1(0, 79, 320, 1)];
         [line setBackgroundColor:DEFAUL3COLOR];
         [view1 addSubview:line];
@@ -121,8 +128,8 @@
         view1=[[UIView alloc]initWithFrame:CGRectMake1(0, 470, 320, 50)];
         [scrollFrame addSubview:view1];
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 120, 50)];
-        [lbl setText:[NSString stringWithFormat:@"联系人:%@\n%@",contact,phone]];
-        [lbl setTextAlignment:NSTextAlignmentLeft];
+        [lbl setText:[NSString stringWithFormat:@"%@",phone]];
+        [lbl setTextAlignment:NSTextAlignmentCenter];
         [lbl setTextColor:[UIColor whiteColor]];
         [lbl setBackgroundColor:DEFAULCOLOR(20)];
         [lbl setFont:[UIFont systemFontOfSize:14]];
@@ -155,11 +162,23 @@
     [lbl setFont:[UIFont systemFontOfSize:14]];
     [lbl setTextColor:DEFAULCOLOR(100)];
     [view1 addSubview:lbl];
-    lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 40, 300, 20)];
+    lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 40, 250, 20)];
     [lbl setText:[NSString stringWithFormat:@"%@: %@",title2,value2]];
     [lbl setFont:[UIFont systemFontOfSize:14]];
     [lbl setTextColor:DEFAULCOLOR(100)];
     [view1 addSubview:lbl];
+    if([@"工作地点" isEqualToString:title1]){
+        NSString *location=[Common getString:[self.data objectForKey:@"location"]];
+        if(![@"" isEqualToString:location]){
+            UIButton *location=[[UIButton alloc]initWithFrame:CGRectMake1(280, 10, 40, 20)];
+            [location setTitle:@"地图" forState:UIControlStateNormal];
+            [location.titleLabel setFont:[UIFont systemFontOfSize:14]];
+            [location setTitleColor:NAVBG forState:UIControlStateNormal];
+            [location addTarget:self action:@selector(goLocation:) forControlEvents:UIControlEventTouchUpInside];
+            [view1 addSubview:location];
+        }
+    }
+    
     UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(0, 69, 320, 1)];
     [line setBackgroundColor:DEFAUL3COLOR];
     [view1 addSubview:line];
@@ -184,7 +203,7 @@
 
 - (void)goLocation:(id)sender
 {
-    NSLog(@"location");
+    [self.navigationController pushViewController:[[MapViewController alloc]initWithDictionary:self.data] animated:YES];
 }
 
 @end

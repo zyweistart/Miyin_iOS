@@ -225,43 +225,32 @@
 
 #pragma mark - UITextViewDelegate UITextFieldDelegate
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    CGPoint origin = textField.frame.origin;
-    CGPoint point = [textField.superview convertPoint:origin toView:scrollFrame];
-    float navBarHeight = self.navigationController.navigationBar.frame.size.height;
-    CGPoint offset = scrollFrame.contentOffset;
-    offset.y = (point.y - navBarHeight-40);
-    [scrollFrame setContentOffset:offset animated:YES];
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    CGPoint origin = textView.frame.origin;
-    CGPoint point = [textView.superview convertPoint:origin toView:scrollFrame];
-    float navBarHeight = self.navigationController.navigationBar.frame.size.height;
-    CGPoint offset = scrollFrame.contentOffset;
-    offset.y = (point.y - navBarHeight-40);
-    [scrollFrame setContentOffset:offset animated:YES];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField*)textField
-{
-    [textField resignFirstResponder];
-    [scrollFrame setContentOffset:CGPointMake(0, 0) animated:YES];
-    return YES;
-}
-
-- (BOOL)textView:(UITextView*)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*) text
-{
-    if([text isEqualToString:@"\n"]){
-        [textView resignFirstResponder];
-        [scrollFrame setContentOffset:CGPointMake(0, 0) animated:YES];
-        return NO;
-    }else{
-        return YES;
-    }
-}
+//- (void)textFieldDidBeginEditing:(UITextField *)textField
+//{
+//    CGPoint origin = textField.frame.origin;
+//    CGPoint point = [textField.superview convertPoint:origin toView:scrollFrame];
+//    float navBarHeight = self.navigationController.navigationBar.frame.size.height;
+//    CGPoint offset = scrollFrame.contentOffset;
+//    offset.y = (point.y - navBarHeight-40);
+//    [scrollFrame setContentOffset:offset animated:YES];
+//}
+//
+//- (void)textViewDidBeginEditing:(UITextView *)textView
+//{
+//    CGPoint origin = textView.frame.origin;
+//    CGPoint point = [textView.superview convertPoint:origin toView:scrollFrame];
+//    float navBarHeight = self.navigationController.navigationBar.frame.size.height;
+//    CGPoint offset = scrollFrame.contentOffset;
+//    offset.y = (point.y - navBarHeight-40);
+//    [scrollFrame setContentOffset:offset animated:YES];
+//}
+//
+//- (BOOL)textFieldShouldReturn:(UITextField*)textField
+//{
+//    [textField resignFirstResponder];
+//    [scrollFrame setContentOffset:CGPointMake(0, 0) animated:YES];
+//    return YES;
+//}
 
 - (void)hideKeyBoard
 {
@@ -280,6 +269,49 @@
     if([response successFlag]){
         [Common alert:@"发布成功"];
         [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+#define  __SCREEN_WIDTH 320
+#define  __SCREEN_HEIGHT 760
+#define  NAVIGATION_BAR_HEIGHT 40
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    scrollFrame.contentSize = CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT+216);//原始滑动距离增加键盘高度
+    CGPoint pt = [textField convertPoint:CGPointMake(0, 0) toView:scrollFrame];//把当前的textField的坐标映射到scrollview上
+    if(scrollFrame.contentOffset.y-pt.y+NAVIGATION_BAR_HEIGHT<=0)//判断最上面不要去滚动
+        [scrollFrame setContentOffset:CGPointMake(0, pt.y-NAVIGATION_BAR_HEIGHT) animated:YES];//华东
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField*)theTextField
+{
+    [theTextField resignFirstResponder];
+    //开始动画
+    [UIView beginAnimations:nil context:nil];
+    //设定动画持续时间
+    [UIView setAnimationDuration:0.3];
+    scrollFrame.contentSize = CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT);
+    //动画结束
+    [UIView commitAnimations];
+    return YES;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    scrollFrame.contentSize = CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT+216);//原始滑动距离增加键盘高度
+    CGPoint pt = [textView convertPoint:CGPointMake(0, 0) toView:scrollFrame];//把当前的textField的坐标映射到scrollview上
+    if(scrollFrame.contentOffset.y-pt.y+NAVIGATION_BAR_HEIGHT<=0)//判断最上面不要去滚动
+        [scrollFrame setContentOffset:CGPointMake(0, pt.y-NAVIGATION_BAR_HEIGHT) animated:YES];//华东
+}
+
+- (BOOL)textView:(UITextView*)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*) text
+{
+    if([text isEqualToString:@"\n"]){
+        [textView resignFirstResponder];
+        [scrollFrame setContentOffset:CGPointMake(0, 0) animated:YES];
+        return NO;
+    }else{
+        return YES;
     }
 }
 

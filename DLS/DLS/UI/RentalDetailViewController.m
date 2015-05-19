@@ -7,6 +7,7 @@
 //
 
 #import "RentalDetailViewController.h"
+#import "MapViewController.h"
 #import "ButtonView.h"
 #import "CommonData.h"
 
@@ -90,7 +91,7 @@
         if([@""isEqualToString:notes]){
             notes=@"该用户未填此信息";
         }
-        [scrollFrame addSubview:[self addFrameTitle1:@"设备类型" Value1:xlValue Title12:@"吨    位" Value2:ms TopX:80]];
+        [scrollFrame addSubview:[self addFrameTitle1:@"设备类型" Value1:xlValue Title12:@"吨位" Value2:ms TopX:80]];
         
         [scrollFrame addSubview:[self addFrameTitle1:@"设备地址" Value1:address Title12:@"使用范围" Value2:region TopX:150]];
         [scrollFrame addSubview:[self addFrameTitle1:@"联系人" Value1:contact Title12:@"联系方式" Value2:phone TopX:220]];
@@ -102,12 +103,18 @@
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:DEFAULCOLOR(100)];
         [view1 addSubview:lbl];
-        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 30, 300, 50)];
-        [lbl setText:[NSString stringWithFormat:@"%@",notes]];
-        [lbl setFont:[UIFont systemFontOfSize:14]];
-        [lbl setTextColor:DEFAULCOLOR(100)];
-        [lbl setNumberOfLines:0];
-        [view1 addSubview:lbl];
+        UITextView *tv=[[UITextView alloc]initWithFrame:CGRectMake1(10, 30, 300, 50)];
+        [tv setEditable:NO];
+        [tv setText:[NSString stringWithFormat:@"%@",notes]];
+        [tv setFont:[UIFont systemFontOfSize:14]];
+        [tv setTextColor:DEFAULCOLOR(100)];
+        [view1 addSubview:tv];
+//        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 30, 300, 50)];
+//        [lbl setText:[NSString stringWithFormat:@"%@",notes]];
+//        [lbl setFont:[UIFont systemFontOfSize:14]];
+//        [lbl setTextColor:DEFAULCOLOR(100)];
+//        [lbl setNumberOfLines:0];
+//        [view1 addSubview:lbl];
         line=[[UIView alloc]initWithFrame:CGRectMake1(0, 79, 320, 1)];
         [line setBackgroundColor:DEFAUL3COLOR];
         [view1 addSubview:line];
@@ -119,27 +126,27 @@
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:DEFAULCOLOR(100)];
         [view1 addSubview:lbl];
-        UIView *imagelistFrame=[[UILabel alloc]initWithFrame:CGRectMake1(10, 30, 300, 60)];
+        UIView *imagelistFrame=[[UILabel alloc]initWithFrame:CGRectMake1(0, 30, 320, 60)];
         [view1 addSubview:imagelistFrame];
         for(int i=0;i<[imagelist count];i++){
             if(i==0){
-                image1=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 60, 60)];
+                image1=[[UIImageView alloc]initWithFrame:CGRectMake1(2, 0, 60, 60)];
                 [image1 setImage:[UIImage imageNamed:@"imageloading"]];
                 [imagelistFrame addSubview:image1];
             }else if(i==1){
-                image2=[[UIImageView alloc]initWithFrame:CGRectMake1(60, 0, 60, 60)];
+                image2=[[UIImageView alloc]initWithFrame:CGRectMake1(64, 0, 60, 60)];
                 [image2 setImage:[UIImage imageNamed:@"imageloading"]];
                 [imagelistFrame addSubview:image2];
             }else if(i==2){
-                image3=[[UIImageView alloc]initWithFrame:CGRectMake1(120, 0, 60, 60)];
+                image3=[[UIImageView alloc]initWithFrame:CGRectMake1(126, 0, 60, 60)];
                 [image3 setImage:[UIImage imageNamed:@"imageloading"]];
                 [imagelistFrame addSubview:image3];
             }else if(i==3){
-                image4=[[UIImageView alloc]initWithFrame:CGRectMake1(180, 0, 60, 60)];
+                image4=[[UIImageView alloc]initWithFrame:CGRectMake1(188, 0, 60, 60)];
                 [image4 setImage:[UIImage imageNamed:@"imageloading"]];
                 [imagelistFrame addSubview:image4];
             }else if(i==4){
-                image5=[[UIImageView alloc]initWithFrame:CGRectMake1(240, 0, 60, 60)];
+                image5=[[UIImageView alloc]initWithFrame:CGRectMake1(250, 0, 60, 60)];
                 [image5 setImage:[UIImage imageNamed:@"imageloading"]];
                 [imagelistFrame addSubview:image5];
             }
@@ -168,7 +175,7 @@
         [scrollFrame addSubview:view1];
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 120, 50)];
         [lbl setText:[NSString stringWithFormat:@"联系人:%@\n%@",contact,phone]];
-        [lbl setTextAlignment:NSTextAlignmentLeft];
+        [lbl setTextAlignment:NSTextAlignmentCenter];
         [lbl setTextColor:[UIColor whiteColor]];
         [lbl setBackgroundColor:DEFAULCOLOR(20)];
         [lbl setFont:[UIFont systemFontOfSize:14]];
@@ -205,6 +212,17 @@
     [lbl setFont:[UIFont systemFontOfSize:14]];
     [lbl setTextColor:DEFAULCOLOR(100)];
     [view1 addSubview:lbl];
+    if([@"工作地点" isEqualToString:title1]){
+        NSString *location=[Common getString:[self.data objectForKey:@"location"]];
+        if(![@"" isEqualToString:location]){
+            UIButton *location=[[UIButton alloc]initWithFrame:CGRectMake1(280, 10, 40, 20)];
+            [location setTitle:@"地图" forState:UIControlStateNormal];
+            [location.titleLabel setFont:[UIFont systemFontOfSize:14]];
+            [location setTitleColor:NAVBG forState:UIControlStateNormal];
+            [location addTarget:self action:@selector(goLocation:) forControlEvents:UIControlEventTouchUpInside];
+            [view1 addSubview:location];
+        }
+    }
     lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 40, 300, 20)];
     [lbl setText:[NSString stringWithFormat:@"%@:%@",title2,value2]];
     [lbl setFont:[UIFont systemFontOfSize:14]];
@@ -234,7 +252,7 @@
 
 - (void)goLocation:(id)sender
 {
-    NSLog(@"location");
+    [self.navigationController pushViewController:[[MapViewController alloc]initWithDictionary:self.data] animated:YES];
 }
 
 - (void)downloadImage

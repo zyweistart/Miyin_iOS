@@ -99,28 +99,28 @@
 {
     return [NSArray arrayWithObjects:
             [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"-1",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"3KM",MKEY,@"1",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"5KM",MKEY,@"2",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"10KM",MKEY,@"3",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"20KM",MKEY,@"4",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"30KM",MKEY,@"5",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"50KM",MKEY,@"6",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"100KM",MKEY,@"7",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"150KM",MKEY,@"8",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"200KM",MKEY,@"9",MVALUE, nil],nil];
+            [NSDictionary dictionaryWithObjectsAndKeys:@"3KM",MKEY,@"3000",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"5KM",MKEY,@"5000",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"10KM",MKEY,@"10000",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"20KM",MKEY,@"20000",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"30KM",MKEY,@"30000",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"50KM",MKEY,@"50000",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"100KM",MKEY,@"100000",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"150KM",MKEY,@"150000",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"200KM",MKEY,@"200000",MVALUE, nil],nil];
 }
 + (NSArray*)getDistance2
 {
     return [NSArray arrayWithObjects:
-            [NSDictionary dictionaryWithObjectsAndKeys:@"3KM",MKEY,@"1",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"5KM",MKEY,@"2",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"10KM",MKEY,@"3",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"20KM",MKEY,@"4",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"30KM",MKEY,@"5",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"50KM",MKEY,@"6",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"100KM",MKEY,@"7",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"150KM",MKEY,@"8",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"200KM",MKEY,@"9",MVALUE, nil],nil];
+            [NSDictionary dictionaryWithObjectsAndKeys:@"3KM",MKEY,@"3000",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"5KM",MKEY,@"5000",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"10KM",MKEY,@"10000",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"20KM",MKEY,@"20000",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"30KM",MKEY,@"30000",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"50KM",MKEY,@"50000",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"100KM",MKEY,@"100000",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"150KM",MKEY,@"150000",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"200KM",MKEY,@"200000",MVALUE, nil],nil];
 }
 //性别
 + (NSArray*)getSex
@@ -140,44 +140,55 @@
 + (NSArray*)getEducation
 {
     return [NSArray arrayWithObjects:
-                 [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"0",MVALUE, nil],
-                 [NSDictionary dictionaryWithObjectsAndKeys:@"专科",MKEY,@"1",MVALUE, nil],
-                 [NSDictionary dictionaryWithObjectsAndKeys:@"本科",MKEY,@"2",MVALUE, nil], nil];
+            [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"0",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"初中",MKEY,@"1",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"高中",MKEY,@"2",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"中技",MKEY,@"3",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"中专",MKEY,@"4",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"大专",MKEY,@"5",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"本科",MKEY,@"6",MVALUE, nil],nil];
 }
 //年限
 + (NSArray*)getYears
 {
     return [NSArray arrayWithObjects:
             [NSDictionary dictionaryWithObjectsAndKeys:@"不限",MKEY,@"0",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"一年",MKEY,@"1",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"两年",MKEY,@"2",MVALUE, nil], nil];
+            [NSDictionary dictionaryWithObjectsAndKeys:@"1年",MKEY,@"1",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"2年",MKEY,@"2",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"3-4年",MKEY,@"3",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"5-7年",MKEY,@"4",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"8-9年",MKEY,@"5",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"10年以上",MKEY,@"6",MVALUE, nil],nil];
 }
 //薪资
 + (NSArray*)getSalary
 {
     return [NSArray arrayWithObjects:
             [NSDictionary dictionaryWithObjectsAndKeys:@"面议",MKEY,@"0",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"5000-10000元",MKEY,@"1",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"3000-5000",MKEY,@"2",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"1500-3000",MKEY,@"3",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"1500以下",MKEY,@"4",MVALUE, nil], nil];
+            [NSDictionary dictionaryWithObjectsAndKeys:@"3000-4999",MKEY,@"1",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"4500-5999",MKEY,@"2",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"6000-7999",MKEY,@"3",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"8000-9999",MKEY,@"4",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"10000-14999",MKEY,@"5",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"15000-19999",MKEY,@"6",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"20000-29999",MKEY,@"8",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"30000-39999",MKEY,@"9",MVALUE, nil],  nil];
 }
 //区域
 + (NSArray*)getRegion
 {
     return [NSArray arrayWithObjects:
-     [NSDictionary dictionaryWithObjectsAndKeys:@"杭州",MKEY,@"8",MVALUE, nil],
-     [NSDictionary dictionaryWithObjectsAndKeys:@"上海",MKEY,@"12",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"北京",MKEY,@"25",MVALUE, nil],nil];
+     [NSDictionary dictionaryWithObjectsAndKeys:@"浙江",MKEY,@"1",MVALUE, nil],nil];
 }
 
 + (NSArray*)getRole
 {
     return [NSArray arrayWithObjects:
-                 [NSDictionary dictionaryWithObjectsAndKeys:@"个人",MKEY,@"1",MVALUE, nil],
-                 [NSDictionary dictionaryWithObjectsAndKeys:@"机手",MKEY,@"2",MVALUE, nil],
-                 [NSDictionary dictionaryWithObjectsAndKeys:@"项目经理",MKEY,@"3",MVALUE, nil],
-                 [NSDictionary dictionaryWithObjectsAndKeys:@"其他公司",MKEY,@"4",MVALUE, nil],
+                 [NSDictionary dictionaryWithObjectsAndKeys:@"个人",MKEY,@"0",MVALUE, nil],
+                 [NSDictionary dictionaryWithObjectsAndKeys:@"机手",MKEY,@"1",MVALUE, nil],
+                 [NSDictionary dictionaryWithObjectsAndKeys:@"项目经理",MKEY,@"2",MVALUE, nil],
+                 [NSDictionary dictionaryWithObjectsAndKeys:@"其他公司",MKEY,@"3",MVALUE, nil],
+                 [NSDictionary dictionaryWithObjectsAndKeys:@"运输公司",MKEY,@"4",MVALUE, nil],
                  [NSDictionary dictionaryWithObjectsAndKeys:@"配件公司",MKEY,@"5",MVALUE, nil],
                  [NSDictionary dictionaryWithObjectsAndKeys:@"维修公司",MKEY,@"6",MVALUE, nil],
                  [NSDictionary dictionaryWithObjectsAndKeys:@"吊装公司",MKEY,@"7",MVALUE, nil],

@@ -75,6 +75,7 @@
 		C9C23CF91AA946F4007A9A27 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C23CF81AA946F4007A9A27 /* CoreLocation.framework */; };
 		C9C23CFB1AA9499A007A9A27 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C23CFA1AA9499A007A9A27 /* MapKit.framework */; };
 		C9C2B1111ABBBAE30013E27C /* SB1Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C2B1101ABBBAE30013E27C /* SB1Cell.m */; };
+		C9D160191B0B360E004BA4C6 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D160181B0B360E004BA4C6 /* MapViewController.m */; };
 		C9D2B7331AA8684C00CF750D /* MySBWXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B7321AA8684C00CF750D /* MySBWXViewController.m */; };
 		C9D2B7361AA8686400CF750D /* MyQZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B7351AA8686400CF750D /* MyQZViewController.m */; };
 		C9D2B7391AA8687000CF750D /* MyCZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D2B7381AA8687000CF750D /* MyCZViewController.m */; };
@@ -250,6 +251,8 @@
 		C9C23CFA1AA9499A007A9A27 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C9C2B10F1ABBBAE30013E27C /* SB1Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SB1Cell.h; sourceTree = "<group>"; };
 		C9C2B1101ABBBAE30013E27C /* SB1Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SB1Cell.m; sourceTree = "<group>"; };
+		C9D160171B0B360E004BA4C6 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		C9D160181B0B360E004BA4C6 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		C9D2B7311AA8684C00CF750D /* MySBWXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySBWXViewController.h; sourceTree = "<group>"; };
 		C9D2B7321AA8684C00CF750D /* MySBWXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySBWXViewController.m; sourceTree = "<group>"; };
 		C9D2B7341AA8686400CF750D /* MyQZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyQZViewController.h; sourceTree = "<group>"; };
@@ -627,6 +630,8 @@
 				C9AFBB761AAD8039008C7AE9 /* RentalDetailViewController.m */,
 				C92F8B231B0AD6BE003172B8 /* QZDetailViewController.h */,
 				C92F8B241B0AD6BE003172B8 /* QZDetailViewController.m */,
+				C9D160171B0B360E004BA4C6 /* MapViewController.h */,
+				C9D160181B0B360E004BA4C6 /* MapViewController.m */,
 			);
 			name = Detail;
 			sourceTree = "<group>";
@@ -929,6 +934,7 @@
 				C9E1FED11AA554E200720AAC /* HttpRequest.m in Sources */,
 				C9D2B74B1AA8690D00CF750D /* MyHelpCenterViewController.m in Sources */,
 				C989A0091AFC8FE700EC3228 /* SearchViewController.m in Sources */,
+				C9D160191B0B360E004BA4C6 /* MapViewController.m in Sources */,
 				C9E1FEED1AA555F000720AAC /* ATMTextLayer.m in Sources */,
 				C9E1FEE81AA555F000720AAC /* ATMHud.m in Sources */,
 				C90699BD1AAE984800E32C54 /* ProjectECell.m in Sources */,

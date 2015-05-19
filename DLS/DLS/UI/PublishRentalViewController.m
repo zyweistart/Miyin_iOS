@@ -399,32 +399,32 @@
 
 #pragma mark - UITextViewDelegate UITextFieldDelegate
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    CGPoint origin = textField.frame.origin;
-    CGPoint point = [textField.superview convertPoint:origin toView:self.tableView];
-    float navBarHeight = self.navigationController.navigationBar.frame.size.height;
-    CGPoint offset = self.tableView.contentOffset;
-    offset.y = (point.y - navBarHeight-40);
-    [self.tableView setContentOffset:offset animated:YES];
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    CGPoint origin = textView.frame.origin;
-    CGPoint point = [textView.superview convertPoint:origin toView:self.tableView];
-    float navBarHeight = self.navigationController.navigationBar.frame.size.height;
-    CGPoint offset = self.tableView.contentOffset;
-    offset.y = (point.y - navBarHeight-40);
-    [self.tableView setContentOffset:offset animated:YES];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField*)textField
-{
-    [textField resignFirstResponder];
-    [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
-    return YES;
-}
+//- (void)textFieldDidBeginEditing:(UITextField *)textField
+//{
+//    CGPoint origin = textField.frame.origin;
+//    CGPoint point = [textField.superview convertPoint:origin toView:self.tableView];
+//    float navBarHeight = self.navigationController.navigationBar.frame.size.height;
+//    CGPoint offset = self.tableView.contentOffset;
+//    offset.y = (point.y - navBarHeight-40);
+//    [self.tableView setContentOffset:offset animated:YES];
+//}
+//
+//- (void)textViewDidBeginEditing:(UITextView *)textView
+//{
+//    CGPoint origin = textView.frame.origin;
+//    CGPoint point = [textView.superview convertPoint:origin toView:self.tableView];
+//    float navBarHeight = self.navigationController.navigationBar.frame.size.height;
+//    CGPoint offset = self.tableView.contentOffset;
+//    offset.y = (point.y - navBarHeight-40);
+//    [self.tableView setContentOffset:offset animated:YES];
+//}
+//
+//- (BOOL)textFieldShouldReturn:(UITextField*)textField
+//{
+//    [textField resignFirstResponder];
+//    [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
+//    return YES;
+//}
 
 - (BOOL)textView:(UITextView*)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*) text
 {
@@ -568,6 +568,38 @@
         [bAdd setFrame:image5.frame];
         [image4 setImage:image];
     }
+}
+
+#define  __SCREEN_WIDTH 320
+#define  __SCREEN_HEIGHT 600
+#define  NAVIGATION_BAR_HEIGHT 40
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT+216);//原始滑动距离增加键盘高度
+    CGPoint pt = [textField convertPoint:CGPointMake(0, 0) toView:self.tableView];//把当前的textField的坐标映射到scrollview上
+    if(self.tableView.contentOffset.y-pt.y+NAVIGATION_BAR_HEIGHT<=0)//判断最上面不要去滚动
+        [self.tableView setContentOffset:CGPointMake(0, pt.y-NAVIGATION_BAR_HEIGHT) animated:YES];//华东
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField*)theTextField
+{
+    [theTextField resignFirstResponder];
+    //开始动画
+    [UIView beginAnimations:nil context:nil];
+    //设定动画持续时间
+    [UIView setAnimationDuration:0.3];
+    self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT);
+    //动画结束
+    [UIView commitAnimations];
+    return YES;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT+216);//原始滑动距离增加键盘高度
+    CGPoint pt = [textView convertPoint:CGPointMake(0, 0) toView:self.tableView];//把当前的textField的坐标映射到scrollview上
+    if(self.tableView.contentOffset.y-pt.y+NAVIGATION_BAR_HEIGHT<=0)//判断最上面不要去滚动
+        [self.tableView setContentOffset:CGPointMake(0, pt.y-NAVIGATION_BAR_HEIGHT) animated:YES];//华东
 }
 
 @end
