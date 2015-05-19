@@ -8,7 +8,7 @@
 
 #import "MyQZYPViewController.h"
 #import "ProjectACell.h"
-#import "RecruitmentDetailViewController.h"
+#import "QZDetailViewController.h"
 #import "PublishQZViewController.h"
 
 @interface MyQZYPViewController ()
@@ -85,7 +85,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
-        [self.navigationController pushViewController:[[RecruitmentDetailViewController alloc]initWithDictionary:[self.dataItemArray objectAtIndex:[indexPath row]]] animated:YES];
+        [self.navigationController pushViewController:[[QZDetailViewController alloc]initWithDictionary:[self.dataItemArray objectAtIndex:[indexPath row]]] animated:YES];
     }
 }
 

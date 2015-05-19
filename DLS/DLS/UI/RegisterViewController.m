@@ -25,9 +25,8 @@
     UITextField *tfIDCard;
     UITextField *tfPhone;
     UITextField *tfCode;
-    UITextField *tfRole;
+    UILabel *tfRole;
     NSInteger pvv1;
-    NSArray *searchData1;
 }
 
 - (id)init{
@@ -49,9 +48,7 @@
         tfPassword=[self addContentFrame:@"密码" Placeholder:@"请输入密码" TopX:60];
         tfName=[self addContentFrame:@"姓名" Placeholder:@"请输入姓名" TopX:110];
         tfIDCard=[self addContentFrame:@"身份证" Placeholder:@"请输入身份证号码" TopX:160];
-        tfRole=[self addContentFrame:@"角色" Placeholder:@"请输入角色" TopX:210];
-        [tfRole addTarget:self action:@selector(goSRole:) forControlEvents:UIControlEventEditingDidBegin];
-        
+        tfRole=[self addContentFrame1:@"角色" TopX:210];
         tfCode=[self addContentFrame:@"验证码" Placeholder:@"请输入验证码" TopX:310];
         
         UIView *vFrame=[[UIView alloc]initWithFrame:CGRectMake1(10, 260, 300, 40)];
@@ -91,17 +88,7 @@
         [bLogin addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
         [scrollFrame addSubview:bLogin];
         
-        searchData1=[NSArray arrayWithObjects:
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"个人",MKEY,@"1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"机手",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"项目经理",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"其他公司",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"配件公司",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"维修公司",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"吊装公司",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"工程公司",MKEY,@"2",MVALUE, nil],nil];
-        
-        self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData1];
+        self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:[CommonData getRole]];
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
         [self.view addSubview:self.pv1];
@@ -135,6 +122,31 @@
     [tfContent setDelegate:self];
     [vFrame addSubview:tfContent];
     return tfContent;
+}
+
+- (UILabel*)addContentFrame1:(NSString*)title TopX:(CGFloat)topx
+{
+    UIView *vFrame=[[UIView alloc]initWithFrame:CGRectMake1(10, topx, 300, 40)];
+    vFrame.layer.cornerRadius = 5;
+    vFrame.layer.masksToBounds = YES;
+    vFrame.layer.borderWidth = 1;
+    vFrame.layer.borderColor = [TITLECOLOR CGColor];
+    [scrollFrame addSubview:vFrame];
+    UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 50, 40)];
+    [lbl setText:title];
+    [lbl setFont:[UIFont systemFontOfSize:14]];
+    [lbl setTextAlignment:NSTextAlignmentCenter];
+    [lbl setTextColor:TITLECOLOR];
+    [vFrame addSubview:lbl];
+    lbl=[[UILabel alloc]initWithFrame:CGRectMake1(50, 0,250, 40)];
+    [lbl setText:@"请选择"];
+    [lbl setFont:[UIFont systemFontOfSize:14]];
+    [lbl setTextAlignment:NSTextAlignmentLeft];
+    [lbl setTextColor:TITLECOLOR];
+    [lbl setUserInteractionEnabled:YES];
+    [lbl addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goSRole:)]];
+    [vFrame addSubview:lbl];
+    return lbl;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -176,7 +188,8 @@
 //    NSString *idcard=[tfIDCard text];
     NSString *phone=[tfPhone text];
     NSString *code=[tfCode text];
-    NSString *role=[tfRole text];
+    NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvv1];
+    NSString *role=[d objectForKey:MVALUE];
     if([@""isEqualToString:username]){
         [Common alert:@"账号不能为空"];
         return;

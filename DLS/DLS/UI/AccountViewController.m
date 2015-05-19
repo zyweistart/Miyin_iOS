@@ -16,7 +16,6 @@
 @implementation AccountViewController{
     NSString *content;
     NSInteger pvv1;
-    NSArray *searchData1;
 }
 
 - (id)init{
@@ -36,17 +35,7 @@
         [self.dataItemArray addObject:[[[User Instance]resultData]objectForKey:@"per_roles"]];
         [self buildTableViewWithView:self.view];
         
-        searchData1=[NSArray arrayWithObjects:
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"个人",MKEY,@"1",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"机手",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"项目经理",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"其他公司",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"配件公司",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"维修公司",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"吊装公司",MKEY,@"2",MVALUE, nil],
-                     [NSDictionary dictionaryWithObjectsAndKeys:@"工程公司",MKEY,@"2",MVALUE, nil],nil];
-        
-        self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:searchData1];
+        self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:[CommonData getRole]];
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
         [self.view addSubview:self.pv1];
@@ -70,16 +59,22 @@
     if(!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
+    NSString *vContent=[self.dataItemArray objectAtIndex:indexPath.row];
     if([indexPath row]==0){
         cell.textLabel.text = @"用户名";
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"%@",vContent];
     }else if([indexPath row]==1){
         cell.textLabel.text = @"姓名";
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"%@",vContent];
     }else if([indexPath row]==2){
         cell.textLabel.text = @"身份证";
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"%@",vContent];
     }else{
         cell.textLabel.text = @"个人角色";
+        NSString *role=[CommonData getValueArray:[CommonData getRole] Key:vContent];
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"%@",role];
     }
-    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@", [self.dataItemArray objectAtIndex:indexPath.row]];
+    
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
 }
@@ -157,7 +152,7 @@
     if(code==1){
         pvv1=[self.pv1.picker selectedRowInComponent:0];
         NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvv1];
-        content=[d objectForKey:MKEY];
+        content=[d objectForKey:MVALUE];
         NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
         [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
         [params setObject:content forKey:@"per_roles"];

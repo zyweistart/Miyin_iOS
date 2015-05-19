@@ -157,7 +157,6 @@
         [self.tableView setTableHeaderView:headView];
         [self.tableView setTableFooterView:footView];
         
-        
         self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake1(0, self.view.bounds.size.height-260, 320, 260) WithArray:[CommonData getType2]];
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
@@ -274,7 +273,7 @@
     }
     
     [self.dataItemArray addObject:
-     [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",pvv2],KEYCELL,number,VALUECELL, nil]];
+     [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",pvv2],KEYCELL,number,VALUECELL, nil]];
     [self.tableView reloadData];
     pvv2=-1;
     [lblSBType setText:@"请选择"];

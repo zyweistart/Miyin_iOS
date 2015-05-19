@@ -127,7 +127,7 @@
 {
     return [NSArray arrayWithObjects:
             [NSDictionary dictionaryWithObjectsAndKeys:@"男",MKEY,@"1",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"女",MKEY,@"2",MVALUE, nil], nil];
+            [NSDictionary dictionaryWithObjectsAndKeys:@"女",MKEY,@"0",MVALUE, nil], nil];
 }
 //职位
 + (NSArray*)getJob
@@ -170,5 +170,30 @@
      [NSDictionary dictionaryWithObjectsAndKeys:@"上海",MKEY,@"12",MVALUE, nil],
             [NSDictionary dictionaryWithObjectsAndKeys:@"北京",MKEY,@"25",MVALUE, nil],nil];
 }
+
++ (NSArray*)getRole
+{
+    return [NSArray arrayWithObjects:
+                 [NSDictionary dictionaryWithObjectsAndKeys:@"个人",MKEY,@"1",MVALUE, nil],
+                 [NSDictionary dictionaryWithObjectsAndKeys:@"机手",MKEY,@"2",MVALUE, nil],
+                 [NSDictionary dictionaryWithObjectsAndKeys:@"项目经理",MKEY,@"3",MVALUE, nil],
+                 [NSDictionary dictionaryWithObjectsAndKeys:@"其他公司",MKEY,@"4",MVALUE, nil],
+                 [NSDictionary dictionaryWithObjectsAndKeys:@"配件公司",MKEY,@"5",MVALUE, nil],
+                 [NSDictionary dictionaryWithObjectsAndKeys:@"维修公司",MKEY,@"6",MVALUE, nil],
+                 [NSDictionary dictionaryWithObjectsAndKeys:@"吊装公司",MKEY,@"7",MVALUE, nil],
+                 [NSDictionary dictionaryWithObjectsAndKeys:@"工程公司",MKEY,@"8",MVALUE, nil],nil];
+}
+
++ (NSString*)getValueArray:(NSArray*)array Key:(NSString*)key
+{
+    for(id d in array){
+        NSString *value=[d objectForKey:MVALUE];
+        if([value isEqualToString:key]){
+            return [d objectForKey:MKEY];
+        }
+    }
+    return @"";
+}
+
 
 @end

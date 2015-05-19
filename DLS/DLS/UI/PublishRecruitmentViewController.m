@@ -178,19 +178,18 @@
     NSString *companyName=[tfCompanyName text];
     
     NSDictionary *d2=[self.pv2.pickerArray objectAtIndex:pvv2];
-    NSString *pvv2v=[d2 objectForKey:MKEY];
+    NSString *pvv2v=[d2 objectForKey:MVALUE];
     NSDictionary *d4=[self.pv4.pickerArray objectAtIndex:pvv4];
-    NSString *pvv4v=[d4 objectForKey:MKEY];
+    NSString *pvv4v=[d4 objectForKey:MVALUE];
     NSDictionary *d5=[self.pv5.pickerArray objectAtIndex:pvv5];
-    NSString *pvv5v=[d5 objectForKey:MKEY];
+    NSString *pvv5v=[d5 objectForKey:MVALUE];
     NSDictionary *d6=[self.pv6.pickerArray objectAtIndex:pvv6];
-    NSString *pvv6v=[d6 objectForKey:MKEY];
+    NSString *pvv6v=[d6 objectForKey:MVALUE];
     
 //    NSLog(@"职位名称=%@\n职位类别=%@\n招聘人数=%@\n学历要求=%@\n工作年限=%@\n每月薪资=%@\n任职要求=%@\n联系人=%@\n联系电话=%@\n地址=%@",name,pvv2v,peopleNum,pvv4v,pvv5v,pvv6v,remark,phone,contact,address);
     
     
 //    {"work_year":"3","phone":"15906614216","job_category":"1","classId":111,"degree_required":"5","contact_person":"联系人","cName":"公司名称","address":"地址","email":"17855@qq.com","job_title":"标题","hiring":"1","Id":0,"month_salary":"2","access_token":"access_token_984f374857327df90d71f1c0353391e2","job_specification":"要求"}
-    
     
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:[[User Instance]accessToken] forKey:@"access_token"];

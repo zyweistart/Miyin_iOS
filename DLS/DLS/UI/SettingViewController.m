@@ -19,9 +19,7 @@
 
 @end
 
-@implementation SettingViewController{
-    NSInteger tmpv;
-}
+@implementation SettingViewController
 
 - (id)init{
     self=[super init];
@@ -37,7 +35,6 @@
         self.dataItemArray=[[NSMutableArray alloc]init];
 //        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"把得力手分享给朋友", nil]];
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"修改密码", nil]];
-//        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"修改密码",@"搜索范围", nil]];
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"意见反馈",@"服务条款",@"关于我们", nil]];
         
         self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
@@ -58,11 +55,6 @@
         [bLogout addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
         [logoutView addSubview:bLogout];
         [self.tableView setTableFooterView:logoutView];
-        
-        self.pv=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:[CommonData getDistance2]];
-        [self.pv setDelegate:self];
-        [self.view addSubview:self.pv];
-        tmpv=3;
     }
     return self;
 }
@@ -104,14 +96,9 @@
     NSString *content=[[self.dataItemArray objectAtIndex:section]objectAtIndex:row];
     [cell.imageView setImage:[UIImage imageNamed:content]];
     cell.textLabel.text = content;
-    if((section==1&&row==1)){
-        NSDictionary *d=[self.pv.pickerArray objectAtIndex:tmpv];
-        NSString *pvv1v=[d objectForKey:MKEY];
-        [cell.detailTextLabel setText:pvv1v];
-    }
-    if(!((section==0&&row==0))){
+//    if(!((section==0&&row==0))){
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    }
+//    }
     return cell;
 }
 
@@ -120,25 +107,16 @@
     NSInteger section=[indexPath section];
     NSInteger row=[indexPath row];
     if(section==0){
-        if(row==0){
-            //分享
-            [Common alert:@"即将上线"];
-        }
-    }else if(section==1){
+//        if(row==0){
+//            //分享
+//            [Common alert:@"即将上线"];
+//        }
+//    }else if(section==0){
         if(row==0){
             //修改密码
             [self.navigationController pushViewController:[[ModifyPasswordViewController alloc]init] animated:YES];
-        }else if(row==1){
-            //搜索范围
-            if(self.pv.hidden){
-                [self.pv showView];
-                NSDictionary *d=[self.pv.pickerArray objectAtIndex:tmpv];
-                [self.pv.picker selectRow:d inComponent:0 animated:YES];
-            }else{
-                [self.pv hiddenView];
-            }
         }
-    }else if(section==2){
+    }else if(section==1){
         if(row==0){
             //意见反馈
             [self.navigationController pushViewController:[[FeedbackViewController alloc]init] animated:YES];
@@ -156,12 +134,6 @@
 {
     [[User Instance]clear];
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)pickerViewDone:(int)code
-{
-    tmpv=[self.pv.picker selectedRowInComponent:0];
-    [self.tableView reloadData];
 }
 
 @end

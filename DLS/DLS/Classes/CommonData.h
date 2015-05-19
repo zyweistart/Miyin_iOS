@@ -34,5 +34,8 @@
 + (NSArray*)getSalary;
 //区域
 + (NSArray*)getRegion;
+//角色
++ (NSArray*)getRole;
++ (NSString*)getValueArray:(NSArray*)array Key:(NSString*)key;
 
 @end

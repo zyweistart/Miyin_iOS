@@ -1,43 +1,50 @@
 //
-//  RecruitmentDetailViewController.m
+//  QZDetailViewController.m
 //  DLS
-//  招聘详情
-//  Created by Start on 3/9/15.
+//
+//  Created by Start on 5/19/15.
 //  Copyright (c) 2015 Start. All rights reserved.
 //
 
-#import "RecruitmentDetailViewController.h"
-#import "ButtonView.h"
+#import "QZDetailViewController.h"
 #import "CommonData.h"
+#import "ButtonView.h"
 
-@interface RecruitmentDetailViewController ()
+@interface QZDetailViewController ()
 
 @end
 
-@implementation RecruitmentDetailViewController
+@implementation QZDetailViewController
 
 - (id)initWithDictionary:(NSDictionary*)data{
     self=[super init];
     if(self){
         self.data=data;
-        NSString *job_title=[Common getString:[data objectForKey:@"job_title"]];
+        NSString *job_title=[Common getString:[data objectForKey:@"title"]];
         NSString *job_category=[Common getString:[data objectForKey:@"job_category"]];
         NSString *CreateDate=[Common convertTime:[data objectForKey:@"CreateDate"]];
-        
+        //联系人
+        NSString *contact=[Common getString:[data objectForKey:@"contact"]];
+        //联系方式
         NSString *phone=[Common getString:[data objectForKey:@"phone"]];
-        NSString *month_salary=[Common getString:[data objectForKey:@"month_salary"]];
+        //性别
+        NSString *sex=[Common getString:[data objectForKey:@"sex"]];
+        //年龄
+        NSString *age=[Common getString:[data objectForKey:@"age"]];
+        //工作地点
         NSString *address=[Common getString:[data objectForKey:@"address"]];
-        NSString *cName=[Common getString:[data objectForKey:@"cName"]];
-        NSString *degree_required=[Common getString:[data objectForKey:@"degree_required"]];
-        NSString *job_specification=[Common getString:[data objectForKey:@"job_specification"]];
-
-        [self setTitle:@"招聘详情"];
+        //工作经验
+        NSString *experience=[Common getString:[data objectForKey:@"experience"]];
+        //自我描述
+        NSString *content=[Common getString:[data objectForKey:@"content"]];
+        
+        [self setTitle:@"求职信息"];
         
         UIScrollView *scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [scrollFrame setContentSize:CGSizeMake1(320, 550)];
         [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.view addSubview:scrollFrame];
-
+        
         UIView *view1=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 90)];
         [scrollFrame addSubview:view1];
         UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 5, 300, 30)];
@@ -61,46 +68,55 @@
         [vline setBackgroundColor:DEFAUL3COLOR];
         [view1 addSubview:vline];
         
-        UIView *view2=[[UIView alloc]initWithFrame:CGRectMake1(0, 90, 320, 110)];
+        UIView *view2=[[UIView alloc]initWithFrame:CGRectMake1(0, 90, 320, 160)];
         [scrollFrame addSubview:view2];
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 5, 300, 30)];
-        month_salary=[CommonData getValueArray:[CommonData getSalary] Key:month_salary];
-        [lbl setText:[NSString stringWithFormat:@"%@",month_salary]];
-        [lbl setFont:[UIFont systemFontOfSize:18]];
-        [lbl setTextColor:[UIColor orangeColor]];
+        [lbl setText:[NSString stringWithFormat:@"联系人:%@",contact]];
+        [lbl setFont:[UIFont systemFontOfSize:14]];
+        [lbl setTextColor:[UIColor blackColor]];
         [view2 addSubview:lbl];
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 35, 300, 20)];
-        [lbl setText:[NSString stringWithFormat:@"公司名称:%@",cName]];
+        [lbl setText:[NSString stringWithFormat:@"联系方式:%@",phone]];
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:[UIColor blackColor]];
         [view2 addSubview:lbl];
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 60, 300, 20)];
-        [lbl setText:[NSString stringWithFormat:@"工作地点:%@",address]];
+        sex=[CommonData getValueArray:[CommonData getSex] Key:sex];
+        [lbl setText:[NSString stringWithFormat:@"性别:%@",sex]];
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:[UIColor blackColor]];
         [view2 addSubview:lbl];
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 85, 300, 20)];
-        degree_required=[CommonData getValueArray:[CommonData getEducation] Key:degree_required];
-        [lbl setText:[NSString stringWithFormat:@"招聘条件:%@",degree_required]];
+        [lbl setText:[NSString stringWithFormat:@"年龄:%@",age]];
+        [lbl setFont:[UIFont systemFontOfSize:14]];
+        [lbl setTextColor:[UIColor blackColor]];
+        [view2 addSubview:lbl];
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 110, 300, 20)];
+        [lbl setText:[NSString stringWithFormat:@"工作地点:%@",address]];
+        [lbl setFont:[UIFont systemFontOfSize:14]];
+        [lbl setTextColor:[UIColor blackColor]];
+        [view2 addSubview:lbl];
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 135, 300, 20)];
+        [lbl setText:[NSString stringWithFormat:@"工作经验:%@",experience]];
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:[UIColor blackColor]];
         [view2 addSubview:lbl];
         
-        vline=[[UIView alloc]initWithFrame:CGRectMake1(0, 109, 320, 1)];
+        vline=[[UIView alloc]initWithFrame:CGRectMake1(0, 159, 320, 1)];
         [vline setBackgroundColor:DEFAUL3COLOR];
         [view2 addSubview:vline];
         
-        UIView *view3=[[UIView alloc]initWithFrame:CGRectMake1(0, 200, 320, 250)];
+        UIView *view3=[[UIView alloc]initWithFrame:CGRectMake1(0, 250, 320, 200)];
         [scrollFrame addSubview:view3];
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 5, 300, 150)];
-        [lbl setText:[NSString stringWithFormat:@"职位描述:%@",job_specification]];
+        [lbl setText:[NSString stringWithFormat:@"自我描述:%@",content]];
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:[UIColor blackColor]];
         [lbl setNumberOfLines:9];
         [lbl sizeToFit];
         [view3 addSubview:lbl];
         
-        vline=[[UIView alloc]initWithFrame:CGRectMake1(0, 249, 320, 1)];
+        vline=[[UIView alloc]initWithFrame:CGRectMake1(0, 199, 320, 1)];
         [vline setBackgroundColor:DEFAUL3COLOR];
         [view3 addSubview:vline];
         
