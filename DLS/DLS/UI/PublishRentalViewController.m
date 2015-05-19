@@ -330,13 +330,14 @@
     NSRange deleteRange2 = {[equipments length]-1,1};
     [equipments deleteCharactersInRange:deleteRange2];
     
-    
     NSMutableString *urls=[[NSMutableString alloc]init];
-    for(id url in imageList){
-        [urls appendFormat:@"%@{-}1{-}#,",url];
+    if([imageList count]>0){
+        for(id url in imageList){
+            [urls appendFormat:@"%@{-}1{-}#,",url];
+        }
+        NSRange urlRange1 = {[urls length]-9,9};
+        [urls deleteCharactersInRange:urlRange1];
     }
-    NSRange urlRange1 = {[urls length]-9,9};
-    [urls deleteCharactersInRange:urlRange1];
     
 //    NSLog(@"选择类型=%@\n标题=%@\n设备地址=%@\n联系人=%@\n电话=%@\n备注=%@\n纯位＝%@\n数量=%@",pvv1v,title,address,contact,phone,remark,weights,equipments);
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
@@ -500,9 +501,9 @@
 }
 
 #pragma mark - 保存图片至沙盒
-- (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
+- (void) saveImage:(UIImage *)ci withName:(NSString *)imageName
 {
-    NSData *imageData = UIImagePNGRepresentation(currentImage);
+    NSData *imageData = UIImagePNGRepresentation(ci);
     // 获取沙盒目录
     NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
     // 将图片写入文件

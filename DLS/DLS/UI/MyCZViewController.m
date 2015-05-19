@@ -99,16 +99,18 @@
 - (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if([self.dataItemArray count]>[indexPath row]){
         if(editingStyle==UITableViewCellEditingStyleDelete){
-//            NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
-//            NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
-//            [params setObject:@"17" forKey:@"Id"];
-//            [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
-//            [params setObject:[NSString stringWithFormat:@"%ld",[self currentPage]] forKey:@"index"];
-//            self.hRequest=[[HttpRequest alloc]init];
-//            [self.hRequest setRequestCode:501];
-//            [self.hRequest setDelegate:self];
-//            [self.hRequest setController:self];
-//            [self.hRequest handle:@"GetListALL" requestParams:params];
+            NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+            NSString *ID=[data objectForKey:@"Id"];
+            NSString *ClassId=[data objectForKey:@"ClassId"];
+            NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+            [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
+            [params setObject:ID forKey:@"Id"];
+            [params setObject:ClassId forKey:@"classId"];
+            self.hRequest=[[HttpRequest alloc]init];
+            [self.hRequest setRequestCode:501];
+            [self.hRequest setDelegate:self];
+            [self.hRequest setController:self];
+            [self.hRequest handle:@"DelDataFormClassId" requestParams:params];
         }
     }
 }
