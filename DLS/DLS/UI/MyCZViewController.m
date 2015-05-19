@@ -88,10 +88,30 @@
     }
 }
 
-//-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return  UITableViewCellEditingStyleDelete;
-//}
+- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath{
+    return YES;
+}
+
+- (NSString*)tableView:(UITableView*) tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if([self.dataItemArray count]>[indexPath row]){
+        if(editingStyle==UITableViewCellEditingStyleDelete){
+//            NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+//            NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+//            [params setObject:@"17" forKey:@"Id"];
+//            [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
+//            [params setObject:[NSString stringWithFormat:@"%ld",[self currentPage]] forKey:@"index"];
+//            self.hRequest=[[HttpRequest alloc]init];
+//            [self.hRequest setRequestCode:501];
+//            [self.hRequest setDelegate:self];
+//            [self.hRequest setController:self];
+//            [self.hRequest handle:@"GetListALL" requestParams:params];
+        }
+    }
+}
 
 - (void)loadHttp
 {
@@ -104,6 +124,21 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest handle:@"GetListALL" requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if(reqCode==501){
+        if([response successFlag]){
+            [Common alert:[response msg]];
+            if(!self.tableView.pullTableIsRefreshing) {
+                self.tableView.pullTableIsRefreshing=YES;
+                [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+            }
+        }
+    }else{
+        [super requestFinishedByResponse:response requestCode:reqCode];
+    }
 }
 
 - (void)goPublish:(id)sender

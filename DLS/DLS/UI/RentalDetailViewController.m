@@ -8,6 +8,7 @@
 
 #import "RentalDetailViewController.h"
 #import "ButtonView.h"
+#import "CommonData.h"
 
 @interface RentalDetailViewController ()
 
@@ -129,6 +130,7 @@
         if([@""isEqualToString:region]){
             [lbl setText:@"该用户未填此信息"];
         }else{
+            region=[CommonData getValueArray:[CommonData getRegion] Key:region];
             [lbl setText:[NSString stringWithFormat:@"%@",region]];
         }
         [lbl setFont:[UIFont systemFontOfSize:14]];
