@@ -163,10 +163,10 @@
         [lbl setTextAlignment:NSTextAlignmentCenter];
         [lbl setTextColor:NAVBG];
         [view1 addSubview:lbl];
-        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 30, 300, 60)];
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(5, 30, 310, 60)];
         [lbl setText:@"1、此信息由客户自行发布，得力手仅提供信息展示功能。\n2、信息内容由发布者负责，如有疑问请及时与得力手后台联系。"];
         [lbl setFont:[UIFont systemFontOfSize:12]];
-        [lbl setTextColor:[UIColor blackColor]];
+        [lbl setTextColor:DEFAULCOLOR(100)];
         [lbl setNumberOfLines:0];
         [lbl setTextAlignment:NSTextAlignmentLeft];
         [view1 addSubview:lbl];
