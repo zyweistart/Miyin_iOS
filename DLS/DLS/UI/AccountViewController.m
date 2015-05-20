@@ -35,7 +35,7 @@
         [self.dataItemArray addObject:[[[User Instance]resultData]objectForKey:@"per_roles"]];
         [self buildTableViewWithView:self.view];
         
-        self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:[CommonData getRole]];
+        self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(260), CGWidth(320), CGHeight(260)) WithArray:[CommonData getRole]];
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
         [self.view addSubview:self.pv1];

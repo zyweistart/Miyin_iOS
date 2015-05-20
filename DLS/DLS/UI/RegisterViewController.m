@@ -88,15 +88,10 @@
         [bLogin addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
         [scrollFrame addSubview:bLogin];
         
-        self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-260, 320, 260) WithArray:[CommonData getRole]];
+        self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(260), CGWidth(320), CGHeight(260)) WithArray:[CommonData getRole]];
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
         [self.view addSubview:self.pv1];
-        
-        
-//        [tfUserName setText:@"4544242"];
-//        [tfPassword setText:@"4544242"];
-//        [tfPhone setText:@"13750820210"];
     }
     return self;
 }

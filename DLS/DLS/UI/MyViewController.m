@@ -110,7 +110,7 @@ static CGFloat kImageOriginHight = 220.f;
         bSign.layer.masksToBounds = YES;
         bSign.layer.borderWidth=1;
         bSign.layer.borderColor= [[UIColor whiteColor]CGColor];
-        [bSign setTitle:@"签到" forState:UIControlStateNormal];
+        [bSign setTitle:@"每日签到" forState:UIControlStateNormal];
         [bSign.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [bSign setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [bSign addTarget:self action:@selector(sign:) forControlEvents:UIControlEventTouchUpInside];
@@ -345,7 +345,7 @@ static CGFloat kImageOriginHight = 220.f;
 - (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
 {
     if([response successFlag]){
-        [bSign setTitle:@"已签到" forState:UIControlStateNormal];
+        [bSign setTitle:@"今日已签到" forState:UIControlStateNormal];
         [bSign setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         bSign.layer.borderColor= [[UIColor grayColor]CGColor];
         [bSign setEnabled:NO];
