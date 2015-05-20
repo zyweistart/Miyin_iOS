@@ -639,7 +639,6 @@
 		C9B85F551AA432E1008A56F0 = {
 			isa = PBXGroup;
 			children = (
-				C92F8B331B0B1859003172B8 /* libsqlite3.dylib */,
 				C9B85F601AA432E1008A56F0 /* DLS */,
 				C9B85F7A1AA432E1008A56F0 /* DLSTests */,
 				C9E1FF091AA558C800720AAC /* framework */,
@@ -741,6 +740,7 @@
 		C9E1FF091AA558C800720AAC /* framework */ = {
 			isa = PBXGroup;
 			children = (
+				C92F8B331B0B1859003172B8 /* libsqlite3.dylib */,
 				C9E1FEEF1AA5562000720AAC /* CFNetwork.framework */,
 				C9AFBB721AAD4B80008C7AE9 /* CoreGraphics.framework */,
 				C9C23CF81AA946F4007A9A27 /* CoreLocation.framework */,
@@ -831,6 +831,7 @@
 				TargetAttributes = {
 					C9B85F5D1AA432E1008A56F0 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = F86345MANQ;
 					};
 					C9B85F761AA432E1008A56F0 = {
 						CreatedOnToolsVersion = 6.1.1;
