@@ -106,6 +106,8 @@ static CGFloat kImageOriginHight = 220.f;
         bHead=[[UIView alloc]initWithFrame:CGRectMake1(120, 0, 80, 80)];
         [personalFrame addSubview:bHead];
         iUserNameImage=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 0, 60, 60)];
+        iUserNameImage.layer.cornerRadius=30;
+        iUserNameImage.layer.masksToBounds = YES;
         [iUserNameImage setUserInteractionEnabled:YES];
         [iUserNameImage addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goPersonalInfo:)]];
         [bHead addSubview:iUserNameImage];
@@ -393,25 +395,29 @@ static CGFloat kImageOriginHight = 220.f;
             NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:u]];
             dispatch_sync(dispatch_get_main_queue(), ^{
                 if (data) {
-                    //创建文件管理器
-                    NSFileManager* fileManager = [NSFileManager defaultManager];
-                    //获取Documents主目录
-                    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-                    //得到相应的Documents的路径
-                    NSString* docDir = [paths objectAtIndex:0];
-                    //更改到待操作的目录下
-                    [fileManager changeCurrentDirectoryPath:[docDir stringByExpandingTildeInPath]];
-                    NSString *path = [docDir stringByAppendingPathComponent:fName];
-                    if(![fileManager fileExistsAtPath:path]){
-                        
-                    }
+                    //获取临时目录
+                    NSString* tmpDir=NSTemporaryDirectory();
+                    //更改到待操作的临时目录
+                    [fileManager changeCurrentDirectoryPath:[tmpDir stringByExpandingTildeInPath]];
+                    NSString *tmpPath = [tmpDir stringByAppendingPathComponent:fName];
+                    //创建数据缓冲区
+                    NSMutableData* writer = [[NSMutableData alloc] init];
+                    //将字符串添加到缓冲中
+                    [writer appendData: data];
+                    //将其他数据添加到缓冲中
+                    //将缓冲的数据写入到临时文件中
+                    [writer writeToFile:tmpPath atomically:YES];
+                    //把临时下载好的文件移动到主文档目录下
+                    [fileManager moveItemAtPath:tmpPath toPath:path error:nil];
                     UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
                     [iUserNameImage setImage:image];
                 }
             });
         }else{
-            UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
-            [iUserNameImage setImage:image];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
+                [iUserNameImage setImage:image];
+            });
         }
         
     });
