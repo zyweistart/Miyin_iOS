@@ -26,6 +26,7 @@
 #import "RegisterViewController.h"
 
 #import "UIButton+TitleImage.h"
+#import "UIImage+Transform.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 #define LOGINREGISTERBGCOLOR [UIColor colorWithRed:(58/255.0) green:(117/255.0) blue:(207/255.0) alpha:0.5]
@@ -41,8 +42,10 @@ static CGFloat kImageOriginHight = 220.f;
     UIView *topFrame;
     UIView *personalFrame;
     UIView *bLoginRegister;
-    UIButton *bHead;
+    UIView *bHead;
     UIButton *bSign;
+    UILabel *lblUserName;
+    UIImageView *iUserNameImage;
 }
 
 - (id)init{
@@ -100,10 +103,18 @@ static CGFloat kImageOriginHight = 220.f;
         [bRegister addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
         [bLoginRegister addSubview:bRegister];
         //头像
-        bHead=[[UIButton alloc]initWithFrame:CGRectMake1(120, 0, 80, 80)];
-        [bHead.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [bHead addTarget:self action:@selector(goPersonalInfo:) forControlEvents:UIControlEventTouchUpInside];
+        bHead=[[UIView alloc]initWithFrame:CGRectMake1(120, 0, 80, 80)];
         [personalFrame addSubview:bHead];
+        iUserNameImage=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 0, 60, 60)];
+        [iUserNameImage setUserInteractionEnabled:YES];
+        [bHead addSubview:iUserNameImage];
+        lblUserName=[[UILabel alloc]initWithFrame:CGRectMake1(0, 60,80,20)];
+        [lblUserName setFont:[UIFont systemFontOfSize:14]];
+        [lblUserName setTextColor:[UIColor whiteColor]];
+        [lblUserName setTextAlignment:NSTextAlignmentCenter];
+        [lblUserName setUserInteractionEnabled:YES];
+        [bHead addSubview:lblUserName];
+//        [bHead addTarget:self action:@selector(goPersonalInfo:) forControlEvents:UIControlEventTouchUpInside];
         //签到
         bSign=[[UIButton alloc]initWithFrame:CGRectMake1(110, 90, 100, 20)];
         bSign.layer.cornerRadius = 10;
@@ -310,22 +321,15 @@ static CGFloat kImageOriginHight = 220.f;
     if([[User Instance]isLogin]){
         [bHead setHidden:NO];
         [bSign setHidden:NO];
+        [iUserNameImage setImage:[UIImage imageNamed:@"头像"]];
         NSString *name=[Common getString:[[[User Instance]resultData] objectForKey:@"Name"]];
-//        NSString *headImage=[[[User Instance]resultData] objectForKey:@"HeadImage"];
-//        NSString *imageUrl=[NSString stringWithFormat:@"%@%@",HTTP_URL,headImage];
-//        UIImageView *iv=[[UIImageView alloc]init];
-//        [iv setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"头像"]];
-//        [bHead setTitle:name forImage:[iv image]];
-        [bHead setTitle:name forImage:[UIImage imageNamed:@"头像"]];
-        [bLoginRegister setHidden:YES];
-        NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
-        NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(downloadImage) object:nil];
-        [operationQueue addOperation:op];
+        [lblUserName setText:name];
+        [self downloadImage];
     }else{
         [bHead setHidden:YES];
         [bSign setHidden:YES];
-        [bLoginRegister setHidden:NO];
     }
+    [bLoginRegister setHidden:[[User Instance]isLogin]];
 }
 
 -(void)sign:(id)sender
@@ -364,13 +368,53 @@ static CGFloat kImageOriginHight = 220.f;
 
 - (void)downloadImage
 {
-//    NSString *name=[Common getString:[[[User Instance]resultData] objectForKey:@"Name"]];
-//    NSString *HeadImage=[[[User Instance]resultData] objectForKey:@"HeadImage"];
-//    if(![@"" isEqualToString:HeadImage]){
-//        NSString *URL=[NSString stringWithFormat:@"%@%@",HTTP_URL,HeadImage];
-//        UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:URL]]];
-//        [bHead setTitle:name forImage:image];
-//    }
+    NSString *Id=[Common getString:[[[User Instance]resultData] objectForKey:@"Id"]];
+    NSString *HeadImage=[[[User Instance]resultData] objectForKey:@"HeadImage"];
+    if(![@"" isEqualToString:HeadImage]){
+        NSString *URL=[NSString stringWithFormat:@"%@%@",HTTP_URL,HeadImage];
+        [self AsynchronousDownloadWithUrl:URL FileName:Id];
+    }
+}
+
+- (void)AsynchronousDownloadWithUrl:(NSString *)u FileName:(NSString *)fName
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+    dispatch_async(queue, ^{
+        //创建文件管理器
+        NSFileManager* fileManager = [NSFileManager defaultManager];
+        //获取Documents主目录
+        NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        //得到相应的Documents的路径
+        NSString* docDir = [paths objectAtIndex:0];
+        //更改到待操作的目录下
+        [fileManager changeCurrentDirectoryPath:[docDir stringByExpandingTildeInPath]];
+        NSString *path = [docDir stringByAppendingPathComponent:fName];
+        if(![fileManager fileExistsAtPath:path]){
+            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:u]];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                if (data) {
+                    //创建文件管理器
+                    NSFileManager* fileManager = [NSFileManager defaultManager];
+                    //获取Documents主目录
+                    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+                    //得到相应的Documents的路径
+                    NSString* docDir = [paths objectAtIndex:0];
+                    //更改到待操作的目录下
+                    [fileManager changeCurrentDirectoryPath:[docDir stringByExpandingTildeInPath]];
+                    NSString *path = [docDir stringByAppendingPathComponent:fName];
+                    if(![fileManager fileExistsAtPath:path]){
+                        
+                    }
+                    UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
+                    [iUserNameImage setImage:image];
+                }
+            });
+        }else{
+            UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
+            [iUserNameImage setImage:image];
+        }
+        
+    });
 }
 
 @end
