@@ -36,6 +36,7 @@
 + (NSArray*)getRegion;
 //角色
 + (NSArray*)getRole;
++ (int)getValueIndex:(NSArray*)array Key:(NSString*)key;
 + (NSString*)getValueArray:(NSArray*)array Key:(NSString*)key;
 
 @end

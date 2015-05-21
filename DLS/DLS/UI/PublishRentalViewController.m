@@ -32,6 +32,7 @@
     NSMutableArray *imageList;
     BOOL isFullScreen;
     UIImage *currentImage;
+    NSString *ID;
 }
 
 - (id)init
@@ -41,6 +42,7 @@
         [self setTitle:@"发布出租"];
         [self.view setBackgroundColor:BGCOLOR];
         
+        ID=@"0";
         pvv1=-1;
         pvv2=-1;
         
@@ -176,6 +178,57 @@
         
         imageList=[[NSMutableArray alloc]init];
         
+    }
+    return self;
+}
+
+- (id)initWithData:(NSDictionary*)data
+{
+    self=[self init];
+    if(self){
+        //类型
+        ID=[Common getString:[data objectForKey:@"Id"]];
+        NSString *xlValue=[Common getString:[data objectForKey:@"xlValue"]];
+        //标题
+        NSString *name=[Common getString:[data objectForKey:@"Name"]];
+        //设备地址
+        NSString *address=[Common getString:[data objectForKey:@"address"]];
+        //区域
+        NSString *region=[Common getString:[data objectForKey:@"region"]];
+        pvv1=[CommonData getValueIndex:[CommonData getType2] Key:xlValue];
+        pvv3=[CommonData getValueIndex:[CommonData getRegion] Key:region];
+        //联系人
+        NSString *contact=[Common getString:[data objectForKey:@"contact"]];
+        //电话
+        NSString *phone=[data objectForKey:@"contact_phone"];
+        //备注
+        NSString *notes=[Common getString:[data objectForKey:@"notes"]];
+        //添加设备的列表
+        NSString *weight=[Common getString:[data objectForKey:@"weight"]];
+        NSString *equipment_Num=[Common getString:[data objectForKey:@"equipment_Num"]];
+        if(![@"" isEqualToString:weight]&&![@"" isEqualToString:equipment_Num]){
+            NSArray *weightArray=[weight componentsSeparatedByString:@","];
+            NSArray *equipment_NumArray=[equipment_Num componentsSeparatedByString:@","];
+            for(int i=0;i<[weightArray count];i++){
+                NSString *w=[weightArray objectAtIndex:i];
+                NSString *e=[equipment_NumArray objectAtIndex:i];
+                w=[NSString stringWithFormat:@"%d",[CommonData getValueIndex:[CommonData getSearchTon2] Key:w]];
+                [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:w,KEYCELL,e,VALUECELL, nil]];
+            }
+//            [self.tableView reloadData];
+        }
+        
+        [lblRentalType setText:[CommonData getValueArray:[CommonData getType2] Key:xlValue]];
+        [tfTitle setText:name];
+        [tfAddress setText:address];
+        [lblArea setText:[CommonData getValueArray:[CommonData getRegion] Key:region]];
+        [tfContact setText:contact];
+        [tfPhone setText:phone];
+        [tvRemark setText:notes];
+        
+        NSString *imageListStr=[Common getString:[data objectForKey:@"imageList"]];
+        imageList=[[NSMutableArray alloc]initWithArray:[imageListStr componentsSeparatedByString:@"{-}1{-}#,"]];
+        NSLog(@"%@",imageList);
     }
     return self;
 }
@@ -342,7 +395,7 @@
 //    NSLog(@"选择类型=%@\n标题=%@\n设备地址=%@\n联系人=%@\n电话=%@\n备注=%@\n纯位＝%@\n数量=%@",pvv1v,title,address,contact,phone,remark,weights,equipments);
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
-    [params setObject:@"0" forKey:@"Id"];
+    [params setObject:ID forKey:@"Id"];
     [params setObject:@"42" forKey:@"classId"];
     [params setObject:title forKey:@"Name"];
     [params setObject:pvv1v forKey:@"xlValue"];
@@ -571,7 +624,7 @@
 }
 
 #define  __SCREEN_WIDTH 320
-#define  __SCREEN_HEIGHT 600
+#define  __SCREEN_HEIGHT 800
 #define  NAVIGATION_BAR_HEIGHT 40
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {

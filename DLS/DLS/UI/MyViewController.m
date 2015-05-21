@@ -107,6 +107,7 @@ static CGFloat kImageOriginHight = 220.f;
         [personalFrame addSubview:bHead];
         iUserNameImage=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 0, 60, 60)];
         [iUserNameImage setUserInteractionEnabled:YES];
+        [iUserNameImage addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goPersonalInfo:)]];
         [bHead addSubview:iUserNameImage];
         lblUserName=[[UILabel alloc]initWithFrame:CGRectMake1(0, 60,80,20)];
         [lblUserName setFont:[UIFont systemFontOfSize:14]];
@@ -114,7 +115,6 @@ static CGFloat kImageOriginHight = 220.f;
         [lblUserName setTextAlignment:NSTextAlignmentCenter];
         [lblUserName setUserInteractionEnabled:YES];
         [bHead addSubview:lblUserName];
-//        [bHead addTarget:self action:@selector(goPersonalInfo:) forControlEvents:UIControlEventTouchUpInside];
         //签到
         bSign=[[UIButton alloc]initWithFrame:CGRectMake1(110, 90, 100, 20)];
         bSign.layer.cornerRadius = 10;

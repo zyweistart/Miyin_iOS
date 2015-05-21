@@ -84,7 +84,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
-        [self.navigationController pushViewController:[[RentalDetailViewController alloc]initWithDictionary:[self.dataItemArray objectAtIndex:[indexPath row]]] animated:YES];
+        NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:[[RentalDetailViewController alloc]initWithDictionary:data] animated:YES];
+//        [self.navigationController pushViewController:[[PublishRentalViewController alloc]initWithData:data] animated:YES];
     }
 }
 

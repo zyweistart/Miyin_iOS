@@ -205,6 +205,18 @@
                  [NSDictionary dictionaryWithObjectsAndKeys:@"工程公司",MKEY,@"8",MVALUE, nil],nil];
 }
 
++ (int)getValueIndex:(NSArray*)array Key:(NSString*)key
+{
+    for(int i=0;i<[array count];i++){
+        NSDictionary *d=[array objectAtIndex:i];
+        NSString *value=[d objectForKey:MVALUE];
+        if([value isEqualToString:key]){
+            return i;
+        }
+    }
+    return -1;
+}
+
 + (NSString*)getValueArray:(NSArray*)array Key:(NSString*)key
 {
     for(id d in array){

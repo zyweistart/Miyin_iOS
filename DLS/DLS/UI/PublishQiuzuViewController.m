@@ -250,7 +250,7 @@
     }
     
     [self.dataItemArray addObject:
-     [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",pvv2],KEYCELL,number,VALUECELL, nil]];
+     [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",pvv2],KEYCELL,number,VALUECELL, nil]];
     [self.tableView reloadData];
     pvv2=-1;
     [lblSBType setText:@"请选择"];
