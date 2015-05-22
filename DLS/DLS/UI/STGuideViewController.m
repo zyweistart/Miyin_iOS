@@ -11,6 +11,7 @@
 #import "NearbyViewController.h"
 #import "VIPViewController.h"
 #import "MyViewController.h"
+#import "LoginViewController.h"
 
 #import "SQLiteOperate.h"
 
@@ -25,6 +26,7 @@
 
 @implementation STGuideViewController{
     SQLiteOperate *db;
+    NSUInteger lastSelectIndex;
 }
 
 - (void)viewDidLoad
@@ -32,7 +34,7 @@
     [super viewDidLoad];
     
 //    [self downLoadPicture];
-    
+    lastSelectIndex=0;
     UINavigationController *homeViewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[HomeViewController alloc]init]];
     [[homeViewControllerNav tabBarItem] setImage:[[UIImage imageNamed:@"ic_home_n"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [[homeViewControllerNav tabBarItem] setSelectedImage:[[UIImage imageNamed:@"ic_home_p"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
@@ -68,7 +70,7 @@
     //    [[myViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    //    _tabBarController.delegate = self;
+    self.delegate = self;
     self.viewControllers = [NSArray arrayWithObjects:
                                          homeViewControllerNav,
                                          nearbyViewControllerNav,
@@ -180,6 +182,21 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    if(tabBarController.selectedIndex==2){
+        if(![[User Instance]isLogin]){
+            UINavigationController *viewControllerNav = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc]init]];
+            [[viewControllerNav navigationBar]setBarTintColor:NAVBG];
+            [[viewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
+            [self presentViewController:viewControllerNav animated:YES completion:nil];
+            [self setSelectedIndex:lastSelectIndex];
+        }
+    }else{
+        lastSelectIndex=self.selectedIndex;
+    }
 }
 
 @end

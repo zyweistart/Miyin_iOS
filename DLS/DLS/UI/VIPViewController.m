@@ -97,7 +97,7 @@
         }
     }else{
         if(![[User Instance]isLogin]){
-            [self presentViewControllerNav:[[LoginViewController alloc]init]];
+//            [self presentViewControllerNav:[[LoginViewController alloc]init]];
         }else{
             if(!ISFIRSTINFLAG){
                 [categoryView setIndex:1];
