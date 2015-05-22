@@ -46,11 +46,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if([[self dataItemArray]count]==0){
-        if(!self.tableView.pullTableIsRefreshing) {
-            self.tableView.pullTableIsRefreshing=YES;
-            [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
-        }
+    if(!self.tableView.pullTableIsRefreshing) {
+        self.tableView.pullTableIsRefreshing=YES;
+        [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
     }
 }
 
@@ -85,8 +83,7 @@
 {
     if([self.dataItemArray count]>0){
         NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
-        [self.navigationController pushViewController:[[RentalDetailViewController alloc]initWithDictionary:data] animated:YES];
-//        [self.navigationController pushViewController:[[PublishRentalViewController alloc]initWithData:data] animated:YES];
+        [self.navigationController pushViewController:[[RentalDetailViewController alloc]initWithDictionary:data Edit:YES] animated:YES];
     }
 }
 

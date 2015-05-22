@@ -32,7 +32,7 @@
         [self.view setBackgroundColor:BGCOLOR];
         scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        scrollFrame.contentSize=CGSizeMake(320,760);
+        scrollFrame.contentSize=CGSizeMake1(320,760);
         [self.view addSubview:scrollFrame];
         tfName=[self addFrameTypeTextField:10 Title:@"职位名称"];
         lblJobType=[self addFrameType:60 Title:@"职位类别" Name:@"请选择" Tag:2];
@@ -283,6 +283,14 @@
         [scrollFrame setContentOffset:CGPointMake(0, pt.y-NAVIGATION_BAR_HEIGHT) animated:YES];//华东
 }
 
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    scrollFrame.contentSize = CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT+216);//原始滑动距离增加键盘高度
+    CGPoint pt = [textView convertPoint:CGPointMake(0, 0) toView:scrollFrame];//把当前的textField的坐标映射到scrollview上
+    if(scrollFrame.contentOffset.y-pt.y+NAVIGATION_BAR_HEIGHT<=0)//判断最上面不要去滚动
+        [scrollFrame setContentOffset:CGPointMake(0, pt.y-NAVIGATION_BAR_HEIGHT) animated:YES];//华东
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField*)theTextField
 {
     [theTextField resignFirstResponder];
@@ -296,19 +304,17 @@
     return YES;
 }
 
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    scrollFrame.contentSize = CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT+216);//原始滑动距离增加键盘高度
-    CGPoint pt = [textView convertPoint:CGPointMake(0, 0) toView:scrollFrame];//把当前的textField的坐标映射到scrollview上
-    if(scrollFrame.contentOffset.y-pt.y+NAVIGATION_BAR_HEIGHT<=0)//判断最上面不要去滚动
-        [scrollFrame setContentOffset:CGPointMake(0, pt.y-NAVIGATION_BAR_HEIGHT) animated:YES];//华东
-}
-
 - (BOOL)textView:(UITextView*)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*) text
 {
     if([text isEqualToString:@"\n"]){
         [textView resignFirstResponder];
-        [scrollFrame setContentOffset:CGPointMake(0, 0) animated:YES];
+        //开始动画
+        [UIView beginAnimations:nil context:nil];
+        //设定动画持续时间
+        [UIView setAnimationDuration:0.3];
+        scrollFrame.contentSize = CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT);
+        //动画结束
+        [UIView commitAnimations];
         return NO;
     }else{
         return YES;

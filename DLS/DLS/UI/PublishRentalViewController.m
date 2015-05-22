@@ -9,6 +9,7 @@
 #import "PublishRentalViewController.h"
 #import "ButtonView.h"
 #import "SB1Cell.h"
+#import "NSString+Utils.h"
 
 #define KEYCELL @"KEY"
 #define VALUECELL @"VALUE"
@@ -227,8 +228,15 @@
         [tvRemark setText:notes];
         
         NSString *imageListStr=[Common getString:[data objectForKey:@"imageList"]];
-        imageList=[[NSMutableArray alloc]initWithArray:[imageListStr componentsSeparatedByString:@"{-}1{-}#,"]];
-        NSLog(@"%@",imageList);
+        NSArray *images=[imageListStr componentsSeparatedByString:@"{-}1{-}#,"];
+        for(id img in images){
+            [imageList addObject:img];
+            [self showImage:[UIImage imageNamed:@"imageloading"]];
+        }
+        
+        NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
+        NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(downloadImage) object:nil];
+        [operationQueue addOperation:op];
     }
     return self;
 }
@@ -504,6 +512,40 @@
     return cell;
 }
 
+- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath{
+    return YES;
+}
+
+- (NSString*)tableView:(UITableView*) tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+
+//要求委托方的编辑风格在表视图的一个特定的位置。
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //默认没有编辑风格
+    UITableViewCellEditingStyle result = UITableViewCellEditingStyleNone;
+    if ([tableView isEqual:self.tableView]) {
+        //设置编辑风格为删除风格
+        result = UITableViewCellEditingStyleDelete;
+    }
+    return result;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //请求数据源提交的插入或删除指定行接收者。
+    if (editingStyle ==UITableViewCellEditingStyleDelete) {
+        //如果编辑样式为删除样式
+        if (indexPath.row<[self.dataItemArray count]) {
+            //移除数据源的数据
+            [self.dataItemArray removeObjectAtIndex:indexPath.row];
+            //移除tableView中的数据
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        }
+    }
+}
+
 - (void)addImage:(UIButton*)sender
 {
 //    [imageList addObject:@"1"];
@@ -624,11 +666,12 @@
 }
 
 #define  __SCREEN_WIDTH 320
-#define  __SCREEN_HEIGHT 800
+//#define  __SCREEN_HEIGHT 800
 #define  NAVIGATION_BAR_HEIGHT 40
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT+216);//原始滑动距离增加键盘高度
+    CGFloat height=self.tableView.contentSize.height;
+    self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,height+216);//原始滑动距离增加键盘高度
     CGPoint pt = [textField convertPoint:CGPointMake(0, 0) toView:self.tableView];//把当前的textField的坐标映射到scrollview上
     if(self.tableView.contentOffset.y-pt.y+NAVIGATION_BAR_HEIGHT<=0)//判断最上面不要去滚动
         [self.tableView setContentOffset:CGPointMake(0, pt.y-NAVIGATION_BAR_HEIGHT) animated:YES];//华东
@@ -636,12 +679,13 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField*)theTextField
 {
+    CGFloat height=self.tableView.contentSize.height;
     [theTextField resignFirstResponder];
     //开始动画
     [UIView beginAnimations:nil context:nil];
     //设定动画持续时间
     [UIView setAnimationDuration:0.3];
-    self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT);
+    self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,height);
     //动画结束
     [UIView commitAnimations];
     return YES;
@@ -649,10 +693,29 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT+216);//原始滑动距离增加键盘高度
+    CGFloat height=self.tableView.contentSize.height;
+    self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,height+216);//原始滑动距离增加键盘高度
     CGPoint pt = [textView convertPoint:CGPointMake(0, 0) toView:self.tableView];//把当前的textField的坐标映射到scrollview上
     if(self.tableView.contentOffset.y-pt.y+NAVIGATION_BAR_HEIGHT<=0)//判断最上面不要去滚动
         [self.tableView setContentOffset:CGPointMake(0, pt.y-NAVIGATION_BAR_HEIGHT) animated:YES];//华东
+}
+
+- (void)downloadImage
+{
+    for(int i=0;i<[imageList count];i++){
+        NSString *URL=[NSString stringWithFormat:@"%@%@",HTTP_URL,[imageList objectAtIndex:i]];
+        if(i==0){
+            [Common AsynchronousDownloadImageWithUrl:URL ShowImageView:image1];
+        }else if(i==1){
+            [Common AsynchronousDownloadImageWithUrl:URL ShowImageView:image2];
+        }else if(i==2){
+            [Common AsynchronousDownloadImageWithUrl:URL ShowImageView:image3];
+        }else if(i==3){
+            [Common AsynchronousDownloadImageWithUrl:URL ShowImageView:image4];
+        }else if(i==4){
+            [Common AsynchronousDownloadImageWithUrl:URL ShowImageView:image5];
+        }
+    }
 }
 
 @end

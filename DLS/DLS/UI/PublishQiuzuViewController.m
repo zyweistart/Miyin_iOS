@@ -387,17 +387,6 @@
 //    return YES;
 //}
 
-- (BOOL)textView:(UITextView*)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*) text
-{
-    if([text isEqualToString:@"\n"]){
-        [textView resignFirstResponder];
-        [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
-        return NO;
-    }else{
-        return YES;
-    }
-}
-
 //要求委托方的编辑风格在表视图的一个特定的位置。
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -499,6 +488,23 @@
     CGPoint pt = [textView convertPoint:CGPointMake(0, 0) toView:self.tableView];//把当前的textField的坐标映射到scrollview上
     if(self.tableView.contentOffset.y-pt.y+NAVIGATION_BAR_HEIGHT<=0)//判断最上面不要去滚动
         [self.tableView setContentOffset:CGPointMake(0, pt.y-NAVIGATION_BAR_HEIGHT) animated:YES];//华东
+}
+
+- (BOOL)textView:(UITextView*)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*) text
+{
+    if([text isEqualToString:@"\n"]){
+        [textView resignFirstResponder];
+        //开始动画
+        [UIView beginAnimations:nil context:nil];
+        //设定动画持续时间
+        [UIView setAnimationDuration:0.3];
+        self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT);
+        //动画结束
+        [UIView commitAnimations];
+        return NO;
+    }else{
+        return YES;
+    }
 }
 
 @end

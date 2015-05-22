@@ -138,6 +138,7 @@
         UIButton *button2=[[UIButton alloc]initWithFrame:CGRectMake1(120, 0, 99, 50)];
         [button2 setTitle:@"短信" forState:UIControlStateNormal];
         [button2 setImage:[UIImage imageNamed:@"message"] forState:UIControlStateNormal];
+        [button2 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
         [button2 setBackgroundColor:NAVBG];
         [button2 addTarget:self action:@selector(goSendMessage:) forControlEvents:UIControlEventTouchUpInside];
         [view1 addSubview:button2];
@@ -147,6 +148,7 @@
         UIButton *button3=[[UIButton alloc]initWithFrame:CGRectMake1(220, 0, 100, 50)];
         [button3 setTitle:@"电话" forState:UIControlStateNormal];
         [button3 setImage:[UIImage imageNamed:@"call"] forState:UIControlStateNormal];
+        [button3 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
         [button3 setBackgroundColor:NAVBG];
         [button3 addTarget:self action:@selector(goTell:) forControlEvents:UIControlEventTouchUpInside];
         [view1 addSubview:button3];

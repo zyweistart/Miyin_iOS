@@ -7,6 +7,7 @@
 //
 
 #import "RentalDetailViewController.h"
+#import "PublishRentalViewController.h"
 #import "MapViewController.h"
 #import "ButtonView.h"
 #import "CommonData.h"
@@ -19,6 +20,25 @@
     UIImageView *image1,*image2,*image3,*image4,*image5;
     NSArray *imagelist;
 }
+
+- (id)initWithDictionary:(NSDictionary*)data Edit:(BOOL)edit
+{
+    self =[self initWithDictionary:data];
+    if(self){
+        if(edit){
+            //
+            UIButton *bEdit = [UIButton buttonWithType:UIButtonTypeCustom];
+            [bEdit setTitle:@"编辑" forState:UIControlStateNormal];
+            [bEdit.titleLabel setFont:[UIFont systemFontOfSize:15]];
+            [bEdit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [bEdit addTarget:self action:@selector(goEdit:) forControlEvents:UIControlEventTouchUpInside];
+            bEdit.frame = CGRectMake(0, 0, 30, 30);
+            self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:bEdit];
+        }
+    }
+    return self;
+}
+
 
 - (id)initWithDictionary:(NSDictionary*)data{
     [self.tabBarController setHidesBottomBarWhenPushed:YES];
@@ -184,6 +204,7 @@
         UIButton *button2=[[UIButton alloc]initWithFrame:CGRectMake1(120, 0, 99, 50)];
         [button2 setTitle:@"短信" forState:UIControlStateNormal];
         [button2 setImage:[UIImage imageNamed:@"message"] forState:UIControlStateNormal];
+        [button2 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
         [button2 setBackgroundColor:NAVBG];
         [button2 addTarget:self action:@selector(goSendMessage:) forControlEvents:UIControlEventTouchUpInside];
         [view1 addSubview:button2];
@@ -193,6 +214,7 @@
         UIButton *button3=[[UIButton alloc]initWithFrame:CGRectMake1(220, 0, 100, 50)];
         [button3 setTitle:@"电话" forState:UIControlStateNormal];
         [button3 setImage:[UIImage imageNamed:@"call"] forState:UIControlStateNormal];
+        [button3 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
         [button3 setBackgroundColor:NAVBG];
         [button3 addTarget:self action:@selector(goTell:) forControlEvents:UIControlEventTouchUpInside];
         [view1 addSubview:button3];
@@ -259,19 +281,23 @@
 {
     for(int i=0;i<[imagelist count];i++){
         NSString *URL=[NSString stringWithFormat:@"%@%@",HTTP_URL,[imagelist objectAtIndex:i]];
-        UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:URL]]];
         if(i==0){
-            [image1 setImage:image];
+            [Common AsynchronousDownloadImageWithUrl:URL ShowImageView:image1];
         }else if(i==1){
-            [image2 setImage:image];
+            [Common AsynchronousDownloadImageWithUrl:URL ShowImageView:image2];
         }else if(i==2){
-            [image3 setImage:image];
+            [Common AsynchronousDownloadImageWithUrl:URL ShowImageView:image3];
         }else if(i==3){
-            [image4 setImage:image];
+            [Common AsynchronousDownloadImageWithUrl:URL ShowImageView:image4];
         }else if(i==4){
-            [image5 setImage:image];
+            [Common AsynchronousDownloadImageWithUrl:URL ShowImageView:image5];
         }
     }
+}
+
+- (void)goEdit:(id)sender
+{
+    [self.navigationController pushViewController:[[PublishRentalViewController alloc]initWithData:self.data] animated:YES];
 }
 
 @end

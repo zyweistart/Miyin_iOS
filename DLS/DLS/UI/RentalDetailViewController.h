@@ -14,4 +14,6 @@
 
 - (id)initWithDictionary:(NSDictionary*)data;
 
+- (id)initWithDictionary:(NSDictionary*)data Edit:(BOOL)edit;
+
 @end

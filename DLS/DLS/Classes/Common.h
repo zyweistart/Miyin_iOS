@@ -28,4 +28,6 @@
 
 + (NSString*)convertTime:(NSString*)time;
 
++ (void)AsynchronousDownloadImageWithUrl:(NSString *)u ShowImageView:(UIImageView*)showImage;
+
 @end
