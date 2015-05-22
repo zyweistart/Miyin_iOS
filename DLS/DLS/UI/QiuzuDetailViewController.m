@@ -34,6 +34,16 @@
 //        NSString *location=[data objectForKey:@"location"];
         
         [self setTitle:@"求租详情"];
+        //收藏
+        UIButton *bCollection = [UIButton buttonWithType:UIButtonTypeCustom];
+        [bCollection setBackgroundImage:[UIImage imageNamed:@"collection"]forState:UIControlStateNormal];
+        [bCollection addTarget:self action:@selector(gobCollection:) forControlEvents:UIControlEventTouchUpInside];
+        bCollection.frame = CGRectMake(0, 0, 20, 20);
+        UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
+                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                target:nil action:nil];
+        negativeSpacerRight.width = -5;
+        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bCollection], nil];
         
         UIScrollView *scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
@@ -206,6 +216,11 @@
 - (void)goLocation:(id)sender
 {
     [self.navigationController pushViewController:[[MapViewController alloc]initWithDictionary:self.data] animated:YES];
+}
+
+- (void)gobCollection:(id)sender
+{
+    NSLog(@"收藏");
 }
 
 @end

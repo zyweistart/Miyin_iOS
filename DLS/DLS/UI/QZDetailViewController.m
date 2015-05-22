@@ -39,6 +39,16 @@
         NSString *content=[Common getString:[data objectForKey:@"content"]];
         
         [self setTitle:@"求职信息"];
+        //收藏
+        UIButton *bCollection = [UIButton buttonWithType:UIButtonTypeCustom];
+        [bCollection setBackgroundImage:[UIImage imageNamed:@"collection"]forState:UIControlStateNormal];
+        [bCollection addTarget:self action:@selector(gobCollection:) forControlEvents:UIControlEventTouchUpInside];
+        bCollection.frame = CGRectMake(0, 0, 20, 20);
+        UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc]
+                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                target:nil action:nil];
+        negativeSpacerRight.width = -5;
+        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bCollection], nil];
         
         UIScrollView *scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [scrollFrame setContentSize:CGSizeMake1(320, 550)];
@@ -150,6 +160,11 @@
     if(![@"" isEqualToString:phone]){
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"tel://%@",phone]]];
     }
+}
+
+- (void)gobCollection:(id)sender
+{
+    NSLog(@"收藏");
 }
 
 @end
