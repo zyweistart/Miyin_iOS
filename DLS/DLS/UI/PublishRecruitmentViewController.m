@@ -12,6 +12,9 @@
 #define BGCOLOR [UIColor colorWithRed:(246/255.0) green:(246/255.0) blue:(246/255.0) alpha:1]
 #define TITLECOLOR [UIColor colorWithRed:(127/255.0) green:(127/255.0) blue:(127/255.0) alpha:1]
 
+#define  __SCREEN_WIDTH 320
+#define  __SCREEN_HEIGHT 760
+#define  NAVIGATION_BAR_HEIGHT 40
 @interface PublishRecruitmentViewController ()
 
 @end
@@ -32,7 +35,7 @@
         [self.view setBackgroundColor:BGCOLOR];
         scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        scrollFrame.contentSize=CGSizeMake1(320,760);
+        scrollFrame.contentSize=CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT);
         [self.view addSubview:scrollFrame];
         tfName=[self addFrameTypeTextField:10 Title:@"职位名称"];
         lblJobType=[self addFrameType:60 Title:@"职位类别" Name:@"请选择" Tag:2];
@@ -272,9 +275,6 @@
     }
 }
 
-#define  __SCREEN_WIDTH 320
-#define  __SCREEN_HEIGHT 760
-#define  NAVIGATION_BAR_HEIGHT 40
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     scrollFrame.contentSize = CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT+216);//原始滑动距离增加键盘高度

@@ -34,6 +34,7 @@
     BOOL isFullScreen;
     UIImage *currentImage;
     NSString *ID;
+    CGFloat tHeight;
 }
 
 - (id)init
@@ -46,6 +47,7 @@
         ID=@"0";
         pvv1=-1;
         pvv2=-1;
+        pvv3=-1;
         
         headView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 110)];
         [headView setBackgroundColor:BGCOLOR];
@@ -178,7 +180,7 @@
         self.dataItemArray=[[NSMutableArray alloc]init];
         
         imageList=[[NSMutableArray alloc]init];
-        
+        tHeight=self.tableView.contentSize.height;
     }
     return self;
 }
@@ -336,6 +338,7 @@
     [self.dataItemArray addObject:
      [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",pvv2],KEYCELL,number,VALUECELL, nil]];
     [self.tableView reloadData];
+    tHeight=self.tableView.contentSize.height;
     pvv2=-1;
     [lblSBType setText:@"请选择"];
     [tfSBNumber setText:@""];
@@ -458,46 +461,6 @@
     [tvRemark resignFirstResponder];
 }
 
-#pragma mark - UITextViewDelegate UITextFieldDelegate
-
-//- (void)textFieldDidBeginEditing:(UITextField *)textField
-//{
-//    CGPoint origin = textField.frame.origin;
-//    CGPoint point = [textField.superview convertPoint:origin toView:self.tableView];
-//    float navBarHeight = self.navigationController.navigationBar.frame.size.height;
-//    CGPoint offset = self.tableView.contentOffset;
-//    offset.y = (point.y - navBarHeight-40);
-//    [self.tableView setContentOffset:offset animated:YES];
-//}
-//
-//- (void)textViewDidBeginEditing:(UITextView *)textView
-//{
-//    CGPoint origin = textView.frame.origin;
-//    CGPoint point = [textView.superview convertPoint:origin toView:self.tableView];
-//    float navBarHeight = self.navigationController.navigationBar.frame.size.height;
-//    CGPoint offset = self.tableView.contentOffset;
-//    offset.y = (point.y - navBarHeight-40);
-//    [self.tableView setContentOffset:offset animated:YES];
-//}
-//
-//- (BOOL)textFieldShouldReturn:(UITextField*)textField
-//{
-//    [textField resignFirstResponder];
-//    [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
-//    return YES;
-//}
-
-- (BOOL)textView:(UITextView*)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*) text
-{
-    if([text isEqualToString:@"\n"]){
-        [textView resignFirstResponder];
-        [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
-        return NO;
-    }else{
-        return YES;
-    }
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"SAMPLECell";
     SB1Cell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -542,6 +505,7 @@
             [self.dataItemArray removeObjectAtIndex:indexPath.row];
             //移除tableView中的数据
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            tHeight=self.tableView.contentSize.height;
         }
     }
 }
@@ -665,41 +629,6 @@
     }
 }
 
-#define  __SCREEN_WIDTH 320
-//#define  __SCREEN_HEIGHT 800
-#define  NAVIGATION_BAR_HEIGHT 40
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    CGFloat height=self.tableView.contentSize.height;
-    self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,height+216);//原始滑动距离增加键盘高度
-    CGPoint pt = [textField convertPoint:CGPointMake(0, 0) toView:self.tableView];//把当前的textField的坐标映射到scrollview上
-    if(self.tableView.contentOffset.y-pt.y+NAVIGATION_BAR_HEIGHT<=0)//判断最上面不要去滚动
-        [self.tableView setContentOffset:CGPointMake(0, pt.y-NAVIGATION_BAR_HEIGHT) animated:YES];//华东
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField*)theTextField
-{
-    CGFloat height=self.tableView.contentSize.height;
-    [theTextField resignFirstResponder];
-    //开始动画
-    [UIView beginAnimations:nil context:nil];
-    //设定动画持续时间
-    [UIView setAnimationDuration:0.3];
-    self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,height);
-    //动画结束
-    [UIView commitAnimations];
-    return YES;
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    CGFloat height=self.tableView.contentSize.height;
-    self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,height+216);//原始滑动距离增加键盘高度
-    CGPoint pt = [textView convertPoint:CGPointMake(0, 0) toView:self.tableView];//把当前的textField的坐标映射到scrollview上
-    if(self.tableView.contentOffset.y-pt.y+NAVIGATION_BAR_HEIGHT<=0)//判断最上面不要去滚动
-        [self.tableView setContentOffset:CGPointMake(0, pt.y-NAVIGATION_BAR_HEIGHT) animated:YES];//华东
-}
-
 - (void)downloadImage
 {
     for(int i=0;i<[imageList count];i++){
@@ -715,6 +644,54 @@
         }else if(i==4){
             [Common AsynchronousDownloadImageWithUrl:URL ShowImageView:image5];
         }
+    }
+}
+
+#define  __SCREEN_WIDTH 320
+#define  NAVIGATION_BAR_HEIGHT 40
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,tHeight+216);//原始滑动距离增加键盘高度
+    CGPoint pt = [textField convertPoint:CGPointMake(0, 0) toView:self.tableView];//把当前的textField的坐标映射到scrollview上
+    if(self.tableView.contentOffset.y-pt.y+NAVIGATION_BAR_HEIGHT<=0)//判断最上面不要去滚动
+        [self.tableView setContentOffset:CGPointMake(0, pt.y-NAVIGATION_BAR_HEIGHT) animated:YES];//华东
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,tHeight+216);//原始滑动距离增加键盘高度
+    CGPoint pt = [textView convertPoint:CGPointMake(0, 0) toView:self.tableView];//把当前的textField的坐标映射到scrollview上
+    if(self.tableView.contentOffset.y-pt.y+NAVIGATION_BAR_HEIGHT<=0)//判断最上面不要去滚动
+        [self.tableView setContentOffset:CGPointMake(0, pt.y-NAVIGATION_BAR_HEIGHT) animated:YES];//华东
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+    [textField resignFirstResponder];
+    //开始动画
+    [UIView beginAnimations:nil context:nil];
+    //设定动画持续时间
+    [UIView setAnimationDuration:0.3];
+    self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,tHeight);
+    //动画结束
+    [UIView commitAnimations];
+    return YES;
+}
+
+- (BOOL)textView:(UITextView*)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*) text
+{
+    if([text isEqualToString:@"\n"]){
+        [textView resignFirstResponder];
+        //开始动画
+        [UIView beginAnimations:nil context:nil];
+        //设定动画持续时间
+        [UIView setAnimationDuration:0.3];
+        self.tableView.contentSize = CGSizeMake1(__SCREEN_WIDTH,tHeight);
+        //动画结束
+        [UIView commitAnimations];
+        return NO;
+    }else{
+        return YES;
     }
 }
 
