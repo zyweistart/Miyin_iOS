@@ -56,7 +56,7 @@
 
 - (void)setData:(NSDictionary *)data
 {
-    [self.title setText:@"大力神起重机招聘专业吊车驾驶聘专业吊车驾驶员聘专业吊车驾驶员聘专业吊车驾驶员聘专业吊车驾驶员员"];
+    [self.title setText:@"得力手起重机招聘专业吊车驾驶聘专业吊车驾驶员聘专业吊车驾驶员聘专业吊车驾驶员聘专业吊车驾驶员员"];
     [self.content setText:@"老司低运老司低哪里有啡啡罪罪恩啊jdlkjdlkjdlk晨lkjd回国"];
     [self.money setText:@"2000-5000/月"];
     [self.date setText:@"2015-20-21"];
