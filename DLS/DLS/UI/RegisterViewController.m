@@ -13,6 +13,9 @@
 #define GETNORMALCOLOR [UIColor colorWithRed:(52/255.0) green:(177/255.0) blue:(59/255.0) alpha:1]
 #define GETPRESENCOLOR [UIColor colorWithRed:(125/255.0) green:(195/255.0) blue:(136/255.0) alpha:1]
 
+#define  __SCREEN_WIDTH 320
+#define  __SCREEN_HEIGHT 600
+#define  NAVIGATION_BAR_HEIGHT 40
 @interface RegisterViewController ()
 
 @end
@@ -41,7 +44,7 @@
                                                action:@selector(goBack:)];
         
         scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
-        [scrollFrame setContentSize:CGSizeMake(320, 600)];
+        [scrollFrame setContentSize:CGSizeMake1(__SCREEN_WIDTH, __SCREEN_HEIGHT)];
         [self.view addSubview:scrollFrame];
         
         tfUserName=[self addContentFrame:@"账号" Placeholder:@"请输入账号" TopX:10];
@@ -144,16 +147,6 @@
     return lbl;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField*)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
-
 - (void)goGet:(id)sender
 {
     NSString *phone=[tfPhone text];
@@ -249,6 +242,27 @@
         NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvv1];
         [tfRole setText:[d objectForKey:MKEY]];
     }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    scrollFrame.contentSize = CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT+216);//原始滑动距离增加键盘高度
+    CGPoint pt = [textField convertPoint:CGPointMake(0, 0) toView:scrollFrame];//把当前的textField的坐标映射到scrollview上
+    if(scrollFrame.contentOffset.y-pt.y+NAVIGATION_BAR_HEIGHT<=0)//判断最上面不要去滚动
+        [scrollFrame setContentOffset:CGPointMake(0, pt.y-NAVIGATION_BAR_HEIGHT) animated:YES];//华东
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+    [textField resignFirstResponder];
+    //开始动画
+    [UIView beginAnimations:nil context:nil];
+    //设定动画持续时间
+    [UIView setAnimationDuration:0.3];
+    scrollFrame.contentSize = CGSizeMake1(__SCREEN_WIDTH,__SCREEN_HEIGHT);
+    //动画结束
+    [UIView commitAnimations];
+    return YES;
 }
 
 @end
