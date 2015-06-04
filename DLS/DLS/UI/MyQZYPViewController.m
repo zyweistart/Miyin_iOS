@@ -20,7 +20,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        [self setTitle:@"我的求职"];
+        [self setTitle:@"求职信息"];
         //返回
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]
                                                initWithTitle:@"返回"
