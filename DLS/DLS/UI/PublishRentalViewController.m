@@ -93,7 +93,7 @@
         [tfSBNumber setKeyboardType:UIKeyboardTypeNumberPad];
         [frame addSubview:tfSBNumber];
         //添加
-        ButtonView *buttonAdd=[[ButtonView alloc]initWithFrame:CGRectMake1(10, 60, 300, 40) Name:@"再添加设备"];
+        ButtonView *buttonAdd=[[ButtonView alloc]initWithFrame:CGRectMake1(10, 60, 300, 40) Name:@"添加设备"];
         [buttonAdd addTarget:self action:@selector(add:) forControlEvents:UIControlEventTouchUpInside];
         [footView addSubview:buttonAdd];
         //
