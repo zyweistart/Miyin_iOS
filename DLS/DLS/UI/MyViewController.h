@@ -8,7 +8,7 @@
 
 #import "BaseTableViewController.h"
 
-@interface MyViewController : BaseTableViewController
+@interface MyViewController : BaseTableViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (strong, nonatomic) UIImageView *expandZoomImageView;
 
