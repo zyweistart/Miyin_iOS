@@ -244,7 +244,7 @@
     [lbl setFont:[UIFont systemFontOfSize:14]];
     [lbl setTextColor:DEFAULCOLOR(100)];
     [view1 addSubview:lbl];
-    if([@"工作地点" isEqualToString:title1]){
+    if([@"设备地址" isEqualToString:title1]){
         NSString *location=[Common getString:[self.data objectForKey:@"location"]];
         if(![@"" isEqualToString:location]){
             UIButton *location=[[UIButton alloc]initWithFrame:CGRectMake1(280, 10, 40, 20)];

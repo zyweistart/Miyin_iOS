@@ -52,12 +52,12 @@
         
         UIView *view1=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 320, 80)];
         [scrollFrame addSubview:view1];
-        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 10, 300, 40)];
+        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 10, 250, 40)];
         [lbl setText:name];
         [lbl setFont:[UIFont systemFontOfSize:18]];
         [lbl setTextColor:[UIColor blackColor]];
         [view1 addSubview:lbl];
-        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 50, 300, 20)];
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(10, 50, 250, 20)];
         [lbl setText:[NSString stringWithFormat:@"发布时间:%@",CreateDate]];
         [lbl setFont:[UIFont systemFontOfSize:14]];
         [lbl setTextColor:DEFAUL1COLOR];
@@ -65,6 +65,17 @@
         UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(0, 79, 320, 1)];
         [line setBackgroundColor:DEFAUL3COLOR];
         [view1 addSubview:line];
+        
+        UIImageView *statusImage=[[UIImageView alloc]initWithFrame:CGRectMake1(260, 0, 36, 45)];
+        NSString *status=[Common getString:[data objectForKey:@"status"]];
+        if([@"3" isEqualToString:status]){
+            [statusImage setImage:[UIImage imageNamed:@"已成交"]];
+        }else if([@"2" isEqualToString:status]){
+            [statusImage setImage:[UIImage imageNamed:@"洽谈中"]];
+        }else{
+            [statusImage setImage:[UIImage imageNamed:@"新发布"]];
+        }
+        [view1 addSubview:statusImage];
         
         xlValue=[CommonData getValueArray:[CommonData getType2] Key:xlValue];
         NSMutableString *ms=[[NSMutableString alloc]init];

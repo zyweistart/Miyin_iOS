@@ -134,7 +134,8 @@
 {
     return [NSArray arrayWithObjects:
             [NSDictionary dictionaryWithObjectsAndKeys:@"教师",MKEY,@"1",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"技术员",MKEY,@"2",MVALUE, nil], nil];
+            [NSDictionary dictionaryWithObjectsAndKeys:@"技术员",MKEY,@"2",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"吊车司机",MKEY,@"3",MVALUE, nil], nil];
 }
 //学历
 + (NSArray*)getEducation
@@ -172,23 +173,23 @@
             [NSDictionary dictionaryWithObjectsAndKeys:@"10000-14999",MKEY,@"5",MVALUE, nil],
             [NSDictionary dictionaryWithObjectsAndKeys:@"15000-19999",MKEY,@"6",MVALUE, nil],
             [NSDictionary dictionaryWithObjectsAndKeys:@"20000-29999",MKEY,@"8",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"30000-39999",MKEY,@"9",MVALUE, nil],  nil];
+            [NSDictionary dictionaryWithObjectsAndKeys:@"30000-49999",MKEY,@"9",MVALUE, nil],  nil];
 }
 //区域
 + (NSArray*)getRegion
 {
     return [NSArray arrayWithObjects:
-            [NSDictionary dictionaryWithObjectsAndKeys:@"杭州",MKEY,@"22",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"舟山",MKEY,@"1117",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"衢州",MKEY,@"1116",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"金华",MKEY,@"1115",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"丽水",MKEY,@"29",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"温州",MKEY,@"28",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"台州",MKEY,@"27",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"湖州",MKEY,@"26",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"嘉兴",MKEY,@"25",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"绍兴",MKEY,@"24",MVALUE, nil],
-            [NSDictionary dictionaryWithObjectsAndKeys:@"宁波",MKEY,@"23",MVALUE, nil],nil];
+            [NSDictionary dictionaryWithObjectsAndKeys:@"杭州",MKEY,@"8",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"舟山",MKEY,@"9",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"衢州",MKEY,@"10",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"金华",MKEY,@"11",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"丽水",MKEY,@"1",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"温州",MKEY,@"2",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"台州",MKEY,@"3",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"湖州",MKEY,@"4",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"嘉兴",MKEY,@"5",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"绍兴",MKEY,@"6",MVALUE, nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:@"宁波",MKEY,@"7",MVALUE, nil],nil];
 }
 
 + (NSArray*)getRole

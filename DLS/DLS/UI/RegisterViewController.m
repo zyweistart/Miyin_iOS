@@ -172,8 +172,8 @@
 {
     NSString *username=[tfUserName text];
     NSString *password=[tfPassword text];
-//    NSString *name=[tfName text];
-//    NSString *idcard=[tfIDCard text];
+    NSString *name=[tfName text];
+    NSString *idcard=[tfIDCard text];
     NSString *phone=[tfPhone text];
     NSString *code=[tfCode text];
     NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvv1];
@@ -205,8 +205,8 @@
     [params setObject:phone forKey:@"phone"];
     [params setObject:role forKey:@"per_roles"];
     [params setObject:code forKey:@"SMSCode"];
-//    [params setObject:name forKey:@"name"];
-//    [params setObject:idcard forKey:@"idcard"];
+    [params setObject:name forKey:@"Name"];
+    [params setObject:idcard forKey:@"shenfenzheng"];
     self.hRequest=[[HttpRequest alloc]init];
     [self.hRequest setRequestCode:502];
     [self.hRequest setDelegate:self];
