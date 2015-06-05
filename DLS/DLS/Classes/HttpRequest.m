@@ -179,6 +179,9 @@
         //成功标记
         [response setSuccessFlag:[@"0" isEqualToString:[response code]]];
         if(![response successFlag]){
+            if([@"-15" isEqualToString:[response code]]){
+                [[User Instance]clear];
+            }
             [Common alert:[response msg]];
         }
         [_delegate requestFinishedByResponse:response requestCode:self.requestCode];

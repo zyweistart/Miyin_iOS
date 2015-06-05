@@ -64,7 +64,9 @@
                                                 initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                                 target:nil action:nil];
         negativeSpacerRight.width = -5;
-        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bCollection], nil];
+        if([[User Instance]isLogin]){
+            self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, [[UIBarButtonItem alloc] initWithCustomView:bCollection], nil];
+        }
         
         UIScrollView *scrollFrame=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [scrollFrame setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
@@ -250,14 +252,36 @@
     [self.navigationController pushViewController:[[MapViewController alloc]initWithDictionary:self.data] animated:YES];
 }
 
-- (void)gobCollection:(id)sender
-{
-    NSLog(@"收藏");
-}
-
 - (void)goEdit:(id)sender
 {
     [self.navigationController pushViewController:[[PublishQiuzuViewController alloc]initWithData:self.data] animated:YES];
+}
+
+- (void)gobCollection:(id)sender
+{
+    NSString *title=[self.data objectForKey:@"Name"];
+    NSString *url=[NSString stringWithFormat:@"%@%@",HTTP_URL,[self.data objectForKey:@"url"]];
+    NSString *notes=[self.data objectForKey:@"notes"];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
+    [params setObject:url forKey:@"links"];
+    [params setObject:title forKey:@"title"];
+    [params setObject:notes forKey:@"Introduction"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:501];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest setIsShowMessage:YES];
+    [self.hRequest handle:@"FocusOrCollection" requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        if(reqCode==501){
+            [Common alert:@"收藏成功"];
+        }
+    }
 }
 
 @end
