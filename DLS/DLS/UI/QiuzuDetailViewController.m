@@ -7,6 +7,7 @@
 //
 
 #import "QiuzuDetailViewController.h"
+#import "PublishQiuzuViewController.h"
 #import "MapViewController.h"
 #import "ButtonView.h"
 #import "CommonData.h"
@@ -16,6 +17,26 @@
 @end
 
 @implementation QiuzuDetailViewController
+
+
+
+- (id)initWithDictionary:(NSDictionary*)data Edit:(BOOL)edit
+{
+    self =[self initWithDictionary:data];
+    if(self){
+        if(edit){
+            //
+            UIButton *bEdit = [UIButton buttonWithType:UIButtonTypeCustom];
+            [bEdit setTitle:@"编辑" forState:UIControlStateNormal];
+            [bEdit.titleLabel setFont:[UIFont systemFontOfSize:15]];
+            [bEdit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [bEdit addTarget:self action:@selector(goEdit:) forControlEvents:UIControlEventTouchUpInside];
+            bEdit.frame = CGRectMake(0, 0, 30, 30);
+            self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:bEdit];
+        }
+    }
+    return self;
+}
 
 - (id)initWithDictionary:(NSDictionary*)data{
     self=[super init];
@@ -232,6 +253,11 @@
 - (void)gobCollection:(id)sender
 {
     NSLog(@"收藏");
+}
+
+- (void)goEdit:(id)sender
+{
+    [self.navigationController pushViewController:[[PublishQiuzuViewController alloc]initWithData:self.data] animated:YES];
 }
 
 @end

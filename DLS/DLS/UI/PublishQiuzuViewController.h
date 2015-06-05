@@ -13,4 +13,6 @@
 
 @property SinglePickerView *pv1,*pv2;
 
+- (id)initWithData:(NSDictionary*)data;
+
 @end

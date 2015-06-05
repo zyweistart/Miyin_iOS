@@ -12,6 +12,7 @@
 
 @property NSDictionary *data;
 
+- (id)initWithDictionary:(NSDictionary*)data Edit:(BOOL)edit;
 - (id)initWithDictionary:(NSDictionary*)data;
 
 @end

@@ -46,12 +46,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if([[self dataItemArray]count]==0){
+//    if([[self dataItemArray]count]==0){
         if(!self.tableView.pullTableIsRefreshing) {
             self.tableView.pullTableIsRefreshing=YES;
             [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
         }
-    }
+//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -84,7 +84,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.dataItemArray count]>0){
-        [self.navigationController pushViewController:[[QiuzuDetailViewController alloc]initWithDictionary:[self.dataItemArray objectAtIndex:[indexPath row]]] animated:YES];
+        [self.navigationController pushViewController:[[QiuzuDetailViewController alloc]initWithDictionary:[self.dataItemArray objectAtIndex:[indexPath row]] Edit:YES] animated:YES];
     }
 }
 

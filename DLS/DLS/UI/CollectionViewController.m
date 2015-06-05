@@ -69,6 +69,32 @@
     }
 }
 
+- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath{
+    return YES;
+}
+
+- (NSString*)tableView:(UITableView*) tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if([self.dataItemArray count]>[indexPath row]){
+        if(editingStyle==UITableViewCellEditingStyleDelete){
+            NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath row]];
+            NSString *ID=[data objectForKey:@"Id"];
+            NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+            [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
+            [params setObject:ID forKey:@"Id"];
+            [params setObject:@"Collection" forKey:@"KeyWord"];
+            self.hRequest=[[HttpRequest alloc]init];
+            [self.hRequest setRequestCode:501];
+            [self.hRequest setDelegate:self];
+            [self.hRequest setController:self];
+            [self.hRequest handle:@"DelDataFormKeyWord" requestParams:params];
+        }
+    }
+}
+
 - (void)loadHttp
 {
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
@@ -80,6 +106,21 @@
     [self.hRequest setDelegate:self];
     [self.hRequest setController:self];
     [self.hRequest handle:@"GetListALL" requestParams:params];
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if(reqCode==501){
+        if([response successFlag]){
+            [Common alert:[response msg]];
+            if(!self.tableView.pullTableIsRefreshing) {
+                self.tableView.pullTableIsRefreshing=YES;
+                [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+            }
+        }
+    }else{
+        [super requestFinishedByResponse:response requestCode:reqCode];
+    }
 }
 
 @end

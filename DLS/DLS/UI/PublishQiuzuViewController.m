@@ -30,6 +30,7 @@
     UIDatePicker *startDatePicker,*endDatePicker;
     NSLocale *datelocale;
     CGFloat tHeight;
+    NSString *ID;
 }
 
 - (id)init
@@ -38,6 +39,7 @@
     if(self){
         [self setTitle:@"发布求租"];
         [self.view setBackgroundColor:BGCOLOR];
+        ID=@"0";
         pvv1=-1;
         pvv2=-1;
         
@@ -171,6 +173,56 @@
     return self;
 }
 
+- (id)initWithData:(NSDictionary*)data
+{
+    self=[self init];
+    if(self){
+        //类型
+        ID=[Common getString:[data objectForKey:@"Id"]];
+        NSString *xlValue=[Common getString:[data objectForKey:@"xlValue"]];
+        //标题
+        NSString *name=[Common getString:[data objectForKey:@"Name"]];
+        //设备地址
+        NSString *address=[Common getString:[data objectForKey:@"address"]];
+        pvv1=[CommonData getValueIndex:[CommonData getType2] Key:xlValue];
+        //开始时间
+        NSString *startTime=[Common convertTime:[data objectForKey:@"startTime"]];
+        //结束时间
+        NSString *endTime=[Common convertTime:[data objectForKey:@"endTime"]];
+        //出价
+        NSString *price=[Common getString:[data objectForKey:@"price"]];
+        //电话
+        NSString *phone=[data objectForKey:@"contact_phone"];
+        //备注
+        NSString *notes=[Common getString:[data objectForKey:@"notes"]];
+        //添加设备的列表
+        NSString *weight=[Common getString:[data objectForKey:@"weight"]];
+        NSString *equipment_Num=[Common getString:[data objectForKey:@"equipment_Num"]];
+        if(![@"" isEqualToString:weight]&&![@"" isEqualToString:equipment_Num]){
+            NSArray *weightArray=[weight componentsSeparatedByString:@","];
+            NSArray *equipment_NumArray=[equipment_Num componentsSeparatedByString:@","];
+            for(int i=0;i<[weightArray count];i++){
+                NSString *w=[weightArray objectAtIndex:i];
+                NSString *e=[equipment_NumArray objectAtIndex:i];
+                w=[NSString stringWithFormat:@"%d",[CommonData getValueIndex:[CommonData getSearchTon2] Key:w]];
+                [self.dataItemArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:w,KEYCELL,e,VALUECELL, nil]];
+            }
+            //            [self.tableView reloadData];
+        }
+        
+        [lblRentalType setText:[CommonData getValueArray:[CommonData getType2] Key:xlValue]];
+        [tfTitle setText:name];
+        [tfAddress setText:address];
+        [tfStartTime setText:startTime];
+        [tfEndTime setText:endTime];
+        [tfPrice setText:price];
+        [tfPhone setText:phone];
+        [tvRemark setText:notes];
+    }
+    return self;
+}
+
+
 - (UILabel*)addFrameType:(CGFloat)y Title:(NSString*)title Name:(NSString*)name Tag:(NSInteger)tag Frame:(UIView*)f
 {
     UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0,y,320,40)];
@@ -300,7 +352,7 @@
     NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
     [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
     [params setObject:@"41" forKey:@"classId"];
-    [params setObject:@"0" forKey:@"Id"];
+    [params setObject:ID forKey:@"Id"];
     [params setObject:pvv1v forKey:@"xlValue"];
     [params setObject:title forKey:@"Name"];
     [params setObject:price forKey:@"price"];
