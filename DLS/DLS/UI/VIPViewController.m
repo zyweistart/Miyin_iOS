@@ -250,4 +250,18 @@
     }
 }
 
+- (void)lookDetail:(id)sender
+{
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:[[User Instance]accessToken] forKey:@"access_token"];
+    [params setObject:@"35" forKey:@"classId"];
+    [params setObject:@"35" forKey:@"Id"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    //BuyInfo
+    [self.hRequest handle:@"CheckPayUserMoney" requestParams:params];
+}
+
 @end
