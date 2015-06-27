@@ -230,7 +230,6 @@
 
 - (void)actionbtn:(UIButton *)btn {
     
-    _navScrollV 
     
     [_scrollV scrollRectToVisible:CGRectMake(_scrollV.frame.size.width * (btn.tag - 1), _scrollV.frame.origin.y, _scrollV.frame.size.width, _scrollV.frame.size.height) animated:YES];
     
