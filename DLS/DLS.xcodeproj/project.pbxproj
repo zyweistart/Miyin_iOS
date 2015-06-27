@@ -118,6 +118,7 @@
 		C9F11F541AB27AC10014E462 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F11F531AB27AC10014E462 /* AboutUsViewController.m */; };
 		C9F11F571AB27AD70014E462 /* ClauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F11F561AB27AD70014E462 /* ClauseViewController.m */; };
 		C9F24D061AB9A1DB00D23C05 /* ButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F24D051AB9A1DB00D23C05 /* ButtonView.m */; };
+		C9FD75501B3E86A700DF69F0 /* CollectionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FD754F1B3E86A700DF69F0 /* CollectionDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -337,6 +338,8 @@
 		C9F11F561AB27AD70014E462 /* ClauseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClauseViewController.m; sourceTree = "<group>"; };
 		C9F24D041AB9A1DB00D23C05 /* ButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonView.h; sourceTree = "<group>"; };
 		C9F24D051AB9A1DB00D23C05 /* ButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonView.m; sourceTree = "<group>"; };
+		C9FD754E1B3E86A700DF69F0 /* CollectionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionDetailViewController.h; sourceTree = "<group>"; };
+		C9FD754F1B3E86A700DF69F0 /* CollectionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -434,6 +437,8 @@
 				C9610DD91AB158C700CA8218 /* PublishRentalViewController.m */,
 				C90699B21AAE83A300E32C54 /* SettingViewController.h */,
 				C90699B31AAE83A300E32C54 /* SettingViewController.m */,
+				C9FD754E1B3E86A700DF69F0 /* CollectionDetailViewController.h */,
+				C9FD754F1B3E86A700DF69F0 /* CollectionDetailViewController.m */,
 			);
 			name = "我的";
 			sourceTree = "<group>";
@@ -897,6 +902,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9FD75501B3E86A700DF69F0 /* CollectionDetailViewController.m in Sources */,
 				C9AFBB8D1AAD8129008C7AE9 /* MessageDetailViewController.m in Sources */,
 				C9F24D061AB9A1DB00D23C05 /* ButtonView.m in Sources */,
 				C9E1FEE71AA555F000720AAC /* Reachability.m in Sources */,
