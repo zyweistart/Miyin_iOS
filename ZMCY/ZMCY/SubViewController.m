@@ -1,11 +1,3 @@
-//
-//  SubViewController.m
-//  testMyBackNavigation
-//
-//  Created by chen on 14-3-25.
-//  Copyright (c) 2014年 User. All rights reserved.
-//
-
 #import "SubViewController.h"
 
 @interface SubViewController ()
