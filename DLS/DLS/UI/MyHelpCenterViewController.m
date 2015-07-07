@@ -33,7 +33,7 @@
         [self.webView1 setDelegate:self];
         [self.view addSubview:self.webView1];
         
-        [self.webView1 loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: @"http://www.dlsjijian.com/98/m_ThelpC.html"]]];
+        [self.webView1 loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: @"http://www.delishou.com/98/m_ThelpC.html"]]];
     }
     return self;
 }
