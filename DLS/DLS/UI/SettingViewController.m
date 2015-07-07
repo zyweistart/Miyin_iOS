@@ -35,7 +35,7 @@
         self.dataItemArray=[[NSMutableArray alloc]init];
 //        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"把得力手分享给朋友", nil]];
         [self.dataItemArray addObject:[NSArray arrayWithObjects:@"修改密码", nil]];
-        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"意见反馈",@"服务条款",@"关于我们", nil]];
+//        [self.dataItemArray addObject:[NSArray arrayWithObjects:@"意见反馈",@"服务条款",@"关于我们", nil]];
         
         self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
