@@ -106,7 +106,7 @@ static CGFloat kImageOriginHight = 220.f;
         bHead=[[UIView alloc]initWithFrame:CGRectMake1(120, 0, 80, 80)];
         [personalFrame addSubview:bHead];
         iUserNameImage=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 0, 60, 60)];
-        iUserNameImage.layer.cornerRadius=30;
+        iUserNameImage.layer.cornerRadius=iUserNameImage.bounds.size.width/2;
         iUserNameImage.layer.masksToBounds = YES;
         [iUserNameImage setUserInteractionEnabled:YES];
         [iUserNameImage addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addImage:)]];
