@@ -87,6 +87,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self performSelector:@selector(appear) withObject:nil];
+}
+
+- (void)appear
+{
     if(currentType==1||currentType==5||currentType==2||currentType==6||currentType==3||currentType==7){
         if(!ISFIRSTINFLAG){
             [categoryView setIndex:1];
@@ -97,7 +102,7 @@
         }
     }else{
         if(![[User Instance]isLogin]){
-//            [self presentViewControllerNav:[[LoginViewController alloc]init]];
+            //            [self presentViewControllerNav:[[LoginViewController alloc]init]];
         }else{
             if(!ISFIRSTINFLAG){
                 [categoryView setIndex:1];

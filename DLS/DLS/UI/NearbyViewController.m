@@ -91,7 +91,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self goCurrentLocation];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -102,6 +101,7 @@
 //    }else{
 //        [self goCurrentLocation];
 //    }
+    [self performSelector:@selector(goCurrentLocation) withObject:nil];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
