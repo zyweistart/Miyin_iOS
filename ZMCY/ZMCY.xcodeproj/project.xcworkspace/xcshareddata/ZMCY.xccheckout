@@ -12,6 +12,8 @@
 	<dict>
 		<key>142F90E583E31EEE4C816EABE6B037C19DB4AD77</key>
 		<string>https://github.com/zyweistart/Miyin_iOS.git</string>
+		<key>C1C059A698D7E3570C4FBB21ECFC710D84627A33</key>
+		<string>https://github.com/zyweistart/Ancun.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>ZMCY/ZMCY.xcodeproj</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>142F90E583E31EEE4C816EABE6B037C19DB4AD77</key>
 		<string>../../..</string>
+		<key>C1C059A698D7E3570C4FBB21ECFC710D84627A33</key>
+		<string>../../../../Ancun</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/zyweistart/Miyin_iOS.git</string>
@@ -28,6 +32,14 @@
 	<string>142F90E583E31EEE4C816EABE6B037C19DB4AD77</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C1C059A698D7E3570C4FBB21ECFC710D84627A33</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Ancun</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
