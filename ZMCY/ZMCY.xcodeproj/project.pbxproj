@@ -63,6 +63,8 @@
 		C993B7551B57B56300D59FD3 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B73E1B57B56300D59FD3 /* UIImage+Utils.m */; };
 		C993B7561B57B56300D59FD3 /* UIImageView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B7401B57B56300D59FD3 /* UIImageView+Utils.m */; };
 		C993B7581B57B56300D59FD3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B7441B57B56300D59FD3 /* User.m */; };
+		C993B75B1B57B6AD00D59FD3 /* MainAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B75A1B57B6AD00D59FD3 /* MainAppViewController.m */; };
+		C993B75E1B57B72E00D59FD3 /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B75D1B57B72E00D59FD3 /* Channel.m */; };
 		C9EB5F5B1A8AF913002DE6C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB5F5A1A8AF913002DE6C0 /* main.m */; };
 		C9EB5F5E1A8AF913002DE6C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB5F5D1A8AF913002DE6C0 /* AppDelegate.m */; };
 		C9EB5F661A8AF913002DE6C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9EB5F651A8AF913002DE6C0 /* Images.xcassets */; };
@@ -193,6 +195,10 @@
 		C993B7401B57B56300D59FD3 /* UIImageView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Utils.m"; sourceTree = "<group>"; };
 		C993B7431B57B56300D59FD3 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		C993B7441B57B56300D59FD3 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		C993B7591B57B6AD00D59FD3 /* MainAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainAppViewController.h; sourceTree = "<group>"; };
+		C993B75A1B57B6AD00D59FD3 /* MainAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainAppViewController.m; sourceTree = "<group>"; };
+		C993B75C1B57B72E00D59FD3 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
+		C993B75D1B57B72E00D59FD3 /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
 		C9EB5F551A8AF913002DE6C0 /* ZMCY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZMCY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9EB5F591A8AF913002DE6C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9EB5F5A1A8AF913002DE6C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -244,6 +250,8 @@
 		C993B5F81B57AF7800D59FD3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C993B7591B57B6AD00D59FD3 /* MainAppViewController.h */,
+				C993B75A1B57B6AD00D59FD3 /* MainAppViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -265,6 +273,8 @@
 		C993B5FB1B57AF8B00D59FD3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C993B75C1B57B72E00D59FD3 /* Channel.h */,
+				C993B75D1B57B72E00D59FD3 /* Channel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -486,10 +496,10 @@
 		C9EB5F571A8AF913002DE6C0 /* ZMCY */ = {
 			isa = PBXGroup;
 			children = (
-				C993B71B1B57B56300D59FD3 /* Classes */,
 				C9EB5F5C1A8AF913002DE6C0 /* AppDelegate.h */,
 				C9EB5F5D1A8AF913002DE6C0 /* AppDelegate.m */,
 				C9EB5F651A8AF913002DE6C0 /* Images.xcassets */,
+				C993B71B1B57B56300D59FD3 /* Classes */,
 				C9EB5F7E1A8AFA08002DE6C0 /* Librarys */,
 				C9EB5F581A8AF913002DE6C0 /* Supporting Files */,
 				C993B5F71B57AEF800D59FD3 /* UI */,
@@ -689,6 +699,7 @@
 				C993B6781B57AFB000D59FD3 /* PullTableView.m in Sources */,
 				C993B7171B57B52F00D59FD3 /* UIImage+GIF.m in Sources */,
 				C993B74D1B57B56300D59FD3 /* DataOutputStream.m in Sources */,
+				C993B75E1B57B72E00D59FD3 /* Channel.m in Sources */,
 				C993B7191B57B52F00D59FD3 /* UIImage+WebP.m in Sources */,
 				C993B6871B57AFB000D59FD3 /* MBProgressHUD.m in Sources */,
 				C993B7501B57B56300D59FD3 /* NSData+AES256.m in Sources */,
@@ -698,6 +709,7 @@
 				C993B6771B57AFB000D59FD3 /* MessageInterceptor.m in Sources */,
 				C993B6DA1B57B4E300D59FD3 /* ATMHudQueueItem.m in Sources */,
 				C993B74A1B57B56300D59FD3 /* CameraUtility.m in Sources */,
+				C993B75B1B57B6AD00D59FD3 /* MainAppViewController.m in Sources */,
 				C993B7531B57B56300D59FD3 /* Response.m in Sources */,
 				C993B6E51B57B51400D59FD3 /* EAIntroView.m in Sources */,
 				C993B70E1B57B52F00D59FD3 /* MKAnnotationView+WebCache.m in Sources */,
