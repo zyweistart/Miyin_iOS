@@ -18,6 +18,7 @@
 #import <Foundation/Foundation.h>
 #import "AppDelegate.h"
 
+#import "User.h"
 #import "Common.h"
 //#import "CButton.h"
 //#import "CLabel.h"
@@ -27,13 +28,13 @@
 
 #ifdef TEST
 //测试环境定义的常量
-#define HTTP_URL1 @"http://211.155.232.135:8340/"
-#define HTTP_URL @"http://www.iguodong.net/api/knowyou.php"
+#define HTTP_URL @"http://api.020leader.com"
 #else
 //正式环境定义的常量
-#define HTTP_URL1 @"http://211.155.232.135:8340/"
-#define HTTP_URL @"http://www.iguodong.net/api/knowyou.php"
+#define HTTP_URL @"http://api.020leader.com"
 #endif
+
+#define HTTP_SERVER_URL(URL,SIGNATURE,TIMESTAMP,NONCE) [NSString stringWithFormat:@"%@/Ajax/API/%@.html?signature=%@&timestamp=%@&nonce=%@",HTTP_URL,URL,SIGNATURE,TIMESTAMP,NONCE]
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 #define inch35 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C91BA0A41B5B3548001E9CEB /* HttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C91BA0A31B5B3548001E9CEB /* HttpRequest.m */; };
 		C993B6751B57AFB000D59FD3 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B6201B57AFB000D59FD3 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C993B6761B57AFB000D59FD3 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B6221B57AFB000D59FD3 /* LoadMoreTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C993B6771B57AFB000D59FD3 /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B6241B57AFB000D59FD3 /* MessageInterceptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -55,7 +56,6 @@
 		C993B74C1B57B56300D59FD3 /* CustomAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B72B1B57B56300D59FD3 /* CustomAnnotation.m */; };
 		C993B74D1B57B56300D59FD3 /* DataOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B72D1B57B56300D59FD3 /* DataOutputStream.m */; };
 		C993B74E1B57B56300D59FD3 /* HttpDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B72F1B57B56300D59FD3 /* HttpDownload.m */; };
-		C993B74F1B57B56300D59FD3 /* HttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B7311B57B56300D59FD3 /* HttpRequest.m */; };
 		C993B7501B57B56300D59FD3 /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B7331B57B56300D59FD3 /* NSData+AES256.m */; };
 		C993B7521B57B56300D59FD3 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B7371B57B56300D59FD3 /* NSString+Utils.m */; };
 		C993B7531B57B56300D59FD3 /* Response.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B7391B57B56300D59FD3 /* Response.m */; };
@@ -86,6 +86,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C91BA0A21B5B3548001E9CEB /* HttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequest.h; sourceTree = "<group>"; };
+		C91BA0A31B5B3548001E9CEB /* HttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequest.m; sourceTree = "<group>"; };
 		C993B61F1B57AFB000D59FD3 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		C993B6201B57AFB000D59FD3 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		C993B6211B57AFB000D59FD3 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -178,8 +180,6 @@
 		C993B72D1B57B56300D59FD3 /* DataOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataOutputStream.m; sourceTree = "<group>"; };
 		C993B72E1B57B56300D59FD3 /* HttpDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDownload.h; sourceTree = "<group>"; };
 		C993B72F1B57B56300D59FD3 /* HttpDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpDownload.m; sourceTree = "<group>"; };
-		C993B7301B57B56300D59FD3 /* HttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequest.h; sourceTree = "<group>"; };
-		C993B7311B57B56300D59FD3 /* HttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequest.m; sourceTree = "<group>"; };
 		C993B7321B57B56300D59FD3 /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
 		C993B7331B57B56300D59FD3 /* NSData+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES256.m"; sourceTree = "<group>"; };
 		C993B7361B57B56300D59FD3 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
@@ -453,8 +453,8 @@
 				C993B72D1B57B56300D59FD3 /* DataOutputStream.m */,
 				C993B72E1B57B56300D59FD3 /* HttpDownload.h */,
 				C993B72F1B57B56300D59FD3 /* HttpDownload.m */,
-				C993B7301B57B56300D59FD3 /* HttpRequest.h */,
-				C993B7311B57B56300D59FD3 /* HttpRequest.m */,
+				C91BA0A21B5B3548001E9CEB /* HttpRequest.h */,
+				C91BA0A31B5B3548001E9CEB /* HttpRequest.m */,
 				C993B7321B57B56300D59FD3 /* NSData+AES256.h */,
 				C993B7331B57B56300D59FD3 /* NSData+AES256.m */,
 				C993B7361B57B56300D59FD3 /* NSString+Utils.h */,
@@ -717,7 +717,6 @@
 				C993B7161B57B52F00D59FD3 /* UIButton+WebCache.m in Sources */,
 				C993B6E41B57B51400D59FD3 /* EAIntroPage.m in Sources */,
 				C993B6C81B57B3CA00D59FD3 /* SJAvatarBrowser.m in Sources */,
-				C993B74F1B57B56300D59FD3 /* HttpRequest.m in Sources */,
 				C993B7521B57B56300D59FD3 /* NSString+Utils.m in Sources */,
 				C9EB5F5E1A8AF913002DE6C0 /* AppDelegate.m in Sources */,
 				C993B7491B57B56300D59FD3 /* BaseViewController.m in Sources */,
@@ -727,6 +726,7 @@
 				C993B7471B57B56300D59FD3 /* BaseTabBarViewController.m in Sources */,
 				C993B74B1B57B56300D59FD3 /* Common.m in Sources */,
 				C9EB5FAC1A8AFA08002DE6C0 /* Reachability.m in Sources */,
+				C91BA0A41B5B3548001E9CEB /* HttpRequest.m in Sources */,
 				C9EB5F5B1A8AF913002DE6C0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

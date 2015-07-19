@@ -2,7 +2,6 @@
 #import "ATMHud.h"
 #import "MBProgressHUD.h"
 #import "Reachability.h"
-#import "NSString+Utils.h"
 
 @implementation HttpRequest
 {
@@ -18,6 +17,7 @@
     if(self){
         self.isShowMessage=NO;
         self.isFileDownload=NO;
+        self.isMultipartFormDataSubmit=NO;
     }
     return self;
 }
@@ -34,106 +34,78 @@
     }
 }
 
-
-- (void)loginHandle:(NSString*)action requestParams:(NSMutableDictionary*)params
-{
-    if ([HttpRequest isNetworkConnection]) {
-        NSMutableString *URL=[[NSMutableString alloc]initWithString:[NSString stringWithFormat:@"%@?%@",HTTP_URL1,action]];
-        for(id p in params){
-            NSString *v=[params objectForKey:p];
-            [URL appendFormat:@"&%@=%@",p,v];
-        }
-        // 初始化一个请求
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URL]];
-        // 60秒请求超时
-        request.timeoutInterval = 120;
-        
-        if(self.uploadFileData){
-            [request setHTTPMethod:@"POST"];
-            [request setHTTPBody:self.uploadFileData];
-        }else{
-            [request setHTTPMethod:@"GET"];
-        }
-        // 初始化一个连接
-        NSURLConnection *conn = [NSURLConnection connectionWithRequest:request delegate:self];
-        // 开始一个异步请求
-        [conn start];
-        if(_isFileDownload){
-            _atmHud=[[ATMHud alloc]init];
-            [self.controller.view addSubview:_atmHud.view];
-            [_atmHud setCaption:@"下载中..."];
-            [_atmHud setProgress:0.01];
-            [_atmHud show];
-        } else {
-            if(self.controller&&(self.message!=nil||self.isShowMessage)) {
-                _mbpHud = [[MBProgressHUD alloc] initWithView:self.controller.view];
-                [self.controller.view addSubview:_mbpHud];
-                if(self.message) {
-                    _mbpHud.labelText = _message;
-                }
-                _mbpHud.dimBackground = NO;
-                _mbpHud.square = YES;
-                [_mbpHud show:YES];
-            }
-        }
-    } else {
-        NSLog(@"网络连接出错，请检测网络设置");
-        if( [_delegate respondsToSelector: @selector(requestFailed:)]) {
-            [_delegate requestFailed:self.requestCode];
-        }
-    }
-}
-
-
 - (void)handle:(NSString*)action requestParams:(NSMutableDictionary*)params
 {
     if ([HttpRequest isNetworkConnection]) {
-        NSMutableString *URL=[[NSMutableString alloc]initWithString:[NSString stringWithFormat:@"%@?",HTTP_URL]];
-        //时间戳
-        NSTimeInterval time=[[NSDate date] timeIntervalSince1970]*1000;
-        [params setObject:[NSString stringWithFormat:@"%0.lf",time] forKey:@"httpTime"];
-        //参数拼接URL
-        for(id p in params){
-            NSString *v=[params objectForKey:p];
-            [URL appendFormat:@"%@=%@&",p,v];
+        //时间戳;
+//        NSString *timestamp=[NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]*1000];
+        NSString *timestamp=@"1426145110208";
+        //随机数
+//        NSString *nonce=[NSString stringWithFormat:@"%d",arc4random() % 1000];
+        NSString *nonce=@"881";
+        //封装成数组
+//        NSString *arr[]={ACCESSKEY,timestamp,nonce};
+        //数组排序
+
+        //签名
+        NSString *signature=@"b1c6607d21672466a41aff9ca476722cd55a1bf8";
+        NSString *url=HTTP_SERVER_URL(action, signature, timestamp, nonce);
+        if(self.isMultipartFormDataSubmit){
+            NSString *access_token=[params objectForKey:@"access_token"];
+            url=[NSString stringWithFormat:@"%@&access_token=%@&dir=image&Type=1",url,access_token];
         }
-        NSMutableArray *paramsArray=[[NSMutableArray alloc]init];
-        for(id p in params){
-            [paramsArray addObject:p];
-        }
-        //参数排序签名
-        NSArray *paramsSortArray = [paramsArray sortedArrayUsingComparator:
-                                    ^NSComparisonResult(NSString *obj1, NSString *obj2) {
-                                        return [obj1 compare:obj2];
-                                    }];
-        NSMutableString *aParamsString=[[NSMutableString alloc]init];
-        for(int i=0;i<[paramsSortArray count];i++){
-            NSString *p=paramsSortArray[i];
-            NSString *v=[params objectForKey:p];
-            [aParamsString appendFormat:@"%@=%@",p,v];
-            if(i+1<[paramsSortArray count]){
-                [aParamsString appendString:@"|"];
-            }
-        }
-        [URL appendFormat:@"sign=%@",[aParamsString md5]];
-        
-        NSString* urlEncoding = [URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         // 初始化一个请求
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlEncoding]];
-//        NSLog(@"%@",URL);
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+        // 设置请求方法
+        request.HTTPMethod = @"POST";
         // 60秒请求超时
-        request.timeoutInterval = 120;
+        request.timeoutInterval = 60;
         
-        if(self.uploadFileData){
-            [request setHTTPMethod:@"POST"];
-            [request setHTTPBody:self.uploadFileData];
+        if(self.isMultipartFormDataSubmit){
+            NSStringEncoding gbkEncoding =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+            
+            NSString *boundary=@"AaB03x";
+            
+            // post body
+            NSMutableData *body = [NSMutableData data];
+            
+            // add params (all params are strings)
+            for (NSString *param in params) {
+                id value=[params objectForKey:param];
+                if(![value isKindOfClass:[NSData class]]){
+                    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:gbkEncoding]];
+                    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", [param stringByAddingPercentEscapesUsingEncoding:gbkEncoding]] dataUsingEncoding:gbkEncoding]];
+                    [body appendData:[[NSString stringWithFormat:@"%@\r\n", value] dataUsingEncoding:gbkEncoding]];
+                }
+            }
+            // add image data
+            for (NSString *param in params) {
+                id value=[params objectForKey:param];
+                if([value isKindOfClass:[NSData class]]){
+                    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:gbkEncoding]];
+                    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@.png\"\r\n",param,param] dataUsingEncoding:gbkEncoding]];
+                    [body appendData:[@"Content-Type: image/png\r\n\r\n" dataUsingEncoding:gbkEncoding]];
+                    [body appendData:value];
+                    [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:gbkEncoding]];
+                }
+            }
+            [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:gbkEncoding]];
+            
+            //        NSLog(@"%@",[[NSString alloc] initWithData:body  encoding:gbkEncoding]);
+            
+            [request setValue:[NSString stringWithFormat:@"multipart/form-data, boundary=%@",boundary] forHTTPHeaderField: @"Content-Type"];
+            
+            // set the content-length
+            [request setValue:[NSString stringWithFormat:@"%ld",[body length]] forHTTPHeaderField:@"Content-Length"];
+            
+            [request setHTTPBody:body];
+            
         }else{
-            [request setHTTPMethod:@"GET"];
-//            NSString *bodyContent=[[NSString alloc] initWithData:[Common toJSONData:params] encoding:NSUTF8StringEncoding];
-//            // 对字符串进行编码后转成NSData对象
-//            NSData *data = [bodyContent dataUsingEncoding:NSUTF8StringEncoding];
-//            // 设置请求主体
-//            request.HTTPBody = data;
+            NSString *bodyContent=[[NSString alloc] initWithData:[Common toJSONData:params] encoding:NSUTF8StringEncoding];
+            // 对字符串进行编码后转成NSData对象
+            NSData *data = [bodyContent dataUsingEncoding:NSUTF8StringEncoding];
+            // 设置请求主体
+            request.HTTPBody = data;
         }
         // 初始化一个连接
         NSURLConnection *conn = [NSURLConnection connectionWithRequest:request delegate:self];
@@ -204,10 +176,13 @@
     } else if( [_delegate respondsToSelector: @selector(requestFinishedByResponse:requestCode:)]) {
         NSString *responseString =[[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
         Response *response=[Response toData:responseString];
+        //成功标记
+        [response setSuccessFlag:[@"0" isEqualToString:[response code]]];
         if(![response successFlag]){
-            if([response message]!=nil&&![@""isEqualToString:[response message]]){
-                [Common alert:[response message]];
+            if([@"-15" isEqualToString:[response code]]){
+                [[User Instance]clear];
             }
+            [Common alert:[response message]];
         }
         [_delegate requestFinishedByResponse:response requestCode:self.requestCode];
     }
@@ -228,8 +203,6 @@
         [_delegate connection:connection didFailWithError:error];
     } else if( [_delegate respondsToSelector: @selector(requestFailed:)]) {
         [_delegate requestFailed:self.requestCode];
-    } else{
-        [Common alert:[NSString stringWithFormat:@"网络异常，请重试%@",[error localizedDescription]]];
     }
     //隐藏下载进度条
     if(_atmHud) {

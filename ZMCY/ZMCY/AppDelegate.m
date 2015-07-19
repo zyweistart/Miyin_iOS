@@ -20,11 +20,10 @@
     }
     //状态栏
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-    
-    
+    UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[MainAppViewController alloc] init]];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController=[[MainAppViewController alloc] init];
+    self.window.rootViewController=frameViewControllerNav;
     [self.window makeKeyAndVisible];
     return YES;
 }

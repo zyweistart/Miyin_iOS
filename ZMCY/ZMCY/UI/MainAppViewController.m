@@ -14,24 +14,36 @@
 
 @implementation MainAppViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (id)init{
+    self=[super init];
+    if(self){
+        [self cTitle:@"懂你"];
+        self.isFirstRefresh=YES;
+    }
+    return self;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([[self dataItemArray] count]>0){
+        return CGHeight(205);
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([[self dataItemArray] count]>0){
+        static NSString *cellIdentifier = @"SAMPLECell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        return cell;
+    }else{
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    }
 }
-*/
 
 @end
