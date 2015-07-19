@@ -17,7 +17,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        [self cTitle:@"懂你"];
+        [self cTitle:@"照明产业"];
         self.isFirstRefresh=YES;
     }
     return self;
@@ -44,6 +44,18 @@
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
+}
+
+- (void)loadHttp
+{
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    [params setObject:@"1" forKey:@"Id"];
+    [params setObject:[NSString stringWithFormat:@"%ld",[self currentPage]] forKey:@"index"];
+    self.hRequest=[[HttpRequest alloc]init];
+    [self.hRequest setRequestCode:500];
+    [self.hRequest setDelegate:self];
+    [self.hRequest setController:self];
+    [self.hRequest handle:@"GetListALL" requestParams:params];
 }
 
 @end
