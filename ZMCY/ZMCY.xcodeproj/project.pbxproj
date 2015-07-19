@@ -71,6 +71,11 @@
 		C99C9D841B5B4BCA00B032D8 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9D811B5B4BCA00B032D8 /* BaseViewController.m */; };
 		C99C9D851B5B4BCA00B032D8 /* HttpDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9D831B5B4BCA00B032D8 /* HttpDownload.m */; };
 		C99C9D881B5B60CE00B032D8 /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9D871B5B60CE00B032D8 /* NewsDetailViewController.m */; };
+		C99C9D8B1B5B739E00B032D8 /* AppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9D8A1B5B739E00B032D8 /* AppViewController.m */; };
+		C99C9D8E1B5B73A600B032D8 /* ResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9D8D1B5B73A600B032D8 /* ResourceViewController.m */; };
+		C99C9D911B5B73C900B032D8 /* MarketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9D901B5B73C900B032D8 /* MarketViewController.m */; };
+		C99C9D941B5B73F000B032D8 /* ChiLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9D931B5B73F000B032D8 /* ChiLibraryViewController.m */; };
+		C99C9D971B5B74E000B032D8 /* MemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9D961B5B74E000B032D8 /* MemberViewController.m */; };
 		C9EB5F5B1A8AF913002DE6C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB5F5A1A8AF913002DE6C0 /* main.m */; };
 		C9EB5F5E1A8AF913002DE6C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB5F5D1A8AF913002DE6C0 /* AppDelegate.m */; };
 		C9EB5F661A8AF913002DE6C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9EB5F651A8AF913002DE6C0 /* Images.xcassets */; };
@@ -217,6 +222,16 @@
 		C99C9D831B5B4BCA00B032D8 /* HttpDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpDownload.m; sourceTree = "<group>"; };
 		C99C9D861B5B60CE00B032D8 /* NewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailViewController.h; sourceTree = "<group>"; };
 		C99C9D871B5B60CE00B032D8 /* NewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailViewController.m; sourceTree = "<group>"; };
+		C99C9D891B5B739E00B032D8 /* AppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppViewController.h; sourceTree = "<group>"; };
+		C99C9D8A1B5B739E00B032D8 /* AppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppViewController.m; sourceTree = "<group>"; };
+		C99C9D8C1B5B73A600B032D8 /* ResourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceViewController.h; sourceTree = "<group>"; };
+		C99C9D8D1B5B73A600B032D8 /* ResourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceViewController.m; sourceTree = "<group>"; };
+		C99C9D8F1B5B73C900B032D8 /* MarketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketViewController.h; sourceTree = "<group>"; };
+		C99C9D901B5B73C900B032D8 /* MarketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketViewController.m; sourceTree = "<group>"; };
+		C99C9D921B5B73F000B032D8 /* ChiLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiLibraryViewController.h; sourceTree = "<group>"; };
+		C99C9D931B5B73F000B032D8 /* ChiLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiLibraryViewController.m; sourceTree = "<group>"; };
+		C99C9D951B5B74E000B032D8 /* MemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberViewController.h; sourceTree = "<group>"; };
+		C99C9D961B5B74E000B032D8 /* MemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberViewController.m; sourceTree = "<group>"; };
 		C9EB5F551A8AF913002DE6C0 /* ZMCY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZMCY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9EB5F591A8AF913002DE6C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9EB5F5A1A8AF913002DE6C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -272,6 +287,16 @@
 				C993B75A1B57B6AD00D59FD3 /* MainAppViewController.m */,
 				C99C9D861B5B60CE00B032D8 /* NewsDetailViewController.h */,
 				C99C9D871B5B60CE00B032D8 /* NewsDetailViewController.m */,
+				C99C9D891B5B739E00B032D8 /* AppViewController.h */,
+				C99C9D8A1B5B739E00B032D8 /* AppViewController.m */,
+				C99C9D8C1B5B73A600B032D8 /* ResourceViewController.h */,
+				C99C9D8D1B5B73A600B032D8 /* ResourceViewController.m */,
+				C99C9D8F1B5B73C900B032D8 /* MarketViewController.h */,
+				C99C9D901B5B73C900B032D8 /* MarketViewController.m */,
+				C99C9D921B5B73F000B032D8 /* ChiLibraryViewController.h */,
+				C99C9D931B5B73F000B032D8 /* ChiLibraryViewController.m */,
+				C99C9D951B5B74E000B032D8 /* MemberViewController.h */,
+				C99C9D961B5B74E000B032D8 /* MemberViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -724,6 +749,7 @@
 				C993B7461B57B56300D59FD3 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
 				C993B7151B57B52F00D59FD3 /* SDWebImagePrefetcher.m in Sources */,
 				C993B71A1B57B52F00D59FD3 /* UIImageView+WebCache.m in Sources */,
+				C99C9D8E1B5B73A600B032D8 /* ResourceViewController.m in Sources */,
 				C993B6961B57AFB000D59FD3 /* VPImageCropperViewController.m in Sources */,
 				C993B6761B57AFB000D59FD3 /* LoadMoreTableFooterView.m in Sources */,
 				C993B6781B57AFB000D59FD3 /* PullTableView.m in Sources */,
@@ -755,12 +781,16 @@
 				C993B7521B57B56300D59FD3 /* NSString+Utils.m in Sources */,
 				C9EB5F5E1A8AF913002DE6C0 /* AppDelegate.m in Sources */,
 				C993B6DE1B57B4E300D59FD3 /* ATMTextLayer.m in Sources */,
+				C99C9D8B1B5B739E00B032D8 /* AppViewController.m in Sources */,
 				C99C9D841B5B4BCA00B032D8 /* BaseViewController.m in Sources */,
 				C993B7541B57B56300D59FD3 /* UIButton+TitleImage.m in Sources */,
 				C993B74C1B57B56300D59FD3 /* CustomAnnotation.m in Sources */,
 				C993B7471B57B56300D59FD3 /* BaseTabBarViewController.m in Sources */,
+				C99C9D971B5B74E000B032D8 /* MemberViewController.m in Sources */,
+				C99C9D941B5B73F000B032D8 /* ChiLibraryViewController.m in Sources */,
 				C993B74B1B57B56300D59FD3 /* Common.m in Sources */,
 				C9EB5FAC1A8AFA08002DE6C0 /* Reachability.m in Sources */,
+				C99C9D911B5B73C900B032D8 /* MarketViewController.m in Sources */,
 				C99C9D7F1B5B494200B032D8 /* AdvertCell.m in Sources */,
 				C91BA0A41B5B3548001E9CEB /* HttpRequest.m in Sources */,
 				C9EB5F5B1A8AF913002DE6C0 /* main.m in Sources */,
@@ -866,6 +896,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PREFIX_HEADER = "ZMCY/ZMCY-Prefix.pch";
 				INFOPLIST_FILE = ZMCY/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7;
@@ -878,6 +909,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PREFIX_HEADER = "ZMCY/ZMCY-Prefix.pch";
 				INFOPLIST_FILE = ZMCY/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7;
