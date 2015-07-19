@@ -76,6 +76,10 @@
 		C99C9D911B5B73C900B032D8 /* MarketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9D901B5B73C900B032D8 /* MarketViewController.m */; };
 		C99C9D941B5B73F000B032D8 /* ChiLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9D931B5B73F000B032D8 /* ChiLibraryViewController.m */; };
 		C99C9D971B5B74E000B032D8 /* MemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9D961B5B74E000B032D8 /* MemberViewController.m */; };
+		C99C9D9C1B5B7F1600B032D8 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9D9B1B5B7F1600B032D8 /* CollectionViewController.m */; };
+		C99C9D9F1B5B7F2E00B032D8 /* FollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9D9E1B5B7F2E00B032D8 /* FollowViewController.m */; };
+		C99C9DA21B5B7F3D00B032D8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9DA11B5B7F3D00B032D8 /* LoginViewController.m */; };
+		C99C9DA51B5B7F4800B032D8 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9DA41B5B7F4800B032D8 /* RegisterViewController.m */; };
 		C9EB5F5B1A8AF913002DE6C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB5F5A1A8AF913002DE6C0 /* main.m */; };
 		C9EB5F5E1A8AF913002DE6C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB5F5D1A8AF913002DE6C0 /* AppDelegate.m */; };
 		C9EB5F661A8AF913002DE6C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9EB5F651A8AF913002DE6C0 /* Images.xcassets */; };
@@ -232,6 +236,14 @@
 		C99C9D931B5B73F000B032D8 /* ChiLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiLibraryViewController.m; sourceTree = "<group>"; };
 		C99C9D951B5B74E000B032D8 /* MemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberViewController.h; sourceTree = "<group>"; };
 		C99C9D961B5B74E000B032D8 /* MemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberViewController.m; sourceTree = "<group>"; };
+		C99C9D9A1B5B7F1600B032D8 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		C99C9D9B1B5B7F1600B032D8 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		C99C9D9D1B5B7F2E00B032D8 /* FollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowViewController.h; sourceTree = "<group>"; };
+		C99C9D9E1B5B7F2E00B032D8 /* FollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowViewController.m; sourceTree = "<group>"; };
+		C99C9DA01B5B7F3D00B032D8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		C99C9DA11B5B7F3D00B032D8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		C99C9DA31B5B7F4800B032D8 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		C99C9DA41B5B7F4800B032D8 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		C9EB5F551A8AF913002DE6C0 /* ZMCY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZMCY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9EB5F591A8AF913002DE6C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9EB5F5A1A8AF913002DE6C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -283,20 +295,28 @@
 		C993B5F81B57AF7800D59FD3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C993B7591B57B6AD00D59FD3 /* MainAppViewController.h */,
-				C993B75A1B57B6AD00D59FD3 /* MainAppViewController.m */,
-				C99C9D861B5B60CE00B032D8 /* NewsDetailViewController.h */,
-				C99C9D871B5B60CE00B032D8 /* NewsDetailViewController.m */,
 				C99C9D891B5B739E00B032D8 /* AppViewController.h */,
 				C99C9D8A1B5B739E00B032D8 /* AppViewController.m */,
-				C99C9D8C1B5B73A600B032D8 /* ResourceViewController.h */,
-				C99C9D8D1B5B73A600B032D8 /* ResourceViewController.m */,
-				C99C9D8F1B5B73C900B032D8 /* MarketViewController.h */,
-				C99C9D901B5B73C900B032D8 /* MarketViewController.m */,
 				C99C9D921B5B73F000B032D8 /* ChiLibraryViewController.h */,
 				C99C9D931B5B73F000B032D8 /* ChiLibraryViewController.m */,
+				C99C9D9A1B5B7F1600B032D8 /* CollectionViewController.h */,
+				C99C9D9B1B5B7F1600B032D8 /* CollectionViewController.m */,
+				C99C9D9D1B5B7F2E00B032D8 /* FollowViewController.h */,
+				C99C9D9E1B5B7F2E00B032D8 /* FollowViewController.m */,
+				C99C9DA01B5B7F3D00B032D8 /* LoginViewController.h */,
+				C99C9DA11B5B7F3D00B032D8 /* LoginViewController.m */,
+				C993B7591B57B6AD00D59FD3 /* MainAppViewController.h */,
+				C993B75A1B57B6AD00D59FD3 /* MainAppViewController.m */,
+				C99C9D8F1B5B73C900B032D8 /* MarketViewController.h */,
+				C99C9D901B5B73C900B032D8 /* MarketViewController.m */,
 				C99C9D951B5B74E000B032D8 /* MemberViewController.h */,
 				C99C9D961B5B74E000B032D8 /* MemberViewController.m */,
+				C99C9D861B5B60CE00B032D8 /* NewsDetailViewController.h */,
+				C99C9D871B5B60CE00B032D8 /* NewsDetailViewController.m */,
+				C99C9DA31B5B7F4800B032D8 /* RegisterViewController.h */,
+				C99C9DA41B5B7F4800B032D8 /* RegisterViewController.m */,
+				C99C9D8C1B5B73A600B032D8 /* ResourceViewController.h */,
+				C99C9D8D1B5B73A600B032D8 /* ResourceViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -740,6 +760,7 @@
 				C993B7121B57B52F00D59FD3 /* SDWebImageDecoder.m in Sources */,
 				C993B7141B57B52F00D59FD3 /* SDWebImageManager.m in Sources */,
 				C993B6D91B57B4E300D59FD3 /* ATMHud.m in Sources */,
+				C99C9D9C1B5B7F1600B032D8 /* CollectionViewController.m in Sources */,
 				C993B70F1B57B52F00D59FD3 /* NSData+GIF.m in Sources */,
 				C993B7561B57B56300D59FD3 /* UIImageView+Utils.m in Sources */,
 				C993B7551B57B56300D59FD3 /* UIImage+Utils.m in Sources */,
@@ -766,6 +787,7 @@
 				C993B6DA1B57B4E300D59FD3 /* ATMHudQueueItem.m in Sources */,
 				C993B74A1B57B56300D59FD3 /* CameraUtility.m in Sources */,
 				C993B75B1B57B6AD00D59FD3 /* MainAppViewController.m in Sources */,
+				C99C9D9F1B5B7F2E00B032D8 /* FollowViewController.m in Sources */,
 				C99C9D851B5B4BCA00B032D8 /* HttpDownload.m in Sources */,
 				C993B7531B57B56300D59FD3 /* Response.m in Sources */,
 				C993B6E51B57B51400D59FD3 /* EAIntroView.m in Sources */,
@@ -784,6 +806,8 @@
 				C99C9D8B1B5B739E00B032D8 /* AppViewController.m in Sources */,
 				C99C9D841B5B4BCA00B032D8 /* BaseViewController.m in Sources */,
 				C993B7541B57B56300D59FD3 /* UIButton+TitleImage.m in Sources */,
+				C99C9DA21B5B7F3D00B032D8 /* LoginViewController.m in Sources */,
+				C99C9DA51B5B7F4800B032D8 /* RegisterViewController.m in Sources */,
 				C993B74C1B57B56300D59FD3 /* CustomAnnotation.m in Sources */,
 				C993B7471B57B56300D59FD3 /* BaseTabBarViewController.m in Sources */,
 				C99C9D971B5B74E000B032D8 /* MemberViewController.m in Sources */,

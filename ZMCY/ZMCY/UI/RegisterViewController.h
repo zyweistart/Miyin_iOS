@@ -1,5 +1,5 @@
 //
-//  AppViewController.h
+//  RegisterViewController.h
 //  ZMCY
 //
 //  Created by Start on 15/7/19.
@@ -8,8 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface AppViewController : BaseViewController
-
-@property (strong,nonatomic)UIWebView *mWebView;
+@interface RegisterViewController : BaseViewController
 
 @end

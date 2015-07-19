@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
-@interface MemberViewController : BaseViewController
+@interface MemberViewController : BaseTableViewController
+
+@property (strong, nonatomic) UIImageView *expandZoomImageView;
 
 @end

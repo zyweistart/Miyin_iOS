@@ -10,4 +10,9 @@
 
 @interface ResourceViewController : BaseViewController
 
+@property (strong,nonatomic)UIButton *button1;
+@property (strong,nonatomic)UIButton *button2;
+
+@property (strong,nonatomic)UIWebView *mWebView;
+
 @end

@@ -59,6 +59,11 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([[self dataItemArray] count]>0){
@@ -193,7 +198,7 @@
 {
     UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake1(0, x, 140, 40)];
     [button setTitle:title forState:UIControlStateNormal];
-    [button.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [button setTitleColor:DEFAULTITLECOLOR(150) forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"求职信息"] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"求职信息"] forState:UIControlStateHighlighted];

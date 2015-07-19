@@ -19,6 +19,12 @@
     self=[super init];
     if(self){
         [self cTitle:@"应用"];
+        self.mWebView=[[UIWebView alloc]initWithFrame:self.view.bounds];
+        [self.mWebView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        [self.view addSubview:self.mWebView];
+        
+        NSString *url=[NSString stringWithFormat:@"%@/66/ios_yingyong.html",HTTP_URL];
+        [self.mWebView loadRequest:[NSURLRequest requestWithURL:[Common getUrl:url]]];
     }
     return self;
 }

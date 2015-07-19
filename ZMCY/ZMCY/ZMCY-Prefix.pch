@@ -77,6 +77,7 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 }
 
 //颜色
+#define COLOR078187 DEFAULTITLECOLORRGB(0, 78, 187)
 #define DEFAULCOLOR190 DEFAULTITLECOLOR(190)
 #define NAVBG [UIColor colorWithRed:(0/255.0) green:(93/255.0) blue:(222/255.0) alpha:1]
 #define DEFAULTITLECOLOR(NUM) DEFAULTITLECOLORA(NUM,1)
