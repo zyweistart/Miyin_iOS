@@ -39,16 +39,16 @@
     if ([HttpRequest isNetworkConnection]) {
         //时间戳;
 //        NSString *timestamp=[NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]*1000];
-        NSString *timestamp=@"1426145110208";
+        NSString *timestamp=@"1437270795680";
         //随机数
 //        NSString *nonce=[NSString stringWithFormat:@"%d",arc4random() % 1000];
-        NSString *nonce=@"881";
+        NSString *nonce=@"871";
         //封装成数组
 //        NSString *arr[]={ACCESSKEY,timestamp,nonce};
         //数组排序
 
         //签名
-        NSString *signature=@"b1c6607d21672466a41aff9ca476722cd55a1bf8";
+        NSString *signature=@"1fe25a60cc5c07da704110d958d3f0cac7d354cc";
         NSString *url=HTTP_SERVER_URL(action, signature, timestamp, nonce);
         if(self.isMultipartFormDataSubmit){
             NSString *access_token=[params objectForKey:@"access_token"];

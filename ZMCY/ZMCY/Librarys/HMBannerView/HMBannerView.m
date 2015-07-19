@@ -212,11 +212,11 @@
     for (NSInteger i=0; i<self.imagesArray.count; ++i)
     {
         NSDictionary *dic = [self.imagesArray objectAtIndex:i];
-        NSString *url = [dic objectForKey:@"img_url"];
+        NSString *url = [dic objectForKey:IMAGEURL];
 
         if ([url isNotEmpty])
         {
-            [[SDWebImageManager sharedManager] downloadWithURL:[NSURL URLWithString:url] delegate:self];
+            [[SDWebImageManager sharedManager] downloadWithURL:[Common getUrl:url] delegate:self];
         }
     }
 }
@@ -229,10 +229,10 @@
     {
         UIImageView *imageView = (UIImageView *)[scrollView viewWithTag:Banner_StartTag+i];
         NSDictionary *dic = [curimageUrls objectAtIndex:i];
-        NSString *url = [dic objectForKey:@"img_url"];
+        NSString *url = [dic objectForKey:IMAGEURL];
         if (imageView && [imageView isKindOfClass:[UIImageView class]] && [url isNotEmpty])
         {
-            [imageView setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
+            [imageView setImageWithURL:[Common getUrl:url] placeholderImage:nil];
         }
     }
 

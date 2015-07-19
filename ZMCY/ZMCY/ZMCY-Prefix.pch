@@ -16,15 +16,13 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "AppDelegate.h"
-
+//公共类
 #import "User.h"
 #import "Common.h"
-//#import "CButton.h"
-//#import "CLabel.h"
-//#import "PlayerVoiceButton.h"
-//#import "ImageViewGesture.h"
-//#import "ImageViewHeader.h"
+#import "AppDelegate.h"
+//自定义控件
+#import "CLabel.h"
+#import "CButton.h"
 
 #ifdef TEST
 //测试环境定义的常量
@@ -33,9 +31,7 @@
 //正式环境定义的常量
 #define HTTP_URL @"http://api.020leader.com"
 #endif
-
 #define HTTP_SERVER_URL(URL,SIGNATURE,TIMESTAMP,NONCE) [NSString stringWithFormat:@"%@/Ajax/API/%@.html?signature=%@&timestamp=%@&nonce=%@",HTTP_URL,URL,SIGNATURE,TIMESTAMP,NONCE]
-
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 #define inch35 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
 #define inch4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
@@ -79,14 +75,12 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
     rect.size.height = CGHeight(height);
     return rect;
 }
+
 //颜色
-#define COLOR2552160 [UIColor colorWithRed:(255/255.0) green:(216/255.0) blue:(0/255.0) alpha:1]
-#define NAVBG [UIColor colorWithRed:(46/255.0) green:(92/255.0) blue:(178/255.0) alpha:1]
-#define DEFAULTITLECOLORA(NUM,ALPHA) [UIColor colorWithRed:(NUM/255.0) green:(NUM/255.0) blue:(NUM/255.0) alpha:ALPHA]
-#define DEFAULTITLECOLORRGB(R,G,B) [UIColor colorWithRed:(R/255.0) green:(G/255.0) blue:(B/255.0) alpha:1]
+#define DEFAULCOLOR190 DEFAULTITLECOLOR(190)
+#define NAVBG [UIColor colorWithRed:(0/255.0) green:(93/255.0) blue:(222/255.0) alpha:1]
 #define DEFAULTITLECOLOR(NUM) DEFAULTITLECOLORA(NUM,1)
-#define DEFAUL1COLOR DEFAULTITLECOLOR(190)
-#define DEFAUL2COLOR DEFAULTITLECOLOR(220)
-#define DEFAUL3COLOR DEFAULTITLECOLOR(240)
+#define DEFAULTITLECOLORRGB(R,G,B) [UIColor colorWithRed:(R/255.0) green:(G/255.0) blue:(B/255.0) alpha:1]
+#define DEFAULTITLECOLORA(NUM,ALPHA) [UIColor colorWithRed:(NUM/255.0) green:(NUM/255.0) blue:(NUM/255.0) alpha:ALPHA]
 
 #endif

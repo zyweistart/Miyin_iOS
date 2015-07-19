@@ -20,6 +20,9 @@
     }
     //状态栏
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance]setBarTintColor:NAVBG];
+    [[UINavigationBar appearance]setBarStyle:UIBarStyleBlackTranslucent];
     UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[MainAppViewController alloc] init]];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];

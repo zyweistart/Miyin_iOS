@@ -30,7 +30,7 @@
     UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 80, 30)];
     [lbl setText:title];
     [lbl setFont:[UIFont systemFontOfSize:20]];
-    [lbl setTextColor:DEFAULTITLECOLOR(100)];
+    [lbl setTextColor:[UIColor whiteColor]];
     [lbl setTextAlignment:NSTextAlignmentCenter];
     self.navigationItem.titleView=lbl;
 }

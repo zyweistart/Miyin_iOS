@@ -1,6 +1,8 @@
 #import <UIKit/UIKit.h>
 #import "UIImageView+WebCache.h"
 
+#define IMAGEURL @"images"
+
 typedef NS_ENUM(NSInteger, BannerViewScrollDirection)
 {
     // 水平滚动

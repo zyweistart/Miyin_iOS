@@ -26,4 +26,6 @@
 
 + (NSString*)getString:(id)data DefaultValue:(NSString*)value;
 
++ (NSURL*)getUrl:(NSString*)url;
+
 @end

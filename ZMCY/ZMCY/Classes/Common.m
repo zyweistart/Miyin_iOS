@@ -75,4 +75,8 @@
     return [NSString stringWithFormat:@"%@",data];
 }
 
++ (NSURL*)getUrl:(NSString*)url
+{
+    return [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+}
 @end
