@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 Start. All rights reserved.
 //
 
-#import "BaseEGOTableViewPullRefreshViewController.h"
+#import "CommonItemViewController.h"
 
-@interface MainAppViewController : BaseEGOTableViewPullRefreshViewController
+@interface MainAppViewController : CommonItemViewController
 
 @property (strong,nonatomic)UIView *bgFrame;
 @property (strong,nonatomic)UIButton *button1;

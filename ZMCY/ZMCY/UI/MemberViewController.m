@@ -7,6 +7,10 @@
 //
 
 #import "MemberViewController.h"
+#import "FollowViewController.h"
+#import "CollectionViewController.h"
+#import "LoginViewController.h"
+#import "SettingViewController.h"
 
 static CGFloat kImageOriginHight = 220.f;
 
@@ -48,13 +52,14 @@ static CGFloat kImageOriginHight = 220.f;
         [self.expandZoomImageView addSubview:personalFrame];
         //头像
         bHead=[[UIView alloc]initWithFrame:CGRectMake1(120, 20, 80, 90)];
+        [bHead setUserInteractionEnabled:YES];
+        [bHead addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goLogin:)]];
         [personalFrame addSubview:bHead];
         iUserNameImage=[[UIImageView alloc]initWithFrame:CGRectMake1(10, 0, 60, 60)];
         iUserNameImage.layer.cornerRadius=iUserNameImage.bounds.size.width/2;
         iUserNameImage.layer.masksToBounds = YES;
         [iUserNameImage setBackgroundColor:DEFAULTITLECOLOR(241)];
         [iUserNameImage setUserInteractionEnabled:YES];
-//        [iUserNameImage addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editPortrait:)]];
         [bHead addSubview:iUserNameImage];
         lblUserName=[[UILabel alloc]initWithFrame:CGRectMake1(0, 70,80,20)];
         [lblUserName setFont:[UIFont systemFontOfSize:14]];
@@ -102,6 +107,25 @@ static CGFloat kImageOriginHight = 220.f;
     cell.textLabel.text = text;
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger row=[indexPath row];
+    if(row==0){
+        NSLog(@"签到");
+    }else if(row==1){
+        [self.navigationController pushViewController:[[CollectionViewController alloc]init] animated:YES];
+    }else if(row==2){
+        [self.navigationController pushViewController:[[FollowViewController alloc]init] animated:YES];
+    }else if(row==3){
+        [self.navigationController pushViewController:[[SettingViewController alloc]init] animated:YES];
+    }
+}
+
+- (void)goLogin:(id)sender
+{
+    [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
 }
 
 @end

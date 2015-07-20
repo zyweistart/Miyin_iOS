@@ -1,24 +1,24 @@
 //
-//  LoginViewController.m
+//  SettingViewController.m
 //  ZMCY
 //
-//  Created by Start on 15/7/19.
+//  Created by Start on 15/7/20.
 //  Copyright (c) 2015年 Start. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "SettingViewController.h"
 
-@interface LoginViewController ()
+@interface SettingViewController ()
 
 @end
 
-@implementation LoginViewController
+@implementation SettingViewController
 
 - (id)init
 {
     self=[super init];
     if(self){
-        [self cTitle:@"登陆"];
+        [self cTitle:@"设置"];
     }
     return self;
 }
@@ -27,5 +27,4 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
-
 @end

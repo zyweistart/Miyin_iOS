@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C91B8C901B5C843800A8D4BF /* CommonItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91B8C8F1B5C843800A8D4BF /* CommonItemViewController.m */; };
+		C91B8C931B5C867900A8D4BF /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91B8C921B5C867900A8D4BF /* SettingViewController.m */; };
 		C91BA0A41B5B3548001E9CEB /* HttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C91BA0A31B5B3548001E9CEB /* HttpRequest.m */; };
 		C993B6751B57AFB000D59FD3 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B6201B57AFB000D59FD3 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C993B6761B57AFB000D59FD3 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B6221B57AFB000D59FD3 /* LoadMoreTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -101,6 +103,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C91B8C8E1B5C843800A8D4BF /* CommonItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonItemViewController.h; sourceTree = "<group>"; };
+		C91B8C8F1B5C843800A8D4BF /* CommonItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonItemViewController.m; sourceTree = "<group>"; };
+		C91B8C911B5C867900A8D4BF /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		C91B8C921B5C867900A8D4BF /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		C91BA0A21B5B3548001E9CEB /* HttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequest.h; sourceTree = "<group>"; };
 		C91BA0A31B5B3548001E9CEB /* HttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequest.m; sourceTree = "<group>"; };
 		C993B61F1B57AFB000D59FD3 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -301,6 +307,8 @@
 				C99C9D931B5B73F000B032D8 /* ChiLibraryViewController.m */,
 				C99C9D9A1B5B7F1600B032D8 /* CollectionViewController.h */,
 				C99C9D9B1B5B7F1600B032D8 /* CollectionViewController.m */,
+				C91B8C8E1B5C843800A8D4BF /* CommonItemViewController.h */,
+				C91B8C8F1B5C843800A8D4BF /* CommonItemViewController.m */,
 				C99C9D9D1B5B7F2E00B032D8 /* FollowViewController.h */,
 				C99C9D9E1B5B7F2E00B032D8 /* FollowViewController.m */,
 				C99C9DA01B5B7F3D00B032D8 /* LoginViewController.h */,
@@ -317,6 +325,8 @@
 				C99C9DA41B5B7F4800B032D8 /* RegisterViewController.m */,
 				C99C9D8C1B5B73A600B032D8 /* ResourceViewController.h */,
 				C99C9D8D1B5B73A600B032D8 /* ResourceViewController.m */,
+				C91B8C911B5C867900A8D4BF /* SettingViewController.h */,
+				C91B8C921B5C867900A8D4BF /* SettingViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -760,6 +770,7 @@
 				C993B7121B57B52F00D59FD3 /* SDWebImageDecoder.m in Sources */,
 				C993B7141B57B52F00D59FD3 /* SDWebImageManager.m in Sources */,
 				C993B6D91B57B4E300D59FD3 /* ATMHud.m in Sources */,
+				C91B8C901B5C843800A8D4BF /* CommonItemViewController.m in Sources */,
 				C99C9D9C1B5B7F1600B032D8 /* CollectionViewController.m in Sources */,
 				C993B70F1B57B52F00D59FD3 /* NSData+GIF.m in Sources */,
 				C993B7561B57B56300D59FD3 /* UIImageView+Utils.m in Sources */,
@@ -770,6 +781,7 @@
 				C993B7461B57B56300D59FD3 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
 				C993B7151B57B52F00D59FD3 /* SDWebImagePrefetcher.m in Sources */,
 				C993B71A1B57B52F00D59FD3 /* UIImageView+WebCache.m in Sources */,
+				C91B8C931B5C867900A8D4BF /* SettingViewController.m in Sources */,
 				C99C9D8E1B5B73A600B032D8 /* ResourceViewController.m in Sources */,
 				C993B6961B57AFB000D59FD3 /* VPImageCropperViewController.m in Sources */,
 				C993B6761B57AFB000D59FD3 /* LoadMoreTableFooterView.m in Sources */,
