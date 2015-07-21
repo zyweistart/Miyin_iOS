@@ -11,6 +11,10 @@
 		C91B8C931B5C867900A8D4BF /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91B8C921B5C867900A8D4BF /* SettingViewController.m */; };
 		C91BA0A41B5B3548001E9CEB /* HttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C91BA0A31B5B3548001E9CEB /* HttpRequest.m */; };
 		C92A8AF21B5CC690003D3754 /* CTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C92A8AF11B5CC690003D3754 /* CTextField.m */; };
+		C96C84721B5DD7A600A59F3D /* SliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C96C84711B5DD7A600A59F3D /* SliderViewController.m */; };
+		C96C847B1B5DD91A00A59F3D /* MainAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C96C84761B5DD91A00A59F3D /* MainAppViewController.m */; };
+		C96C847C1B5DD91A00A59F3D /* QHMainGestureRecognizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C96C84781B5DD91A00A59F3D /* QHMainGestureRecognizerViewController.m */; };
+		C96C847D1B5DD91A00A59F3D /* SubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C96C847A1B5DD91A00A59F3D /* SubViewController.m */; };
 		C993B6751B57AFB000D59FD3 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B6201B57AFB000D59FD3 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C993B6761B57AFB000D59FD3 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B6221B57AFB000D59FD3 /* LoadMoreTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C993B6771B57AFB000D59FD3 /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B6241B57AFB000D59FD3 /* MessageInterceptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -64,7 +68,7 @@
 		C993B7551B57B56300D59FD3 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B73E1B57B56300D59FD3 /* UIImage+Utils.m */; };
 		C993B7561B57B56300D59FD3 /* UIImageView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B7401B57B56300D59FD3 /* UIImageView+Utils.m */; };
 		C993B7581B57B56300D59FD3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B7441B57B56300D59FD3 /* User.m */; };
-		C993B75B1B57B6AD00D59FD3 /* MainAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B75A1B57B6AD00D59FD3 /* MainAppViewController.m */; };
+		C993B75B1B57B6AD00D59FD3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B75A1B57B6AD00D59FD3 /* MainViewController.m */; };
 		C993B75E1B57B72E00D59FD3 /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = C993B75D1B57B72E00D59FD3 /* Channel.m */; };
 		C99C9D731B5B3E2800B032D8 /* BannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9D721B5B3E2800B032D8 /* BannerCell.m */; };
 		C99C9D761B5B3E3600B032D8 /* NewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9D751B5B3E3600B032D8 /* NewsItemCell.m */; };
@@ -112,6 +116,14 @@
 		C91BA0A31B5B3548001E9CEB /* HttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequest.m; sourceTree = "<group>"; };
 		C92A8AF01B5CC690003D3754 /* CTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTextField.h; sourceTree = "<group>"; };
 		C92A8AF11B5CC690003D3754 /* CTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTextField.m; sourceTree = "<group>"; };
+		C96C84701B5DD7A600A59F3D /* SliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderViewController.h; sourceTree = "<group>"; };
+		C96C84711B5DD7A600A59F3D /* SliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderViewController.m; sourceTree = "<group>"; };
+		C96C84751B5DD91A00A59F3D /* MainAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainAppViewController.h; sourceTree = "<group>"; };
+		C96C84761B5DD91A00A59F3D /* MainAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainAppViewController.m; sourceTree = "<group>"; };
+		C96C84771B5DD91A00A59F3D /* QHMainGestureRecognizerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHMainGestureRecognizerViewController.h; sourceTree = "<group>"; };
+		C96C84781B5DD91A00A59F3D /* QHMainGestureRecognizerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHMainGestureRecognizerViewController.m; sourceTree = "<group>"; };
+		C96C84791B5DD91A00A59F3D /* SubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubViewController.h; sourceTree = "<group>"; };
+		C96C847A1B5DD91A00A59F3D /* SubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubViewController.m; sourceTree = "<group>"; };
 		C993B61F1B57AFB000D59FD3 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		C993B6201B57AFB000D59FD3 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		C993B6211B57AFB000D59FD3 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -215,8 +227,8 @@
 		C993B7401B57B56300D59FD3 /* UIImageView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Utils.m"; sourceTree = "<group>"; };
 		C993B7431B57B56300D59FD3 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		C993B7441B57B56300D59FD3 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		C993B7591B57B6AD00D59FD3 /* MainAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainAppViewController.h; sourceTree = "<group>"; };
-		C993B75A1B57B6AD00D59FD3 /* MainAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainAppViewController.m; sourceTree = "<group>"; };
+		C993B7591B57B6AD00D59FD3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		C993B75A1B57B6AD00D59FD3 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		C993B75C1B57B72E00D59FD3 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
 		C993B75D1B57B72E00D59FD3 /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
 		C99C9D711B5B3E2800B032D8 /* BannerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerCell.h; sourceTree = "<group>"; };
@@ -290,6 +302,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C96C846F1B5DD7A600A59F3D /* SliderViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C96C84701B5DD7A600A59F3D /* SliderViewController.h */,
+				C96C84711B5DD7A600A59F3D /* SliderViewController.m */,
+			);
+			path = SliderViewController;
+			sourceTree = "<group>";
+		};
+		C96C84741B5DD91A00A59F3D /* MainFrame */ = {
+			isa = PBXGroup;
+			children = (
+				C96C84751B5DD91A00A59F3D /* MainAppViewController.h */,
+				C96C84761B5DD91A00A59F3D /* MainAppViewController.m */,
+				C96C84771B5DD91A00A59F3D /* QHMainGestureRecognizerViewController.h */,
+				C96C84781B5DD91A00A59F3D /* QHMainGestureRecognizerViewController.m */,
+				C96C84791B5DD91A00A59F3D /* SubViewController.h */,
+				C96C847A1B5DD91A00A59F3D /* SubViewController.m */,
+			);
+			path = MainFrame;
+			sourceTree = "<group>";
+		};
 		C993B5F71B57AEF800D59FD3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +338,7 @@
 		C993B5F81B57AF7800D59FD3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C96C84741B5DD91A00A59F3D /* MainFrame */,
 				C99C9D891B5B739E00B032D8 /* AppViewController.h */,
 				C99C9D8A1B5B739E00B032D8 /* AppViewController.m */,
 				C99C9D921B5B73F000B032D8 /* ChiLibraryViewController.h */,
@@ -316,8 +351,8 @@
 				C99C9D9E1B5B7F2E00B032D8 /* FollowViewController.m */,
 				C99C9DA01B5B7F3D00B032D8 /* LoginViewController.h */,
 				C99C9DA11B5B7F3D00B032D8 /* LoginViewController.m */,
-				C993B7591B57B6AD00D59FD3 /* MainAppViewController.h */,
-				C993B75A1B57B6AD00D59FD3 /* MainAppViewController.m */,
+				C993B7591B57B6AD00D59FD3 /* MainViewController.h */,
+				C993B75A1B57B6AD00D59FD3 /* MainViewController.m */,
 				C99C9D8F1B5B73C900B032D8 /* MarketViewController.h */,
 				C99C9D901B5B73C900B032D8 /* MarketViewController.m */,
 				C99C9D951B5B74E000B032D8 /* MemberViewController.h */,
@@ -627,6 +662,7 @@
 		C9EB5F7E1A8AFA08002DE6C0 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C96C846F1B5DD7A600A59F3D /* SliderViewController */,
 				C993B6EF1B57B52F00D59FD3 /* SDWebImage */,
 				C993B6E61B57B52300D59FD3 /* HMBannerView */,
 				C993B6DF1B57B51400D59FD3 /* EAIntroView */,
@@ -782,7 +818,9 @@
 				C993B7551B57B56300D59FD3 /* UIImage+Utils.m in Sources */,
 				C993B6DB1B57B4E300D59FD3 /* ATMHudView.m in Sources */,
 				C993B7481B57B56300D59FD3 /* BaseTableViewController.m in Sources */,
+				C96C84721B5DD7A600A59F3D /* SliderViewController.m in Sources */,
 				C99C9D761B5B3E3600B032D8 /* NewsItemCell.m in Sources */,
+				C96C847D1B5DD91A00A59F3D /* SubViewController.m in Sources */,
 				C92A8AF21B5CC690003D3754 /* CTextField.m in Sources */,
 				C993B7461B57B56300D59FD3 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
 				C993B7151B57B52F00D59FD3 /* SDWebImagePrefetcher.m in Sources */,
@@ -792,6 +830,7 @@
 				C993B6961B57AFB000D59FD3 /* VPImageCropperViewController.m in Sources */,
 				C993B6761B57AFB000D59FD3 /* LoadMoreTableFooterView.m in Sources */,
 				C993B6781B57AFB000D59FD3 /* PullTableView.m in Sources */,
+				C96C847B1B5DD91A00A59F3D /* MainAppViewController.m in Sources */,
 				C993B7171B57B52F00D59FD3 /* UIImage+GIF.m in Sources */,
 				C993B74D1B57B56300D59FD3 /* DataOutputStream.m in Sources */,
 				C993B75E1B57B72E00D59FD3 /* Channel.m in Sources */,
@@ -804,7 +843,7 @@
 				C993B6771B57AFB000D59FD3 /* MessageInterceptor.m in Sources */,
 				C993B6DA1B57B4E300D59FD3 /* ATMHudQueueItem.m in Sources */,
 				C993B74A1B57B56300D59FD3 /* CameraUtility.m in Sources */,
-				C993B75B1B57B6AD00D59FD3 /* MainAppViewController.m in Sources */,
+				C993B75B1B57B6AD00D59FD3 /* MainViewController.m in Sources */,
 				C99C9D9F1B5B7F2E00B032D8 /* FollowViewController.m in Sources */,
 				C99C9D851B5B4BCA00B032D8 /* HttpDownload.m in Sources */,
 				C993B7531B57B56300D59FD3 /* Response.m in Sources */,
@@ -827,6 +866,7 @@
 				C99C9DA21B5B7F3D00B032D8 /* LoginViewController.m in Sources */,
 				C99C9DA51B5B7F4800B032D8 /* RegisterViewController.m in Sources */,
 				C993B74C1B57B56300D59FD3 /* CustomAnnotation.m in Sources */,
+				C96C847C1B5DD91A00A59F3D /* QHMainGestureRecognizerViewController.m in Sources */,
 				C993B7471B57B56300D59FD3 /* BaseTabBarViewController.m in Sources */,
 				C99C9D971B5B74E000B032D8 /* MemberViewController.m in Sources */,
 				C99C9D941B5B73F000B032D8 /* ChiLibraryViewController.m in Sources */,

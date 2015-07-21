@@ -1,4 +1,4 @@
-#import "MainAppViewController.h"
+#import "MainViewController.h"
 #import "NewsDetailViewController.h"
 #import "ResourceViewController.h"
 #import "MarketViewController.h"
@@ -6,11 +6,11 @@
 #import "AppViewController.h"
 #import "MemberViewController.h"
 
-@interface MainAppViewController ()
+@interface MainViewController ()
 
 @end
 
-@implementation MainAppViewController
+@implementation MainViewController
 
 - (id)init{
     self=[super init];

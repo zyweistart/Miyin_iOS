@@ -8,7 +8,7 @@
 
 #import "CommonItemViewController.h"
 
-@interface MainAppViewController : CommonItemViewController
+@interface MainViewController : CommonItemViewController
 
 @property (strong,nonatomic)UIView *bgFrame;
 @property (strong,nonatomic)UIButton *button1;
