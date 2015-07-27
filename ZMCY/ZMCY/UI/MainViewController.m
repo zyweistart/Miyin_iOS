@@ -10,7 +10,9 @@
 
 @end
 
-@implementation MainViewController
+@implementation MainViewController{
+    UIScrollView *topScrollView;
+}
 
 - (id)init{
     self=[super init];
@@ -49,7 +51,16 @@
         [leftViewFrame addSubview:self.button5];
         self.button6=[self createLeftButtonWithTitle:@"会员" WithX:200 Tag:6];
         [leftViewFrame addSubview:self.button6];
-        [self.button1 setBackgroundColor:DEFAULTITLECOLOR(240)];
+        [self.button1 setBackgroundColor:DEFAULTITLECOLOR(240)];        
+        
+        topScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake1(0, CGHeight(64), self.view.frame.size.width,CGHeight(20))];
+        [topScrollView setPagingEnabled:YES];
+        [topScrollView setShowsHorizontalScrollIndicator:NO];
+        topScrollView.delegate = self;
+        [topScrollView setBackgroundColor:DEFAULTITLECOLOR(231.0f)];
+        [self.tableView setTableHeaderView:topScrollView];
+//        [topScrollView.panGestureRecognizer addTarget:self action:@selector(scrollHandlePan:)];
+        
     }
     return self;
 }

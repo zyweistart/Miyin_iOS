@@ -36,9 +36,10 @@ static CGFloat kImageOriginHight = 220.f;
         [self.dataItemArray addObject:@"设置"];
         //
         UIButton *bClose = [[UIButton alloc]init];
-        [bClose setFrame:CGRectMake1(10, 30, 30, 30)];
+        [bClose setFrame:CGRectMake1(10, 30, 60, 30)];
         [bClose setImage:[UIImage imageNamed:@"back_white"] forState:UIControlStateNormal];
         [bClose setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateHighlighted];
+        [bClose setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
         [bClose addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
         [self buildTableViewWithView:self.view];
         self.expandZoomImageView=[[UIImageView alloc]initWithFrame:CGRectMake1(0, 0, 320, kImageOriginHight)];
@@ -79,6 +80,7 @@ static CGFloat kImageOriginHight = 220.f;
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.expandZoomImageView.frame = CGRectMake(0, -CGHeight(kImageOriginHight), self.tableView.frame.size.width, CGHeight(kImageOriginHight));
+    [self loginStatus];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -113,19 +115,64 @@ static CGFloat kImageOriginHight = 220.f;
 {
     NSInteger row=[indexPath row];
     if(row==0){
-        NSLog(@"签到");
+        if([[User Instance]isLogin]){
+            NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+            [params setObject:[[User Instance]access_token] forKey:@"access_token"];
+            self.hRequest=[[HttpRequest alloc]init];
+            [self.hRequest setDelegate:self];
+            [self.hRequest setController:self];
+            [self.hRequest setRequestCode:500];
+            [self.hRequest handle:@"UserSingIn" requestParams:params];
+        }else{
+            [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
+        }
     }else if(row==1){
-        [self.navigationController pushViewController:[[CollectionViewController alloc]init] animated:YES];
+        if([[User Instance]isLogin]){
+            [self.navigationController pushViewController:[[CollectionViewController alloc]init] animated:YES];
+        }else{
+            [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
+        }
     }else if(row==2){
-        [self.navigationController pushViewController:[[FollowViewController alloc]init] animated:YES];
+        if([[User Instance]isLogin]){
+            [self.navigationController pushViewController:[[FollowViewController alloc]init] animated:YES];
+        }else{
+            [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
+        }
     }else if(row==3){
-        [self.navigationController pushViewController:[[SettingViewController alloc]init] animated:YES];
+        if([[User Instance]isLogin]){
+            [self.navigationController pushViewController:[[SettingViewController alloc]init] animated:YES];
+        }else{
+            [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
+        }
     }
 }
 
 - (void)goLogin:(id)sender
 {
-    [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
+    if([[User Instance]isLogin]){
+        [[User Instance]clear];
+        [self loginStatus];
+    }else{
+        [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
+    }
+}
+
+- (void)loginStatus
+{
+    if([[User Instance]isLogin]){
+        [lblUserName setText:@"退出登陆"];
+    }else{
+        [lblUserName setText:@"点击登陆"];
+    }
+}
+
+- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode
+{
+    if([response successFlag]){
+        if(reqCode==500){
+            NSLog(@"%@",[response responseString]);
+        }
+    }
 }
 
 @end

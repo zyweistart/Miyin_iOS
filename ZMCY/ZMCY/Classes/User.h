@@ -22,9 +22,7 @@
 @property (strong,nonatomic) NSString *pwd;
 @property (strong,nonatomic) NSString *nickName;
 @property (strong,nonatomic) UIImage *head;
-@property (strong,nonatomic) NSString *uid;
-@property (strong,nonatomic) NSString *enKey;
-@property (strong,nonatomic) NSString *sessionid;
+@property (strong,nonatomic) NSString *access_token;
 @property (strong,nonatomic) NSString *recordmode;
 @property (strong,nonatomic) NSDictionary *resultData;
 

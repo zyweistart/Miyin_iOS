@@ -87,6 +87,7 @@
 		C99C9D9F1B5B7F2E00B032D8 /* FollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9D9E1B5B7F2E00B032D8 /* FollowViewController.m */; };
 		C99C9DA21B5B7F3D00B032D8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9DA11B5B7F3D00B032D8 /* LoginViewController.m */; };
 		C99C9DA51B5B7F4800B032D8 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C9DA41B5B7F4800B032D8 /* RegisterViewController.m */; };
+		C9C27DD71B5E909A0019D599 /* CTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C27DD61B5E909A0019D599 /* CTableView.m */; };
 		C9EB5F5B1A8AF913002DE6C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB5F5A1A8AF913002DE6C0 /* main.m */; };
 		C9EB5F5E1A8AF913002DE6C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB5F5D1A8AF913002DE6C0 /* AppDelegate.m */; };
 		C9EB5F661A8AF913002DE6C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9EB5F651A8AF913002DE6C0 /* Images.xcassets */; };
@@ -265,6 +266,8 @@
 		C99C9DA11B5B7F3D00B032D8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C99C9DA31B5B7F4800B032D8 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		C99C9DA41B5B7F4800B032D8 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		C9C27DD51B5E909A0019D599 /* CTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTableView.h; sourceTree = "<group>"; };
+		C9C27DD61B5E909A0019D599 /* CTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTableView.m; sourceTree = "<group>"; };
 		C9EB5F551A8AF913002DE6C0 /* ZMCY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZMCY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9EB5F591A8AF913002DE6C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9EB5F5A1A8AF913002DE6C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -378,6 +381,8 @@
 				C99C9D7A1B5B423000B032D8 /* CLabel.m */,
 				C92A8AF01B5CC690003D3754 /* CTextField.h */,
 				C92A8AF11B5CC690003D3754 /* CTextField.m */,
+				C9C27DD51B5E909A0019D599 /* CTableView.h */,
+				C9C27DD61B5E909A0019D599 /* CTableView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -870,6 +875,7 @@
 				C993B7471B57B56300D59FD3 /* BaseTabBarViewController.m in Sources */,
 				C99C9D971B5B74E000B032D8 /* MemberViewController.m in Sources */,
 				C99C9D941B5B73F000B032D8 /* ChiLibraryViewController.m in Sources */,
+				C9C27DD71B5E909A0019D599 /* CTableView.m in Sources */,
 				C993B74B1B57B56300D59FD3 /* Common.m in Sources */,
 				C9EB5FAC1A8AFA08002DE6C0 /* Reachability.m in Sources */,
 				C99C9D911B5B73C900B032D8 /* MarketViewController.m in Sources */,
