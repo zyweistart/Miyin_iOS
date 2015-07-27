@@ -6,8 +6,15 @@
 //  Copyright (c) 2015年 Start. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface MainViewController : BaseViewController
+@interface MainViewController : BaseTableViewController<CBCentralManagerDelegate,CBPeripheralDelegate>
+
+@property(strong,nonatomic)NSMutableData *mutableData;
+@property(strong,nonatomic)NSMutableString *mutableString;
+
+@property(strong,nonatomic)CBPeripheral *peripheral;
+@property(strong,nonatomic)CBCentralManager *centralManager;
 
 @end
