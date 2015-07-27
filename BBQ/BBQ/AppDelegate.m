@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "TabBarFrameViewController.h"
 
 @interface AppDelegate ()
 
@@ -30,7 +31,7 @@
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance]setBarTintColor:NAVBG];
     [[UINavigationBar appearance]setBarStyle:UIBarStyleBlackTranslucent];
-    UINavigationController *frameControllerNav=[[UINavigationController alloc]initWithRootViewController:[[UIViewController alloc] init]];
+    UINavigationController *frameControllerNav=[[UINavigationController alloc]initWithRootViewController:[[TabBarFrameViewController alloc] init]];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController=frameControllerNav;
     self.window.backgroundColor = [UIColor whiteColor];
