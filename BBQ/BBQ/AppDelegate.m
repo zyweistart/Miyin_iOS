@@ -7,14 +7,13 @@
 //
 
 #import "AppDelegate.h"
-#import "TabBarFrameViewController.h"
+#import "MainViewController.h"
 
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //计算各屏幕XY大小
@@ -31,9 +30,9 @@
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance]setBarTintColor:NAVBG];
     [[UINavigationBar appearance]setBarStyle:UIBarStyleBlackTranslucent];
-    TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc] init];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController=mTabBarFrameViewController;
+    self.window.rootViewController=[[MainViewController alloc]init];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
