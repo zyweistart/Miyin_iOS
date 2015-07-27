@@ -675,6 +675,7 @@
 				C9ECF1901B65C1460088E110 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C9ECF1911B65C1460088E110 /* Build configuration list for PBXNativeTarget "BBQTests" */ = {
 			isa = XCConfigurationList;
@@ -683,6 +684,7 @@
 				C9ECF1931B65C1460088E110 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
