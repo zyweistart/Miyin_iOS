@@ -1,0 +1,86 @@
+#ifndef DLS_DLS_Prefix_pch
+#define DLS_DLS_Prefix_pch
+
+#import <Availability.h>
+
+#ifndef __IPHONE_7_0
+#warning "该项仅支持iOS7.0及以上版本."
+#endif
+
+#pragma mark 测试环境宏定义
+#define TEST
+
+#ifdef TEST
+#warning 当前版本为测试版本上线需要注释该宏定义
+#endif
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "AppDelegate.h"
+#import "BaseViewController.h"
+
+#import "Common.h"
+#import "NSString+Utils.h"
+
+#ifdef TEST
+//测试环境定义的常量
+#define HTTP_SERVER_URL @"http://www.iguodong.net/api/knowyou.php"
+#else
+//正式环境定义的常量
+#define HTTP_SERVER_URL @"http://www.iguodong.net/api/knowyou.php"
+#endif
+
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+#define inch35 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+#define inch4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define inch47 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+#define inch55 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
+#define BOTTOMTABBARHEIGHT 49.0
+#define WIDTH 320.0
+#define HEIGHT (inch35?480.0:568.0)
+#define TABHEIGHT 49.0
+#define ScreenHeight [[UIScreen mainScreen] bounds].size.height
+#define ScreenWidth [[UIScreen mainScreen] bounds].size.width
+//方法
+CG_INLINE CGFloat
+CGWidth(CGFloat width)
+{
+    AppDelegate *myDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    return width * myDelegate.autoSizeScaleX;
+}
+CG_INLINE CGFloat
+CGHeight(CGFloat height)
+{
+    AppDelegate *myDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    return height * myDelegate.autoSizeScaleY;
+}
+CG_INLINE CGSize
+CGSizeMake1(CGFloat width, CGFloat height)
+{
+    CGSize csize;
+    csize.width = CGWidth(width);
+    csize.height = CGHeight(height);
+    return csize;
+}
+CG_INLINE CGRect
+CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
+{
+    AppDelegate *myDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    CGRect rect;
+    rect.origin.x = x * myDelegate.autoSizeScaleX;
+    rect.origin.y = y * myDelegate.autoSizeScaleY;
+    rect.size.width = CGWidth(width);
+    rect.size.height = CGHeight(height);
+    return rect;
+}
+//颜色
+#define COLOR2552160 [UIColor colorWithRed:(255/255.0) green:(216/255.0) blue:(0/255.0) alpha:1]
+#define NAVBG [UIColor colorWithRed:(46/255.0) green:(92/255.0) blue:(178/255.0) alpha:1]
+#define DEFAULTITLECOLORA(NUM,ALPHA) [UIColor colorWithRed:(NUM/255.0) green:(NUM/255.0) blue:(NUM/255.0) alpha:ALPHA]
+#define DEFAULTITLECOLORRGB(R,G,B) [UIColor colorWithRed:(R/255.0) green:(G/255.0) blue:(B/255.0) alpha:1]
+#define DEFAULTITLECOLOR(NUM) DEFAULTITLECOLORA(NUM,1)
+#define DEFAUL1COLOR DEFAULTITLECOLOR(190)
+#define DEFAUL2COLOR DEFAULTITLECOLOR(220)
+#define DEFAUL3COLOR DEFAULTITLECOLOR(240)
+
+#endif
