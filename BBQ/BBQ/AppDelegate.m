@@ -27,13 +27,12 @@
     }
     //状态栏
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-    //    [application setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    //    [[UINavigationBar appearance] setBarTintColor:NAVBG];
-    [[UINavigationBar appearance] setBarStyle:UIBarStyleDefault];
-    //    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
-    
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance]setBarTintColor:NAVBG];
+    [[UINavigationBar appearance]setBarStyle:UIBarStyleBlackTranslucent];
+    UINavigationController *frameControllerNav=[[UINavigationController alloc]initWithRootViewController:[[UIViewController alloc] init]];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController=[[UIViewController alloc]init];
+    self.window.rootViewController=frameControllerNav;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

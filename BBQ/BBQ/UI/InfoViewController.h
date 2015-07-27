@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  InfoViewController.h
 //  BBQ
 //
 //  Created by Start on 15/7/27.
 //  Copyright (c) 2015年 Start. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface ViewController : UIViewController
-
+@interface InfoViewController : BaseViewController
 
 @end
-

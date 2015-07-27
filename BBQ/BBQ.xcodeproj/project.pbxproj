@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9126A2D1B65DA5A001D3D60 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A2C1B65DA5A001D3D60 /* HomeViewController.m */; };
+		C9126A301B65DBAF001D3D60 /* TimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A2F1B65DBAF001D3D60 /* TimerViewController.m */; };
+		C9126A331B65DBBB001D3D60 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A321B65DBBB001D3D60 /* SettingViewController.m */; };
+		C9126A361B65DBC7001D3D60 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A351B65DBC7001D3D60 /* InfoViewController.m */; };
+		C9126A391B65DC42001D3D60 /* TabBarFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A381B65DC42001D3D60 /* TabBarFrameViewController.m */; };
 		C9ECF1711B65C1460088E110 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF1701B65C1460088E110 /* main.m */; };
 		C9ECF1741B65C1460088E110 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF1731B65C1460088E110 /* AppDelegate.m */; };
-		C9ECF1771B65C1460088E110 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF1761B65C1460088E110 /* ViewController.m */; };
 		C9ECF17C1B65C1460088E110 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9ECF17B1B65C1460088E110 /* Images.xcassets */; };
 		C9ECF18B1B65C1460088E110 /* BBQTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF18A1B65C1460088E110 /* BBQTests.m */; };
 		C9ECF1C91B65C6BD0088E110 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF1991B65C6BD0088E110 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -60,13 +64,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C9126A2B1B65DA5A001D3D60 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		C9126A2C1B65DA5A001D3D60 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		C9126A2E1B65DBAF001D3D60 /* TimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerViewController.h; sourceTree = "<group>"; };
+		C9126A2F1B65DBAF001D3D60 /* TimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewController.m; sourceTree = "<group>"; };
+		C9126A311B65DBBB001D3D60 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		C9126A321B65DBBB001D3D60 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		C9126A341B65DBC7001D3D60 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		C9126A351B65DBC7001D3D60 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		C9126A371B65DC42001D3D60 /* TabBarFrameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarFrameViewController.h; sourceTree = "<group>"; };
+		C9126A381B65DC42001D3D60 /* TabBarFrameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarFrameViewController.m; sourceTree = "<group>"; };
 		C9ECF16B1B65C1460088E110 /* BBQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9ECF16F1B65C1460088E110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9ECF1701B65C1460088E110 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C9ECF1721B65C1460088E110 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C9ECF1731B65C1460088E110 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C9ECF1751B65C1460088E110 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../ViewController.h; sourceTree = "<group>"; };
-		C9ECF1761B65C1460088E110 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../ViewController.m; sourceTree = "<group>"; };
 		C9ECF17B1B65C1460088E110 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C9ECF1841B65C1460088E110 /* BBQTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBQTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9ECF1891B65C1460088E110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -156,6 +168,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C9126A281B65DA39001D3D60 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C9126A2B1B65DA5A001D3D60 /* HomeViewController.h */,
+				C9126A2C1B65DA5A001D3D60 /* HomeViewController.m */,
+				C9126A341B65DBC7001D3D60 /* InfoViewController.h */,
+				C9126A351B65DBC7001D3D60 /* InfoViewController.m */,
+				C9126A311B65DBBB001D3D60 /* SettingViewController.h */,
+				C9126A321B65DBBB001D3D60 /* SettingViewController.m */,
+				C9126A2E1B65DBAF001D3D60 /* TimerViewController.h */,
+				C9126A2F1B65DBAF001D3D60 /* TimerViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		C9126A291B65DA3F001D3D60 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C9126A371B65DC42001D3D60 /* TabBarFrameViewController.h */,
+				C9126A381B65DC42001D3D60 /* TabBarFrameViewController.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C9126A2A1B65DA42001D3D60 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		C9ECF1621B65C1460088E110 = {
 			isa = PBXGroup;
 			children = (
@@ -264,8 +307,9 @@
 		C9ECF1961B65C2290088E110 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				C9ECF1751B65C1460088E110 /* ViewController.h */,
-				C9ECF1761B65C1460088E110 /* ViewController.m */,
+				C9126A2A1B65DA42001D3D60 /* Cell */,
+				C9126A281B65DA39001D3D60 /* Controller */,
+				C9126A291B65DA3F001D3D60 /* View */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -466,7 +510,7 @@
 			files = (
 				C9ECF2061B65C85A0088E110 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
 				C9ECF1D01B65C6BD0088E110 /* EAIntroPage.m in Sources */,
-				C9ECF1771B65C1460088E110 /* ViewController.m in Sources */,
+				C9126A361B65DBC7001D3D60 /* InfoViewController.m in Sources */,
 				C9ECF2151B65C85A0088E110 /* UIImageView+Utils.m in Sources */,
 				C9ECF2161B65C85A0088E110 /* User.m in Sources */,
 				C9ECF1CD1B65C6BD0088E110 /* ATMProgressLayer.m in Sources */,
@@ -480,6 +524,7 @@
 				C9ECF2121B65C85A0088E110 /* Response.m in Sources */,
 				C9ECF1741B65C1460088E110 /* AppDelegate.m in Sources */,
 				C9ECF20B1B65C85A0088E110 /* Common.m in Sources */,
+				C9126A331B65DBBB001D3D60 /* SettingViewController.m in Sources */,
 				C9ECF1C91B65C6BD0088E110 /* Reachability.m in Sources */,
 				C9ECF1D51B65C6BD0088E110 /* PullTableView.m in Sources */,
 				C9ECF20E1B65C85A0088E110 /* HttpDownload.m in Sources */,
@@ -488,11 +533,14 @@
 				C9ECF2081B65C85A0088E110 /* BaseTableViewController.m in Sources */,
 				C9ECF2131B65C85A0088E110 /* UIButton+TitleImage.m in Sources */,
 				C9ECF20F1B65C85A0088E110 /* HttpRequest.m in Sources */,
+				C9126A2D1B65DA5A001D3D60 /* HomeViewController.m in Sources */,
 				C9ECF1CA1B65C6BD0088E110 /* ATMHud.m in Sources */,
 				C9ECF1D41B65C6BD0088E110 /* MessageInterceptor.m in Sources */,
+				C9126A301B65DBAF001D3D60 /* TimerViewController.m in Sources */,
 				C9ECF2071B65C85A0088E110 /* BaseTabBarViewController.m in Sources */,
 				C9ECF1D21B65C6BD0088E110 /* EGORefreshTableHeaderView.m in Sources */,
 				C9ECF2091B65C85A0088E110 /* BaseViewController.m in Sources */,
+				C9126A391B65DC42001D3D60 /* TabBarFrameViewController.m in Sources */,
 				C9ECF1711B65C1460088E110 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
