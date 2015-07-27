@@ -31,9 +31,9 @@
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance]setBarTintColor:NAVBG];
     [[UINavigationBar appearance]setBarStyle:UIBarStyleBlackTranslucent];
-    UINavigationController *frameControllerNav=[[UINavigationController alloc]initWithRootViewController:[[TabBarFrameViewController alloc] init]];
+    TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController=frameControllerNav;
+    self.window.rootViewController=mTabBarFrameViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

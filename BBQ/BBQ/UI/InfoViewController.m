@@ -17,7 +17,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        [self cTitle:@"Info"];
+        [self cTitle:@"Information"];
     }
     return self;
 }

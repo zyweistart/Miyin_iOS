@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 Start. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
-@interface HomeViewController : BaseViewController
+@interface HomeViewController : BaseTableViewController
 
 @end

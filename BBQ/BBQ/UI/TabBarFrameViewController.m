@@ -25,10 +25,10 @@
 {
     [super viewDidLoad];
     self.viewControllers = [NSArray arrayWithObjects:
-                            [self viewControllerWithTabTitle:@"Home" image:@"icon-nav-heart" ViewController:[[HomeViewController alloc]init]],
-                            [self viewControllerWithTabTitle:@"Timer" image:@"icon-nav-message" ViewController:[[HomeViewController alloc]init]],
-                            [self viewControllerWithTabTitle:@"Setting" image:@"icon-nav-search" ViewController:[[HomeViewController alloc]init]],
-                            [self viewControllerWithTabTitle:@"Info" image:@"icon-nav-me" ViewController:[[HomeViewController alloc]init]], nil];
+                            [self viewControllerWithTabTitle:@"Home" image:@"icon-nav-home" ViewController:[[HomeViewController alloc]init]],
+                            [self viewControllerWithTabTitle:@"Timer" image:@"icon-nav-timer" ViewController:[[TimerViewController alloc]init]],
+                            [self viewControllerWithTabTitle:@"Setting" image:@"icon-nav-setting" ViewController:[[SettingViewController alloc]init]],
+                            [self viewControllerWithTabTitle:@"Info" image:@"icon-nav-info" ViewController:[[InfoViewController alloc]init]], nil];
     
     //获取最后保存的版本号不存在则为0
     float lastVersionNo=[[Common getCache:DEFAULTDATA_LASTVERSIONNO] floatValue];
