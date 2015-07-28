@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "TIBLECBStandand.h"
 
+typedef struct _CHAR{
+    char buff[1000];
+}CHAR_STRUCT;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property float autoSizeScaleX;

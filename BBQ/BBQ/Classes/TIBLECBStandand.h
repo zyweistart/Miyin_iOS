@@ -10,11 +10,19 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <CoreBluetooth/CBService.h>
 
+//连接设备成功
 #define NOTIFICATION_DIDCONNECTEDBLEDEVICE @"DIDCONNECTEDBLEDEVICE"
+//扫描结束发出
 #define NOTIFICATION_STOPSCAN @"STOPSCAN"
+//
 #define NOTIFICATION_BLEDEVICEWITHRSSIFOUND @"BLEDEVICEWITHRSSIFOUND"
+//服务发现完成之后的回调方法
 #define NOTIFICATION_SERVICEFOUNDOVER @"SERVICEFOUNDOVER"
+//成功扫描所有服务特征值
 #define NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP @"DOWNLOADSERVICEPROCESSSTEP"
+//
+#define NOTIFICATION_VALUECHANGUPDATE @"VALUECHANGUPDATE"
+
 
 @interface TIBLECBStandand : NSObject<CBCentralManagerDelegate, CBPeripheralDelegate>{
     NSTimer *scanKeepTimer;
@@ -37,5 +45,7 @@
 
 - (void)stopScan;
 - (int)findBLEPeripherals:(int)timeout;
+- (void)connectPeripheral:(CBPeripheral*)peripheral;
+-(void) notification:(int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p on:(BOOL)on;
 
 @end

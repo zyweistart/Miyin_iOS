@@ -56,6 +56,7 @@
 		C9ECF2151B65C85A0088E110 /* UIImageView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF2031B65C85A0088E110 /* UIImageView+Utils.m */; };
 		C9ECF2161B65C85A0088E110 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF2051B65C85A0088E110 /* User.m */; };
 		C9F1EF1B1B671895005C8CF3 /* TIBLECBStandand.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF1A1B671895005C8CF3 /* TIBLECBStandand.m */; };
+		C9F1EF1E1B674214005C8CF3 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF1D1B674214005C8CF3 /* Tools.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +163,8 @@
 		C9ECF2051B65C85A0088E110 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		C9F1EF191B671895005C8CF3 /* TIBLECBStandand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIBLECBStandand.h; sourceTree = "<group>"; };
 		C9F1EF1A1B671895005C8CF3 /* TIBLECBStandand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIBLECBStandand.m; sourceTree = "<group>"; };
+		C9F1EF1C1B674214005C8CF3 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
+		C9F1EF1D1B674214005C8CF3 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +286,8 @@
 		C9ECF1941B65C2290088E110 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C9F1EF1C1B674214005C8CF3 /* Tools.h */,
+				C9F1EF1D1B674214005C8CF3 /* Tools.m */,
 				C9ECF1E31B65C85A0088E110 /* BaseEGOTableViewPullRefreshViewController.h */,
 				C9ECF1E41B65C85A0088E110 /* BaseEGOTableViewPullRefreshViewController.m */,
 				C9ECF1E51B65C85A0088E110 /* BaseTabBarViewController.h */,
@@ -538,6 +543,7 @@
 				C9126A411B66004A001D3D60 /* CButton.m in Sources */,
 				C9ECF2151B65C85A0088E110 /* UIImageView+Utils.m in Sources */,
 				C9ECF2161B65C85A0088E110 /* User.m in Sources */,
+				C9F1EF1E1B674214005C8CF3 /* Tools.m in Sources */,
 				C9ECF1CD1B65C6BD0088E110 /* ATMProgressLayer.m in Sources */,
 				C9ECF1CB1B65C6BD0088E110 /* ATMHudQueueItem.m in Sources */,
 				C9ECF2141B65C85A0088E110 /* UIImage+Utils.m in Sources */,
