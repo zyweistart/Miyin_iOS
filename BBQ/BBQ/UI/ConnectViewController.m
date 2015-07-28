@@ -1,19 +1,21 @@
 //
-//  HomeViewController.m
+//  ConnectViewController.m
 //  BBQ
 //
-//  Created by Start on 15/7/27.
+//  Created by Start on 15/7/28.
 //  Copyright (c) 2015年 Start. All rights reserved.
 //
 
-#import "HomeViewController.h"
+#import "ConnectViewController.h"
 #import "Tools.h"
 
-@interface HomeViewController ()
+#import "TabBarFrameViewController.h"
+
+@interface ConnectViewController ()
 
 @end
 
-@implementation HomeViewController{
+@implementation ConnectViewController {
     //接收到的数据
     NSMutableString *receiveSBString;
 }
@@ -21,22 +23,19 @@
 - (id)init{
     self=[super init];
     if(self){
-        [self cTitle:@"Home"];
-        
-        UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 120, 40)];
-        [self.tableView setTableFooterView:bottomView];
-        CButton *bDemo=[[CButton alloc]initWithFrame:CGRectMake1(20, 0, 120, 40) Name:@"Scan" Type:2];
-        [bDemo addTarget:self action:@selector(goScan) forControlEvents:UIControlEventTouchUpInside];
-        [bottomView addSubview:bDemo];
-        CButton *bScan=[[CButton alloc]initWithFrame:CGRectMake1(180, 0, 120, 40) Name:@"Stop" Type:2];
-        [bScan addTarget:self action:@selector(goStop) forControlEvents:UIControlEventTouchUpInside];
-        [bottomView addSubview:bScan];
+        [self cTitle:@"设备连接"];
+        self.progressView = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(180, 0, 30, 30)];
+        [self.progressView setColor :[UIColor whiteColor]];
+        [self RefreshStateNormal];
         [self buildTableViewWithView:self.view];
-        [self.tableView setTableHeaderView:bottomView];
-        
-        receiveSBString = [NSMutableString new];
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+//    [self performSelector:@selector(startScan) withObject:nil afterDelay:0.5];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -44,7 +43,8 @@
     return [self.appDelegate.bleManager.peripherals count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *identifier=@"TableCellIdentifier";
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
     if(cell==nil){
@@ -54,7 +54,7 @@
     if(cbPeripheral.name !=nil) {
         cell.textLabel.text = [cbPeripheral name];
     } else {
-        cell.textLabel.text = @"暂无";
+        cell.textLabel.text = @"未知设备";
     }
     if (cbPeripheral == self.appDelegate.bleManager.activePeripheral) {
         //判定是哪一个蓝牙设备
@@ -67,8 +67,6 @@
         }else if (MODEL == MODEL_CONECTED){
             [[cell detailTextLabel] setText: @"Connected"];
         }
-    }else {
-        [[cell detailTextLabel]setText:@""];
     }
     return  cell;
 }
@@ -88,21 +86,40 @@
     //发出通知新页面，对指定外围设备进行连接
     CBPeripheral *peripheral=[self.appDelegate.bleManager.peripherals objectAtIndex:indexPath.row];
     [self.appDelegate.bleManager connectPeripheral:peripheral];
+    
+    
+    
+}
+
+-(void)RefreshStateStart
+{
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithCustomView:_progressView];
+    [_progressView startAnimating];
+    [self.navigationItem setRightBarButtonItem:rightBtn];
+}
+
+-(void)RefreshStateNormal
+{
+    [_progressView stopAnimating];
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(startScan)];
+    [self.navigationItem setRightBarButtonItem:rightBtn];
 }
 
 //开始扫描
-- (void)goScan
+- (void)startScan
 {
-    [self initNotification];
-    [self ScanPeripheral];
-    MODEL = MODEL_NORMAL;
+    [self goMainPage];
+//    [self initNotification];
+//    [self RefreshStateStart];
+//    [self ScanPeripheral];
+//    MODEL = MODEL_NORMAL;
 }
 
-//停止扫描
-- (void)goStop
+//获取数据
+- (void)getData
 {
     [self.appDelegate.bleManager notification:0xFFE0 characteristicUUID:0xFFE4 p:self.appDelegate.bleManager.activePeripheral on:YES];
-//    [self stopScan];
+    //    [self stopScan];
 }
 
 - (void)ScanPeripheral
@@ -181,13 +198,14 @@
 {
 //    NSLog(@" BLE外设 列表 被更新 ！\r\n");
     [self.tableView reloadData];
+    [self RefreshStateNormal];
 }
 
 //此方法刷新次数过多，会导致tableview界面无法刷新的情况发生
 - (void)bleDeviceWithRSSIFound:(NSNotification *) notification
 {
 //    NSLog(@" 更新RSSI 值 ！\r\n");
-//    [self.tableView reloadData];
+    [self.tableView reloadData];
 }
 
 //服务发现完成之后的回调方法
@@ -262,11 +280,18 @@
             return;
         }
         NSData *data = [[NSData alloc]initWithBytes:&messageByte[p] length:lengthChar];
-//        NSLog(@" data %@",data);
+        //        NSLog(@" data %@",data);
         [self.appDelegate.bleManager writeValue:0xFFE5 characteristicUUID:0xFFE9 p:self.appDelegate.bleManager.activePeripheral data:data];
         length -= lengthChar ;
         p += lengthChar;
     }
+}
+
+- (void)goMainPage
+{
+    TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
+    [self presentViewController:mTabBarFrameViewController animated:YES completion:nil];
+    
 }
 
 @end

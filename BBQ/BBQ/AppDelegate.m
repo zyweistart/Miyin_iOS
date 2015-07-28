@@ -7,8 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MainViewController.h"
-#import "HomeViewController.h"
+#import "ConnectViewController.h"
 
 @interface AppDelegate ()
 
@@ -33,10 +32,12 @@
     [[UINavigationBar appearance]setBarStyle:UIBarStyleBlackTranslucent];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController=[[HomeViewController alloc]init];
+    UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[ConnectViewController alloc]init]];
+    self.window.rootViewController=frameViewControllerNav;
     self.window.backgroundColor = [UIColor whiteColor];
     
     self.bleManager = [[TIBLECBStandand alloc]init];
+    [self.bleManager controlSetup:1];
     
     [self.window makeKeyAndVisible];
     return YES;

@@ -55,8 +55,10 @@
 		C9ECF2141B65C85A0088E110 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF2011B65C85A0088E110 /* UIImage+Utils.m */; };
 		C9ECF2151B65C85A0088E110 /* UIImageView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF2031B65C85A0088E110 /* UIImageView+Utils.m */; };
 		C9ECF2161B65C85A0088E110 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF2051B65C85A0088E110 /* User.m */; };
-		C9F1EF1B1B671895005C8CF3 /* TIBLECBStandand.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF1A1B671895005C8CF3 /* TIBLECBStandand.m */; };
+		C9F1EF1B1B671895005C8CF3 /* TIBLECBStandanda.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF1A1B671895005C8CF3 /* TIBLECBStandanda.m */; };
 		C9F1EF1E1B674214005C8CF3 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF1D1B674214005C8CF3 /* Tools.m */; };
+		C9F1EF211B67491E005C8CF3 /* TIBLECBStandand.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF201B67491E005C8CF3 /* TIBLECBStandand.m */; };
+		C9F1EF241B677004005C8CF3 /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF231B677004005C8CF3 /* ConnectViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,10 +163,14 @@
 		C9ECF2031B65C85A0088E110 /* UIImageView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Utils.m"; sourceTree = "<group>"; };
 		C9ECF2041B65C85A0088E110 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		C9ECF2051B65C85A0088E110 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		C9F1EF191B671895005C8CF3 /* TIBLECBStandand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIBLECBStandand.h; sourceTree = "<group>"; };
-		C9F1EF1A1B671895005C8CF3 /* TIBLECBStandand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIBLECBStandand.m; sourceTree = "<group>"; };
+		C9F1EF191B671895005C8CF3 /* TIBLECBStandanda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIBLECBStandanda.h; sourceTree = "<group>"; };
+		C9F1EF1A1B671895005C8CF3 /* TIBLECBStandanda.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIBLECBStandanda.m; sourceTree = "<group>"; };
 		C9F1EF1C1B674214005C8CF3 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		C9F1EF1D1B674214005C8CF3 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
+		C9F1EF1F1B67491E005C8CF3 /* TIBLECBStandand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIBLECBStandand.h; sourceTree = "<group>"; };
+		C9F1EF201B67491E005C8CF3 /* TIBLECBStandand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIBLECBStandand.m; sourceTree = "<group>"; };
+		C9F1EF221B677004005C8CF3 /* ConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectViewController.h; sourceTree = "<group>"; };
+		C9F1EF231B677004005C8CF3 /* ConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,16 +195,18 @@
 		C9126A281B65DA39001D3D60 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C9F1EF221B677004005C8CF3 /* ConnectViewController.h */,
+				C9F1EF231B677004005C8CF3 /* ConnectViewController.m */,
 				C9126A2B1B65DA5A001D3D60 /* HomeViewController.h */,
 				C9126A2C1B65DA5A001D3D60 /* HomeViewController.m */,
 				C9126A341B65DBC7001D3D60 /* InfoViewController.h */,
 				C9126A351B65DBC7001D3D60 /* InfoViewController.m */,
+				C9126A3A1B65FFE3001D3D60 /* MainViewController.h */,
+				C9126A3B1B65FFE3001D3D60 /* MainViewController.m */,
 				C9126A311B65DBBB001D3D60 /* SettingViewController.h */,
 				C9126A321B65DBBB001D3D60 /* SettingViewController.m */,
 				C9126A2E1B65DBAF001D3D60 /* TimerViewController.h */,
 				C9126A2F1B65DBAF001D3D60 /* TimerViewController.m */,
-				C9126A3A1B65FFE3001D3D60 /* MainViewController.h */,
-				C9126A3B1B65FFE3001D3D60 /* MainViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -286,8 +294,6 @@
 		C9ECF1941B65C2290088E110 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C9F1EF1C1B674214005C8CF3 /* Tools.h */,
-				C9F1EF1D1B674214005C8CF3 /* Tools.m */,
 				C9ECF1E31B65C85A0088E110 /* BaseEGOTableViewPullRefreshViewController.h */,
 				C9ECF1E41B65C85A0088E110 /* BaseEGOTableViewPullRefreshViewController.m */,
 				C9ECF1E51B65C85A0088E110 /* BaseTabBarViewController.h */,
@@ -307,6 +313,12 @@
 				C9ECF1FB1B65C85A0088E110 /* Response.h */,
 				C9ECF1FC1B65C85A0088E110 /* Response.m */,
 				C9ECF1FD1B65C85A0088E110 /* ResultDelegate.h */,
+				C9F1EF1F1B67491E005C8CF3 /* TIBLECBStandand.h */,
+				C9F1EF201B67491E005C8CF3 /* TIBLECBStandand.m */,
+				C9F1EF191B671895005C8CF3 /* TIBLECBStandanda.h */,
+				C9F1EF1A1B671895005C8CF3 /* TIBLECBStandanda.m */,
+				C9F1EF1C1B674214005C8CF3 /* Tools.h */,
+				C9F1EF1D1B674214005C8CF3 /* Tools.m */,
 				C9ECF1FE1B65C85A0088E110 /* UIButton+TitleImage.h */,
 				C9ECF1FF1B65C85A0088E110 /* UIButton+TitleImage.m */,
 				C9ECF2001B65C85A0088E110 /* UIImage+Utils.h */,
@@ -315,8 +327,6 @@
 				C9ECF2031B65C85A0088E110 /* UIImageView+Utils.m */,
 				C9ECF2041B65C85A0088E110 /* User.h */,
 				C9ECF2051B65C85A0088E110 /* User.m */,
-				C9F1EF191B671895005C8CF3 /* TIBLECBStandand.h */,
-				C9F1EF1A1B671895005C8CF3 /* TIBLECBStandand.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -556,11 +566,13 @@
 				C9ECF1741B65C1460088E110 /* AppDelegate.m in Sources */,
 				C9ECF20B1B65C85A0088E110 /* Common.m in Sources */,
 				C9126A331B65DBBB001D3D60 /* SettingViewController.m in Sources */,
+				C9F1EF241B677004005C8CF3 /* ConnectViewController.m in Sources */,
 				C9ECF1C91B65C6BD0088E110 /* Reachability.m in Sources */,
 				C9126A3C1B65FFE3001D3D60 /* MainViewController.m in Sources */,
 				C9ECF1D51B65C6BD0088E110 /* PullTableView.m in Sources */,
+				C9F1EF211B67491E005C8CF3 /* TIBLECBStandand.m in Sources */,
 				C9ECF20E1B65C85A0088E110 /* HttpDownload.m in Sources */,
-				C9F1EF1B1B671895005C8CF3 /* TIBLECBStandand.m in Sources */,
+				C9F1EF1B1B671895005C8CF3 /* TIBLECBStandanda.m in Sources */,
 				C9ECF1CE1B65C6BD0088E110 /* ATMSoundFX.m in Sources */,
 				C9126A421B66004A001D3D60 /* CLabel.m in Sources */,
 				C9ECF1E11B65C6BD0088E110 /* MBProgressHUD.m in Sources */,
