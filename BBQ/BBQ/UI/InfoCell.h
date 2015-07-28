@@ -10,6 +10,7 @@
 
 @interface InfoCell : UITableViewCell
 
+@property (strong,nonatomic)NSDictionary *data;
 
 @property (strong,nonatomic)UILabel *lblTitle;
 @property (strong,nonatomic)UILabel *lblSetTime;

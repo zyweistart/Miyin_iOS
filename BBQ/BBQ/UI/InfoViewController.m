@@ -18,6 +18,17 @@
     self=[super init];
     if(self){
         [self cTitle:@"Information"];
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
+//        UIWebView *webView=[[UIWebView alloc]initWithFrame:self.view.bounds];
+//        [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+//        [self.view addSubview:webView];
+//        NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"page.bundle/%@.html",@"info"]];
+//        NSURL* url = [NSURL fileURLWithPath:path];
+//        NSURLRequest* request = [NSURLRequest requestWithURL:url] ;
+//        [webView loadRequest:request];
+        
+        
+        
     }
     return self;
 }

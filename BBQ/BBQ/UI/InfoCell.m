@@ -70,8 +70,9 @@
         [self.lblHighestCentigrade setTextAlignment:NSTextAlignmentCenter];
         [frame addSubview:self.lblHighestCentigrade];
         
-        UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake1(202, 97, 46, 52)];
-        [image setImage:[UIImage imageNamed:@"时间"]];
+        UIButton *image=[[UIButton alloc]initWithFrame:CGRectMake1(202, 97, 46, 52)];
+        [image setImage:[UIImage imageNamed:@"时间"] forState:UIControlStateNormal];
+        [image addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
         [frame addSubview:image];
         
         self.lblSetTime=[[UILabel alloc]initWithFrame:CGRectMake1(250, 97, 60, 52)];
@@ -84,6 +85,11 @@
         
     }
     return self;
+}
+
+- (void)setTimer:(id)sender
+{
+    NSLog(@"设置时间%@",self.data);
 }
 
 @end

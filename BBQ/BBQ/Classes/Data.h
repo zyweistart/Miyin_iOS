@@ -14,6 +14,9 @@
 
 @property (strong,nonatomic) NSString *cf;
 @property (strong,nonatomic) NSMutableArray *sett;
+@property (strong,nonatomic) NSMutableDictionary *settValue;
+@property (strong,nonatomic) NSString *alarm;
+@property (strong,nonatomic) NSString *language;
 
 + (NSString*)getTemperatureValue:(int)v;
 

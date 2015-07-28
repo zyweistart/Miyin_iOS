@@ -49,7 +49,7 @@
     [tabBarItem setTitle:title];
     if(image){
         [tabBarItem setImage:[UIImage imageNamed:image]];
-        [tabBarItem setSelectedImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@2",image]]];
+        [tabBarItem setSelectedImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@",image]]];
     }
     frameViewControllerNav.tabBarItem = tabBarItem;
     return frameViewControllerNav;
@@ -87,11 +87,9 @@
         NSArray *allKeys=[resultJSON allKeys];
         if([allKeys containsObject:@"cf"]){
             //
-            NSLog(@"%@",content);
             [[Data Instance]setCf:[resultJSON objectForKey:@"cf"]];
         }else if([allKeys containsObject:@"sett"]){
             //
-            NSLog(@"%@",content);
             [[[Data Instance] sett]addObject:[resultJSON objectForKey:@"sett"]];
         }else if([allKeys containsObject:@"t"]){
             //
@@ -99,6 +97,7 @@
             [self.mHomeViewController loadData:array];
         }else if([allKeys containsObject:@"alarm"]){
             //发出警报
+            NSLog(@"%@",content);
         }else{
             NSLog(@"%@",content);
         }

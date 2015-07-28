@@ -16,6 +16,7 @@ static Data * instance = nil;
         if(nil == instance){
             instance=[self new];
             instance.sett=[[NSMutableArray alloc]init];
+            instance.settValue=[NSMutableDictionary new];
         }
     }
     return instance;

@@ -8,6 +8,6 @@
 
 #import "BaseTableViewController.h"
 
-@interface SettingViewController : BaseTableViewController
+@interface SettingViewController : BaseTableViewController<UIActionSheetDelegate>
 
 @end

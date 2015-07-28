@@ -26,6 +26,8 @@
         [self buildTableViewWithView:self.view];
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         [self.tableView setBackgroundColor:DEFAULTITLECOLORRGB(65, 51, 42)];
+        
+        [[[Data Instance]settValue]setObject:@"10h56m" forKey:@"p3"];
     }
     return self;
 }
@@ -47,6 +49,7 @@
         cell = [[InfoCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier] ;
     }
     NSDictionary *data = [self.dataItemArray objectAtIndex:[indexPath row]];
+    [cell setData:data];
     for(id key in [data allKeys]){
         NSString *title=[NSString stringWithFormat:@"%@",key];
         NSString *centigrade=[NSString stringWithFormat:@"%@",[data objectForKey:key]];
@@ -79,7 +82,8 @@
         [cell.lblCurrentSamllCentigrade setFrame:CGRectMake1(40+width, 5, 60, 20)];
         [cell.viewCentigrade setFrame:CGRectMake1(2, 2, width, 16)];
         
-//        [cell.lblSetTime setText:@"10h45m"];
+        NSString *timer=[[[Data Instance]settValue]objectForKey:title];
+        [cell.lblSetTime setText:timer];
     }
     return  cell;
 }
