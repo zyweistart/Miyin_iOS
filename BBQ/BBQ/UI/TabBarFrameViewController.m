@@ -88,9 +88,11 @@
         if([allKeys containsObject:@"cf"]){
             //
             NSLog(@"%@",content);
+            [[Data Instance]setCf:[resultJSON objectForKey:@"cf"]];
         }else if([allKeys containsObject:@"sett"]){
             //
             NSLog(@"%@",content);
+            [[[Data Instance] sett]addObject:[resultJSON objectForKey:@"sett"]];
         }else if([allKeys containsObject:@"t"]){
             //
             NSArray *array=[resultJSON objectForKey:@"t"];
@@ -100,8 +102,6 @@
         }else{
             NSLog(@"%@",content);
         }
-    }else{
-        NSLog(@"无效的JSON：%@",content);
     }
 }
 

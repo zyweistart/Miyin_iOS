@@ -10,4 +10,12 @@
 
 @interface InfoCell : UITableViewCell
 
+
+@property (strong,nonatomic)UILabel *lblTitle;
+@property (strong,nonatomic)UILabel *lblSetTime;
+@property (strong,nonatomic)UILabel *lblCurrentCentigrade;
+@property (strong,nonatomic)UIButton *lblCurrentSamllCentigrade;
+@property (strong,nonatomic)UILabel *lblHighestCentigrade;
+@property (strong,nonatomic)UIView *viewCentigrade;
+
 @end

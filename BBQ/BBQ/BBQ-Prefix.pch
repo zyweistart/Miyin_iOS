@@ -23,6 +23,7 @@
 #import "AppDelegate.h"
 #import "User.h"
 #import "Common.h"
+#import "Data.h"
 #import "NSString+Utils.h"
 #import "BaseViewController.h"
 
