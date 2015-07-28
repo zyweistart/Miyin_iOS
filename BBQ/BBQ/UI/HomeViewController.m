@@ -7,10 +7,8 @@
 //
 
 #import "HomeViewController.h"
-#import "InfoCell.h"
+#import "MenuCell.h"
 
-//#define CENTIGRADETEMP(CATE) [NSString stringWithFormat:@"%d°C",CATE]
-//#define FENTIGRADETEMP(CATE) [NSString stringWithFormat:@"%d°F",CATE]
 #define DEFAULCENTIGRADEVALUE 200
 
 @interface HomeViewController ()
@@ -22,7 +20,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        [self cTitle:@"Home"];
+        [self cTitle:@"BBQ Connected"];
         [self buildTableViewWithView:self.view];
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         [self.tableView setBackgroundColor:DEFAULTITLECOLORRGB(65, 51, 42)];
@@ -44,9 +42,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifier=@"InfoCellIdentifier";
-    InfoCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
+    MenuCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
     if(cell==nil){
-        cell = [[InfoCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier] ;
+        cell = [[MenuCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier] ;
     }
     NSDictionary *data = [self.dataItemArray objectAtIndex:[indexPath row]];
     [cell setData:data];

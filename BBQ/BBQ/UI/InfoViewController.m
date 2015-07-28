@@ -7,6 +7,7 @@
 //
 
 #import "InfoViewController.h"
+#import "InfoCell.h"
 
 @interface InfoViewController ()
 
@@ -18,19 +19,48 @@
     self=[super init];
     if(self){
         [self cTitle:@"Information"];
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
-//        UIWebView *webView=[[UIWebView alloc]initWithFrame:self.view.bounds];
-//        [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-//        [self.view addSubview:webView];
-//        NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"page.bundle/%@.html",@"info"]];
-//        NSURL* url = [NSURL fileURLWithPath:path];
-//        NSURLRequest* request = [NSURLRequest requestWithURL:url] ;
-//        [webView loadRequest:request];
         
+        [self.dataItemArray addObject:@"Temp Unit"];
+        [self.dataItemArray addObject:@"Alarm"];
+        [self.dataItemArray addObject:@"Language"];
+        [self.dataItemArray addObject:@"About"];
         
-        
+        [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
+        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
     }
     return self;
+}
+
+- (void)loadData:(NSArray*)array
+{
+    self.dataItemArray=[[NSMutableArray alloc]initWithArray:array];
+    [self.tableView reloadData];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [self.dataItemArray count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGHeight(90);
+}
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"SAMPLECell";
+    InfoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(!cell) {
+        cell = [[InfoCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    }
+    return cell;
 }
 
 @end

@@ -98,6 +98,7 @@
         }else if([allKeys containsObject:@"alarm"]){
             //发出警报
             NSLog(@"%@",content);
+            [Common alert:@"The grill has flared up!"];
         }else{
             NSLog(@"%@",content);
         }
