@@ -1,22 +1,26 @@
 #import "TabBarFrameViewController.h"
-#import "HomeViewController.h"
-#import "InfoViewController.h"
-#import "SettingViewController.h"
-#import "TimerViewController.h"
-
-#define HTTP_REQUESTCODE_DOWNIMAGE 500
-#define DEFAULTDATA_LASTVERSIONNO @"DEFAULTDATA_LASTVERSIONNO"
+#import "Tools.h"
 
 @interface TabBarFrameViewController ()
 
 @end
 
-@implementation TabBarFrameViewController
+@implementation TabBarFrameViewController{
+    //接收到的数据
+    NSMutableString *receiveSBString;
+}
 
 - (id)init
 {
     self=[super init];
     if(self){
+        receiveSBString=[NSMutableString new];
+        
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        [nc addObserver: self
+               selector: @selector(ValueChangText:)
+                   name: NOTIFICATION_VALUECHANGUPDATE
+                 object: nil];
     }
     return self;
 }
@@ -24,44 +28,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.mHomeViewController=[[HomeViewController alloc]init];
+    self.mTimerViewController=[[TimerViewController alloc]init];
+    self.mSettingViewController=[[SettingViewController alloc]init];
+    self.mInfoViewController=[[InfoViewController alloc]init];
     self.viewControllers = [NSArray arrayWithObjects:
-                            [self viewControllerWithTabTitle:@"Home" image:@"icon-nav-home" ViewController:[[HomeViewController alloc]init]],
-                            [self viewControllerWithTabTitle:@"Timer" image:@"icon-nav-timer" ViewController:[[TimerViewController alloc]init]],
-                            [self viewControllerWithTabTitle:@"Setting" image:@"icon-nav-setting" ViewController:[[SettingViewController alloc]init]],
-                            [self viewControllerWithTabTitle:@"Info" image:@"icon-nav-info" ViewController:[[InfoViewController alloc]init]], nil];
-    
-    //获取最后保存的版本号不存在则为0
-    float lastVersionNo=[[Common getCache:DEFAULTDATA_LASTVERSIONNO] floatValue];
-    NSDictionary* infoDict =[[NSBundle mainBundle] infoDictionary];
-    //获取当前使用的版本号
-    NSString *currentVersionNo=[infoDict objectForKey:@"CFBundleShortVersionString"];
-    if([currentVersionNo floatValue]>lastVersionNo){
-        [self showIntroWithCrossDissolve];
-    }
-}
-
-- (void)showIntroWithCrossDissolve
-{
-    EAIntroPage *page1 = [EAIntroPage page];
-    page1.bgImage = [UIImage imageNamed:@"guide1"];
-    
-    EAIntroPage *page2 = [EAIntroPage page];
-    page2.bgImage = [UIImage imageNamed:@"guide2"];
-    
-    EAIntroPage *page3 = [EAIntroPage page];
-    page3.bgImage = [UIImage imageNamed:@"guide3"];
-    
-    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:self.view.bounds andPages:@[page1,page2,page3]];
-    
-    [intro setDelegate:self];
-    [intro showInView:self.view animateDuration:0.0];
-}
-
-- (void)introDidFinish
-{
-    NSDictionary* infoDict =[[NSBundle mainBundle] infoDictionary];
-    NSString *currentVersionNo=[infoDict objectForKey:@"CFBundleShortVersionString"];
-    [Common setCache:DEFAULTDATA_LASTVERSIONNO data:currentVersionNo];
+                            [self viewControllerWithTabTitle:@"Home" image:@"icon-nav-home" ViewController:self.mHomeViewController],
+                            [self viewControllerWithTabTitle:@"Timer" image:@"icon-nav-timer" ViewController:self.mTimerViewController],
+                            [self viewControllerWithTabTitle:@"Setting" image:@"icon-nav-setting" ViewController:self.mSettingViewController],
+                            [self viewControllerWithTabTitle:@"Info" image:@"icon-nav-info" ViewController:self.mInfoViewController], nil];
 }
 
 - (UINavigationController*)viewControllerWithTabTitle:(NSString*) title image:(NSString*)image ViewController:(UIViewController*)viewController
@@ -77,6 +53,56 @@
     }
     frameViewControllerNav.tabBarItem = tabBarItem;
     return frameViewControllerNav;
+}
+
+//这里取出刚刚从过来的字符串
+- (void)ValueChangText:(NSNotification *)notification
+{
+    CBCharacteristic *tmpCharacter = (CBCharacteristic*)[notification object];
+    CHAR_STRUCT buf1;
+    //将获取的值传递到buf1中；
+    [tmpCharacter.value getBytes:&buf1 length:tmpCharacter.value.length];
+    for(int i =0;i<tmpCharacter.value.length;i++) {
+        NSString *strContent=[Tools stringFromHexString:[NSString stringWithFormat:@"%02X",buf1.buff[i]&0x000000ff]];
+        if([@"\n" isEqualToString:strContent]){
+            if([receiveSBString length]>0){
+                NSString *last=[receiveSBString substringFromIndex:[receiveSBString length]-1];
+                if([@"\r" isEqualToString:last]){
+                    [self AnalyticalJson:receiveSBString];
+                    receiveSBString=[NSMutableString new];
+                    continue;
+                }
+            }
+        }else{
+            [receiveSBString appendString:strContent];
+        }
+    }
+}
+
+- (void)AnalyticalJson:(NSString*)content
+{
+    NSData *data=[content dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *resultJSON=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+    if(resultJSON){
+        NSArray *allKeys=[resultJSON allKeys];
+        if([allKeys containsObject:@"cf"]){
+            //
+            NSLog(@"%@",content);
+        }else if([allKeys containsObject:@"sett"]){
+            //
+            NSLog(@"%@",content);
+        }else if([allKeys containsObject:@"t"]){
+            //
+            NSArray *array=[resultJSON objectForKey:@"t"];
+            [self.mHomeViewController loadData:array];
+        }else if([allKeys containsObject:@"alarm"]){
+            //发出警报
+        }else{
+            NSLog(@"%@",content);
+        }
+    }else{
+        NSLog(@"无效的JSON：%@",content);
+    }
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "BaseTableViewController.h"
+
 enum MODEl_STATE
 {
     MODEL_NORMAL = 0,//normal

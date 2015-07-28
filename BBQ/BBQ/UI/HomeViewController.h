@@ -8,16 +8,8 @@
 
 #import "BaseTableViewController.h"
 
-enum MODEl_STATE
-{
-    MODEL_NORMAL = 0,//normal
-    MODEL_CONNECTING = 1,//连接中
-    MODEL_SCAN = 2,//扫描
-    MODEL_CONECTED = 3,//连接
-};
+@interface HomeViewController : BaseTableViewController
 
-@interface HomeViewController : BaseTableViewController{
-    int MODEL;
-}
+- (void)loadData:(NSArray*)array;
 
 @end

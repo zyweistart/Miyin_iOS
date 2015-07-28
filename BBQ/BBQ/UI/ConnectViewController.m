@@ -7,17 +7,15 @@
 //
 
 #import "ConnectViewController.h"
-#import "Tools.h"
-
 #import "TabBarFrameViewController.h"
+#import "Tools.h"
 
 @interface ConnectViewController ()
 
 @end
 
-@implementation ConnectViewController {
-    //接收到的数据
-    NSMutableString *receiveSBString;
+@implementation ConnectViewController{
+    CButton *bEnter;
 }
 
 - (id)init{
@@ -28,6 +26,15 @@
         [self.progressView setColor :[UIColor whiteColor]];
         [self RefreshStateNormal];
         [self buildTableViewWithView:self.view];
+        
+        UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 120, 40)];
+        [self.tableView setTableFooterView:bottomView];
+        bEnter=[[CButton alloc]initWithFrame:CGRectMake1(20, 0, 280, 40) Name:@"Enter" Type:2];
+        [bEnter setEnabled:NO];
+        [bEnter addTarget:self action:@selector(goMainPage) forControlEvents:UIControlEventTouchUpInside];
+        [bottomView addSubview:bEnter];
+        [self.tableView setTableFooterView:bottomView];
+        
     }
     return self;
 }
@@ -35,7 +42,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self performSelector:@selector(startScan) withObject:nil afterDelay:0.5];
+    [self performSelector:@selector(startScan) withObject:nil afterDelay:0.5];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -66,6 +73,8 @@
             [[cell detailTextLabel] setText: @"Scanning..."];
         }else if (MODEL == MODEL_CONECTED){
             [[cell detailTextLabel] setText: @"Connected"];
+            [bEnter setEnabled:YES];
+            [bEnter setTitle:[NSString stringWithFormat:@"Enter %@",cbPeripheral.name] forState:UIControlStateNormal];
         }
     }
     return  cell;
@@ -86,19 +95,16 @@
     //发出通知新页面，对指定外围设备进行连接
     CBPeripheral *peripheral=[self.appDelegate.bleManager.peripherals objectAtIndex:indexPath.row];
     [self.appDelegate.bleManager connectPeripheral:peripheral];
-    
-    
-    
 }
 
--(void)RefreshStateStart
+- (void)RefreshStateStart
 {
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithCustomView:_progressView];
     [_progressView startAnimating];
     [self.navigationItem setRightBarButtonItem:rightBtn];
 }
 
--(void)RefreshStateNormal
+- (void)RefreshStateNormal
 {
     [_progressView stopAnimating];
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(startScan)];
@@ -108,35 +114,32 @@
 //开始扫描
 - (void)startScan
 {
-    [self goMainPage];
-//    [self initNotification];
-//    [self RefreshStateStart];
-//    [self ScanPeripheral];
-//    MODEL = MODEL_NORMAL;
+    [self initNotification];
+    [self RefreshStateStart];
+    [self ScanPeripheral];
+    MODEL = MODEL_NORMAL;
 }
 
 //获取数据
-- (void)getData
+- (void)startGetData
 {
     [self.appDelegate.bleManager notification:0xFFE0 characteristicUUID:0xFFE4 p:self.appDelegate.bleManager.activePeripheral on:YES];
-    //    [self stopScan];
 }
 
 - (void)ScanPeripheral
 {
-    if (self.appDelegate.bleManager.activePeripheral){
-        //self.appDelegate.bleManager.activePeripheral.isConnected
+    if (self.appDelegate.bleManager.activePeripheral) {
         if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
             [[self.appDelegate.bleManager CM] cancelPeripheralConnection:[self.appDelegate.bleManager activePeripheral]];
         }
     }
     [self.appDelegate.bleManager.peripherals removeAllObjects];
-    [self.appDelegate.bleManager.activeCharacteristics removeAllObjects];
     [self.appDelegate.bleManager.activeDescriptors removeAllObjects];
-    self.appDelegate.bleManager.activePeripheral = nil;
+    [self.appDelegate.bleManager.activeCharacteristics removeAllObjects];
     self.appDelegate.bleManager.activeService = nil;
+    self.appDelegate.bleManager.activePeripheral = nil;
     
-    //定时扫描持续时间 10 秒，之后打印扫描到的信息
+    //定时扫描持续时间10秒，之后打印扫描到的信息
     [self.appDelegate.bleManager findBLEPeripherals:10];
 }
 
@@ -156,7 +159,6 @@
     //设定通知
     //发现BLE外围设备
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    
     //成功连接到指定外围BLE设备
     [nc addObserver: self
            selector: @selector(didConectedbleDevice:)
@@ -177,10 +179,6 @@
     [nc addObserver: self
            selector: @selector(DownloadCharacteristicOver:)
                name: NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP
-             object: nil];
-    [nc addObserver: self
-           selector: @selector(ValueChangText:)
-               name: NOTIFICATION_VALUECHANGUPDATE
              object: nil];
 }
 
@@ -224,31 +222,6 @@
     [self.tableView reloadData];
 }
 
-- (void)ValueChangText:(NSNotification *)notification
-{
-    //这里取出刚刚从过来的字符串
-    CBCharacteristic *tmpCharacter = (CBCharacteristic*)[notification object];
-    CHAR_STRUCT buf1;
-    //将获取的值传递到buf1中；
-    [tmpCharacter.value getBytes:&buf1 length:tmpCharacter.value.length];
-    //ASCII
-    for(int i =0;i<tmpCharacter.value.length;i++) {
-        NSString *strContent=[Tools stringFromHexString:[NSString stringWithFormat:@"%02X",buf1.buff[i]&0x000000ff]];
-        if([@"\n" isEqualToString:strContent]){
-            if([receiveSBString length]>0){
-                NSString *last=[receiveSBString substringFromIndex:[receiveSBString length]-1];
-                if([@"\r" isEqualToString:last]){
-                    NSLog(@"%@",receiveSBString);
-                    receiveSBString=[NSMutableString new];
-                    continue;
-                }
-            }
-        }else{
-            [receiveSBString appendString:strContent];
-        }
-    }
-}
-
 - (void)sendData
 {
     NSString  *message =@"{}\r\n";
@@ -290,8 +263,9 @@
 - (void)goMainPage
 {
     TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
-    [self presentViewController:mTabBarFrameViewController animated:YES completion:nil];
-    
+    [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
+        [self startGetData];
+    }];
 }
 
 @end
