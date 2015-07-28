@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TIBLECBStandand.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -14,6 +15,8 @@
 @property float autoSizeScaleY;
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (strong, nonatomic) TIBLECBStandand *bleManager;
 
 @end
 

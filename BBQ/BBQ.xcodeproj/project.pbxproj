@@ -55,6 +55,7 @@
 		C9ECF2141B65C85A0088E110 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF2011B65C85A0088E110 /* UIImage+Utils.m */; };
 		C9ECF2151B65C85A0088E110 /* UIImageView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF2031B65C85A0088E110 /* UIImageView+Utils.m */; };
 		C9ECF2161B65C85A0088E110 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF2051B65C85A0088E110 /* User.m */; };
+		C9F1EF1B1B671895005C8CF3 /* TIBLECBStandand.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF1A1B671895005C8CF3 /* TIBLECBStandand.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +160,8 @@
 		C9ECF2031B65C85A0088E110 /* UIImageView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Utils.m"; sourceTree = "<group>"; };
 		C9ECF2041B65C85A0088E110 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		C9ECF2051B65C85A0088E110 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		C9F1EF191B671895005C8CF3 /* TIBLECBStandand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIBLECBStandand.h; sourceTree = "<group>"; };
+		C9F1EF1A1B671895005C8CF3 /* TIBLECBStandand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIBLECBStandand.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +310,8 @@
 				C9ECF2031B65C85A0088E110 /* UIImageView+Utils.m */,
 				C9ECF2041B65C85A0088E110 /* User.h */,
 				C9ECF2051B65C85A0088E110 /* User.m */,
+				C9F1EF191B671895005C8CF3 /* TIBLECBStandand.h */,
+				C9F1EF1A1B671895005C8CF3 /* TIBLECBStandand.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -549,6 +554,7 @@
 				C9126A3C1B65FFE3001D3D60 /* MainViewController.m in Sources */,
 				C9ECF1D51B65C6BD0088E110 /* PullTableView.m in Sources */,
 				C9ECF20E1B65C85A0088E110 /* HttpDownload.m in Sources */,
+				C9F1EF1B1B671895005C8CF3 /* TIBLECBStandand.m in Sources */,
 				C9ECF1CE1B65C6BD0088E110 /* ATMSoundFX.m in Sources */,
 				C9126A421B66004A001D3D60 /* CLabel.m in Sources */,
 				C9ECF1E11B65C6BD0088E110 /* MBProgressHUD.m in Sources */,

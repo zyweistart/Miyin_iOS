@@ -8,6 +8,16 @@
 
 #import "BaseTableViewController.h"
 
-@interface HomeViewController : BaseTableViewController
+enum MODEl_STATE
+{
+    MODEL_NORMAL = 0,
+    MODEL_CONNECTING = 1,
+    MODEL_SCAN = 2,
+    MODEL_CONECTED = 3,
+};
+
+@interface HomeViewController : BaseTableViewController{
+    int MODEL;
+}
 
 @end

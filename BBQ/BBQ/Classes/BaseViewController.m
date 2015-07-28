@@ -12,6 +12,7 @@
     self=[super init];
     if(self){
         [self.view setBackgroundColor:[UIColor whiteColor]];
+        self.appDelegate = [[UIApplication sharedApplication] delegate];
     }
     return self;
 }
