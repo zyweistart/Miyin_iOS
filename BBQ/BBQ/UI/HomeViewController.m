@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "InfoCell.h"
 
 @interface HomeViewController ()
 
@@ -19,6 +20,8 @@
     if(self){
         [self cTitle:@"Home"];
         [self buildTableViewWithView:self.view];
+        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        [self.tableView setBackgroundColor:DEFAULTITLECOLORRGB(242, 125, 0)];
     }
     return self;
 }
@@ -26,15 +29,18 @@
 - (void)loadData:(NSArray*)array
 {
     self.dataItemArray=[[NSMutableArray alloc]initWithArray:array];
-//    NSLog(@"%@",self.dataItemArray);
     [self.tableView reloadData];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return CGHeight(210);
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *identifier=@"TableCellIdentifier";
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
+    static NSString *identifier=@"InfoCellIdentifier";
+    InfoCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
     if(cell==nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier] ;
+        cell = [[InfoCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier] ;
     }
     NSDictionary *data = [self.dataItemArray objectAtIndex:[indexPath row]];
     for(id key in [data allKeys]){
@@ -42,11 +48,6 @@
         [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@",[data objectForKey:key]]];
     }
     return  cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
 }
 
 @end

@@ -16,6 +16,7 @@
 		C9126A411B66004A001D3D60 /* CButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A3E1B66004A001D3D60 /* CButton.m */; };
 		C9126A421B66004A001D3D60 /* CLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A401B66004A001D3D60 /* CLabel.m */; };
 		C9B27CA61B660236005DD13B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B27CA51B660236005DD13B /* CoreBluetooth.framework */; };
+		C9D6152C1B67C7B2003DAC98 /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6152B1B67C7B2003DAC98 /* InfoCell.m */; };
 		C9ECF1711B65C1460088E110 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF1701B65C1460088E110 /* main.m */; };
 		C9ECF1741B65C1460088E110 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF1731B65C1460088E110 /* AppDelegate.m */; };
 		C9ECF17C1B65C1460088E110 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9ECF17B1B65C1460088E110 /* Images.xcassets */; };
@@ -89,6 +90,8 @@
 		C9126A3F1B66004A001D3D60 /* CLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLabel.h; sourceTree = "<group>"; };
 		C9126A401B66004A001D3D60 /* CLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLabel.m; sourceTree = "<group>"; };
 		C9B27CA51B660236005DD13B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		C9D6152A1B67C7B2003DAC98 /* InfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoCell.h; sourceTree = "<group>"; };
+		C9D6152B1B67C7B2003DAC98 /* InfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoCell.m; sourceTree = "<group>"; };
 		C9ECF16B1B65C1460088E110 /* BBQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9ECF16F1B65C1460088E110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9ECF1701B65C1460088E110 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 		C9126A2A1B65DA42001D3D60 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				C9D6152A1B67C7B2003DAC98 /* InfoCell.h */,
+				C9D6152B1B67C7B2003DAC98 /* InfoCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -552,6 +557,7 @@
 				C9126A361B65DBC7001D3D60 /* InfoViewController.m in Sources */,
 				C9126A411B66004A001D3D60 /* CButton.m in Sources */,
 				C9ECF2151B65C85A0088E110 /* UIImageView+Utils.m in Sources */,
+				C9D6152C1B67C7B2003DAC98 /* InfoCell.m in Sources */,
 				C9ECF2161B65C85A0088E110 /* User.m in Sources */,
 				C9F1EF1E1B674214005C8CF3 /* Tools.m in Sources */,
 				C9ECF1CD1B65C6BD0088E110 /* ATMProgressLayer.m in Sources */,
