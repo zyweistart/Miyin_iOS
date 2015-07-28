@@ -15,9 +15,12 @@
 @property (strong,nonatomic) NSString *cf;
 @property (strong,nonatomic) NSMutableArray *sett;
 @property (strong,nonatomic) NSMutableDictionary *settValue;
-@property (strong,nonatomic) NSString *alarm;
-@property (strong,nonatomic) NSString *language;
 
 + (NSString*)getTemperatureValue:(int)v;
+
+- (NSString*)getAlarm;
+- (void)setAlarm:(NSString*)alarm;
+- (NSString*)getLanguage;
+- (void)setLanguage:(NSString*)language;
 
 @end

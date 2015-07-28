@@ -8,6 +8,10 @@
 
 #import "Data.h"
 
+
+#define SETTINGALARM @"SETTINGALARM"
+#define SETTINGLANGUAGE @"SETTINGLANGUAGE"
+
 @implementation Data
 
 static Data * instance = nil;
@@ -20,6 +24,34 @@ static Data * instance = nil;
         }
     }
     return instance;
+}
+
+- (void)setAlarm:(NSString*)alarm
+{
+    [Common setCache:SETTINGALARM data:alarm];
+}
+
+- (NSString*)getAlarm
+{
+    NSString *alarm=[Common getCache:SETTINGALARM];
+    if(alarm){
+        return alarm;
+    }
+    return @"";
+}
+
+- (void)setLanguage:(NSString*)language
+{
+    [Common setCache:SETTINGLANGUAGE data:language];
+}
+
+- (NSString*)getLanguage
+{
+    NSString *language=[Common getCache:SETTINGLANGUAGE];
+    if(language){
+        return language;
+    }
+    return @"";
 }
 
 //获取当前温度

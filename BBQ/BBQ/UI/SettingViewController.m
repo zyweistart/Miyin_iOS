@@ -44,7 +44,7 @@
             cell = [[SwitchCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         }
         [cell.textLabel setText:content];
-        if([@"f" isEqualToString:[[Data Instance]cf]]){
+        if([@"c" isEqualToString:[[Data Instance]cf]]){
             [cell.rightButton setSelected:YES];
         }else{
             [cell.rightButton setSelected:NO];
@@ -59,9 +59,9 @@
         
         [cell.textLabel setText:content];
         if(row==1){
-            [cell.detailTextLabel setText:[[Data Instance]alarm]];
+            [cell.detailTextLabel setText:[[Data Instance]getAlarm]];
         }else if(row==2){
-            [cell.detailTextLabel setText:[[Data Instance]language]];
+            [cell.detailTextLabel setText:[[Data Instance]getLanguage]];
         }
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         return cell;
@@ -71,9 +71,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row=[indexPath row];
-    if(row==0){
-        NSLog(@"华氏");
-    }else if(row==1){
+    if(row==1){
         UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
