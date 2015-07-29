@@ -44,7 +44,7 @@
             cell = [[SwitchCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         }
         [cell.textLabel setText:content];
-        if([@"c" isEqualToString:[[Data Instance]cf]]){
+        if([@"c" isEqualToString:[[Data Instance]getCf]]){
             [cell.rightButton setSelected:YES];
         }else{
             [cell.rightButton setSelected:NO];

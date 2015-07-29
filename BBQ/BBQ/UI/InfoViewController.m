@@ -25,9 +25,11 @@
         [self.dataItemArray addObject:@"Language"];
         [self.dataItemArray addObject:@"About"];
         
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
+        
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
+        [self.tableView setBackgroundColor:[UIColor clearColor]];
     }
     return self;
 }

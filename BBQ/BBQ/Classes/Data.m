@@ -9,6 +9,7 @@
 #import "Data.h"
 
 
+#define SETTINGCF @"SETTINGCF"
 #define SETTINGALARM @"SETTINGALARM"
 #define SETTINGLANGUAGE @"SETTINGLANGUAGE"
 
@@ -24,6 +25,20 @@ static Data * instance = nil;
         }
     }
     return instance;
+}
+
+- (void)setCf:(NSString*)cf
+{
+    [Common setCache:SETTINGCF data:cf];
+}
+
+- (NSString*)getCf
+{
+    NSString *cf=[Common getCache:SETTINGCF];
+    if(cf){
+        return cf;
+    }
+    return @"";
 }
 
 - (void)setAlarm:(NSString*)alarm
@@ -57,7 +72,7 @@ static Data * instance = nil;
 //获取当前温度
 + (NSString*)getTemperatureValue:(int)v
 {
-    if([@"f" isEqualToString:[[Data Instance]cf]]){
+    if([@"f" isEqualToString:[[Data Instance]getCf]]){
         return [NSString stringWithFormat:@"%d°F",v];
     }else{
         return [NSString stringWithFormat:@"%d°C",v];

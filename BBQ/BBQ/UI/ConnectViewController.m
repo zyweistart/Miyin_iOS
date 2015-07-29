@@ -222,48 +222,11 @@
     [self.tableView reloadData];
 }
 
-- (void)sendData:(NSString*)message
-{
-    message =@"{}\r\n";
-    int length = (int)message.length;
-    Byte messageByte[length];
-    for (int index = 0; index < length; index++) {
-        //生成和字符串长度相同的字节数据
-        messageByte[index] = 0x00;
-    }
-    NSString *tmpString;
-    for(int index = 0; index<length ; index++) {
-        tmpString = [message substringWithRange:NSMakeRange(index, 1)];
-        if([tmpString isEqualToString:@" "]) {
-            messageByte[index] = 0x20;
-        } else {
-            sscanf([tmpString cStringUsingEncoding:NSASCIIStringEncoding],"%s",&messageByte[index]);
-        }
-    }
-    char lengthChar = 0 ;
-    int  p = 0 ;
-    //蓝牙数据通道 可写入的数据为20个字节
-    while (length>0) {
-        if (length>20) {
-            lengthChar = 20 ;
-        } else if (length>0){
-            lengthChar = length;
-        } else {
-            return;
-        }
-        NSData *data = [[NSData alloc]initWithBytes:&messageByte[p] length:lengthChar];
-        //        NSLog(@" data %@",data);
-        [self.appDelegate.bleManager writeValue:0xFFE5 characteristicUUID:0xFFE9 p:self.appDelegate.bleManager.activePeripheral data:data];
-        length -= lengthChar ;
-        p += lengthChar;
-    }
-}
-
 - (void)goMainPage
 {
     TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
     [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
-        [self startGetData];
+//        [self startGetData];
     }];
 }
 

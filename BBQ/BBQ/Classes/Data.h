@@ -12,12 +12,13 @@
 
 + (Data *) Instance;
 
-@property (strong,nonatomic) NSString *cf;
 @property (strong,nonatomic) NSMutableArray *sett;
 @property (strong,nonatomic) NSMutableDictionary *settValue;
 
 + (NSString*)getTemperatureValue:(int)v;
 
+- (NSString*)getCf;
+- (void)setCf:(NSString*)cf;
 - (NSString*)getAlarm;
 - (void)setAlarm:(NSString*)alarm;
 - (NSString*)getLanguage;

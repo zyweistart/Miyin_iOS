@@ -14,13 +14,27 @@
 {
     self=[super init];
     if(self){
-        receiveSBString=[NSMutableString new];
         
+        //初始化默认配置
+        if([@"" isEqualToString:[[Data Instance]getCf]]){
+            [[Data Instance]setCf:@"c"];
+        }
+        if([@"" isEqualToString:[[Data Instance]getAlarm]]){
+            [[Data Instance]setAlarm:@"Beep1"];
+        }
+        if([@"" isEqualToString:[[Data Instance]getLanguage]]){
+            [[Data Instance]setLanguage:@"English"];;
+        }
+        receiveSBString=[NSMutableString new];
+        //设置消息通知
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
         [nc addObserver: self
                selector: @selector(ValueChangText:)
                    name: NOTIFICATION_VALUECHANGUPDATE
                  object: nil];
+        //开始接收消息
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        [appDelegate.bleManager notification:0xFFE0 characteristicUUID:0xFFE4 p:appDelegate.bleManager.activePeripheral on:YES];
     }
     return self;
 }

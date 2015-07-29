@@ -22,5 +22,7 @@ typedef struct _CHAR{
 
 @property (strong, nonatomic) TIBLECBStandand *bleManager;
 
+- (void)sendData:(NSString*)message;
+
 @end
 
