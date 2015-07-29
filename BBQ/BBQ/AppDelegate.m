@@ -45,7 +45,7 @@
 
 - (void)sendData:(NSString*)message
 {
-    message =@"{}\r\n";
+//    message =@"{}\r\n";
     int length = (int)message.length;
     Byte messageByte[length];
     for (int index = 0; index < length; index++) {

@@ -43,13 +43,8 @@
         
         self.mAlertView=[[AlertView alloc]initWithFrame:CGRectMake1(10, 100, 300, 180)];
         [self.mAlertView.button addTarget:self action:@selector(AlertClose) forControlEvents:UIControlEventTouchUpInside];
-//        [self.bgFrame addSubview:self.mAlertView];
-        
-        self.mSetTempView=[[SetTempView alloc]initWithFrame:CGRectMake1(10, 100, 300, 200)];
-        [self.mSetTempView setValue:40];
-        [self.mSetTempView.cancelButton addTarget:self action:@selector(SetTempCloseCancel) forControlEvents:UIControlEventTouchUpInside];
-        [self.mSetTempView.okButton addTarget:self action:@selector(SetTempCloseOK) forControlEvents:UIControlEventTouchUpInside];
-//        [self.bgFrame addSubview:self.mSetTempView];
+        [self.mAlertView setHidden:YES];
+        [self.bgFrame addSubview:self.mAlertView];
         
     }
     return self;
@@ -68,6 +63,12 @@
                             [self viewControllerWithTabTitle:@"Timer" image:@"icon-nav-timer" ViewController:self.mTimerViewController],
                             [self viewControllerWithTabTitle:@"Setting" image:@"icon-nav-setting" ViewController:self.mSettingViewController],
                             [self viewControllerWithTabTitle:@"Info" image:@"icon-nav-info" ViewController:self.mInfoViewController], nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_VALUECHANGUPDATE object:nil];
 }
 
 - (UINavigationController*)viewControllerWithTabTitle:(NSString*) title image:(NSString*)image ViewController:(UIViewController*)viewController
@@ -133,7 +134,14 @@
         }else if([allKeys containsObject:@"alarm"]){
             //发出警报
             NSLog(@"%@",content);
-            [Common alert:@"The grill has flared up!"];
+            NSString *alaram=[resultJSON objectForKey:@"alarm"];
+            if([@"fire" isEqualToString:alaram]){
+                //火警
+            }else if([@"false" isEqualToString:alaram]){
+                //停止报警
+            }else{
+                //某指针报警
+            }
         }else{
             NSLog(@"%@",content);
         }
@@ -145,6 +153,7 @@
 {
     [self.mAlertView.lblTitle setText:@"T1-Warning"];
     [self.mAlertView.lblMessage setText:@"Temperature is high!"];
+    [self.mAlertView setType:2];
     [self.mAlertView setHidden:NO];
     [self.bgFrame setHidden:NO];
 }
@@ -152,25 +161,6 @@
 - (void)AlertClose
 {
     [self.mAlertView setHidden:YES];
-    [self.bgFrame setHidden:YES];
-}
-
-- (void)SetTempShow
-{
-    [self.mSetTempView.lblTitle setText:@"T1-Set Temp"];
-    [self.mSetTempView setHidden:NO];
-    [self.bgFrame setHidden:NO];
-}
-
-- (void)SetTempCloseCancel
-{
-    [self.mSetTempView setHidden:YES];
-    [self.bgFrame setHidden:YES];
-}
-
-- (void)SetTempCloseOK
-{
-    [self.mSetTempView setHidden:YES];
     [self.bgFrame setHidden:YES];
 }
 

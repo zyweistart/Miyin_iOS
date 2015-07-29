@@ -4,7 +4,6 @@
 #import "SettingViewController.h"
 #import "TimerViewController.h"
 #import "AlertView.h"
-#import "SetTempView.h"
 
 @interface TabBarFrameViewController : UITabBarController<UITabBarControllerDelegate>
 
@@ -15,6 +14,5 @@
 
 @property (strong,nonatomic)UIView *bgFrame;
 @property (strong,nonatomic)AlertView *mAlertView;
-@property (strong,nonatomic)SetTempView *mSetTempView;
 
 @end

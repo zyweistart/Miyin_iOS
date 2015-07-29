@@ -139,8 +139,8 @@
         int value=self.mSetTempView.mSlider.value;
         [[[Data Instance]sett]setObject:[NSString stringWithFormat:@"%d",value] forKey:title];
         [self.tableView reloadData];        
-//        NSString *json=[NSString stringWithFormat:@"{\"sett\":{\"%@\":%d}}\r\n",title,value];
-//        [self.appDelegate sendData:json];
+        NSString *json=[NSString stringWithFormat:@"{\"sett\":{\"%@\":%d.1}}\r\n",title,value];
+        [self.appDelegate sendData:json];
     }
     [self.mSetTempView setHidden:YES];
     [self.bgFrame setHidden:YES];
