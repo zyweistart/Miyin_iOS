@@ -164,6 +164,10 @@
         }else{
             NSLog(@"%@",content);
         }
+    }else{
+        //发送异常处理
+        NSString *json=@"{}";
+        [self.appDelegate sendData:json];
     }
 }
 
@@ -214,14 +218,13 @@
 //播放结束时执行的动作
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag{
     if (flag) {
-        NSLog(@"player finish");
 //        [self AlertClose];
     }
 }
 
 - (void)powerOff:(NSString*)content
 {
-    NSLog(@"关机了，请做善后处理%@",content);
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

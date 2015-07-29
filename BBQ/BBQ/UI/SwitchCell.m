@@ -16,7 +16,7 @@
         self.rightButton=[[UIButton alloc]initWithFrame:CGRectMake1(220, 7.5, 89, 30)];
         [self.rightButton setImage:[UIImage imageNamed:@"华氏"] forState:UIControlStateNormal];
         [self.rightButton setImage:[UIImage imageNamed:@"摄氏"] forState:UIControlStateSelected];
-        [self.rightButton addTarget:self action:@selector(goSetSwitch:) forControlEvents:UIControlEventTouchUpInside];
+//        [self.rightButton addTarget:self action:@selector(goSetSwitch:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.rightButton];
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
@@ -28,6 +28,7 @@
     [sender setSelected:!sender.selected];
     if(sender.selected){
         [[Data Instance] setCf:@"c"];
+        
     }else{
         [[Data Instance] setCf:@"f"];
     }

@@ -73,7 +73,8 @@ static Data * instance = nil;
 + (NSString*)getTemperatureValue:(int)v
 {
     if([@"f" isEqualToString:[[Data Instance]getCf]]){
-        return [NSString stringWithFormat:@"%d°F",v];
+        int fValue=v*9/5+32;
+        return [NSString stringWithFormat:@"%d°F",fValue];
     }else{
         return [NSString stringWithFormat:@"%d°C",v];
     }

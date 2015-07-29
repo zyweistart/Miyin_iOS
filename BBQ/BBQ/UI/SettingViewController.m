@@ -44,6 +44,7 @@
             cell = [[SwitchCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         }
         [cell.textLabel setText:content];
+        [cell.rightButton addTarget:self action:@selector(goSetSwitch:) forControlEvents:UIControlEventTouchUpInside];
         if([@"c" isEqualToString:[[Data Instance]getCf]]){
             [cell.rightButton setSelected:YES];
         }else{
@@ -112,6 +113,20 @@
             [[Data Instance]setLanguage:@"Espanol"];
         }
         [self.tableView reloadData];
+    }
+}
+
+- (void)goSetSwitch:(UIButton*)sender
+{
+    [sender setSelected:!sender.selected];
+    if(sender.selected){
+        [[Data Instance] setCf:@"c"];
+        NSString *json=@"{\"cf\":\"c\"}";
+        [self.appDelegate sendData:json];
+    }else{
+        [[Data Instance] setCf:@"f"];
+        NSString *json=@"{\"cf\":\"f\"}";
+        [self.appDelegate sendData:json];
     }
 }
 
