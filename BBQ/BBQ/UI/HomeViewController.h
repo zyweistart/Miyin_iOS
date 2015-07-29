@@ -8,8 +8,11 @@
 
 #import "BaseTableViewController.h"
 #import "SetTempView.h"
+#import "SinglePickerView.h"
 
-@interface HomeViewController : BaseTableViewController
+@interface HomeViewController : BaseTableViewController<PickerViewDelegate>
+
+@property (strong,nonatomic)SinglePickerView *pv1;
 
 - (void)loadData:(NSArray*)array;
 

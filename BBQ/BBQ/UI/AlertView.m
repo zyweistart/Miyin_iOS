@@ -45,7 +45,7 @@
     }else{
         [self.lblTitle setTextColor:[UIColor whiteColor]];
         [self.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.lblTitle setBackgroundColor:DEFAULTITLECOLOR(131)];
+        [self.lblTitle setBackgroundColor:DEFAULTITLECOLORRGB(255, 50, 3)];
         [self.button setBackgroundColor:DEFAULTITLECOLORRGB(255, 50, 3)];
     }
 }

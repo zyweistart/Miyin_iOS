@@ -15,7 +15,8 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     //计算各屏幕XY大小
     AppDelegate *myDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(ScreenHeight > 480){
@@ -45,7 +46,7 @@
 
 - (void)sendData:(NSString*)message
 {
-//    message =@"{}\r\n";
+    message=[NSString stringWithFormat:@"%@\\r\\n",message];
     int length = (int)message.length;
     Byte messageByte[length];
     for (int index = 0; index < length; index++) {

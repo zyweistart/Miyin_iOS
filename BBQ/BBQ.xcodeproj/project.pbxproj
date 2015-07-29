@@ -68,6 +68,12 @@
 		C9F1EF1E1B674214005C8CF3 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF1D1B674214005C8CF3 /* Tools.m */; };
 		C9F1EF211B67491E005C8CF3 /* TIBLECBStandand.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF201B67491E005C8CF3 /* TIBLECBStandand.m */; };
 		C9F1EF241B677004005C8CF3 /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF231B677004005C8CF3 /* ConnectViewController.m */; };
+		C9FE58E71B68F656002154E4 /* Beep1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E21B68F656002154E4 /* Beep1.wav */; };
+		C9FE58E81B68F656002154E4 /* Beep2.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E31B68F656002154E4 /* Beep2.wav */; };
+		C9FE58E91B68F656002154E4 /* Beep3.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E41B68F656002154E4 /* Beep3.wav */; };
+		C9FE58EA1B68F656002154E4 /* Ringtone1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E51B68F656002154E4 /* Ringtone1.wav */; };
+		C9FE58EB1B68F656002154E4 /* Ringtone2.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E61B68F656002154E4 /* Ringtone2.wav */; };
+		C9FE58EE1B68F70D002154E4 /* SinglePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE58ED1B68F70D002154E4 /* SinglePickerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -197,6 +203,13 @@
 		C9F1EF201B67491E005C8CF3 /* TIBLECBStandand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIBLECBStandand.m; sourceTree = "<group>"; };
 		C9F1EF221B677004005C8CF3 /* ConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectViewController.h; sourceTree = "<group>"; };
 		C9F1EF231B677004005C8CF3 /* ConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
+		C9FE58E21B68F656002154E4 /* Beep1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep1.wav; sourceTree = "<group>"; };
+		C9FE58E31B68F656002154E4 /* Beep2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep2.wav; sourceTree = "<group>"; };
+		C9FE58E41B68F656002154E4 /* Beep3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep3.wav; sourceTree = "<group>"; };
+		C9FE58E51B68F656002154E4 /* Ringtone1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Ringtone1.wav; sourceTree = "<group>"; };
+		C9FE58E61B68F656002154E4 /* Ringtone2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Ringtone2.wav; sourceTree = "<group>"; };
+		C9FE58EC1B68F70D002154E4 /* SinglePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePickerView.h; sourceTree = "<group>"; };
+		C9FE58ED1B68F70D002154E4 /* SinglePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePickerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +255,8 @@
 		C9126A291B65DA3F001D3D60 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C9FE58EC1B68F70D002154E4 /* SinglePickerView.h */,
+				C9FE58ED1B68F70D002154E4 /* SinglePickerView.m */,
 				C900ABCB1B6877D40018C36B /* AlertView.h */,
 				C900ABCC1B6877D40018C36B /* AlertView.m */,
 				C9126A3D1B66004A001D3D60 /* CButton.h */,
@@ -293,7 +308,7 @@
 		C9ECF16D1B65C1460088E110 /* BBQ */ = {
 			isa = PBXGroup;
 			children = (
-				C9D615301B67E725003DAC98 /* page.bundle */,
+				C9FE58E11B68F647002154E4 /* Resource */,
 				C9ECF1721B65C1460088E110 /* AppDelegate.h */,
 				C9ECF1731B65C1460088E110 /* AppDelegate.m */,
 				C9ECF1941B65C2290088E110 /* Classes */,
@@ -484,6 +499,19 @@
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		C9FE58E11B68F647002154E4 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C9FE58E21B68F656002154E4 /* Beep1.wav */,
+				C9FE58E31B68F656002154E4 /* Beep2.wav */,
+				C9FE58E41B68F656002154E4 /* Beep3.wav */,
+				C9FE58E51B68F656002154E4 /* Ringtone1.wav */,
+				C9FE58E61B68F656002154E4 /* Ringtone2.wav */,
+				C9D615301B67E725003DAC98 /* page.bundle */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -567,12 +595,17 @@
 				C9ECF1DA1B65C6BD0088E110 /* grayArrow.png in Resources */,
 				C9ECF17C1B65C1460088E110 /* Images.xcassets in Resources */,
 				C9ECF1D61B65C6BD0088E110 /* blackArrow.png in Resources */,
+				C9FE58E81B68F656002154E4 /* Beep2.wav in Resources */,
 				C9ECF1D91B65C6BD0088E110 /* blueArrow@2x.png in Resources */,
 				C9ECF1D71B65C6BD0088E110 /* blackArrow@2x.png in Resources */,
+				C9FE58E71B68F656002154E4 /* Beep1.wav in Resources */,
 				C9ECF1DC1B65C6BD0088E110 /* whiteArrow.png in Resources */,
+				C9FE58E91B68F656002154E4 /* Beep3.wav in Resources */,
 				C9ECF1DB1B65C6BD0088E110 /* grayArrow@2x.png in Resources */,
 				C9ECF1DD1B65C6BD0088E110 /* whiteArrow@2x.png in Resources */,
+				C9FE58EB1B68F656002154E4 /* Ringtone2.wav in Resources */,
 				C9D615311B67E725003DAC98 /* page.bundle in Resources */,
+				C9FE58EA1B68F656002154E4 /* Ringtone1.wav in Resources */,
 				C9ECF1D81B65C6BD0088E110 /* blueArrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -617,6 +650,7 @@
 				C9ECF1C91B65C6BD0088E110 /* Reachability.m in Sources */,
 				C9126A3C1B65FFE3001D3D60 /* MainViewController.m in Sources */,
 				C9ECF1D51B65C6BD0088E110 /* PullTableView.m in Sources */,
+				C9FE58EE1B68F70D002154E4 /* SinglePickerView.m in Sources */,
 				C9D615341B67E92C003DAC98 /* SwitchCell.m in Sources */,
 				C9F1EF211B67491E005C8CF3 /* TIBLECBStandand.m in Sources */,
 				C900ABD01B6877EE0018C36B /* SetTempView.m in Sources */,

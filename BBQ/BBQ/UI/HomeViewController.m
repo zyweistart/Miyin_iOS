@@ -15,7 +15,9 @@
 
 @end
 
-@implementation HomeViewController
+@implementation HomeViewController{
+    NSInteger pvv1;
+}
 
 - (id)init{
     self=[super init];
@@ -37,6 +39,25 @@
         [self.mSetTempView.okButton addTarget:self action:@selector(SetTempCloseOK) forControlEvents:UIControlEventTouchUpInside];
         [self.mSetTempView setHidden:YES];
         [self.bgFrame addSubview:self.mSetTempView];
+        
+        
+        
+        NSArray *roles=[NSArray arrayWithObjects:
+         [NSDictionary dictionaryWithObjectsAndKeys:@"个人",MKEY,@"0",MVALUE, nil],
+         [NSDictionary dictionaryWithObjectsAndKeys:@"机手",MKEY,@"1",MVALUE, nil],
+         [NSDictionary dictionaryWithObjectsAndKeys:@"项目经理",MKEY,@"2",MVALUE, nil],
+         [NSDictionary dictionaryWithObjectsAndKeys:@"其他公司",MKEY,@"3",MVALUE, nil],
+         [NSDictionary dictionaryWithObjectsAndKeys:@"运输公司",MKEY,@"4",MVALUE, nil],
+         [NSDictionary dictionaryWithObjectsAndKeys:@"配件公司",MKEY,@"5",MVALUE, nil],
+         [NSDictionary dictionaryWithObjectsAndKeys:@"维修公司",MKEY,@"6",MVALUE, nil],
+         [NSDictionary dictionaryWithObjectsAndKeys:@"吊装公司",MKEY,@"7",MVALUE, nil],
+         [NSDictionary dictionaryWithObjectsAndKeys:@"工程公司",MKEY,@"8",MVALUE, nil],nil];
+        
+        self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(260), CGWidth(320), CGHeight(260)) WithArray:roles];
+        [self.pv1 setCode:1];
+        [self.pv1 setDelegate:self];
+        [self.view addSubview:self.pv1];
+        
     }
     return self;
 }
@@ -114,7 +135,7 @@
 
 - (void)setTimer:(UIButton*)sender
 {
-    
+    [self.pv1 setHidden:NO];
 }
 
 - (void)SetTempShowWithTitle:(NSString*)title Value:(int)value;
@@ -139,11 +160,21 @@
         int value=self.mSetTempView.mSlider.value;
         [[[Data Instance]sett]setObject:[NSString stringWithFormat:@"%d",value] forKey:title];
         [self.tableView reloadData];        
-        NSString *json=[NSString stringWithFormat:@"{\"sett\":{\"%@\":%d.1}}\r\n",title,value];
+        NSString *json=[NSString stringWithFormat:@"{\"sett\":{\"%@\":%d.1}}",title,value];
         [self.appDelegate sendData:json];
     }
     [self.mSetTempView setHidden:YES];
     [self.bgFrame setHidden:YES];
+}
+
+- (void)pickerViewDone:(NSInteger)code
+{
+    if(code==1) {
+        pvv1=[self.pv1.picker selectedRowInComponent:0];
+        NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvv1];
+        NSString *content=[d objectForKey:MVALUE];
+        NSLog(@"%@",content);
+    }
 }
 
 @end
