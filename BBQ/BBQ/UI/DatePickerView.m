@@ -15,7 +15,7 @@
     self=[super initWithFrame:rect];
     if(self){
         [self setBackgroundColor:BGCOLOR];
-        
+        [self setUserInteractionEnabled:YES];
         self.toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake1(0, 0, 320, 44)];
         self.toolBar.barStyle = UIBarStyleDefault;
         UIBarButtonItem *btnCancel = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(cancel:)];
@@ -70,7 +70,7 @@
 - (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if(component==0) {
-        return 23;
+        return 24;
     } else {
         return 60;
     }
@@ -79,16 +79,16 @@
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if(component==0) {
-        if(row+1>9) {
-            return [NSString stringWithFormat:@"%ld",row+1];
+        if(row>9) {
+            return [NSString stringWithFormat:@"%ldh",row];
         } else {
-            return [NSString stringWithFormat:@"0%ld",row+1];
+            return [NSString stringWithFormat:@"0%ldh",row];
         }
     } else {
         if(row>9) {
-            return [NSString stringWithFormat:@"%ld",row];
+            return [NSString stringWithFormat:@"%ldm",row];
         } else {
-            return [NSString stringWithFormat:@"0%ld",row];
+            return [NSString stringWithFormat:@"0%ldm",row];
         }
     }
 }

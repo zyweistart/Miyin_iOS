@@ -84,4 +84,6 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 //自定义颜色表
 #define NAVBG DEFAULTITLECOLORRGB(242,125,0)
 
+#define DEFAULCENTIGRADEVALUE 200
+
 #endif

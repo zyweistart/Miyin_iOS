@@ -7,20 +7,14 @@
 //
 
 #import "HomeViewController.h"
-#import "MenuCell.h"
-
-#define DEFAULCENTIGRADEVALUE 200
 
 @interface HomeViewController ()
 
 @end
 
-@implementation HomeViewController{
-    NSInteger pvv1;
-}
+@implementation HomeViewController
 
-- (id)init
-{
+- (id)init{
     self=[super init];
     if(self){
         [self cTitle:@"BBQ Connected"];
@@ -30,21 +24,63 @@
         [bButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
         [bButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bButton];
-        [self buildTableViewWithView:self.view];
-        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        [self.tableView setBackgroundColor:DEFAULTITLECOLORRGB(65, 51, 42)];
-        
+        self.scrollFrameView=[[UIScrollView alloc]initWithFrame:self.view.bounds];
+        [self.scrollFrameView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        [self.scrollFrameView setContentSize:CGSizeMake1(320, 190*4)];
+        [self.scrollFrameView setBackgroundColor:DEFAULTITLECOLORRGB(65, 51, 42)];
+        [self.view addSubview:self.scrollFrameView];
+        //针1
+        if(self.mMenuItemView1==nil){
+            self.mMenuItemView1=[[MenuItemView alloc]initWithFrame:CGRectMake1(0, 0, 320, 190)];
+            [self.mMenuItemView1 setBaseController:self];
+            [self.mMenuItemView1.lblHighestCentigrade setTag:0];
+            [self.mMenuItemView1.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
+            [self.mMenuItemView1.bTimer setTag:0];
+            [self.mMenuItemView1.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
+            [self.scrollFrameView addSubview:self.mMenuItemView1];
+        }
+        //针2
+        if(self.mMenuItemView2==nil){
+            self.mMenuItemView2=[[MenuItemView alloc]initWithFrame:CGRectMake1(0, 190, 320, 190)];
+            [self.mMenuItemView2 setBaseController:self];
+            [self.mMenuItemView2.lblHighestCentigrade setTag:1];
+            [self.mMenuItemView2.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
+            [self.mMenuItemView2.bTimer setTag:1];
+            [self.mMenuItemView2.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
+            [self.scrollFrameView addSubview:self.mMenuItemView2];
+        }
+        //针3
+        if(self.mMenuItemView3==nil){
+            self.mMenuItemView3=[[MenuItemView alloc]initWithFrame:CGRectMake1(0, 380, 320, 190)];
+            [self.mMenuItemView3 setBaseController:self];
+            [self.mMenuItemView3.lblHighestCentigrade setTag:2];
+            [self.mMenuItemView3.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
+            [self.mMenuItemView3.bTimer setTag:2];
+            [self.mMenuItemView3.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
+            [self.scrollFrameView addSubview:self.mMenuItemView3];
+        }
+        //针4
+        if(self.mMenuItemView4==nil){
+            self.mMenuItemView4=[[MenuItemView alloc]initWithFrame:CGRectMake1(0, 570, 320, 190)];
+            [self.mMenuItemView4 setBaseController:self];
+            [self.mMenuItemView4.lblHighestCentigrade setTag:3];
+            [self.mMenuItemView4.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
+            [self.mMenuItemView4.bTimer setTag:3];
+            [self.mMenuItemView4.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
+            [self.scrollFrameView addSubview:self.mMenuItemView4];
+        }
+        //透明背景
         self.bgFrame=[[UIView alloc]initWithFrame:self.view.bounds];
         [self.bgFrame setBackgroundColor:DEFAULTITLECOLORA(150, 0.5)];
         [self.bgFrame setHidden:YES];
         [self.view addSubview:self.bgFrame];
-        
+        //设置视图
         self.mSetTempView=[[SetTempView alloc]initWithFrame:CGRectMake1(10, 100, 300, 200)];
         [self.mSetTempView.cancelButton addTarget:self action:@selector(SetTempCloseCancel) forControlEvents:UIControlEventTouchUpInside];
         [self.mSetTempView.okButton addTarget:self action:@selector(SetTempCloseOK) forControlEvents:UIControlEventTouchUpInside];
         [self.mSetTempView setHidden:YES];
         [self.bgFrame addSubview:self.mSetTempView];
-        
+        //时间设置面板
         self.pv1=[[DatePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(260+BOTTOMTABBARHEIGHT), CGWidth(320), CGHeight(260))];
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
@@ -61,91 +97,14 @@
 - (void)loadData:(NSArray*)array
 {
     self.dataItemArray=[[NSMutableArray alloc]initWithArray:array];
-    [self.tableView reloadData];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return CGHeight(190);
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *identifier=@"InfoCellIdentifier";
-    MenuCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
-    if(cell==nil){
-        cell = [[MenuCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier] ;
-    }
-    NSInteger row=[indexPath row];
-    NSDictionary *data = [self.dataItemArray objectAtIndex:row];
-    [cell setData:data];
-    for(id k in [data allKeys]){
-        NSString *key=[NSString stringWithFormat:@"%@",k];
-        NSString *centigrade=[NSString stringWithFormat:@"%@",[data objectForKey:key]];
-        
-        int currentValue=[centigrade intValue];
-        [cell.lblTitle setText:key];
-        
-        [cell.lblCurrentCentigrade setText:[Data getTemperatureValue:currentValue]];
-        [cell.lblCurrentSamllCentigrade setTitle:[Data getTemperatureValue:currentValue] forState:UIControlStateNormal];
-        
-        //默认值
-        int currentHighValue=DEFAULCENTIGRADEVALUE;
-        
-        NSString *value=[[[Data Instance] sett] objectForKey:key];
-        if(value){
-            currentHighValue=[value intValue];
-        }else{
-            //设置默认值
-            [[[Data Instance] sett]setObject:[NSString stringWithFormat:@"%d",DEFAULCENTIGRADEVALUE] forKey:key];
-        }
-        
-        [cell.lblHighestCentigrade setTitle:[Data getTemperatureValue:currentHighValue] forState:UIControlStateNormal];
-        [cell.lblHighestCentigrade setTag:row];
-        [cell.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
-        
-        CGFloat hWidth=220;
-        CGFloat width=hWidth/currentHighValue*currentValue;
-        if(width>hWidth){
-            width=hWidth;
-        }
-        [cell.lblCurrentSamllCentigrade setFrame:CGRectMake1(40+width, 5, 60, 20)];
-        [cell.viewCentigrade setFrame:CGRectMake1(2, 2, width, 16)];
-        
-        NSString *timer=[[[Data Instance]settValue]objectForKey:key];
-        int tv=[timer intValue];
-        if(tv>0){
-            int hour=tv/60;
-            int min=tv%60;
-            NSString *hstr=[NSString stringWithFormat:@"0%d",hour];
-            if(hour>9){
-                hstr=[NSString stringWithFormat:@"%d",hour];
-            }
-            NSString *mstr=[NSString stringWithFormat:@"0%d",min];
-            if(min>9){
-                mstr=[NSString stringWithFormat:@"%d",min];
-            }
-            [cell.lblSetTime setText:[NSString stringWithFormat:@"%@:%@",hstr,mstr]];
-            if(row==0){
-                if(self.mTimer1==nil){
-                    self.mTimer1=[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(updateTimer1:) userInfo:data repeats:YES];
-                }
-            }else if(row==1){
-                if(self.mTimer2==nil){
-                    self.mTimer2=[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer2:) userInfo:data repeats:YES];
-                }
-            }else if(row==2){
-                if(self.mTimer3==nil){
-                    self.mTimer3=[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer3:) userInfo:data repeats:YES];
-                }
-            }else{
-                if(self.mTimer4==nil){
-                    self.mTimer4=[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer4:) userInfo:data repeats:YES];
-                }
-            }
-        }
-        [cell.bTimer setTag:row];
-        [cell.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return  cell;
+    NSDictionary *d1=[array objectAtIndex:0];
+    [self.mMenuItemView1 setMenuData:d1];
+    NSDictionary *d2=[array objectAtIndex:1];
+    [self.mMenuItemView2 setMenuData:d2];
+    NSDictionary *d3=[array objectAtIndex:2];
+    [self.mMenuItemView3 setMenuData:d3];
+    NSDictionary *d4=[array objectAtIndex:3];
+    [self.mMenuItemView4 setMenuData:d4];
 }
 
 - (void)setValue:(UIButton*)sender
@@ -181,12 +140,12 @@
 
 - (void)SetTempCloseOK
 {
-    NSDictionary *data = [self.dataItemArray objectAtIndex:self.mSetTempView.tag];
+    NSInteger r=self.mSetTempView.tag;
+    NSDictionary *data = [self.dataItemArray objectAtIndex:r];
     for(id key in [data allKeys]){
         NSString *title=[NSString stringWithFormat:@"%@",key];
         int value=self.mSetTempView.mSlider.value;
         [[[Data Instance]sett]setObject:[NSString stringWithFormat:@"%d",value] forKey:key];
-        [self.tableView reloadData];
         NSString *json=[NSString stringWithFormat:@"{\"sett\":{\"%@\":%d.1}}",title,value];
         [self.appDelegate sendData:json];
     }
@@ -197,52 +156,33 @@
 - (void)pickerViewDone:(NSInteger)code
 {
     if(code==1) {
-        NSDictionary *data=[self.dataItemArray objectAtIndex:self.pv1.tag];
+        NSInteger r=self.pv1.tag;
+        NSDictionary *data=[self.dataItemArray objectAtIndex:r];
         for(id key in [data allKeys]){
-            NSInteger rowHour=[self.pv1.picker selectedRowInComponent:0]+1;
+            NSInteger rowHour=[self.pv1.picker selectedRowInComponent:0];
             NSInteger rowMin=[self.pv1.picker selectedRowInComponent:1];
             NSInteger totalSecond=rowHour*60+rowMin;
             [[[Data Instance]settValue]setObject:[NSString stringWithFormat:@"%ld",totalSecond] forKey:key];
-            [self.tableView reloadData];
+            [self refreshDataView];
+            if(r==0){
+                [self.mMenuItemView1 setTimerScheduled];
+            }else if(r==1){
+                [self.mMenuItemView2 setTimerScheduled];
+            }else if(r==2){
+                [self.mMenuItemView3 setTimerScheduled];
+            }else if(r==3){
+                [self.mMenuItemView4 setTimerScheduled];
+            }
         }
     }
 }
 
-- (void)updateTimer1:(NSTimer*)sender
+- (void)refreshDataView
 {
-    [self EndUpdateTimer:self.mTimer1 Row:0];
-}
-
-- (void)updateTimer2:(NSTimer*)sender
-{
-    [self EndUpdateTimer:self.mTimer2 Row:1];
-}
-
-- (void)updateTimer3:(NSTimer*)sender
-{
-    [self EndUpdateTimer:self.mTimer3 Row:2];
-}
-
-- (void)updateTimer4:(NSTimer*)sender
-{
-    [self EndUpdateTimer:self.mTimer4 Row:3];
-}
-
-- (void)EndUpdateTimer:(NSTimer*)timer Row:(NSInteger)row
-{
-    NSDictionary *data=[self.dataItemArray objectAtIndex:row];
-    for(id key in [data allKeys]){
-        NSString *min=[[[Data Instance]settValue]objectForKey:key];
-        int currentValue=[min intValue]-60;
-        [[[Data Instance]settValue]setObject:[NSString stringWithFormat:@"%d",currentValue] forKey:key];
-        [self.tableView reloadData];
-        if(currentValue<=0){
-            [timer invalidate];
-            timer=nil;
-            NSLog(@"%ld,结束了",row);
-        }
-        break;
-    }
+    [self.mMenuItemView1 refreshData];
+    [self.mMenuItemView2 refreshData];
+    [self.mMenuItemView3 refreshData];
+    [self.mMenuItemView4 refreshData];
 }
 
 @end

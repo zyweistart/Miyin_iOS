@@ -6,23 +6,26 @@
 //  Copyright (c) 2015年 Start. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseViewController.h"
+#import "MenuItemView.h"
 #import "SetTempView.h"
 #import "DatePickerView.h"
 
-@interface HomeViewController : BaseTableViewController<PickerViewDelegate>
-
-@property (strong,nonatomic)DatePickerView *pv1;
-
-- (void)loadData:(NSArray*)array;
+@interface HomeViewController : BaseViewController<PickerViewDelegate>
 
 @property (strong,nonatomic)UIView *bgFrame;
+@property (strong,nonatomic)DatePickerView *pv1;
 @property (strong,nonatomic)SetTempView *mSetTempView;
 
+@property (strong,nonatomic)UIScrollView *scrollFrameView;
+@property (strong,nonatomic)MenuItemView *mMenuItemView1;
+@property (strong,nonatomic)MenuItemView *mMenuItemView2;
+@property (strong,nonatomic)MenuItemView *mMenuItemView3;
+@property (strong,nonatomic)MenuItemView *mMenuItemView4;
 
-@property (strong,nonatomic)NSTimer *mTimer1;
-@property (strong,nonatomic)NSTimer *mTimer2;
-@property (strong,nonatomic)NSTimer *mTimer3;
-@property (strong,nonatomic)NSTimer *mTimer4;
+@property (strong,nonatomic)NSMutableArray *dataItemArray;
+
+- (void)loadData:(NSArray*)array;
+- (void)refreshDataView;
 
 @end

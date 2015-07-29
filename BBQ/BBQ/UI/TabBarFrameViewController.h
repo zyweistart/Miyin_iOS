@@ -18,4 +18,7 @@
 @property (strong,nonatomic) AlertView *mAlertView;
 @property (strong,nonatomic) AVAudioPlayer *mAVAudioPlayer;
 
+- (void)playAlarm;
+- (void)AlertShow;
+
 @end

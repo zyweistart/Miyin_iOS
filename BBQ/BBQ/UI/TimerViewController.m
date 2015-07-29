@@ -7,7 +7,6 @@
 //
 
 #import "TimerViewController.h"
-#import "TimerCell.h"
 
 @interface TimerViewController ()
 
@@ -19,9 +18,32 @@
     self=[super init];
     if(self){
         [self cTitle:@"Timer"];
-        [self buildTableViewWithView:self.view];
-        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        [self.tableView setBackgroundColor:DEFAULTITLECOLORRGB(65, 51, 42)];
+        
+        self.scrollFrameView=[[UIScrollView alloc]initWithFrame:self.view.bounds];
+        [self.scrollFrameView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        [self.scrollFrameView setContentSize:CGSizeMake1(320, 190*4)];
+        [self.scrollFrameView setBackgroundColor:DEFAULTITLECOLORRGB(65, 51, 42)];
+        [self.view addSubview:self.scrollFrameView];
+        //针1
+        if(self.mChartItemView1==nil){
+            self.mChartItemView1=[[ChartItemView alloc]initWithFrame:CGRectMake1(0, 0, 320, 190)];
+            [self.scrollFrameView addSubview:self.mChartItemView1];
+        }
+        //针2
+        if(self.mChartItemView2==nil){
+            self.mChartItemView2=[[ChartItemView alloc]initWithFrame:CGRectMake1(0, 190, 320, 190)];
+            [self.scrollFrameView addSubview:self.mChartItemView2];
+        }
+        //针3
+        if(self.mChartItemView3==nil){
+            self.mChartItemView3=[[ChartItemView alloc]initWithFrame:CGRectMake1(0, 380, 320, 190)];
+            [self.scrollFrameView addSubview:self.mChartItemView3];
+        }
+        //针4
+        if(self.mChartItemView4==nil){
+            self.mChartItemView4=[[ChartItemView alloc]initWithFrame:CGRectMake1(0, 570, 320, 190)];
+            [self.scrollFrameView addSubview:self.mChartItemView4];
+        }
     }
     return self;
 }
@@ -29,27 +51,14 @@
 - (void)loadData:(NSArray*)array
 {
     self.dataItemArray=[[NSMutableArray alloc]initWithArray:array];
-    [self.tableView reloadData];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return CGHeight(190);
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *identifier=@"TimerCellIdentifier";
-    TimerCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
-    if(cell==nil){
-        cell = [[TimerCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier] ;
-    }
-    NSDictionary *data = [self.dataItemArray objectAtIndex:[indexPath row]];
-    [cell setData:data];
-    for(id key in [data allKeys]){
-        NSString *title=[NSString stringWithFormat:@"%@",key];
-        NSString *centigrade=[NSString stringWithFormat:@"%@",[data objectForKey:key]];
-        [cell.lblTitle setText:title];
-    }
-    return  cell;
+    NSDictionary *d1=[array objectAtIndex:0];
+    [self.mChartItemView1 loadData:d1];
+    NSDictionary *d2=[array objectAtIndex:1];
+    [self.mChartItemView2 loadData:d2];
+    NSDictionary *d3=[array objectAtIndex:2];
+    [self.mChartItemView3 loadData:d3];
+    NSDictionary *d4=[array objectAtIndex:3];
+    [self.mChartItemView4 loadData:d4];
 }
 
 @end

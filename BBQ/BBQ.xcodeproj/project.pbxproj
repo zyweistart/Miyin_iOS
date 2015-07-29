@@ -74,6 +74,8 @@
 		C9FE58EA1B68F656002154E4 /* Ringtone1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E51B68F656002154E4 /* Ringtone1.wav */; };
 		C9FE58EB1B68F656002154E4 /* Ringtone2.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E61B68F656002154E4 /* Ringtone2.wav */; };
 		C9FE58EE1B68F70D002154E4 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE58ED1B68F70D002154E4 /* DatePickerView.m */; };
+		C9FE58F11B692F20002154E4 /* MenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE58F01B692F20002154E4 /* MenuItemView.m */; };
+		C9FE58F41B694653002154E4 /* ChartItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE58F31B694653002154E4 /* ChartItemView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +212,10 @@
 		C9FE58E61B68F656002154E4 /* Ringtone2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Ringtone2.wav; sourceTree = "<group>"; };
 		C9FE58EC1B68F70D002154E4 /* DatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerView.h; sourceTree = "<group>"; };
 		C9FE58ED1B68F70D002154E4 /* DatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerView.m; sourceTree = "<group>"; };
+		C9FE58EF1B692F20002154E4 /* MenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemView.h; sourceTree = "<group>"; };
+		C9FE58F01B692F20002154E4 /* MenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemView.m; sourceTree = "<group>"; };
+		C9FE58F21B694653002154E4 /* ChartItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartItemView.h; sourceTree = "<group>"; };
+		C9FE58F31B694653002154E4 /* ChartItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartItemView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,10 +265,14 @@
 				C900ABCC1B6877D40018C36B /* AlertView.m */,
 				C9126A3D1B66004A001D3D60 /* CButton.h */,
 				C9126A3E1B66004A001D3D60 /* CButton.m */,
+				C9FE58F21B694653002154E4 /* ChartItemView.h */,
+				C9FE58F31B694653002154E4 /* ChartItemView.m */,
 				C9126A3F1B66004A001D3D60 /* CLabel.h */,
 				C9126A401B66004A001D3D60 /* CLabel.m */,
 				C9FE58EC1B68F70D002154E4 /* DatePickerView.h */,
 				C9FE58ED1B68F70D002154E4 /* DatePickerView.m */,
+				C9FE58EF1B692F20002154E4 /* MenuItemView.h */,
+				C9FE58F01B692F20002154E4 /* MenuItemView.m */,
 				C900ABCE1B6877EE0018C36B /* SetTempView.h */,
 				C900ABCF1B6877EE0018C36B /* SetTempView.m */,
 				C9126A371B65DC42001D3D60 /* TabBarFrameViewController.h */,
@@ -630,6 +640,7 @@
 				C9126A411B66004A001D3D60 /* CButton.m in Sources */,
 				C9ECF2151B65C85A0088E110 /* UIImageView+Utils.m in Sources */,
 				C9D6152C1B67C7B2003DAC98 /* MenuCell.m in Sources */,
+				C9FE58F41B694653002154E4 /* ChartItemView.m in Sources */,
 				C9ECF2161B65C85A0088E110 /* User.m in Sources */,
 				C9F1EF1E1B674214005C8CF3 /* Tools.m in Sources */,
 				C9ECF1CD1B65C6BD0088E110 /* ATMProgressLayer.m in Sources */,
@@ -656,6 +667,7 @@
 				C900ABD01B6877EE0018C36B /* SetTempView.m in Sources */,
 				C9ECF20E1B65C85A0088E110 /* HttpDownload.m in Sources */,
 				C9F1EF1B1B671895005C8CF3 /* TIBLECBStandanda.m in Sources */,
+				C9FE58F11B692F20002154E4 /* MenuItemView.m in Sources */,
 				C9ECF1CE1B65C6BD0088E110 /* ATMSoundFX.m in Sources */,
 				C9126A421B66004A001D3D60 /* CLabel.m in Sources */,
 				C9ECF1E11B65C6BD0088E110 /* MBProgressHUD.m in Sources */,
