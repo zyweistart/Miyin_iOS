@@ -222,16 +222,15 @@
     [self.tableView reloadData];
 }
 
-- (void)sendData
+- (void)sendData:(NSString*)message
 {
-    NSString  *message =@"{}\r\n";
+    message =@"{}\r\n";
     int length = (int)message.length;
     Byte messageByte[length];
     for (int index = 0; index < length; index++) {
         //生成和字符串长度相同的字节数据
         messageByte[index] = 0x00;
     }
-    //转化为ascii码
     NSString *tmpString;
     for(int index = 0; index<length ; index++) {
         tmpString = [message substringWithRange:NSMakeRange(index, 1)];
