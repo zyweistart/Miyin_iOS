@@ -9,31 +9,34 @@
 #import "ConnectViewController.h"
 #import "TabBarFrameViewController.h"
 #import "Tools.h"
+#import "PeripheralCell.h"
 
 @interface ConnectViewController ()
 
 @end
 
-@implementation ConnectViewController{
-    CButton *bEnter;
-}
+@implementation ConnectViewController
 
 - (id)init{
     self=[super init];
     if(self){
         [self cTitle:@"设备连接"];
-        self.progressView = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(180, 0, 30, 30)];
-        [self.progressView setColor :[UIColor whiteColor]];
-        [self RefreshStateNormal];
-        [self buildTableViewWithView:self.view];
         
-        UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 120, 40)];
-        [self.tableView setTableFooterView:bottomView];
-        bEnter=[[CButton alloc]initWithFrame:CGRectMake1(20, 0, 280, 40) Name:@"Enter" Type:2];
-//        [bEnter setEnabled:NO];
-        [bEnter addTarget:self action:@selector(goMainPage) forControlEvents:UIControlEventTouchUpInside];
-        [bottomView addSubview:bEnter];
-        [self.tableView setTableFooterView:bottomView];
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景2"]]];
+        
+        [self RefreshStateNormal];
+        [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
+        [self.tableView setBackgroundColor:[UIColor clearColor]];
+        
+        CGFloat height=self.view.bounds.size.height-CGHeight(100);
+        UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, height, CGWidth(320), CGHeight(40))];
+        CButton *bDemo=[[CButton alloc]initWithFrame:CGRectMake1(40, 0, 100, 40) Name:@"Demo" Type:1];
+        [bDemo addTarget:self action:@selector(goMainPage) forControlEvents:UIControlEventTouchUpInside];
+        [bottomView addSubview:bDemo];
+        CButton *bScan=[[CButton alloc]initWithFrame:CGRectMake1(180, 0, 100, 40) Name:@"Scan" Type:1];
+        [bScan addTarget:self action:@selector(startScan) forControlEvents:UIControlEventTouchUpInside];
+        [bottomView addSubview:bScan];
+        [self.tableView addSubview:bottomView];
         
     }
     return self;
@@ -45,38 +48,47 @@
     [self performSelector:@selector(startScan) withObject:nil afterDelay:0.5];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [self.appDelegate.bleManager.peripherals count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGHeight(60);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier=@"TableCellIdentifier";
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
+    PeripheralCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
     if(cell==nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] ;
+        cell = [[PeripheralCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] ;
     }
-    CBPeripheral *cbPeripheral = [self.appDelegate.bleManager.peripherals objectAtIndex:[indexPath row]];
+    CBPeripheral *cbPeripheral = [self.appDelegate.bleManager.peripherals objectAtIndex:[indexPath section]];
     if(cbPeripheral.name !=nil) {
-        cell.textLabel.text = [cbPeripheral name];
+        cell.lblTitle.text = [cbPeripheral name];
     } else {
-        cell.textLabel.text = @"未知设备";
+        cell.lblTitle.text = @"未知设备";
     }
-    if (cbPeripheral == self.appDelegate.bleManager.activePeripheral) {
-        //判定是哪一个蓝牙设备
-        if (MODEL == MODEL_NORMAL) {
-            [[cell detailTextLabel] setText: @"-----"];
-        }else if (MODEL == MODEL_CONNECTING){
-            [[cell detailTextLabel] setText: @"Connecting..."];
-        }else if (MODEL == MODEL_SCAN){
-            [[cell detailTextLabel] setText: @"Scanning..."];
-        }else if (MODEL == MODEL_CONECTED){
-            [[cell detailTextLabel] setText: @"Connected"];
-            [bEnter setEnabled:YES];
-            [bEnter setTitle:[NSString stringWithFormat:@"Enter %@",cbPeripheral.name] forState:UIControlStateNormal];
-        }
-    }
+    [cell.lblAddress setText:cbPeripheral.identifier.UUIDString];
+//    if (cbPeripheral == self.appDelegate.bleManager.activePeripheral) {
+//        //判定是哪一个蓝牙设备
+//        if (MODEL == MODEL_NORMAL) {
+//            [[cell detailTextLabel] setText: @"-----"];
+//        }else if (MODEL == MODEL_CONNECTING){
+//            [[cell detailTextLabel] setText: @"Connecting..."];
+//        }else if (MODEL == MODEL_SCAN){
+//            [[cell detailTextLabel] setText: @"Scanning..."];
+//        }else if (MODEL == MODEL_CONECTED){
+//            [[cell detailTextLabel] setText: @"Connected"];
+//        }
+//    }
     return  cell;
 }
 
@@ -99,16 +111,18 @@
 
 - (void)RefreshStateStart
 {
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithCustomView:_progressView];
-    [_progressView startAnimating];
-    [self.navigationItem setRightBarButtonItem:rightBtn];
+    self.mMBProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:self.mMBProgressHUD];
+    self.mMBProgressHUD.dimBackground = NO;
+    self.mMBProgressHUD.square = YES;
+    [self.mMBProgressHUD show:YES];
 }
 
 - (void)RefreshStateNormal
 {
-    [_progressView stopAnimating];
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(startScan)];
-    [self.navigationItem setRightBarButtonItem:rightBtn];
+    if (self.mMBProgressHUD) {
+        [self.mMBProgressHUD hide:YES];
+    }
 }
 
 //开始扫描

@@ -21,7 +21,7 @@
         [self buildTableViewWithView:self.view];
         UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 120, 40)];
         [self.tableView setTableFooterView:bottomView];
-        CButton *bDemo=[[CButton alloc]initWithFrame:CGRectMake1(20, 0, 120, 40) Name:@"Demo" Type:2];
+        CButton *bDemo=[[CButton alloc]initWithFrame:CGRectMake1(20, 0, 120, 40) Name:@"Demo" Type:1];
         [bDemo addTarget:self action:@selector(goDemo) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:bDemo];
         CButton *bScan=[[CButton alloc]initWithFrame:CGRectMake1(180, 0, 120, 40) Name:@"Scan" Type:2];

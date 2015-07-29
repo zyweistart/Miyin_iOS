@@ -33,8 +33,8 @@
     [[UINavigationBar appearance]setBarStyle:UIBarStyleBlackTranslucent];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[ConnectViewController alloc]init]];
-    self.window.rootViewController=frameViewControllerNav;
+//    UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[ConnectViewController alloc]init]];
+    self.window.rootViewController=[[ConnectViewController alloc]init];
     self.window.backgroundColor = [UIColor whiteColor];
     
     self.bleManager = [[TIBLECBStandand alloc]init];

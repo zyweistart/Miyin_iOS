@@ -7,6 +7,7 @@
 //
 
 #import "BaseTableViewController.h"
+#import "MBProgressHUD.h"
 
 enum MODEl_STATE
 {
@@ -20,6 +21,6 @@ enum MODEl_STATE
     int MODEL;
 }
 
-@property(strong, nonatomic)UIActivityIndicatorView *progressView;
+@property(strong,nonatomic)MBProgressHUD *mMBProgressHUD;
 
 @end

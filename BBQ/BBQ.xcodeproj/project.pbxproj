@@ -76,6 +76,7 @@
 		C9FE58EE1B68F70D002154E4 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE58ED1B68F70D002154E4 /* DatePickerView.m */; };
 		C9FE58F11B692F20002154E4 /* MenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE58F01B692F20002154E4 /* MenuItemView.m */; };
 		C9FE58F41B694653002154E4 /* ChartItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE58F31B694653002154E4 /* ChartItemView.m */; };
+		C9FE58F71B695210002154E4 /* PeripheralCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE58F61B695210002154E4 /* PeripheralCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,6 +217,8 @@
 		C9FE58F01B692F20002154E4 /* MenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemView.m; sourceTree = "<group>"; };
 		C9FE58F21B694653002154E4 /* ChartItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartItemView.h; sourceTree = "<group>"; };
 		C9FE58F31B694653002154E4 /* ChartItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartItemView.m; sourceTree = "<group>"; };
+		C9FE58F51B695210002154E4 /* PeripheralCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralCell.h; sourceTree = "<group>"; };
+		C9FE58F61B695210002154E4 /* PeripheralCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +295,8 @@
 				C9D615331B67E92C003DAC98 /* SwitchCell.m */,
 				C900ABC81B6875FA0018C36B /* TimerCell.h */,
 				C900ABC91B6875FA0018C36B /* TimerCell.m */,
+				C9FE58F51B695210002154E4 /* PeripheralCell.h */,
+				C9FE58F61B695210002154E4 /* PeripheralCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -643,6 +648,7 @@
 				C9FE58F41B694653002154E4 /* ChartItemView.m in Sources */,
 				C9ECF2161B65C85A0088E110 /* User.m in Sources */,
 				C9F1EF1E1B674214005C8CF3 /* Tools.m in Sources */,
+				C9FE58F71B695210002154E4 /* PeripheralCell.m in Sources */,
 				C9ECF1CD1B65C6BD0088E110 /* ATMProgressLayer.m in Sources */,
 				C9D6153A1B67F510003DAC98 /* InfoCell.m in Sources */,
 				C9ECF1CB1B65C6BD0088E110 /* ATMHudQueueItem.m in Sources */,
