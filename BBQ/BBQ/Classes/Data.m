@@ -12,6 +12,7 @@
 #define SETTINGCF @"SETTINGCF"
 #define SETTINGALARM @"SETTINGALARM"
 #define SETTINGLANGUAGE @"SETTINGLANGUAGE"
+#define AUTOCONNECTEDUUID @"AUTOCONNECTEDUUID"
 
 @implementation Data
 
@@ -25,6 +26,20 @@ static Data * instance = nil;
         }
     }
     return instance;
+}
+
+- (void)setAutoConnected:(NSString*)uuid
+{
+    [Common setCache:AUTOCONNECTEDUUID data:uuid];
+}
+
+- (NSString*)getAutoConnected
+{
+    NSString *cf=[Common getCache:AUTOCONNECTEDUUID];
+    if(cf){
+        return cf;
+    }
+    return @"";
 }
 
 - (void)setCf:(NSString*)cf

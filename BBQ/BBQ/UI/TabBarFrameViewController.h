@@ -18,6 +18,8 @@
 @property (strong,nonatomic) AlertView *mAlertView;
 @property (strong,nonatomic) AVAudioPlayer *mAVAudioPlayer;
 
+@property BOOL isDemo;
+
 - (void)playAlarm;
 - (void)AlertShow;
 

@@ -8,6 +8,7 @@
 @implementation TabBarFrameViewController{
     //接收到的数据
     NSMutableString *receiveSBString;
+    NSNotificationCenter *nc;
 }
 
 - (id)init
@@ -26,12 +27,14 @@
             [[Data Instance]setLanguage:@"English"];;
         }
         receiveSBString=[NSMutableString new];
-        //设置消息通知
-        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        [nc addObserver: self
-               selector: @selector(ValueChangText:)
-                   name: NOTIFICATION_VALUECHANGUPDATE
-                 object: nil];
+        if(![[Data Instance]isDemo]){
+            //设置消息通知
+            nc = [NSNotificationCenter defaultCenter];
+            [nc addObserver: self
+                   selector: @selector(ValueChangText:)
+                       name: NOTIFICATION_VALUECHANGUPDATE
+                     object: nil];
+        }
         //开始接收消息
         self.appDelegate = [[UIApplication sharedApplication] delegate];
         [self.appDelegate.bleManager notification:0xFFE0 characteristicUUID:0xFFE4 p:self.appDelegate.bleManager.activePeripheral on:YES];
@@ -62,12 +65,24 @@
                             [self viewControllerWithTabTitle:@"Timer" image:@"icon-nav-timer" ViewController:self.mTimerViewController],
                             [self viewControllerWithTabTitle:@"Setting" image:@"icon-nav-setting" ViewController:self.mSettingViewController],
                             [self viewControllerWithTabTitle:@"Info" image:@"icon-nav-info" ViewController:self.mInfoViewController], nil];
+    
+    if([[Data Instance]isDemo]){
+        [[[Data Instance]sett]setObject:@"147" forKey:@"p1"];
+        [[[Data Instance]sett]setObject:@"158" forKey:@"p2"];
+        [[[Data Instance]sett]setObject:@"132" forKey:@"p3"];
+        [[[Data Instance]sett]setObject:@"169" forKey:@"p4"];
+        NSArray  *array=@[@{@"p1":@"30"},@{@"p2":@"29"},@{@"p3":@"31"},@{@"p4":@"29"}];
+        [self.mHomeViewController loadData:array];
+        [self.mTimerViewController loadData:array];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_VALUECHANGUPDATE object:nil];
+    if(![[Data Instance]isDemo]){
+        [nc removeObserver:self name:NOTIFICATION_VALUECHANGUPDATE object:nil];
+    }
 }
 
 - (UINavigationController*)viewControllerWithTabTitle:(NSString*) title image:(NSString*)image ViewController:(UIViewController*)viewController

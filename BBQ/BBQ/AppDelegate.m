@@ -46,6 +46,10 @@
 
 - (void)sendData:(NSString*)message
 {
+    if(![[Data Instance]isDemo]){
+        NSLog(@"当前为DEMO模式");
+        return;
+    }
     message=[NSString stringWithFormat:@"%@\r\n",message];
     int length = (int)message.length;
     Byte messageByte[length];

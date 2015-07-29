@@ -26,6 +26,7 @@
         [self.lblAddress setTextColor:[UIColor whiteColor]];
         [self.lblAddress setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:self.lblAddress];
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     return self;
 }

@@ -31,21 +31,25 @@
         CGFloat height=self.view.bounds.size.height-CGHeight(100);
         UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, height, CGWidth(320), CGHeight(40))];
         CButton *bDemo=[[CButton alloc]initWithFrame:CGRectMake1(40, 0, 100, 40) Name:@"Demo" Type:1];
-        [bDemo addTarget:self action:@selector(goMainPage) forControlEvents:UIControlEventTouchUpInside];
+        [bDemo addTarget:self action:@selector(goDemo) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:bDemo];
         CButton *bScan=[[CButton alloc]initWithFrame:CGRectMake1(180, 0, 100, 40) Name:@"Scan" Type:1];
         [bScan addTarget:self action:@selector(startScan) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:bScan];
         [self.tableView addSubview:bottomView];
-        
     }
     return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self performSelector:@selector(startScan) withObject:nil afterDelay:0.5];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self performSelector:@selector(startScan) withObject:nil afterDelay:0.5];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -76,23 +80,51 @@
     } else {
         cell.lblTitle.text = @"未知设备";
     }
-    [cell.lblAddress setText:cbPeripheral.identifier.UUIDString];
+    NSString *uuid=cbPeripheral.identifier.UUIDString;
+    [cell.lblAddress setText:uuid];
+    
+    if([uuid isEqualToString:[[Data Instance]getAutoConnected]]){
+        //自动连接
+//        [self connected:cbPeripheral];
+    }
+    
 //    if (cbPeripheral == self.appDelegate.bleManager.activePeripheral) {
 //        //判定是哪一个蓝牙设备
 //        if (MODEL == MODEL_NORMAL) {
-//            [[cell detailTextLabel] setText: @"-----"];
+//            NSLog(@"%@",uuid);
+//            NSLog(@"%@",[[Data Instance]getAutoConnected]);
+//            if([uuid isEqualToString:[[Data Instance]getAutoConnected]]){
+//                NSLog(@"===========需要自动连接吗");
+////                [self connected:cbPeripheral];
+//            }
+////            [[cell detailTextLabel] setText: @"-----"];
 //        }else if (MODEL == MODEL_CONNECTING){
-//            [[cell detailTextLabel] setText: @"Connecting..."];
+////            [[cell detailTextLabel] setText: @"Connecting..."];
 //        }else if (MODEL == MODEL_SCAN){
-//            [[cell detailTextLabel] setText: @"Scanning..."];
+////            [[cell detailTextLabel] setText: @"Scanning..."];
 //        }else if (MODEL == MODEL_CONECTED){
-//            [[cell detailTextLabel] setText: @"Connected"];
+////            [[cell detailTextLabel] setText: @"Connected"];
+//            //设置为自动连接
+//            [[Data Instance]setAutoConnected:uuid];
 //        }
 //    }
     return  cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //发出通知新页面，对指定外围设备进行连接
+    CBPeripheral *cbPeripheral=[self.appDelegate.bleManager.peripherals objectAtIndex:indexPath.row];
+    if(MODEL==MODEL_CONECTED){
+        if([cbPeripheral.identifier.UUIDString isEqualToString:self.appDelegate.bleManager.activePeripheral.identifier.UUIDString]){
+            [self goMainPage];
+            return;
+        }
+    }
+    [self connected:cbPeripheral];
+}
+
+- (void)connected:(CBPeripheral*)cbPeripheral
 {
     if (self.appDelegate.bleManager.activePeripheral){
         //self.appDelegate.bleManager.activePeripheral.isConnected
@@ -104,9 +136,7 @@
     [self.appDelegate.bleManager.activeDescriptors removeAllObjects];
     self.appDelegate.bleManager.activePeripheral = nil;
     self.appDelegate.bleManager.activeService = nil;
-    //发出通知新页面，对指定外围设备进行连接
-    CBPeripheral *peripheral=[self.appDelegate.bleManager.peripherals objectAtIndex:indexPath.row];
-    [self.appDelegate.bleManager connectPeripheral:peripheral];
+    [self.appDelegate.bleManager connectPeripheral:cbPeripheral];
 }
 
 - (void)RefreshStateStart
@@ -201,7 +231,6 @@
 {
 //    NSLog(@" BLE 设备连接成功   ！\r\n");
     MODEL = MODEL_CONNECTING ;
-    [self.tableView reloadData];
     [self.appDelegate.bleManager.activePeripheral discoverServices:nil];
 }
 
@@ -217,7 +246,6 @@
 - (void)bleDeviceWithRSSIFound:(NSNotification *) notification
 {
 //    NSLog(@" 更新RSSI 值 ！\r\n");
-    [self.tableView reloadData];
 }
 
 //服务发现完成之后的回调方法
@@ -225,7 +253,6 @@
 {
 //    NSLog(@" 获取所有的服务 ");
     MODEL = MODEL_SCAN;
-    [self.tableView reloadData];
 }
 
 //成功扫描所有服务特征值
@@ -233,14 +260,24 @@
 {
 //    NSLog(@" 获取所有的特征值 ! \r\n");
     MODEL = MODEL_CONECTED;
-    [self.tableView reloadData];
+}
+
+- (void)goDemo
+{
+    TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
+    [[Data Instance] setIsDemo:YES];
+    [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
+    }];
 }
 
 - (void)goMainPage
 {
     TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
+    [[Data Instance] setIsDemo:NO];
     [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
 //        [self startGetData];
+        NSString *uuid=self.appDelegate.bleManager.activePeripheral.identifier.UUIDString;
+        [[Data Instance]setAutoConnected:uuid];
     }];
 }
 
