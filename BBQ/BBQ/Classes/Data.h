@@ -12,7 +12,7 @@
 
 + (Data *) Instance;
 
-@property (strong,nonatomic) NSMutableArray *sett;
+@property (strong,nonatomic) NSMutableDictionary *sett;
 @property (strong,nonatomic) NSMutableDictionary *settValue;
 
 + (NSString*)getTemperatureValue:(int)v;

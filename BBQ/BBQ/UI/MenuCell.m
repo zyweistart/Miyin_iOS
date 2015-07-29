@@ -64,16 +64,14 @@
         lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 150, 50, 20) Text:@"Temp"];
         [frame addSubview:lbl];
         
-        self.lblHighestCentigrade=[[UILabel alloc]initWithFrame:CGRectMake1(100, 130, 100, 40)];
-        [self.lblHighestCentigrade setTextColor:DEFAULTITLECOLOR(100)];
-        [self.lblHighestCentigrade setFont:[UIFont systemFontOfSize:30]];
-        [self.lblHighestCentigrade setTextAlignment:NSTextAlignmentCenter];
+        self.lblHighestCentigrade=[[UIButton alloc]initWithFrame:CGRectMake1(100, 130, 100, 40)];
+        [self.lblHighestCentigrade.titleLabel setFont:[UIFont systemFontOfSize:30]];
+        [self.lblHighestCentigrade setTitleColor:DEFAULTITLECOLOR(100) forState:UIControlStateNormal];
         [frame addSubview:self.lblHighestCentigrade];
         
-        UIButton *image=[[UIButton alloc]initWithFrame:CGRectMake1(202, 97, 46, 52)];
-        [image setImage:[UIImage imageNamed:@"时间"] forState:UIControlStateNormal];
-        [image addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
-        [frame addSubview:image];
+        self.bTimer=[[UIButton alloc]initWithFrame:CGRectMake1(202, 97, 46, 52)];
+        [self.bTimer setImage:[UIImage imageNamed:@"时间"] forState:UIControlStateNormal];
+        [frame addSubview:self.bTimer];
         
         self.lblSetTime=[[UILabel alloc]initWithFrame:CGRectMake1(250, 97, 60, 52)];
         [self.lblSetTime setTextColor:DEFAULTITLECOLOR(41)];
@@ -85,11 +83,6 @@
         
     }
     return self;
-}
-
-- (void)setTimer:(id)sender
-{
-    NSLog(@"设置时间%@",self.data);
 }
 
 @end

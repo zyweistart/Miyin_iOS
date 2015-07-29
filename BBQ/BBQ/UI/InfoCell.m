@@ -39,7 +39,7 @@
         [frame addSubview:self.lblTimer];
         self.lblTargetTemp=[[UILabel alloc]initWithFrame:CGRectMake1(100, 65, 80, 20)];
         [self.lblTargetTemp setTextColor:[UIColor blackColor]];
-        [self.lblTimer setFont:[UIFont systemFontOfSize:14]];
+        [self.lblTargetTemp setFont:[UIFont systemFontOfSize:14]];
         [self.lblTargetTemp setTextAlignment:NSTextAlignmentCenter];
         [frame addSubview:self.lblTargetTemp];
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];

@@ -20,7 +20,7 @@ static Data * instance = nil;
     @synchronized(self){
         if(nil == instance){
             instance=[self new];
-            instance.sett=[[NSMutableArray alloc]init];
+            instance.sett=[NSMutableDictionary new];
             instance.settValue=[NSMutableDictionary new];
         }
     }

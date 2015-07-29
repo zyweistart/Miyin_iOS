@@ -7,9 +7,13 @@
 //
 
 #import "BaseTableViewController.h"
+#import "SetTempView.h"
 
 @interface HomeViewController : BaseTableViewController
 
 - (void)loadData:(NSArray*)array;
+
+@property (strong,nonatomic)UIView *bgFrame;
+@property (strong,nonatomic)SetTempView *mSetTempView;
 
 @end

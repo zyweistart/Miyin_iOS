@@ -35,6 +35,22 @@
         //开始接收消息
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         [appDelegate.bleManager notification:0xFFE0 characteristicUUID:0xFFE4 p:appDelegate.bleManager.activePeripheral on:YES];
+        
+        self.bgFrame=[[UIView alloc]initWithFrame:self.view.bounds];
+        [self.bgFrame setBackgroundColor:DEFAULTITLECOLORA(150, 0.5)];
+        [self.bgFrame setHidden:YES];
+        [self.view addSubview:self.bgFrame];
+        
+        self.mAlertView=[[AlertView alloc]initWithFrame:CGRectMake1(10, 100, 300, 180)];
+        [self.mAlertView.button addTarget:self action:@selector(AlertClose) forControlEvents:UIControlEventTouchUpInside];
+//        [self.bgFrame addSubview:self.mAlertView];
+        
+        self.mSetTempView=[[SetTempView alloc]initWithFrame:CGRectMake1(10, 100, 300, 200)];
+        [self.mSetTempView setValue:40];
+        [self.mSetTempView.cancelButton addTarget:self action:@selector(SetTempCloseCancel) forControlEvents:UIControlEventTouchUpInside];
+        [self.mSetTempView.okButton addTarget:self action:@selector(SetTempCloseOK) forControlEvents:UIControlEventTouchUpInside];
+//        [self.bgFrame addSubview:self.mSetTempView];
+        
     }
     return self;
 }
@@ -104,11 +120,16 @@
             [[Data Instance]setCf:[resultJSON objectForKey:@"cf"]];
         }else if([allKeys containsObject:@"sett"]){
             //
-            [[[Data Instance] sett]addObject:[resultJSON objectForKey:@"sett"]];
+            NSLog(@"%@",content);
+            NSDictionary *data=[resultJSON objectForKey:@"sett"];
+            for(id key in [data allKeys]){
+                [[[Data Instance]sett]setObject:[data objectForKey:key] forKey:key];
+            }
         }else if([allKeys containsObject:@"t"]){
             //
             NSArray *array=[resultJSON objectForKey:@"t"];
             [self.mHomeViewController loadData:array];
+            [self.mTimerViewController loadData:array];
         }else if([allKeys containsObject:@"alarm"]){
             //发出警报
             NSLog(@"%@",content);
@@ -117,6 +138,40 @@
             NSLog(@"%@",content);
         }
     }
+}
+
+//打开提示框
+- (void)AlertShow
+{
+    [self.mAlertView.lblTitle setText:@"T1-Warning"];
+    [self.mAlertView.lblMessage setText:@"Temperature is high!"];
+    [self.mAlertView setHidden:NO];
+    [self.bgFrame setHidden:NO];
+}
+//关闭提示框
+- (void)AlertClose
+{
+    [self.mAlertView setHidden:YES];
+    [self.bgFrame setHidden:YES];
+}
+
+- (void)SetTempShow
+{
+    [self.mSetTempView.lblTitle setText:@"T1-Set Temp"];
+    [self.mSetTempView setHidden:NO];
+    [self.bgFrame setHidden:NO];
+}
+
+- (void)SetTempCloseCancel
+{
+    [self.mSetTempView setHidden:YES];
+    [self.bgFrame setHidden:YES];
+}
+
+- (void)SetTempCloseOK
+{
+    [self.mSetTempView setHidden:YES];
+    [self.bgFrame setHidden:YES];
 }
 
 @end

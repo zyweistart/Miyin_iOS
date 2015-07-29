@@ -30,7 +30,7 @@
         UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 120, 40)];
         [self.tableView setTableFooterView:bottomView];
         bEnter=[[CButton alloc]initWithFrame:CGRectMake1(20, 0, 280, 40) Name:@"Enter" Type:2];
-        [bEnter setEnabled:NO];
+//        [bEnter setEnabled:NO];
         [bEnter addTarget:self action:@selector(goMainPage) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:bEnter];
         [self.tableView setTableFooterView:bottomView];

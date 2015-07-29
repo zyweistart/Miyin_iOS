@@ -6,8 +6,10 @@
 //  Copyright (c) 2015年 Start. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
-@interface TimerViewController : BaseViewController
+@interface TimerViewController : BaseTableViewController
+
+- (void)loadData:(NSArray*)array;
 
 @end

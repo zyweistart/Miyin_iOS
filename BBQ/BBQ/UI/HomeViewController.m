@@ -26,6 +26,17 @@
         [self.tableView setBackgroundColor:DEFAULTITLECOLORRGB(65, 51, 42)];
         
         [[[Data Instance]settValue]setObject:@"10h56m" forKey:@"p3"];
+        
+        self.bgFrame=[[UIView alloc]initWithFrame:self.view.bounds];
+        [self.bgFrame setBackgroundColor:DEFAULTITLECOLORA(150, 0.5)];
+        [self.bgFrame setHidden:YES];
+        [self.view addSubview:self.bgFrame];
+        
+        self.mSetTempView=[[SetTempView alloc]initWithFrame:CGRectMake1(10, 100, 300, 200)];
+        [self.mSetTempView.cancelButton addTarget:self action:@selector(SetTempCloseCancel) forControlEvents:UIControlEventTouchUpInside];
+        [self.mSetTempView.okButton addTarget:self action:@selector(SetTempCloseOK) forControlEvents:UIControlEventTouchUpInside];
+        [self.mSetTempView setHidden:YES];
+        [self.bgFrame addSubview:self.mSetTempView];
     }
     return self;
 }
@@ -46,7 +57,8 @@
     if(cell==nil){
         cell = [[MenuCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier] ;
     }
-    NSDictionary *data = [self.dataItemArray objectAtIndex:[indexPath row]];
+    NSInteger row=[indexPath row];
+    NSDictionary *data = [self.dataItemArray objectAtIndex:row];
     [cell setData:data];
     for(id key in [data allKeys]){
         NSString *title=[NSString stringWithFormat:@"%@",key];
@@ -60,17 +72,18 @@
         
         //默认值
         int currentHighValue=DEFAULCENTIGRADEVALUE;
-        if([[[Data Instance] sett] count]>0){
-            for(NSDictionary *d in [[Data Instance] sett]) {
-                NSString *value=[d objectForKey:title];
-                if(value){
-                    currentHighValue=[value intValue];
-                    break;
-                }
-            }
+        
+        NSString *value=[[[Data Instance] sett] objectForKey:title];
+        if(value){
+            currentHighValue=[value intValue];
+        }else{
+            //设置默认值
+            [[[Data Instance] sett]setObject:[NSString stringWithFormat:@"%d",DEFAULCENTIGRADEVALUE] forKey:title];
         }
         
-        [cell.lblHighestCentigrade setText:[Data getTemperatureValue:currentHighValue]];
+        [cell.lblHighestCentigrade setTitle:[Data getTemperatureValue:currentHighValue] forState:UIControlStateNormal];
+        [cell.lblHighestCentigrade setTag:row];
+        [cell.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
         
         CGFloat hWidth=220;
         CGFloat width=hWidth/currentHighValue*currentValue;
@@ -82,9 +95,55 @@
         
         NSString *timer=[[[Data Instance]settValue]objectForKey:title];
         [cell.lblSetTime setText:timer];
+        [cell.bTimer setTag:row];
+        [cell.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
     }
     return  cell;
 }
 
+- (void)setValue:(UIButton*)sender
+{
+    NSDictionary *data = [self.dataItemArray objectAtIndex:sender.tag];
+    for(id key in [data allKeys]){
+        NSString *title=[NSString stringWithFormat:@"%@",key];
+        NSString *value=[[[Data Instance] sett] objectForKey:title];
+        [self.mSetTempView setTag:sender.tag];
+        [self SetTempShowWithTitle:title Value:[value intValue]];
+    }
+}
+
+- (void)setTimer:(UIButton*)sender
+{
+    
+}
+
+- (void)SetTempShowWithTitle:(NSString*)title Value:(int)value;
+{
+    [self.mSetTempView setValue:value];
+    [self.mSetTempView.lblTitle setText:title];
+    [self.mSetTempView setHidden:NO];
+    [self.bgFrame setHidden:NO];
+}
+
+- (void)SetTempCloseCancel
+{
+    [self.mSetTempView setHidden:YES];
+    [self.bgFrame setHidden:YES];
+}
+
+- (void)SetTempCloseOK
+{
+    NSDictionary *data = [self.dataItemArray objectAtIndex:self.mSetTempView.tag];
+    for(id key in [data allKeys]){
+        NSString *title=[NSString stringWithFormat:@"%@",key];
+        int value=self.mSetTempView.mSlider.value;
+        [[[Data Instance]sett]setObject:[NSString stringWithFormat:@"%d",value] forKey:title];
+        [self.tableView reloadData];        
+//        NSString *json=[NSString stringWithFormat:@"{\"sett\":{\"%@\":%d}}\r\n",title,value];
+//        [self.appDelegate sendData:json];
+    }
+    [self.mSetTempView setHidden:YES];
+    [self.bgFrame setHidden:YES];
+}
 
 @end
