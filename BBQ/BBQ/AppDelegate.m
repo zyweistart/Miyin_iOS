@@ -46,7 +46,7 @@
 
 - (void)sendData:(NSString*)message
 {
-    message=[NSString stringWithFormat:@"%@\\n",message];
+    message=[NSString stringWithFormat:@"%@\r\n",message];
     int length = (int)message.length;
     Byte messageByte[length];
     for (int index = 0; index < length; index++) {
@@ -59,7 +59,7 @@
         if([tmpString isEqualToString:@" "]) {
             messageByte[index] = 0x20;
         } else {
-            sscanf([tmpString cStringUsingEncoding:NSASCIIStringEncoding],"%s",&messageByte[index]);
+            sscanf([tmpString cStringUsingEncoding:NSASCIIStringEncoding],"%c",&messageByte[index]);
         }
     }
     char lengthChar = 0 ;

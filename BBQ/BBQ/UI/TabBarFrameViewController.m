@@ -197,6 +197,7 @@
     self.mAVAudioPlayer=[[AVAudioPlayer alloc] initWithContentsOfURL:URL error:nil];
     [self.mAVAudioPlayer setDelegate:self];
     [self.mAVAudioPlayer setVolume:1.0];
+    [self.mAVAudioPlayer setNumberOfLoops:-1];
     if([self.mAVAudioPlayer prepareToPlay]){
         [self.mAVAudioPlayer play];
     }
@@ -215,7 +216,7 @@
 //播放结束时执行的动作
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag{
     if (flag) {
-        [self AlertClose];
+//        [self AlertClose];
     }
 }
 

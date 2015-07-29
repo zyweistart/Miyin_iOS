@@ -19,4 +19,10 @@
 @property (strong,nonatomic)UIView *bgFrame;
 @property (strong,nonatomic)SetTempView *mSetTempView;
 
+
+@property (strong,nonatomic)NSTimer *mTimer1;
+@property (strong,nonatomic)NSTimer *mTimer2;
+@property (strong,nonatomic)NSTimer *mTimer3;
+@property (strong,nonatomic)NSTimer *mTimer4;
+
 @end
