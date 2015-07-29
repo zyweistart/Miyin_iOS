@@ -19,7 +19,8 @@
     NSInteger pvv1;
 }
 
-- (id)init{
+- (id)init
+{
     self=[super init];
     if(self){
         [self cTitle:@"BBQ Connected"];
@@ -156,8 +157,6 @@
     for(id key in [data allKeys]){
         NSString *title=[NSString stringWithFormat:@"%@",key];
         int value=self.mSetTempView.mSlider.value;
-        [[[Data Instance]sett]setObject:[NSString stringWithFormat:@"%d",value] forKey:title];
-        [self.tableView reloadData];        
         NSString *json=[NSString stringWithFormat:@"{\"sett\":{\"%@\":%d.1}}",title,value];
         [self.appDelegate sendData:json];
     }

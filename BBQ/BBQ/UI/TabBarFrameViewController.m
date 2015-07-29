@@ -124,12 +124,16 @@
         if([allKeys containsObject:@"cf"]){
             //温度单位
             [[Data Instance]setCf:[resultJSON objectForKey:@"cf"]];
+            [self.mHomeViewController.tableView reloadData];
+            [self.mTimerViewController.tableView reloadData];
         }else if([allKeys containsObject:@"sett"]){
             //温度设置值
             NSDictionary *data=[resultJSON objectForKey:@"sett"];
             for(id key in [data allKeys]){
                 [[[Data Instance]sett]setObject:[data objectForKey:key] forKey:key];
             }
+            [self.mHomeViewController.tableView reloadData];
+            [self.mTimerViewController.tableView reloadData];
         }else if([allKeys containsObject:@"t"]){
             //当前温度值
             NSArray *array=[resultJSON objectForKey:@"t"];
