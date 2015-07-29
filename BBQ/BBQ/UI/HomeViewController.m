@@ -27,8 +27,6 @@
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         [self.tableView setBackgroundColor:DEFAULTITLECOLORRGB(65, 51, 42)];
         
-        [[[Data Instance]settValue]setObject:@"10h56m" forKey:@"p3"];
-        
         self.bgFrame=[[UIView alloc]initWithFrame:self.view.bounds];
         [self.bgFrame setBackgroundColor:DEFAULTITLECOLORA(150, 0.5)];
         [self.bgFrame setHidden:YES];
@@ -40,24 +38,10 @@
         [self.mSetTempView setHidden:YES];
         [self.bgFrame addSubview:self.mSetTempView];
         
-        
-        
-        NSArray *roles=[NSArray arrayWithObjects:
-         [NSDictionary dictionaryWithObjectsAndKeys:@"个人",MKEY,@"0",MVALUE, nil],
-         [NSDictionary dictionaryWithObjectsAndKeys:@"机手",MKEY,@"1",MVALUE, nil],
-         [NSDictionary dictionaryWithObjectsAndKeys:@"项目经理",MKEY,@"2",MVALUE, nil],
-         [NSDictionary dictionaryWithObjectsAndKeys:@"其他公司",MKEY,@"3",MVALUE, nil],
-         [NSDictionary dictionaryWithObjectsAndKeys:@"运输公司",MKEY,@"4",MVALUE, nil],
-         [NSDictionary dictionaryWithObjectsAndKeys:@"配件公司",MKEY,@"5",MVALUE, nil],
-         [NSDictionary dictionaryWithObjectsAndKeys:@"维修公司",MKEY,@"6",MVALUE, nil],
-         [NSDictionary dictionaryWithObjectsAndKeys:@"吊装公司",MKEY,@"7",MVALUE, nil],
-         [NSDictionary dictionaryWithObjectsAndKeys:@"工程公司",MKEY,@"8",MVALUE, nil],nil];
-        
-        self.pv1=[[SinglePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(260), CGWidth(320), CGHeight(260)) WithArray:roles];
+        self.pv1=[[DatePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(260), CGWidth(320), CGHeight(260))];
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
         [self.view addSubview:self.pv1];
-        
     }
     return self;
 }
@@ -115,7 +99,20 @@
         [cell.viewCentigrade setFrame:CGRectMake1(2, 2, width, 16)];
         
         NSString *timer=[[[Data Instance]settValue]objectForKey:title];
-        [cell.lblSetTime setText:timer];
+        int tv=[timer intValue];
+        if(tv>0){
+            int hour=tv/60;
+            int min=tv%60;
+            NSString *hstr=[NSString stringWithFormat:@"0%d",hour];
+            if(hour>9){
+                hstr=[NSString stringWithFormat:@"%d",hour];
+            }
+            NSString *mstr=[NSString stringWithFormat:@"0%d",min];
+            if(min>9){
+                mstr=[NSString stringWithFormat:@"%d",min];
+            }
+            [cell.lblSetTime setText:[NSString stringWithFormat:@"%@:%@",hstr,mstr]];
+        }
         [cell.bTimer setTag:row];
         [cell.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -135,6 +132,7 @@
 
 - (void)setTimer:(UIButton*)sender
 {
+    [self.pv1 setTag:sender.tag];
     [self.pv1 setHidden:NO];
 }
 
@@ -170,10 +168,14 @@
 - (void)pickerViewDone:(NSInteger)code
 {
     if(code==1) {
-        pvv1=[self.pv1.picker selectedRowInComponent:0];
-        NSDictionary *d=[self.pv1.pickerArray objectAtIndex:pvv1];
-        NSString *content=[d objectForKey:MVALUE];
-        NSLog(@"%@",content);
+        NSDictionary *data=[self.dataItemArray objectAtIndex:self.pv1.tag];
+        for(id key in [data allKeys]){
+            NSInteger rowHour=[self.pv1.picker selectedRowInComponent:0]+1;
+            NSInteger rowMin=[self.pv1.picker selectedRowInComponent:1];
+            NSInteger totalSecond=rowHour*60+rowMin;
+            [[[Data Instance]settValue]setObject:[NSString stringWithFormat:@"%ld",totalSecond] forKey:key];
+            [self.tableView reloadData];
+        }
     }
 }
 

@@ -73,7 +73,7 @@
 		C9FE58E91B68F656002154E4 /* Beep3.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E41B68F656002154E4 /* Beep3.wav */; };
 		C9FE58EA1B68F656002154E4 /* Ringtone1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E51B68F656002154E4 /* Ringtone1.wav */; };
 		C9FE58EB1B68F656002154E4 /* Ringtone2.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E61B68F656002154E4 /* Ringtone2.wav */; };
-		C9FE58EE1B68F70D002154E4 /* SinglePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE58ED1B68F70D002154E4 /* SinglePickerView.m */; };
+		C9FE58EE1B68F70D002154E4 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE58ED1B68F70D002154E4 /* DatePickerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,8 +208,8 @@
 		C9FE58E41B68F656002154E4 /* Beep3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep3.wav; sourceTree = "<group>"; };
 		C9FE58E51B68F656002154E4 /* Ringtone1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Ringtone1.wav; sourceTree = "<group>"; };
 		C9FE58E61B68F656002154E4 /* Ringtone2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Ringtone2.wav; sourceTree = "<group>"; };
-		C9FE58EC1B68F70D002154E4 /* SinglePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePickerView.h; sourceTree = "<group>"; };
-		C9FE58ED1B68F70D002154E4 /* SinglePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePickerView.m; sourceTree = "<group>"; };
+		C9FE58EC1B68F70D002154E4 /* DatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerView.h; sourceTree = "<group>"; };
+		C9FE58ED1B68F70D002154E4 /* DatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,8 +255,8 @@
 		C9126A291B65DA3F001D3D60 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C9FE58EC1B68F70D002154E4 /* SinglePickerView.h */,
-				C9FE58ED1B68F70D002154E4 /* SinglePickerView.m */,
+				C9FE58EC1B68F70D002154E4 /* DatePickerView.h */,
+				C9FE58ED1B68F70D002154E4 /* DatePickerView.m */,
 				C900ABCB1B6877D40018C36B /* AlertView.h */,
 				C900ABCC1B6877D40018C36B /* AlertView.m */,
 				C9126A3D1B66004A001D3D60 /* CButton.h */,
@@ -650,7 +650,7 @@
 				C9ECF1C91B65C6BD0088E110 /* Reachability.m in Sources */,
 				C9126A3C1B65FFE3001D3D60 /* MainViewController.m in Sources */,
 				C9ECF1D51B65C6BD0088E110 /* PullTableView.m in Sources */,
-				C9FE58EE1B68F70D002154E4 /* SinglePickerView.m in Sources */,
+				C9FE58EE1B68F70D002154E4 /* DatePickerView.m in Sources */,
 				C9D615341B67E92C003DAC98 /* SwitchCell.m in Sources */,
 				C9F1EF211B67491E005C8CF3 /* TIBLECBStandand.m in Sources */,
 				C900ABD01B6877EE0018C36B /* SetTempView.m in Sources */,

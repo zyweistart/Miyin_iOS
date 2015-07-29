@@ -6,17 +6,15 @@
 //  Copyright (c) 2015 Start. All rights reserved.
 //
 
-#import "SinglePickerView.h"
+#import "DatePickerView.h"
 #define BGCOLOR [UIColor colorWithRed:(55/255.0) green:(55/255.0) blue:(55/255.0) alpha:0.5]
 
-@implementation SinglePickerView
+@implementation DatePickerView
 
-- (id)initWithFrame:(CGRect)rect WithArray:(NSArray*)array{
+- (id)initWithFrame:(CGRect)rect{
     self=[super initWithFrame:rect];
     if(self){
         [self setBackgroundColor:BGCOLOR];
-        
-        self.pickerArray=array;
         
         self.toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake1(0, 0, 320, 44)];
         self.toolBar.barStyle = UIBarStyleDefault;
@@ -55,7 +53,6 @@
 
 - (void)cancel:(id)sender
 {
-//    [self.delegate pickerViewCancel:self.code];
     [self hiddenView];
 }
 
@@ -65,21 +62,35 @@
     [self hiddenView];
 }
 
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return 1;
+    return 2;
 }
 
--(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+- (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return [self.pickerArray count];
+    if(component==0) {
+        return 23;
+    } else {
+        return 60;
+    }
 }
 
--(NSString*) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    NSDictionary *d= [self.pickerArray objectAtIndex:row];
-//    return [self.pickerArray objectAtIndex:row];
-    return [d objectForKey:MKEY];
+    if(component==0) {
+        if(row+1>9) {
+            return [NSString stringWithFormat:@"%ld",row+1];
+        } else {
+            return [NSString stringWithFormat:@"0%ld",row+1];
+        }
+    } else {
+        if(row>9) {
+            return [NSString stringWithFormat:@"%ld",row];
+        } else {
+            return [NSString stringWithFormat:@"0%ld",row];
+        }
+    }
 }
 
 @end
