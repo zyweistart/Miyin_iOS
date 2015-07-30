@@ -11,6 +11,7 @@
 
 @interface ChartItemView : UIView<UUChartDataSource>
 
+@property (strong,nonatomic)UIView *frameView;
 @property (strong,nonatomic)UILabel *lblTitle;
 @property (strong,nonatomic)UUChart *chartView;
 @property (strong,nonatomic)NSTimer *mTimer;

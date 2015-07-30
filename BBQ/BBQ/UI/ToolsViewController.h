@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "ChartItemView.h"
+#import "ChartItemLandView.h"
 
 @interface ToolsViewController : BaseViewController
 
@@ -16,6 +17,8 @@
 @property (strong,nonatomic)ChartItemView *mChartItemView2;
 @property (strong,nonatomic)ChartItemView *mChartItemView3;
 @property (strong,nonatomic)ChartItemView *mChartItemView4;
+
+@property (strong,nonatomic)ChartItemLandView *mChartItemLandView;
 
 - (void)ConnectedState:(BOOL)state;
 - (void)loadData:(NSArray*)array;

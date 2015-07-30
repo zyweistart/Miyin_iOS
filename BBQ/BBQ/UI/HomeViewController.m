@@ -35,6 +35,8 @@
         //针1
         if(self.mMenuItemView1==nil){
             self.mMenuItemView1=[[MenuItemView alloc]initWithFrame:CGRectMake1(0, 0, 320, 190)];
+            [self.mMenuItemView1 setUserInteractionEnabled:YES];
+            [self.mMenuItemView1 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];
             [self.mMenuItemView1 setBaseController:self];
             [self.mMenuItemView1.lblHighestCentigrade setTag:0];
             [self.mMenuItemView1.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
@@ -224,6 +226,10 @@
     }
     [self.scrollFrameView setHidden:!state];
     [self.mConnectedPanel setHidden:state];
+}
+
+- (void)frmeChange:(id)sender
+{
 }
 
 @end

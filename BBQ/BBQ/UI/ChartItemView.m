@@ -9,7 +9,6 @@
 #import "ChartItemView.h"
 
 @implementation ChartItemView{
-    UIView *frameView;
     NSInteger totalSecond;
 }
 
@@ -18,23 +17,23 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:DEFAULTITLECOLORRGB(65, 51, 42)];
-        frameView=[[UIView alloc]initWithFrame:CGRectMake1(0, 5, 315, 180)];
-        frameView.layer.masksToBounds=YES;
-        frameView.layer.cornerRadius=CGWidth(5);
-        frameView.layer.borderWidth=1;
-        frameView.layer.borderColor=DEFAULTITLECOLOR(200).CGColor;
-        [frameView setBackgroundColor:[UIColor whiteColor]];
-        [self addSubview:frameView];
+        self.frameView=[[UIView alloc]initWithFrame:CGRectMake1(0, 5, 315, 180)];
+        self.frameView.layer.masksToBounds=YES;
+        self.frameView.layer.cornerRadius=CGWidth(5);
+        self.frameView.layer.borderWidth=1;
+        self.frameView.layer.borderColor=DEFAULTITLECOLOR(200).CGColor;
+        [self.frameView setBackgroundColor:[UIColor whiteColor]];
+        [self addSubview:self.frameView];
         
         self.lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 40, 180)];
         [self.lblTitle setTextColor:[UIColor whiteColor]];
         [self.lblTitle setFont:[UIFont systemFontOfSize:18]];
         [self.lblTitle setBackgroundColor:DEFAULTITLECOLORRGB(242, 125, 0)];
         [self.lblTitle setTextAlignment:NSTextAlignmentCenter];
-        [frameView addSubview:self.lblTitle];
+        [self.frameView addSubview:self.lblTitle];
         
         self.chartView = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake1(40,0, 275, 180) withSource:self withStyle:UUChartLineStyle];
-        [self.chartView showInView:frameView];
+        [self.chartView showInView:self.frameView];
         
         totalSecond=0;
         if(self.mTimer==nil){
@@ -163,7 +162,7 @@
                 self.chartView = nil;
             }
             self.chartView = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake1(40,0, 275, 180) withSource:self withStyle:UUChartLineStyle];
-            [self.chartView showInView:frameView];
+            [self.chartView showInView:self.frameView];
             
             break;
         }
