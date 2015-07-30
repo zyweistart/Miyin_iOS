@@ -32,8 +32,7 @@
         [self.lblTitle setTextAlignment:NSTextAlignmentCenter];
         [self.frameView addSubview:self.lblTitle];
         
-        self.chartView = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake1(40,0, 275, 180) withSource:self withStyle:UUChartLineStyle];
-        [self.chartView showInView:self.frameView];
+        [self createChartView];
         
         totalSecond=0;
         if(self.mTimer==nil){
@@ -45,6 +44,7 @@
 
 - (void)loadData:(NSDictionary*)data
 {
+    [self setCurrentData:data];
     for(id k in [data allKeys]){
         NSString *key=[NSString stringWithFormat:@"%@",k];
         self.currentKey=[NSString stringWithFormat:@"%@",key];
@@ -141,9 +141,17 @@
             if(t>60){
                 timerV=[NSString stringWithFormat:@"%ldh",t/60];
             }
-            [chDataValue setObject:timerV forKey:CHARTTIMER];
-            [array addObject:chDataValue];
-            
+            BOOL flag=YES;
+            for(NSDictionary *d in array){
+                //存在相同时间段则不加入
+                if([timerV isEqualToString:[d objectForKey:CHARTTIMER]]){
+                    flag=NO;
+                }
+            }
+            if(flag){
+                [chDataValue setObject:timerV forKey:CHARTTIMER];
+                [array addObject:chDataValue];
+            }
             //最多只显示8条
             NSMutableArray *tmpArray=[NSMutableArray arrayWithArray:array];
             if([array count]>8){
@@ -157,16 +165,21 @@
             
             [[[Data Instance]chartData]setObject:tmpArray forKey:self.currentKey];
             
-            if (self.chartView) {
-                [self.chartView removeFromSuperview];
-                self.chartView = nil;
-            }
-            self.chartView = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake1(40,0, 275, 180) withSource:self withStyle:UUChartLineStyle];
-            [self.chartView showInView:self.frameView];
+            [self createChartView];
             
             break;
         }
     }
+}
+
+- (void)createChartView
+{
+    if (self.chartView) {
+        [self.chartView removeFromSuperview];
+        self.chartView = nil;
+    }
+    self.chartView = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake1(40,0, 275, 180) withSource:self withStyle:UUChartLineStyle];
+    [self.chartView showInView:self.frameView];
 }
 
 @end

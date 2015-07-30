@@ -228,8 +228,9 @@
     [self.mConnectedPanel setHidden:state];
 }
 
-- (void)frmeChange:(id)sender
+- (void)frmeChange:(UIGestureRecognizer*)sender
 {
+    NSInteger tag=[[sender view]tag];
 }
 
 @end
