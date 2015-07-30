@@ -35,13 +35,14 @@
         //针1
         if(self.mMenuItemView1==nil){
             self.mMenuItemView1=[[MenuItemView alloc]initWithFrame:CGRectMake1(0, 0, 320, 190)];
-            [self.mMenuItemView1 setUserInteractionEnabled:YES];
-            [self.mMenuItemView1 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];
             [self.mMenuItemView1 setBaseController:self];
             [self.mMenuItemView1.lblHighestCentigrade setTag:0];
             [self.mMenuItemView1.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
             [self.mMenuItemView1.bTimer setTag:0];
             [self.mMenuItemView1.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
+            [self.mMenuItemView1 setTag:0];
+            [self.mMenuItemView1 setUserInteractionEnabled:YES];
+            [self.mMenuItemView1 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];
             [self.scrollFrameView addSubview:self.mMenuItemView1];
         }
         //针2
@@ -52,6 +53,9 @@
             [self.mMenuItemView2.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
             [self.mMenuItemView2.bTimer setTag:1];
             [self.mMenuItemView2.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
+            [self.mMenuItemView2 setTag:1];
+            [self.mMenuItemView2 setUserInteractionEnabled:YES];
+            [self.mMenuItemView2 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];
             [self.scrollFrameView addSubview:self.mMenuItemView2];
         }
         //针3
@@ -62,6 +66,9 @@
             [self.mMenuItemView3.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
             [self.mMenuItemView3.bTimer setTag:2];
             [self.mMenuItemView3.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
+            [self.mMenuItemView3 setTag:2];
+            [self.mMenuItemView3 setUserInteractionEnabled:YES];
+            [self.mMenuItemView3 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];
             [self.scrollFrameView addSubview:self.mMenuItemView3];
         }
         //针4
@@ -72,6 +79,9 @@
             [self.mMenuItemView4.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
             [self.mMenuItemView4.bTimer setTag:3];
             [self.mMenuItemView4.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
+            [self.mMenuItemView4 setTag:3];
+            [self.mMenuItemView4 setUserInteractionEnabled:YES];
+            [self.mMenuItemView4 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];
             [self.scrollFrameView addSubview:self.mMenuItemView4];
         }
         //透明背景
@@ -235,23 +245,23 @@
 
 - (void)frmeChange:(UIGestureRecognizer*)sender
 {
-    if(inch35){
-        return;
-    }
-    NSInteger tag=[[sender view]tag];
-    [self.mMenuItemLandView setHidden:NO];
-    CGAffineTransform at =CGAffineTransformMakeRotation(M_PI/2);
-    [self.mMenuItemLandView setTransform:at];
-    [self.mMenuItemLandView setCenter:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2)];
-    if(tag==1){
-        [self.mMenuItemLandView setMenuData:self.mMenuItemView1.currentData];
-    }else if(tag==2){
-        [self.mMenuItemLandView setMenuData:self.mMenuItemView2.currentData];
-    }else if(tag==3){
-        [self.mMenuItemLandView setMenuData:self.mMenuItemView3.currentData];
-    }else if(tag==4){
-        [self.mMenuItemLandView setMenuData:self.mMenuItemView4.currentData];
-    }
+//    if(inch35){
+//        return;
+//    }
+//    NSInteger tag=[[sender view]tag];
+//    [self.mMenuItemLandView setHidden:NO];
+//    CGAffineTransform at =CGAffineTransformMakeRotation(M_PI/2);
+//    [self.mMenuItemLandView setTransform:at];
+//    [self.mMenuItemLandView setCenter:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2)];
+//    if(tag==0){
+//        [self.mMenuItemLandView setMenuData:self.mMenuItemView1.currentData];
+//    }else if(tag==1){
+//        [self.mMenuItemLandView setMenuData:self.mMenuItemView2.currentData];
+//    }else if(tag==2){
+//        [self.mMenuItemLandView setMenuData:self.mMenuItemView3.currentData];
+//    }else if(tag==3){
+//        [self.mMenuItemLandView setMenuData:self.mMenuItemView4.currentData];
+//    }
 }
 
 - (void)frmeHide:(id)sender

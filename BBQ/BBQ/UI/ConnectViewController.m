@@ -165,10 +165,14 @@
 //开始扫描
 - (void)startScan
 {
-    [self initNotification];
-    [self RefreshStateStart];
-    [self ScanPeripheral];
-    MODEL = MODEL_NORMAL;
+    if(self.appDelegate.bleManager.CM.state==CBCentralManagerStatePoweredOn){
+        [self initNotification];
+        [self RefreshStateStart];
+        [self ScanPeripheral];
+        MODEL = MODEL_NORMAL;
+    }else{
+        [Common alert:@"Bluetooth is not On"];
+    }
 }
 
 //获取数据
