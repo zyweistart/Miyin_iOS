@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C9ECF16A1B65C1460088E110"
                BuildableName = "Grill Now 3.app"
-               BlueprintName = "Grill Now 3"
-               ReferencedContainer = "container:Grill Now 3.xcodeproj">
+               BlueprintName = "BBQ"
+               ReferencedContainer = "container:BBQ.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -30,8 +30,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C9ECF1831B65C1460088E110"
                BuildableName = "Grill Now 3Tests.xctest"
-               BlueprintName = "Grill Now 3Tests"
-               ReferencedContainer = "container:Grill Now 3.xcodeproj">
+               BlueprintName = "BBQTests"
+               ReferencedContainer = "container:BBQ.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -48,8 +48,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C9ECF1831B65C1460088E110"
                BuildableName = "Grill Now 3Tests.xctest"
-               BlueprintName = "Grill Now 3Tests"
-               ReferencedContainer = "container:Grill Now 3.xcodeproj">
+               BlueprintName = "BBQTests"
+               ReferencedContainer = "container:BBQ.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -58,8 +58,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C9ECF16A1B65C1460088E110"
             BuildableName = "Grill Now 3.app"
-            BlueprintName = "Grill Now 3"
-            ReferencedContainer = "container:Grill Now 3.xcodeproj">
+            BlueprintName = "BBQ"
+            ReferencedContainer = "container:BBQ.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -78,8 +78,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C9ECF16A1B65C1460088E110"
             BuildableName = "Grill Now 3.app"
-            BlueprintName = "Grill Now 3"
-            ReferencedContainer = "container:Grill Now 3.xcodeproj">
+            BlueprintName = "BBQ"
+            ReferencedContainer = "container:BBQ.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -97,8 +97,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C9ECF16A1B65C1460088E110"
             BuildableName = "Grill Now 3.app"
-            BlueprintName = "Grill Now 3"
-            ReferencedContainer = "container:Grill Now 3.xcodeproj">
+            BlueprintName = "BBQ"
+            ReferencedContainer = "container:BBQ.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

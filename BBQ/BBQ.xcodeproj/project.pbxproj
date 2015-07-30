@@ -148,13 +148,13 @@
 		C9D615391B67F510003DAC98 /* InfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoCell.m; sourceTree = "<group>"; };
 		C9DC36A61B6A1871006FBCE6 /* ChartItemLandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartItemLandView.h; sourceTree = "<group>"; };
 		C9DC36A71B6A1871006FBCE6 /* ChartItemLandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartItemLandView.m; sourceTree = "<group>"; };
-		C9ECF16B1B65C1460088E110 /* Grill Now 3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Grill Now 3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9ECF16B1B65C1460088E110 /* BBQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9ECF16F1B65C1460088E110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9ECF1701B65C1460088E110 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C9ECF1721B65C1460088E110 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C9ECF1731B65C1460088E110 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C9ECF17B1B65C1460088E110 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C9ECF1841B65C1460088E110 /* Grill Now 3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Grill Now 3Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9ECF1841B65C1460088E110 /* BBQTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBQTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9ECF1891B65C1460088E110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9ECF18A1B65C1460088E110 /* BBQTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBQTests.m; sourceTree = "<group>"; };
 		C9ECF1981B65C6BD0088E110 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 		C9ECF1BF1B65C6BD0088E110 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		C9ECF1C71B65C6BD0088E110 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		C9ECF1C81B65C6BD0088E110 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		C9ECF1E21B65C7330088E110 /* Grill Now 3-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Grill Now 3-Prefix.pch"; sourceTree = "<group>"; };
+		C9ECF1E21B65C7330088E110 /* BBQ-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBQ-Prefix.pch"; sourceTree = "<group>"; };
 		C9ECF1E31B65C85A0088E110 /* BaseEGOTableViewPullRefreshViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseEGOTableViewPullRefreshViewController.h; sourceTree = "<group>"; };
 		C9ECF1E41B65C85A0088E110 /* BaseEGOTableViewPullRefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseEGOTableViewPullRefreshViewController.m; sourceTree = "<group>"; };
 		C9ECF1E51B65C85A0088E110 /* BaseTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTabBarViewController.h; sourceTree = "<group>"; };
@@ -359,8 +359,8 @@
 		C9ECF16C1B65C1460088E110 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C9ECF16B1B65C1460088E110 /* Grill Now 3.app */,
-				C9ECF1841B65C1460088E110 /* Grill Now 3Tests.xctest */,
+				C9ECF16B1B65C1460088E110 /* BBQ.app */,
+				C9ECF1841B65C1460088E110 /* BBQTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -383,7 +383,7 @@
 		C9ECF16E1B65C1460088E110 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C9ECF1E21B65C7330088E110 /* Grill Now 3-Prefix.pch */,
+				C9ECF1E21B65C7330088E110 /* BBQ-Prefix.pch */,
 				C9ECF16F1B65C1460088E110 /* Info.plist */,
 				C9ECF1701B65C1460088E110 /* main.m */,
 				C97E090C1B6A109B00E9B118 /* Localization.strings */,
@@ -577,9 +577,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C9ECF16A1B65C1460088E110 /* Grill Now 3 */ = {
+		C9ECF16A1B65C1460088E110 /* BBQ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C9ECF18E1B65C1460088E110 /* Build configuration list for PBXNativeTarget "Grill Now 3" */;
+			buildConfigurationList = C9ECF18E1B65C1460088E110 /* Build configuration list for PBXNativeTarget "BBQ" */;
 			buildPhases = (
 				C9ECF1671B65C1460088E110 /* Sources */,
 				C9ECF1681B65C1460088E110 /* Frameworks */,
@@ -589,14 +589,14 @@
 			);
 			dependencies = (
 			);
-			name = "Grill Now 3";
+			name = BBQ;
 			productName = BBQ;
-			productReference = C9ECF16B1B65C1460088E110 /* Grill Now 3.app */;
+			productReference = C9ECF16B1B65C1460088E110 /* BBQ.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C9ECF1831B65C1460088E110 /* Grill Now 3Tests */ = {
+		C9ECF1831B65C1460088E110 /* BBQTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C9ECF1911B65C1460088E110 /* Build configuration list for PBXNativeTarget "Grill Now 3Tests" */;
+			buildConfigurationList = C9ECF1911B65C1460088E110 /* Build configuration list for PBXNativeTarget "BBQTests" */;
 			buildPhases = (
 				C9ECF1801B65C1460088E110 /* Sources */,
 				C9ECF1811B65C1460088E110 /* Frameworks */,
@@ -607,9 +607,9 @@
 			dependencies = (
 				C9ECF1861B65C1460088E110 /* PBXTargetDependency */,
 			);
-			name = "Grill Now 3Tests";
+			name = BBQTests;
 			productName = BBQTests;
-			productReference = C9ECF1841B65C1460088E110 /* Grill Now 3Tests.xctest */;
+			productReference = C9ECF1841B65C1460088E110 /* BBQTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -631,7 +631,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C9ECF1661B65C1460088E110 /* Build configuration list for PBXProject "Grill Now 3" */;
+			buildConfigurationList = C9ECF1661B65C1460088E110 /* Build configuration list for PBXProject "BBQ" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -645,8 +645,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C9ECF16A1B65C1460088E110 /* Grill Now 3 */,
-				C9ECF1831B65C1460088E110 /* Grill Now 3Tests */,
+				C9ECF16A1B65C1460088E110 /* BBQ */,
+				C9ECF1831B65C1460088E110 /* BBQTests */,
 			);
 		};
 /* End PBXProject section */
@@ -765,7 +765,7 @@
 /* Begin PBXTargetDependency section */
 		C9ECF1861B65C1460088E110 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C9ECF16A1B65C1460088E110 /* Grill Now 3 */;
+			target = C9ECF16A1B65C1460088E110 /* BBQ */;
 			targetProxy = C9ECF1851B65C1460088E110 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -871,11 +871,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_PREFIX_HEADER = "BBQ/Grill Now 3-Prefix.pch";
+				GCC_PREFIX_HEADER = "BBQ/BBQ-Prefix.pch";
 				INFOPLIST_FILE = BBQ/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "Grill Now 3";
+				PRODUCT_NAME = BBQ;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -886,11 +886,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_PREFIX_HEADER = "BBQ/Grill Now 3-Prefix.pch";
+				GCC_PREFIX_HEADER = "BBQ/BBQ-Prefix.pch";
 				INFOPLIST_FILE = BBQ/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "Grill Now 3";
+				PRODUCT_NAME = BBQ;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -909,7 +909,7 @@
 				);
 				INFOPLIST_FILE = BBQTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "Grill Now 3Tests";
+				PRODUCT_NAME = BBQTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BBQ.app/BBQ";
 			};
 			name = Debug;
@@ -924,7 +924,7 @@
 				);
 				INFOPLIST_FILE = BBQTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "Grill Now 3Tests";
+				PRODUCT_NAME = BBQTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BBQ.app/BBQ";
 			};
 			name = Release;
@@ -932,7 +932,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C9ECF1661B65C1460088E110 /* Build configuration list for PBXProject "Grill Now 3" */ = {
+		C9ECF1661B65C1460088E110 /* Build configuration list for PBXProject "BBQ" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9ECF18C1B65C1460088E110 /* Debug */,
@@ -941,7 +941,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C9ECF18E1B65C1460088E110 /* Build configuration list for PBXNativeTarget "Grill Now 3" */ = {
+		C9ECF18E1B65C1460088E110 /* Build configuration list for PBXNativeTarget "BBQ" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9ECF18F1B65C1460088E110 /* Debug */,
@@ -950,7 +950,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C9ECF1911B65C1460088E110 /* Build configuration list for PBXNativeTarget "Grill Now 3Tests" */ = {
+		C9ECF1911B65C1460088E110 /* Build configuration list for PBXNativeTarget "BBQTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9ECF1921B65C1460088E110 /* Debug */,
