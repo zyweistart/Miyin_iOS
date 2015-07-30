@@ -138,9 +138,9 @@
             [chDataValue setObject:value forKey:CHARTCURVALUE];
             [chDataValue setObject:settValue forKey:CHARTSETVALUE];
             NSInteger t=totalSecond/60;
-            NSString *timerV=[NSString stringWithFormat:@"%ld分",t];
+            NSString *timerV=[NSString stringWithFormat:@"%ldm",t];
             if(t>60){
-                timerV=[NSString stringWithFormat:@"%ld时",t/60];
+                timerV=[NSString stringWithFormat:@"%ldh",t/60];
             }
             [chDataValue setObject:timerV forKey:CHARTTIMER];
             [array addObject:chDataValue];
@@ -149,7 +149,7 @@
             NSMutableArray *tmpArray=[NSMutableArray arrayWithArray:array];
             if([array count]>8){
                 tmpArray=[NSMutableArray new];
-                for(NSInteger i=[array count]-9;i<[array count];i++){
+                for(NSInteger i=[array count]-8;i<[array count];i++){
                     [tmpArray addObject:[array objectAtIndex:i]];
                 }
             }else{

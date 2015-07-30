@@ -20,7 +20,6 @@
 - (id)init{
     self=[super init];
     if(self){
-        [self cTitle:@"设备连接"];
         
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景2"]]];
         
@@ -30,10 +29,11 @@
         
         CGFloat height=self.view.bounds.size.height-CGHeight(100);
         UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, height, CGWidth(320), CGHeight(40))];
-        CButton *bDemo=[[CButton alloc]initWithFrame:CGRectMake1(40, 0, 100, 40) Name:@"Demo" Type:1];
+        ;
+        CButton *bDemo=[[CButton alloc]initWithFrame:CGRectMake1(40, 0, 100, 40) Name:NSLocalizedString(@"Demo",nil) Type:1];
         [bDemo addTarget:self action:@selector(goDemo) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:bDemo];
-        CButton *bScan=[[CButton alloc]initWithFrame:CGRectMake1(180, 0, 100, 40) Name:@"Scan" Type:1];
+        CButton *bScan=[[CButton alloc]initWithFrame:CGRectMake1(180, 0, 100, 40) Name:NSLocalizedString(@"Scan",nil) Type:1];
         [bScan addTarget:self action:@selector(startScan) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:bScan];
         [self.view addSubview:bottomView];
