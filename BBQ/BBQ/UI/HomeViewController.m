@@ -29,7 +29,6 @@
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bButton];
         self.scrollFrameView=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [self.scrollFrameView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        [self.scrollFrameView setContentSize:CGSizeMake1(320, 190*4)];
         [self.scrollFrameView setBackgroundColor:DEFAULTITLECOLORRGB(65, 51, 42)];
         [self.view addSubview:self.scrollFrameView];
         //针1
@@ -43,6 +42,7 @@
             [self.mMenuItemView1 setTag:0];
             [self.mMenuItemView1 setUserInteractionEnabled:YES];
             [self.mMenuItemView1 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];
+            [self.mMenuItemView1 setHidden:YES];
             [self.scrollFrameView addSubview:self.mMenuItemView1];
         }
         //针2
@@ -56,6 +56,7 @@
             [self.mMenuItemView2 setTag:1];
             [self.mMenuItemView2 setUserInteractionEnabled:YES];
             [self.mMenuItemView2 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];
+            [self.mMenuItemView2 setHidden:YES];
             [self.scrollFrameView addSubview:self.mMenuItemView2];
         }
         //针3
@@ -69,6 +70,7 @@
             [self.mMenuItemView3 setTag:2];
             [self.mMenuItemView3 setUserInteractionEnabled:YES];
             [self.mMenuItemView3 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];
+            [self.mMenuItemView3 setHidden:YES];
             [self.scrollFrameView addSubview:self.mMenuItemView3];
         }
         //针4
@@ -82,6 +84,7 @@
             [self.mMenuItemView4 setTag:3];
             [self.mMenuItemView4 setUserInteractionEnabled:YES];
             [self.mMenuItemView4 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];
+            [self.mMenuItemView4 setHidden:YES];
             [self.scrollFrameView addSubview:self.mMenuItemView4];
         }
         //透明背景
@@ -141,15 +144,27 @@
 
 - (void)loadData:(NSArray*)array
 {
+    [self.scrollFrameView setContentSize:CGSizeMake1(320, 190*[array count])];
     self.dataItemArray=[[NSMutableArray alloc]initWithArray:array];
-    NSDictionary *d1=[array objectAtIndex:0];
-    [self.mMenuItemView1 setMenuData:d1];
-    NSDictionary *d2=[array objectAtIndex:1];
-    [self.mMenuItemView2 setMenuData:d2];
-    NSDictionary *d3=[array objectAtIndex:2];
-    [self.mMenuItemView3 setMenuData:d3];
-    NSDictionary *d4=[array objectAtIndex:3];
-    [self.mMenuItemView4 setMenuData:d4];
+    for(int i=0;i<[array count];i++){
+        if(i==0){
+            NSDictionary *d1=[array objectAtIndex:0];
+            [self.mMenuItemView1 setMenuData:d1];
+            [self.mMenuItemView1 setHidden:NO];
+        }else if(i==1){
+            NSDictionary *d2=[array objectAtIndex:1];
+            [self.mMenuItemView2 setMenuData:d2];
+            [self.mMenuItemView2 setHidden:NO];
+        }else if(i==2){
+            NSDictionary *d3=[array objectAtIndex:2];
+            [self.mMenuItemView3 setMenuData:d3];
+            [self.mMenuItemView3 setHidden:NO];
+        }else if(i==3){
+            NSDictionary *d4=[array objectAtIndex:3];
+            [self.mMenuItemView4 setMenuData:d4];
+            [self.mMenuItemView4 setHidden:NO];
+        }
+    }
 }
 
 - (void)setValue:(UIButton*)sender

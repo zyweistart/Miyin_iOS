@@ -51,8 +51,8 @@
         self.viewControllers = [NSArray arrayWithObjects:
                                 [self viewControllerWithTabTitle:NSLocalizedString(@"Menu",nil) image:@"icon-nav-home" ViewController:self.mHomeViewController],
                                 [self viewControllerWithTabTitle:NSLocalizedString(@"Tools",nil) image:@"icon-nav-tools" ViewController:self.mToolsViewController],
-                                [self viewControllerWithTabTitle:NSLocalizedString(@"Setting",nil) image:@"icon-nav-setting" ViewController:self.mSettingViewController],
-                                [self viewControllerWithTabTitle:NSLocalizedString(@"Info",nil) image:@"icon-nav-info" ViewController:self.mInfoViewController], nil];
+                                [self viewControllerWithTabTitle:NSLocalizedString(@"Info",nil) image:@"icon-nav-info" ViewController:self.mInfoViewController],
+                                [self viewControllerWithTabTitle:NSLocalizedString(@"Setting",nil) image:@"icon-nav-setting" ViewController:self.mSettingViewController], nil];
         
         if([[Data Instance]isDemo]){
             //生成随机数

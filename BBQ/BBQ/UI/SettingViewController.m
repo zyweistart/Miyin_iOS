@@ -62,10 +62,10 @@
         if(row==1){
             [cell.detailTextLabel setText:[[Data Instance]getAlarm]];
         }else if(row==2){
-            if([@"0" isEqualToString:[[Data Instance]getLanguage]]){
-                [cell.detailTextLabel setText:@"English"];
-            }else if([@"1" isEqualToString:[[Data Instance]getLanguage]]){
+            if([@"1" isEqualToString:[[Data Instance]getLanguage]]){
                 [cell.detailTextLabel setText:@"简体中文"];
+            }else{
+                [cell.detailTextLabel setText:@"English"];
             }
         }
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
@@ -89,7 +89,7 @@
                                                                  delegate:self
                                                         cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"English", nil];
+                                                        otherButtonTitles:@"English",@"简体文本", nil];
         [choiceSheet setTag:2];
         [choiceSheet showInView:self.view];
     }else if(row==3){
@@ -112,16 +112,19 @@
         [[Data Instance]setLanguage:[NSString stringWithFormat:@"%ld",buttonIndex]];
         //获取当前的系统语言设置
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSArray *languages = [defaults objectForKey:@"AppleLanguages"];
-        NSString *currentLanguage = [languages objectAtIndex:0];
-        if([@"0" isEqualToString:[[Data Instance]getLanguage]]){
-            //设置简体英文
-            [defaults setObject:currentLanguage forKey:@"zh-Hans"];
-        }else{
+        NSString *string = [defaults valueForKey:@"userLanguage"];
+        NSLog(@"%@",defaults);
+        if([@"1" isEqualToString:[[Data Instance]getLanguage]]){
             //设置简体中文
-            [defaults setObject:currentLanguage forKey:@"zh-Hans"];
+            [defaults setValue:@"zh-Hans" forKey:@"userLanguage"];
+        }else{
+            //设置英文
+            [defaults setValue:@"en" forKey:@"userLanguage"];
         }
-        NSLog(@"当前语言环境:%@",currentLanguage);
+        [defaults synchronize];
+        NSString *path = [[NSBundle mainBundle] pathForResource:string ofType:@"lproj"];
+        [NSBundle bundleWithPath:path];
+        
         [self.tableView reloadData];
     }
 }
