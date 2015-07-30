@@ -41,6 +41,10 @@
     [self.bleManager controlSetup:1];
     
     [self.window makeKeyAndVisible];
+    
+    
+    
+    
     return YES;
 }
 

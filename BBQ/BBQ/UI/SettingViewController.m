@@ -11,12 +11,12 @@
 - (id)init{
     self=[super init];
     if(self){
-        [self cTitle:@"Setting"];
+        [self cTitle:NSLocalizedString(@"Setting",nil)];
         
-        [self.dataItemArray addObject:@"Temp Unit"];
-        [self.dataItemArray addObject:@"Alarm"];
-        [self.dataItemArray addObject:@"Language"];
-        [self.dataItemArray addObject:@"About"];
+        [self.dataItemArray addObject:NSLocalizedString(@"Temp Unit",nil)];
+        [self.dataItemArray addObject:NSLocalizedString(@"Alarm",nil)];
+        [self.dataItemArray addObject:NSLocalizedString(@"Language",nil)];
+        [self.dataItemArray addObject:NSLocalizedString(@"About",nil)];
         
         [self buildTableViewWithView:self.view];
     }
@@ -79,7 +79,7 @@
     if(row==1){
         UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
-                                                        cancelButtonTitle:@"Cancel"
+                                                        cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
                                                    destructiveButtonTitle:nil
                                                         otherButtonTitles:@"Beep1", @"Beep2", @"Beep3", nil];
         [choiceSheet setTag:1];
@@ -87,7 +87,7 @@
     }else if(row==2){
         UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
-                                                        cancelButtonTitle:@"Cancel"
+                                                        cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
                                                    destructiveButtonTitle:nil
                                                         otherButtonTitles:@"English", nil];
         [choiceSheet setTag:2];
@@ -110,6 +110,18 @@
         [self.tableView reloadData];
     }else if(actionSheet.tag==2){
         [[Data Instance]setLanguage:[NSString stringWithFormat:@"%ld",buttonIndex]];
+        //获取当前的系统语言设置
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSArray *languages = [defaults objectForKey:@"AppleLanguages"];
+        NSString *currentLanguage = [languages objectAtIndex:0];
+        if([@"0" isEqualToString:[[Data Instance]getLanguage]]){
+            //设置简体英文
+            [defaults setObject:currentLanguage forKey:@"zh-Hans"];
+        }else{
+            //设置简体中文
+            [defaults setObject:currentLanguage forKey:@"zh-Hans"];
+        }
+        NSLog(@"当前语言环境:%@",currentLanguage);
         [self.tableView reloadData];
     }
 }

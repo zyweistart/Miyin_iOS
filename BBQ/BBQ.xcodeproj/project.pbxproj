@@ -24,7 +24,7 @@
 		C97E09051B69EF1300E9B118 /* UUChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E08FD1B69EF1300E9B118 /* UUChartLabel.m */; };
 		C97E09061B69EF1300E9B118 /* UUColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E08FF1B69EF1300E9B118 /* UUColor.m */; };
 		C97E09071B69EF1300E9B118 /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E09011B69EF1300E9B118 /* UULineChart.m */; };
-		C97E090A1B6A109B00E9B118 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = C97E090C1B6A109B00E9B118 /* Localization.strings */; };
+		C97E090A1B6A109B00E9B118 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C97E090C1B6A109B00E9B118 /* Localizable.strings */; };
 		C9B27CA61B660236005DD13B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B27CA51B660236005DD13B /* CoreBluetooth.framework */; };
 		C9D6152C1B67C7B2003DAC98 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6152B1B67C7B2003DAC98 /* MenuCell.m */; };
 		C9D6152F1B67D6AA003DAC98 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6152E1B67D6AA003DAC98 /* Data.m */; };
@@ -133,8 +133,8 @@
 		C97E08FF1B69EF1300E9B118 /* UUColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUColor.m; sourceTree = "<group>"; };
 		C97E09001B69EF1300E9B118 /* UULineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UULineChart.h; sourceTree = "<group>"; };
 		C97E09011B69EF1300E9B118 /* UULineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UULineChart.m; sourceTree = "<group>"; };
-		C97E090D1B6A10B400E9B118 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localization.strings"; sourceTree = "<group>"; };
-		C97E090F1B6A143A00E9B118 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localization.strings; sourceTree = "<group>"; };
+		C97E090D1B6A10B400E9B118 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C97E090F1B6A143A00E9B118 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C9B27CA51B660236005DD13B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		C9D6152A1B67C7B2003DAC98 /* MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCell.h; sourceTree = "<group>"; };
 		C9D6152B1B67C7B2003DAC98 /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = "<group>"; };
@@ -391,7 +391,7 @@
 				C9ECF1E21B65C7330088E110 /* BBQ-Prefix.pch */,
 				C9ECF16F1B65C1460088E110 /* Info.plist */,
 				C9ECF1701B65C1460088E110 /* main.m */,
-				C97E090C1B6A109B00E9B118 /* Localization.strings */,
+				C97E090C1B6A109B00E9B118 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -666,7 +666,7 @@
 				C9ECF1D61B65C6BD0088E110 /* blackArrow.png in Resources */,
 				C9FE58E81B68F656002154E4 /* Beep2.wav in Resources */,
 				C9ECF1D91B65C6BD0088E110 /* blueArrow@2x.png in Resources */,
-				C97E090A1B6A109B00E9B118 /* Localization.strings in Resources */,
+				C97E090A1B6A109B00E9B118 /* Localizable.strings in Resources */,
 				C9ECF1D71B65C6BD0088E110 /* blackArrow@2x.png in Resources */,
 				C9FE58E71B68F656002154E4 /* Beep1.wav in Resources */,
 				C9ECF1DC1B65C6BD0088E110 /* whiteArrow.png in Resources */,
@@ -777,13 +777,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C97E090C1B6A109B00E9B118 /* Localization.strings */ = {
+		C97E090C1B6A109B00E9B118 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C97E090D1B6A10B400E9B118 /* zh-Hans */,
 				C97E090F1B6A143A00E9B118 /* en */,
 			);
-			name = Localization.strings;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

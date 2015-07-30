@@ -151,7 +151,7 @@
             TabBarFrameViewController *tbf=(TabBarFrameViewController*)self.baseController.tabBarController;
             [tbf playAlarm];
             [tbf.mAlertView.lblTitle setText:[NSString stringWithFormat:@"%@-Warning",key]];
-            [tbf.mAlertView.lblMessage setText:@"Timer is finished!"];
+            [tbf.mAlertView.lblMessage setText:NSLocalizedString(@"Timer is finished!",nil)];
             [tbf.mAlertView setType:1];
             [tbf AlertShow];
             AppDelegate *appDelegate=[[UIApplication sharedApplication] delegate];

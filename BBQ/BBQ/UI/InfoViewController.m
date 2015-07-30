@@ -18,7 +18,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        [self cTitle:@"Info"];
+        [self cTitle:NSLocalizedString(@"Info",nil)];
         
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
         

@@ -89,7 +89,7 @@
     if(cbPeripheral.name !=nil) {
         cell.lblTitle.text = [cbPeripheral name];
     } else {
-        cell.lblTitle.text = @"未知设备";
+        cell.lblTitle.text = NSLocalizedString(@"Unknown",nil);
     }
     NSString *uuid=cbPeripheral.identifier.UUIDString;
     [cell.lblAddress setText:uuid];
@@ -99,10 +99,10 @@
         if ([uuid isEqualToString:self.appDelegate.bleManager.activePeripheral.identifier.UUIDString]) {
             if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
                 //如果已经连接则显示连接状态
-                [cell.lblAddress setText:@"Connected"];
+                [cell.lblAddress setText:NSLocalizedString(@"Connected",nil)];
                 [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
             } else if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
-                [cell.lblAddress setText:@"Connecting"];
+                [cell.lblAddress setText:NSLocalizedString(@"Connecting",nil)];
             }
         }
     }else{
@@ -126,7 +126,7 @@
                 [self goMainPage];
                 return;
             }else if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
-                [Common alert:@"正在连接中..."];
+                [Common alert:NSLocalizedString(@"Connecting...",nil)];
                 return;
             }
         }

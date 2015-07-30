@@ -49,10 +49,10 @@
         self.mSettingViewController=[[SettingViewController alloc]init];
         self.mInfoViewController=[[InfoViewController alloc]init];
         self.viewControllers = [NSArray arrayWithObjects:
-                                [self viewControllerWithTabTitle:@"Home" image:@"icon-nav-home" ViewController:self.mHomeViewController],
-                                [self viewControllerWithTabTitle:@"Tools" image:@"icon-nav-tools" ViewController:self.mToolsViewController],
-                                [self viewControllerWithTabTitle:@"Setting" image:@"icon-nav-setting" ViewController:self.mSettingViewController],
-                                [self viewControllerWithTabTitle:@"Info" image:@"icon-nav-info" ViewController:self.mInfoViewController], nil];
+                                [self viewControllerWithTabTitle:NSLocalizedString(@"Menu",nil) image:@"icon-nav-home" ViewController:self.mHomeViewController],
+                                [self viewControllerWithTabTitle:NSLocalizedString(@"Tools",nil) image:@"icon-nav-tools" ViewController:self.mToolsViewController],
+                                [self viewControllerWithTabTitle:NSLocalizedString(@"Setting",nil) image:@"icon-nav-setting" ViewController:self.mSettingViewController],
+                                [self viewControllerWithTabTitle:NSLocalizedString(@"Info",nil) image:@"icon-nav-info" ViewController:self.mInfoViewController], nil];
         
         if([[Data Instance]isDemo]){
             //生成随机数
@@ -190,7 +190,7 @@
                 //火警
                 [self playAlarm];
                 [self.mAlertView.lblTitle setText:@"Warning"];
-                [self.mAlertView.lblMessage setText:@"The grill has flared up!"];
+                [self.mAlertView.lblMessage setText:NSLocalizedString(@"The grill has flared up!",nil)];
                 [self.mAlertView setType:2];
                 [self AlertShow];
             }else if([@"false" isEqualToString:alaram]){
@@ -202,7 +202,7 @@
                 //某指针报警
                 [self playAlarm];
                 [self.mAlertView.lblTitle setText:[NSString stringWithFormat:@"%@-Warning",alaram]];
-                [self.mAlertView.lblMessage setText:@"Temperature is high!"];
+                [self.mAlertView.lblMessage setText:NSLocalizedString(@"Temperature is high!",nil)];
                 [self.mAlertView setType:1];
                 [self AlertShow];
             }

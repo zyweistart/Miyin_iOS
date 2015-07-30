@@ -17,7 +17,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        [self cTitle:@"Tools"];
+        [self cTitle:NSLocalizedString(@"Tools",nil)];
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
         self.scrollFrameView=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [self.scrollFrameView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];

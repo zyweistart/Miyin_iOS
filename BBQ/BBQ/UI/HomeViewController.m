@@ -124,6 +124,8 @@
                 [self ConnectedState:NO];
             }
         }
+    }else{
+        [self cTitle:NSLocalizedString(@"BBQ Unconnected",nil)];
     }
 }
 
@@ -131,9 +133,9 @@
 {
     UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
-                                                    cancelButtonTitle:@"Cancel"
+                                                    cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Exit", nil];
+                                                    otherButtonTitles:NSLocalizedString(@"Exit",nil), nil];
     [choiceSheet showInView:self.view];
 }
 
@@ -244,9 +246,9 @@
 - (void)ConnectedState:(BOOL)state
 {
     if(state){
-        [self cTitle:@"BBQ Connected"];
+        [self cTitle:NSLocalizedString(@"BBQ Connected",nil)];
     }else{
-        [self cTitle:@"BBQ Unconnected"];
+        [self cTitle:NSLocalizedString(@"BBQ Unconnected",nil)];
     }
     [self.scrollFrameView setHidden:!state];
     [self.mConnectedPanel setHidden:state];
