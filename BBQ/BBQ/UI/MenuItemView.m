@@ -45,7 +45,7 @@
         [self.viewCentigrade setBackgroundColor:[UIColor redColor]];
         [lineView addSubview:self.viewCentigrade];
         
-        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 80, 50, 20) Text:@"Current"];
+        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 80, 60, 20) Text:@"Current"];
         [lbl setFont:[UIFont systemFontOfSize:15]];
         [self.frameView addSubview:lbl];
         lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 100, 50, 20) Text:@"Temp"];
@@ -54,7 +54,7 @@
         
         self.lblCurrentCentigrade=[[UILabel alloc]initWithFrame:CGRectMake1(100, 80, 100, 40)];
         [self.lblCurrentCentigrade setTextColor:DEFAULTITLECOLORRGB(242, 125, 0)];
-        [self.lblCurrentCentigrade setFont:[UIFont systemFontOfSize:40]];
+        [self.lblCurrentCentigrade setFont:[UIFont systemFontOfSize:35]];
         [self.lblCurrentCentigrade setTextAlignment:NSTextAlignmentCenter];
         [self.frameView addSubview:self.lblCurrentCentigrade];
         
@@ -129,10 +129,15 @@
         NSString *key=[NSString stringWithFormat:@"%@",k];
         NSString *timer=[[[Data Instance]settValue]objectForKey:key];
         int tv=[timer intValue];
+        [self showTimerString:key];
         if(tv>0){
             if(self.mTimer==nil){
-                [self showTimerString:key];
                 self.mTimer=[NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+            }
+        }else{
+            if(self.mTimer){
+                [self.mTimer invalidate];
+                self.mTimer=nil;
             }
         }
     }
@@ -157,6 +162,11 @@
             AppDelegate *appDelegate=[[UIApplication sharedApplication] delegate];
             NSString *json=[NSString stringWithFormat:@"{\"alarm\":\"%@\"}",key];
             [appDelegate sendData:json];
+        }else{
+            if(self.mTimer){
+                [self.mTimer invalidate];
+                self.mTimer=nil;
+            }
         }
         break;
     }

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TIBLECBStandand.h"
+#import <AVFoundation/AVFoundation.h>
 
 typedef struct _CHAR{
     char buff[1000];

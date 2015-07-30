@@ -18,7 +18,6 @@
 {
     self=[super init];
     if(self){
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
         //初始化默认配置
         if([@"" isEqualToString:[[Data Instance]getCf]]){
             [[Data Instance]setCf:@"c"];
@@ -159,6 +158,7 @@
 
 - (void)AnalyticalJson:(NSString*)content
 {
+    NSLog(@"%@",content);
     receiveSBString=[NSMutableString new];
     NSData *data=[content dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *resultJSON=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];

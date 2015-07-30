@@ -39,6 +39,7 @@
     
     self.bleManager = [[TIBLECBStandand alloc]init];
     [self.bleManager controlSetup:1];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     
     [self.window makeKeyAndVisible];
     

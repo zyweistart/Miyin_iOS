@@ -12,6 +12,7 @@
 
 @optional
 - (void)pickerViewDone:(NSInteger)code;
+- (void)pickerViewCancel:(NSInteger)code;
 
 @end
 

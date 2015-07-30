@@ -27,11 +27,19 @@
         [self.lblValue setTextColor:DEFAULTITLECOLORRGB(242, 125, 0)];
         [self.lblValue setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:self.lblValue];
+        UIButton *jButton=[[UIButton alloc]initWithFrame:CGRectMake1(10, 110, 40, 40)];
+        [jButton setImage:[UIImage imageNamed:@"减"] forState:UIControlStateNormal];
+        [jButton addTarget:self action:@selector(jNumber:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:jButton];
         self.mSlider = [[UISlider alloc] initWithFrame:CGRectMake1(50,120,200,20)];
         [self.mSlider setMinimumValue:0];
         [self.mSlider setMaximumValue:538];
         [self.mSlider addTarget:self action:@selector(changeValue:) forControlEvents:UIControlEventValueChanged];
         [self addSubview:self.mSlider];
+        UIButton *aButton=[[UIButton alloc]initWithFrame:CGRectMake1(250, 110, 40, 40)];
+        [aButton setImage:[UIImage imageNamed:@"加"] forState:UIControlStateNormal];
+        [aButton addTarget:self action:@selector(addNumber:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:aButton];
         self.cancelButton=[[UIButton alloc]initWithFrame:CGRectMake1(0, 160, 150, 40)];
         [self.cancelButton setTitle:NSLocalizedString(@"Cancel",nil) forState:UIControlStateNormal];
         [self.cancelButton.titleLabel setFont:[UIFont systemFontOfSize:20]];
@@ -49,6 +57,16 @@
         [self.lblValue setText:[Data getTemperatureValue:self.mSlider.value]];
     }
     return self;
+}
+
+- (void)jNumber:(id)sender
+{
+    [self setValue:self.mSlider.value-1];
+}
+
+- (void)addNumber:(id)sender
+{
+    [self setValue:self.mSlider.value+1];
 }
 
 - (void)setValue:(int)value

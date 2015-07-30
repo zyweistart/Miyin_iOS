@@ -237,6 +237,27 @@
     }
 }
 
+- (void)pickerViewCancel:(NSInteger)code
+{
+    if(code==1) {
+        NSInteger r=self.pv1.tag;
+        NSDictionary *data=[self.dataItemArray objectAtIndex:r];
+        for(id key in [data allKeys]){
+            [[[Data Instance]settValue]setObject:@"0" forKey:key];
+            [self refreshDataView];
+            if(r==0){
+                [self.mMenuItemView1 setTimerScheduled];
+            }else if(r==1){
+                [self.mMenuItemView2 setTimerScheduled];
+            }else if(r==2){
+                [self.mMenuItemView3 setTimerScheduled];
+            }else if(r==3){
+                [self.mMenuItemView4 setTimerScheduled];
+            }
+        }
+    }
+}
+
 - (void)refreshDataView
 {
     [self.mMenuItemView1 refreshData];

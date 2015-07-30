@@ -18,7 +18,7 @@
         [self setUserInteractionEnabled:YES];
         self.toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake1(0, 0, 320, 44)];
         self.toolBar.barStyle = UIBarStyleDefault;
-        UIBarButtonItem *btnCancel = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel",nil) style:UIBarButtonItemStyleDone target:self action:@selector(cancel:)];
+        UIBarButtonItem *btnCancel = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Reset",nil) style:UIBarButtonItemStyleDone target:self action:@selector(cancel:)];
         UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         UIBarButtonItem *btnDone = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done",nil) style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
         NSArray *barItems=[NSArray arrayWithObjects:btnCancel,flexibleSpace,btnDone,nil];
@@ -26,6 +26,7 @@
         [self addSubview:self.toolBar];
         
         self.picker=[[UIPickerView alloc]initWithFrame:CGRectMake1(0, 44, 320, 216)];
+        [self.picker setUserInteractionEnabled:YES];
         [self.picker setBackgroundColor:[UIColor whiteColor]];
         [self.picker setShowsSelectionIndicator:YES];
         [self.picker setDelegate:self];
@@ -53,6 +54,7 @@
 
 - (void)cancel:(id)sender
 {
+    [self.delegate pickerViewCancel:self.code];
     [self hiddenView];
 }
 
