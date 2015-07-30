@@ -18,12 +18,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        [self cTitle:@"Information"];
-        
-        [self.dataItemArray addObject:@"Temp Unit"];
-        [self.dataItemArray addObject:@"Alarm"];
-        [self.dataItemArray addObject:@"Language"];
-        [self.dataItemArray addObject:@"About"];
+        [self cTitle:@"Info"];
         
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
         
@@ -62,7 +57,36 @@
     if(!cell) {
         cell = [[InfoCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
+    NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath section]];
+    for(id k in [data allKeys]){
+        NSString *key=[NSString stringWithFormat:@"%@",k];
+        [cell.lblTitle setText:key];
+        [cell.lblTimer setText:[self showTimerString:key]];
+        NSString *sett=[[[Data Instance]sett]objectForKey:key];
+        [cell.lblTargetTemp setText:[Data getTemperatureValue:[sett intValue]]];
+    }
     return cell;
+}
+
+- (NSString*)showTimerString:(NSString*)key
+{
+    NSString *timer=[[[Data Instance]settValue]objectForKey:key];
+    int tv=[timer intValue];
+    if(tv>0){
+        int hour=tv/60;
+        NSString *hstr=[NSString stringWithFormat:@"0%d",hour];
+        if(hour>9){
+            hstr=[NSString stringWithFormat:@"%d",hour];
+        }
+        int min=tv%60;
+        NSString *mstr=[NSString stringWithFormat:@"0%d",min];
+        if(min>9){
+            mstr=[NSString stringWithFormat:@"%d",min];
+        }
+        return [NSString stringWithFormat:@"%@:%@",hstr,mstr];
+    }else{
+        return @"";
+    }
 }
 
 @end

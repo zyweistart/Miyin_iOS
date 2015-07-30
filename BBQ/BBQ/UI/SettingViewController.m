@@ -85,7 +85,7 @@
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"English", @"Chinese", @"Espanol", nil];
+                                                        otherButtonTitles:@"English", nil];
         [choiceSheet setTag:2];
         [choiceSheet showInView:self.view];
     }else if(row==3){

@@ -85,29 +85,20 @@
     
     if([uuid isEqualToString:[[Data Instance]getAutoConnected]]){
         //自动连接
-//        [self connected:cbPeripheral];
+        [self connected:cbPeripheral];
     }
     
-//    if (cbPeripheral == self.appDelegate.bleManager.activePeripheral) {
-//        //判定是哪一个蓝牙设备
-//        if (MODEL == MODEL_NORMAL) {
-//            NSLog(@"%@",uuid);
-//            NSLog(@"%@",[[Data Instance]getAutoConnected]);
-//            if([uuid isEqualToString:[[Data Instance]getAutoConnected]]){
-//                NSLog(@"===========需要自动连接吗");
-////                [self connected:cbPeripheral];
-//            }
-////            [[cell detailTextLabel] setText: @"-----"];
-//        }else if (MODEL == MODEL_CONNECTING){
-////            [[cell detailTextLabel] setText: @"Connecting..."];
-//        }else if (MODEL == MODEL_SCAN){
-////            [[cell detailTextLabel] setText: @"Scanning..."];
-//        }else if (MODEL == MODEL_CONECTED){
-////            [[cell detailTextLabel] setText: @"Connected"];
-//            //设置为自动连接
-//            [[Data Instance]setAutoConnected:uuid];
-//        }
-//    }
+    if (cbPeripheral == self.appDelegate.bleManager.activePeripheral) {
+        //判定是哪一个蓝牙设备
+        if (MODEL == MODEL_NORMAL) {
+        }else if (MODEL == MODEL_CONNECTING){
+            [cell.lblAddress setText:@"Connecting"];
+        }else if (MODEL == MODEL_SCAN){
+            [cell.lblAddress setText:@"Scanning"];
+        }else if (MODEL == MODEL_CONECTED){
+            [cell.lblAddress setText:@"Connected"];
+        }
+    }
     return  cell;
 }
 
@@ -264,16 +255,16 @@
 
 - (void)goDemo
 {
-    TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
     [[Data Instance] setIsDemo:YES];
+    TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
     [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
     }];
 }
 
 - (void)goMainPage
 {
-    TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
     [[Data Instance] setIsDemo:NO];
+    TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
     [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
 //        [self startGetData];
         NSString *uuid=self.appDelegate.bleManager.activePeripheral.identifier.UUIDString;

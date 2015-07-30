@@ -16,6 +16,18 @@
     self=[super init];
     if(self){
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+        receiveSBString=[NSMutableString new];
+        if(![[Data Instance]isDemo]){
+            //设置消息通知
+            nc = [NSNotificationCenter defaultCenter];
+            [nc addObserver: self
+                   selector: @selector(ValueChangText:)
+                       name: NOTIFICATION_VALUECHANGUPDATE
+                     object: nil];
+            //开始接收消息
+            self.appDelegate = [[UIApplication sharedApplication] delegate];
+            [self.appDelegate.bleManager notification:0xFFE0 characteristicUUID:0xFFE4 p:self.appDelegate.bleManager.activePeripheral on:YES];
+        }
         //初始化默认配置
         if([@"" isEqualToString:[[Data Instance]getCf]]){
             [[Data Instance]setCf:@"c"];
@@ -26,19 +38,6 @@
         if([@"" isEqualToString:[[Data Instance]getLanguage]]){
             [[Data Instance]setLanguage:@"English"];;
         }
-        receiveSBString=[NSMutableString new];
-        if(![[Data Instance]isDemo]){
-            //设置消息通知
-            nc = [NSNotificationCenter defaultCenter];
-            [nc addObserver: self
-                   selector: @selector(ValueChangText:)
-                       name: NOTIFICATION_VALUECHANGUPDATE
-                     object: nil];
-        }
-        //开始接收消息
-        self.appDelegate = [[UIApplication sharedApplication] delegate];
-        [self.appDelegate.bleManager notification:0xFFE0 characteristicUUID:0xFFE4 p:self.appDelegate.bleManager.activePeripheral on:YES];
-        
         self.bgFrame=[[UIView alloc]initWithFrame:self.view.bounds];
         [self.bgFrame setBackgroundColor:DEFAULTITLECOLORA(150, 0.5)];
         [self.bgFrame setHidden:YES];
@@ -55,32 +54,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.mHomeViewController=[[HomeViewController alloc]init];
-    self.mTimerViewController=[[TimerViewController alloc]init];
+    self.mToolsViewController=[[ToolsViewController alloc]init];
     self.mSettingViewController=[[SettingViewController alloc]init];
     self.mInfoViewController=[[InfoViewController alloc]init];
     self.viewControllers = [NSArray arrayWithObjects:
                             [self viewControllerWithTabTitle:@"Home" image:@"icon-nav-home" ViewController:self.mHomeViewController],
-                            [self viewControllerWithTabTitle:@"Timer" image:@"icon-nav-timer" ViewController:self.mTimerViewController],
+                            [self viewControllerWithTabTitle:@"Tools" image:@"icon-nav-tools" ViewController:self.mToolsViewController],
                             [self viewControllerWithTabTitle:@"Setting" image:@"icon-nav-setting" ViewController:self.mSettingViewController],
                             [self viewControllerWithTabTitle:@"Info" image:@"icon-nav-info" ViewController:self.mInfoViewController], nil];
     
     if([[Data Instance]isDemo]){
-        [[[Data Instance]sett]setObject:@"147" forKey:@"p1"];
-        [[[Data Instance]sett]setObject:@"158" forKey:@"p2"];
-        [[[Data Instance]sett]setObject:@"132" forKey:@"p3"];
-        [[[Data Instance]sett]setObject:@"169" forKey:@"p4"];
-        NSArray  *array=@[@{@"p1":@"30"},@{@"p2":@"29"},@{@"p3":@"31"},@{@"p4":@"29"}];
-        [self.mHomeViewController loadData:array];
-        [self.mTimerViewController loadData:array];
+        self.mDemoTimer=[NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(demoUpdateTimer:) userInfo:nil repeats:YES];
     }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    if(![[Data Instance]isDemo]){
+    if([[Data Instance]isDemo]){
+        if(self.mDemoTimer){
+            [self.mDemoTimer invalidate];
+            self.mDemoTimer=nil;
+        }
+    }else{
         [nc removeObserver:self name:NOTIFICATION_VALUECHANGUPDATE object:nil];
     }
 }
@@ -147,11 +144,13 @@
                 [[[Data Instance]sett]setObject:[data objectForKey:key] forKey:key];
             }
             [self.mHomeViewController refreshDataView];
+            [self.mInfoViewController.tableView reloadData];
         }else if([allKeys containsObject:@"t"]){
             //当前温度值
             NSArray *array=[resultJSON objectForKey:@"t"];
             [self.mHomeViewController loadData:array];
-            [self.mTimerViewController loadData:array];
+            [self.mToolsViewController loadData:array];
+            [self.mInfoViewController loadData:array];
         }else if([allKeys containsObject:@"alarm"]){
             //发出警报
             NSString *alaram=[resultJSON objectForKey:@"alarm"];
@@ -240,6 +239,11 @@
 - (void)powerOff:(NSString*)content
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)demoUpdateTimer:(id)sender
+{
+    NSLog(@"DEMO数据每5秒更新一次");
 }
 
 @end

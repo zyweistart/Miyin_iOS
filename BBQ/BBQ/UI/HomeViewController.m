@@ -14,7 +14,8 @@
 
 @implementation HomeViewController
 
-- (id)init{
+- (id)init
+{
     self=[super init];
     if(self){
         [self cTitle:@"BBQ Connected"];
@@ -91,7 +92,12 @@
 
 - (void)back:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Exit", nil];
+    [choiceSheet showInView:self.view];
 }
 
 - (void)loadData:(NSArray*)array
@@ -183,6 +189,13 @@
     [self.mMenuItemView2 refreshData];
     [self.mMenuItemView3 refreshData];
     [self.mMenuItemView4 refreshData];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex==0){
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end

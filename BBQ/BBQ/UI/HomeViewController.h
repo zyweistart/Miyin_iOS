@@ -11,7 +11,7 @@
 #import "SetTempView.h"
 #import "DatePickerView.h"
 
-@interface HomeViewController : BaseViewController<PickerViewDelegate>
+@interface HomeViewController : BaseViewController<UIActionSheetDelegate,PickerViewDelegate>
 
 @property (strong,nonatomic)UIView *bgFrame;
 @property (strong,nonatomic)DatePickerView *pv1;

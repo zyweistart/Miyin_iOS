@@ -29,7 +29,7 @@
         [self addSubview:self.lblValue];
         self.mSlider = [[UISlider alloc] initWithFrame:CGRectMake1(50,120,200,20)];
         [self.mSlider setMinimumValue:0];
-        [self.mSlider setMaximumValue:200];
+        [self.mSlider setMaximumValue:538];
         [self.mSlider addTarget:self action:@selector(changeValue:) forControlEvents:UIControlEventValueChanged];
         [self addSubview:self.mSlider];
         self.cancelButton=[[UIButton alloc]initWithFrame:CGRectMake1(0, 160, 150, 40)];

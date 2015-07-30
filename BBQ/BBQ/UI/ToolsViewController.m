@@ -6,18 +6,18 @@
 //  Copyright (c) 2015年 Start. All rights reserved.
 //
 
-#import "TimerViewController.h"
+#import "ToolsViewController.h"
 
-@interface TimerViewController ()
+@interface ToolsViewController ()
 
 @end
 
-@implementation TimerViewController
+@implementation ToolsViewController
 
 - (id)init{
     self=[super init];
     if(self){
-        [self cTitle:@"Timer"];
+        [self cTitle:@"Tools"];
         
         self.scrollFrameView=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [self.scrollFrameView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];

@@ -46,7 +46,7 @@
 
 - (void)sendData:(NSString*)message
 {
-    if(![[Data Instance]isDemo]){
+    if([[Data Instance]isDemo]){
         NSLog(@"当前为DEMO模式");
         return;
     }

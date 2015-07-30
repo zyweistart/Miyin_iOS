@@ -11,7 +11,7 @@
 		C900ABCD1B6877D40018C36B /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C900ABCC1B6877D40018C36B /* AlertView.m */; };
 		C900ABD01B6877EE0018C36B /* SetTempView.m in Sources */ = {isa = PBXBuildFile; fileRef = C900ABCF1B6877EE0018C36B /* SetTempView.m */; };
 		C9126A2D1B65DA5A001D3D60 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A2C1B65DA5A001D3D60 /* HomeViewController.m */; };
-		C9126A301B65DBAF001D3D60 /* TimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A2F1B65DBAF001D3D60 /* TimerViewController.m */; };
+		C9126A301B65DBAF001D3D60 /* ToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A2F1B65DBAF001D3D60 /* ToolsViewController.m */; };
 		C9126A331B65DBBB001D3D60 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A321B65DBBB001D3D60 /* SettingViewController.m */; };
 		C9126A361B65DBC7001D3D60 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A351B65DBC7001D3D60 /* InfoViewController.m */; };
 		C9126A391B65DC42001D3D60 /* TabBarFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A381B65DC42001D3D60 /* TabBarFrameViewController.m */; };
@@ -98,8 +98,8 @@
 		C900ABCF1B6877EE0018C36B /* SetTempView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTempView.m; sourceTree = "<group>"; };
 		C9126A2B1B65DA5A001D3D60 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		C9126A2C1B65DA5A001D3D60 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		C9126A2E1B65DBAF001D3D60 /* TimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerViewController.h; sourceTree = "<group>"; };
-		C9126A2F1B65DBAF001D3D60 /* TimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewController.m; sourceTree = "<group>"; };
+		C9126A2E1B65DBAF001D3D60 /* ToolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsViewController.h; sourceTree = "<group>"; };
+		C9126A2F1B65DBAF001D3D60 /* ToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsViewController.m; sourceTree = "<group>"; };
 		C9126A311B65DBBB001D3D60 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		C9126A321B65DBBB001D3D60 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		C9126A341B65DBC7001D3D60 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
@@ -253,8 +253,8 @@
 				C9126A3B1B65FFE3001D3D60 /* MainViewController.m */,
 				C9126A311B65DBBB001D3D60 /* SettingViewController.h */,
 				C9126A321B65DBBB001D3D60 /* SettingViewController.m */,
-				C9126A2E1B65DBAF001D3D60 /* TimerViewController.h */,
-				C9126A2F1B65DBAF001D3D60 /* TimerViewController.m */,
+				C9126A2E1B65DBAF001D3D60 /* ToolsViewController.h */,
+				C9126A2F1B65DBAF001D3D60 /* ToolsViewController.m */,
 				C9D615351B67EBDE003DAC98 /* AboutViewController.h */,
 				C9D615361B67EBDE003DAC98 /* AboutViewController.m */,
 			);
@@ -686,7 +686,7 @@
 				C9ECF1CA1B65C6BD0088E110 /* ATMHud.m in Sources */,
 				C9ECF1D41B65C6BD0088E110 /* MessageInterceptor.m in Sources */,
 				C900ABCD1B6877D40018C36B /* AlertView.m in Sources */,
-				C9126A301B65DBAF001D3D60 /* TimerViewController.m in Sources */,
+				C9126A301B65DBAF001D3D60 /* ToolsViewController.m in Sources */,
 				C9ECF2071B65C85A0088E110 /* BaseTabBarViewController.m in Sources */,
 				C9ECF1D21B65C6BD0088E110 /* EGORefreshTableHeaderView.m in Sources */,
 				C9ECF2091B65C85A0088E110 /* BaseViewController.m in Sources */,

@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 #import "ChartItemView.h"
 
-@interface TimerViewController : BaseViewController
+@interface ToolsViewController : BaseViewController
 
 @property (strong,nonatomic)UIScrollView *scrollFrameView;
 @property (strong,nonatomic)ChartItemView *mChartItemView1;
