@@ -10,6 +10,7 @@
 
 @interface SetTempView : UIView
 
+@property (strong,nonatomic)NSDictionary *data;
 @property (strong,nonatomic)UILabel *lblTitle;
 @property (strong,nonatomic)UILabel *lblValue;
 @property (strong,nonatomic)UIButton *cancelButton;
@@ -17,5 +18,7 @@
 @property (strong,nonatomic)UISlider *mSlider;
 
 - (void)setValue:(int)value;
+
+- (void)reLoadData;
 
 @end

@@ -242,7 +242,6 @@
 - (void)playAlarm
 {
     [self stopAlarm];
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
     NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.wav",[[Data Instance]getAlarm]]];
     NSURL *URL=[NSURL fileURLWithPath:path];
     self.mAVAudioPlayer=[[AVAudioPlayer alloc] initWithContentsOfURL:URL error:nil];
@@ -260,7 +259,7 @@
     if(self.mAVAudioPlayer){
         [self.mAVAudioPlayer stop];
         self.mAVAudioPlayer=nil;
-        [[AVAudioSession sharedInstance] setActive:NO error:nil];
+//        [[AVAudioSession sharedInstance] setActive:NO error:nil];
     }
 }
 

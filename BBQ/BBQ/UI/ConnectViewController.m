@@ -44,7 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [self performSelector:@selector(startScan) withObject:nil afterDelay:0.5];
+    [self performSelector:@selector(startScan) withObject:nil afterDelay:0.5];
 }
 
 - (void)viewWillAppear:(BOOL)animated

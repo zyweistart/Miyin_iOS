@@ -173,6 +173,7 @@
     for(id key in [data allKeys]){
         NSString *title=[NSString stringWithFormat:@"%@",key];
         NSString *value=[[[Data Instance] sett] objectForKey:title];
+        [self.mSetTempView setData:data];
         [self.mSetTempView setTag:sender.tag];
         [self SetTempShowWithTitle:title Value:[value intValue]];
     }
@@ -260,6 +261,7 @@
 
 - (void)refreshDataView
 {
+    [self.mSetTempView reLoadData];
     [self.mMenuItemView1 refreshData];
     [self.mMenuItemView2 refreshData];
     [self.mMenuItemView3 refreshData];

@@ -80,4 +80,13 @@
     [self.lblValue setText:[Data getTemperatureValue:self.mSlider.value]];
 }
 
+- (void)reLoadData
+{
+    for(id key in [self.data allKeys]){
+        NSString *title=[NSString stringWithFormat:@"%@",key];
+        NSString *value=[[[Data Instance] sett] objectForKey:title];
+        [self setValue:[value intValue]];
+    }
+}
+
 @end

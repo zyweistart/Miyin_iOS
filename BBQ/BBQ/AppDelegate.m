@@ -17,6 +17,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    self.bleManager = [[TIBLECBStandand alloc]init];
+    [self.bleManager controlSetup:1];
     //计算各屏幕XY大小
     AppDelegate *myDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(ScreenHeight > 480){
@@ -36,10 +40,6 @@
 //    UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[ConnectViewController alloc]init]];
     self.window.rootViewController=[[ConnectViewController alloc]init];
     self.window.backgroundColor = [UIColor whiteColor];
-    
-    self.bleManager = [[TIBLECBStandand alloc]init];
-    [self.bleManager controlSetup:1];
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     
     [self.window makeKeyAndVisible];
     
