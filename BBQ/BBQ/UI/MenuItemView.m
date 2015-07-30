@@ -105,14 +105,11 @@
         [self.lblCurrentSamllCentigrade setTitle:[Data getTemperatureValue:currentValue] forState:UIControlStateNormal];
         
         //默认值
-        int currentHighValue=DEFAULCENTIGRADEVALUE;
+        int currentHighValue=0;
         
         NSString *value=[[[Data Instance] sett] objectForKey:key];
         if(value){
             currentHighValue=[value intValue];
-        }else{
-            //设置默认值
-            [[[Data Instance] sett]setObject:[NSString stringWithFormat:@"%d",DEFAULCENTIGRADEVALUE] forKey:key];
         }
         [self.lblHighestCentigrade setTitle:[Data getTemperatureValue:currentHighValue] forState:UIControlStateNormal];
         

@@ -16,6 +16,31 @@
     self=[super init];
     if(self){
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+        //初始化默认配置
+        if([@"" isEqualToString:[[Data Instance]getCf]]){
+            [[Data Instance]setCf:@"c"];
+        }
+        if([@"" isEqualToString:[[Data Instance]getAlarm]]){
+            [[Data Instance]setAlarm:@"Beep1"];
+        }
+        if([@"" isEqualToString:[[Data Instance]getLanguage]]){
+            [[Data Instance]setLanguage:@"English"];;
+        }
+        //设置默认的温度值
+        [[[Data Instance]sett]setObject:@"100" forKey:@"p1"];
+        [[[Data Instance]sett]setObject:@"100" forKey:@"p2"];
+        [[[Data Instance]sett]setObject:@"100" forKey:@"p3"];
+        [[[Data Instance]sett]setObject:@"400" forKey:@"p4"];
+        self.bgFrame=[[UIView alloc]initWithFrame:self.view.bounds];
+        [self.bgFrame setBackgroundColor:DEFAULTITLECOLORA(150, 0.5)];
+        [self.bgFrame setHidden:YES];
+        [self.view addSubview:self.bgFrame];
+        
+        self.mAlertView=[[AlertView alloc]initWithFrame:CGRectMake1(10, 100, 300, 180)];
+        [self.mAlertView.button addTarget:self action:@selector(AlertClose) forControlEvents:UIControlEventTouchUpInside];
+        [self.mAlertView setHidden:YES];
+        [self.bgFrame addSubview:self.mAlertView];
+        
         receiveSBString=[NSMutableString new];
         if(![[Data Instance]isDemo]){
             //设置消息通知
@@ -28,25 +53,6 @@
             self.appDelegate = [[UIApplication sharedApplication] delegate];
             [self.appDelegate.bleManager notification:0xFFE0 characteristicUUID:0xFFE4 p:self.appDelegate.bleManager.activePeripheral on:YES];
         }
-        //初始化默认配置
-        if([@"" isEqualToString:[[Data Instance]getCf]]){
-            [[Data Instance]setCf:@"c"];
-        }
-        if([@"" isEqualToString:[[Data Instance]getAlarm]]){
-            [[Data Instance]setAlarm:@"Beep1"];
-        }
-        if([@"" isEqualToString:[[Data Instance]getLanguage]]){
-            [[Data Instance]setLanguage:@"English"];;
-        }
-        self.bgFrame=[[UIView alloc]initWithFrame:self.view.bounds];
-        [self.bgFrame setBackgroundColor:DEFAULTITLECOLORA(150, 0.5)];
-        [self.bgFrame setHidden:YES];
-        [self.view addSubview:self.bgFrame];
-        
-        self.mAlertView=[[AlertView alloc]initWithFrame:CGRectMake1(10, 100, 300, 180)];
-        [self.mAlertView.button addTarget:self action:@selector(AlertClose) forControlEvents:UIControlEventTouchUpInside];
-        [self.mAlertView setHidden:YES];
-        [self.bgFrame addSubview:self.mAlertView];
     }
     return self;
 }
