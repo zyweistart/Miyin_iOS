@@ -17,6 +17,7 @@
         [self setBackgroundColor:[UIColor clearColor]];
         [self.frameView setFrame:CGRectMake(0, CGWidth(5), frame.size.width, frame.size.height-CGWidth(10))];
         [self.lblTitle setFrame:CGRectMake(0,0,CGHeight(80),CGWidth(310))];
+        [self.lblTitle setFont:[UIFont systemFontOfSize:30]];
     }
     return self;
 }

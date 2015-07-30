@@ -102,6 +102,9 @@
         [self.view addSubview:self.pv1];
         //横屏
         self.mMenuItemLandView=[[MenuItemLandView alloc]initWithFrame:CGRectMake(0, 0,CGHeight(455),CGWidth(320))];
+        [self.mMenuItemLandView setBaseController:self];
+//        [self.mMenuItemLandView.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
+//        [self.mMenuItemLandView.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
         [self.mMenuItemLandView setUserInteractionEnabled:YES];
         [self.mMenuItemLandView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeHide:)]];
         [self.mMenuItemLandView setHidden:YES];
@@ -245,14 +248,16 @@
 
 - (void)frmeChange:(UIGestureRecognizer*)sender
 {
-//    if(inch35){
-//        return;
-//    }
+    if(inch35){
+        return;
+    }
 //    NSInteger tag=[[sender view]tag];
 //    [self.mMenuItemLandView setHidden:NO];
 //    CGAffineTransform at =CGAffineTransformMakeRotation(M_PI/2);
 //    [self.mMenuItemLandView setTransform:at];
 //    [self.mMenuItemLandView setCenter:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2)];
+//    [self.mMenuItemLandView.lblHighestCentigrade setTag:tag];
+//    [self.mMenuItemLandView.bTimer setTag:tag];
 //    if(tag==0){
 //        [self.mMenuItemLandView setMenuData:self.mMenuItemView1.currentData];
 //    }else if(tag==1){

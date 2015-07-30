@@ -62,6 +62,7 @@
         if(row==1){
             [cell.detailTextLabel setText:[[Data Instance]getAlarm]];
         }else if(row==2){
+            NSLog(@"%@",[[Data Instance]getLanguage]);
             if([@"0" isEqualToString:[[Data Instance]getLanguage]]){
                 [cell.detailTextLabel setText:@"English"];
             }else if([@"1" isEqualToString:[[Data Instance]getLanguage]]){
