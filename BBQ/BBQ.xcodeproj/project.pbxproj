@@ -76,6 +76,7 @@
 		C9F1EF1E1B674214005C8CF3 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF1D1B674214005C8CF3 /* Tools.m */; };
 		C9F1EF211B67491E005C8CF3 /* TIBLECBStandand.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF201B67491E005C8CF3 /* TIBLECBStandand.m */; };
 		C9F1EF241B677004005C8CF3 /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF231B677004005C8CF3 /* ConnectViewController.m */; };
+		C9F488451B6A35540037A9D8 /* MenuItemLandView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F488441B6A35540037A9D8 /* MenuItemLandView.m */; };
 		C9FE58E71B68F656002154E4 /* Beep1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E21B68F656002154E4 /* Beep1.wav */; };
 		C9FE58E81B68F656002154E4 /* Beep2.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E31B68F656002154E4 /* Beep2.wav */; };
 		C9FE58E91B68F656002154E4 /* Beep3.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E41B68F656002154E4 /* Beep3.wav */; };
@@ -230,6 +231,8 @@
 		C9F1EF201B67491E005C8CF3 /* TIBLECBStandand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIBLECBStandand.m; sourceTree = "<group>"; };
 		C9F1EF221B677004005C8CF3 /* ConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectViewController.h; sourceTree = "<group>"; };
 		C9F1EF231B677004005C8CF3 /* ConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
+		C9F488431B6A35540037A9D8 /* MenuItemLandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemLandView.h; sourceTree = "<group>"; };
+		C9F488441B6A35540037A9D8 /* MenuItemLandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemLandView.m; sourceTree = "<group>"; };
 		C9FE58E21B68F656002154E4 /* Beep1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep1.wav; sourceTree = "<group>"; };
 		C9FE58E31B68F656002154E4 /* Beep2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep2.wav; sourceTree = "<group>"; };
 		C9FE58E41B68F656002154E4 /* Beep3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep3.wav; sourceTree = "<group>"; };
@@ -306,6 +309,8 @@
 				C9126A381B65DC42001D3D60 /* TabBarFrameViewController.m */,
 				C9DC36A61B6A1871006FBCE6 /* ChartItemLandView.h */,
 				C9DC36A71B6A1871006FBCE6 /* ChartItemLandView.m */,
+				C9F488431B6A35540037A9D8 /* MenuItemLandView.h */,
+				C9F488441B6A35540037A9D8 /* MenuItemLandView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -741,6 +746,7 @@
 				C9126A2D1B65DA5A001D3D60 /* HomeViewController.m in Sources */,
 				C9D615371B67EBDE003DAC98 /* AboutViewController.m in Sources */,
 				C9ECF1CA1B65C6BD0088E110 /* ATMHud.m in Sources */,
+				C9F488451B6A35540037A9D8 /* MenuItemLandView.m in Sources */,
 				C9ECF1D41B65C6BD0088E110 /* MessageInterceptor.m in Sources */,
 				C900ABCD1B6877D40018C36B /* AlertView.m in Sources */,
 				C9126A301B65DBAF001D3D60 /* ToolsViewController.m in Sources */,

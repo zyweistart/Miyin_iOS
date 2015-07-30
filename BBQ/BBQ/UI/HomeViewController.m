@@ -90,7 +90,12 @@
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
         [self.view addSubview:self.pv1];
-        
+        //横屏
+        self.mMenuItemLandView=[[MenuItemLandView alloc]initWithFrame:CGRectMake(0, 0,CGHeight(455),CGWidth(320))];
+        [self.mMenuItemLandView setUserInteractionEnabled:YES];
+        [self.mMenuItemLandView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeHide:)]];
+        [self.mMenuItemLandView setHidden:YES];
+        [self.view addSubview:self.mMenuItemLandView];
     }
     return self;
 }
@@ -230,7 +235,28 @@
 
 - (void)frmeChange:(UIGestureRecognizer*)sender
 {
+    if(inch35){
+        return;
+    }
     NSInteger tag=[[sender view]tag];
+    [self.mMenuItemLandView setHidden:NO];
+    CGAffineTransform at =CGAffineTransformMakeRotation(M_PI/2);
+    [self.mMenuItemLandView setTransform:at];
+    [self.mMenuItemLandView setCenter:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2)];
+    if(tag==1){
+        [self.mMenuItemLandView setMenuData:self.mMenuItemView1.currentData];
+    }else if(tag==2){
+        [self.mMenuItemLandView setMenuData:self.mMenuItemView2.currentData];
+    }else if(tag==3){
+        [self.mMenuItemLandView setMenuData:self.mMenuItemView3.currentData];
+    }else if(tag==4){
+        [self.mMenuItemLandView setMenuData:self.mMenuItemView4.currentData];
+    }
+}
+
+- (void)frmeHide:(id)sender
+{
+    [self.mMenuItemLandView setHidden:YES];
 }
 
 @end

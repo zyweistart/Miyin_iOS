@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "MenuItemView.h"
+#import "MenuItemLandView.h"
 #import "SetTempView.h"
 #import "DatePickerView.h"
 
@@ -22,6 +23,8 @@
 @property (strong,nonatomic)MenuItemView *mMenuItemView2;
 @property (strong,nonatomic)MenuItemView *mMenuItemView3;
 @property (strong,nonatomic)MenuItemView *mMenuItemView4;
+
+@property (strong,nonatomic)MenuItemLandView *mMenuItemLandView;
 
 @property (strong,nonatomic)NSMutableArray *dataItemArray;
 

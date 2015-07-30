@@ -11,6 +11,8 @@
 @interface MenuItemView : UIView
 
 @property (strong,nonatomic)UIViewController *baseController;
+
+@property (strong,nonatomic)UIView *frameView;
 @property (strong,nonatomic)NSDictionary *currentData;
 @property (strong,nonatomic)UILabel *lblTitle;
 @property (strong,nonatomic)UILabel *lblSetTime;

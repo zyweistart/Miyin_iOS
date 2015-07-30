@@ -16,30 +16,30 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:DEFAULTITLECOLORRGB(65, 51, 42)];
-        UIView *frame=[[UIView alloc]initWithFrame:CGRectMake1(0, 5, 315, 180)];
-        frame.layer.masksToBounds=YES;
-        frame.layer.cornerRadius=CGWidth(5);
-        frame.layer.borderWidth=1;
-        frame.layer.borderColor=DEFAULTITLECOLOR(200).CGColor;
-        [frame setBackgroundColor:[UIColor whiteColor]];
-        [self addSubview:frame];
+        self.frameView=[[UIView alloc]initWithFrame:CGRectMake1(0, 5, 315, 180)];
+        self.frameView.layer.masksToBounds=YES;
+        self.frameView.layer.cornerRadius=CGWidth(5);
+        self.frameView.layer.borderWidth=1;
+        self.frameView.layer.borderColor=DEFAULTITLECOLOR(200).CGColor;
+        [self.frameView setBackgroundColor:[UIColor whiteColor]];
+        [self addSubview:self.frameView];
         
         self.lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 40, 180)];
         [self.lblTitle setTextColor:[UIColor whiteColor]];
         [self.lblTitle setFont:[UIFont systemFontOfSize:18]];
         [self.lblTitle setBackgroundColor:DEFAULTITLECOLORRGB(242, 125, 0)];
         [self.lblTitle setTextAlignment:NSTextAlignmentCenter];
-        [frame addSubview:self.lblTitle];
+        [self.frameView addSubview:self.lblTitle];
         
         self.lblCurrentSamllCentigrade=[[UIButton alloc]initWithFrame:CGRectMake1(60, 5, 60, 20)];
         [self.lblCurrentSamllCentigrade setTitleColor:DEFAULTITLECOLORRGB(242, 125, 0) forState:UIControlStateNormal];
         [self.lblCurrentSamllCentigrade setImage:[UIImage imageNamed:@"指针"] forState:UIControlStateNormal];
         [self.lblCurrentSamllCentigrade setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
-        [frame addSubview:self.lblCurrentSamllCentigrade];
+        [self.frameView addSubview:self.lblCurrentSamllCentigrade];
         
         UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake1(60, 30, 224, 20)];
         [lineView setBackgroundColor:DEFAULTITLECOLOR(188)];
-        [frame addSubview:lineView];
+        [self.frameView addSubview:lineView];
         
         self.viewCentigrade=[[UIView alloc]initWithFrame:CGRectMake1(2, 2, 150, 16)];
         [self.viewCentigrade setBackgroundColor:[UIColor redColor]];
@@ -47,39 +47,39 @@
         
         CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 80, 50, 20) Text:@"Current"];
         [lbl setFont:[UIFont systemFontOfSize:15]];
-        [frame addSubview:lbl];
+        [self.frameView addSubview:lbl];
         lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 100, 50, 20) Text:@"Temp"];
         [lbl setFont:[UIFont systemFontOfSize:15]];
-        [frame addSubview:lbl];
+        [self.frameView addSubview:lbl];
         
         self.lblCurrentCentigrade=[[UILabel alloc]initWithFrame:CGRectMake1(100, 80, 100, 40)];
         [self.lblCurrentCentigrade setTextColor:DEFAULTITLECOLORRGB(242, 125, 0)];
         [self.lblCurrentCentigrade setFont:[UIFont systemFontOfSize:40]];
         [self.lblCurrentCentigrade setTextAlignment:NSTextAlignmentCenter];
-        [frame addSubview:self.lblCurrentCentigrade];
+        [self.frameView addSubview:self.lblCurrentCentigrade];
         
         UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(45, 125, 155, 1)];
         [line setBackgroundColor:DEFAULTITLECOLOR(160)];
-        [frame addSubview:line];
+        [self.frameView addSubview:line];
         lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 130, 50, 20) Text:@"Set"];
-        [frame addSubview:lbl];
+        [self.frameView addSubview:lbl];
         lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 150, 50, 20) Text:@"Temp"];
-        [frame addSubview:lbl];
+        [self.frameView addSubview:lbl];
         
         self.lblHighestCentigrade=[[UIButton alloc]initWithFrame:CGRectMake1(100, 130, 100, 40)];
         [self.lblHighestCentigrade.titleLabel setFont:[UIFont systemFontOfSize:30]];
         [self.lblHighestCentigrade setTitleColor:DEFAULTITLECOLOR(100) forState:UIControlStateNormal];
-        [frame addSubview:self.lblHighestCentigrade];
+        [self.frameView addSubview:self.lblHighestCentigrade];
         
         self.bTimer=[[UIButton alloc]initWithFrame:CGRectMake1(202, 97, 46, 52)];
         [self.bTimer setImage:[UIImage imageNamed:@"时间"] forState:UIControlStateNormal];
-        [frame addSubview:self.bTimer];
+        [self.frameView addSubview:self.bTimer];
         
         self.lblSetTime=[[UILabel alloc]initWithFrame:CGRectMake1(250, 97, 60, 52)];
         [self.lblSetTime setTextColor:DEFAULTITLECOLOR(41)];
         [self.lblSetTime setFont:[UIFont systemFontOfSize:18]];
         [self.lblSetTime setTextAlignment:NSTextAlignmentCenter];
-        [frame addSubview:self.lblSetTime];
+        [self.frameView addSubview:self.lblSetTime];
     }
     return self;
 }
