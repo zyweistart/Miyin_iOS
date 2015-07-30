@@ -62,7 +62,11 @@
         if(row==1){
             [cell.detailTextLabel setText:[[Data Instance]getAlarm]];
         }else if(row==2){
-            [cell.detailTextLabel setText:[[Data Instance]getLanguage]];
+            if([@"0" isEqualToString:[[Data Instance]getLanguage]]){
+                [cell.detailTextLabel setText:@"English"];
+            }else if([@"1" isEqualToString:[[Data Instance]getLanguage]]){
+                [cell.detailTextLabel setText:@"简体中文"];
+            }
         }
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         return cell;
@@ -105,13 +109,7 @@
         }
         [self.tableView reloadData];
     }else if(actionSheet.tag==2){
-        if(buttonIndex==0){
-            [[Data Instance]setLanguage:@"English"];
-        }else if(buttonIndex==1){
-            [[Data Instance]setLanguage:@"Chinese"];
-        }else if(buttonIndex==2){
-            [[Data Instance]setLanguage:@"Espanol"];
-        }
+        [[Data Instance]setLanguage:[NSString stringWithFormat:@"%ld",buttonIndex]];
         [self.tableView reloadData];
     }
 }

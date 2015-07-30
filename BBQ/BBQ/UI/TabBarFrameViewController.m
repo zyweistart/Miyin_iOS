@@ -9,6 +9,9 @@
     //接收到的数据
     NSMutableString *receiveSBString;
     NSNotificationCenter *nc;
+    
+    NSMutableArray *demoseTTArray;
+    NSMutableArray *demoTArray;
 }
 
 - (id)init
@@ -24,7 +27,7 @@
             [[Data Instance]setAlarm:@"Beep1"];
         }
         if([@"" isEqualToString:[[Data Instance]getLanguage]]){
-            [[Data Instance]setLanguage:@"English"];;
+            [[Data Instance]setLanguage:@"0"];;
         }
         //设置默认的温度值
         [[[Data Instance]sett]setObject:@"100" forKey:@"p1"];
@@ -50,9 +53,32 @@
                                 [self viewControllerWithTabTitle:@"Tools" image:@"icon-nav-tools" ViewController:self.mToolsViewController],
                                 [self viewControllerWithTabTitle:@"Setting" image:@"icon-nav-setting" ViewController:self.mSettingViewController],
                                 [self viewControllerWithTabTitle:@"Info" image:@"icon-nav-info" ViewController:self.mInfoViewController], nil];
-        [self setDelegate:self];
+        
         if([[Data Instance]isDemo]){
-            self.mDemoTimer=[NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(demoUpdateTimer:) userInfo:nil repeats:YES];
+            //生成随机数
+            demoseTTArray=[[NSMutableArray alloc]init];
+            int v1 = arc4random() % 438 + 100;
+            int v2 = arc4random() % 438 + 100;
+            int v3 = arc4random() % 438 + 100;
+            int v4 = arc4random() % 438 + 100;
+            [demoseTTArray addObject:[NSString stringWithFormat:@"{\"sett\":{\"p1\":%d}}",v1]];
+            [demoseTTArray addObject:[NSString stringWithFormat:@"{\"sett\":{\"p2\":%d}}",v2]];
+            [demoseTTArray addObject:[NSString stringWithFormat:@"{\"sett\":{\"p3\":%d}}",v3]];
+            [demoseTTArray addObject:[NSString stringWithFormat:@"{\"sett\":{\"p4\":%d}}",v4]];
+            for(int i=0;i<[demoseTTArray count];i++){
+                NSString *json=[demoseTTArray objectAtIndex:i];
+                [self AnalyticalJson:json];
+            }
+            demoTArray=[[NSMutableArray alloc]init];
+            for(int i=0;i<100;i++){
+                int v1 = arc4random() % 40 + 25;
+                int v2 = arc4random() % 40 + 25;
+                int v3 = arc4random() % 40 + 25;
+                int v4 = arc4random() % 40 + 25;
+                [demoTArray addObject:[NSString stringWithFormat:@"{\"t\":[{\"p1\":%d},{\"p2\":%d},{\"p3\":%d},{\"p4\":%d}]}",v1,v2,v3,v4]];
+            }
+            [self demoUpdateTimer];
+            self.mDemoTimer=[NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(demoUpdateTimer) userInfo:nil repeats:YES];
         }
         
         receiveSBString=[NSMutableString new];
@@ -92,8 +118,6 @@
 - (UINavigationController*)viewControllerWithTabTitle:(NSString*) title image:(NSString*)image ViewController:(UIViewController*)viewController
 {
     UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:viewController];
-//    [[frameViewControllerNav navigationBar]setBarTintColor:NAVBG];
-//    [[frameViewControllerNav navigationBar]setBarStyle:UIBarStyleBlackTranslucent];
     UITabBarItem *tabBarItem=[[UITabBarItem alloc]init];
     [tabBarItem setTitle:title];
     if(image){
@@ -253,15 +277,11 @@
     [self.mInfoViewController ConnectedState:NO];
 }
 
-- (void)demoUpdateTimer:(id)sender
+- (void)demoUpdateTimer
 {
-    NSLog(@"DEMO数据每5秒更新一次");
-}
-
-- (void)tabBarController:(UITabBarController*)tabBarController didSelectViewController:(UIViewController*)viewController {
-//    unsigned long newTabIndex = tabBarController.selectedIndex;
-//    [self.mHomeViewController ConnectedState:NO];
-//    [self.mToolsViewController ConnectedState:NO];
+    int x = arc4random() % 100;
+    NSString *json=[demoTArray objectAtIndex:x];
+    [self AnalyticalJson:json];
 }
 
 

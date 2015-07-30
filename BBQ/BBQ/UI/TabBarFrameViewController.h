@@ -6,7 +6,7 @@
 #import "ToolsViewController.h"
 #import "AlertView.h"
 
-@interface TabBarFrameViewController : UITabBarController<UITabBarControllerDelegate,AVAudioPlayerDelegate>
+@interface TabBarFrameViewController : UITabBarController<AVAudioPlayerDelegate>
 
 @property (strong,nonatomic) HomeViewController *mHomeViewController;
 @property (strong,nonatomic) InfoViewController *mInfoViewController;
