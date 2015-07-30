@@ -64,7 +64,6 @@
 
 - (void)loadData:(NSArray*)array
 {
-    self.dataItemArray=[[NSMutableArray alloc]initWithArray:array];
     NSDictionary *d1=[array objectAtIndex:0];
     [self.mChartItemView1 loadData:d1];
     NSDictionary *d2=[array objectAtIndex:1];

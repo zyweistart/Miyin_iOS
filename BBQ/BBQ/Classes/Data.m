@@ -23,6 +23,7 @@ static Data * instance = nil;
             instance=[self new];
             instance.sett=[NSMutableDictionary new];
             instance.settValue=[NSMutableDictionary new];
+            instance.chartData=[NSMutableDictionary new];
         }
     }
     return instance;

@@ -41,6 +41,20 @@
         [self.mAlertView setHidden:YES];
         [self.bgFrame addSubview:self.mAlertView];
         
+        self.mHomeViewController=[[HomeViewController alloc]init];
+        self.mToolsViewController=[[ToolsViewController alloc]init];
+        self.mSettingViewController=[[SettingViewController alloc]init];
+        self.mInfoViewController=[[InfoViewController alloc]init];
+        self.viewControllers = [NSArray arrayWithObjects:
+                                [self viewControllerWithTabTitle:@"Home" image:@"icon-nav-home" ViewController:self.mHomeViewController],
+                                [self viewControllerWithTabTitle:@"Tools" image:@"icon-nav-tools" ViewController:self.mToolsViewController],
+                                [self viewControllerWithTabTitle:@"Setting" image:@"icon-nav-setting" ViewController:self.mSettingViewController],
+                                [self viewControllerWithTabTitle:@"Info" image:@"icon-nav-info" ViewController:self.mInfoViewController], nil];
+        [self setDelegate:self];
+        if([[Data Instance]isDemo]){
+            self.mDemoTimer=[NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(demoUpdateTimer:) userInfo:nil repeats:YES];
+        }
+        
         receiveSBString=[NSMutableString new];
         if(![[Data Instance]isDemo]){
             //设置消息通知
@@ -60,19 +74,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.mHomeViewController=[[HomeViewController alloc]init];
-    self.mToolsViewController=[[ToolsViewController alloc]init];
-    self.mSettingViewController=[[SettingViewController alloc]init];
-    self.mInfoViewController=[[InfoViewController alloc]init];
-    self.viewControllers = [NSArray arrayWithObjects:
-                            [self viewControllerWithTabTitle:@"Home" image:@"icon-nav-home" ViewController:self.mHomeViewController],
-                            [self viewControllerWithTabTitle:@"Tools" image:@"icon-nav-tools" ViewController:self.mToolsViewController],
-                            [self viewControllerWithTabTitle:@"Setting" image:@"icon-nav-setting" ViewController:self.mSettingViewController],
-                            [self viewControllerWithTabTitle:@"Info" image:@"icon-nav-info" ViewController:self.mInfoViewController], nil];
-    [self setDelegate:self];
-    if([[Data Instance]isDemo]){
-        self.mDemoTimer=[NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(demoUpdateTimer:) userInfo:nil repeats:YES];
-    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -154,6 +155,7 @@
         }else if([allKeys containsObject:@"t"]){
             //当前温度值
             NSArray *array=[resultJSON objectForKey:@"t"];
+            [[Data Instance]setCurrentTValue:[NSMutableArray arrayWithArray:array]];
             [self.mHomeViewController loadData:array];
             [self.mToolsViewController loadData:array];
             [self.mInfoViewController loadData:array];

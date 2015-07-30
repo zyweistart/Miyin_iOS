@@ -8,13 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+#define CHARTKEY @"CHARTKEY"
+#define CHARTDATA @"CHARTDATA"
+#define CHARTTIMER @"CHARTTIMER"
+#define CHARTCURVALUE @"CHARTCURVALUE"
+#define CHARTSETVALUE @"CHARTSETVALUE"
+
 @interface Data : NSObject
 
 + (Data *) Instance;
 
 @property BOOL isDemo;
 @property (strong,nonatomic) NSMutableDictionary *sett;
+@property (strong,nonatomic) NSMutableArray *currentTValue;
 @property (strong,nonatomic) NSMutableDictionary *settValue;
+@property (strong,nonatomic) NSMutableDictionary *chartData;
 
 + (NSString*)getTemperatureValue:(int)v;
 

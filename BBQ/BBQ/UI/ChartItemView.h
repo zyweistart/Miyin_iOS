@@ -7,13 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UUChart.h"
 
-@interface ChartItemView : UIView
-
-@property (strong,nonatomic)NSDictionary *currentData;
+@interface ChartItemView : UIView<UUChartDataSource>
 
 @property (strong,nonatomic)UILabel *lblTitle;
+@property (strong,nonatomic)UUChart *chartView;
+@property (strong,nonatomic)NSTimer *mTimer;
+@property (strong,nonatomic)NSString *currentKey;
+
+@property NSInteger currentArrayIndex;
 
 - (void)loadData:(NSDictionary*)data;
+
 
 @end

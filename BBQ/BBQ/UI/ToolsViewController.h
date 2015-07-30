@@ -17,9 +17,7 @@
 @property (strong,nonatomic)ChartItemView *mChartItemView3;
 @property (strong,nonatomic)ChartItemView *mChartItemView4;
 
-@property (strong,nonatomic)NSMutableArray *dataItemArray;
-
-- (void)loadData:(NSArray*)array;
 - (void)ConnectedState:(BOOL)state;
+- (void)loadData:(NSArray*)array;
 
 @end

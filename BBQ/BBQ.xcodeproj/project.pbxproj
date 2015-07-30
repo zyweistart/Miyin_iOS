@@ -18,6 +18,12 @@
 		C9126A3C1B65FFE3001D3D60 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A3B1B65FFE3001D3D60 /* MainViewController.m */; };
 		C9126A411B66004A001D3D60 /* CButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A3E1B66004A001D3D60 /* CButton.m */; };
 		C9126A421B66004A001D3D60 /* CLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A401B66004A001D3D60 /* CLabel.m */; };
+		C97E09021B69EF1300E9B118 /* UUBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E08F71B69EF1300E9B118 /* UUBar.m */; };
+		C97E09031B69EF1300E9B118 /* UUBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E08F91B69EF1300E9B118 /* UUBarChart.m */; };
+		C97E09041B69EF1300E9B118 /* UUChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E08FB1B69EF1300E9B118 /* UUChart.m */; };
+		C97E09051B69EF1300E9B118 /* UUChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E08FD1B69EF1300E9B118 /* UUChartLabel.m */; };
+		C97E09061B69EF1300E9B118 /* UUColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E08FF1B69EF1300E9B118 /* UUColor.m */; };
+		C97E09071B69EF1300E9B118 /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E09011B69EF1300E9B118 /* UULineChart.m */; };
 		C9B27CA61B660236005DD13B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B27CA51B660236005DD13B /* CoreBluetooth.framework */; };
 		C9D6152C1B67C7B2003DAC98 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6152B1B67C7B2003DAC98 /* MenuCell.m */; };
 		C9D6152F1B67D6AA003DAC98 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6152E1B67D6AA003DAC98 /* Data.m */; };
@@ -112,6 +118,18 @@
 		C9126A3E1B66004A001D3D60 /* CButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CButton.m; sourceTree = "<group>"; };
 		C9126A3F1B66004A001D3D60 /* CLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLabel.h; sourceTree = "<group>"; };
 		C9126A401B66004A001D3D60 /* CLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLabel.m; sourceTree = "<group>"; };
+		C97E08F61B69EF1300E9B118 /* UUBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBar.h; sourceTree = "<group>"; };
+		C97E08F71B69EF1300E9B118 /* UUBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBar.m; sourceTree = "<group>"; };
+		C97E08F81B69EF1300E9B118 /* UUBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBarChart.h; sourceTree = "<group>"; };
+		C97E08F91B69EF1300E9B118 /* UUBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBarChart.m; sourceTree = "<group>"; };
+		C97E08FA1B69EF1300E9B118 /* UUChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChart.h; sourceTree = "<group>"; };
+		C97E08FB1B69EF1300E9B118 /* UUChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChart.m; sourceTree = "<group>"; };
+		C97E08FC1B69EF1300E9B118 /* UUChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChartLabel.h; sourceTree = "<group>"; };
+		C97E08FD1B69EF1300E9B118 /* UUChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChartLabel.m; sourceTree = "<group>"; };
+		C97E08FE1B69EF1300E9B118 /* UUColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUColor.h; sourceTree = "<group>"; };
+		C97E08FF1B69EF1300E9B118 /* UUColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUColor.m; sourceTree = "<group>"; };
+		C97E09001B69EF1300E9B118 /* UULineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UULineChart.h; sourceTree = "<group>"; };
+		C97E09011B69EF1300E9B118 /* UULineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UULineChart.m; sourceTree = "<group>"; };
 		C9B27CA51B660236005DD13B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		C9D6152A1B67C7B2003DAC98 /* MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCell.h; sourceTree = "<group>"; };
 		C9D6152B1B67C7B2003DAC98 /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = "<group>"; };
@@ -301,6 +319,25 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
+		C97E08F51B69EF1300E9B118 /* UUChart */ = {
+			isa = PBXGroup;
+			children = (
+				C97E08F61B69EF1300E9B118 /* UUBar.h */,
+				C97E08F71B69EF1300E9B118 /* UUBar.m */,
+				C97E08F81B69EF1300E9B118 /* UUBarChart.h */,
+				C97E08F91B69EF1300E9B118 /* UUBarChart.m */,
+				C97E08FA1B69EF1300E9B118 /* UUChart.h */,
+				C97E08FB1B69EF1300E9B118 /* UUChart.m */,
+				C97E08FC1B69EF1300E9B118 /* UUChartLabel.h */,
+				C97E08FD1B69EF1300E9B118 /* UUChartLabel.m */,
+				C97E08FE1B69EF1300E9B118 /* UUColor.h */,
+				C97E08FF1B69EF1300E9B118 /* UUColor.m */,
+				C97E09001B69EF1300E9B118 /* UULineChart.h */,
+				C97E09011B69EF1300E9B118 /* UULineChart.m */,
+			);
+			path = UUChart;
+			sourceTree = "<group>";
+		};
 		C9ECF1621B65C1460088E110 = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +444,7 @@
 		C9ECF1951B65C2290088E110 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				C97E08F51B69EF1300E9B118 /* UUChart */,
 				C9ECF1971B65C6BD0088E110 /* ASIHTTP */,
 				C9ECF19A1B65C6BD0088E110 /* ATMHud */,
 				C9ECF1A81B65C6BD0088E110 /* EAIntroView */,
@@ -647,6 +685,7 @@
 				C9D6152C1B67C7B2003DAC98 /* MenuCell.m in Sources */,
 				C9FE58F41B694653002154E4 /* ChartItemView.m in Sources */,
 				C9ECF2161B65C85A0088E110 /* User.m in Sources */,
+				C97E09031B69EF1300E9B118 /* UUBarChart.m in Sources */,
 				C9F1EF1E1B674214005C8CF3 /* Tools.m in Sources */,
 				C9FE58F71B695210002154E4 /* PeripheralCell.m in Sources */,
 				C9ECF1CD1B65C6BD0088E110 /* ATMProgressLayer.m in Sources */,
@@ -654,6 +693,8 @@
 				C9ECF1CB1B65C6BD0088E110 /* ATMHudQueueItem.m in Sources */,
 				C9ECF2141B65C85A0088E110 /* UIImage+Utils.m in Sources */,
 				C9ECF2111B65C85A0088E110 /* NSString+Utils.m in Sources */,
+				C97E09021B69EF1300E9B118 /* UUBar.m in Sources */,
+				C97E09061B69EF1300E9B118 /* UUColor.m in Sources */,
 				C9ECF1CF1B65C6BD0088E110 /* ATMTextLayer.m in Sources */,
 				C9D6152F1B67D6AA003DAC98 /* Data.m in Sources */,
 				C9ECF1D31B65C6BD0088E110 /* LoadMoreTableFooterView.m in Sources */,
@@ -673,10 +714,13 @@
 				C900ABD01B6877EE0018C36B /* SetTempView.m in Sources */,
 				C9ECF20E1B65C85A0088E110 /* HttpDownload.m in Sources */,
 				C9F1EF1B1B671895005C8CF3 /* TIBLECBStandanda.m in Sources */,
+				C97E09051B69EF1300E9B118 /* UUChartLabel.m in Sources */,
 				C9FE58F11B692F20002154E4 /* MenuItemView.m in Sources */,
+				C97E09071B69EF1300E9B118 /* UULineChart.m in Sources */,
 				C9ECF1CE1B65C6BD0088E110 /* ATMSoundFX.m in Sources */,
 				C9126A421B66004A001D3D60 /* CLabel.m in Sources */,
 				C9ECF1E11B65C6BD0088E110 /* MBProgressHUD.m in Sources */,
+				C97E09041B69EF1300E9B118 /* UUChart.m in Sources */,
 				C900ABCA1B6875FA0018C36B /* TimerCell.m in Sources */,
 				C9ECF2081B65C85A0088E110 /* BaseTableViewController.m in Sources */,
 				C9ECF2131B65C85A0088E110 /* UIButton+TitleImage.m in Sources */,
