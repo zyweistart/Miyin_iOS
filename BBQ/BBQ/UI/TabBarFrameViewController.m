@@ -63,7 +63,7 @@
                             [self viewControllerWithTabTitle:@"Tools" image:@"icon-nav-tools" ViewController:self.mToolsViewController],
                             [self viewControllerWithTabTitle:@"Setting" image:@"icon-nav-setting" ViewController:self.mSettingViewController],
                             [self viewControllerWithTabTitle:@"Info" image:@"icon-nav-info" ViewController:self.mInfoViewController], nil];
-    
+    [self setDelegate:self];
     if([[Data Instance]isDemo]){
         self.mDemoTimer=[NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(demoUpdateTimer:) userInfo:nil repeats:YES];
     }
@@ -164,6 +164,8 @@
             }else if([@"false" isEqualToString:alaram]){
                 //停止报警
                 [self stopAlarm];
+                [self.mAlertView setHidden:YES];
+                [self.bgFrame setHidden:YES];
             }else{
                 //某指针报警
                 [self playAlarm];
@@ -238,12 +240,22 @@
 
 - (void)powerOff:(NSString*)content
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.mHomeViewController ConnectedState:NO];
+    [self.mToolsViewController ConnectedState:NO];
+    [self.mInfoViewController ConnectedState:NO];
 }
 
 - (void)demoUpdateTimer:(id)sender
 {
     NSLog(@"DEMO数据每5秒更新一次");
 }
+
+- (void)tabBarController:(UITabBarController*)tabBarController didSelectViewController:(UIViewController*)viewController {
+//    unsigned long newTabIndex = tabBarController.selectedIndex;
+//    [self.mHomeViewController ConnectedState:NO];
+//    [self.mToolsViewController ConnectedState:NO];
+}
+
+
 
 @end

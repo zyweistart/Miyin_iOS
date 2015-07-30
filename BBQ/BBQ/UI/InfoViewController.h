@@ -11,5 +11,6 @@
 @interface InfoViewController : BaseTableViewController
 
 - (void)loadData:(NSArray*)array;
+- (void)ConnectedState:(BOOL)state;
 
 @end

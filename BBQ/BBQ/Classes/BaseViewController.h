@@ -14,6 +14,7 @@
 @property (strong,nonatomic) HttpRequest *hRequest;
 @property (strong,nonatomic) HttpDownload *hDownload;
 @property (strong,nonatomic) AppDelegate *appDelegate;
+@property (strong,nonatomic) UIView *mConnectedPanel;
 
 @property (strong,nonatomic) NSObject<ResultDelegate> *resultDelegate;
 

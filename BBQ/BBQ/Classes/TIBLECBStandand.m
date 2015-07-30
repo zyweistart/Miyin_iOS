@@ -741,6 +741,11 @@ typedef struct {
     
     //NSLog(@"advertisementData = %@",advertisementData);
 
+    //只搜索Grill Now
+    if(![peripheral.name containsString:@"Grill Now"]){
+        return;
+    }
+    
     i = 0 ;
     if (!self.peripherals)      //列表为空，第一次发现新设备
         self.peripherals = [[NSMutableArray alloc] initWithObjects:peripheral,nil];

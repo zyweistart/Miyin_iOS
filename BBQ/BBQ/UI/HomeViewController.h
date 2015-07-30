@@ -27,5 +27,6 @@
 
 - (void)loadData:(NSArray*)array;
 - (void)refreshDataView;
+- (void)ConnectedState:(BOOL)state;
 
 @end

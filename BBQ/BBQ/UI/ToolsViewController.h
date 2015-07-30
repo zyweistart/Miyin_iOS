@@ -20,5 +20,6 @@
 @property (strong,nonatomic)NSMutableArray *dataItemArray;
 
 - (void)loadData:(NSArray*)array;
+- (void)ConnectedState:(BOOL)state;
 
 @end

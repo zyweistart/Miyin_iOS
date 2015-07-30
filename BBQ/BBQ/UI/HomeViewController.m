@@ -18,7 +18,9 @@
 {
     self=[super init];
     if(self){
-        [self cTitle:@"BBQ Connected"];
+        
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
+        
         UIButton *bButton = [[UIButton alloc]init];
         [bButton setFrame:CGRectMake1(0, 0, 22, 30)];
         [bButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
@@ -86,8 +88,23 @@
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
         [self.view addSubview:self.pv1];
+        
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if(![[Data Instance]isDemo]){
+        if (self.appDelegate.bleManager.activePeripheral){
+            if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
+                [self ConnectedState:YES];
+            }else{
+                [self ConnectedState:NO];
+            }
+        }
+    }
 }
 
 - (void)back:(id)sender
@@ -196,6 +213,17 @@
     if(buttonIndex==0){
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+}
+
+- (void)ConnectedState:(BOOL)state
+{
+    if(state){
+        [self cTitle:@"BBQ Connected"];
+    }else{
+        [self cTitle:@"BBQ Unconnected"];
+    }
+    [self.scrollFrameView setHidden:!state];
+    [self.mConnectedPanel setHidden:state];
 }
 
 @end

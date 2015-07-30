@@ -18,7 +18,7 @@
     self=[super init];
     if(self){
         [self cTitle:@"Tools"];
-        
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
         self.scrollFrameView=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [self.scrollFrameView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.scrollFrameView setContentSize:CGSizeMake1(320, 190*4)];
@@ -48,6 +48,20 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if(![[Data Instance]isDemo]){
+        if (self.appDelegate.bleManager.activePeripheral){
+            if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
+                [self ConnectedState:YES];
+            }else{
+                [self ConnectedState:NO];
+            }
+        }
+    }
+}
+
 - (void)loadData:(NSArray*)array
 {
     self.dataItemArray=[[NSMutableArray alloc]initWithArray:array];
@@ -59,6 +73,12 @@
     [self.mChartItemView3 loadData:d3];
     NSDictionary *d4=[array objectAtIndex:3];
     [self.mChartItemView4 loadData:d4];
+}
+
+- (void)ConnectedState:(BOOL)state
+{
+    [self.scrollFrameView setHidden:!state];
+    [self.mConnectedPanel setHidden:state];
 }
 
 @end

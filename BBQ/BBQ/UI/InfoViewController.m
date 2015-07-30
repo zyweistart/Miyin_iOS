@@ -29,6 +29,22 @@
     return self;
 }
 
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if(![[Data Instance]isDemo]){
+        if (self.appDelegate.bleManager.activePeripheral){
+            if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
+                [self ConnectedState:YES];
+            }else{
+                [self ConnectedState:NO];
+            }
+        }
+    }
+}
+
 - (void)loadData:(NSArray*)array
 {
     self.dataItemArray=[[NSMutableArray alloc]initWithArray:array];
@@ -87,6 +103,12 @@
     }else{
         return @"";
     }
+}
+
+- (void)ConnectedState:(BOOL)state
+{
+    [self.tableView setHidden:!state];
+    [self.mConnectedPanel setHidden:state];
 }
 
 @end
