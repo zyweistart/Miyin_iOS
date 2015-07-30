@@ -53,8 +53,10 @@
     if([self.appDelegate.bleManager.peripherals count]>0){
         if(self.appDelegate.bleManager.activePeripheral){
             if(self.appDelegate.bleManager.activePeripheral.state!=CBPeripheralStateConnected){
-                [self startScan];
-                return;
+                if(![@"" isEqualToString:[[Data Instance]getAutoConnected]]){
+                    [self startScan];
+                    return;
+                }
             }
         }
         [self.tableView reloadData];
@@ -170,8 +172,6 @@
         [self RefreshStateStart];
         [self ScanPeripheral];
         MODEL = MODEL_NORMAL;
-    }else{
-        [Common alert:@"Bluetooth is not On"];
     }
 }
 

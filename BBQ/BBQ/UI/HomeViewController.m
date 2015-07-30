@@ -231,6 +231,12 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex==0){
+        if (self.appDelegate.bleManager.activePeripheral) {
+            if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
+                [[self.appDelegate.bleManager CM] cancelPeripheralConnection:[self.appDelegate.bleManager activePeripheral]];
+                [[Data Instance]setAutoConnected:nil];
+            }
+        }
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
