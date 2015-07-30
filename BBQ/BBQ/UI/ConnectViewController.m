@@ -279,6 +279,7 @@
 {
     [[Data Instance] setIsDemo:YES];
     TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
+    [[Data Instance]setMTabBarFrameViewController:mTabBarFrameViewController];
     [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
     }];
 }
@@ -287,6 +288,7 @@
 {
     [[Data Instance] setIsDemo:NO];
     TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
+    [[Data Instance]setMTabBarFrameViewController:mTabBarFrameViewController];
     [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
         NSString *uuid=self.appDelegate.bleManager.activePeripheral.identifier.UUIDString;
         [[Data Instance]setAutoConnected:uuid];

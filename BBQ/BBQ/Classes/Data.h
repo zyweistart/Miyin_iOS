@@ -14,6 +14,8 @@
 #define CHARTCURVALUE @"CHARTCURVALUE"
 #define CHARTSETVALUE @"CHARTSETVALUE"
 
+#import "TabBarFrameViewController.h"
+
 @interface Data : NSObject
 
 + (Data *) Instance;
@@ -23,6 +25,7 @@
 @property (strong,nonatomic) NSMutableArray *currentTValue;
 @property (strong,nonatomic) NSMutableDictionary *settValue;
 @property (strong,nonatomic) NSMutableDictionary *chartData;
+@property (strong,nonatomic) TabBarFrameViewController *mTabBarFrameViewController;
 
 + (NSString*)getTemperatureValue:(int)v;
 

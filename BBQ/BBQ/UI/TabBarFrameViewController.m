@@ -189,7 +189,9 @@
             NSString *alaram=[resultJSON objectForKey:@"alarm"];
             if([@"fire" isEqualToString:alaram]){
                 //火警
-                [self playAlarm];
+                if(![self playAlarm]){
+                    [self senderNotification:NSLocalizedString(@"The grill has flared up!",nil)];
+                }
                 [self.mAlertView.lblTitle setText:@"Warning"];
                 [self.mAlertView.lblMessage setText:NSLocalizedString(@"The grill has flared up!",nil)];
                 [self.mAlertView setType:2];
@@ -201,7 +203,9 @@
                 [self.bgFrame setHidden:YES];
             }else{
                 //某指针报警
-                [self playAlarm];
+                if(![self playAlarm]){
+                    [self senderNotification:NSLocalizedString(@"Temperature is high!",nil)];
+                }
                 [self.mAlertView.lblTitle setText:[NSString stringWithFormat:@"%@-Warning",alaram]];
                 [self.mAlertView.lblMessage setText:NSLocalizedString(@"Temperature is high!",nil)];
                 [self.mAlertView setType:1];
@@ -239,7 +243,7 @@
 }
 
 //播放报警声音
-- (void)playAlarm
+- (BOOL)playAlarm
 {
     [self stopAlarm];
     NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.wav",[[Data Instance]getAlarm]]];
@@ -249,8 +253,35 @@
     [self.mAVAudioPlayer setVolume:1.0];
     [self.mAVAudioPlayer setNumberOfLoops:-1];
     if([self.mAVAudioPlayer prepareToPlay]){
-        [self.mAVAudioPlayer play];
+        if([self.mAVAudioPlayer play]){
+            return YES;
+        }
     }
+    return NO;
+}
+
+- (void)senderNotification:(NSString*)message
+{
+    UILocalNotification *notification=[[UILocalNotification alloc] init];
+    if (notification!=nil) {
+        notification.fireDate=[NSDate new];
+        //循环次数，kCFCalendarUnitWeekday一周一次
+        notification.repeatInterval=0;
+        notification.timeZone=[NSTimeZone defaultTimeZone];
+        //应用的红色数字
+        notification.applicationIconBadgeNumber=1;
+        //声音，可以换成alarm.soundName = @"myMusic.caf"
+        notification.soundName= UILocalNotificationDefaultSoundName;
+        //提示信息 弹出提示框
+        notification.alertBody=message;
+        //提示框按钮
+        notification.alertAction = NSLocalizedString(@"OK",nil);
+        //添加额外的信息
+        NSDictionary *infoDict = [NSDictionary dictionaryWithObject:@"alarm" forKey:@"type"];
+        notification.userInfo = infoDict;
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    }
+
 }
 
 //报警声音停止

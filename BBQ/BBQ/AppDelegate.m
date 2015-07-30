@@ -19,6 +19,10 @@
 {
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    }
+    application.applicationIconBadgeNumber = 0;
     self.bleManager = [[TIBLECBStandand alloc]init];
     [self.bleManager controlSetup:1];
     //计算各屏幕XY大小
@@ -44,6 +48,22 @@
     [self.window makeKeyAndVisible];
     
     return YES;
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    application.applicationIconBadgeNumber = 0;
+    NSDictionary *ui=notification.userInfo;
+    if([@"alarm" isEqualToString:[ui objectForKey:@"type"]]){
+        if([[Data Instance]mTabBarFrameViewController]){
+            [[[Data Instance]mTabBarFrameViewController]playAlarm];
+        }
+    }
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    application.applicationIconBadgeNumber = 0;
 }
 
 - (void)sendData:(NSString*)message

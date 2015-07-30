@@ -21,7 +21,7 @@
 
 @property BOOL isDemo;
 
-- (void)playAlarm;
+- (BOOL)playAlarm;
 - (void)AlertShow;
 
 @end
