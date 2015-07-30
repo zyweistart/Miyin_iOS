@@ -118,7 +118,7 @@
         if(width>hWidth){
             width=hWidth;
         }
-        [self.lblCurrentSamllCentigrade setFrame:CGRectMake1(40+width, 5, 60, 20)];
+        [self.lblCurrentSamllCentigrade setFrame:CGRectMake1(55+width, 5, 60, 20)];
         [self.viewCentigrade setFrame:CGRectMake1(2, 2, width, 16)];
     }
 }
