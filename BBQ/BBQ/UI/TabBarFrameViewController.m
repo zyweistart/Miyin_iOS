@@ -168,6 +168,7 @@
             //温度单位
             [[Data Instance]setCf:[resultJSON objectForKey:@"cf"]];
             [self.mHomeViewController refreshDataView];
+            [self.mInfoViewController.tableView reloadData];
         }else if([allKeys containsObject:@"sett"]){
             //温度设置值
             NSDictionary *data=[resultJSON objectForKey:@"sett"];
