@@ -9,17 +9,7 @@
 #import "BaseTableViewController.h"
 #import "MBProgressHUD.h"
 
-enum MODEl_STATE
-{
-    MODEL_NORMAL = 0,//normal
-    MODEL_CONNECTING = 1,//连接中
-    MODEL_SCAN = 2,//扫描
-    MODEL_CONECTED = 3,//连接
-};
-
-@interface ConnectViewController : BaseTableViewController {
-    int MODEL;
-}
+@interface ConnectViewController : BaseTableViewController
 
 @property(strong,nonatomic)MBProgressHUD *mMBProgressHUD;
 

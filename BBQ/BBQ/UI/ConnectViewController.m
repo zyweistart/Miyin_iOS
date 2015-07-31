@@ -19,14 +19,12 @@
     UILabel *lblState;
 }
 
-- (id)init{
+- (id)init
+{
     self=[super init];
     if(self){
-        
         [self ConnectedState:NO];
-        
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
-        
         [self RefreshStateNormal];
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
         [self.tableView setBackgroundColor:[UIColor clearColor]];
@@ -103,7 +101,6 @@
     NSString *uuid=cbPeripheral.identifier.UUIDString;
     [cell.lblAddress setText:uuid];
     [cell setAccessoryType:UITableViewCellAccessoryNone];
-    
     if(self.appDelegate.bleManager.activePeripheral){
         if ([uuid isEqualToString:self.appDelegate.bleManager.activePeripheral.identifier.UUIDString]) {
             if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
@@ -112,15 +109,9 @@
                 //如果已经连接则显示连接状态
                 [cell.lblAddress setText:NSLocalizedString(@"Connected",nil)];
                 [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-                [self performSelector:@selector(goMainPage) withObject:nil afterDelay:1.0];
             } else if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
                 [cell.lblAddress setText:NSLocalizedString(@"Connecting",nil)];
             }
-        }
-    }else{
-        if([uuid isEqualToString:[[Data Instance]getAutoConnected]]){
-            //自动连接
-            [self connected:cbPeripheral];
         }
     }
     return  cell;
@@ -146,6 +137,7 @@
     [self connected:cbPeripheral];
 }
 
+//连接到设备
 - (void)connected:(CBPeripheral*)cbPeripheral
 {
     [lblState setText:NSLocalizedString(@"Connecting...",nil)];
@@ -178,6 +170,15 @@
     }
 }
 
+- (void)ConnectedState:(BOOL)state
+{
+    if(state){
+        [self cTitle:NSLocalizedString(@"BBQ Connected",nil)];
+    }else{
+        [self cTitle:NSLocalizedString(@"BBQ Unconnected",nil)];
+    }
+}
+
 //开始扫描
 - (void)startScan
 {
@@ -185,14 +186,7 @@
         [self initNotification];
         [self RefreshStateStart];
         [self ScanPeripheral];
-        MODEL = MODEL_NORMAL;
     }
-}
-
-//获取数据
-- (void)startGetData
-{
-    [self.appDelegate.bleManager notification:0xFFE0 characteristicUUID:0xFFE4 p:self.appDelegate.bleManager.activePeripheral on:YES];
 }
 
 - (void)ScanPeripheral
@@ -252,26 +246,32 @@
 }
 
 //发现设备
-- (void)bleDeviceWithRSSIFound:(NSNotification *) notification
+- (void)bleDeviceWithRSSIFound:(NSNotification*)notification
 {
-    NSLog(@"发现新的设备%@",[notification object]);
     [self.tableView reloadData];
-    [self RefreshStateNormal];
+    for(CBPeripheral *cp in self.appDelegate.bleManager.peripherals){
+        //判断是否存在自动连接设备
+        if([cp.identifier.UUIDString isEqualToString:[[Data Instance]getAutoConnected]]){
+            [self connected:cp];
+            [self RefreshStateNormal];
+            return;
+        }
+    }
 }
 
 //连接成功
 - (void)didConectedbleDevice:(CBPeripheral *)peripheral
 {
-    NSLog(@"BLE设备连接成功");
-    MODEL = MODEL_CONNECTING ;
-    [self.tableView reloadData];
+    //连接成功后需立即查询蓝牙服务
     [self.appDelegate.bleManager.activePeripheral discoverServices:nil];
+    //自动存储连接信息方便下次连接
+    NSString *uuid=self.appDelegate.bleManager.activePeripheral.identifier.UUIDString;
+    [[Data Instance]setAutoConnected:uuid];
 }
 
-//扫描ble设备
+//停止设备扫描
 - (void)stopScanBLEDevice:(CBPeripheral *)peripheral
 {
-    NSLog(@" BLE外设 列表 被更新 ！\r\n");
     [self.tableView reloadData];
     [self RefreshStateNormal];
 }
@@ -279,16 +279,13 @@
 //服务发现完成之后的回调方法
 - (void)ServiceFoundOver:(CBPeripheral *)peripheral
 {
-    NSLog(@" 获取所有的服务 ");
-    MODEL = MODEL_SCAN;
+    [self performSelector:@selector(goMainPage) withObject:nil afterDelay:1.0];
 }
 
 //成功扫描所有服务特征值
 - (void)DownloadCharacteristicOver:(CBPeripheral *)peripheral
 {
-    NSLog(@" 获取所有的特征值 ! \r\n");
-    MODEL = MODEL_CONECTED;
-    [self.tableView reloadData];
+    NSLog(@"获取所有的特征值");
 }
 
 - (void)goDemo
@@ -306,18 +303,7 @@
     TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
     [[Data Instance]setMTabBarFrameViewController:mTabBarFrameViewController];
     [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
-        NSString *uuid=self.appDelegate.bleManager.activePeripheral.identifier.UUIDString;
-        [[Data Instance]setAutoConnected:uuid];
     }];
-}
-
-- (void)ConnectedState:(BOOL)state
-{
-    if(state){
-        [self cTitle:NSLocalizedString(@"BBQ Connected",nil)];
-    }else{
-        [self cTitle:NSLocalizedString(@"BBQ Unconnected",nil)];
-    }
 }
 
 @end

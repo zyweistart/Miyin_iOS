@@ -2,12 +2,12 @@
 #import <CoreBluetooth/CBService.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-//连接设备成功
-#define NOTIFICATION_DIDCONNECTEDBLEDEVICE @"DIDCONNECTEDBLEDEVICE"
 //扫描超时发出
 #define NOTIFICATION_STOPSCAN @"STOPSCAN"
 //发现设备发出通知
 #define NOTIFICATION_BLEDEVICEWITHRSSIFOUND @"BLEDEVICEWITHRSSIFOUND"
+//连接设备成功
+#define NOTIFICATION_DIDCONNECTEDBLEDEVICE @"DIDCONNECTEDBLEDEVICE"
 //服务发现完成之后的回调方法
 #define NOTIFICATION_SERVICEFOUNDOVER @"SERVICEFOUNDOVER"
 //成功扫描所有服务特征值
@@ -26,11 +26,11 @@
     Boolean isScan;
 }
 #pragma mark -----模型类的属性声明-----
-//可变长表格阵列，用来保存扫描到的所有 CBPeripheral 对象指针
+//发现的设备列表
 @property (strong, nonatomic) NSMutableArray *peripherals;
 //BLE中心管理器对象指针
 @property (strong, nonatomic) CBCentralManager *CM;
-//当前已进入连接状态的外围设备对象指针
+//当前已进入连接状态的外围设备对象
 @property (strong, nonatomic) CBPeripheral *activePeripheral;
 //当前正在操作的特征值缓存
 @property (strong, nonatomic) NSMutableArray *activeCharacteristics;

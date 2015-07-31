@@ -283,6 +283,7 @@
         if (self.appDelegate.bleManager.activePeripheral) {
             if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
                 [[self.appDelegate.bleManager CM] cancelPeripheralConnection:[self.appDelegate.bleManager activePeripheral]];
+                self.appDelegate.bleManager.activePeripheral = nil;
                 [[Data Instance]setAutoConnected:nil];
             }
         }
