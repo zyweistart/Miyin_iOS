@@ -73,7 +73,7 @@
             NSInteger t=totalSecond/60;
             NSString *timerV=[NSString stringWithFormat:@"%ldm",t];
             if(t>60){
-                timerV=[NSString stringWithFormat:@"%ldh",t/60];
+                timerV=[NSString stringWithFormat:@"%ldh:%ldm",t/60,t%60];
             }
             BOOL flag=YES;
             for(NSDictionary *d in array){
@@ -86,7 +86,7 @@
                 [chDataValue setObject:timerV forKey:CHARTTIMER];
                 [array addObject:chDataValue];
             }
-            //最多只显示8条
+            //最多只显示
             NSMutableArray *tmpArray=[NSMutableArray new];
             if([array count]>600){
                 tmpArray=[NSMutableArray new];
@@ -97,7 +97,7 @@
                 tmpArray=[NSMutableArray arrayWithArray:array];
             }
             
-            [[[Data Instance]chartData]setObject:array forKey:self.currentKey];
+            [[[Data Instance]chartData]setObject:tmpArray forKey:self.currentKey];
             
             [self createChartView];
             

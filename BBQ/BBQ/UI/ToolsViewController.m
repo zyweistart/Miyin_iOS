@@ -139,6 +139,7 @@
     }else if(tag==4){
         [self.mChartItemLandView loadData:self.mChartItemView4.currentData];
     }
+    [self.mChartItemLandView createChartView];
 }
 
 - (void)frmeHide:(id)sender
