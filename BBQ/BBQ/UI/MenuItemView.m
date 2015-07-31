@@ -45,10 +45,10 @@
         [self.viewCentigrade setBackgroundColor:[UIColor redColor]];
         [lineView addSubview:self.viewCentigrade];
         
-        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 80, 60, 20) Text:@"Current"];
+        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 80, 60, 20) Text:NSLocalizedString(@"Current",nil)];
         [lbl setFont:[UIFont systemFontOfSize:15]];
         [self.frameView addSubview:lbl];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 100, 50, 20) Text:@"Temp"];
+        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 100, 50, 20) Text:NSLocalizedString(@"Temp",nil)];
         [lbl setFont:[UIFont systemFontOfSize:15]];
         [self.frameView addSubview:lbl];
         
@@ -61,9 +61,9 @@
         UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(45, 125, 155, 1)];
         [line setBackgroundColor:DEFAULTITLECOLOR(160)];
         [self.frameView addSubview:line];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 130, 50, 20) Text:@"Set"];
+        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 130, 50, 20) Text:NSLocalizedString(@"Set",nil)];
         [self.frameView addSubview:lbl];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 150, 50, 20) Text:@"Temp"];
+        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 150, 50, 20) Text:NSLocalizedString(@"Temp",nil)];
         [self.frameView addSubview:lbl];
         
         self.lblHighestCentigrade=[[UIButton alloc]initWithFrame:CGRectMake1(100, 130, 100, 40)];

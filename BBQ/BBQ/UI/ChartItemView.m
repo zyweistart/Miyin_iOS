@@ -40,7 +40,7 @@
         [self.lblCFType setTextColor:DEFAULTITLECOLOR(150)];
         [self.topLabelView addSubview:self.lblCFType];
         UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(80, 0, 70, 20)];
-        [lbl setText:@"Current Temp"];
+        [lbl setText:NSLocalizedString(@"Current Temp",nil)];
         [lbl setFont:[UIFont systemFontOfSize:12]];
         [lbl setTextColor:DEFAULTITLECOLOR(150)];
         [self.topLabelView addSubview:lbl];
@@ -48,7 +48,7 @@
         [CurrentTempLine setBackgroundColor:DEFAULTITLECOLORRGB(7, 166, 206)];
         [self.topLabelView addSubview:CurrentTempLine];
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(185, 0, 50, 20)];
-        [lbl setText:@"Set Temp"];
+        [lbl setText:NSLocalizedString(@"Set Temp",nil)];
         [lbl setFont:[UIFont systemFontOfSize:12]];
         [lbl setTextColor:DEFAULTITLECOLOR(150)];
         [self.topLabelView addSubview:lbl];
@@ -56,13 +56,18 @@
         [SetTempLine setBackgroundColor:DEFAULTITLECOLORRGB(210, 91, 44)];
         [self.topLabelView addSubview:SetTempLine];
         
-        self.lineChartView = [[PNLineChartView alloc]initWithFrame:CGRectMake1(40,20, 275, 160)];
+        self.lineChartView = [[PNLineChartView alloc]initWithFrame:CGRectMake1(40,20, 230, 160)];
         [self.lineChartView setBackgroundColor:[UIColor whiteColor]];
         [self.frameView addSubview:self.lineChartView];
         self.lineChartView.min = 0;
         self.lineChartView.max = 538;
         self.lineChartView.interval = (self.lineChartView.max-self.lineChartView.min)/self.lineChartView.numberOfVerticalElements;
-        
+        self.lblTimerUnit=[[UILabel alloc]initWithFrame:CGRectMake1(270, 130, 45, 20)];
+        [self.lblTimerUnit setText:NSLocalizedString(@"Timer(M)",nil)];
+        [self.lblTimerUnit setFont:[UIFont systemFontOfSize:12]];
+        [self.lblTimerUnit setTextColor:DEFAULTITLECOLOR(150)];
+        [self.lblTimerUnit setTextAlignment:NSTextAlignmentCenter];
+        [self.frameView addSubview:self.lblTimerUnit];
         totalSecond=0;
         if(self.mTimer==nil){
             self.mTimer=[NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
@@ -142,9 +147,9 @@
     [self.lineChartView clearPlot];
     [Data getTemperatureValue:2];
     if([@"f" isEqualToString:[[Data Instance]getCf]]){
-        [self.lblCFType setText:@"Temp(°F)"];
+        [self.lblCFType setText:[NSString stringWithFormat:@"%@(°F)",NSLocalizedString(@"Temp",nil)]];
     }else{
-        [self.lblCFType setText:@"Temp(°C)"];
+        [self.lblCFType setText:[NSString stringWithFormat:@"%@(°C)",NSLocalizedString(@"Temp",nil)]];
     }
     //x轴
     NSMutableArray *xAxisValues = [NSMutableArray array];

@@ -8,7 +8,7 @@
 #pragma mark MACRO
 
 #define POINT_CIRCLE 6.0f
-#define DEVICE_WIDTH CGWidth(320)
+//#define DEVICE_WIDTH CGWidth(320)
 #define FLOAT_NUMBER_FORMATTER_STRING  @"%.2f"
 
 @interface PNLineChartView ()
@@ -182,8 +182,8 @@
     if(_contentScroll.y<0){
         _contentScroll.y=0;
     }
-    if (-_contentScroll.x>(self.pointerInterval*(self.xAxisValues.count +3)-DEVICE_WIDTH)) {
-        _contentScroll.x=-(self.pointerInterval*(self.xAxisValues.count +3)-DEVICE_WIDTH);
+    if (-_contentScroll.x>(self.pointerInterval*(self.xAxisValues.count +3)-self.axisLineSizeWidth)) {
+        _contentScroll.x=-(self.pointerInterval*(self.xAxisValues.count +3)-self.axisLineSizeWidth);
     }
     if (_contentScroll.y>self.frame.size.height/2) {
         _contentScroll.y=self.frame.size.height/2;
