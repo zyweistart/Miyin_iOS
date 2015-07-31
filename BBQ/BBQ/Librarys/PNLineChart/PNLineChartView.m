@@ -82,6 +82,8 @@
     self.axisLineWidth = AXIX_LINE_WIDTH;
     
     self.floatNumberFormatterString = FLOAT_NUMBER_FORMATTER_STRING;
+    
+    self.horizontalLineInterval=(self.frame.size.height-self.axisBottomLinetHeight-10)/5;
 }
 
 - (instancetype)init {
@@ -133,12 +135,15 @@
     
     [self.plots addObject:newPlot];
     
-    [self layoutIfNeeded];
+//    [self layoutIfNeeded];
+    
+    [self setNeedsDisplay];
 }
 
 -(void)clearPlot{
     if (self.plots) {
         [self.plots removeAllObjects];
+        [self setNeedsDisplay];
     }
 }
 
@@ -179,7 +184,7 @@
         
         NSInteger count = [numberString lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
         
-        CGContextShowTextAtPoint(context, 0, verticalLine - self.xAxisFontSize/2, [numberString UTF8String], count);
+        CGContextShowTextAtPoint(context, 3, verticalLine - self.xAxisFontSize/2, [numberString UTF8String], count);
     }
     
     
@@ -258,7 +263,6 @@
         if (width<startWidth) {
             continue;
         }
-
         
         NSInteger count = [[self.xAxisValues objectAtIndex:i] lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
         CGContextShowTextAtPoint(context, width, height, [[self.xAxisValues objectAtIndex:i] UTF8String], count);

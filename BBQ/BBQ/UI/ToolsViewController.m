@@ -113,6 +113,15 @@
     }
 }
 
+- (void)refreshView
+{
+    [self.mChartItemView1 loadChartData];
+    [self.mChartItemView2 loadChartData];
+    [self.mChartItemView3 loadChartData];
+    [self.mChartItemView4 loadChartData];
+    [self.mChartItemLandView loadChartData];
+}
+
 - (void)ConnectedState:(BOOL)state
 {
     [self.scrollFrameView setHidden:!state];
@@ -139,7 +148,7 @@
     }else if(tag==4){
         [self.mChartItemLandView loadData:self.mChartItemView4.currentData];
     }
-    [self.mChartItemLandView createChartView];
+    [self.mChartItemLandView loadChartData];
 }
 
 - (void)frmeHide:(id)sender

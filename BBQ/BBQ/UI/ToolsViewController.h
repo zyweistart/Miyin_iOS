@@ -22,5 +22,6 @@
 
 - (void)ConnectedState:(BOOL)state;
 - (void)loadData:(NSArray*)array;
+- (void)refreshView;
 
 @end

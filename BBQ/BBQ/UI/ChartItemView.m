@@ -33,12 +33,39 @@
         [self.lblTitle setTextAlignment:NSTextAlignmentCenter];
         [self.frameView addSubview:self.lblTitle];
         
-        [self createChartView];
+        self.lblCurrentTemp=[[UILabel alloc]initWithFrame:CGRectMake1(45, 0, 80, 20)];
+        [self.lblCurrentTemp setText:@"Current Temp"];
+        [self.lblCurrentTemp setFont:[UIFont systemFontOfSize:14]];
+        [self.lblCurrentTemp setTextColor:DEFAULTITLECOLOR(150)];
+        [self.frameView addSubview:self.lblCurrentTemp];
+        
+        UIView *CurrentTempLine=[[UIView alloc]initWithFrame:CGRectMake1(130, 9, 30, 2)];
+        [CurrentTempLine setBackgroundColor:DEFAULTITLECOLORRGB(7, 166, 206)];
+        [self.frameView addSubview:CurrentTempLine];
+        
+        self.lblCurrentTemp=[[UILabel alloc]initWithFrame:CGRectMake1(170, 0, 60, 20)];
+        [self.lblCurrentTemp setText:@"Set Temp"];
+        [self.lblCurrentTemp setFont:[UIFont systemFontOfSize:14]];
+        [self.lblCurrentTemp setTextColor:DEFAULTITLECOLOR(150)];
+        [self.frameView addSubview:self.lblCurrentTemp];
+        
+        UIView *SetTempLine=[[UIView alloc]initWithFrame:CGRectMake1(230, 9, 30, 2)];
+        [SetTempLine setBackgroundColor:DEFAULTITLECOLORRGB(210, 91, 44)];
+        [self.frameView addSubview:SetTempLine];
+        
+        self.lineChartView = [[PNLineChartView alloc]initWithFrame:CGRectMake1(40,20, 275, 160)];
+        [self.lineChartView setBackgroundColor:[UIColor whiteColor]];
+        [self.frameView addSubview:self.lineChartView];
+        self.lineChartView.axisLeftLineWidth = CGWidth(35);
+        self.lineChartView.min = 0;
+        self.lineChartView.max = 538;
+        self.lineChartView.interval = (self.lineChartView.max-self.lineChartView.min)/5;
         
         totalSecond=0;
         if(self.mTimer==nil){
             self.mTimer=[NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
         }
+        [self loadChartData];
     }
     return self;
 }
@@ -99,7 +126,7 @@
             
             [[[Data Instance]chartData]setObject:tmpArray forKey:self.currentKey];
             
-            [self createChartView];
+             [self loadChartData];
             
             break;
         }
@@ -107,27 +134,11 @@
     
 }
 
-- (void)createChartView
+- (void)loadChartData
 {
-    if (self.lineChartView) {
-        [self.lineChartView removeFromSuperview];
-        self.lineChartView = nil;
-    }
-    self.lineChartView = [[PNLineChartView alloc]initWithFrame:CGRectMake1(40,0, 275, 180)];
-    [self.lineChartView setBackgroundColor:[UIColor whiteColor]];
-    [self.frameView addSubview:self.lineChartView];
-    
-    self.lineChartView.axisLeftLineWidth = 30;
-    self.lineChartView.min = 0;
-    self.lineChartView.max = 538;
-    self.lineChartView.interval = (self.lineChartView.max-self.lineChartView.min)/5;
-    NSMutableArray* yAxisValues = [@[] mutableCopy];
-    for (int i=0; i<6; i++) {
-        NSString *value = [NSString stringWithFormat:@"%.2f", self.lineChartView.min+self.lineChartView.interval*i];
-        [yAxisValues addObject:value];
-    }
-    self.lineChartView.yAxisValues = yAxisValues;
-    
+    //清除旧的位置点
+    [self.lineChartView clearPlot];
+    //x轴
     NSMutableArray *xAxisValues = [NSMutableArray array];
     NSArray *dlV=[[[Data Instance]chartData]objectForKey:self.currentKey];
     for(int i=0;i<[dlV count];i++){
@@ -136,6 +147,17 @@
         [xAxisValues addObject:str];
     }
     self.lineChartView.xAxisValues = xAxisValues;
+    //y轴
+    NSMutableArray* yAxisValues = [@[] mutableCopy];
+    for (int i=0; i<6; i++) {
+        NSString *value = [NSString stringWithFormat:@"%.2f", self.lineChartView.min+self.lineChartView.interval*i];
+        if([@"f" isEqualToString:[[Data Instance]getCf]]){
+            [yAxisValues addObject:[NSString stringWithFormat:@"%d",[value intValue]*9/5+32]];
+        }else{
+            [yAxisValues addObject:value];
+        }
+    }
+    self.lineChartView.yAxisValues = yAxisValues;
     
     NSMutableArray *plottingDataValues1 = [NSMutableArray array];
     NSMutableArray *plottingDataValues2 = [NSMutableArray array];
@@ -145,16 +167,16 @@
         [plottingDataValues1 addObject:[NSString stringWithFormat:@"%@",[vv objectForKey:CHARTCURVALUE]]];
         [plottingDataValues2 addObject:[NSString stringWithFormat:@"%@",[vv objectForKey:CHARTSETVALUE]]];
     }
-    
+    //当前温度值
     PNPlot *plot1 = [[PNPlot alloc] init];
     plot1.plottingValues = plottingDataValues1;
-    plot1.lineColor = [UIColor blueColor];
+    plot1.lineColor = DEFAULTITLECOLORRGB(7, 166, 206);
     plot1.lineWidth = 0.5;
     [self.lineChartView addPlot:plot1];
-    
+    //设定温度值
     PNPlot *plot2 = [[PNPlot alloc] init];
     plot2.plottingValues = plottingDataValues2;
-    plot2.lineColor = [UIColor redColor];
+    plot2.lineColor = DEFAULTITLECOLORRGB(210, 91, 44);
     plot2.lineWidth = 1;
     [self.lineChartView  addPlot:plot2];
 }

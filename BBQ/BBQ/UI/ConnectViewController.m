@@ -53,7 +53,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [self performSelector:@selector(startScan) withObject:nil afterDelay:0.5];
+    [self performSelector:@selector(startScan) withObject:nil afterDelay:0.5];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -112,6 +112,7 @@
                 //如果已经连接则显示连接状态
                 [cell.lblAddress setText:NSLocalizedString(@"Connected",nil)];
                 [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+                [self performSelector:@selector(goMainPage) withObject:nil afterDelay:1.0];
             } else if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
                 [cell.lblAddress setText:NSLocalizedString(@"Connecting",nil)];
             }
@@ -272,6 +273,8 @@
 - (void)bleDeviceWithRSSIFound:(NSNotification *) notification
 {
     NSLog(@" 更新RSSI 值 ！\r\n");
+    [self.tableView reloadData];
+    [self RefreshStateNormal];
 }
 
 //服务发现完成之后的回调方法

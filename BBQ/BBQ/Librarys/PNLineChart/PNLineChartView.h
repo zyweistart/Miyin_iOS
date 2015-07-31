@@ -42,5 +42,6 @@
  *  @param newPlot the Plot that you want to draw on the Graph.
  */
 - (void)addPlot:(PNPlot *)newPlot;
+-(void)commonInit;
 -(void)clearPlot;
 @end
