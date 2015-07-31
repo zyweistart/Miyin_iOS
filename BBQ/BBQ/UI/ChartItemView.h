@@ -7,16 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UUChart.h"
+#import "PNLineChartView.h"
+#import "PNPlot.h"
 
-@interface ChartItemView : UIView<UUChartDataSource>
+@interface ChartItemView : UIView
 
 @property (strong,nonatomic)NSDictionary *currentData;
 @property (strong,nonatomic)UIView *frameView;
 @property (strong,nonatomic)UILabel *lblTitle;
-@property (strong,nonatomic)UUChart *chartView;
 @property (strong,nonatomic)NSTimer *mTimer;
 @property (strong,nonatomic)NSString *currentKey;
+@property (strong,nonatomic)PNLineChartView *lineChartView;
 
 - (void)loadData:(NSDictionary*)data;
 

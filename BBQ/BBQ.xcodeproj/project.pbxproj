@@ -77,6 +77,8 @@
 		C9F1EF211B67491E005C8CF3 /* TIBLECBStandand.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF201B67491E005C8CF3 /* TIBLECBStandand.m */; };
 		C9F1EF241B677004005C8CF3 /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF231B677004005C8CF3 /* ConnectViewController.m */; };
 		C9F311AF1B6B044500D59F95 /* Localisator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F311AE1B6B044500D59F95 /* Localisator.m */; };
+		C9F311B51B6B263E00D59F95 /* PNLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F311B21B6B263E00D59F95 /* PNLineChartView.m */; };
+		C9F311B61B6B263E00D59F95 /* PNPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F311B41B6B263E00D59F95 /* PNPlot.m */; };
 		C9F488451B6A35540037A9D8 /* MenuItemLandView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F488441B6A35540037A9D8 /* MenuItemLandView.m */; };
 		C9FE58E71B68F656002154E4 /* Beep1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E21B68F656002154E4 /* Beep1.wav */; };
 		C9FE58E81B68F656002154E4 /* Beep2.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E31B68F656002154E4 /* Beep2.wav */; };
@@ -234,6 +236,10 @@
 		C9F1EF231B677004005C8CF3 /* ConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
 		C9F311AD1B6B044400D59F95 /* Localisator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localisator.h; sourceTree = "<group>"; };
 		C9F311AE1B6B044500D59F95 /* Localisator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Localisator.m; sourceTree = "<group>"; };
+		C9F311B11B6B263E00D59F95 /* PNLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartView.h; sourceTree = "<group>"; };
+		C9F311B21B6B263E00D59F95 /* PNLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartView.m; sourceTree = "<group>"; };
+		C9F311B31B6B263E00D59F95 /* PNPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPlot.h; sourceTree = "<group>"; };
+		C9F311B41B6B263E00D59F95 /* PNPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPlot.m; sourceTree = "<group>"; };
 		C9F488431B6A35540037A9D8 /* MenuItemLandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemLandView.h; sourceTree = "<group>"; };
 		C9F488441B6A35540037A9D8 /* MenuItemLandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemLandView.m; sourceTree = "<group>"; };
 		C9FE58E21B68F656002154E4 /* Beep1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep1.wav; sourceTree = "<group>"; };
@@ -463,12 +469,13 @@
 		C9ECF1951B65C2290088E110 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
-				C97E08F51B69EF1300E9B118 /* UUChart */,
 				C9ECF1971B65C6BD0088E110 /* ASIHTTP */,
 				C9ECF19A1B65C6BD0088E110 /* ATMHud */,
 				C9ECF1A81B65C6BD0088E110 /* EAIntroView */,
 				C9ECF1AD1B65C6BD0088E110 /* EGOTableViewPullRefresh */,
 				C9ECF1C61B65C6BD0088E110 /* MBProgressHUD */,
+				C9F311B01B6B263E00D59F95 /* PNLineChart */,
+				C97E08F51B69EF1300E9B118 /* UUChart */,
 			);
 			path = Librarys;
 			sourceTree = "<group>";
@@ -569,6 +576,17 @@
 				C9ECF1C81B65C6BD0088E110 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		C9F311B01B6B263E00D59F95 /* PNLineChart */ = {
+			isa = PBXGroup;
+			children = (
+				C9F311B11B6B263E00D59F95 /* PNLineChartView.h */,
+				C9F311B21B6B263E00D59F95 /* PNLineChartView.m */,
+				C9F311B31B6B263E00D59F95 /* PNPlot.h */,
+				C9F311B41B6B263E00D59F95 /* PNPlot.m */,
+			);
+			path = PNLineChart;
 			sourceTree = "<group>";
 		};
 		C9FE58E11B68F647002154E4 /* Resource */ = {
@@ -731,6 +749,7 @@
 				C9ECF1C91B65C6BD0088E110 /* Reachability.m in Sources */,
 				C9126A3C1B65FFE3001D3D60 /* MainViewController.m in Sources */,
 				C9ECF1D51B65C6BD0088E110 /* PullTableView.m in Sources */,
+				C9F311B61B6B263E00D59F95 /* PNPlot.m in Sources */,
 				C9FE58EE1B68F70D002154E4 /* DatePickerView.m in Sources */,
 				C9D615341B67E92C003DAC98 /* SwitchCell.m in Sources */,
 				C9F1EF211B67491E005C8CF3 /* TIBLECBStandand.m in Sources */,
@@ -738,6 +757,7 @@
 				C9ECF20E1B65C85A0088E110 /* HttpDownload.m in Sources */,
 				C9F1EF1B1B671895005C8CF3 /* TIBLECBStandanda.m in Sources */,
 				C97E09051B69EF1300E9B118 /* UUChartLabel.m in Sources */,
+				C9F311B51B6B263E00D59F95 /* PNLineChartView.m in Sources */,
 				C9FE58F11B692F20002154E4 /* MenuItemView.m in Sources */,
 				C97E09071B69EF1300E9B118 /* UULineChart.m in Sources */,
 				C9ECF1CE1B65C6BD0088E110 /* ATMSoundFX.m in Sources */,

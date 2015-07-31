@@ -162,7 +162,7 @@
 
 - (void)AnalyticalJson:(NSString*)content
 {
-    NSLog(@"%@",content);
+//    NSLog(@"%@",content);
     receiveSBString=[NSMutableString new];
     NSData *data=[content dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *resultJSON=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];

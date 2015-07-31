@@ -24,12 +24,8 @@
 
 - (void)createChartView
 {
-    if (self.chartView) {
-        [self.chartView removeFromSuperview];
-        self.chartView = nil;
-    }
-    self.chartView = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(CGHeight(80), 0,self.frame.size.height-CGHeight(80), CGWidth(310)) withSource:self withStyle:UUChartLineStyle];
-    [self.chartView showInView:self.frameView];
+    [super createChartView];
+    [self.lineChartView setFrame:CGRectMake(CGHeight(80), 0,self.frame.size.height-CGHeight(80), CGWidth(310))];
 }
 
 @end
