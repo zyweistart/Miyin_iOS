@@ -15,6 +15,7 @@
 @property (strong,nonatomic)NSDictionary *currentData;
 @property (strong,nonatomic)UIView *frameView;
 @property (strong,nonatomic)UILabel *lblTitle;
+@property (strong,nonatomic)UILabel *lblCFType;
 @property (strong,nonatomic)NSTimer *mTimer;
 @property (strong,nonatomic)NSString *currentKey;
 @property (strong,nonatomic)PNLineChartView *lineChartView;

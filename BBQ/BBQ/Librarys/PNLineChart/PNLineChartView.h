@@ -20,6 +20,8 @@
 @property (nonatomic, assign)float  horizontalLineWidth;
 //两个数据点的间距
 @property (nonatomic, assign)float  pointerInterval;
+//x坐标轴宽度
+@property (nonatomic, assign)float  axisLineSizeWidth;
 //y轴的坐标数
 @property (nonatomic, assign)NSInteger numberOfVerticalElements;
 //y轴水平线的颜色

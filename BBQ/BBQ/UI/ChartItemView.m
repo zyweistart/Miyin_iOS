@@ -33,22 +33,26 @@
         [self.lblTitle setTextAlignment:NSTextAlignmentCenter];
         [self.frameView addSubview:self.lblTitle];
         
-        self.topLabelView=[[UIView alloc]initWithFrame:CGRectMake1(45, 0, 230, 20)];
+        self.topLabelView=[[UIView alloc]initWithFrame:CGRectMake1(45, 0, 270, 20)];
         [self.frameView addSubview:self.topLabelView];
-        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 70, 20)];
+        self.lblCFType=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 50, 20)];
+        [self.lblCFType setFont:[UIFont systemFontOfSize:12]];
+        [self.lblCFType setTextColor:DEFAULTITLECOLOR(150)];
+        [self.topLabelView addSubview:self.lblCFType];
+        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(80, 0, 70, 20)];
         [lbl setText:@"Current Temp"];
         [lbl setFont:[UIFont systemFontOfSize:12]];
         [lbl setTextColor:DEFAULTITLECOLOR(150)];
         [self.topLabelView addSubview:lbl];
-        UIView *CurrentTempLine=[[UIView alloc]initWithFrame:CGRectMake1(70, 9, 30, 2)];
+        UIView *CurrentTempLine=[[UIView alloc]initWithFrame:CGRectMake1(150, 9, 30, 2)];
         [CurrentTempLine setBackgroundColor:DEFAULTITLECOLORRGB(7, 166, 206)];
         [self.topLabelView addSubview:CurrentTempLine];
-        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(105, 0, 50, 20)];
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(185, 0, 50, 20)];
         [lbl setText:@"Set Temp"];
         [lbl setFont:[UIFont systemFontOfSize:12]];
         [lbl setTextColor:DEFAULTITLECOLOR(150)];
         [self.topLabelView addSubview:lbl];
-        UIView *SetTempLine=[[UIView alloc]initWithFrame:CGRectMake1(155, 9, 30, 2)];
+        UIView *SetTempLine=[[UIView alloc]initWithFrame:CGRectMake1(235, 9, 30, 2)];
         [SetTempLine setBackgroundColor:DEFAULTITLECOLORRGB(210, 91, 44)];
         [self.topLabelView addSubview:SetTempLine];
         
@@ -57,7 +61,7 @@
         [self.frameView addSubview:self.lineChartView];
         self.lineChartView.min = 0;
         self.lineChartView.max = 538;
-        self.lineChartView.interval = (self.lineChartView.max-self.lineChartView.min)/5;
+        self.lineChartView.interval = (self.lineChartView.max-self.lineChartView.min)/self.lineChartView.numberOfVerticalElements;
         
         totalSecond=0;
         if(self.mTimer==nil){
@@ -136,6 +140,12 @@
 {
     //清除旧的位置点
     [self.lineChartView clearPlot];
+    [Data getTemperatureValue:2];
+    if([@"f" isEqualToString:[[Data Instance]getCf]]){
+        [self.lblCFType setText:@"Temp(°F)"];
+    }else{
+        [self.lblCFType setText:@"Temp(°C)"];
+    }
     //x轴
     NSMutableArray *xAxisValues = [NSMutableArray array];
     NSArray *dlV=[[[Data Instance]chartData]objectForKey:self.currentKey];
@@ -147,7 +157,7 @@
     self.lineChartView.xAxisValues = xAxisValues;
     //y轴
     NSMutableArray* yAxisValues = [@[] mutableCopy];
-    for (int i=0; i<6; i++) {
+    for (int i=0; i<=self.lineChartView.numberOfVerticalElements; i++) {
         NSString *value = [NSString stringWithFormat:@"%.2f", self.lineChartView.min+self.lineChartView.interval*i];
         if([@"f" isEqualToString:[[Data Instance]getCf]]){
             [yAxisValues addObject:[NSString stringWithFormat:@"%d",[value intValue]*9/5+32]];

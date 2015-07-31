@@ -41,8 +41,9 @@
     self.axisBottomLinetHeight = CGHeight(30);
     self.pointerInterval = CGWidth(50);
     self.horizontalLineWidth = CGWidth(0.2);
-    self.numberOfVerticalElements=5;
-    self.horizontalLineInterval=(self.frame.size.height-self.axisBottomLinetHeight-10)/5;
+    self.numberOfVerticalElements=8;
+    self.horizontalLineInterval=(self.frame.size.height-self.axisBottomLinetHeight-10)/self.numberOfVerticalElements;
+    self.axisLineSizeWidth=self.frame.size.width-self.axisLeftLineWidth;
 }
 
 #pragma mark -
