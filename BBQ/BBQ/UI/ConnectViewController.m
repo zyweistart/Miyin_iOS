@@ -191,17 +191,16 @@
 
 - (void)ScanPeripheral
 {
-    if (self.appDelegate.bleManager.activePeripheral) {
-        if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
-            //取消连接
-            [[self.appDelegate.bleManager CM] cancelPeripheralConnection:[self.appDelegate.bleManager activePeripheral]];
-        }
-    }
-    self.appDelegate.bleManager.activePeripheral = nil;
-    [self.appDelegate.bleManager.peripherals removeAllObjects];
-    [self.appDelegate.bleManager.activeDescriptors removeAllObjects];
-    [self.appDelegate.bleManager.activeCharacteristics removeAllObjects];
-    
+//    if (self.appDelegate.bleManager.activePeripheral) {
+//        if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
+//            //取消连接
+//            [[self.appDelegate.bleManager CM] cancelPeripheralConnection:[self.appDelegate.bleManager activePeripheral]];
+//        }
+//    }
+//    self.appDelegate.bleManager.activePeripheral = nil;
+//    [self.appDelegate.bleManager.peripherals removeAllObjects];
+//    [self.appDelegate.bleManager.activeDescriptors removeAllObjects];
+//    [self.appDelegate.bleManager.activeCharacteristics removeAllObjects];
     //定时扫描持续时间10秒，之后打印扫描到的信息
     [self.appDelegate.bleManager findBLEPeripherals:10];
 }
@@ -254,6 +253,7 @@
         if([cp.identifier.UUIDString isEqualToString:[[Data Instance]getAutoConnected]]){
             [self connected:cp];
             [self RefreshStateNormal];
+            NSLog(@"发现了连接吧");
             return;
         }
     }
@@ -262,6 +262,7 @@
 //连接成功
 - (void)didConectedbleDevice:(CBPeripheral *)peripheral
 {
+    [self.tableView reloadData];
     //连接成功后需立即查询蓝牙服务
     [self.appDelegate.bleManager.activePeripheral discoverServices:nil];
     //自动存储连接信息方便下次连接
@@ -279,13 +280,13 @@
 //服务发现完成之后的回调方法
 - (void)ServiceFoundOver:(CBPeripheral *)peripheral
 {
-    [self performSelector:@selector(goMainPage) withObject:nil afterDelay:1.0];
+//    [self performSelector:@selector(goMainPage) withObject:nil afterDelay:1.0];
 }
 
 //成功扫描所有服务特征值
 - (void)DownloadCharacteristicOver:(CBPeripheral*)peripheral
 {
-    NSLog(@"获取所有的特征值");
+//    NSLog(@"获取所有的特征值");
 }
 
 - (void)goDemo
