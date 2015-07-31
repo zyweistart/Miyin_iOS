@@ -167,11 +167,11 @@ typedef struct scanProcessStep{
             if (p.UUID == peripheral.UUID) {
                 [self.peripherals replaceObjectAtIndex:i withObject:peripheral];
                 //发送外围设备的序号，以及RSSI通知
-                rssiArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:i],RSSI, nil];
-                if(isScan) {
-                    nc = [NSNotificationCenter defaultCenter];
-                    [nc postNotificationName:NOTIFICATION_BLEDEVICEWITHRSSIFOUND object: rssiArray];
-                }
+//                rssiArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:i],RSSI, nil];
+//                if(isScan) {
+//                    nc = [NSNotificationCenter defaultCenter];
+//                    [nc postNotificationName:NOTIFICATION_BLEDEVICEWITHRSSIFOUND object: rssiArray];
+//                }
                 return;
             }
         }

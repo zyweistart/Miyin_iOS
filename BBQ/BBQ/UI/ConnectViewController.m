@@ -191,29 +191,18 @@
 
 - (void)ScanPeripheral
 {
-//    if (self.appDelegate.bleManager.activePeripheral) {
-//        if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
-//            //取消连接
-//            [[self.appDelegate.bleManager CM] cancelPeripheralConnection:[self.appDelegate.bleManager activePeripheral]];
-//        }
-//    }
-//    self.appDelegate.bleManager.activePeripheral = nil;
-//    [self.appDelegate.bleManager.peripherals removeAllObjects];
-//    [self.appDelegate.bleManager.activeDescriptors removeAllObjects];
-//    [self.appDelegate.bleManager.activeCharacteristics removeAllObjects];
+    if (self.appDelegate.bleManager.activePeripheral) {
+        if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
+            //取消连接
+            [[self.appDelegate.bleManager CM] cancelPeripheralConnection:[self.appDelegate.bleManager activePeripheral]];
+        }
+    }
+    self.appDelegate.bleManager.activePeripheral = nil;
+    [self.appDelegate.bleManager.peripherals removeAllObjects];
+    [self.appDelegate.bleManager.activeDescriptors removeAllObjects];
+    [self.appDelegate.bleManager.activeCharacteristics removeAllObjects];
     //定时扫描持续时间10秒，之后打印扫描到的信息
     [self.appDelegate.bleManager findBLEPeripherals:10];
-}
-
-- (void)stopScan
-{
-    [self.appDelegate.bleManager stopScan];
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc  removeObserver:self name:NOTIFICATION_DIDCONNECTEDBLEDEVICE object:nil];
-    [nc  removeObserver:self name:NOTIFICATION_STOPSCAN object:nil];
-    [nc  removeObserver:self name:NOTIFICATION_BLEDEVICEWITHRSSIFOUND object:nil];
-    [nc  removeObserver:self name:NOTIFICATION_SERVICEFOUNDOVER object:nil];
-    [nc  removeObserver:self name:NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP object:nil];
 }
 
 - (void)initNotification
@@ -253,7 +242,6 @@
         if([cp.identifier.UUIDString isEqualToString:[[Data Instance]getAutoConnected]]){
             [self connected:cp];
             [self RefreshStateNormal];
-            NSLog(@"发现了连接吧");
             return;
         }
     }
@@ -263,11 +251,11 @@
 - (void)didConectedbleDevice:(CBPeripheral *)peripheral
 {
     [self.tableView reloadData];
-    //连接成功后需立即查询蓝牙服务
-    [self.appDelegate.bleManager.activePeripheral discoverServices:nil];
     //自动存储连接信息方便下次连接
     NSString *uuid=self.appDelegate.bleManager.activePeripheral.identifier.UUIDString;
     [[Data Instance]setAutoConnected:uuid];
+    //连接成功后需立即查询蓝牙服务
+    [self.appDelegate.bleManager.activePeripheral discoverServices:nil];
 }
 
 //停止设备扫描
@@ -287,6 +275,17 @@
 - (void)DownloadCharacteristicOver:(CBPeripheral*)peripheral
 {
 //    NSLog(@"获取所有的特征值");
+}
+
+- (void)stopScan
+{
+    [self.appDelegate.bleManager stopScan];
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc  removeObserver:self name:NOTIFICATION_DIDCONNECTEDBLEDEVICE object:nil];
+    [nc  removeObserver:self name:NOTIFICATION_STOPSCAN object:nil];
+    [nc  removeObserver:self name:NOTIFICATION_BLEDEVICEWITHRSSIFOUND object:nil];
+    [nc  removeObserver:self name:NOTIFICATION_SERVICEFOUNDOVER object:nil];
+    [nc  removeObserver:self name:NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP object:nil];
 }
 
 - (void)goDemo
