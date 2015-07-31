@@ -60,7 +60,7 @@
             [self.scrollFrameView addSubview:self.mChartItemView4];
         }
         //横屏
-        self.mChartItemLandView=[[ChartItemLandView alloc]initWithFrame:CGRectMake(0, 0,CGHeight(455),CGWidth(320))];
+        self.mChartItemLandView=[[ChartItemLandView alloc]initWithFrame:CGRectMake(0, 0,CGHeight(inch35?350:455),CGWidth(320))];
         [self.mChartItemLandView setUserInteractionEnabled:YES];
         [self.mChartItemLandView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeHide:)]];
         [self.mChartItemLandView setHidden:YES];
@@ -131,9 +131,9 @@
 
 - (void)frmeChange:(UIGestureRecognizer*)sender
 {
-    if(inch35){
-        return;
-    }
+//    if(inch35){
+//        return;
+//    }
     NSInteger tag=[[sender view]tag];
     [self.mChartItemLandView setHidden:NO];
     CGAffineTransform at =CGAffineTransformMakeRotation(M_PI/2);

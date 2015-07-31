@@ -18,14 +18,9 @@
 		C9126A3C1B65FFE3001D3D60 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A3B1B65FFE3001D3D60 /* MainViewController.m */; };
 		C9126A411B66004A001D3D60 /* CButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A3E1B66004A001D3D60 /* CButton.m */; };
 		C9126A421B66004A001D3D60 /* CLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A401B66004A001D3D60 /* CLabel.m */; };
-		C97E09021B69EF1300E9B118 /* UUBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E08F71B69EF1300E9B118 /* UUBar.m */; };
-		C97E09031B69EF1300E9B118 /* UUBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E08F91B69EF1300E9B118 /* UUBarChart.m */; };
-		C97E09041B69EF1300E9B118 /* UUChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E08FB1B69EF1300E9B118 /* UUChart.m */; };
-		C97E09051B69EF1300E9B118 /* UUChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E08FD1B69EF1300E9B118 /* UUChartLabel.m */; };
-		C97E09061B69EF1300E9B118 /* UUColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E08FF1B69EF1300E9B118 /* UUColor.m */; };
-		C97E09071B69EF1300E9B118 /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C97E09011B69EF1300E9B118 /* UULineChart.m */; };
 		C97E090A1B6A109B00E9B118 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C97E090C1B6A109B00E9B118 /* Localizable.strings */; };
 		C9B27CA61B660236005DD13B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B27CA51B660236005DD13B /* CoreBluetooth.framework */; };
+		C9C8F35A1B6BF36000119950 /* MenuItemZoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C8F3591B6BF36000119950 /* MenuItemZoomViewController.m */; };
 		C9D6152C1B67C7B2003DAC98 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6152B1B67C7B2003DAC98 /* MenuCell.m */; };
 		C9D6152F1B67D6AA003DAC98 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6152E1B67D6AA003DAC98 /* Data.m */; };
 		C9D615311B67E725003DAC98 /* page.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9D615301B67E725003DAC98 /* page.bundle */; };
@@ -124,21 +119,11 @@
 		C9126A3E1B66004A001D3D60 /* CButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CButton.m; sourceTree = "<group>"; };
 		C9126A3F1B66004A001D3D60 /* CLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLabel.h; sourceTree = "<group>"; };
 		C9126A401B66004A001D3D60 /* CLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLabel.m; sourceTree = "<group>"; };
-		C97E08F61B69EF1300E9B118 /* UUBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBar.h; sourceTree = "<group>"; };
-		C97E08F71B69EF1300E9B118 /* UUBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBar.m; sourceTree = "<group>"; };
-		C97E08F81B69EF1300E9B118 /* UUBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBarChart.h; sourceTree = "<group>"; };
-		C97E08F91B69EF1300E9B118 /* UUBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBarChart.m; sourceTree = "<group>"; };
-		C97E08FA1B69EF1300E9B118 /* UUChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChart.h; sourceTree = "<group>"; };
-		C97E08FB1B69EF1300E9B118 /* UUChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChart.m; sourceTree = "<group>"; };
-		C97E08FC1B69EF1300E9B118 /* UUChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChartLabel.h; sourceTree = "<group>"; };
-		C97E08FD1B69EF1300E9B118 /* UUChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChartLabel.m; sourceTree = "<group>"; };
-		C97E08FE1B69EF1300E9B118 /* UUColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUColor.h; sourceTree = "<group>"; };
-		C97E08FF1B69EF1300E9B118 /* UUColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUColor.m; sourceTree = "<group>"; };
-		C97E09001B69EF1300E9B118 /* UULineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UULineChart.h; sourceTree = "<group>"; };
-		C97E09011B69EF1300E9B118 /* UULineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UULineChart.m; sourceTree = "<group>"; };
 		C97E090D1B6A10B400E9B118 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C97E090F1B6A143A00E9B118 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C9B27CA51B660236005DD13B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		C9C8F3581B6BF36000119950 /* MenuItemZoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemZoomViewController.h; sourceTree = "<group>"; };
+		C9C8F3591B6BF36000119950 /* MenuItemZoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemZoomViewController.m; sourceTree = "<group>"; };
 		C9D6152A1B67C7B2003DAC98 /* MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCell.h; sourceTree = "<group>"; };
 		C9D6152B1B67C7B2003DAC98 /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = "<group>"; };
 		C9D6152D1B67D6AA003DAC98 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
@@ -279,6 +264,8 @@
 		C9126A281B65DA39001D3D60 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C9D615351B67EBDE003DAC98 /* AboutViewController.h */,
+				C9D615361B67EBDE003DAC98 /* AboutViewController.m */,
 				C9F1EF221B677004005C8CF3 /* ConnectViewController.h */,
 				C9F1EF231B677004005C8CF3 /* ConnectViewController.m */,
 				C9126A2B1B65DA5A001D3D60 /* HomeViewController.h */,
@@ -287,12 +274,12 @@
 				C9126A351B65DBC7001D3D60 /* InfoViewController.m */,
 				C9126A3A1B65FFE3001D3D60 /* MainViewController.h */,
 				C9126A3B1B65FFE3001D3D60 /* MainViewController.m */,
+				C9C8F3581B6BF36000119950 /* MenuItemZoomViewController.h */,
+				C9C8F3591B6BF36000119950 /* MenuItemZoomViewController.m */,
 				C9126A311B65DBBB001D3D60 /* SettingViewController.h */,
 				C9126A321B65DBBB001D3D60 /* SettingViewController.m */,
 				C9126A2E1B65DBAF001D3D60 /* ToolsViewController.h */,
 				C9126A2F1B65DBAF001D3D60 /* ToolsViewController.m */,
-				C9D615351B67EBDE003DAC98 /* AboutViewController.h */,
-				C9D615361B67EBDE003DAC98 /* AboutViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -339,25 +326,6 @@
 				C9FE58F61B695210002154E4 /* PeripheralCell.m */,
 			);
 			name = Cell;
-			sourceTree = "<group>";
-		};
-		C97E08F51B69EF1300E9B118 /* UUChart */ = {
-			isa = PBXGroup;
-			children = (
-				C97E08F61B69EF1300E9B118 /* UUBar.h */,
-				C97E08F71B69EF1300E9B118 /* UUBar.m */,
-				C97E08F81B69EF1300E9B118 /* UUBarChart.h */,
-				C97E08F91B69EF1300E9B118 /* UUBarChart.m */,
-				C97E08FA1B69EF1300E9B118 /* UUChart.h */,
-				C97E08FB1B69EF1300E9B118 /* UUChart.m */,
-				C97E08FC1B69EF1300E9B118 /* UUChartLabel.h */,
-				C97E08FD1B69EF1300E9B118 /* UUChartLabel.m */,
-				C97E08FE1B69EF1300E9B118 /* UUColor.h */,
-				C97E08FF1B69EF1300E9B118 /* UUColor.m */,
-				C97E09001B69EF1300E9B118 /* UULineChart.h */,
-				C97E09011B69EF1300E9B118 /* UULineChart.m */,
-			);
-			path = UUChart;
 			sourceTree = "<group>";
 		};
 		C9ECF1621B65C1460088E110 = {
@@ -475,7 +443,6 @@
 				C9ECF1AD1B65C6BD0088E110 /* EGOTableViewPullRefresh */,
 				C9ECF1C61B65C6BD0088E110 /* MBProgressHUD */,
 				C9F311B01B6B263E00D59F95 /* PNLineChart */,
-				C97E08F51B69EF1300E9B118 /* UUChart */,
 			);
 			path = Librarys;
 			sourceTree = "<group>";
@@ -725,7 +692,6 @@
 				C9D6152C1B67C7B2003DAC98 /* MenuCell.m in Sources */,
 				C9FE58F41B694653002154E4 /* ChartItemView.m in Sources */,
 				C9ECF2161B65C85A0088E110 /* User.m in Sources */,
-				C97E09031B69EF1300E9B118 /* UUBarChart.m in Sources */,
 				C9F1EF1E1B674214005C8CF3 /* Tools.m in Sources */,
 				C9FE58F71B695210002154E4 /* PeripheralCell.m in Sources */,
 				C9ECF1CD1B65C6BD0088E110 /* ATMProgressLayer.m in Sources */,
@@ -733,8 +699,6 @@
 				C9ECF1CB1B65C6BD0088E110 /* ATMHudQueueItem.m in Sources */,
 				C9ECF2141B65C85A0088E110 /* UIImage+Utils.m in Sources */,
 				C9ECF2111B65C85A0088E110 /* NSString+Utils.m in Sources */,
-				C97E09021B69EF1300E9B118 /* UUBar.m in Sources */,
-				C97E09061B69EF1300E9B118 /* UUColor.m in Sources */,
 				C9ECF1CF1B65C6BD0088E110 /* ATMTextLayer.m in Sources */,
 				C9D6152F1B67D6AA003DAC98 /* Data.m in Sources */,
 				C9ECF1D31B65C6BD0088E110 /* LoadMoreTableFooterView.m in Sources */,
@@ -752,18 +716,16 @@
 				C9F311B61B6B263E00D59F95 /* PNPlot.m in Sources */,
 				C9FE58EE1B68F70D002154E4 /* DatePickerView.m in Sources */,
 				C9D615341B67E92C003DAC98 /* SwitchCell.m in Sources */,
+				C9C8F35A1B6BF36000119950 /* MenuItemZoomViewController.m in Sources */,
 				C9F1EF211B67491E005C8CF3 /* TIBLECBStandand.m in Sources */,
 				C900ABD01B6877EE0018C36B /* SetTempView.m in Sources */,
 				C9ECF20E1B65C85A0088E110 /* HttpDownload.m in Sources */,
 				C9F1EF1B1B671895005C8CF3 /* TIBLECBStandanda.m in Sources */,
-				C97E09051B69EF1300E9B118 /* UUChartLabel.m in Sources */,
 				C9F311B51B6B263E00D59F95 /* PNLineChartView.m in Sources */,
 				C9FE58F11B692F20002154E4 /* MenuItemView.m in Sources */,
-				C97E09071B69EF1300E9B118 /* UULineChart.m in Sources */,
 				C9ECF1CE1B65C6BD0088E110 /* ATMSoundFX.m in Sources */,
 				C9126A421B66004A001D3D60 /* CLabel.m in Sources */,
 				C9ECF1E11B65C6BD0088E110 /* MBProgressHUD.m in Sources */,
-				C97E09041B69EF1300E9B118 /* UUChart.m in Sources */,
 				C900ABCA1B6875FA0018C36B /* TimerCell.m in Sources */,
 				C9ECF2081B65C85A0088E110 /* BaseTableViewController.m in Sources */,
 				C9ECF2131B65C85A0088E110 /* UIButton+TitleImage.m in Sources */,

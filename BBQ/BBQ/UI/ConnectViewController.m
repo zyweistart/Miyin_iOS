@@ -57,6 +57,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.appDelegate.bleManager setDelegate:self];
     if([self.appDelegate.bleManager.peripherals count]>0){
         if(self.appDelegate.bleManager.activePeripheral){
             if(self.appDelegate.bleManager.activePeripheral.state!=CBPeripheralStateConnected){
@@ -168,44 +169,16 @@
 - (void)startScan
 {
     if(self.appDelegate.bleManager.CM.state==CBCentralManagerStatePoweredOn){
-        [self initNotification];
         [self RefreshStateStart];
         //定时扫描持续时间10秒
         [self.appDelegate.bleManager findBLEPeripherals:10];
     }
 }
 
-- (void)initNotification
-{
-    //设定通知
-    //发现BLE外围设备
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    //成功连接到指定外围BLE设备
-    [nc addObserver: self
-           selector: @selector(didConectedbleDevice:)
-               name: NOTIFICATION_DIDCONNECTEDBLEDEVICE
-             object: nil];
-    [nc addObserver: self
-           selector: @selector(stopScanBLEDevice:)
-               name: NOTIFICATION_STOPSCAN
-             object: nil];
-    [nc addObserver: self
-           selector: @selector(bleDeviceWithRSSIFound:)
-               name: NOTIFICATION_BLEDEVICEWITHRSSIFOUND
-             object: nil];
-    [nc addObserver: self
-           selector: @selector(ServiceFoundOver:)
-               name: NOTIFICATION_SERVICEFOUNDOVER
-             object: nil];
-    [nc addObserver: self
-           selector: @selector(DownloadCharacteristicOver:)
-               name: NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP
-             object: nil];
-}
-
 //发现设备
-- (void)bleDeviceWithRSSIFound:(NSNotification*)notification
+- (void)bleDeviceWithRSSIFound
 {
+    NSLog(@"发现设备");
     [self.tableView reloadData];
     for(CBPeripheral *cp in self.appDelegate.bleManager.peripherals){
         //判断是否存在自动连接设备
@@ -218,8 +191,9 @@
 }
 
 //连接成功
-- (void)didConectedbleDevice:(CBPeripheral *)peripheral
+- (void)didConectedbleDevice
 {
+    NSLog(@"连接成功");
     [self.tableView reloadData];
     //自动存储连接信息方便下次连接
     NSString *uuid=self.appDelegate.bleManager.activePeripheral.identifier.UUIDString;
@@ -229,7 +203,7 @@
 }
 
 //停止设备扫描
-- (void)stopScanBLEDevice:(CBPeripheral *)peripheral
+- (void)stopScanBLEDevice
 {
     [self stopScan];
     [self.tableView reloadData];
@@ -237,30 +211,19 @@
 }
 
 //服务发现完成之后的回调方法
-- (void)ServiceFoundOver:(CBPeripheral *)peripheral
+- (void)ServiceFoundOver
 {
     [self performSelector:@selector(goMainPage) withObject:nil afterDelay:1.0];
 }
 
-//成功扫描所有服务特征值
-- (void)DownloadCharacteristicOver:(CBPeripheral*)peripheral
-{
-//    NSLog(@"获取所有的特征值");
-}
-
 - (void)stopScan
 {
+    NSLog(@"停止设备扫描");
     if(self.appDelegate.bleManager.scanKeepTimer){
         [self.appDelegate.bleManager.scanKeepTimer invalidate];
         self.appDelegate.bleManager.scanKeepTimer=nil;
     }
     [self.appDelegate.bleManager stopScan];
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc  removeObserver:self name:NOTIFICATION_DIDCONNECTEDBLEDEVICE object:nil];
-    [nc  removeObserver:self name:NOTIFICATION_STOPSCAN object:nil];
-    [nc  removeObserver:self name:NOTIFICATION_BLEDEVICEWITHRSSIFOUND object:nil];
-    [nc  removeObserver:self name:NOTIFICATION_SERVICEFOUNDOVER object:nil];
-    [nc  removeObserver:self name:NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP object:nil];
 }
 
 - (void)goDemo
@@ -281,6 +244,16 @@
     [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
         [self stopScan];
     }];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationPortrait;
 }
 
 @end

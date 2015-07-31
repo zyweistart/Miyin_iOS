@@ -3,21 +3,40 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 
 //扫描超时发出
-#define NOTIFICATION_STOPSCAN @"STOPSCAN"
+//#define NOTIFICATION_STOPSCAN @"STOPSCAN"
 //发现设备发出通知
-#define NOTIFICATION_BLEDEVICEWITHRSSIFOUND @"BLEDEVICEWITHRSSIFOUND"
+//#define NOTIFICATION_BLEDEVICEWITHRSSIFOUND @"BLEDEVICEWITHRSSIFOUND"
 //连接设备成功
-#define NOTIFICATION_DIDCONNECTEDBLEDEVICE @"DIDCONNECTEDBLEDEVICE"
+//#define NOTIFICATION_DIDCONNECTEDBLEDEVICE @"DIDCONNECTEDBLEDEVICE"
 //服务发现完成之后的回调方法
-#define NOTIFICATION_SERVICEFOUNDOVER @"SERVICEFOUNDOVER"
+//#define NOTIFICATION_SERVICEFOUNDOVER @"SERVICEFOUNDOVER"
 //成功扫描所有服务特征值
-#define NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP @"DOWNLOADSERVICEPROCESSSTEP"
+//#define NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP @"DOWNLOADSERVICEPROCESSSTEP"
 //接收数据
-#define NOTIFICATION_VALUECHANGUPDATE @"VALUECHANGUPDATE"
+//#define NOTIFICATION_VALUECHANGUPDATE @"VALUECHANGUPDATE"
 //断开连接
-#define NOTIFICATION_DISCONNECTPERIPHERAL @"NOTIFICATION_DISCONNECTPERIPHERAL"
+//#define NOTIFICATION_DISCONNECTPERIPHERAL @"NOTIFICATION_DISCONNECTPERIPHERAL"
 
 #pragma mark ---定义满足两个协议的委托类 模型类---
+
+@protocol TIBLECBStandandDelegate
+@optional
+//发现设备
+- (void)bleDeviceWithRSSIFound;
+//连接成功
+- (void)didConectedbleDevice;
+//停止设备扫描
+- (void)stopScanBLEDevice;
+//服务发现完成之后的回调方法
+- (void)ServiceFoundOver;
+//成功扫描所有服务特征值
+- (void)DownloadCharacteristicOver;
+//断开连接
+- (void)DisConnectperipheral;
+//接受消息
+- (void)ValueChangText:(CBCharacteristic *)characteristic;
+
+@end
 
 //实现中心设备管理委托，外围委托事物
 @interface TIBLECBStandand : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate> {
@@ -38,6 +57,9 @@
 //当前正在操作的特征值缓存
 @property (strong, nonatomic) NSString *mode;
 @property (strong,nonatomic)NSTimer *scanKeepTimer;
+//代理对象
+@property (strong,nonatomic) NSObject<TIBLECBStandandDelegate> *delegate;
+
 
 #pragma mark -------模型类的方法-------
 

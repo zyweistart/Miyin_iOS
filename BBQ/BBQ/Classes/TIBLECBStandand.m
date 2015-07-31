@@ -108,7 +108,7 @@ typedef struct scanProcessStep{
     [self.activeDescriptors removeAllObjects];
     [self.activeCharacteristics removeAllObjects];
     if (self.CM.state  != CBCentralManagerStatePoweredOn) {
-        return -1;
+        return 0;
     }
     if(timeout>0){
         if (self.scanKeepTimer==nil) {
@@ -122,15 +122,18 @@ typedef struct scanProcessStep{
     [self.CM stopScan];
     [self.CM scanForPeripheralsWithServices:nil options:0];
     isScan = YES;
-    return 0;
+    return 1;
 }
 
 //定时扫描结束，打印BLE设备信息
 - (void)scanEndTimer:(NSTimer *)timer
 {
     [self.CM stopScan];
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc postNotificationName:NOTIFICATION_STOPSCAN object: nil];
+//    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+//    [nc postNotificationName:NOTIFICATION_STOPSCAN object: nil];
+    if( [self.delegate respondsToSelector: @selector(stopScanBLEDevice)]) {
+        [self.delegate stopScanBLEDevice];
+    }
     self.scanKeepTimer = nil ;
 }
 
@@ -165,7 +168,7 @@ typedef struct scanProcessStep{
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
     NSArray *rssiArray;
-    NSNotificationCenter *nc;
+//    NSNotificationCenter *nc;
     //过滤搜索的设备
     if(peripheral.name==nil||![peripheral.name containsString:@"Grill Now"]){
         return;
@@ -195,8 +198,11 @@ typedef struct scanProcessStep{
     //发送外围设备的序号，以及RSSI通知
     rssiArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:i],RSSI, nil];
     if(isScan) {
-        nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName:NOTIFICATION_BLEDEVICEWITHRSSIFOUND object: rssiArray];
+//        nc = [NSNotificationCenter defaultCenter];
+//        [nc postNotificationName:NOTIFICATION_BLEDEVICEWITHRSSIFOUND object: rssiArray];
+        if( [self.delegate respondsToSelector: @selector(bleDeviceWithRSSIFound)]) {
+            [self.delegate bleDeviceWithRSSIFound];
+        }
     }
 }
 
@@ -219,8 +225,11 @@ typedef struct scanProcessStep{
     self.activePeripheral = peripheral;
     [self.activePeripheral setDelegate:self];
     //点击某个设备后，将这个设备对象作为参数，通知给属性列表窗体，在那个窗体中进行连接以及服务扫描操作。
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc postNotificationName:NOTIFICATION_DIDCONNECTEDBLEDEVICE object: nil];
+//    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+//    [nc postNotificationName:NOTIFICATION_DIDCONNECTEDBLEDEVICE object:nil];
+    if( [self.delegate respondsToSelector: @selector(didConectedbleDevice)]) {
+        [self.delegate didConectedbleDevice];
+    }
 }
 
 //4、[peripheral discoverServices:nil];查询蓝牙服务
@@ -229,9 +238,12 @@ typedef struct scanProcessStep{
     if (!error) {
         //触发获取所有特征值
         [self getAllCharacteristicsFromKeyfob:peripheral];
-        NSNumber *n = [NSNumber numberWithFloat:1.0];
-        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName:NOTIFICATION_SERVICEFOUNDOVER object:n];
+//        NSNumber *n = [NSNumber numberWithFloat:1.0];
+//        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+//        [nc postNotificationName:NOTIFICATION_SERVICEFOUNDOVER object:n];
+        if( [self.delegate respondsToSelector: @selector(ServiceFoundOver)]) {
+            [self.delegate ServiceFoundOver];
+        }
     }
 }
 
@@ -245,9 +257,12 @@ typedef struct scanProcessStep{
             CBCharacteristic *c = [service.characteristics objectAtIndex:i];
             [self SaveToActiveCharacteristic:c];
         }
-        NSNumber *m =  [NSNumber numberWithFloat:0.25];
-        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName:NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP object: m];
+//        NSNumber *m =  [NSNumber numberWithFloat:0.25];
+//        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+//        [nc postNotificationName:NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP object: m];
+        if( [self.delegate respondsToSelector: @selector(DownloadCharacteristicOver)]) {
+            [self.delegate DownloadCharacteristicOver];
+        }
     } else {
         index = 0 ;
     }
@@ -264,9 +279,10 @@ typedef struct scanProcessStep{
 //断开连接后调用
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    //断开连接
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc postNotificationName: NOTIFICATION_DISCONNECTPERIPHERAL object: peripheral.RSSI];
+    if( [self.delegate respondsToSelector: @selector(DisConnectperipheral)]) {
+        [self.delegate DisConnectperipheral];
+    }
+    
 }
 
 - (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error{
@@ -277,26 +293,35 @@ typedef struct scanProcessStep{
 //处理蓝牙发过来的数据
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+//    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     if (!error) {
         if ([self.mode compare:@"UPDATEMODE" ] == NSOrderedSame) {
             if ([self isAActiveCharacteristic:(characteristic)]==YES) {
                 [self UpdateToActiveCharacteristic:characteristic];
-                [nc postNotificationName:NOTIFICATION_VALUECHANGUPDATE object: characteristic];
+//                [nc postNotificationName:NOTIFICATION_VALUECHANGUPDATE object: characteristic];
+                if( [self.delegate respondsToSelector: @selector(ValueChangText:)]) {
+                    [self.delegate ValueChangText:characteristic];
+                }
             }
         } else if ([self.mode compare:@"SCANMODE" ] == NSOrderedSame){
             return;
         } else if ([self.mode compare:@"IDLEMODE" ] == NSOrderedSame){
             if ([self isAActiveCharacteristic:(characteristic)]==YES) {
                 [self SaveToActiveCharacteristic:characteristic];
-                [nc postNotificationName:NOTIFICATION_VALUECHANGUPDATE object: Nil];
+//                [nc postNotificationName:NOTIFICATION_VALUECHANGUPDATE object: Nil];
+                if( [self.delegate respondsToSelector: @selector(ValueChangText:)]) {
+                    [self.delegate ValueChangText:characteristic];
+                }
             }
         }
     } else {
         if ([self.mode compare:@"UPDATEMODE" ] == NSOrderedSame) {
         } else if ([self.mode compare:@"SCANMODE" ] == NSOrderedSame){
-            NSNumber *m =  [NSNumber numberWithFloat:0.75];
-            [nc postNotificationName:NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP object: m];
+//            NSNumber *m =  [NSNumber numberWithFloat:0.75];
+//            [nc postNotificationName:NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP object: m];
+            if( [self.delegate respondsToSelector: @selector(DownloadCharacteristicOver)]) {
+                [self.delegate DownloadCharacteristicOver];
+            }
         }
     }
 }
@@ -306,9 +331,12 @@ typedef struct scanProcessStep{
     if (!error) {
         [self DisplayCharacteristicMessage:characteristic];
         //0.5 跳过第三步，不读取属性值，打开列表后手动读取
-        NSNumber *m =  [NSNumber numberWithFloat:0.75];
-        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName:NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP object: m];
+//        NSNumber *m =  [NSNumber numberWithFloat:0.75];
+//        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+//        [nc postNotificationName:NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP object: m];
+        if( [self.delegate respondsToSelector: @selector(DownloadCharacteristicOver)]) {
+            [self.delegate DownloadCharacteristicOver];
+        }
     } else {
     }
 }
@@ -320,9 +348,12 @@ typedef struct scanProcessStep{
         if ([self.mode compare:@"SCANMODE" ] == NSOrderedSame){
             [self SaveToActiveDescriptors:descriptor];
         }
-        NSNumber *m =  [NSNumber numberWithFloat:1];
-        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName: NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP object: m];
+//        NSNumber *m =  [NSNumber numberWithFloat:1];
+//        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+//        [nc postNotificationName: NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP object: m];
+        if( [self.delegate respondsToSelector: @selector(DownloadCharacteristicOver)]) {
+            [self.delegate DownloadCharacteristicOver];
+        }
     }
 }
 

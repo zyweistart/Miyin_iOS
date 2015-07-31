@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "MenuItemZoomViewController.h"
 
 @interface HomeViewController ()
 
@@ -305,9 +306,12 @@
 
 - (void)frmeChange:(UIGestureRecognizer*)sender
 {
-    if(inch35){
-        return;
-    }
+    
+    [self presentViewController:[[MenuItemZoomViewController alloc]init] animated:YES completion:nil];
+    
+//    if(inch35){
+//        return;
+//    }
 //    NSInteger tag=[[sender view]tag];
 //    [self.mMenuItemLandView setHidden:NO];
 //    CGAffineTransform at =CGAffineTransformMakeRotation(M_PI/2);

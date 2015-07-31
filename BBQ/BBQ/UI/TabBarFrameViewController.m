@@ -84,14 +84,6 @@
         //设置消息通知
         nc = [NSNotificationCenter defaultCenter];
         if(![[Data Instance]isDemo]){
-            [nc addObserver: self
-                   selector: @selector(ValueChangText:)
-                       name: NOTIFICATION_VALUECHANGUPDATE
-                     object: nil];
-            [nc addObserver: self
-                   selector: @selector(DisConnectPeripheral:)
-                       name: NOTIFICATION_DISCONNECTPERIPHERAL
-                     object: nil];
             //开始接收消息
             self.appDelegate = [[UIApplication sharedApplication] delegate];
             [self.appDelegate.bleManager notification:0xFFE0 characteristicUUID:0xFFE4 p:self.appDelegate.bleManager.activePeripheral on:YES];
@@ -109,6 +101,14 @@
     [super viewDidLoad];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if(![[Data Instance]isDemo]){
+        [self.appDelegate.bleManager setDelegate:self];
+    }
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
@@ -117,9 +117,6 @@
             [self.mDemoTimer invalidate];
             self.mDemoTimer=nil;
         }
-    }else{
-        [nc removeObserver:self name:NOTIFICATION_VALUECHANGUPDATE object:nil];
-        [nc removeObserver:self name:NOTIFICATION_DISCONNECTPERIPHERAL object:nil];
     }
     [nc removeObserver:self name:NOTIFICATION_REFRESHDATA object:nil];
 }
@@ -138,13 +135,12 @@
 }
 
 //这里取出刚刚从过来的字符串
-- (void)ValueChangText:(NSNotification *)notification
+- (void)ValueChangText:(CBCharacteristic *)characteristic
 {
-    CBCharacteristic *tmpCharacter = (CBCharacteristic*)[notification object];
     CHAR_STRUCT buf1;
     //将获取的值传递到buf1中；
-    [tmpCharacter.value getBytes:&buf1 length:tmpCharacter.value.length];
-    for(int i =0;i<tmpCharacter.value.length;i++) {
+    [characteristic.value getBytes:&buf1 length:characteristic.value.length];
+    for(int i =0;i<characteristic.value.length;i++) {
         NSString *strContent=[Tools stringFromHexString:[NSString stringWithFormat:@"%02X",buf1.buff[i]&0x000000ff]];
         if([@"\n" isEqualToString:strContent]){
             if([receiveSBString length]>0){
@@ -330,15 +326,6 @@
     [self AnalyticalJson:json];
 }
 
-- (void)DisConnectPeripheral:(NSNotification *)notification
-{
-    [self.mHomeViewController ConnectedState:NO];
-    [self.mToolsViewController ConnectedState:NO];
-    [self.mInfoViewController ConnectedState:NO];
-    [self initNotification];
-    [self.appDelegate.bleManager findBLEPeripherals:0];
-}
-
 - (void)refreshDataNotifcation:(NSNotification*)notification
 {
     [self.mHomeViewController refreshDataView];
@@ -346,23 +333,10 @@
     [self.mInfoViewController.tableView reloadData];
 }
 
-//自动扫描自动连接
-- (void)initNotification
-{
-    //设定通知
-    [nc addObserver: self
-           selector: @selector(didConectedbleDevice:)
-               name: NOTIFICATION_DIDCONNECTEDBLEDEVICE
-             object: nil];
-    [nc addObserver: self
-           selector: @selector(bleDeviceWithRSSIFound:)
-               name: NOTIFICATION_BLEDEVICEWITHRSSIFOUND
-             object: nil];
-}
-
 //发现设备
-- (void)bleDeviceWithRSSIFound:(NSNotification*)notification
+- (void)bleDeviceWithRSSIFound
 {
+    NSLog(@"又发现设备了");
     for(CBPeripheral *cp in self.appDelegate.bleManager.peripherals){
         //判断是否存在自动连接设备
         if([cp.identifier.UUIDString isEqualToString:[[Data Instance]getAutoConnected]]){
@@ -373,8 +347,9 @@
 }
 
 //连接成功
-- (void)didConectedbleDevice:(CBPeripheral *)peripheral
+- (void)didConectedbleDevice
 {
+    NSLog(@"又连接成功了");
     //连接成功则断开扫描功能
     [self stopScanBLEDevice];
     //连接成功后需立即查询蓝牙服务
@@ -384,9 +359,17 @@
 //停止设备扫描
 - (void)stopScanBLEDevice
 {
+    NSLog(@"又停止扫描了哦");
     [self.appDelegate.bleManager stopScan];
-    [nc  removeObserver:self name:NOTIFICATION_DIDCONNECTEDBLEDEVICE object:nil];
-    [nc  removeObserver:self name:NOTIFICATION_BLEDEVICEWITHRSSIFOUND object:nil];
+}
+
+//断开连接
+- (void)DisConnectperipheral
+{
+    [self.mHomeViewController ConnectedState:NO];
+    [self.mToolsViewController ConnectedState:NO];
+    [self.mInfoViewController ConnectedState:NO];
+    [self.appDelegate.bleManager findBLEPeripherals:0];
 }
 
 @end

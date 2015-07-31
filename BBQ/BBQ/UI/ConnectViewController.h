@@ -9,7 +9,7 @@
 #import "BaseTableViewController.h"
 #import "MBProgressHUD.h"
 
-@interface ConnectViewController : BaseTableViewController
+@interface ConnectViewController : BaseTableViewController<TIBLECBStandandDelegate>
 
 @property(strong,nonatomic)MBProgressHUD *mMBProgressHUD;
 

@@ -35,24 +35,24 @@
         
         self.topLabelView=[[UIView alloc]initWithFrame:CGRectMake1(45, 0, 270, 20)];
         [self.frameView addSubview:self.topLabelView];
-        self.lblCFType=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 50, 20)];
+        self.lblCFType=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 55, 20)];
         [self.lblCFType setFont:[UIFont systemFontOfSize:12]];
         [self.lblCFType setTextColor:DEFAULTITLECOLOR(150)];
         [self.topLabelView addSubview:self.lblCFType];
-        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(80, 0, 70, 20)];
+        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(60, 0, 80, 20)];
         [lbl setText:NSLocalizedString(@"Current Temp",nil)];
         [lbl setFont:[UIFont systemFontOfSize:12]];
         [lbl setTextColor:DEFAULTITLECOLOR(150)];
         [self.topLabelView addSubview:lbl];
-        UIView *CurrentTempLine=[[UIView alloc]initWithFrame:CGRectMake1(150, 9, 30, 2)];
+        UIView *CurrentTempLine=[[UIView alloc]initWithFrame:CGRectMake1(140, 9, 20, 2)];
         [CurrentTempLine setBackgroundColor:DEFAULTITLECOLORRGB(7, 166, 206)];
         [self.topLabelView addSubview:CurrentTempLine];
-        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(185, 0, 50, 20)];
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(165, 0, 60, 20)];
         [lbl setText:NSLocalizedString(@"Set Temp",nil)];
         [lbl setFont:[UIFont systemFontOfSize:12]];
         [lbl setTextColor:DEFAULTITLECOLOR(150)];
         [self.topLabelView addSubview:lbl];
-        UIView *SetTempLine=[[UIView alloc]initWithFrame:CGRectMake1(235, 9, 30, 2)];
+        UIView *SetTempLine=[[UIView alloc]initWithFrame:CGRectMake1(230, 9, 20, 2)];
         [SetTempLine setBackgroundColor:DEFAULTITLECOLORRGB(210, 91, 44)];
         [self.topLabelView addSubview:SetTempLine];
         
@@ -62,7 +62,7 @@
         self.lineChartView.min = 0;
         self.lineChartView.max = 538;
         self.lineChartView.interval = (self.lineChartView.max-self.lineChartView.min)/self.lineChartView.numberOfVerticalElements;
-        self.lblTimerUnit=[[UILabel alloc]initWithFrame:CGRectMake1(270, 130, 45, 20)];
+        self.lblTimerUnit=[[UILabel alloc]initWithFrame:CGRectMake1(265, 130, 60, 20)];
         [self.lblTimerUnit setText:NSLocalizedString(@"Timer(M)",nil)];
         [self.lblTimerUnit setFont:[UIFont systemFontOfSize:12]];
         [self.lblTimerUnit setTextColor:DEFAULTITLECOLOR(150)];
