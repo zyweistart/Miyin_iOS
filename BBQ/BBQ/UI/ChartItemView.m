@@ -37,7 +37,7 @@
         
         totalSecond=0;
         if(self.mTimer==nil){
-            self.mTimer=[NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+            self.mTimer=[NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
         }
     }
     return self;
@@ -52,73 +52,6 @@
         [self.lblTitle setText:self.currentKey];
     }
 }
-
-//- (NSArray *)getXTitles:(int)num
-//{
-//    NSMutableArray *xTitles = [NSMutableArray array];
-//    NSArray *dlV=[[[Data Instance]chartData]objectForKey:self.currentKey];
-//    for(int i=0;i<[dlV count];i++){
-//        NSDictionary *vv=[dlV objectAtIndex:i];
-//        NSString * str = [NSString stringWithFormat:@"%@",[vv objectForKey:CHARTTIMER]];
-//        [xTitles addObject:str];
-//    }
-//    return xTitles;
-//}
-
-#pragma mark - @required
-
-//横坐标标题数组
-//- (NSArray *)UUChart_xLableArray:(UUChart *)chart
-//{
-//    return [self getXTitles:7];
-//}
-//
-////数值多重数组
-//- (NSArray *)UUChart_yValueArray:(UUChart *)chart
-//{
-//    NSMutableArray *ary1 = [NSMutableArray array];
-//    NSMutableArray *ary2 = [NSMutableArray array];
-//    NSArray *dlV=[[[Data Instance]chartData]objectForKey:self.currentKey];
-//    for(int i=0;i<[dlV count];i++){
-//        NSDictionary *vv=[dlV objectAtIndex:i];
-//        [ary1 addObject:[NSString stringWithFormat:@"%@",[vv objectForKey:CHARTCURVALUE]]];
-//        [ary2 addObject:[NSString stringWithFormat:@"%@",[vv objectForKey:CHARTSETVALUE]]];
-//    }
-//    return @[ary1,ary2];
-//}
-//
-//#pragma mark - @optional
-////颜色数组
-//- (NSArray *)UUChart_ColorArray:(UUChart *)chart
-//{
-//    return @[DEFAULTITLECOLORRGB(8, 167, 206),UURed];
-//}
-//
-////显示数值范围
-//- (CGRange)UUChartChooseRangeInLineChart:(UUChart *)chart
-//{
-//    return CGRangeZero;
-//}
-//
-//#pragma mark 折线图专享功能
-//
-////标记数值区域
-//- (CGRange)UUChartMarkRangeInLineChart:(UUChart *)chart
-//{
-//    return CGRangeZero;
-//}
-//
-////判断显示横线条
-//- (BOOL)UUChart:(UUChart *)chart ShowHorizonLineAtIndex:(NSInteger)index
-//{
-//    return YES;
-//}
-//
-////判断显示最大最小值
-//- (BOOL)UUChart:(UUChart *)chart ShowMaxMinAtIndex:(NSInteger)index
-//{
-//    return YES;
-//}
 
 - (void)updateTimer
 {
