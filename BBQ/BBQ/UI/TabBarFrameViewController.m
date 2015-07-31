@@ -81,9 +81,9 @@
         }
         
         receiveSBString=[NSMutableString new];
+        //设置消息通知
+        nc = [NSNotificationCenter defaultCenter];
         if(![[Data Instance]isDemo]){
-            //设置消息通知
-            nc = [NSNotificationCenter defaultCenter];
             [nc addObserver: self
                    selector: @selector(ValueChangText:)
                        name: NOTIFICATION_VALUECHANGUPDATE
@@ -96,6 +96,10 @@
             self.appDelegate = [[UIApplication sharedApplication] delegate];
             [self.appDelegate.bleManager notification:0xFFE0 characteristicUUID:0xFFE4 p:self.appDelegate.bleManager.activePeripheral on:YES];
         }
+        [nc addObserver: self
+               selector: @selector(refreshDataNotifcation:)
+                   name: NOTIFICATION_REFRESHDATA
+                 object: nil];
     }
     return self;
 }
@@ -115,7 +119,9 @@
         }
     }else{
         [nc removeObserver:self name:NOTIFICATION_VALUECHANGUPDATE object:nil];
+        [nc removeObserver:self name:NOTIFICATION_DISCONNECTPERIPHERAL object:nil];
     }
+    [nc removeObserver:self name:NOTIFICATION_REFRESHDATA object:nil];
 }
 
 - (UINavigationController*)viewControllerWithTabTitle:(NSString*) title image:(NSString*)image ViewController:(UIViewController*)viewController
@@ -181,6 +187,7 @@
                 [[[Data Instance]sett]setObject:[data objectForKey:key] forKey:key];
             }
             [self.mHomeViewController refreshDataView];
+            [self.mToolsViewController refreshView];
             [self.mInfoViewController.tableView reloadData];
         }else if([allKeys containsObject:@"t"]){
             //当前温度值
@@ -328,6 +335,13 @@
     [self.mHomeViewController ConnectedState:NO];
     [self.mToolsViewController ConnectedState:NO];
     [self.mInfoViewController ConnectedState:NO];
+}
+
+- (void)refreshDataNotifcation:(NSNotification*)notification
+{
+    [self.mHomeViewController refreshDataView];
+    [self.mToolsViewController refreshView];
+    [self.mInfoViewController.tableView reloadData];
 }
 
 @end

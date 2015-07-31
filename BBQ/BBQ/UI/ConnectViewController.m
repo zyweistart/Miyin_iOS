@@ -51,7 +51,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self performSelector:@selector(startScan) withObject:nil afterDelay:0.5];
+//    [self performSelector:@selector(startScan) withObject:nil afterDelay:0.5];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -268,7 +268,7 @@
 //服务发现完成之后的回调方法
 - (void)ServiceFoundOver:(CBPeripheral *)peripheral
 {
-//    [self performSelector:@selector(goMainPage) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(goMainPage) withObject:nil afterDelay:1.0];
 }
 
 //成功扫描所有服务特征值

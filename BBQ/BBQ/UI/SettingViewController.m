@@ -127,6 +127,8 @@
         NSString *json=@"{\"cf\":\"f\"}";
         [self.appDelegate sendData:json];
     }
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc postNotificationName:NOTIFICATION_REFRESHDATA object: nil];
 }
 
 @end

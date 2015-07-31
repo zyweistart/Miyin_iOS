@@ -33,37 +33,35 @@
         [self.lblTitle setTextAlignment:NSTextAlignmentCenter];
         [self.frameView addSubview:self.lblTitle];
         
-        self.lblCurrentTemp=[[UILabel alloc]initWithFrame:CGRectMake1(45, 0, 80, 20)];
-        [self.lblCurrentTemp setText:@"Current Temp"];
-        [self.lblCurrentTemp setFont:[UIFont systemFontOfSize:14]];
-        [self.lblCurrentTemp setTextColor:DEFAULTITLECOLOR(150)];
-        [self.frameView addSubview:self.lblCurrentTemp];
-        
-        UIView *CurrentTempLine=[[UIView alloc]initWithFrame:CGRectMake1(130, 9, 30, 2)];
+        self.topLabelView=[[UIView alloc]initWithFrame:CGRectMake1(45, 0, 230, 20)];
+        [self.frameView addSubview:self.topLabelView];
+        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 70, 20)];
+        [lbl setText:@"Current Temp"];
+        [lbl setFont:[UIFont systemFontOfSize:12]];
+        [lbl setTextColor:DEFAULTITLECOLOR(150)];
+        [self.topLabelView addSubview:lbl];
+        UIView *CurrentTempLine=[[UIView alloc]initWithFrame:CGRectMake1(70, 9, 30, 2)];
         [CurrentTempLine setBackgroundColor:DEFAULTITLECOLORRGB(7, 166, 206)];
-        [self.frameView addSubview:CurrentTempLine];
-        
-        self.lblCurrentTemp=[[UILabel alloc]initWithFrame:CGRectMake1(170, 0, 60, 20)];
-        [self.lblCurrentTemp setText:@"Set Temp"];
-        [self.lblCurrentTemp setFont:[UIFont systemFontOfSize:14]];
-        [self.lblCurrentTemp setTextColor:DEFAULTITLECOLOR(150)];
-        [self.frameView addSubview:self.lblCurrentTemp];
-        
-        UIView *SetTempLine=[[UIView alloc]initWithFrame:CGRectMake1(230, 9, 30, 2)];
+        [self.topLabelView addSubview:CurrentTempLine];
+        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(105, 0, 50, 20)];
+        [lbl setText:@"Set Temp"];
+        [lbl setFont:[UIFont systemFontOfSize:12]];
+        [lbl setTextColor:DEFAULTITLECOLOR(150)];
+        [self.topLabelView addSubview:lbl];
+        UIView *SetTempLine=[[UIView alloc]initWithFrame:CGRectMake1(155, 9, 30, 2)];
         [SetTempLine setBackgroundColor:DEFAULTITLECOLORRGB(210, 91, 44)];
-        [self.frameView addSubview:SetTempLine];
+        [self.topLabelView addSubview:SetTempLine];
         
         self.lineChartView = [[PNLineChartView alloc]initWithFrame:CGRectMake1(40,20, 275, 160)];
         [self.lineChartView setBackgroundColor:[UIColor whiteColor]];
         [self.frameView addSubview:self.lineChartView];
-        self.lineChartView.axisLeftLineWidth = CGWidth(35);
         self.lineChartView.min = 0;
         self.lineChartView.max = 538;
         self.lineChartView.interval = (self.lineChartView.max-self.lineChartView.min)/5;
         
         totalSecond=0;
         if(self.mTimer==nil){
-            self.mTimer=[NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+            self.mTimer=[NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
         }
         [self loadChartData];
     }

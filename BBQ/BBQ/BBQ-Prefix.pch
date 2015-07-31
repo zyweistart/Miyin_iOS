@@ -86,4 +86,7 @@ CGRectMake1(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 
 #define DEFAULCENTIGRADEVALUE 200
 
+//刷新数据
+#define  NOTIFICATION_REFRESHDATA @"NOTIFICATION_REFRESHDATA"
+
 #endif

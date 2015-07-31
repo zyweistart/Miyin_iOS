@@ -15,15 +15,13 @@
 @property (strong,nonatomic)NSDictionary *currentData;
 @property (strong,nonatomic)UIView *frameView;
 @property (strong,nonatomic)UILabel *lblTitle;
-@property (strong,nonatomic)UILabel *lblCurrentTemp;
-@property (strong,nonatomic)UILabel *lblSetTemp;
 @property (strong,nonatomic)NSTimer *mTimer;
 @property (strong,nonatomic)NSString *currentKey;
 @property (strong,nonatomic)PNLineChartView *lineChartView;
+@property (strong,nonatomic)UIView *topLabelView;
 
 - (void)loadData:(NSDictionary*)data;
 
 - (void)loadChartData;
-- (void)refreshView;
 
 @end
