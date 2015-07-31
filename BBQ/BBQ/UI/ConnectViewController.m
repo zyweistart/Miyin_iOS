@@ -154,9 +154,9 @@
             [self.appDelegate.bleManager.CM cancelPeripheralConnection:self.appDelegate.bleManager.activePeripheral];
         }
     }
-    [self.appDelegate.bleManager.activeCharacteristics removeAllObjects];
-    [self.appDelegate.bleManager.activeDescriptors removeAllObjects];
     self.appDelegate.bleManager.activePeripheral = nil;
+    [self.appDelegate.bleManager.activeDescriptors removeAllObjects];
+    [self.appDelegate.bleManager.activeCharacteristics removeAllObjects];
     [self.appDelegate.bleManager connectPeripheral:cbPeripheral];
 }
 
@@ -199,13 +199,14 @@
 {
     if (self.appDelegate.bleManager.activePeripheral) {
         if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
+            //取消连接
             [[self.appDelegate.bleManager CM] cancelPeripheralConnection:[self.appDelegate.bleManager activePeripheral]];
         }
     }
+    self.appDelegate.bleManager.activePeripheral = nil;
     [self.appDelegate.bleManager.peripherals removeAllObjects];
     [self.appDelegate.bleManager.activeDescriptors removeAllObjects];
     [self.appDelegate.bleManager.activeCharacteristics removeAllObjects];
-    self.appDelegate.bleManager.activePeripheral = nil;
     
     //定时扫描持续时间10秒，之后打印扫描到的信息
     [self.appDelegate.bleManager findBLEPeripherals:10];
@@ -250,10 +251,18 @@
              object: nil];
 }
 
+//发现设备
+- (void)bleDeviceWithRSSIFound:(NSNotification *) notification
+{
+    NSLog(@"发现新的设备%@",[notification object]);
+    [self.tableView reloadData];
+    [self RefreshStateNormal];
+}
+
 //连接成功
 - (void)didConectedbleDevice:(CBPeripheral *)peripheral
 {
-    NSLog(@" BLE 设备连接成功   ！\r\n");
+    NSLog(@"BLE设备连接成功");
     MODEL = MODEL_CONNECTING ;
     [self.tableView reloadData];
     [self.appDelegate.bleManager.activePeripheral discoverServices:nil];
@@ -263,14 +272,6 @@
 - (void)stopScanBLEDevice:(CBPeripheral *)peripheral
 {
     NSLog(@" BLE外设 列表 被更新 ！\r\n");
-    [self.tableView reloadData];
-    [self RefreshStateNormal];
-}
-
-//此方法刷新次数过多，会导致tableview界面无法刷新的情况发生
-- (void)bleDeviceWithRSSIFound:(NSNotification *) notification
-{
-    NSLog(@" 更新RSSI 值 ！\r\n");
     [self.tableView reloadData];
     [self RefreshStateNormal];
 }

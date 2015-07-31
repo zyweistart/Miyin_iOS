@@ -126,13 +126,7 @@ typedef struct scanProcessStep{
     isScan  = NO;
 }
 
-//连接指定的BLE外围设备
-- (void)connectPeripheral:(CBPeripheral *)peripheral
-{
-    self.activePeripheral = peripheral;
-    self.activePeripheral.delegate = self;
-    [self.CM connectPeripheral:self.activePeripheral options:nil];
-}
+
 
 - (const char *)centralManagerStateToString:(int)state
 {
@@ -153,6 +147,61 @@ typedef struct scanProcessStep{
             return "State unknown";
     }
     return "Unknown state";
+}
+
+//1、搜索到蓝牙设备
+- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
+{
+    NSArray *rssiArray;
+    NSNotificationCenter *nc;
+    //过滤搜索的设备
+    if(![peripheral.name containsString:@"Grill Now"]){
+        return;
+    }
+    int i = 0 ;
+    if (!self.peripherals) {
+        //列表为空，第一次发现新设备
+        self.peripherals = [[NSMutableArray alloc] initWithObjects:peripheral,nil];
+    } else {
+        //列表中有曾经发现的设备，如果重复发现则刷新，
+        for(i = 0; i < self.peripherals.count; i++) {
+            CBPeripheral *p = [self.peripherals objectAtIndex:i];
+            if (p.UUID == peripheral.UUID) {
+                [self.peripherals replaceObjectAtIndex:i withObject:peripheral];
+                //发送外围设备的序号，以及RSSI通知
+                rssiArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:i],RSSI, nil];
+                if(isScan) {
+                    nc = [NSNotificationCenter defaultCenter];
+                    [nc postNotificationName:NOTIFICATION_BLEDEVICEWITHRSSIFOUND object: rssiArray];
+                }
+                return;
+            }
+        }
+        //发现的外围设备，被保存在对象的peripherals 缓冲中
+        [self.peripherals addObject:peripheral];
+    }
+    //发送外围设备的序号，以及RSSI通知
+    rssiArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:i],RSSI, nil];
+    if(isScan) {
+        nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:NOTIFICATION_BLEDEVICEWITHRSSIFOUND object: rssiArray];
+    }
+}
+
+//2、连接到指定的设备
+- (void)connectPeripheral:(CBPeripheral *)peripheral
+{
+    self.activePeripheral = peripheral;
+    [self.activePeripheral setDelegate:self];
+    [self.CM connectPeripheral:self.activePeripheral options:nil];
+}
+
+//3、设备成功连接
+- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
+    self.activePeripheral = peripheral;
+    //点击某个设备后，将这个设备对象作为参数，通知给属性列表窗体，在那个窗体中进行连接以及服务扫描操作。
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc postNotificationName:NOTIFICATION_DIDCONNECTEDBLEDEVICE object: nil];
 }
 
 - (void)getAllServicesFromKeyfob:(CBPeripheral *)p
@@ -262,52 +311,9 @@ typedef struct scanProcessStep{
     return nil;
 }
 
-//中心设备发现外围BLE设备后的回调，包含广播数据包，如果发现已经在列表中的设备，则覆盖保存一次
-- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
-    NSArray *rssiArray;
-    NSNotificationCenter *nc;
-    //过滤搜索的设备
-    if(![peripheral.name containsString:@"Grill Now"]){
-        return;
-    }
-    int i = 0 ;
-    if (!self.peripherals) {
-        //列表为空，第一次发现新设备
-        self.peripherals = [[NSMutableArray alloc] initWithObjects:peripheral,nil];
-    } else {
-        //列表中有曾经发现的设备，如果重复发现则刷新，
-        for(i = 0; i < self.peripherals.count; i++) {
-            CBPeripheral *p = [self.peripherals objectAtIndex:i];
-              if (p.UUID == peripheral.UUID) {
-                [self.peripherals replaceObjectAtIndex:i withObject:peripheral];
-                //发送外围设备的序号，以及RSSI通知
-                rssiArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:i],RSSI, nil];
-                if(isScan) {
-                    nc = [NSNotificationCenter defaultCenter];
-                    [nc postNotificationName:NOTIFICATION_BLEDEVICEWITHRSSIFOUND object: rssiArray];
-                }
-                return;
-            }
-        }
-        //发现的外围设备，被保存在对象的peripherals 缓冲中
-        [self.peripherals addObject:peripheral];
-    }
-    //发送外围设备的序号，以及RSSI通知
-    rssiArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:i],RSSI, nil];
-    if(isScan) {
-        nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName:NOTIFICATION_BLEDEVICEWITHRSSIFOUND object: rssiArray];
 
-    }
-}
 
-//中心设备成功连接BLE外围设备
-- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
-    self.activePeripheral = peripheral;
-    //点击某个设备后，将这个设备对象作为参数，通知给属性列表窗体，在那个窗体中进行连接以及服务扫描操作。
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc postNotificationName:NOTIFICATION_DIDCONNECTEDBLEDEVICE object: nil];
-}
+
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
     //断开连接
