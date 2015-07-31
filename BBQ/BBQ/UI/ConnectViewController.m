@@ -283,7 +283,7 @@
 }
 
 //成功扫描所有服务特征值
-- (void)DownloadCharacteristicOver:(CBPeripheral *)peripheral
+- (void)DownloadCharacteristicOver:(CBPeripheral*)peripheral
 {
     NSLog(@"获取所有的特征值");
 }
