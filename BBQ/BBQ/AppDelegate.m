@@ -40,7 +40,8 @@
     [[UINavigationBar appearance]setBarTintColor:NAVBG];
     [[UINavigationBar appearance]setBarStyle:UIBarStyleBlackTranslucent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController=[[ConnectViewController alloc]init];
+    UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[ConnectViewController alloc]init]];
+    self.window.rootViewController=frameViewControllerNav;
     [self.window setBackgroundColor:[UIColor whiteColor]];
     [self.window makeKeyAndVisible];
     return YES;

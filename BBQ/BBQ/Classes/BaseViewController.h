@@ -15,6 +15,7 @@
 @property (strong,nonatomic) HttpDownload *hDownload;
 @property (strong,nonatomic) AppDelegate *appDelegate;
 @property (strong,nonatomic) UIView *mConnectedPanel;
+@property (strong,nonatomic) UILabel *lblMessage;
 
 @property (strong,nonatomic) NSObject<ResultDelegate> *resultDelegate;
 

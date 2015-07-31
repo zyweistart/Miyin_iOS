@@ -85,6 +85,12 @@
 
 - (void)loadData:(NSArray*)array
 {
+    if([array count]==0){
+        [self.scrollFrameView setHidden:YES];
+        [self.mConnectedPanel setHidden:NO];
+        [self.lblMessage setText:NSLocalizedString(@"Plase insert probes",nil)];
+        return;
+    }
     [self.scrollFrameView setContentSize:CGSizeMake1(320, 190*[array count])];
     for(int i=0;i<[array count];i++){
         if(i==0){
@@ -111,6 +117,7 @@
 {
     [self.scrollFrameView setHidden:!state];
     [self.mConnectedPanel setHidden:state];
+    [self.lblMessage setText:NSLocalizedString(@"Connection is broken",nil)];
 }
 
 - (void)frmeChange:(UIGestureRecognizer*)sender

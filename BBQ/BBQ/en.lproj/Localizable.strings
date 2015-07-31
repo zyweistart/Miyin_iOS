@@ -4,6 +4,7 @@
 "Exit" = "Exit";
 "Connected" = "Connected";
 "Connecting" = "Connecting";
+"Scan..." = "Scan..";
 "Connecting..." = "Connecting...";
 "Menu" = "Menu";
 "Tools" = "Tools";
@@ -22,3 +23,5 @@
 "Timer is finished!" = "Timer is finished!";
 "BBQ Connected" = "BBQ Connected";
 "BBQ Unconnected" = "BBQ Unconnected";
+"Plase insert probes" = "Plase insert probes";
+"Connection is broken" = "Connection is broken";

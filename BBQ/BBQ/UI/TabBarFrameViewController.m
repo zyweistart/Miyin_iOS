@@ -88,6 +88,10 @@
                    selector: @selector(ValueChangText:)
                        name: NOTIFICATION_VALUECHANGUPDATE
                      object: nil];
+            [nc addObserver: self
+                   selector: @selector(DisConnectPeripheral:)
+                       name: NOTIFICATION_DISCONNECTPERIPHERAL
+                     object: nil];
             //开始接收消息
             self.appDelegate = [[UIApplication sharedApplication] delegate];
             [self.appDelegate.bleManager notification:0xFFE0 characteristicUUID:0xFFE4 p:self.appDelegate.bleManager.activePeripheral on:YES];
@@ -181,6 +185,9 @@
             //当前温度值
             NSArray *array=[resultJSON objectForKey:@"t"];
             [[Data Instance]setCurrentTValue:[NSMutableArray arrayWithArray:array]];
+            [self.mHomeViewController ConnectedState:YES];
+            [self.mToolsViewController ConnectedState:YES];
+            [self.mInfoViewController ConnectedState:YES];
             [self.mHomeViewController loadData:array];
             [self.mToolsViewController loadData:array];
             [self.mInfoViewController loadData:array];
@@ -313,6 +320,13 @@
     int x = arc4random() % 100;
     NSString *json=[demoTArray objectAtIndex:x];
     [self AnalyticalJson:json];
+}
+
+- (void)DisConnectPeripheral:(NSNotification *)notification
+{
+    [self.mHomeViewController ConnectedState:NO];
+    [self.mToolsViewController ConnectedState:NO];
+    [self.mInfoViewController ConnectedState:NO];
 }
 
 @end

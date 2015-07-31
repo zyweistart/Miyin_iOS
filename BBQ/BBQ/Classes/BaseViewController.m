@@ -16,13 +16,13 @@
         
         self.mConnectedPanel=[[UIView alloc]initWithFrame:self.view.bounds];
         [self.mConnectedPanel setBackgroundColor:DEFAULTITLECOLORA(150, 0.5)];
-        UILabel *lblMessage=[[UILabel alloc]initWithFrame:CGRectMake1(0, 200, 320, 60)];
-        [lblMessage setText:@"Connection is broken"];
-        [lblMessage setFont:[UIFont systemFontOfSize:35]];
-        [lblMessage setTextAlignment:NSTextAlignmentCenter];
-        [lblMessage setTextColor:[UIColor whiteColor]];
-        [lblMessage setBackgroundColor:DEFAULTITLECOLORA(50, 0.5)];
-        [self.mConnectedPanel addSubview:lblMessage];
+        self.lblMessage=[[UILabel alloc]initWithFrame:CGRectMake1(0, 200, 320, 60)];
+        [self.lblMessage setText:NSLocalizedString(@"Connection is broken",nil)];
+        [self.lblMessage setFont:[UIFont systemFontOfSize:35]];
+        [self.lblMessage setTextAlignment:NSTextAlignmentCenter];
+        [self.lblMessage setTextColor:[UIColor whiteColor]];
+        [self.lblMessage setBackgroundColor:DEFAULTITLECOLORA(50, 0.5)];
+        [self.mConnectedPanel addSubview:self.lblMessage];
         [self.view addSubview:self.mConnectedPanel];
         [self.mConnectedPanel setHidden:YES];
     }

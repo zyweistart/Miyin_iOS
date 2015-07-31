@@ -820,6 +820,10 @@ typedef struct {
  *
  */
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
+    //断开连接
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc postNotificationName: NOTIFICATION_DISCONNECTPERIPHERAL object: peripheral.RSSI];
+//    [self.CM scanForPeripheralsWithServices:self.activePeripheral.services options:@{CBCentralManagerScanOptionAllowDuplicatesKey:@YES}];
 }
 
 #pragma mark -------BLE 外围设备代理协议方法-------

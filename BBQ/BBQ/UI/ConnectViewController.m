@@ -15,19 +15,28 @@
 
 @end
 
-@implementation ConnectViewController
+@implementation ConnectViewController{
+    UILabel *lblState;
+}
 
 - (id)init{
     self=[super init];
     if(self){
         
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景2"]]];
+        [self ConnectedState:NO];
+        
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
         
         [self RefreshStateNormal];
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
         [self.tableView setBackgroundColor:[UIColor clearColor]];
+        lblState=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 320, 100)];
+        [lblState setFont:[UIFont systemFontOfSize:40]];
+        [lblState setTextColor:[UIColor whiteColor]];
+        [lblState setTextAlignment:NSTextAlignmentCenter];
+        [self.tableView setTableHeaderView:lblState];
         
-        CGFloat height=self.view.bounds.size.height-CGHeight(100);
+        CGFloat height=self.view.bounds.size.height-CGHeight(130);
         UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, height, CGWidth(320), CGHeight(40))];
         ;
         CButton *bDemo=[[CButton alloc]initWithFrame:CGRectMake1(40, 0, 100, 40) Name:NSLocalizedString(@"Demo",nil) Type:1];
@@ -98,6 +107,8 @@
     if(self.appDelegate.bleManager.activePeripheral){
         if ([uuid isEqualToString:self.appDelegate.bleManager.activePeripheral.identifier.UUIDString]) {
             if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
+                [lblState setText:@""];
+                [self ConnectedState:YES];
                 //如果已经连接则显示连接状态
                 [cell.lblAddress setText:NSLocalizedString(@"Connected",nil)];
                 [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
@@ -136,6 +147,7 @@
 
 - (void)connected:(CBPeripheral*)cbPeripheral
 {
+    [lblState setText:NSLocalizedString(@"Connecting...",nil)];
     if (self.appDelegate.bleManager.activePeripheral){
         if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
             [self.appDelegate.bleManager.CM cancelPeripheralConnection:self.appDelegate.bleManager.activePeripheral];
@@ -155,10 +167,12 @@
     self.mMBProgressHUD.dimBackground = NO;
     self.mMBProgressHUD.square = YES;
     [self.mMBProgressHUD show:YES];
+    [lblState setText:NSLocalizedString(@"Scan...",nil)];
 }
 
 - (void)RefreshStateNormal
 {
+    [lblState setText:@""];
     if (self.mMBProgressHUD) {
         [self.mMBProgressHUD hide:YES];
     }
@@ -240,7 +254,7 @@
 //连接成功
 - (void)didConectedbleDevice:(CBPeripheral *)peripheral
 {
-//    NSLog(@" BLE 设备连接成功   ！\r\n");
+    NSLog(@" BLE 设备连接成功   ！\r\n");
     MODEL = MODEL_CONNECTING ;
     [self.tableView reloadData];
     [self.appDelegate.bleManager.activePeripheral discoverServices:nil];
@@ -249,7 +263,7 @@
 //扫描ble设备
 - (void)stopScanBLEDevice:(CBPeripheral *)peripheral
 {
-//    NSLog(@" BLE外设 列表 被更新 ！\r\n");
+    NSLog(@" BLE外设 列表 被更新 ！\r\n");
     [self.tableView reloadData];
     [self RefreshStateNormal];
 }
@@ -257,20 +271,20 @@
 //此方法刷新次数过多，会导致tableview界面无法刷新的情况发生
 - (void)bleDeviceWithRSSIFound:(NSNotification *) notification
 {
-//    NSLog(@" 更新RSSI 值 ！\r\n");
+    NSLog(@" 更新RSSI 值 ！\r\n");
 }
 
 //服务发现完成之后的回调方法
 - (void)ServiceFoundOver:(CBPeripheral *)peripheral
 {
-//    NSLog(@" 获取所有的服务 ");
+    NSLog(@" 获取所有的服务 ");
     MODEL = MODEL_SCAN;
 }
 
 //成功扫描所有服务特征值
 - (void)DownloadCharacteristicOver:(CBPeripheral *)peripheral
 {
-//    NSLog(@" 获取所有的特征值 ! \r\n");
+    NSLog(@" 获取所有的特征值 ! \r\n");
     MODEL = MODEL_CONECTED;
     [self.tableView reloadData];
 }
@@ -293,6 +307,15 @@
         NSString *uuid=self.appDelegate.bleManager.activePeripheral.identifier.UUIDString;
         [[Data Instance]setAutoConnected:uuid];
     }];
+}
+
+- (void)ConnectedState:(BOOL)state
+{
+    if(state){
+        [self cTitle:NSLocalizedString(@"BBQ Connected",nil)];
+    }else{
+        [self cTitle:NSLocalizedString(@"BBQ Unconnected",nil)];
+    }
 }
 
 @end

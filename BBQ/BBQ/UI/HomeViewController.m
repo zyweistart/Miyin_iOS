@@ -99,7 +99,7 @@
         [self.mSetTempView setHidden:YES];
         [self.bgFrame addSubview:self.mSetTempView];
         //时间设置面板
-        self.pv1=[[DatePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(260+BOTTOMTABBARHEIGHT), CGWidth(320), CGHeight(260))];
+        self.pv1=[[DatePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height/2-CGHeight(260+BOTTOMTABBARHEIGHT)/2, CGWidth(320), CGHeight(260))];
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
         [self.bgFrame addSubview:self.pv1];
@@ -144,6 +144,12 @@
 
 - (void)loadData:(NSArray*)array
 {
+    if([array count]==0){
+        [self.scrollFrameView setHidden:YES];
+        [self.mConnectedPanel setHidden:NO];
+        [self.lblMessage setText:NSLocalizedString(@"Plase insert probes",nil)];
+        return;
+    }
     [self.scrollFrameView setContentSize:CGSizeMake1(320, 190*[array count])];
     self.dataItemArray=[[NSMutableArray alloc]initWithArray:array];
     for(int i=0;i<[array count];i++){
@@ -293,6 +299,7 @@
     }
     [self.scrollFrameView setHidden:!state];
     [self.mConnectedPanel setHidden:state];
+    [self.lblMessage setText:NSLocalizedString(@"Connection is broken",nil)];
 }
 
 - (void)frmeChange:(UIGestureRecognizer*)sender
