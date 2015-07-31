@@ -1,6 +1,7 @@
 #import "SettingViewController.h"
 #import "SwitchCell.h"
 #import "AboutViewController.h"
+#import "Localisator.h"
 
 @interface SettingViewController ()
 
@@ -15,7 +16,7 @@
         
         [self.dataItemArray addObject:NSLocalizedString(@"Temp Unit",nil)];
         [self.dataItemArray addObject:NSLocalizedString(@"Alarm",nil)];
-        [self.dataItemArray addObject:NSLocalizedString(@"Language",nil)];
+//        [self.dataItemArray addObject:NSLocalizedString(@"Language",nil)];
         [self.dataItemArray addObject:NSLocalizedString(@"About",nil)];
         
         [self buildTableViewWithView:self.view];
@@ -61,12 +62,12 @@
         [cell.textLabel setText:content];
         if(row==1){
             [cell.detailTextLabel setText:[[Data Instance]getAlarm]];
-        }else if(row==2){
-            if([@"1" isEqualToString:[[Data Instance]getLanguage]]){
-                [cell.detailTextLabel setText:@"简体中文"];
-            }else{
-                [cell.detailTextLabel setText:@"English"];
-            }
+//        }else if(row==2){
+//            if([@"1" isEqualToString:[[Data Instance]getLanguage]]){
+//                [cell.detailTextLabel setText:@"简体中文"];
+//            }else{
+//                [cell.detailTextLabel setText:@"English"];
+//            }
         }
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         return cell;
@@ -85,14 +86,14 @@
         [choiceSheet setTag:1];
         [choiceSheet showInView:self.view];
     }else if(row==2){
-        UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                                 delegate:self
-                                                        cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"English",@"简体中文", nil];
-        [choiceSheet setTag:2];
-        [choiceSheet showInView:self.view];
-    }else if(row==3){
+//        UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
+//                                                                 delegate:self
+//                                                        cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
+//                                                   destructiveButtonTitle:nil
+//                                                        otherButtonTitles:@"English",@"简体中文", nil];
+//        [choiceSheet setTag:2];
+//        [choiceSheet showInView:self.view];
+//    }else if(row==3){
         [self.navigationController pushViewController:[[AboutViewController alloc]init] animated:YES];
     }
 }
@@ -110,41 +111,6 @@
         [self.tableView reloadData];
     }else if(actionSheet.tag==2){
         [[Data Instance]setLanguage:[NSString stringWithFormat:@"%ld",buttonIndex]];
-        //获取当前的系统语言设置
-//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//        NSString *string = [defaults valueForKey:@"userLanguage"];
-//        NSLog(@"%@",defaults);
-//        if([@"1" isEqualToString:[[Data Instance]getLanguage]]){
-//            //设置简体中文
-//            [defaults setValue:@"zh-Hans" forKey:@"userLanguage"];
-//        }else{
-//            //设置英文
-//            [defaults setValue:@"en" forKey:@"userLanguage"];
-//        }
-//        [defaults synchronize];
-//        NSString *path = [[NSBundle mainBundle] pathForResource:string ofType:@"lproj"];
-//        [NSBundle bundleWithPath:path];
-        
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        if([@"1" isEqualToString:[[Data Instance]getLanguage]]){
-            //设置简体中文
-            [defaults setObject:@"zh-Hans" forKey:@"AppLanguage"];
-        }else{
-            //设置英文
-            [defaults setObject:@"en" forKey:@"AppLanguage"];
-        }
-        [defaults synchronize];
-        
-        
-//        NSString *currentLanguage = [[NSUserDefaults standardUserDefaults]objectForKey:AppLanguage];
-//        if ([currentLanguage isEqualToString: @"en"]) {
-//            [defaults setObject:@"zh-Hans" forKey:AppLanguage];
-//        }else
-//        {
-//            [defaults setObject:@"en" forKey:AppLanguage];
-//        }
-//        [defaults synchronize];
-        
         [self.tableView reloadData];
     }
 }

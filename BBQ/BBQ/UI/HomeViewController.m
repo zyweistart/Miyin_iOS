@@ -102,7 +102,7 @@
         self.pv1=[[DatePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(260+BOTTOMTABBARHEIGHT), CGWidth(320), CGHeight(260))];
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
-        [self.view addSubview:self.pv1];
+        [self.bgFrame addSubview:self.pv1];
         //横屏
         self.mMenuItemLandView=[[MenuItemLandView alloc]initWithFrame:CGRectMake(0, 0,CGHeight(455),CGWidth(320))];
         [self.mMenuItemLandView setBaseController:self];
@@ -181,6 +181,7 @@
 
 - (void)setTimer:(UIButton*)sender
 {
+    [self.bgFrame setHidden:NO];
     [self.pv1 setTag:sender.tag];
     [self.pv1 setHidden:NO];
 }
@@ -216,6 +217,7 @@
 
 - (void)pickerViewDone:(NSInteger)code
 {
+    [self.bgFrame setHidden:YES];
     if(code==1) {
         NSInteger r=self.pv1.tag;
         NSDictionary *data=[self.dataItemArray objectAtIndex:r];
@@ -240,6 +242,7 @@
 
 - (void)pickerViewCancel:(NSInteger)code
 {
+    [self.bgFrame setHidden:YES];
     if(code==1) {
         NSInteger r=self.pv1.tag;
         NSDictionary *data=[self.dataItemArray objectAtIndex:r];

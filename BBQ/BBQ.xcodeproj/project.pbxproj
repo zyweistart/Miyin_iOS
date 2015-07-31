@@ -76,6 +76,7 @@
 		C9F1EF1E1B674214005C8CF3 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF1D1B674214005C8CF3 /* Tools.m */; };
 		C9F1EF211B67491E005C8CF3 /* TIBLECBStandand.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF201B67491E005C8CF3 /* TIBLECBStandand.m */; };
 		C9F1EF241B677004005C8CF3 /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF231B677004005C8CF3 /* ConnectViewController.m */; };
+		C9F311AF1B6B044500D59F95 /* Localisator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F311AE1B6B044500D59F95 /* Localisator.m */; };
 		C9F488451B6A35540037A9D8 /* MenuItemLandView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F488441B6A35540037A9D8 /* MenuItemLandView.m */; };
 		C9FE58E71B68F656002154E4 /* Beep1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E21B68F656002154E4 /* Beep1.wav */; };
 		C9FE58E81B68F656002154E4 /* Beep2.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E31B68F656002154E4 /* Beep2.wav */; };
@@ -231,6 +232,8 @@
 		C9F1EF201B67491E005C8CF3 /* TIBLECBStandand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIBLECBStandand.m; sourceTree = "<group>"; };
 		C9F1EF221B677004005C8CF3 /* ConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectViewController.h; sourceTree = "<group>"; };
 		C9F1EF231B677004005C8CF3 /* ConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
+		C9F311AD1B6B044400D59F95 /* Localisator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localisator.h; sourceTree = "<group>"; };
+		C9F311AE1B6B044500D59F95 /* Localisator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Localisator.m; sourceTree = "<group>"; };
 		C9F488431B6A35540037A9D8 /* MenuItemLandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemLandView.h; sourceTree = "<group>"; };
 		C9F488441B6A35540037A9D8 /* MenuItemLandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemLandView.m; sourceTree = "<group>"; };
 		C9FE58E21B68F656002154E4 /* Beep1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep1.wav; sourceTree = "<group>"; };
@@ -426,10 +429,14 @@
 				C9ECF1EA1B65C85A0088E110 /* BaseViewController.m */,
 				C9ECF1ED1B65C85A0088E110 /* Common.h */,
 				C9ECF1EE1B65C85A0088E110 /* Common.m */,
+				C9D6152D1B67D6AA003DAC98 /* Data.h */,
+				C9D6152E1B67D6AA003DAC98 /* Data.m */,
 				C9ECF1F31B65C85A0088E110 /* HttpDownload.h */,
 				C9ECF1F41B65C85A0088E110 /* HttpDownload.m */,
 				C9ECF1F51B65C85A0088E110 /* HttpRequest.h */,
 				C9ECF1F61B65C85A0088E110 /* HttpRequest.m */,
+				C9F311AD1B6B044400D59F95 /* Localisator.h */,
+				C9F311AE1B6B044500D59F95 /* Localisator.m */,
 				C9ECF1F91B65C85A0088E110 /* NSString+Utils.h */,
 				C9ECF1FA1B65C85A0088E110 /* NSString+Utils.m */,
 				C9ECF1FB1B65C85A0088E110 /* Response.h */,
@@ -449,8 +456,6 @@
 				C9ECF2031B65C85A0088E110 /* UIImageView+Utils.m */,
 				C9ECF2041B65C85A0088E110 /* User.h */,
 				C9ECF2051B65C85A0088E110 /* User.m */,
-				C9D6152D1B67D6AA003DAC98 /* Data.h */,
-				C9D6152E1B67D6AA003DAC98 /* Data.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -750,6 +755,7 @@
 				C9ECF1D41B65C6BD0088E110 /* MessageInterceptor.m in Sources */,
 				C900ABCD1B6877D40018C36B /* AlertView.m in Sources */,
 				C9126A301B65DBAF001D3D60 /* ToolsViewController.m in Sources */,
+				C9F311AF1B6B044500D59F95 /* Localisator.m in Sources */,
 				C9ECF2071B65C85A0088E110 /* BaseTabBarViewController.m in Sources */,
 				C9ECF1D21B65C6BD0088E110 /* EGORefreshTableHeaderView.m in Sources */,
 				C9ECF2091B65C85A0088E110 /* BaseViewController.m in Sources */,
@@ -881,6 +887,10 @@
 				INFOPLIST_FILE = BBQ/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BBQ/Classes/Project/绍兴巴贝/ios_BLECollectionOpen/BLECollection/Demo/UMFeedback",
+				);
 				PRODUCT_NAME = BBQ;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -896,6 +906,10 @@
 				INFOPLIST_FILE = BBQ/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BBQ/Classes/Project/绍兴巴贝/ios_BLECollectionOpen/BLECollection/Demo/UMFeedback",
+				);
 				PRODUCT_NAME = BBQ;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
