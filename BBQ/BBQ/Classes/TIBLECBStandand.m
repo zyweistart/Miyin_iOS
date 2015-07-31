@@ -1,6 +1,26 @@
 #import "TIBLECBStandand.h"
 
+#define STEP1   0x01
+#define STEP2   0x02
+#define STEP3   0x04
+#define STEP4   0x08
+
 @implementation TIBLECBStandand
+
+#pragma mark -------BLE 结构体-------
+
+typedef struct {
+    int index;
+    int RSSI;
+}PERIPHERALS_RSSI;
+
+typedef struct _INT{
+    char buff[30];
+}INT_STRUCT;
+
+typedef struct scanProcessStep{
+    char step[20];
+}SCANPROCESSSTEP_STRUCT;
 
 #pragma mark -------BLE 通讯模型类的方法-------
 
@@ -135,101 +155,49 @@
     return "Unknown state";
 }
 
-- (void) printPeripheralInfo:(CBPeripheral*)peripheral
-{
-    CFStringRef s = CFUUIDCreateString(NULL, peripheral.UUID);
-}
-
-- (int) UUIDSAreEqual:(CFUUIDRef)u1 u2:(CFUUIDRef)u2
-{
-    CFUUIDBytes b1 = CFUUIDGetUUIDBytes(u1);
-    CFUUIDBytes b2 = CFUUIDGetUUIDBytes(u2);
-    if (memcmp(&b1, &b2, 16) == 0) {
-        return 1 ;
-    }
-    return 0 ;
-}
-
 - (void)getAllServicesFromKeyfob:(CBPeripheral *)p
 {
     [p discoverServices:nil];
 }
 
 //获取所有服务的特征值
--(void) getAllCharacteristicsFromKeyfob:(CBPeripheral *)p{
+- (void)getAllCharacteristicsFromKeyfob:(CBPeripheral *)p
+{
     //读取所有服务的特征值
     for (int i=0; i < p.services.count; i++) {
         CBService *s = [p.services objectAtIndex:i];
-        //NSLog(@"//step_9_0 Fetching characteristics for service with UUID : %s\r\n",[self CBUUIDToString:s.UUID]);
-        
         //开始读取当前服务的特征值
         [p discoverCharacteristics:nil forService:s];
     }
 }
 
--(const char *) CBUUIDToString:(CBUUID *) UUID {
-    return [[UUID.data description] cStringUsingEncoding:NSStringEncodingConversionAllowLossy];
-}
-
--(const char *) UUIDToString:(CFUUIDRef)UUID {
-    if (!UUID) return "NULL";
-    CFStringRef s = CFUUIDCreateString(NULL, UUID);
-    return CFStringGetCStringPtr(s, 0);
-    
-}
-
--(int) compareCBUUID:(CBUUID *) UUID1 UUID2:(CBUUID *)UUID2 {
-    char b1[16];
-    char b2[16];
-    [UUID1.data getBytes:b1];
-    [UUID2.data getBytes:b2];
-    if (memcmp(b1, b2, UUID1.data.length) == 0)return 1;
-    else return 0;
-}
-
--(int) compareCBUUIDToInt:(CBUUID *)UUID1 UUID2:(UInt16)UUID2 {
-    char b1[16];
-    [UUID1.data getBytes:b1];
-    UInt16 b2 = [self swap:UUID2];
-    if (memcmp(b1, (char *)&b2, 2) == 0) return 1;
-    else return 0;
-}
-
--(UInt16) CBUUIDToInt:(CBUUID *) UUID {
-    char b1[16];
-    [UUID.data getBytes:b1];
-    return ((b1[0] << 8) | b1[1]);
-}
-
--(CBUUID *) IntToCBUUID:(UInt16)UUID {
-    char t[16];
-    t[0] = ((UUID >> 8) & 0xff); t[1] = (UUID & 0xff);
-    NSData *data = [[NSData alloc] initWithBytes:t length:16];
-    return [CBUUID UUIDWithData:data];
-}
-
--(CBService *) findServiceFromUUID:(CBUUID *)UUID p:(CBPeripheral *)p {
+- (CBService *)findServiceFromUUID:(CBUUID *)UUID p:(CBPeripheral *)p
+{
     for(int i = 0; i < p.services.count; i++) {
         CBService *s = [p.services objectAtIndex:i];
-        if ([self compareCBUUID:s.UUID UUID2:UUID]) return s;
+        if ([self compareCBUUID:s.UUID UUID2:UUID]){
+            return s;
+        }
     }
-    return nil; //Service not found on this peripheral
+    return nil;
 }
 
--(CBCharacteristic *) findCharacteristicFromUUID:(CBUUID *)UUID service:(CBService*)service {
+- (CBCharacteristic *)findCharacteristicFromUUID:(CBUUID *)UUID service:(CBService*)service
+{
     for(int i=0; i < service.characteristics.count; i++) {
         CBCharacteristic *c = [service.characteristics objectAtIndex:i];
         if ([self compareCBUUID:c.UUID UUID2:UUID]) return c;
     }
-    return nil; //Characteristic not found on this service
+    return nil;
 }
 
--(void) SaveToActiveCharacteristic:(CBCharacteristic *)c{
+- (void)SaveToActiveCharacteristic:(CBCharacteristic *)c
+{
     if (!self.activeCharacteristics){
         //列表为空，第一次发现新设备
         self.activeCharacteristics = [[NSMutableArray alloc] initWithObjects:c,nil];
-    }
-    else {                      //列表中有曾经发现的设备，如果重复发现则刷新，
+    } else {
+        //列表中有曾经发现的设备，如果重复发现则刷新，
         for(int i = 0; i < self.activeCharacteristics.count; i++) {
             CBCharacteristic *p = [self.activeCharacteristics objectAtIndex:i];
             if (p.UUID == c.UUID) {
@@ -242,65 +210,49 @@
     }
 }
 
-
--(void) UpdateToActiveCharacteristic:(CBCharacteristic *)c{
-    if (!self.activeCharacteristics)      //列表为空，第一次发现新设备
-        //NSLog(@"no characteristics !\r\n");
-        
+- (void)UpdateToActiveCharacteristic:(CBCharacteristic *)c
+{
+    if (!self.activeCharacteristics){
+        //列表为空，第一次发现新设备
+    }
     for(int i = 0; i < self.activeCharacteristics.count; i++) {
         CBCharacteristic *p = [self.activeCharacteristics objectAtIndex:i];
         if (p.UUID == c.UUID) {
             [self.activeCharacteristics replaceObjectAtIndex:i withObject:c];
-//            //NSLog(@"覆盖刷新 characteristic UUID %s\r\n",[self CBUUIDToString:p.UUID]);
             [self DisplayCharacteristicMessage:c];
             return ;
         }
     }
-
-    //NSLog(@"Can't find this characteristics !\r\n");
 }
 
--(BOOL) isAActiveCharacteristic:(CBCharacteristic *)c{
+- (BOOL)isAActiveCharacteristic:(CBCharacteristic *)c
+{
     for(int i = 0; i < self.activeCharacteristics.count; i++) {
         CBCharacteristic *p = [self.activeCharacteristics objectAtIndex:i];
         if (p.UUID == c.UUID) {
             return YES;
         }
     }
-    //NSLog(@"^ isn't Active characteristics !\r\n");
     return NO;
 }
 
--(void) SaveToActiveDescriptors:(CBDescriptor *)descriptor{
-//    if (!self.activeDescriptors){      //列表为空，第一次发现新设备
-//        self.activeDescriptors = [[NSMutableArray alloc] initWithObjects:descriptor,nil];
-//        //NSLog(@"New descriptor, adding ... descriptor UUID %s\r\n",[self CBUUIDToString:descriptor.characteristic.UUID]);
-//    }
-//    else {                      //列表中有曾经发现的设备，如果重复发现则刷新，
-        for(int i = 0; i < self.activeDescriptors.count; i++) {
-            CBDescriptor *p = [self.activeDescriptors objectAtIndex:i];
-            if (p.characteristic.UUID == descriptor.characteristic.UUID) {
-                //NSLog(@"%d > %d !!!!!!!!! \r\n",i,self.activeDescriptors.count);
-                [self.activeDescriptors replaceObjectAtIndex:i withObject:descriptor];
-                return;
-            }
+-(void)SaveToActiveDescriptors:(CBDescriptor *)descriptor
+{
+    //列表中有曾经发现的设备，如果重复发现则刷新，
+    for(int i = 0; i < self.activeDescriptors.count; i++) {
+        CBDescriptor *p = [self.activeDescriptors objectAtIndex:i];
+        if (p.characteristic.UUID == descriptor.characteristic.UUID) {
+            //NSLog(@"%d > %d !!!!!!!!! \r\n",i,self.activeDescriptors.count);
+            [self.activeDescriptors replaceObjectAtIndex:i withObject:descriptor];
+            return;
         }
-        //发现的外围设备，被保存在对象的peripherals 缓冲中
-        [self.activeDescriptors addObject:descriptor];
-        //NSLog(@"New descriptor, adding ... ");
-        //NSLog(@" descriptor UUID %s",[self CBUUIDToString:descriptor.characteristic.UUID]);
-        //NSLog(@" %s ",[self CBUUIDToString:descriptor.UUID]);
-        //NSLog(@" %@ ",descriptor.value);
-    
-//    }
-    //NSLog(@"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\r\n");
-    //NSLog(@"activeDescriptors count = %d",[self.activeDescriptors count]);
-    //NSLog(@"activeCharacteristics count = %d",[self.activeCharacteristics count]);
+    }
+    //发现的外围设备，被保存在对象的peripherals 缓冲中
+    [self.activeDescriptors addObject:descriptor];
 }
 
- 
--(id) GetCharcteristicDiscriptorFromActiveDescriptorsArray:(CBCharacteristic *)characteristic{
-    
+- (id)GetCharcteristicDiscriptorFromActiveDescriptorsArray:(CBCharacteristic *)characteristic
+{
     for(int i = 0; i < self.activeDescriptors.count; i++) {
         CBDescriptor *p = [self.activeDescriptors objectAtIndex:i];
         if (p.characteristic.UUID == characteristic.UUID) {
@@ -310,115 +262,57 @@
     return nil;
 }
 
--(void) DisplayCharacteristicDescriptorMessage:(CBDescriptor *)d{
-    
-    CBCharacteristic *c = d.characteristic;
-    
-    INT_STRUCT buf1;
-    [c.value getBytes:&buf1 length:c.value.length];
-    //NSLog(@"                                                       value:");
-    for(int i=0; i < c.value.length; i++) {
-        //NSLog(@"%02x ",buf1.buff[i]&0x000000ff);
-    }
-    
-}
-
--(void) DisplayCharacteristicMessage:(CBCharacteristic *)c{
-    
-    return;
-}
-
-#pragma mark -------BLE 中心设备代理协议方法-------
-//中心设备管理器状态更新回调函数
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central{
-}
-
-- (void)centralManager:(CBCentralManager *)central didRetrievePeripherals:(NSArray *)peripherals{
-    
-}
-
-- (void)centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals{
-    
-}
-
-
-
-
-typedef struct {
-    int index;
-    int RSSI;
-}PERIPHERALS_RSSI;
-
 //中心设备发现外围BLE设备后的回调，包含广播数据包，如果发现已经在列表中的设备，则覆盖保存一次
-
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
     NSArray *rssiArray;
     NSNotificationCenter *nc;
-    
-
-    //只搜索Grill Now
+    //过滤搜索的设备
     if(![peripheral.name containsString:@"Grill Now"]){
         return;
     }
-    
     int i = 0 ;
-    if (!self.peripherals)      //列表为空，第一次发现新设备
+    if (!self.peripherals) {
+        //列表为空，第一次发现新设备
         self.peripherals = [[NSMutableArray alloc] initWithObjects:peripheral,nil];
-    else {                      //列表中有曾经发现的设备，如果重复发现则刷新，
+    } else {
+        //列表中有曾经发现的设备，如果重复发现则刷新，
         for(i = 0; i < self.peripherals.count; i++) {
             CBPeripheral *p = [self.peripherals objectAtIndex:i];
-//            if ([self UUIDSAreEqual:p.UUID u2:peripheral.UUID]) {
               if (p.UUID == peripheral.UUID) {
                 [self.peripherals replaceObjectAtIndex:i withObject:peripheral];
-//                //NSLog(@"//step_3 Duplicate UUID found updating ...\r\n");
                 //发送外围设备的序号，以及RSSI通知
-                  rssiArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:i],RSSI, nil];
-                  if(isScan)
-                  {
-                     nc = [NSNotificationCenter defaultCenter];
-                     [nc postNotificationName: @"BLEDEVICEWITHRSSIFOUND" object: rssiArray];
-                  }
+                rssiArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:i],RSSI, nil];
+                if(isScan) {
+                    nc = [NSNotificationCenter defaultCenter];
+                    [nc postNotificationName:NOTIFICATION_BLEDEVICEWITHRSSIFOUND object: rssiArray];
+                }
                 return;
             }
         }
         //发现的外围设备，被保存在对象的peripherals 缓冲中
         [self.peripherals addObject:peripheral];
-//        //NSLog(@"New UUID, adding\r\n");
     }
-//    //NSLog(@"//step_2 didDiscoverPeripheral\r\n");
     //发送外围设备的序号，以及RSSI通知
     rssiArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:i],RSSI, nil];
-//    //NSLog(@"%@",rssiArray);
-    if(isScan)
-    {
+    if(isScan) {
         nc = [NSNotificationCenter defaultCenter];
-
-        [nc postNotificationName: @"BLEDEVICEWITHRSSIFOUND" object: rssiArray];
+        [nc postNotificationName:NOTIFICATION_BLEDEVICEWITHRSSIFOUND object: rssiArray];
 
     }
 }
 
 //中心设备成功连接BLE外围设备
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
-    
-    //NSLog(@"//step_7_1 Connection to peripheral with UUID : %s successfull\r\n",[self UUIDToString:peripheral.UUID]);
     self.activePeripheral = peripheral;
-
     //点击某个设备后，将这个设备对象作为参数，通知给属性列表窗体，在那个窗体中进行连接以及服务扫描操作。
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc postNotificationName: @"DIDCONNECTEDBLEDEVICE"
-                      object: nil];
-}
-
-- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
-    
+    [nc postNotificationName:NOTIFICATION_DIDCONNECTEDBLEDEVICE object: nil];
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
     //断开连接
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc postNotificationName: NOTIFICATION_DISCONNECTPERIPHERAL object: peripheral.RSSI];
-//    [self.CM scanForPeripheralsWithServices:self.activePeripheral.services options:@{CBCentralManagerScanOptionAllowDuplicatesKey:@YES}];
 }
 
 #pragma mark -------BLE 外围设备代理协议方法-------
@@ -436,56 +330,34 @@ typedef struct {
         
         NSNumber *n =  [NSNumber numberWithFloat:1.0];
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName: @"SERVICEFOUNDOVER" object: n];
+        [nc postNotificationName:NOTIFICATION_SERVICEFOUNDOVER object: n];
     }
-    else {
-    }
-}
-
-- (void)peripheral:(CBPeripheral *)peripheral didDiscoverIncludedServicesForService:(CBService *)service error:(NSError *)error{
-    
 }
 
 //发现服务的特征值之后的回调方法，主要是打印所有服务的特征值。
 
-- (void)                    peripheral:(CBPeripheral *)peripheral
-  didDiscoverCharacteristicsForService:(CBService *)service
-                                 error:(NSError *)error {
+- (void) peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
+{
     static int index = 0 ;
-//    float f0 ;
-    
     if (!error) {
-        //NSLog(@"//step_10 Characteristics of service with UUID : %s found\r\n",[self CBUUIDToString:service.UUID]);
         index ++ ;
-        
-        //开始打印所有服务UUID的所有特征值UUID
-        //NSLog(@"-----------刚扫描到特征参数之后的值---------第1步结束");//Jason++
-        
         for(int i=0; i < service.characteristics.count; i++) {
             
             CBCharacteristic *c = [service.characteristics objectAtIndex:i];
             [self SaveToActiveCharacteristic:c];
         }
-
         NSNumber *m =  [NSNumber numberWithFloat:0.25];
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName: @"DOWNLOADSERVICEPROCESSSTEP" object: m];
-        
-        //NSLog(@" Discovering characteristics Finished ! \r\n");
-        
+        [nc postNotificationName:NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP object: m];
     } else {
         index = 0 ;
     }
     
-    if ([service.UUID isEqual:[CBUUID UUIDWithString:@"1800"]])
-    {
-        for (CBCharacteristic *aChar in service.characteristics)//遍历此服务的所有特征值
-        {
-            if ([aChar.UUID isEqual:[CBUUID UUIDWithString:@"2A04"]])
-            {
+    if ([service.UUID isEqual:[CBUUID UUIDWithString:@"1800"]]) {
+        //遍历此服务的所有特征值
+        for (CBCharacteristic *aChar in service.characteristics) {
+            if ([aChar.UUID isEqual:[CBUUID UUIDWithString:@"2A04"]]) {
                 [peripheral readValueForCharacteristic:aChar];
-                //NSLog(@"//step_10_y Found a Connection Parameters Characteristic");
-                //NSLog(@"%@", aChar);
             }
         }
     }
@@ -495,82 +367,47 @@ typedef struct {
 //这里会根据特征值的UUID来进行区分是哪一个特征值的更新或者改变通知
 //如果这些特征值的UUID的值，事先不确定，必须靠连接后的读取来获得，必须在获取之后保存在某一个可变阵列缓冲中
 //事后，根据收到的消息中的UUID和缓冲中的特征值UUID逐个比较，最终改变相应特征值的值
-
 //特征值读取，或者得到更改通知后的回调
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
 
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     if (!error) {
-        if ([self.mode compare:@"UPDATEMODE" ] == NSOrderedSame)
-        {
-          
-//           //NSLog(@"-----------特征值改变通知----------<<<<<<<<<<");//Jason++
+        if ([self.mode compare:@"UPDATEMODE" ] == NSOrderedSame) {
             if ([self isAActiveCharacteristic:(characteristic)]==YES) {
                 [self UpdateToActiveCharacteristic:characteristic];
-                [nc postNotificationName: @"VALUECHANGUPDATE" object: characteristic];
+                [nc postNotificationName:NOTIFICATION_VALUECHANGUPDATE object: characteristic];
             }
-        }else if ([self.mode compare:@"SCANMODE" ] == NSOrderedSame){
+        } else if ([self.mode compare:@"SCANMODE" ] == NSOrderedSame){
             return;
-        }else if ([self.mode compare:@"IDLEMODE" ] == NSOrderedSame){
+        } else if ([self.mode compare:@"IDLEMODE" ] == NSOrderedSame){
             if ([self isAActiveCharacteristic:(characteristic)]==YES) {
                 [self SaveToActiveCharacteristic:characteristic];
-                [nc postNotificationName: @"VALUECHANGUPDATE" object: Nil];
+                [nc postNotificationName:NOTIFICATION_VALUECHANGUPDATE object: Nil];
             }
         }
     } else {
         if ([self.mode compare:@"UPDATEMODE" ] == NSOrderedSame) {
         } else if ([self.mode compare:@"SCANMODE" ] == NSOrderedSame){
             NSNumber *m =  [NSNumber numberWithFloat:0.75];
-            [nc postNotificationName: @"DOWNLOADSERVICEPROCESSSTEP" object: m];
+            [nc postNotificationName:NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP object: m];
         }
     }
 }
 
-- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
-
-}
-
-
-- (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
-    if (!error) {
-    }
-    else {
-    }
-}
-
-
-typedef struct _INT{
-    char buff[30];
-}INT_STRUCT;
-
-typedef struct scanProcessStep{
-    char step[20];
-}SCANPROCESSSTEP_STRUCT;
-
-#define STEP1   0x01
-#define STEP2   0x02
-#define STEP3   0x04
-#define STEP4   0x08
-
 //每个特征值获取之后的回调,等获取完此服务的所有特征值之后，发出通知分组显示特征值列表
-
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
     if (!error) {
-        //NSLog(@"-----------获取特征值的结构描述之后的值---------第2步结束");//Jason++
-        
-        //  [self SaveToActiveCharacteristic:characteristic];
-        
         [self DisplayCharacteristicMessage:characteristic];
-        
-        NSNumber *m =  [NSNumber numberWithFloat:0.75];//0.5 跳过第三步，不读取属性值，打开列表后手动读取
+        //0.5 跳过第三步，不读取属性值，打开列表后手动读取
+        NSNumber *m =  [NSNumber numberWithFloat:0.75];
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName: @"DOWNLOADSERVICEPROCESSSTEP" object: m];
-    }
-    else {
+        [nc postNotificationName:NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP object: m];
+    } else {
     }
 }
 
-- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForDescriptor:(CBDescriptor *)descriptor error:(NSError *)error{
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForDescriptor:(CBDescriptor *)descriptor error:(NSError *)error
+{
     if (!error) {
         //全部转移到 self.activeDescriptors ，里面包含特征值的全部信息
         if ([self.mode compare:@"SCANMODE" ] == NSOrderedSame){
@@ -578,14 +415,10 @@ typedef struct scanProcessStep{
         }
         NSNumber *m =  [NSNumber numberWithFloat:1];
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName: @"DOWNLOADSERVICEPROCESSSTEP" object: m];
-        //descriptor中包含了此服务的所有特征值信息
+        [nc postNotificationName: NOTIFICATION_DOWNLOADSERVICEPROCESSSTEP object: m];
     }
 }
 
-- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForDescriptor:(CBDescriptor *)descriptor error:(NSError *)error{
-    
-}
 #pragma mark -------BLE 自定义方法-------
 
 - (UInt16)swap:(UInt16)s
@@ -604,4 +437,120 @@ typedef struct scanProcessStep{
     }
     return uuidString;
 }
+
+- (int)UUIDSAreEqual:(CFUUIDRef)u1 u2:(CFUUIDRef)u2
+{
+    CFUUIDBytes b1 = CFUUIDGetUUIDBytes(u1);
+    CFUUIDBytes b2 = CFUUIDGetUUIDBytes(u2);
+    if (memcmp(&b1, &b2, 16) == 0) {
+        return 1 ;
+    }
+    return 0 ;
+}
+
+- (const char *)CBUUIDToString:(CBUUID *)UUID
+{
+    return [[UUID.data description] cStringUsingEncoding:NSStringEncodingConversionAllowLossy];
+}
+
+- (const char *)UUIDToString:(CFUUIDRef)UUID
+{
+    if (!UUID) return "NULL";
+    CFStringRef s = CFUUIDCreateString(NULL, UUID);
+    return CFStringGetCStringPtr(s, 0);
+    
+}
+
+- (int)compareCBUUID:(CBUUID *)UUID1 UUID2:(CBUUID *)UUID2
+{
+    char b1[16];
+    char b2[16];
+    [UUID1.data getBytes:b1];
+    [UUID2.data getBytes:b2];
+    if (memcmp(b1, b2, UUID1.data.length) == 0)return 1;
+    else return 0;
+}
+
+- (int)compareCBUUIDToInt:(CBUUID *)UUID1 UUID2:(UInt16)UUID2
+{
+    char b1[16];
+    [UUID1.data getBytes:b1];
+    UInt16 b2 = [self swap:UUID2];
+    if (memcmp(b1, (char *)&b2, 2) == 0) return 1;
+    else return 0;
+}
+
+- (UInt16)CBUUIDToInt:(CBUUID *)UUID
+{
+    char b1[16];
+    [UUID.data getBytes:b1];
+    return ((b1[0] << 8) | b1[1]);
+}
+
+- (CBUUID *)IntToCBUUID:(UInt16)UUID
+{
+    char t[16];
+    t[0] = ((UUID >> 8) & 0xff); t[1] = (UUID & 0xff);
+    NSData *data = [[NSData alloc] initWithBytes:t length:16];
+    return [CBUUID UUIDWithData:data];
+}
+
+#pragma mark -------BLE 空方法方法-------
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForDescriptor:(CBDescriptor *)descriptor error:(NSError *)error
+{
+    
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    if (!error) {
+    } else {
+    }
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    
+}
+
+- (void)DisplayCharacteristicDescriptorMessage:(CBDescriptor *)d
+{
+    CBCharacteristic *c = d.characteristic;
+    INT_STRUCT buf1;
+    [c.value getBytes:&buf1 length:c.value.length];
+    for(int i=0; i < c.value.length; i++) {
+        
+    }
+    
+}
+
+-(void) DisplayCharacteristicMessage:(CBCharacteristic *)c{
+    return;
+}
+
+#pragma mark -------BLE 中心设备代理协议方法-------
+//中心设备管理器状态更新回调函数
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    
+}
+
+- (void)centralManager:(CBCentralManager *)central didRetrievePeripherals:(NSArray *)peripherals
+{
+    
+}
+
+- (void)centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals
+{
+    
+}
+
+- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
+    
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverIncludedServicesForService:(CBService *)service error:(NSError *)error{
+    
+}
+
 @end

@@ -52,9 +52,6 @@
 - (int)findBLEPeripherals:(int) timeout;
 - (void)stopScan;
 - (const char *)centralManagerStateToString:(int)state;
-- (void)scanTimer:(NSTimer *)timer;
-- (void)printKnownPeripherals;
-- (void)printPeripheralInfo:(CBPeripheral*)peripheral;
 - (void)connectPeripheral:(CBPeripheral *)peripheral;
 - (void)DisplayCharacteristicDescriptorMessage:(CBDescriptor *)d;
 - (void)DisplayCharacteristicMessage:(CBCharacteristic *)c;
