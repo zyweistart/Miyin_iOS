@@ -4,7 +4,7 @@
 
 //连接设备成功
 #define NOTIFICATION_DIDCONNECTEDBLEDEVICE @"DIDCONNECTEDBLEDEVICE"
-//扫描结束发出
+//扫描超时发出
 #define NOTIFICATION_STOPSCAN @"STOPSCAN"
 //
 #define NOTIFICATION_BLEDEVICEWITHRSSIFOUND @"BLEDEVICEWITHRSSIFOUND"
@@ -38,7 +38,6 @@
 @property (strong, nonatomic) NSMutableArray *activeDescriptors;
 //当前正在操作的特征值缓存
 @property (strong, nonatomic) NSString *mode;
-@property (strong, nonatomic) CBService *activeService;
 
 #pragma mark -------模型类的方法-------
 

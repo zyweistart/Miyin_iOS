@@ -2,19 +2,10 @@
 
 @implementation TIBLECBStandand
 
-#pragma mark -------BLE 通讯模型类的属性-------
-
-@synthesize CM;                 ////BLE中心管理器对象指针
-@synthesize peripherals;        ////可变长表格阵列，用来保存扫描到的所有 CBPeripheral 对象指针
-@synthesize activePeripheral;   ////当前已进入连接状态的外围设备对象指针
-@synthesize activeCharacteristics;    //当前正在操作的特征值缓存
-@synthesize activeDescriptors;
-@synthesize mode;
-@synthesize activeService;
-
 #pragma mark -------BLE 通讯模型类的方法-------
 
--(void) writeValue:(int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p data:(NSData *)data {
+- (void)writeValue:(int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p data:(NSData *)data
+{
     UInt16 s = [self swap:serviceUUID];
     UInt16 c = [self swap:characteristicUUID];
     NSData *sd = [[NSData alloc] initWithBytes:(char *)&s length:2];
@@ -34,7 +25,8 @@
     [p writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse];
 }
 
--(void) readValue: (int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p {
+- (void)readValue:(int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p
+{
     UInt16 s = [self swap:serviceUUID];
     UInt16 c = [self swap:characteristicUUID];
     NSData *sd = [[NSData alloc] initWithBytes:(char *)&s length:2];
@@ -43,18 +35,17 @@
     CBUUID *cu = [CBUUID UUIDWithData:cd];
     CBService *service = [self findServiceFromUUID:su p:p];
     if (!service) {
-        //NSLog(@"Could not find service with UUID %s on peripheral with UUID %s\r\n",[self CBUUIDToString:su],[self UUIDToString:p.UUID]);
         return;
     }
     CBCharacteristic *characteristic = [self findCharacteristicFromUUID:cu service:service];
     if (!characteristic) {
-        //NSLog(@"Could not find characteristic with UUID %s on service with UUID %s on peripheral with UUID %s\r\n",[self CBUUIDToString:cu],[self CBUUIDToString:su],[self UUIDToString:p.UUID]);
         return;
     }
     [p readValueForCharacteristic:characteristic];
 }
 
--(void) notification:(int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p on:(BOOL)on {
+- (void)notification:(int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p on:(BOOL)on
+{
     UInt16 s = [self swap:serviceUUID];
     UInt16 c = [self swap:characteristicUUID];
     
@@ -66,70 +57,65 @@
     
     CBService *service = [self findServiceFromUUID:su p:p];
     if (!service) {
-        //NSLog(@"Could not find service with UUID %s on peripheral with UUID %s\r\n",[self CBUUIDToString:su],[self UUIDToString:p.UUID]);
         return;
     }
     CBCharacteristic *characteristic = [self findCharacteristicFromUUID:cu service:service];
     if (!characteristic) {
-        //NSLog(@"Could not find characteristic with UUID %s on service with UUID %s on peripheral with UUID %s\r\n",[self CBUUIDToString:cu],[self CBUUIDToString:su],[self UUIDToString:p.UUID]);
         return;
     }
     [p setNotifyValue:on forCharacteristic:characteristic];
 }
 
 
--(UInt16) swap:(UInt16)s {
-    UInt16 temp = s << 8;
-    temp |= (s >> 8);
-    return temp;
-}
-
 - (int) controlSetup: (int) s{
     self.CM = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     return 0;
 }
 
--(void)stopScan{
-    [self.CM stopScan];
-    isScan  = NO;
-}
-
-- (int) findBLEPeripherals:(int) timeout {
-    if (self->CM.state  != CBCentralManagerStatePoweredOn) {
+//开始扫描传入超时秒数
+- (int)findBLEPeripherals:(int)timeout
+{
+    if (self.CM.state  != CBCentralManagerStatePoweredOn) {
         return -1;
     }
-    
     if (scanKeepTimer==nil) {
         scanKeepTimer = [NSTimer scheduledTimerWithTimeInterval:(float)timeout
                                          target:self
-                                       selector:@selector(scanTimer:)
+                                       selector:@selector(scanEndTimer:)
                                        userInfo:nil
                                         repeats:NO];
     }
     [self.CM stopScan];
-    [self.CM scanForPeripheralsWithServices:nil options:0]; // Start scanning
+    [self.CM scanForPeripheralsWithServices:nil options:0];
     isScan = YES;
-    return 0; // Started scanning OK !
+    return 0;
 }
 
 //定时扫描结束，打印BLE设备信息
-- (void) scanTimer:(NSTimer *)timer {
+- (void)scanEndTimer:(NSTimer *)timer
+{
     [self.CM stopScan];
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc postNotificationName: @"STOPSCAN" object: nil];
-//    timer = nil;
+    [nc postNotificationName:NOTIFICATION_STOPSCAN object: nil];
     scanKeepTimer = nil ;
 }
 
-//连接指定的BLE外围设备
-- (void) connectPeripheral:(CBPeripheral *)peripheral {
-    //NSLog(@"//step_7_0 Connecting to peripheral with UUID : %s\r\n",[self UUIDToString:peripheral.UUID]);
-    activePeripheral = peripheral;
-    activePeripheral.delegate = self;
-    [CM connectPeripheral:activePeripheral options:nil];
+- (void)stopScan
+{
+    [self.CM stopScan];
+    isScan  = NO;
 }
 
-- (const char *) centralManagerStateToString: (int)state{
+//连接指定的BLE外围设备
+- (void)connectPeripheral:(CBPeripheral *)peripheral
+{
+    self.activePeripheral = peripheral;
+    self.activePeripheral.delegate = self;
+    [self.CM connectPeripheral:self.activePeripheral options:nil];
+}
+
+- (const char *)centralManagerStateToString:(int)state
+{
     switch(state) {
         case CBCentralManagerStateUnknown:
             return "State unknown (CBCentralManagerStateUnknown)";
@@ -149,36 +135,13 @@
     return "Unknown state";
 }
 
-- (void) printKnownPeripherals {
-    int i;
-    //NSLog(@"//step_5 List of currently known peripherals : \r\n");
-    for (i=0; i < self->peripherals.count; i++)
-    {
-        CBPeripheral *p = [self->peripherals objectAtIndex:i];
-        CFStringRef s = CFUUIDCreateString(NULL, p.UUID);
-        //NSLog(@"%d  |  %s\r\n",i,CFStringGetCStringPtr(s, 0));
-        [self printPeripheralInfo:p];
-        //发出通知，参数为外围设备对象
-        //NSLog(@"//step_6 update ble devices list !\r\n");
-        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName: @"BLEDEVICEFOUND" object: p];
-    }
-}
-
-- (void) printPeripheralInfo:(CBPeripheral*)peripheral {
+- (void) printPeripheralInfo:(CBPeripheral*)peripheral
+{
     CFStringRef s = CFUUIDCreateString(NULL, peripheral.UUID);
-    
-    //NSLog(@"------------------------------------\r\n");
-    //NSLog(@"Peripheral Info :\r\n");
-    //NSLog(@"UUID : %s\r\n",CFStringGetCStringPtr(s, 0));
-    //NSLog(@"RSSI : %d\r\n",[peripheral.RSSI intValue]);
-    //NSLog(@"Name : %s\r\n",[peripheral.name cStringUsingEncoding:NSStringEncodingConversionAllowLossy]);
-    //NSLog(@"isConnected : %d\r\n",peripheral.isConnected);
-    //NSLog(@"-------------------------------------\r\n");
-    
 }
 
-- (int) UUIDSAreEqual:(CFUUIDRef)u1 u2:(CFUUIDRef)u2 {
+- (int) UUIDSAreEqual:(CFUUIDRef)u1 u2:(CFUUIDRef)u2
+{
     CFUUIDBytes b1 = CFUUIDGetUUIDBytes(u1);
     CFUUIDBytes b2 = CFUUIDGetUUIDBytes(u2);
     if (memcmp(&b1, &b2, 16) == 0) {
@@ -187,9 +150,9 @@
     return 0 ;
 }
 
--(void) getAllServicesFromKeyfob:(CBPeripheral *)p{
-    [p discoverServices:nil]; // Discover all services without filter
-    
+- (void)getAllServicesFromKeyfob:(CBPeripheral *)p
+{
+    [p discoverServices:nil];
 }
 
 //获取所有服务的特征值
@@ -363,32 +326,11 @@
 -(void) DisplayCharacteristicMessage:(CBCharacteristic *)c{
     
     return;
-    
-    //NSLog(@" service.UUID:%@ (%s)",c.service.UUID,[self CBUUIDToString:c.service.UUID]);
-    //NSLog(@"         UUID:%@ (%s)",c.UUID,[self CBUUIDToString:c.UUID]);
-    //NSLog(@"   properties:0x%02x",c.properties);
-    
-    //NSLog(@" value.length:%d",c.value.length);
-    
-    INT_STRUCT buf1;
-    [c.value getBytes:&buf1 length:c.value.length];
-    //NSLog(@"        value:");
-    for(int i=0; i < c.value.length; i++) {
-        //NSLog(@"%02x ",buf1.buff[i]&0x000000ff);
-    }
-    
-    //NSLog(@"isBroadcasted:%d",c.isBroadcasted);
-    //NSLog(@"  isNotifying:%d",c.isNotifying);
-
-    NSString *provincName = [NSString stringWithFormat:@"%@", [self GetCharcteristicDiscriptorFromActiveDescriptorsArray:c]];
-    
 }
 
 #pragma mark -------BLE 中心设备代理协议方法-------
 //中心设备管理器状态更新回调函数
-
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central{
-    //NSLog(@"//step_1 Status of CoreBluetooth central manager changed %d (%s)\r\n",central.state,[self centralManagerStateToString:central.state]);
 }
 
 - (void)centralManager:(CBCentralManager *)central didRetrievePeripherals:(NSArray *)peripherals{
@@ -398,6 +340,8 @@
 - (void)centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals{
     
 }
+
+
 
 
 typedef struct {
@@ -438,7 +382,7 @@ typedef struct {
             }
         }
         //发现的外围设备，被保存在对象的peripherals 缓冲中
-        [self->peripherals addObject:peripheral];
+        [self.peripherals addObject:peripheral];
 //        //NSLog(@"New UUID, adding\r\n");
     }
 //    //NSLog(@"//step_2 didDiscoverPeripheral\r\n");
@@ -642,11 +586,19 @@ typedef struct scanProcessStep{
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForDescriptor:(CBDescriptor *)descriptor error:(NSError *)error{
     
 }
+#pragma mark -------BLE 自定义方法-------
 
--(NSString *)getUUIDString
+- (UInt16)swap:(UInt16)s
+{
+    UInt16 temp = s << 8;
+    temp |= (s >> 8);
+    return temp;
+}
+
+- (NSString *)getUUIDString
 {
     NSString  *uuidString = nil;
-    NSString *auuid = [[NSString alloc]initWithFormat:@"%@", activePeripheral.UUID];
+    NSString *auuid = [[NSString alloc]initWithFormat:@"%@", self.activePeripheral.UUID];
     if (auuid.length >= 36) {
         uuidString = [auuid substringWithRange:NSMakeRange(auuid.length-36, 36)];
     }

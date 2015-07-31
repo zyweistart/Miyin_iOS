@@ -157,7 +157,6 @@
     [self.appDelegate.bleManager.activeCharacteristics removeAllObjects];
     [self.appDelegate.bleManager.activeDescriptors removeAllObjects];
     self.appDelegate.bleManager.activePeripheral = nil;
-    self.appDelegate.bleManager.activeService = nil;
     [self.appDelegate.bleManager connectPeripheral:cbPeripheral];
 }
 
@@ -206,7 +205,6 @@
     [self.appDelegate.bleManager.peripherals removeAllObjects];
     [self.appDelegate.bleManager.activeDescriptors removeAllObjects];
     [self.appDelegate.bleManager.activeCharacteristics removeAllObjects];
-    self.appDelegate.bleManager.activeService = nil;
     self.appDelegate.bleManager.activePeripheral = nil;
     
     //定时扫描持续时间10秒，之后打印扫描到的信息
