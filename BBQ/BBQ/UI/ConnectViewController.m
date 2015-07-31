@@ -134,21 +134,6 @@
             }
         }
     }
-    [self connected:cbPeripheral];
-}
-
-//连接到设备
-- (void)connected:(CBPeripheral*)cbPeripheral
-{
-    [lblState setText:NSLocalizedString(@"Connecting...",nil)];
-    if (self.appDelegate.bleManager.activePeripheral){
-        if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
-            [self.appDelegate.bleManager.CM cancelPeripheralConnection:self.appDelegate.bleManager.activePeripheral];
-        }
-    }
-    self.appDelegate.bleManager.activePeripheral = nil;
-    [self.appDelegate.bleManager.activeDescriptors removeAllObjects];
-    [self.appDelegate.bleManager.activeCharacteristics removeAllObjects];
     [self.appDelegate.bleManager connectPeripheral:cbPeripheral];
 }
 
@@ -185,24 +170,9 @@
     if(self.appDelegate.bleManager.CM.state==CBCentralManagerStatePoweredOn){
         [self initNotification];
         [self RefreshStateStart];
-        [self ScanPeripheral];
+        //定时扫描持续时间10秒
+        [self.appDelegate.bleManager findBLEPeripherals:10];
     }
-}
-
-- (void)ScanPeripheral
-{
-    if (self.appDelegate.bleManager.activePeripheral) {
-        if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
-            //取消连接
-            [[self.appDelegate.bleManager CM] cancelPeripheralConnection:[self.appDelegate.bleManager activePeripheral]];
-        }
-    }
-    self.appDelegate.bleManager.activePeripheral = nil;
-    [self.appDelegate.bleManager.peripherals removeAllObjects];
-    [self.appDelegate.bleManager.activeDescriptors removeAllObjects];
-    [self.appDelegate.bleManager.activeCharacteristics removeAllObjects];
-    //定时扫描持续时间10秒，之后打印扫描到的信息
-    [self.appDelegate.bleManager findBLEPeripherals:10];
 }
 
 - (void)initNotification
@@ -240,7 +210,7 @@
     for(CBPeripheral *cp in self.appDelegate.bleManager.peripherals){
         //判断是否存在自动连接设备
         if([cp.identifier.UUIDString isEqualToString:[[Data Instance]getAutoConnected]]){
-            [self connected:cp];
+            [self.appDelegate.bleManager connectPeripheral:cp];
             [self RefreshStateNormal];
             return;
         }
@@ -261,6 +231,7 @@
 //停止设备扫描
 - (void)stopScanBLEDevice:(CBPeripheral *)peripheral
 {
+    [self stopScan];
     [self.tableView reloadData];
     [self RefreshStateNormal];
 }
@@ -279,6 +250,10 @@
 
 - (void)stopScan
 {
+    if(self.appDelegate.bleManager.scanKeepTimer){
+        [self.appDelegate.bleManager.scanKeepTimer invalidate];
+        self.appDelegate.bleManager.scanKeepTimer=nil;
+    }
     [self.appDelegate.bleManager stopScan];
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc  removeObserver:self name:NOTIFICATION_DIDCONNECTEDBLEDEVICE object:nil];
@@ -294,6 +269,7 @@
     TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
     [[Data Instance]setMTabBarFrameViewController:mTabBarFrameViewController];
     [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
+        [self stopScan];
     }];
 }
 
@@ -303,6 +279,7 @@
     TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
     [[Data Instance]setMTabBarFrameViewController:mTabBarFrameViewController];
     [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
+        [self stopScan];
     }];
 }
 

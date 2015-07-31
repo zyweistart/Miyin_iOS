@@ -95,15 +95,29 @@ typedef struct scanProcessStep{
 //开始扫描传入超时秒数
 - (int)findBLEPeripherals:(int)timeout
 {
+    if (self.activePeripheral) {
+        if(self.activePeripheral.state==CBPeripheralStateConnected){
+            //取消连接
+            [self.CM cancelPeripheralConnection:self.activePeripheral];
+        }
+    }
+    //清除当前连接的设备
+    self.activePeripheral = nil;
+    //删除已经扫描到的设备
+    [self.peripherals removeAllObjects];
+    [self.activeDescriptors removeAllObjects];
+    [self.activeCharacteristics removeAllObjects];
     if (self.CM.state  != CBCentralManagerStatePoweredOn) {
         return -1;
     }
-    if (scanKeepTimer==nil) {
-        scanKeepTimer = [NSTimer scheduledTimerWithTimeInterval:(float)timeout
-                                         target:self
-                                       selector:@selector(scanEndTimer:)
-                                       userInfo:nil
-                                        repeats:NO];
+    if(timeout>0){
+        if (self.scanKeepTimer==nil) {
+            self.scanKeepTimer = [NSTimer scheduledTimerWithTimeInterval:(float)timeout
+                                                             target:self
+                                                           selector:@selector(scanEndTimer:)
+                                                           userInfo:nil
+                                                            repeats:NO];
+        }
     }
     [self.CM stopScan];
     [self.CM scanForPeripheralsWithServices:nil options:0];
@@ -117,7 +131,7 @@ typedef struct scanProcessStep{
     [self.CM stopScan];
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc postNotificationName:NOTIFICATION_STOPSCAN object: nil];
-    scanKeepTimer = nil ;
+    self.scanKeepTimer = nil ;
 }
 
 - (void)stopScan
@@ -189,6 +203,14 @@ typedef struct scanProcessStep{
 //2、连接到指定的设备
 - (void)connectPeripheral:(CBPeripheral *)peripheral
 {
+    if (self.activePeripheral){
+        if(self.activePeripheral.state==CBPeripheralStateConnected){
+            [self.CM cancelPeripheralConnection:self.activePeripheral];
+        }
+    }
+    self.activePeripheral = nil;
+    [self.activeDescriptors removeAllObjects];
+    [self.activeCharacteristics removeAllObjects];
     [self.CM connectPeripheral:peripheral options:nil];
 }
 

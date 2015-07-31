@@ -22,7 +22,6 @@
 //实现中心设备管理委托，外围委托事物
 @interface TIBLECBStandand : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate> {
     //无字段，无私有变量
-    NSTimer *scanKeepTimer;
     Boolean isScan;
 }
 #pragma mark -----模型类的属性声明-----
@@ -38,6 +37,7 @@
 @property (strong, nonatomic) NSMutableArray *activeDescriptors;
 //当前正在操作的特征值缓存
 @property (strong, nonatomic) NSString *mode;
+@property (strong,nonatomic)NSTimer *scanKeepTimer;
 
 #pragma mark -------模型类的方法-------
 

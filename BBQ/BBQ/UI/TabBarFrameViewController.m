@@ -335,6 +335,8 @@
     [self.mHomeViewController ConnectedState:NO];
     [self.mToolsViewController ConnectedState:NO];
     [self.mInfoViewController ConnectedState:NO];
+    [self initNotification];
+    [self.appDelegate.bleManager findBLEPeripherals:0];
 }
 
 - (void)refreshDataNotifcation:(NSNotification*)notification
@@ -342,6 +344,49 @@
     [self.mHomeViewController refreshDataView];
     [self.mToolsViewController refreshView];
     [self.mInfoViewController.tableView reloadData];
+}
+
+//自动扫描自动连接
+- (void)initNotification
+{
+    //设定通知
+    [nc addObserver: self
+           selector: @selector(didConectedbleDevice:)
+               name: NOTIFICATION_DIDCONNECTEDBLEDEVICE
+             object: nil];
+    [nc addObserver: self
+           selector: @selector(bleDeviceWithRSSIFound:)
+               name: NOTIFICATION_BLEDEVICEWITHRSSIFOUND
+             object: nil];
+}
+
+//发现设备
+- (void)bleDeviceWithRSSIFound:(NSNotification*)notification
+{
+    for(CBPeripheral *cp in self.appDelegate.bleManager.peripherals){
+        //判断是否存在自动连接设备
+        if([cp.identifier.UUIDString isEqualToString:[[Data Instance]getAutoConnected]]){
+            [self.appDelegate.bleManager connectPeripheral:cp];
+            return;
+        }
+    }
+}
+
+//连接成功
+- (void)didConectedbleDevice:(CBPeripheral *)peripheral
+{
+    //连接成功则断开扫描功能
+    [self stopScanBLEDevice];
+    //连接成功后需立即查询蓝牙服务
+    [self.appDelegate.bleManager.activePeripheral discoverServices:nil];
+}
+
+//停止设备扫描
+- (void)stopScanBLEDevice
+{
+    [self.appDelegate.bleManager stopScan];
+    [nc  removeObserver:self name:NOTIFICATION_DIDCONNECTEDBLEDEVICE object:nil];
+    [nc  removeObserver:self name:NOTIFICATION_BLEDEVICEWITHRSSIFOUND object:nil];
 }
 
 @end
