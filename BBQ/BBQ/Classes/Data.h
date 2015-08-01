@@ -35,7 +35,7 @@
 - (void)setCf:(NSString*)cf;
 - (NSString*)getAlarm;
 - (void)setAlarm:(NSString*)alarm;
-- (NSString*)getLanguage;
-- (void)setLanguage:(NSString*)language;
+//- (NSString*)getLanguage;
+//- (void)setLanguage:(NSString*)language;
 
 @end

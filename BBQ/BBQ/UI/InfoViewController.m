@@ -18,7 +18,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        [self cTitle:NSLocalizedString(@"Info",nil)];
+        [self cTitle:LOCALIZATION(@"Info")];
         
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
         
@@ -50,7 +50,7 @@
     if([array count]==0){
         [self.tableView setHidden:YES];
         [self.mConnectedPanel setHidden:NO];
-        [self.lblMessage setText:NSLocalizedString(@"Plase insert probes",nil)];
+        [self.lblMessage setText:LOCALIZATION(@"Plase insert probes")];
         return;
     }
     self.dataItemArray=[[NSMutableArray alloc]initWithArray:array];

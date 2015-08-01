@@ -25,9 +25,6 @@
         if([@"" isEqualToString:[[Data Instance]getAlarm]]){
             [[Data Instance]setAlarm:@"Beep1"];
         }
-        if([@"" isEqualToString:[[Data Instance]getLanguage]]){
-            [[Data Instance]setLanguage:@"0"];;
-        }
         //设置默认的温度值
         [[[Data Instance]sett]setObject:@"100" forKey:@"p1"];
         [[[Data Instance]sett]setObject:@"100" forKey:@"p2"];
@@ -48,10 +45,10 @@
         self.mSettingViewController=[[SettingViewController alloc]init];
         self.mInfoViewController=[[InfoViewController alloc]init];
         self.viewControllers = [NSArray arrayWithObjects:
-                                [self viewControllerWithTabTitle:NSLocalizedString(@"Menu",nil) image:@"icon-nav-home" ViewController:self.mHomeViewController],
-                                [self viewControllerWithTabTitle:NSLocalizedString(@"Tools",nil) image:@"icon-nav-tools" ViewController:self.mToolsViewController],
-                                [self viewControllerWithTabTitle:NSLocalizedString(@"Info",nil) image:@"icon-nav-info" ViewController:self.mInfoViewController],
-                                [self viewControllerWithTabTitle:NSLocalizedString(@"Setting",nil) image:@"icon-nav-setting" ViewController:self.mSettingViewController], nil];
+                                [self viewControllerWithTabTitle:LOCALIZATION(@"Menu") image:@"icon-nav-home" ViewController:self.mHomeViewController],
+                                [self viewControllerWithTabTitle:LOCALIZATION(@"Tools") image:@"icon-nav-tools" ViewController:self.mToolsViewController],
+                                [self viewControllerWithTabTitle:LOCALIZATION(@"Info") image:@"icon-nav-info" ViewController:self.mInfoViewController],
+                                [self viewControllerWithTabTitle:LOCALIZATION(@"Setting") image:@"icon-nav-setting" ViewController:self.mSettingViewController], nil];
         
         if([[Data Instance]isDemo]){
             //生成随机数
@@ -201,10 +198,10 @@
             if([@"fire" isEqualToString:alaram]){
                 //火警
                 if(![self playAlarm]){
-                    [self senderNotification:NSLocalizedString(@"The grill has flared up!",nil)];
+                    [self senderNotification:LOCALIZATION(@"The grill has flared up!")];
                 }
                 [self.mAlertView.lblTitle setText:@"Warning"];
-                [self.mAlertView.lblMessage setText:NSLocalizedString(@"The grill has flared up!",nil)];
+                [self.mAlertView.lblMessage setText:LOCALIZATION(@"The grill has flared up!")];
                 [self.mAlertView setType:2];
                 [self AlertShow];
             }else if([@"false" isEqualToString:alaram]){
@@ -215,10 +212,10 @@
             }else{
                 //某指针报警
                 if(![self playAlarm]){
-                    [self senderNotification:NSLocalizedString(@"Temperature is high!",nil)];
+                    [self senderNotification:LOCALIZATION(@"Temperature is high!")];
                 }
                 [self.mAlertView.lblTitle setText:[NSString stringWithFormat:@"%@-Warning",alaram]];
-                [self.mAlertView.lblMessage setText:NSLocalizedString(@"Temperature is high!",nil)];
+                [self.mAlertView.lblMessage setText:LOCALIZATION(@"Temperature is high!")];
                 [self.mAlertView setType:1];
                 [self AlertShow];
             }
@@ -286,7 +283,7 @@
         //提示信息 弹出提示框
         notification.alertBody=message;
         //提示框按钮
-        notification.alertAction = NSLocalizedString(@"OK",nil);
+        notification.alertAction = LOCALIZATION(@"OK");
         //添加额外的信息
         NSDictionary *infoDict = [NSDictionary dictionaryWithObject:@"alarm" forKey:@"type"];
         notification.userInfo = infoDict;

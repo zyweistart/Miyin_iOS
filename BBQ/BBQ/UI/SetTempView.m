@@ -41,14 +41,14 @@
         [aButton addTarget:self action:@selector(addNumber:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:aButton];
         self.cancelButton=[[UIButton alloc]initWithFrame:CGRectMake1(0, 160, 150, 40)];
-        [self.cancelButton setTitle:NSLocalizedString(@"Cancel",nil) forState:UIControlStateNormal];
+        [self.cancelButton setTitle:LOCALIZATION(@"Cancel") forState:UIControlStateNormal];
         [self.cancelButton.titleLabel setFont:[UIFont systemFontOfSize:20]];
         [self.cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.cancelButton setBackgroundColor:DEFAULTITLECOLOR(74)];
         [self addSubview:self.cancelButton];
         
         self.okButton=[[UIButton alloc]initWithFrame:CGRectMake1(151, 160, 149, 40)];
-        [self.okButton setTitle:NSLocalizedString(@"OK",nil) forState:UIControlStateNormal];
+        [self.okButton setTitle:LOCALIZATION(@"OK") forState:UIControlStateNormal];
         [self.okButton.titleLabel setFont:[UIFont systemFontOfSize:20]];
         [self.okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.okButton setBackgroundColor:DEFAULTITLECOLORRGB(255, 121, 74)];

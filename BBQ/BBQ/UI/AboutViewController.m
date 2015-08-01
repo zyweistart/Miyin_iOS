@@ -17,7 +17,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        [self cTitle:NSLocalizedString(@"About",nil)];
+        [self cTitle:LOCALIZATION(@"About")];
         UIWebView *webView=[[UIWebView alloc]initWithFrame:self.view.bounds];
         [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.view addSubview:webView];

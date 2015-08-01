@@ -1,7 +1,6 @@
 #import "SettingViewController.h"
 #import "SwitchCell.h"
 #import "AboutViewController.h"
-#import "Localisator.h"
 
 @interface SettingViewController ()
 
@@ -12,16 +11,27 @@
 - (id)init{
     self=[super init];
     if(self){
-        [self cTitle:NSLocalizedString(@"Setting",nil)];
+        [self cTitle:LOCALIZATION(@"Setting")];
         
-        [self.dataItemArray addObject:NSLocalizedString(@"Temp Unit",nil)];
-        [self.dataItemArray addObject:NSLocalizedString(@"Alarm",nil)];
-//        [self.dataItemArray addObject:NSLocalizedString(@"Language",nil)];
-        [self.dataItemArray addObject:NSLocalizedString(@"About",nil)];
+        [self.dataItemArray addObject:LOCALIZATION(@"Temp Unit")];
+        [self.dataItemArray addObject:LOCALIZATION(@"Alarm")];
+        [self.dataItemArray addObject:LOCALIZATION(@"Language")];
+        [self.dataItemArray addObject:LOCALIZATION(@"About")];
         
-        [self buildTableViewWithView:self.view];
+        [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(receiveLanguageChangedNotification:)
+                                                     name:kNotificationLanguageChanged
+                                                   object:nil];
+        [[Localisator sharedInstance] setSaveInUserDefaults:YES];
     }
     return self;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -62,12 +72,8 @@
         [cell.textLabel setText:content];
         if(row==1){
             [cell.detailTextLabel setText:[[Data Instance]getAlarm]];
-//        }else if(row==2){
-//            if([@"1" isEqualToString:[[Data Instance]getLanguage]]){
-//                [cell.detailTextLabel setText:@"简体中文"];
-//            }else{
-//                [cell.detailTextLabel setText:@"English"];
-//            }
+        }else if(row==2){
+            [cell.detailTextLabel setText:LOCALIZATION(@"CurrentLanguage")];
         }
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         return cell;
@@ -80,20 +86,20 @@
     if(row==1){
         UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
-                                                        cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
+                                                        cancelButtonTitle:LOCALIZATION(@"Cancel")
                                                    destructiveButtonTitle:nil
                                                         otherButtonTitles:@"Beep1", @"Beep2", @"Beep3", nil];
         [choiceSheet setTag:1];
         [choiceSheet showInView:self.view];
     }else if(row==2){
-//        UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
-//                                                                 delegate:self
-//                                                        cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
-//                                                   destructiveButtonTitle:nil
-//                                                        otherButtonTitles:@"English",@"简体中文", nil];
-//        [choiceSheet setTag:2];
-//        [choiceSheet showInView:self.view];
-//    }else if(row==3){
+        UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:LOCALIZATION(@"Cancel")
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:@"English",@"简体中文", nil];
+        [choiceSheet setTag:2];
+        [choiceSheet showInView:self.view];
+    }else if(row==3){
         [self.navigationController pushViewController:[[AboutViewController alloc]init] animated:YES];
     }
 }
@@ -110,7 +116,11 @@
         }
         [self.tableView reloadData];
     }else if(actionSheet.tag==2){
-        [[Data Instance]setLanguage:[NSString stringWithFormat:@"%ld",buttonIndex]];
+        if(buttonIndex==0){
+            [[Localisator sharedInstance] setLanguage:@"en"];
+        }else if(buttonIndex==1){
+            [[Localisator sharedInstance] setLanguage:@"zh-Hans"];
+        }
         [self.tableView reloadData];
     }
 }
@@ -129,6 +139,19 @@
     }
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc postNotificationName:NOTIFICATION_REFRESHDATA object: nil];
+}
+
+- (void) receiveLanguageChangedNotification:(NSNotification *) notification
+{
+    if ([notification.name isEqualToString:kNotificationLanguageChanged])
+    {
+        NSLog(@"修改语言");
+    }
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationLanguageChanged object:nil];
 }
 
 @end

@@ -48,10 +48,10 @@
         [self.viewCentigrade setBackgroundColor:[UIColor redColor]];
         [self.lineViewFrame addSubview:self.viewCentigrade];
         
-        self.lblCurrent=[[CLabel alloc]initWithFrame:CGRectMake1(50*self.scale, 80*self.scale, 60*self.scale, 20*self.scale) Text:NSLocalizedString(@"Current",nil)];
+        self.lblCurrent=[[CLabel alloc]initWithFrame:CGRectMake1(50*self.scale, 80*self.scale, 60*self.scale, 20*self.scale) Text:LOCALIZATION(@"Current")];
         [self.lblCurrent setFont:[UIFont systemFontOfSize:15*self.scale]];
         [self.frameView addSubview:self.lblCurrent];
-        self.lblCurrentTemp=[[CLabel alloc]initWithFrame:CGRectMake1(50*self.scale, 100*self.scale, 50*self.scale, 20*self.scale) Text:NSLocalizedString(@"Temp",nil)];
+        self.lblCurrentTemp=[[CLabel alloc]initWithFrame:CGRectMake1(50*self.scale, 100*self.scale, 50*self.scale, 20*self.scale) Text:LOCALIZATION(@"Temp")];
         [self.lblCurrentTemp setFont:[UIFont systemFontOfSize:15*self.scale]];
         [self.frameView addSubview:self.lblCurrentTemp];
         
@@ -64,9 +64,9 @@
         self.lineView=[[UIView alloc]initWithFrame:CGRectMake1(45*self.scale, 125*self.scale, 155*self.scale, 1*self.scale)];
         [self.lineView setBackgroundColor:DEFAULTITLECOLOR(160)];
         [self.frameView addSubview:self.lineView];
-        self.lblSet=[[CLabel alloc]initWithFrame:CGRectMake1(50*self.scale, 130*self.scale, 50*self.scale, 20*self.scale) Text:NSLocalizedString(@"Set",nil)];
+        self.lblSet=[[CLabel alloc]initWithFrame:CGRectMake1(50*self.scale, 130*self.scale, 50*self.scale, 20*self.scale) Text:LOCALIZATION(@"Set")];
         [self.frameView addSubview:self.lblSet];
-        self.lblSetTemp=[[CLabel alloc]initWithFrame:CGRectMake1(50*self.scale, 150*self.scale, 50*self.scale, 20*self.scale) Text:NSLocalizedString(@"Temp",nil)];
+        self.lblSetTemp=[[CLabel alloc]initWithFrame:CGRectMake1(50*self.scale, 150*self.scale, 50*self.scale, 20*self.scale) Text:LOCALIZATION(@"Temp")];
         [self.frameView addSubview:self.lblSetTemp];
         
         self.lblHighestCentigrade=[[UIButton alloc]initWithFrame:CGRectMake1(100*self.scale, 130*self.scale, 100*self.scale, 40*self.scale)];
@@ -161,7 +161,7 @@
             TabBarFrameViewController *tbf=(TabBarFrameViewController*)self.baseController.tabBarController;
             [tbf playAlarm];
             [tbf.mAlertView.lblTitle setText:[NSString stringWithFormat:@"%@-Warning",key]];
-            [tbf.mAlertView.lblMessage setText:NSLocalizedString(@"Timer is finished!",nil)];
+            [tbf.mAlertView.lblMessage setText:LOCALIZATION(@"Timer is finished!")];
             [tbf.mAlertView setType:1];
             [tbf AlertShow];
             AppDelegate *appDelegate=[[UIApplication sharedApplication] delegate];

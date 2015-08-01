@@ -19,7 +19,7 @@
 - (id)init{
     self=[super init];
     if(self){
-        [self cTitle:NSLocalizedString(@"Tools",nil)];
+        [self cTitle:LOCALIZATION(@"Tools")];
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
         self.scrollFrameView=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [self.scrollFrameView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
@@ -93,7 +93,7 @@
     if([array count]==0){
         [self.scrollFrameView setHidden:YES];
         [self.mConnectedPanel setHidden:NO];
-        [self.lblMessage setText:NSLocalizedString(@"Plase insert probes",nil)];
+        [self.lblMessage setText:LOCALIZATION(@"Plase insert probes")];
         return;
     }
     [self.scrollFrameView setContentSize:CGSizeMake1(320, 190*[array count])];
@@ -131,7 +131,7 @@
 {
     [self.scrollFrameView setHidden:!state];
     [self.mConnectedPanel setHidden:state];
-    [self.lblMessage setText:NSLocalizedString(@"Connection is broken",nil)];
+    [self.lblMessage setText:LOCALIZATION(@"Connection is broken")];
 }
 
 - (void)frmeChange:(UIGestureRecognizer*)sender

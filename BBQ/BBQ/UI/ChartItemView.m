@@ -43,7 +43,7 @@
         [self.lblCFType setTextColor:DEFAULTITLECOLOR(150)];
         [self.topLabelView addSubview:self.lblCFType];
         UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(60*self.scale, 0, 80*self.scale, 20*self.scale)];
-        [lbl setText:NSLocalizedString(@"Current Temp",nil)];
+        [lbl setText:LOCALIZATION(@"Current Temp")];
         [lbl setFont:[UIFont systemFontOfSize:12*self.scale]];
         [lbl setTextColor:DEFAULTITLECOLOR(150)];
         [self.topLabelView addSubview:lbl];
@@ -51,7 +51,7 @@
         [CurrentTempLine setBackgroundColor:DEFAULTITLECOLORRGB(7, 166, 206)];
         [self.topLabelView addSubview:CurrentTempLine];
         lbl=[[UILabel alloc]initWithFrame:CGRectMake1(165*self.scale, 0, 60*self.scale, 20*self.scale)];
-        [lbl setText:NSLocalizedString(@"Set Temp",nil)];
+        [lbl setText:LOCALIZATION(@"Set Temp")];
         [lbl setFont:[UIFont systemFontOfSize:12*self.scale]];
         [lbl setTextColor:DEFAULTITLECOLOR(150)];
         [self.topLabelView addSubview:lbl];
@@ -66,7 +66,7 @@
         self.lineChartView.max = 538;
         self.lineChartView.interval = (self.lineChartView.max-self.lineChartView.min)/self.lineChartView.numberOfVerticalElements;
         self.lblTimerUnit=[[UILabel alloc]initWithFrame:CGRectMake1(260*self.scale, 130*self.scale, 60*self.scale, 20*self.scale)];
-        [self.lblTimerUnit setText:NSLocalizedString(@"Timer(M)",nil)];
+        [self.lblTimerUnit setText:LOCALIZATION(@"Timer(M)")];
         [self.lblTimerUnit setFont:[UIFont systemFontOfSize:12*self.scale]];
         [self.lblTimerUnit setTextColor:DEFAULTITLECOLOR(150)];
         [self.lblTimerUnit setTextAlignment:NSTextAlignmentCenter];
@@ -150,9 +150,9 @@
     [self.lineChartView clearPlot];
     [Data getTemperatureValue:2];
     if([@"f" isEqualToString:[[Data Instance]getCf]]){
-        [self.lblCFType setText:[NSString stringWithFormat:@"%@(°F)",NSLocalizedString(@"Temp",nil)]];
+        [self.lblCFType setText:[NSString stringWithFormat:@"%@(°F)",LOCALIZATION(@"Temp")]];
     }else{
-        [self.lblCFType setText:[NSString stringWithFormat:@"%@(°C)",NSLocalizedString(@"Temp",nil)]];
+        [self.lblCFType setText:[NSString stringWithFormat:@"%@(°C)",LOCALIZATION(@"Temp")]];
     }
     //x轴
     NSMutableArray *xAxisValues = [NSMutableArray array];

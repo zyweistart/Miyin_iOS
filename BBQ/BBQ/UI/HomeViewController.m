@@ -131,7 +131,7 @@
             }
         }
     }else{
-        [self cTitle:NSLocalizedString(@"BBQ Unconnected",nil)];
+        [self cTitle:LOCALIZATION(@"BBQ Unconnected")];
     }
     if(!isAddFlag){
         [[[Data Instance]mTabBarFrameViewController].view insertSubview:self.mMenuItemLandView atIndex:2];
@@ -143,9 +143,9 @@
 {
     UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
-                                                    cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
+                                                    cancelButtonTitle:LOCALIZATION(@"Cancel")
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:NSLocalizedString(@"Exit",nil), nil];
+                                                    otherButtonTitles:LOCALIZATION(@"Exit"), nil];
     [choiceSheet showInView:self.view];
 }
 
@@ -154,7 +154,7 @@
     if([array count]==0){
         [self.scrollFrameView setHidden:YES];
         [self.mConnectedPanel setHidden:NO];
-        [self.lblMessage setText:NSLocalizedString(@"Plase insert probes",nil)];
+        [self.lblMessage setText:LOCALIZATION(@"Plase insert probes")];
         return;
     }
     [self.scrollFrameView setContentSize:CGSizeMake1(320, 190*[array count])];
@@ -341,13 +341,13 @@
 - (void)ConnectedState:(BOOL)state
 {
     if(state){
-        [self cTitle:NSLocalizedString(@"BBQ Connected",nil)];
+        [self cTitle:LOCALIZATION(@"BBQ Connected")];
     }else{
-        [self cTitle:NSLocalizedString(@"BBQ Unconnected",nil)];
+        [self cTitle:LOCALIZATION(@"BBQ Unconnected")];
     }
     [self.scrollFrameView setHidden:!state];
     [self.mConnectedPanel setHidden:state];
-    [self.lblMessage setText:NSLocalizedString(@"Connection is broken",nil)];
+    [self.lblMessage setText:LOCALIZATION(@"Connection is broken")];
 }
 
 - (void)frmeChange:(UIGestureRecognizer*)sender

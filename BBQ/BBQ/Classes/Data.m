@@ -11,7 +11,6 @@
 
 #define SETTINGCF @"SETTINGCF"
 #define SETTINGALARM @"SETTINGALARM"
-#define SETTINGLANGUAGE @"SETTINGLANGUAGE"
 #define AUTOCONNECTEDUUID @"AUTOCONNECTEDUUID"
 
 @implementation Data
@@ -67,20 +66,6 @@ static Data * instance = nil;
     NSString *alarm=[Common getCache:SETTINGALARM];
     if(alarm){
         return alarm;
-    }
-    return @"";
-}
-
-- (void)setLanguage:(NSString*)language
-{
-    [Common setCache:SETTINGLANGUAGE data:language];
-}
-
-- (NSString*)getLanguage
-{
-    NSString *language=[Common getCache:SETTINGLANGUAGE];
-    if(language){
-        return language;
     }
     return @"";
 }

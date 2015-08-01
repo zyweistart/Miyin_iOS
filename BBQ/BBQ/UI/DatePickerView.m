@@ -18,9 +18,9 @@
         [self setUserInteractionEnabled:YES];
         self.toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake1(0, 0, 320, 44)];
         self.toolBar.barStyle = UIBarStyleDefault;
-        UIBarButtonItem *btnCancel = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Reset",nil) style:UIBarButtonItemStyleDone target:self action:@selector(cancel:)];
+        UIBarButtonItem *btnCancel = [[UIBarButtonItem alloc] initWithTitle:LOCALIZATION(@"Reset") style:UIBarButtonItemStyleDone target:self action:@selector(cancel:)];
         UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-        UIBarButtonItem *btnDone = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done",nil) style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
+        UIBarButtonItem *btnDone = [[UIBarButtonItem alloc] initWithTitle:LOCALIZATION(@"Done") style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
         NSArray *barItems=[NSArray arrayWithObjects:btnCancel,flexibleSpace,btnDone,nil];
         [self.toolBar setItems:barItems animated:YES];
         [self addSubview:self.toolBar];

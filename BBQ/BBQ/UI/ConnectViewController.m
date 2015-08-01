@@ -37,10 +37,10 @@
         CGFloat height=self.view.bounds.size.height-CGHeight(130);
         UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, height, CGWidth(320), CGHeight(40))];
         ;
-        CButton *bDemo=[[CButton alloc]initWithFrame:CGRectMake1(40, 0, 100, 40) Name:NSLocalizedString(@"Demo",nil) Type:1];
+        CButton *bDemo=[[CButton alloc]initWithFrame:CGRectMake1(40, 0, 100, 40) Name:LOCALIZATION(@"Demo") Type:1];
         [bDemo addTarget:self action:@selector(goDemo) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:bDemo];
-        CButton *bScan=[[CButton alloc]initWithFrame:CGRectMake1(180, 0, 100, 40) Name:NSLocalizedString(@"Scan",nil) Type:1];
+        CButton *bScan=[[CButton alloc]initWithFrame:CGRectMake1(180, 0, 100, 40) Name:LOCALIZATION(@"Scan") Type:1];
         [bScan addTarget:self action:@selector(startScan) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:bScan];
         [self.view addSubview:bottomView];
@@ -97,7 +97,7 @@
     if(cbPeripheral.name !=nil) {
         cell.lblTitle.text = [cbPeripheral name];
     } else {
-        cell.lblTitle.text = NSLocalizedString(@"Unknown",nil);
+        cell.lblTitle.text = LOCALIZATION(@"Unknown");
     }
     NSString *uuid=cbPeripheral.identifier.UUIDString;
     [cell.lblAddress setText:uuid];
@@ -108,10 +108,10 @@
                 [lblState setText:@""];
                 [self ConnectedState:YES];
                 //如果已经连接则显示连接状态
-                [cell.lblAddress setText:NSLocalizedString(@"Connected",nil)];
+                [cell.lblAddress setText:LOCALIZATION(@"Connected")];
                 [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
             } else if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
-                [cell.lblAddress setText:NSLocalizedString(@"Connecting",nil)];
+                [cell.lblAddress setText:LOCALIZATION(@"Connecting")];
             }
         }
     }
@@ -130,7 +130,7 @@
                 [self goMainPage];
                 return;
             }else if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
-                [Common alert:NSLocalizedString(@"Connecting...",nil)];
+                [Common alert:LOCALIZATION(@"Connecting...")];
                 return;
             }
         }
@@ -145,7 +145,7 @@
     self.mMBProgressHUD.dimBackground = NO;
     self.mMBProgressHUD.square = YES;
     [self.mMBProgressHUD show:YES];
-    [lblState setText:NSLocalizedString(@"Scan...",nil)];
+    [lblState setText:LOCALIZATION(@"Scan...")];
 }
 
 - (void)RefreshStateNormal
@@ -159,9 +159,9 @@
 - (void)ConnectedState:(BOOL)state
 {
     if(state){
-        [self cTitle:NSLocalizedString(@"BBQ Connected",nil)];
+        [self cTitle:LOCALIZATION(@"BBQ Connected")];
     }else{
-        [self cTitle:NSLocalizedString(@"BBQ Unconnected",nil)];
+        [self cTitle:LOCALIZATION(@"BBQ Unconnected")];
     }
 }
 

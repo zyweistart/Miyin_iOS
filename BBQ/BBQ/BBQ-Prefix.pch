@@ -20,6 +20,7 @@
 #import "CLabel.h"
 #import "CButton.h"
 
+#import "Localisator.h"
 #import "AppDelegate.h"
 #import "User.h"
 #import "Common.h"
