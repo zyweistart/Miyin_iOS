@@ -141,11 +141,10 @@
     [nc postNotificationName:NOTIFICATION_REFRESHDATA object: nil];
 }
 
-- (void) receiveLanguageChangedNotification:(NSNotification *) notification
+- (void)receiveLanguageChangedNotification:(NSNotification *)notification
 {
-    if ([notification.name isEqualToString:kNotificationLanguageChanged])
-    {
-        NSLog(@"修改语言");
+    if ([notification.name isEqualToString:kNotificationLanguageChanged]) {
+        [Common alert:@"修改语言成功请重启应用生效"];
     }
 }
 

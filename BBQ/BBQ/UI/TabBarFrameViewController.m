@@ -50,6 +50,10 @@
                                 [self viewControllerWithTabTitle:LOCALIZATION(@"Info") image:@"icon-nav-info" ViewController:self.mInfoViewController],
                                 [self viewControllerWithTabTitle:LOCALIZATION(@"Setting") image:@"icon-nav-setting" ViewController:self.mSettingViewController], nil];
         
+        [[self tabBar] setShadowImage:[[UIImage alloc] init]];
+        [[self tabBar] setBackgroundImage:[[UIImage alloc] init]];
+        [[self tabBar] setBackgroundColor:DEFAULTITLECOLORRGB(242, 125, 0)];
+        
         if([[Data Instance]isDemo]){
             //生成随机数
             demoseTTArray=[[NSMutableArray alloc]init];
@@ -126,6 +130,11 @@
     if(image){
         [tabBarItem setImage:[UIImage imageNamed:image]];
         [tabBarItem setSelectedImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@",image]]];
+        
+        [tabBarItem setTitleTextAttributes:[NSDictionary
+                                                                    dictionaryWithObjectsAndKeys:[UIColor whiteColor],  UITextAttributeTextColor, nil] forState:UIControlStateNormal];
+        [tabBarItem setTitleTextAttributes:[NSDictionary
+                                                                    dictionaryWithObjectsAndKeys: [UIColor whiteColor],UITextAttributeTextColor, nil] forState:UIControlStateSelected];
     }
     frameViewControllerNav.tabBarItem = tabBarItem;
     return frameViewControllerNav;
