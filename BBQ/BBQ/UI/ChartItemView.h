@@ -22,6 +22,8 @@
 @property (strong,nonatomic)PNLineChartView *lineChartView;
 @property (strong,nonatomic)UIView *topLabelView;
 
+@property CGFloat scale;
+
 - (void)loadData:(NSDictionary*)data;
 
 - (void)loadChartData;

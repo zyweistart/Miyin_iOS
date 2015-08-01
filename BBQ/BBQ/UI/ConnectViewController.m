@@ -218,7 +218,6 @@
 
 - (void)stopScan
 {
-    NSLog(@"停止设备扫描");
     if(self.appDelegate.bleManager.scanKeepTimer){
         [self.appDelegate.bleManager.scanKeepTimer invalidate];
         self.appDelegate.bleManager.scanKeepTimer=nil;
@@ -232,7 +231,6 @@
     TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
     [[Data Instance]setMTabBarFrameViewController:mTabBarFrameViewController];
     [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
-        [self stopScan];
     }];
 }
 
@@ -244,6 +242,21 @@
     [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
         [self stopScan];
     }];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
 }
 
 @end

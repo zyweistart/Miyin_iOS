@@ -7,19 +7,21 @@
 //
 
 #import "HomeViewController.h"
-#import "MenuItemZoomViewController.h"
 
 @interface HomeViewController ()
 
 @end
 
-@implementation HomeViewController
+@implementation HomeViewController{
+    BOOL isAddFlag;
+    NSInteger currentZoomTag;
+}
 
 - (id)init
 {
     self=[super init];
     if(self){
-        
+        currentZoomTag=-1;
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
         
         UIButton *bButton = [[UIButton alloc]init];
@@ -88,6 +90,15 @@
             [self.mMenuItemView4 setHidden:YES];
             [self.scrollFrameView addSubview:self.mMenuItemView4];
         }
+        //横屏
+        self.mMenuItemLandView=[[MenuItemLandView alloc]initWithFrame:CGRectMake(0, 0,CGWidth(448),CGWidth(266))];
+        [self.mMenuItemLandView setBaseController:self];
+        [self.mMenuItemLandView.lblHighestCentigrade addTarget:self action:@selector(setZoomValue:) forControlEvents:UIControlEventTouchUpInside];
+        [self.mMenuItemLandView.bTimer addTarget:self action:@selector(setZoomTimer:) forControlEvents:UIControlEventTouchUpInside];
+        [self.mMenuItemLandView setUserInteractionEnabled:YES];
+        [self.mMenuItemLandView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeHide:)]];
+        [self.mMenuItemLandView setHidden:YES];
+        
         //透明背景
         self.bgFrame=[[UIView alloc]initWithFrame:self.view.bounds];
         [self.bgFrame setBackgroundColor:DEFAULTITLECOLORA(150, 0.5)];
@@ -100,19 +111,10 @@
         [self.mSetTempView setHidden:YES];
         [self.bgFrame addSubview:self.mSetTempView];
         //时间设置面板
-        self.pv1=[[DatePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height/2-CGHeight(260+BOTTOMTABBARHEIGHT)/2, CGWidth(320), CGHeight(260))];
+        self.pv1=[[DatePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(260+BOTTOMTABBARHEIGHT), CGWidth(320), CGHeight(260))];
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
         [self.bgFrame addSubview:self.pv1];
-        //横屏
-        self.mMenuItemLandView=[[MenuItemLandView alloc]initWithFrame:CGRectMake(0, 0,CGHeight(455),CGWidth(320))];
-        [self.mMenuItemLandView setBaseController:self];
-//        [self.mMenuItemLandView.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
-//        [self.mMenuItemLandView.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
-        [self.mMenuItemLandView setUserInteractionEnabled:YES];
-        [self.mMenuItemLandView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeHide:)]];
-        [self.mMenuItemLandView setHidden:YES];
-        [self.view addSubview:self.mMenuItemLandView];
     }
     return self;
 }
@@ -130,6 +132,10 @@
         }
     }else{
         [self cTitle:NSLocalizedString(@"BBQ Unconnected",nil)];
+    }
+    if(!isAddFlag){
+        [[[Data Instance]mTabBarFrameViewController].view insertSubview:self.mMenuItemLandView atIndex:2];
+        isAddFlag=YES;
     }
 }
 
@@ -158,20 +164,38 @@
             NSDictionary *d1=[array objectAtIndex:0];
             [self.mMenuItemView1 setMenuData:d1];
             [self.mMenuItemView1 setHidden:NO];
+            if(currentZoomTag==i){
+                [self.mMenuItemLandView setMenuData:d1];
+            }
         }else if(i==1){
             NSDictionary *d2=[array objectAtIndex:1];
             [self.mMenuItemView2 setMenuData:d2];
             [self.mMenuItemView2 setHidden:NO];
+            if(currentZoomTag==i){
+                [self.mMenuItemLandView setMenuData:d2];
+            }
         }else if(i==2){
             NSDictionary *d3=[array objectAtIndex:2];
             [self.mMenuItemView3 setMenuData:d3];
             [self.mMenuItemView3 setHidden:NO];
+            if(currentZoomTag==i){
+                [self.mMenuItemLandView setMenuData:d3];
+            }
         }else if(i==3){
             NSDictionary *d4=[array objectAtIndex:3];
             [self.mMenuItemView4 setMenuData:d4];
             [self.mMenuItemView4 setHidden:NO];
+            if(currentZoomTag==i){
+                [self.mMenuItemLandView setMenuData:d4];
+            }
         }
     }
+}
+
+- (void)setZoomValue:(UIButton*)sender
+{
+    [self.mMenuItemLandView setHidden:YES];
+    [self setValue:sender];
 }
 
 - (void)setValue:(UIButton*)sender
@@ -184,6 +208,12 @@
         [self.mSetTempView setTag:sender.tag];
         [self SetTempShowWithTitle:title Value:[value intValue]];
     }
+}
+
+- (void)setZoomTimer:(UIButton*)sender
+{
+    [self.mMenuItemLandView setHidden:YES];
+    [self setTimer:sender];
 }
 
 - (void)setTimer:(UIButton*)sender
@@ -205,6 +235,9 @@
 {
     [self.mSetTempView setHidden:YES];
     [self.bgFrame setHidden:YES];
+    if(currentZoomTag>=0){
+        [self.mMenuItemLandView setHidden:NO];
+    }
 }
 
 - (void)SetTempCloseOK
@@ -218,8 +251,12 @@
         NSString *json=[NSString stringWithFormat:@"{\"sett\":{\"%@\":%d.1}}",title,value];
         [self.appDelegate sendData:json];
     }
-    [self.mSetTempView setHidden:YES];
     [self.bgFrame setHidden:YES];
+    [self.mSetTempView setHidden:YES];
+    [self refreshDataView];
+    if(currentZoomTag>=0){
+        [self.mMenuItemLandView setHidden:NO];
+    }
 }
 
 - (void)pickerViewDone:(NSInteger)code
@@ -243,6 +280,10 @@
             }else if(r==3){
                 [self.mMenuItemView4 setTimerScheduled];
             }
+            [self.mMenuItemLandView setTimerScheduled];
+        }
+        if(currentZoomTag>=0){
+            [self.mMenuItemLandView setHidden:NO];
         }
     }
 }
@@ -265,6 +306,10 @@
             }else if(r==3){
                 [self.mMenuItemView4 setTimerScheduled];
             }
+            [self.mMenuItemLandView setTimerScheduled];
+        }
+        if(currentZoomTag>=0){
+            [self.mMenuItemLandView setHidden:NO];
         }
     }
 }
@@ -276,6 +321,7 @@
     [self.mMenuItemView2 refreshData];
     [self.mMenuItemView3 refreshData];
     [self.mMenuItemView4 refreshData];
+    [self.mMenuItemLandView refreshData];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -306,32 +352,30 @@
 
 - (void)frmeChange:(UIGestureRecognizer*)sender
 {
-    
-    [self presentViewController:[[MenuItemZoomViewController alloc]init] animated:YES completion:nil];
-    
-//    if(inch35){
-//        return;
-//    }
-//    NSInteger tag=[[sender view]tag];
-//    [self.mMenuItemLandView setHidden:NO];
-//    CGAffineTransform at =CGAffineTransformMakeRotation(M_PI/2);
-//    [self.mMenuItemLandView setTransform:at];
-//    [self.mMenuItemLandView setCenter:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2)];
-//    [self.mMenuItemLandView.lblHighestCentigrade setTag:tag];
-//    [self.mMenuItemLandView.bTimer setTag:tag];
-//    if(tag==0){
-//        [self.mMenuItemLandView setMenuData:self.mMenuItemView1.currentData];
-//    }else if(tag==1){
-//        [self.mMenuItemLandView setMenuData:self.mMenuItemView2.currentData];
-//    }else if(tag==2){
-//        [self.mMenuItemLandView setMenuData:self.mMenuItemView3.currentData];
-//    }else if(tag==3){
-//        [self.mMenuItemLandView setMenuData:self.mMenuItemView4.currentData];
-//    }
+    NSInteger tag=[[sender view]tag];
+    currentZoomTag=tag;
+    [self.mMenuItemLandView setHidden:NO];
+    CGAffineTransform at =CGAffineTransformMakeRotation(M_PI/2);
+    [self.mMenuItemLandView setTransform:at];
+    CGFloat width=[[Data Instance]mTabBarFrameViewController].view.bounds.size.width;
+    CGFloat height=[[Data Instance]mTabBarFrameViewController].view.bounds.size.height;
+    [self.mMenuItemLandView setCenter:CGPointMake(width/2,height/2)];
+    [self.mMenuItemLandView.bTimer setTag:tag];
+    [self.mMenuItemLandView.lblHighestCentigrade setTag:tag];
+    if(tag==0){
+        [self.mMenuItemLandView setMenuData:self.mMenuItemView1.currentData];
+    }else if(tag==1){
+        [self.mMenuItemLandView setMenuData:self.mMenuItemView2.currentData];
+    }else if(tag==2){
+        [self.mMenuItemLandView setMenuData:self.mMenuItemView3.currentData];
+    }else if(tag==3){
+        [self.mMenuItemLandView setMenuData:self.mMenuItemView4.currentData];
+    }
 }
 
 - (void)frmeHide:(id)sender
 {
+    currentZoomTag=-1;
     [self.mMenuItemLandView setHidden:YES];
 }
 

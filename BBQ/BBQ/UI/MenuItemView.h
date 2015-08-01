@@ -22,10 +22,20 @@
 @property (strong,nonatomic)UIView *viewCentigrade;
 @property (strong,nonatomic)UIButton *bTimer;
 
+@property (strong,nonatomic)UILabel *lblCurrent;
+@property (strong,nonatomic)UILabel *lblCurrentTemp;
+@property (strong,nonatomic)UILabel *lblSet;
+@property (strong,nonatomic)UILabel *lblSetTemp;
+@property (strong,nonatomic)UIView *lineViewFrame;
+@property (strong,nonatomic)UIView *lineView;
+
 @property (strong,nonatomic)NSTimer *mTimer;
+
+@property CGFloat scale;
 
 - (void)setMenuData:(NSDictionary*)data;
 - (void)setTimerScheduled;
 - (void)refreshData;
+- (void)showTimerString:(NSString*)key;
 
 @end

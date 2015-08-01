@@ -20,7 +20,6 @@
 		C9126A421B66004A001D3D60 /* CLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A401B66004A001D3D60 /* CLabel.m */; };
 		C97E090A1B6A109B00E9B118 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C97E090C1B6A109B00E9B118 /* Localizable.strings */; };
 		C9B27CA61B660236005DD13B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B27CA51B660236005DD13B /* CoreBluetooth.framework */; };
-		C9C8F35A1B6BF36000119950 /* MenuItemZoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C8F3591B6BF36000119950 /* MenuItemZoomViewController.m */; };
 		C9D6152C1B67C7B2003DAC98 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6152B1B67C7B2003DAC98 /* MenuCell.m */; };
 		C9D6152F1B67D6AA003DAC98 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6152E1B67D6AA003DAC98 /* Data.m */; };
 		C9D615311B67E725003DAC98 /* page.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9D615301B67E725003DAC98 /* page.bundle */; };
@@ -75,6 +74,7 @@
 		C9F311B51B6B263E00D59F95 /* PNLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F311B21B6B263E00D59F95 /* PNLineChartView.m */; };
 		C9F311B61B6B263E00D59F95 /* PNPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F311B41B6B263E00D59F95 /* PNPlot.m */; };
 		C9F488451B6A35540037A9D8 /* MenuItemLandView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F488441B6A35540037A9D8 /* MenuItemLandView.m */; };
+		C9FB6D1C1B6C82C000EBCFCA /* BaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FB6D1B1B6C82C000EBCFCA /* BaseNavigationViewController.m */; };
 		C9FE58E71B68F656002154E4 /* Beep1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E21B68F656002154E4 /* Beep1.wav */; };
 		C9FE58E81B68F656002154E4 /* Beep2.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E31B68F656002154E4 /* Beep2.wav */; };
 		C9FE58E91B68F656002154E4 /* Beep3.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E41B68F656002154E4 /* Beep3.wav */; };
@@ -122,8 +122,6 @@
 		C97E090D1B6A10B400E9B118 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C97E090F1B6A143A00E9B118 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C9B27CA51B660236005DD13B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		C9C8F3581B6BF36000119950 /* MenuItemZoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemZoomViewController.h; sourceTree = "<group>"; };
-		C9C8F3591B6BF36000119950 /* MenuItemZoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemZoomViewController.m; sourceTree = "<group>"; };
 		C9D6152A1B67C7B2003DAC98 /* MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCell.h; sourceTree = "<group>"; };
 		C9D6152B1B67C7B2003DAC98 /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = "<group>"; };
 		C9D6152D1B67D6AA003DAC98 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
@@ -227,6 +225,8 @@
 		C9F311B41B6B263E00D59F95 /* PNPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPlot.m; sourceTree = "<group>"; };
 		C9F488431B6A35540037A9D8 /* MenuItemLandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemLandView.h; sourceTree = "<group>"; };
 		C9F488441B6A35540037A9D8 /* MenuItemLandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemLandView.m; sourceTree = "<group>"; };
+		C9FB6D1A1B6C82C000EBCFCA /* BaseNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationViewController.h; sourceTree = "<group>"; };
+		C9FB6D1B1B6C82C000EBCFCA /* BaseNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationViewController.m; sourceTree = "<group>"; };
 		C9FE58E21B68F656002154E4 /* Beep1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep1.wav; sourceTree = "<group>"; };
 		C9FE58E31B68F656002154E4 /* Beep2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep2.wav; sourceTree = "<group>"; };
 		C9FE58E41B68F656002154E4 /* Beep3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep3.wav; sourceTree = "<group>"; };
@@ -274,8 +274,6 @@
 				C9126A351B65DBC7001D3D60 /* InfoViewController.m */,
 				C9126A3A1B65FFE3001D3D60 /* MainViewController.h */,
 				C9126A3B1B65FFE3001D3D60 /* MainViewController.m */,
-				C9C8F3581B6BF36000119950 /* MenuItemZoomViewController.h */,
-				C9C8F3591B6BF36000119950 /* MenuItemZoomViewController.m */,
 				C9126A311B65DBBB001D3D60 /* SettingViewController.h */,
 				C9126A321B65DBBB001D3D60 /* SettingViewController.m */,
 				C9126A2E1B65DBAF001D3D60 /* ToolsViewController.h */,
@@ -395,6 +393,8 @@
 			children = (
 				C9ECF1E31B65C85A0088E110 /* BaseEGOTableViewPullRefreshViewController.h */,
 				C9ECF1E41B65C85A0088E110 /* BaseEGOTableViewPullRefreshViewController.m */,
+				C9FB6D1A1B6C82C000EBCFCA /* BaseNavigationViewController.h */,
+				C9FB6D1B1B6C82C000EBCFCA /* BaseNavigationViewController.m */,
 				C9ECF1E51B65C85A0088E110 /* BaseTabBarViewController.h */,
 				C9ECF1E61B65C85A0088E110 /* BaseTabBarViewController.m */,
 				C9ECF1E71B65C85A0088E110 /* BaseTableViewController.h */,
@@ -715,8 +715,8 @@
 				C9ECF1D51B65C6BD0088E110 /* PullTableView.m in Sources */,
 				C9F311B61B6B263E00D59F95 /* PNPlot.m in Sources */,
 				C9FE58EE1B68F70D002154E4 /* DatePickerView.m in Sources */,
+				C9FB6D1C1B6C82C000EBCFCA /* BaseNavigationViewController.m in Sources */,
 				C9D615341B67E92C003DAC98 /* SwitchCell.m in Sources */,
-				C9C8F35A1B6BF36000119950 /* MenuItemZoomViewController.m in Sources */,
 				C9F1EF211B67491E005C8CF3 /* TIBLECBStandand.m in Sources */,
 				C900ABD01B6877EE0018C36B /* SetTempView.m in Sources */,
 				C9ECF20E1B65C85A0088E110 /* HttpDownload.m in Sources */,

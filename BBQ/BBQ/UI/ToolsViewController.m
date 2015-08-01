@@ -12,7 +12,9 @@
 
 @end
 
-@implementation ToolsViewController
+@implementation ToolsViewController{
+    BOOL isAddFlag;
+}
 
 - (id)init{
     self=[super init];
@@ -60,11 +62,10 @@
             [self.scrollFrameView addSubview:self.mChartItemView4];
         }
         //横屏
-        self.mChartItemLandView=[[ChartItemLandView alloc]initWithFrame:CGRectMake(0, 0,CGHeight(inch35?350:455),CGWidth(320))];
+        self.mChartItemLandView=[[ChartItemLandView alloc]initWithFrame:CGRectMake(0, 0,CGWidth(448),CGWidth(266))];
         [self.mChartItemLandView setUserInteractionEnabled:YES];
         [self.mChartItemLandView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeHide:)]];
         [self.mChartItemLandView setHidden:YES];
-        [self.view addSubview:self.mChartItemLandView];
     }
     return self;
 }
@@ -80,6 +81,10 @@
                 [self ConnectedState:NO];
             }
         }
+    }
+    if(!isAddFlag){
+        [[[Data Instance]mTabBarFrameViewController].view insertSubview:self.mChartItemLandView atIndex:2];
+        isAddFlag=YES;
     }
 }
 
@@ -131,14 +136,13 @@
 
 - (void)frmeChange:(UIGestureRecognizer*)sender
 {
-//    if(inch35){
-//        return;
-//    }
     NSInteger tag=[[sender view]tag];
     [self.mChartItemLandView setHidden:NO];
     CGAffineTransform at =CGAffineTransformMakeRotation(M_PI/2);
     [self.mChartItemLandView setTransform:at];
-    [self.mChartItemLandView setCenter:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2)];
+    CGFloat width=[[Data Instance]mTabBarFrameViewController].view.bounds.size.width;
+    CGFloat height=[[Data Instance]mTabBarFrameViewController].view.bounds.size.height;
+    [self.mChartItemLandView setCenter:CGPointMake(width/2,height/2)];
     if(tag==1){
         [self.mChartItemLandView loadData:self.mChartItemView1.currentData];
     }else if(tag==2){

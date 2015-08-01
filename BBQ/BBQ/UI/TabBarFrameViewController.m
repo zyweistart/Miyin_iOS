@@ -336,7 +336,6 @@
 //发现设备
 - (void)bleDeviceWithRSSIFound
 {
-    NSLog(@"又发现设备了");
     for(CBPeripheral *cp in self.appDelegate.bleManager.peripherals){
         //判断是否存在自动连接设备
         if([cp.identifier.UUIDString isEqualToString:[[Data Instance]getAutoConnected]]){
@@ -349,7 +348,6 @@
 //连接成功
 - (void)didConectedbleDevice
 {
-    NSLog(@"又连接成功了");
     //连接成功则断开扫描功能
     [self stopScanBLEDevice];
     //连接成功后需立即查询蓝牙服务
@@ -359,7 +357,6 @@
 //停止设备扫描
 - (void)stopScanBLEDevice
 {
-    NSLog(@"又停止扫描了哦");
     [self.appDelegate.bleManager stopScan];
 }
 
@@ -370,6 +367,21 @@
     [self.mToolsViewController ConnectedState:NO];
     [self.mInfoViewController ConnectedState:NO];
     [self.appDelegate.bleManager findBLEPeripherals:0];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
 }
 
 @end

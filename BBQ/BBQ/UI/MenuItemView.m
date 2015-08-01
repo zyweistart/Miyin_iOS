@@ -15,69 +15,72 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        if(self.scale==0){
+            self.scale=1;
+        }
         [self setBackgroundColor:DEFAULTITLECOLORRGB(65, 51, 42)];
-        self.frameView=[[UIView alloc]initWithFrame:CGRectMake1(0, 5, 315, 180)];
+        self.frameView=[[UIView alloc]initWithFrame:CGRectMake1(0, 5*self.scale, 315*self.scale, 180*self.scale)];
         self.frameView.layer.masksToBounds=YES;
-        self.frameView.layer.cornerRadius=CGWidth(5);
-        self.frameView.layer.borderWidth=1;
+        self.frameView.layer.cornerRadius=CGWidth(5*self.scale);
+        self.frameView.layer.borderWidth=1*self.scale;
         self.frameView.layer.borderColor=DEFAULTITLECOLOR(200).CGColor;
         [self.frameView setBackgroundColor:[UIColor whiteColor]];
         [self addSubview:self.frameView];
         
-        self.lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 40, 180)];
+        self.lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 40*self.scale, 180*self.scale)];
         [self.lblTitle setTextColor:[UIColor whiteColor]];
-        [self.lblTitle setFont:[UIFont systemFontOfSize:18]];
+        [self.lblTitle setFont:[UIFont systemFontOfSize:18*self.scale]];
         [self.lblTitle setBackgroundColor:DEFAULTITLECOLORRGB(242, 125, 0)];
         [self.lblTitle setTextAlignment:NSTextAlignmentCenter];
         [self.frameView addSubview:self.lblTitle];
         
-        self.lblCurrentSamllCentigrade=[[UIButton alloc]initWithFrame:CGRectMake1(60, 5, 60, 20)];
+        self.lblCurrentSamllCentigrade=[[UIButton alloc]initWithFrame:CGRectMake1(60*self.scale, 5*self.scale, 60*self.scale, 20*self.scale)];
         [self.lblCurrentSamllCentigrade setTitleColor:DEFAULTITLECOLORRGB(242, 125, 0) forState:UIControlStateNormal];
         [self.lblCurrentSamllCentigrade setImage:[UIImage imageNamed:@"指针"] forState:UIControlStateNormal];
-        [self.lblCurrentSamllCentigrade setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
+        [self.lblCurrentSamllCentigrade setImageEdgeInsets:UIEdgeInsetsMake(0, -10*self.scale, 0, 0)];
         [self.frameView addSubview:self.lblCurrentSamllCentigrade];
         
-        UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake1(60, 30, 224, 20)];
-        [lineView setBackgroundColor:DEFAULTITLECOLOR(188)];
-        [self.frameView addSubview:lineView];
+        self.lineViewFrame=[[UIView alloc]initWithFrame:CGRectMake1(60*self.scale, 30*self.scale, 224*self.scale, 20*self.scale)];
+        [self.lineViewFrame setBackgroundColor:DEFAULTITLECOLOR(188)];
+        [self.frameView addSubview:self.lineViewFrame];
         
-        self.viewCentigrade=[[UIView alloc]initWithFrame:CGRectMake1(2, 2, 150, 16)];
+        self.viewCentigrade=[[UIView alloc]initWithFrame:CGRectMake1(2*self.scale, 2*self.scale, 150*self.scale, 16*self.scale)];
         [self.viewCentigrade setBackgroundColor:[UIColor redColor]];
-        [lineView addSubview:self.viewCentigrade];
+        [self.lineViewFrame addSubview:self.viewCentigrade];
         
-        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 80, 60, 20) Text:NSLocalizedString(@"Current",nil)];
-        [lbl setFont:[UIFont systemFontOfSize:15]];
-        [self.frameView addSubview:lbl];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 100, 50, 20) Text:NSLocalizedString(@"Temp",nil)];
-        [lbl setFont:[UIFont systemFontOfSize:15]];
-        [self.frameView addSubview:lbl];
+        self.lblCurrent=[[CLabel alloc]initWithFrame:CGRectMake1(50*self.scale, 80*self.scale, 60*self.scale, 20*self.scale) Text:NSLocalizedString(@"Current",nil)];
+        [self.lblCurrent setFont:[UIFont systemFontOfSize:15*self.scale]];
+        [self.frameView addSubview:self.lblCurrent];
+        self.lblCurrentTemp=[[CLabel alloc]initWithFrame:CGRectMake1(50*self.scale, 100*self.scale, 50*self.scale, 20*self.scale) Text:NSLocalizedString(@"Temp",nil)];
+        [self.lblCurrentTemp setFont:[UIFont systemFontOfSize:15*self.scale]];
+        [self.frameView addSubview:self.lblCurrentTemp];
         
-        self.lblCurrentCentigrade=[[UILabel alloc]initWithFrame:CGRectMake1(100, 80, 100, 40)];
-        [self.lblCurrentCentigrade setTextColor:DEFAULTITLECOLORRGB(242, 125, 0)];
-        [self.lblCurrentCentigrade setFont:[UIFont systemFontOfSize:35]];
+        self.lblCurrentCentigrade=[[UILabel alloc]initWithFrame:CGRectMake1(100*self.scale, 80*self.scale, 100*self.scale, 40*self.scale)];
+        [self.lblCurrentCentigrade setTextColor:DEFAULTITLECOLORRGB(242,125,0)];
+        [self.lblCurrentCentigrade setFont:[UIFont systemFontOfSize:35*self.scale]];
         [self.lblCurrentCentigrade setTextAlignment:NSTextAlignmentCenter];
         [self.frameView addSubview:self.lblCurrentCentigrade];
         
-        UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(45, 125, 155, 1)];
-        [line setBackgroundColor:DEFAULTITLECOLOR(160)];
-        [self.frameView addSubview:line];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 130, 50, 20) Text:NSLocalizedString(@"Set",nil)];
-        [self.frameView addSubview:lbl];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(50, 150, 50, 20) Text:NSLocalizedString(@"Temp",nil)];
-        [self.frameView addSubview:lbl];
+        self.lineView=[[UIView alloc]initWithFrame:CGRectMake1(45*self.scale, 125*self.scale, 155*self.scale, 1*self.scale)];
+        [self.lineView setBackgroundColor:DEFAULTITLECOLOR(160)];
+        [self.frameView addSubview:self.lineView];
+        self.lblSet=[[CLabel alloc]initWithFrame:CGRectMake1(50*self.scale, 130*self.scale, 50*self.scale, 20*self.scale) Text:NSLocalizedString(@"Set",nil)];
+        [self.frameView addSubview:self.lblSet];
+        self.lblSetTemp=[[CLabel alloc]initWithFrame:CGRectMake1(50*self.scale, 150*self.scale, 50*self.scale, 20*self.scale) Text:NSLocalizedString(@"Temp",nil)];
+        [self.frameView addSubview:self.lblSetTemp];
         
-        self.lblHighestCentigrade=[[UIButton alloc]initWithFrame:CGRectMake1(100, 130, 100, 40)];
+        self.lblHighestCentigrade=[[UIButton alloc]initWithFrame:CGRectMake1(100*self.scale, 130*self.scale, 100*self.scale, 40*self.scale)];
         [self.lblHighestCentigrade.titleLabel setFont:[UIFont systemFontOfSize:30]];
         [self.lblHighestCentigrade setTitleColor:DEFAULTITLECOLOR(100) forState:UIControlStateNormal];
         [self.frameView addSubview:self.lblHighestCentigrade];
         
-        self.bTimer=[[UIButton alloc]initWithFrame:CGRectMake1(202, 97, 46, 52)];
+        self.bTimer=[[UIButton alloc]initWithFrame:CGRectMake1(202*self.scale, 97*self.scale, 46*self.scale, 52*self.scale)];
         [self.bTimer setImage:[UIImage imageNamed:@"时间"] forState:UIControlStateNormal];
         [self.frameView addSubview:self.bTimer];
         
-        self.lblSetTime=[[UILabel alloc]initWithFrame:CGRectMake1(250, 97, 60, 52)];
+        self.lblSetTime=[[UILabel alloc]initWithFrame:CGRectMake1(250*self.scale, 97*self.scale, 60*self.scale, 52*self.scale)];
         [self.lblSetTime setTextColor:DEFAULTITLECOLOR(41)];
-        [self.lblSetTime setFont:[UIFont systemFontOfSize:18]];
+        [self.lblSetTime setFont:[UIFont systemFontOfSize:18*self.scale]];
         [self.lblSetTime setTextAlignment:NSTextAlignmentCenter];
         [self.frameView addSubview:self.lblSetTime];
     }
@@ -118,8 +121,8 @@
         if(width>hWidth){
             width=hWidth;
         }
-        [self.lblCurrentSamllCentigrade setFrame:CGRectMake1(55+width, 5, 60, 20)];
-        [self.viewCentigrade setFrame:CGRectMake1(2, 2, width, 16)];
+        [self.lblCurrentSamllCentigrade setFrame:CGRectMake1((55+width)*self.scale, 5*self.scale, 60*self.scale, 20*self.scale)];
+        [self.viewCentigrade setFrame:CGRectMake1(2*self.scale, 2*self.scale, width*self.scale, 16*self.scale)];
     }
 }
 
@@ -131,9 +134,11 @@
         int tv=[timer intValue];
         [self showTimerString:key];
         if(tv>0){
-            if(self.mTimer==nil){
-                self.mTimer=[NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+            if(self.mTimer){
+                [self.mTimer invalidate];
+                self.mTimer=nil;
             }
+            self.mTimer=[NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
         }else{
             if(self.mTimer){
                 [self.mTimer invalidate];
@@ -163,10 +168,10 @@
             NSString *json=[NSString stringWithFormat:@"{\"alarm\":\"%@\"}",key];
             [appDelegate sendData:json];
         }else{
-            if(self.mTimer){
-                [self.mTimer invalidate];
-                self.mTimer=nil;
-            }
+//            if(self.mTimer){
+//                [self.mTimer invalidate];
+//                self.mTimer=nil;
+//            }
         }
         break;
     }
