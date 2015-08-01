@@ -71,7 +71,6 @@
 		C9F311B51B6B263E00D59F95 /* PNLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F311B21B6B263E00D59F95 /* PNLineChartView.m */; };
 		C9F311B61B6B263E00D59F95 /* PNPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F311B41B6B263E00D59F95 /* PNPlot.m */; };
 		C9F488451B6A35540037A9D8 /* MenuItemLandView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F488441B6A35540037A9D8 /* MenuItemLandView.m */; };
-		C9FB6D1C1B6C82C000EBCFCA /* BaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FB6D1B1B6C82C000EBCFCA /* BaseNavigationViewController.m */; };
 		C9FE58E71B68F656002154E4 /* Beep1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E21B68F656002154E4 /* Beep1.wav */; };
 		C9FE58E81B68F656002154E4 /* Beep2.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E31B68F656002154E4 /* Beep2.wav */; };
 		C9FE58E91B68F656002154E4 /* Beep3.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9FE58E41B68F656002154E4 /* Beep3.wav */; };
@@ -216,8 +215,6 @@
 		C9F311B41B6B263E00D59F95 /* PNPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPlot.m; sourceTree = "<group>"; };
 		C9F488431B6A35540037A9D8 /* MenuItemLandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemLandView.h; sourceTree = "<group>"; };
 		C9F488441B6A35540037A9D8 /* MenuItemLandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemLandView.m; sourceTree = "<group>"; };
-		C9FB6D1A1B6C82C000EBCFCA /* BaseNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationViewController.h; sourceTree = "<group>"; };
-		C9FB6D1B1B6C82C000EBCFCA /* BaseNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationViewController.m; sourceTree = "<group>"; };
 		C9FE58E21B68F656002154E4 /* Beep1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep1.wav; sourceTree = "<group>"; };
 		C9FE58E31B68F656002154E4 /* Beep2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep2.wav; sourceTree = "<group>"; };
 		C9FE58E41B68F656002154E4 /* Beep3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep3.wav; sourceTree = "<group>"; };
@@ -378,8 +375,6 @@
 			children = (
 				C9ECF1E31B65C85A0088E110 /* BaseEGOTableViewPullRefreshViewController.h */,
 				C9ECF1E41B65C85A0088E110 /* BaseEGOTableViewPullRefreshViewController.m */,
-				C9FB6D1A1B6C82C000EBCFCA /* BaseNavigationViewController.h */,
-				C9FB6D1B1B6C82C000EBCFCA /* BaseNavigationViewController.m */,
 				C9ECF1E51B65C85A0088E110 /* BaseTabBarViewController.h */,
 				C9ECF1E61B65C85A0088E110 /* BaseTabBarViewController.m */,
 				C9ECF1E71B65C85A0088E110 /* BaseTableViewController.h */,
@@ -698,7 +693,6 @@
 				C9ECF1D51B65C6BD0088E110 /* PullTableView.m in Sources */,
 				C9F311B61B6B263E00D59F95 /* PNPlot.m in Sources */,
 				C9FE58EE1B68F70D002154E4 /* DatePickerView.m in Sources */,
-				C9FB6D1C1B6C82C000EBCFCA /* BaseNavigationViewController.m in Sources */,
 				C9D615341B67E92C003DAC98 /* SwitchCell.m in Sources */,
 				C9F1EF211B67491E005C8CF3 /* TIBLECBStandand.m in Sources */,
 				C900ABD01B6877EE0018C36B /* SetTempView.m in Sources */,

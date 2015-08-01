@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "BaseNavigationViewController.h"
 #import "ConnectViewController.h"
 
 @interface AppDelegate ()
@@ -41,7 +40,7 @@
     [[UINavigationBar appearance]setBarTintColor:NAVBG];
     [[UINavigationBar appearance]setBarStyle:UIBarStyleBlackTranslucent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    BaseNavigationViewController *frameViewControllerNav=[[BaseNavigationViewController alloc]initWithRootViewController:[[ConnectViewController alloc]init]];
+    UINavigationController *frameViewControllerNav=[[UINavigationController alloc]initWithRootViewController:[[ConnectViewController alloc]init]];
     self.window.rootViewController=frameViewControllerNav;
     [self.window setBackgroundColor:[UIColor whiteColor]];
     [self.window makeKeyAndVisible];

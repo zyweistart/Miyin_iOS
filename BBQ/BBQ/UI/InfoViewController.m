@@ -47,6 +47,12 @@
 
 - (void)loadData:(NSArray*)array
 {
+    if([array count]==0){
+        [self.tableView setHidden:YES];
+        [self.mConnectedPanel setHidden:NO];
+        [self.lblMessage setText:NSLocalizedString(@"Plase insert probes",nil)];
+        return;
+    }
     self.dataItemArray=[[NSMutableArray alloc]initWithArray:array];
     [self.tableView reloadData];
 }
