@@ -65,7 +65,7 @@
         self.lineChartView.min = 0;
         self.lineChartView.max = 538;
         self.lineChartView.interval = (self.lineChartView.max-self.lineChartView.min)/self.lineChartView.numberOfVerticalElements;
-        self.lblTimerUnit=[[UILabel alloc]initWithFrame:CGRectMake1(265*self.scale, 130*self.scale, 60*self.scale, 20*self.scale)];
+        self.lblTimerUnit=[[UILabel alloc]initWithFrame:CGRectMake1(260*self.scale, 130*self.scale, 60*self.scale, 20*self.scale)];
         [self.lblTimerUnit setText:NSLocalizedString(@"Timer(M)",nil)];
         [self.lblTimerUnit setFont:[UIFont systemFontOfSize:12*self.scale]];
         [self.lblTimerUnit setTextColor:DEFAULTITLECOLOR(150)];
@@ -73,7 +73,7 @@
         [self.frameView addSubview:self.lblTimerUnit];
         totalSecond=0;
         if(self.mTimer==nil){
-            self.mTimer=[NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+            self.mTimer=[NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
         }
         [self loadChartData];
     }
@@ -110,7 +110,7 @@
             NSInteger t=totalSecond/60;
             NSString *timerV=[NSString stringWithFormat:@"%ldm",t];
             if(t>60){
-                timerV=[NSString stringWithFormat:@"%ldh:%ldm",t/60,t%60];
+//                timerV=[NSString stringWithFormat:@"%ldh:%ldm",t/60,t%60];
             }
             BOOL flag=YES;
             for(NSDictionary *d in array){

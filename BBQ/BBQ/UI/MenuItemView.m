@@ -138,7 +138,7 @@
                 [self.mTimer invalidate];
                 self.mTimer=nil;
             }
-            self.mTimer=[NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+            self.mTimer=[NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
         }else{
             if(self.mTimer){
                 [self.mTimer invalidate];

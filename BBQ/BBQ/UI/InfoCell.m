@@ -43,10 +43,6 @@
         [self.lblTargetTemp setTextAlignment:NSTextAlignmentCenter];
         [frame addSubview:self.lblTargetTemp];
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
-        
-//        [self.lblTitle setText:@"T1"];
-//        [self.lblTimer setText:@"10"];
-//        [self.lblTargetTemp setText:@"85"];
     }
     return self;
 }

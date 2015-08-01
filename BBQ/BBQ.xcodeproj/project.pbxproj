@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C900ABCA1B6875FA0018C36B /* TimerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C900ABC91B6875FA0018C36B /* TimerCell.m */; };
 		C900ABCD1B6877D40018C36B /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C900ABCC1B6877D40018C36B /* AlertView.m */; };
 		C900ABD01B6877EE0018C36B /* SetTempView.m in Sources */ = {isa = PBXBuildFile; fileRef = C900ABCF1B6877EE0018C36B /* SetTempView.m */; };
 		C9126A2D1B65DA5A001D3D60 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A2C1B65DA5A001D3D60 /* HomeViewController.m */; };
@@ -15,12 +14,10 @@
 		C9126A331B65DBBB001D3D60 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A321B65DBBB001D3D60 /* SettingViewController.m */; };
 		C9126A361B65DBC7001D3D60 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A351B65DBC7001D3D60 /* InfoViewController.m */; };
 		C9126A391B65DC42001D3D60 /* TabBarFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A381B65DC42001D3D60 /* TabBarFrameViewController.m */; };
-		C9126A3C1B65FFE3001D3D60 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A3B1B65FFE3001D3D60 /* MainViewController.m */; };
 		C9126A411B66004A001D3D60 /* CButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A3E1B66004A001D3D60 /* CButton.m */; };
 		C9126A421B66004A001D3D60 /* CLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A401B66004A001D3D60 /* CLabel.m */; };
 		C97E090A1B6A109B00E9B118 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C97E090C1B6A109B00E9B118 /* Localizable.strings */; };
 		C9B27CA61B660236005DD13B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B27CA51B660236005DD13B /* CoreBluetooth.framework */; };
-		C9D6152C1B67C7B2003DAC98 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6152B1B67C7B2003DAC98 /* MenuCell.m */; };
 		C9D6152F1B67D6AA003DAC98 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6152E1B67D6AA003DAC98 /* Data.m */; };
 		C9D615311B67E725003DAC98 /* page.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9D615301B67E725003DAC98 /* page.bundle */; };
 		C9D615341B67E92C003DAC98 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D615331B67E92C003DAC98 /* SwitchCell.m */; };
@@ -97,8 +94,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C900ABC81B6875FA0018C36B /* TimerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerCell.h; sourceTree = "<group>"; };
-		C900ABC91B6875FA0018C36B /* TimerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerCell.m; sourceTree = "<group>"; };
 		C900ABCB1B6877D40018C36B /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		C900ABCC1B6877D40018C36B /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
 		C900ABCE1B6877EE0018C36B /* SetTempView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTempView.h; sourceTree = "<group>"; };
@@ -113,8 +108,6 @@
 		C9126A351B65DBC7001D3D60 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		C9126A371B65DC42001D3D60 /* TabBarFrameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarFrameViewController.h; sourceTree = "<group>"; };
 		C9126A381B65DC42001D3D60 /* TabBarFrameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarFrameViewController.m; sourceTree = "<group>"; };
-		C9126A3A1B65FFE3001D3D60 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		C9126A3B1B65FFE3001D3D60 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		C9126A3D1B66004A001D3D60 /* CButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CButton.h; sourceTree = "<group>"; };
 		C9126A3E1B66004A001D3D60 /* CButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CButton.m; sourceTree = "<group>"; };
 		C9126A3F1B66004A001D3D60 /* CLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLabel.h; sourceTree = "<group>"; };
@@ -122,8 +115,6 @@
 		C97E090D1B6A10B400E9B118 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C97E090F1B6A143A00E9B118 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C9B27CA51B660236005DD13B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		C9D6152A1B67C7B2003DAC98 /* MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCell.h; sourceTree = "<group>"; };
-		C9D6152B1B67C7B2003DAC98 /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = "<group>"; };
 		C9D6152D1B67D6AA003DAC98 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
 		C9D6152E1B67D6AA003DAC98 /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
 		C9D615301B67E725003DAC98 /* page.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = page.bundle; sourceTree = "<group>"; };
@@ -272,8 +263,6 @@
 				C9126A2C1B65DA5A001D3D60 /* HomeViewController.m */,
 				C9126A341B65DBC7001D3D60 /* InfoViewController.h */,
 				C9126A351B65DBC7001D3D60 /* InfoViewController.m */,
-				C9126A3A1B65FFE3001D3D60 /* MainViewController.h */,
-				C9126A3B1B65FFE3001D3D60 /* MainViewController.m */,
 				C9126A311B65DBBB001D3D60 /* SettingViewController.h */,
 				C9126A321B65DBBB001D3D60 /* SettingViewController.m */,
 				C9126A2E1B65DBAF001D3D60 /* ToolsViewController.h */,
@@ -314,12 +303,8 @@
 			children = (
 				C9D615381B67F510003DAC98 /* InfoCell.h */,
 				C9D615391B67F510003DAC98 /* InfoCell.m */,
-				C9D6152A1B67C7B2003DAC98 /* MenuCell.h */,
-				C9D6152B1B67C7B2003DAC98 /* MenuCell.m */,
 				C9D615321B67E92C003DAC98 /* SwitchCell.h */,
 				C9D615331B67E92C003DAC98 /* SwitchCell.m */,
-				C900ABC81B6875FA0018C36B /* TimerCell.h */,
-				C900ABC91B6875FA0018C36B /* TimerCell.m */,
 				C9FE58F51B695210002154E4 /* PeripheralCell.h */,
 				C9FE58F61B695210002154E4 /* PeripheralCell.m */,
 			);
@@ -689,7 +674,6 @@
 				C9126A361B65DBC7001D3D60 /* InfoViewController.m in Sources */,
 				C9126A411B66004A001D3D60 /* CButton.m in Sources */,
 				C9ECF2151B65C85A0088E110 /* UIImageView+Utils.m in Sources */,
-				C9D6152C1B67C7B2003DAC98 /* MenuCell.m in Sources */,
 				C9FE58F41B694653002154E4 /* ChartItemView.m in Sources */,
 				C9ECF2161B65C85A0088E110 /* User.m in Sources */,
 				C9F1EF1E1B674214005C8CF3 /* Tools.m in Sources */,
@@ -711,7 +695,6 @@
 				C9126A331B65DBBB001D3D60 /* SettingViewController.m in Sources */,
 				C9F1EF241B677004005C8CF3 /* ConnectViewController.m in Sources */,
 				C9ECF1C91B65C6BD0088E110 /* Reachability.m in Sources */,
-				C9126A3C1B65FFE3001D3D60 /* MainViewController.m in Sources */,
 				C9ECF1D51B65C6BD0088E110 /* PullTableView.m in Sources */,
 				C9F311B61B6B263E00D59F95 /* PNPlot.m in Sources */,
 				C9FE58EE1B68F70D002154E4 /* DatePickerView.m in Sources */,
@@ -726,7 +709,6 @@
 				C9ECF1CE1B65C6BD0088E110 /* ATMSoundFX.m in Sources */,
 				C9126A421B66004A001D3D60 /* CLabel.m in Sources */,
 				C9ECF1E11B65C6BD0088E110 /* MBProgressHUD.m in Sources */,
-				C900ABCA1B6875FA0018C36B /* TimerCell.m in Sources */,
 				C9ECF2081B65C85A0088E110 /* BaseTableViewController.m in Sources */,
 				C9ECF2131B65C85A0088E110 /* UIButton+TitleImage.m in Sources */,
 				C9ECF20F1B65C85A0088E110 /* HttpRequest.m in Sources */,

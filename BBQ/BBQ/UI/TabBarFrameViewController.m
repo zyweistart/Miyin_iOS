@@ -82,16 +82,11 @@
         
         receiveSBString=[NSMutableString new];
         //设置消息通知
-        nc = [NSNotificationCenter defaultCenter];
         if(![[Data Instance]isDemo]){
             //开始接收消息
             self.appDelegate = [[UIApplication sharedApplication] delegate];
             [self.appDelegate.bleManager notification:0xFFE0 characteristicUUID:0xFFE4 p:self.appDelegate.bleManager.activePeripheral on:YES];
         }
-        [nc addObserver: self
-               selector: @selector(refreshDataNotifcation:)
-                   name: NOTIFICATION_REFRESHDATA
-                 object: nil];
     }
     return self;
 }
@@ -99,6 +94,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver: self
+           selector: @selector(refreshDataNotifcation:)
+               name: NOTIFICATION_REFRESHDATA
+             object: nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated

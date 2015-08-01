@@ -8,8 +8,8 @@
 
 #import "ConnectViewController.h"
 #import "TabBarFrameViewController.h"
-#import "Tools.h"
 #import "PeripheralCell.h"
+#import "Tools.h"
 
 @interface ConnectViewController ()
 
@@ -51,7 +51,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [self performSelector:@selector(startScan) withObject:nil afterDelay:0.5];
+    [self performSelector:@selector(startScan) withObject:nil afterDelay:0.5];
 }
 
 - (void)viewWillAppear:(BOOL)animated
