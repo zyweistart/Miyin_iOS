@@ -49,7 +49,7 @@
                                 [self viewControllerWithTabTitle:LOCALIZATION(@"Tools") image:@"icon-nav-tools" ViewController:self.mToolsViewController],
                                 [self viewControllerWithTabTitle:LOCALIZATION(@"Info") image:@"icon-nav-info" ViewController:self.mInfoViewController],
                                 [self viewControllerWithTabTitle:LOCALIZATION(@"Setting") image:@"icon-nav-setting" ViewController:self.mSettingViewController], nil];
-        
+        [[self tabBar] setTintColor:[UIColor whiteColor]];
         [[self tabBar] setShadowImage:[[UIImage alloc] init]];
         [[self tabBar] setBackgroundImage:[[UIImage alloc] init]];
         [[self tabBar] setBackgroundColor:DEFAULTITLECOLORRGB(242, 125, 0)];
