@@ -37,6 +37,7 @@
         self.lblCurrentSamllCentigrade=[[UIButton alloc]initWithFrame:CGRectMake1(60*self.scale, 5*self.scale, 60*self.scale, 20*self.scale)];
         [self.lblCurrentSamllCentigrade setTitleColor:DEFAULTITLECOLORRGB(242, 125, 0) forState:UIControlStateNormal];
         [self.lblCurrentSamllCentigrade setImage:[UIImage imageNamed:@"指针"] forState:UIControlStateNormal];
+        [self.lblCurrentSamllCentigrade setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
         [self.lblCurrentSamllCentigrade setImageEdgeInsets:UIEdgeInsetsMake(0, -10*self.scale, 0, 0)];
         [self.frameView addSubview:self.lblCurrentSamllCentigrade];
         
@@ -65,12 +66,14 @@
         [self.lineView setBackgroundColor:DEFAULTITLECOLOR(160)];
         [self.frameView addSubview:self.lineView];
         self.lblSet=[[CLabel alloc]initWithFrame:CGRectMake1(50*self.scale, 130*self.scale, 50*self.scale, 20*self.scale) Text:LOCALIZATION(@"Set")];
+        [self.lblSet setFont:[UIFont systemFontOfSize:15*self.scale]];
         [self.frameView addSubview:self.lblSet];
         self.lblSetTemp=[[CLabel alloc]initWithFrame:CGRectMake1(50*self.scale, 150*self.scale, 50*self.scale, 20*self.scale) Text:LOCALIZATION(@"Temp")];
+        [self.lblSetTemp setFont:[UIFont systemFontOfSize:15*self.scale]];
         [self.frameView addSubview:self.lblSetTemp];
         
         self.lblHighestCentigrade=[[UIButton alloc]initWithFrame:CGRectMake1(100*self.scale, 130*self.scale, 100*self.scale, 40*self.scale)];
-        [self.lblHighestCentigrade.titleLabel setFont:[UIFont systemFontOfSize:30]];
+        [self.lblHighestCentigrade.titleLabel setFont:[UIFont systemFontOfSize:30*self.scale]];
         [self.lblHighestCentigrade setTitleColor:DEFAULTITLECOLOR(100) forState:UIControlStateNormal];
         [self.frameView addSubview:self.lblHighestCentigrade];
         
@@ -121,7 +124,7 @@
         if(width>hWidth){
             width=hWidth;
         }
-        [self.lblCurrentSamllCentigrade setFrame:CGRectMake1((55+width)*self.scale, 5*self.scale, 60*self.scale, 20*self.scale)];
+        [self.lblCurrentSamllCentigrade setFrame:CGRectMake1((68+width)*self.scale, 5*self.scale, 60*self.scale, 20*self.scale)];
         [self.viewCentigrade setFrame:CGRectMake1(2*self.scale, 2*self.scale, width*self.scale, 16*self.scale)];
     }
 }
