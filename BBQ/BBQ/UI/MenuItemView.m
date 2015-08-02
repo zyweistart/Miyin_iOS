@@ -38,6 +38,7 @@
         [self.lblCurrentSamllCentigrade setTitleColor:DEFAULTITLECOLORRGB(242, 125, 0) forState:UIControlStateNormal];
         [self.lblCurrentSamllCentigrade setImage:[UIImage imageNamed:@"指针"] forState:UIControlStateNormal];
         [self.lblCurrentSamllCentigrade setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+        [self.lblCurrentSamllCentigrade.titleLabel setFont:[UIFont systemFontOfSize:15*self.scale]];
         [self.lblCurrentSamllCentigrade setImageEdgeInsets:UIEdgeInsetsMake(0, -10*self.scale, 0, 0)];
         [self.frameView addSubview:self.lblCurrentSamllCentigrade];
         
@@ -162,7 +163,9 @@
             [self.mTimer invalidate];
             self.mTimer=nil;
             TabBarFrameViewController *tbf=(TabBarFrameViewController*)self.baseController.tabBarController;
-            [tbf playAlarm];
+            if(![tbf playAlarm]){
+                [tbf senderNotification:LOCALIZATION(@"Timer is finished!")];
+            }
             [tbf.mAlertView.lblTitle setText:[NSString stringWithFormat:@"%@-Warning",key]];
             [tbf.mAlertView.lblMessage setText:LOCALIZATION(@"Timer is finished!")];
             [tbf.mAlertView setType:1];

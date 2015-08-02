@@ -23,5 +23,6 @@
 
 - (BOOL)playAlarm;
 - (void)AlertShow;
+- (void)senderNotification:(NSString*)message;
 
 @end
