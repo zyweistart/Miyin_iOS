@@ -1,7 +1,7 @@
 "Demo" = "Demo";
 "Scan" = "Scan";
 "Unknown" = "Unknown";
-"Exit" = "Exit";
+"Disconnect connection" = "Disconnect connection";
 "Connected" = "Connected";
 "Connecting" = "Connecting";
 "Scan..." = "Scan..";

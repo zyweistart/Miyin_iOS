@@ -163,7 +163,7 @@
         self.mMBProgressHUD.dimBackground = NO;
         self.mMBProgressHUD.square = YES;
         [self.mMBProgressHUD show:YES];
-        self.mTimer=[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(connectTimerout) userInfo:nil repeats:NO];
+        self.mTimer=[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(connectTimerout) userInfo:nil repeats:NO];
     }
     [lblState setText:LOCALIZATION(@"Connecting...")];
 }
@@ -201,7 +201,7 @@
     if(self.appDelegate.bleManager.CM.state==CBCentralManagerStatePoweredOn){
         [self RefreshStateStart];
         //定时扫描持续时间7秒
-        [self.appDelegate.bleManager findBLEPeripherals:7];
+        [self.appDelegate.bleManager findBLEPeripherals:5];
     }
 }
 

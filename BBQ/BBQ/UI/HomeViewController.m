@@ -105,7 +105,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:LOCALIZATION(@"Cancel")
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:LOCALIZATION(@"Exit"), nil];
+                                                    otherButtonTitles:LOCALIZATION(@"Disconnect connection"), nil];
     [choiceSheet showInView:self.view];
 }
 
@@ -296,12 +296,16 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex==0){
-        if (self.appDelegate.bleManager.activePeripheral) {
-            if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
-                [self.appDelegate.bleManager setDelegate:self];
-                [[self.appDelegate.bleManager CM] cancelPeripheralConnection:[self.appDelegate.bleManager activePeripheral]];
-            }else{
-                [self DisConnectperipheral];
+        if([[Data Instance]isDemo]){
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }else{
+            if (self.appDelegate.bleManager.activePeripheral) {
+                if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
+                    [self.appDelegate.bleManager setDelegate:self];
+                    [[self.appDelegate.bleManager CM] cancelPeripheralConnection:[self.appDelegate.bleManager activePeripheral]];
+                }else{
+                    [self DisConnectperipheral];
+                }
             }
         }
     }
