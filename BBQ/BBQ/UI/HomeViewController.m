@@ -310,7 +310,6 @@
 //断开连接
 - (void)DisConnectperipheral
 {
-    NSLog(@"%@",self.appDelegate.bleManager.activePeripheral);
     [[Data Instance]setAutoConnected:nil];
     self.appDelegate.bleManager.activePeripheral = nil;
     [self dismissViewControllerAnimated:YES completion:nil];

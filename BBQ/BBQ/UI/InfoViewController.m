@@ -114,6 +114,7 @@
 {
     [self.tableView setHidden:!state];
     [self.mConnectedPanel setHidden:state];
+    [self.lblMessage setText:LOCALIZATION(@"Connection is broken")];
 }
 
 - (void)changeLanguageText

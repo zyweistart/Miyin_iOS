@@ -138,11 +138,8 @@
 //播放结束时执行的动作
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag{
     if (flag) {
-        NSLog(@"播放结束了");
     }
 }
-
-
 
 //报警声音停止
 - (void)stopAlarm

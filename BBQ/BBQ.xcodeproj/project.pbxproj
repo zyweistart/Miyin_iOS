@@ -35,8 +35,6 @@
 		C9ECF1CD1B65C6BD0088E110 /* ATMProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF1A31B65C6BD0088E110 /* ATMProgressLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C9ECF1CE1B65C6BD0088E110 /* ATMSoundFX.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF1A51B65C6BD0088E110 /* ATMSoundFX.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C9ECF1CF1B65C6BD0088E110 /* ATMTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF1A71B65C6BD0088E110 /* ATMTextLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C9ECF1D01B65C6BD0088E110 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF1AA1B65C6BD0088E110 /* EAIntroPage.m */; };
-		C9ECF1D11B65C6BD0088E110 /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF1AC1B65C6BD0088E110 /* EAIntroView.m */; };
 		C9ECF1D21B65C6BD0088E110 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF1B01B65C6BD0088E110 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C9ECF1D31B65C6BD0088E110 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF1B21B65C6BD0088E110 /* LoadMoreTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C9ECF1D41B65C6BD0088E110 /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF1B41B65C6BD0088E110 /* MessageInterceptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -63,7 +61,6 @@
 		C9ECF2141B65C85A0088E110 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF2011B65C85A0088E110 /* UIImage+Utils.m */; };
 		C9ECF2151B65C85A0088E110 /* UIImageView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF2031B65C85A0088E110 /* UIImageView+Utils.m */; };
 		C9ECF2161B65C85A0088E110 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ECF2051B65C85A0088E110 /* User.m */; };
-		C9F1EF1B1B671895005C8CF3 /* TIBLECBStandanda.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF1A1B671895005C8CF3 /* TIBLECBStandanda.m */; };
 		C9F1EF1E1B674214005C8CF3 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF1D1B674214005C8CF3 /* Tools.m */; };
 		C9F1EF211B67491E005C8CF3 /* TIBLECBStandand.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF201B67491E005C8CF3 /* TIBLECBStandand.m */; };
 		C9F1EF241B677004005C8CF3 /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F1EF231B677004005C8CF3 /* ConnectViewController.m */; };
@@ -149,10 +146,6 @@
 		C9ECF1A51B65C6BD0088E110 /* ATMSoundFX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMSoundFX.m; sourceTree = "<group>"; };
 		C9ECF1A61B65C6BD0088E110 /* ATMTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMTextLayer.h; sourceTree = "<group>"; };
 		C9ECF1A71B65C6BD0088E110 /* ATMTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMTextLayer.m; sourceTree = "<group>"; };
-		C9ECF1A91B65C6BD0088E110 /* EAIntroPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroPage.h; sourceTree = "<group>"; };
-		C9ECF1AA1B65C6BD0088E110 /* EAIntroPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroPage.m; sourceTree = "<group>"; };
-		C9ECF1AB1B65C6BD0088E110 /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
-		C9ECF1AC1B65C6BD0088E110 /* EAIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroView.m; sourceTree = "<group>"; };
 		C9ECF1AF1B65C6BD0088E110 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		C9ECF1B01B65C6BD0088E110 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		C9ECF1B11B65C6BD0088E110 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -199,8 +192,6 @@
 		C9ECF2031B65C85A0088E110 /* UIImageView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Utils.m"; sourceTree = "<group>"; };
 		C9ECF2041B65C85A0088E110 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		C9ECF2051B65C85A0088E110 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		C9F1EF191B671895005C8CF3 /* TIBLECBStandanda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIBLECBStandanda.h; sourceTree = "<group>"; };
-		C9F1EF1A1B671895005C8CF3 /* TIBLECBStandanda.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIBLECBStandanda.m; sourceTree = "<group>"; };
 		C9F1EF1C1B674214005C8CF3 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		C9F1EF1D1B674214005C8CF3 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		C9F1EF1F1B67491E005C8CF3 /* TIBLECBStandand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIBLECBStandand.h; sourceTree = "<group>"; };
@@ -398,8 +389,6 @@
 				C9ECF1FD1B65C85A0088E110 /* ResultDelegate.h */,
 				C9F1EF1F1B67491E005C8CF3 /* TIBLECBStandand.h */,
 				C9F1EF201B67491E005C8CF3 /* TIBLECBStandand.m */,
-				C9F1EF191B671895005C8CF3 /* TIBLECBStandanda.h */,
-				C9F1EF1A1B671895005C8CF3 /* TIBLECBStandanda.m */,
 				C9F1EF1C1B674214005C8CF3 /* Tools.h */,
 				C9F1EF1D1B674214005C8CF3 /* Tools.m */,
 				C9ECF1FE1B65C85A0088E110 /* UIButton+TitleImage.h */,
@@ -419,7 +408,6 @@
 			children = (
 				C9ECF1971B65C6BD0088E110 /* ASIHTTP */,
 				C9ECF19A1B65C6BD0088E110 /* ATMHud */,
-				C9ECF1A81B65C6BD0088E110 /* EAIntroView */,
 				C9ECF1AD1B65C6BD0088E110 /* EGOTableViewPullRefresh */,
 				C9ECF1C61B65C6BD0088E110 /* MBProgressHUD */,
 				C9F311B01B6B263E00D59F95 /* PNLineChart */,
@@ -464,17 +452,6 @@
 				C9ECF1A71B65C6BD0088E110 /* ATMTextLayer.m */,
 			);
 			path = ATMHud;
-			sourceTree = "<group>";
-		};
-		C9ECF1A81B65C6BD0088E110 /* EAIntroView */ = {
-			isa = PBXGroup;
-			children = (
-				C9ECF1A91B65C6BD0088E110 /* EAIntroPage.h */,
-				C9ECF1AA1B65C6BD0088E110 /* EAIntroPage.m */,
-				C9ECF1AB1B65C6BD0088E110 /* EAIntroView.h */,
-				C9ECF1AC1B65C6BD0088E110 /* EAIntroView.m */,
-			);
-			path = EAIntroView;
 			sourceTree = "<group>";
 		};
 		C9ECF1AD1B65C6BD0088E110 /* EGOTableViewPullRefresh */ = {
@@ -665,7 +642,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9ECF2061B65C85A0088E110 /* BaseEGOTableViewPullRefreshViewController.m in Sources */,
-				C9ECF1D01B65C6BD0088E110 /* EAIntroPage.m in Sources */,
 				C9126A361B65DBC7001D3D60 /* InfoViewController.m in Sources */,
 				C9126A411B66004A001D3D60 /* CButton.m in Sources */,
 				C9ECF2151B65C85A0088E110 /* UIImageView+Utils.m in Sources */,
@@ -682,7 +658,6 @@
 				C9D6152F1B67D6AA003DAC98 /* Data.m in Sources */,
 				C9ECF1D31B65C6BD0088E110 /* LoadMoreTableFooterView.m in Sources */,
 				C9DC36A81B6A1871006FBCE6 /* ChartItemLandView.m in Sources */,
-				C9ECF1D11B65C6BD0088E110 /* EAIntroView.m in Sources */,
 				C9ECF1CC1B65C6BD0088E110 /* ATMHudView.m in Sources */,
 				C9ECF2121B65C85A0088E110 /* Response.m in Sources */,
 				C9ECF1741B65C1460088E110 /* AppDelegate.m in Sources */,
@@ -697,7 +672,6 @@
 				C9F1EF211B67491E005C8CF3 /* TIBLECBStandand.m in Sources */,
 				C900ABD01B6877EE0018C36B /* SetTempView.m in Sources */,
 				C9ECF20E1B65C85A0088E110 /* HttpDownload.m in Sources */,
-				C9F1EF1B1B671895005C8CF3 /* TIBLECBStandanda.m in Sources */,
 				C9F311B51B6B263E00D59F95 /* PNLineChartView.m in Sources */,
 				C9FE58F11B692F20002154E4 /* MenuItemView.m in Sources */,
 				C9ECF1CE1B65C6BD0088E110 /* ATMSoundFX.m in Sources */,

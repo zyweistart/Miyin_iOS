@@ -208,7 +208,6 @@
 //发现设备
 - (void)bleDeviceWithRSSIFound
 {
-//    NSLog(@"发现设备");
     [self.tableView reloadData];
     for(CBPeripheral *cp in self.appDelegate.bleManager.peripherals){
         //判断是否存在自动连接设备
@@ -224,7 +223,6 @@
 //连接成功
 - (void)didConectedbleDevice
 {
-//    NSLog(@"连接成功");
     [self.tableView reloadData];
     //自动存储连接信息方便下次连接
     NSString *uuid=self.appDelegate.bleManager.activePeripheral.identifier.UUIDString;
