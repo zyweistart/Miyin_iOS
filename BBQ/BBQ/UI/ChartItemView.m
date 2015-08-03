@@ -36,15 +36,16 @@
         [self.lblTitle setTextAlignment:NSTextAlignmentCenter];
         [self.frameView addSubview:self.lblTitle];
         
-        self.topLabelView=[[UIView alloc]initWithFrame:CGRectMake1(45*self.scale, 0, 270*self.scale, 20*self.scale)];
+        self.topLabelView=[[UIView alloc]initWithFrame:CGRectMake1(45*self.scale, 0, 275*self.scale, 20*self.scale)];
         [self.frameView addSubview:self.topLabelView];
         self.lblCFType=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 55*self.scale, 20*self.scale)];
         [self.lblCFType setFont:[UIFont systemFontOfSize:12*self.scale]];
         [self.lblCFType setTextColor:DEFAULTITLECOLOR(150)];
         [self.topLabelView addSubview:self.lblCFType];
-        self.lblCurrentTemp=[[UILabel alloc]initWithFrame:CGRectMake1(60*self.scale, 0, 80*self.scale, 20*self.scale)];
+        self.lblCurrentTemp=[[UILabel alloc]initWithFrame:CGRectMake1(55*self.scale, 0, 80*self.scale, 20*self.scale)];
         [self.lblCurrentTemp setFont:[UIFont systemFontOfSize:12*self.scale]];
         [self.lblCurrentTemp setTextColor:DEFAULTITLECOLOR(150)];
+        [self.lblCurrentTemp setTextAlignment:NSTextAlignmentRight];
         [self.topLabelView addSubview:self.lblCurrentTemp];
         UIView *CurrentTempLine=[[UIView alloc]initWithFrame:CGRectMake1(140*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
         [CurrentTempLine setBackgroundColor:DEFAULTITLECOLORRGB(7, 166, 206)];
@@ -52,6 +53,7 @@
         self.lblSetTemp=[[UILabel alloc]initWithFrame:CGRectMake1(165*self.scale, 0, 60*self.scale, 20*self.scale)];
         [self.lblSetTemp setFont:[UIFont systemFontOfSize:12*self.scale]];
         [self.lblSetTemp setTextColor:DEFAULTITLECOLOR(150)];
+        [self.lblSetTemp setTextAlignment:NSTextAlignmentRight];
         [self.topLabelView addSubview:self.lblSetTemp];
         UIView *SetTempLine=[[UIView alloc]initWithFrame:CGRectMake1(230*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
         [SetTempLine setBackgroundColor:DEFAULTITLECOLORRGB(210, 91, 44)];

@@ -217,12 +217,12 @@ typedef struct scanProcessStep{
     self.activePeripheral = nil;
     [self.activeDescriptors removeAllObjects];
     [self.activeCharacteristics removeAllObjects];
-    [self.CM connectPeripheral:peripheral options:nil];
+    self.activePeripheral = peripheral;
+    [self.CM connectPeripheral:self.activePeripheral options:nil];
 }
 
 //3、设备成功连接
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
-    self.activePeripheral = peripheral;
     [self.activePeripheral setDelegate:self];
     //点击某个设备后，将这个设备对象作为参数，通知给属性列表窗体，在那个窗体中进行连接以及服务扫描操作。
 //    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -591,7 +591,7 @@ typedef struct scanProcessStep{
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
-    
+    NSLog(@"连接出异常了");
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverIncludedServicesForService:(CBService *)service error:(NSError *)error{

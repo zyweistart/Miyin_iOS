@@ -124,65 +124,60 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //发出通知新页面，对指定外围设备进行连接
-    CBPeripheral *cbPeripheral=[self.appDelegate.bleManager.peripherals objectAtIndex:[indexPath section]];
-    //判断是否已经连接
-    if (self.appDelegate.bleManager.activePeripheral){
-        NSString *uuid=cbPeripheral.identifier.UUIDString;
-        if ([uuid isEqualToString:self.appDelegate.bleManager.activePeripheral.identifier.UUIDString]) {
-            if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
-                [self goMainPage];
-                return;
-            }else if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
-                [Common alert:LOCALIZATION(@"Connecting...")];
-                return;
+    if([self.appDelegate.bleManager.peripherals count]>0){
+        
+        //发出通知新页面，对指定外围设备进行连接
+        CBPeripheral *cbPeripheral=[self.appDelegate.bleManager.peripherals objectAtIndex:[indexPath section]];
+        //判断是否已经连接
+        if (self.appDelegate.bleManager.activePeripheral){
+            NSString *uuid=cbPeripheral.identifier.UUIDString;
+            if ([uuid isEqualToString:self.appDelegate.bleManager.activePeripheral.identifier.UUIDString]) {
+                if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
+                    [self goMainPage];
+                    return;
+                }else if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
+                    //                [Common alert:LOCALIZATION(@"Connecting...")];
+                    return;
+                }
             }
         }
+        [self RefreshStateConnecting];
+        [self.appDelegate.bleManager connectPeripheral:cbPeripheral];
+    }else{
+        [self.tableView reloadData];
     }
-    [self RefreshStateConnecting];
-    [self.appDelegate.bleManager connectPeripheral:cbPeripheral];
 }
 
 - (void)RefreshStateStart
 {
-    if(self.mMBProgressHUD==nil){
-//        self.mMBProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
-//        [self.view addSubview:self.mMBProgressHUD];
-//        self.mMBProgressHUD.dimBackground = NO;
-//        self.mMBProgressHUD.square = YES;
-//        [self.mMBProgressHUD show:YES];
-    }
     [lblState setText:LOCALIZATION(@"Scan...")];
 }
 
 - (void)RefreshStateConnecting
 {
-    if(self.mMBProgressHUD==nil){
-//        self.mMBProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
-//        [self.view addSubview:self.mMBProgressHUD];
-//        self.mMBProgressHUD.dimBackground = NO;
-//        self.mMBProgressHUD.square = YES;
-//        [self.mMBProgressHUD show:YES];
-        self.mTimer=[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(connectTimerout) userInfo:nil repeats:NO];
+    if(self.mTimer){
+        [self.mTimer invalidate];
+        self.mTimer=nil;
     }
+    self.mTimer=[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(connectTimerout) userInfo:nil repeats:NO];
     [lblState setText:LOCALIZATION(@"Connecting...")];
 }
 
 - (void)RefreshStateNormal
 {
     [lblState setText:@""];
-    if (self.mMBProgressHUD) {
-//        [self.mMBProgressHUD hide:YES];
-//        self.mMBProgressHUD=nil;
-    }
 }
 
 - (void)connectTimerout
 {
-    if(self.appDelegate.bleManager.activePeripheral==nil){
-        [self RefreshStateNormal];
-        [Common alert:LOCALIZATION(@"The connection timeout, please try again")];
-        [self startScan];
+    [self.mTimer invalidate];
+    self.mTimer=nil;
+    [self RefreshStateNormal];
+    if(self.appDelegate.bleManager.activePeripheral!=nil){
+        if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
+            [Common alert:LOCALIZATION(@"The connection timeout, please try again")];
+            [self startScan];
+        }
     }
 }
 
@@ -223,6 +218,7 @@
 //连接成功
 - (void)didConectedbleDevice
 {
+    [self stopScan];
     [self.tableView reloadData];
     //自动存储连接信息方便下次连接
     NSString *uuid=self.appDelegate.bleManager.activePeripheral.identifier.UUIDString;
@@ -241,7 +237,7 @@
 //服务发现完成之后的回调方法
 - (void)ServiceFoundOver
 {
-    [self performSelector:@selector(goMainPage) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(goMainPage) withObject:nil afterDelay:0.5];
 }
 
 - (void)stopScan
