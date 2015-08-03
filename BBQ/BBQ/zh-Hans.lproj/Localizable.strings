@@ -27,6 +27,7 @@
 "Temperature is high!" = "温度过高!";
 "The grill has flared up!" = "烧烤已燃烧起来了!";
 "Timer is finished!" = "定时结束!";
+"The connection timeout, please try again" = "连接超时，请重试";
 "Set" = "设定";
 "Temp" = "温度";
 "Current" = "当前";

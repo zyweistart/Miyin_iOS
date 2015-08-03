@@ -26,6 +26,7 @@
 "BBQ Unconnected" = "BBQ Unconnected";
 "Plase insert probes" = "Plase insert probes";
 "Connection is broken" = "Connection is broken";
+"The connection timeout, please try again" = "The connection timeout, please try again";
 "Timer(M)" = "Timer(M)";
 "Current" = "Current";
 "Temp" = "Temp";

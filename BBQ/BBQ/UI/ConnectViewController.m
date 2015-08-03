@@ -110,7 +110,6 @@
     if(self.appDelegate.bleManager.activePeripheral){
         if ([uuid isEqualToString:self.appDelegate.bleManager.activePeripheral.identifier.UUIDString]) {
             if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
-                [lblState setText:@""];
                 [self ConnectedState:YES];
                 //如果已经连接则显示连接状态
 //                [cell.lblAddress setText:LOCALIZATION(@"Connected")];
@@ -140,18 +139,42 @@
             }
         }
     }
-    [self RefreshStateStart];
+    [self RefreshStateConnecting];
     [self.appDelegate.bleManager connectPeripheral:cbPeripheral];
 }
 
 - (void)RefreshStateStart
 {
-    self.mMBProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
-    [self.view addSubview:self.mMBProgressHUD];
-    self.mMBProgressHUD.dimBackground = NO;
-    self.mMBProgressHUD.square = YES;
-    [self.mMBProgressHUD show:YES];
+    if(self.mMBProgressHUD==nil){
+        self.mMBProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:self.mMBProgressHUD];
+        self.mMBProgressHUD.dimBackground = NO;
+        self.mMBProgressHUD.square = YES;
+        [self.mMBProgressHUD show:YES];
+    }
     [lblState setText:LOCALIZATION(@"Scan...")];
+}
+
+- (void)RefreshStateConnecting
+{
+    if(self.mMBProgressHUD==nil){
+        self.mMBProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:self.mMBProgressHUD];
+        self.mMBProgressHUD.dimBackground = NO;
+        self.mMBProgressHUD.square = YES;
+        [self.mMBProgressHUD show:YES];
+        self.mTimer=[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(connectTimerout) userInfo:nil repeats:NO];
+    }
+    [lblState setText:LOCALIZATION(@"Connecting...")];
+}
+
+- (void)connectTimerout
+{
+    if(self.appDelegate.bleManager.activePeripheral==nil){
+        [self RefreshStateNormal];
+        [Common alert:LOCALIZATION(@"The connection timeout, please try again")];
+        [self startScan];
+    }
 }
 
 - (void)RefreshStateNormal
@@ -159,6 +182,7 @@
     [lblState setText:@""];
     if (self.mMBProgressHUD) {
         [self.mMBProgressHUD hide:YES];
+        self.mMBProgressHUD=nil;
     }
 }
 
@@ -176,8 +200,8 @@
 {
     if(self.appDelegate.bleManager.CM.state==CBCentralManagerStatePoweredOn){
         [self RefreshStateStart];
-        //定时扫描持续时间10秒
-        [self.appDelegate.bleManager findBLEPeripherals:10];
+        //定时扫描持续时间7秒
+        [self.appDelegate.bleManager findBLEPeripherals:7];
     }
 }
 
@@ -189,6 +213,8 @@
     for(CBPeripheral *cp in self.appDelegate.bleManager.peripherals){
         //判断是否存在自动连接设备
         if([cp.identifier.UUIDString isEqualToString:[[Data Instance]getAutoConnected]]){
+            [self RefreshStateNormal];
+            [self RefreshStateConnecting];
             [self.appDelegate.bleManager connectPeripheral:cp];
             return;
         }

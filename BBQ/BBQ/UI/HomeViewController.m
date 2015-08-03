@@ -185,8 +185,17 @@
 
 - (void)SetTempShowWithTitle:(NSString*)title Value:(int)value;
 {
+    if([@"T1" isEqualToString:title]){
+        [self.mSetTempView.mSlider setMaximumValue:200];
+    }else if([@"T2" isEqualToString:title]){
+        [self.mSetTempView.mSlider setMaximumValue:200];
+    }else if([@"T3" isEqualToString:title]){
+        [self.mSetTempView.mSlider setMaximumValue:200];
+    }else if([@"T4" isEqualToString:title]){
+        [self.mSetTempView.mSlider setMaximumValue:538];
+    }
+    [self.mSetTempView.lblTitle setText:[NSString stringWithFormat:@"%@-%@",title,LOCALIZATION(@"Set Temp")]];
     [self.mSetTempView setValue:value];
-    [self.mSetTempView.lblTitle setText:title];
     [self.mSetTempView setHidden:NO];
     [self.bgFrame setHidden:NO];
 }
@@ -289,13 +298,22 @@
     if(buttonIndex==0){
         if (self.appDelegate.bleManager.activePeripheral) {
             if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
+                [self.appDelegate.bleManager setDelegate:self];
                 [[self.appDelegate.bleManager CM] cancelPeripheralConnection:[self.appDelegate.bleManager activePeripheral]];
-                self.appDelegate.bleManager.activePeripheral = nil;
-                [[Data Instance]setAutoConnected:nil];
+            }else{
+                [self DisConnectperipheral];
             }
         }
-        [self dismissViewControllerAnimated:YES completion:nil];
     }
+}
+
+//断开连接
+- (void)DisConnectperipheral
+{
+    NSLog(@"%@",self.appDelegate.bleManager.activePeripheral);
+    [[Data Instance]setAutoConnected:nil];
+    self.appDelegate.bleManager.activePeripheral = nil;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)ConnectedState:(BOOL)state

@@ -126,15 +126,20 @@
     [self.mChartItemLandView setCenter:CGPointMake(width/2,height/2)];
     if(tag==1){
         [self.mChartItemLandView loadData:self.mChartItemView1.currentData];
-        self.mChartItemLandView.lineChartView.max=250;
     }else if(tag==2){
         [self.mChartItemLandView loadData:self.mChartItemView2.currentData];
-        self.mChartItemLandView.lineChartView.max=250;
     }else if(tag==3){
         [self.mChartItemLandView loadData:self.mChartItemView3.currentData];
-        self.mChartItemLandView.lineChartView.max=250;
     }else if(tag==4){
         [self.mChartItemLandView loadData:self.mChartItemView4.currentData];
+    }
+    if([@"T1" isEqualToString:self.mChartItemLandView.currentKey]){
+        self.mChartItemLandView.lineChartView.max=250;
+    }else if([@"T2" isEqualToString:self.mChartItemLandView.currentKey]){
+        self.mChartItemLandView.lineChartView.max=250;
+    }else if([@"T3" isEqualToString:self.mChartItemLandView.currentKey]){
+        self.mChartItemLandView.lineChartView.max=250;
+    }else if([@"T4" isEqualToString:self.mChartItemLandView.currentKey]){
         self.mChartItemLandView.lineChartView.max=538;
     }
     [self.mChartItemLandView loadChartData];

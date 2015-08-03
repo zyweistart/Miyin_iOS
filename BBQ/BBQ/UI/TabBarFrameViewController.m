@@ -172,6 +172,10 @@
 - (void)AnalyticalJson:(NSString*)content
 {
 //    NSLog(@"%@",content);
+    content=[content stringByReplacingOccurrencesOfString:@"p1" withString:@"T1"];
+    content=[content stringByReplacingOccurrencesOfString:@"p2" withString:@"T2"];
+    content=[content stringByReplacingOccurrencesOfString:@"p3" withString:@"T3"];
+    content=[content stringByReplacingOccurrencesOfString:@"p4" withString:@"T4"];
     receiveSBString=[NSMutableString new];
     NSData *data=[content dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *resultJSON=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
