@@ -10,10 +10,10 @@
 
 @implementation ChartItemLandView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame LineChartMax:(NSInteger)max
 {
     self.scale=frame.size.height/CGHeight(190.0);
-    self = [super initWithFrame:frame];
+    self = [super initWithFrame:frame LineChartMax:max];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
     }

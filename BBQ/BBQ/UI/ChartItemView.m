@@ -12,7 +12,7 @@
     NSInteger totalSecond;
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame LineChartMax:(NSInteger)max
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -63,8 +63,7 @@
         [self.lineChartView setBackgroundColor:[UIColor whiteColor]];
         [self.frameView addSubview:self.lineChartView];
         self.lineChartView.min = 0;
-        self.lineChartView.max = 538;
-        self.lineChartView.interval = (self.lineChartView.max-self.lineChartView.min)/self.lineChartView.numberOfVerticalElements;
+        self.lineChartView.max = max;
         self.lblTimerUnit=[[UILabel alloc]initWithFrame:CGRectMake1(260*self.scale, 130*self.scale, 60*self.scale, 20*self.scale)];
         [self.lblTimerUnit setText:LOCALIZATION(@"Timer(M)")];
         [self.lblTimerUnit setFont:[UIFont systemFontOfSize:12*self.scale]];
@@ -76,6 +75,7 @@
             self.mTimer=[NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
         }
         [self loadChartData];
+        self.pointNumber=150;
     }
     return self;
 }
@@ -125,9 +125,9 @@
             }
             //最多只显示
             NSMutableArray *tmpArray=[NSMutableArray new];
-            if([array count]>600){
+            if([array count]>self.pointNumber){
                 tmpArray=[NSMutableArray new];
-                for(NSInteger i=[array count]-600;i<[array count];i++){
+                for(NSInteger i=[array count]-self.pointNumber;i<[array count];i++){
                     [tmpArray addObject:[array objectAtIndex:i]];
                 }
             }else{
@@ -154,6 +154,7 @@
     }else{
         [self.lblCFType setText:[NSString stringWithFormat:@"%@(°C)",LOCALIZATION(@"Temp")]];
     }
+    self.lineChartView.interval = (self.lineChartView.max-self.lineChartView.min)/self.lineChartView.numberOfVerticalElements;
     //x轴
     NSMutableArray *xAxisValues = [NSMutableArray array];
     NSArray *dlV=[[[Data Instance]chartData]objectForKey:self.currentKey];

@@ -23,6 +23,9 @@
 @property (strong,nonatomic)UIView *topLabelView;
 
 @property CGFloat scale;
+@property NSInteger pointNumber;
+
+- (id)initWithFrame:(CGRect)frame LineChartMax:(NSInteger)max;
 
 - (void)loadData:(NSDictionary*)data;
 

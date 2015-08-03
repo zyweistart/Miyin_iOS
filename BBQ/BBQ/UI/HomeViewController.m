@@ -36,59 +36,19 @@
         [self.view addSubview:self.scrollFrameView];
         //针1
         if(self.mMenuItemView1==nil){
-            self.mMenuItemView1=[[MenuItemView alloc]initWithFrame:CGRectMake1(0, 0, 320, 190)];
-            [self.mMenuItemView1 setBaseController:self];
-            [self.mMenuItemView1.lblHighestCentigrade setTag:0];
-            [self.mMenuItemView1.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
-            [self.mMenuItemView1.bTimer setTag:0];
-            [self.mMenuItemView1.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
-            [self.mMenuItemView1 setTag:0];
-            [self.mMenuItemView1 setUserInteractionEnabled:YES];
-            [self.mMenuItemView1 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];
-            [self.mMenuItemView1 setHidden:YES];
-            [self.scrollFrameView addSubview:self.mMenuItemView1];
+            self.mMenuItemView1=[self createMenuItemViewWithY:0 Tag:0];
         }
         //针2
         if(self.mMenuItemView2==nil){
-            self.mMenuItemView2=[[MenuItemView alloc]initWithFrame:CGRectMake1(0, 190, 320, 190)];
-            [self.mMenuItemView2 setBaseController:self];
-            [self.mMenuItemView2.lblHighestCentigrade setTag:1];
-            [self.mMenuItemView2.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
-            [self.mMenuItemView2.bTimer setTag:1];
-            [self.mMenuItemView2.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
-            [self.mMenuItemView2 setTag:1];
-            [self.mMenuItemView2 setUserInteractionEnabled:YES];
-            [self.mMenuItemView2 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];
-            [self.mMenuItemView2 setHidden:YES];
-            [self.scrollFrameView addSubview:self.mMenuItemView2];
+            self.mMenuItemView2=[self createMenuItemViewWithY:190 Tag:1];
         }
         //针3
         if(self.mMenuItemView3==nil){
-            self.mMenuItemView3=[[MenuItemView alloc]initWithFrame:CGRectMake1(0, 380, 320, 190)];
-            [self.mMenuItemView3 setBaseController:self];
-            [self.mMenuItemView3.lblHighestCentigrade setTag:2];
-            [self.mMenuItemView3.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
-            [self.mMenuItemView3.bTimer setTag:2];
-            [self.mMenuItemView3.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
-            [self.mMenuItemView3 setTag:2];
-            [self.mMenuItemView3 setUserInteractionEnabled:YES];
-            [self.mMenuItemView3 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];
-            [self.mMenuItemView3 setHidden:YES];
-            [self.scrollFrameView addSubview:self.mMenuItemView3];
+            self.mMenuItemView3=[self createMenuItemViewWithY:380 Tag:2];
         }
         //针4
         if(self.mMenuItemView4==nil){
-            self.mMenuItemView4=[[MenuItemView alloc]initWithFrame:CGRectMake1(0, 570, 320, 190)];
-            [self.mMenuItemView4 setBaseController:self];
-            [self.mMenuItemView4.lblHighestCentigrade setTag:3];
-            [self.mMenuItemView4.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
-            [self.mMenuItemView4.bTimer setTag:3];
-            [self.mMenuItemView4.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
-            [self.mMenuItemView4 setTag:3];
-            [self.mMenuItemView4 setUserInteractionEnabled:YES];
-            [self.mMenuItemView4 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];
-            [self.mMenuItemView4 setHidden:YES];
-            [self.scrollFrameView addSubview:self.mMenuItemView4];
+            self.mMenuItemView4=[self createMenuItemViewWithY:570 Tag:3];
         }
         //横屏
         self.mMenuItemLandView=[[MenuItemLandView alloc]initWithFrame:CGRectMake(0, 0,CGWidth(448)*self.appDelegate.autoSizeScaleY,CGWidth(266)*self.appDelegate.autoSizeScaleX)];
@@ -377,6 +337,22 @@
 {
     currentZoomTag=-1;
     [self.mMenuItemLandView setHidden:YES];
+}
+
+- (MenuItemView*)createMenuItemViewWithY:(CGFloat)y Tag:(NSInteger)tag
+{
+    MenuItemView *mMenuItemView=[[MenuItemView alloc]initWithFrame:CGRectMake1(0, y, 320, 190)];
+    [mMenuItemView setBaseController:self];
+    [mMenuItemView.lblHighestCentigrade setTag:tag];
+    [mMenuItemView.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
+    [mMenuItemView.bTimer setTag:tag];
+    [mMenuItemView.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
+    [mMenuItemView setTag:tag];
+    [mMenuItemView setUserInteractionEnabled:YES];
+    [mMenuItemView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];
+    [mMenuItemView setHidden:YES];
+    [self.scrollFrameView addSubview:mMenuItemView];
+    return mMenuItemView;
 }
 
 @end
