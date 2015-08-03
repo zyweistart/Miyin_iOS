@@ -373,6 +373,16 @@
     [self.appDelegate.bleManager findBLEPeripherals:0];
 }
 
+- (void)autoConnected:(CBPeripheral*)cp
+{
+    if(cp!=nil){
+        if([cp.identifier.UUIDString isEqualToString:[[Data Instance]getAutoConnected]]){
+            [self.appDelegate.bleManager connectPeripheral:cp];
+            return;
+        }
+    }
+}
+
 - (void)closeAll
 {
     if([[Data Instance]isDemo]){

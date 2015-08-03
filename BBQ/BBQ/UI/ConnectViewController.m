@@ -136,7 +136,7 @@
             NSString *uuid=cbPeripheral.identifier.UUIDString;
             if ([uuid isEqualToString:self.appDelegate.bleManager.activePeripheral.identifier.UUIDString]) {
                 if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
-                    [self goMainPage];
+                    [self goMainPage:nil];
                     return;
                 }else if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
                     return;
@@ -217,6 +217,7 @@
             [self RefreshStateNormal];
             [self RefreshStateConnecting];
             [self.appDelegate.bleManager connectPeripheral:cp];
+//            [self performSelector:@selector(goMainPage:) withObject:cp afterDelay:0.5];
             return;
         }
     }
@@ -237,8 +238,7 @@
     //自动存储连接信息方便下次连接
     NSString *uuid=self.appDelegate.bleManager.activePeripheral.identifier.UUIDString;
     [[Data Instance]setAutoConnected:uuid];
-//    [self goMainPage];
-    [self performSelector:@selector(goMainPage) withObject:nil afterDelay:0.5];
+    [self performSelector:@selector(goMainPage:) withObject:nil afterDelay:0.5];
 }
 
 - (void)stopScan
@@ -260,10 +260,11 @@
     }];
 }
 
-- (void)goMainPage
+- (void)goMainPage:(CBPeripheral*)cp
 {
     [[Data Instance] setIsDemo:NO];
     TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
+    [mTabBarFrameViewController autoConnected:cp];
     [[Data Instance]setMTabBarFrameViewController:mTabBarFrameViewController];
     [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
         [self stopScan];

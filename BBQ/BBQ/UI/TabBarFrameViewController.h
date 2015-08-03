@@ -21,6 +21,7 @@
 
 @property BOOL isDemo;
 
+- (void)autoConnected:(CBPeripheral*)cp;
 - (BOOL)playAlarm;
 - (void)AlertShow;
 - (void)senderNotification:(NSString*)message;
