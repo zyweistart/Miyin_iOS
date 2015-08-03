@@ -24,4 +24,6 @@
 - (void)loadData:(NSArray*)array;
 - (void)refreshView;
 
+- (void)closeAll;
+
 @end

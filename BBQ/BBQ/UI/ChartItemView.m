@@ -210,4 +210,12 @@
     [self.lineChartView  addPlot:plot2];
 }
 
+- (void)closeAll
+{
+    if(self.mTimer){
+        [self.mTimer invalidate];
+        self.mTimer=nil;
+    }
+}
+
 @end

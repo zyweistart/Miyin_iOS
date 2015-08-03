@@ -214,4 +214,12 @@
     }
 }
 
+- (void)closeAll
+{
+    if(self.mTimer){
+        [self.mTimer invalidate];
+        self.mTimer=nil;
+    }
+}
+
 @end

@@ -34,4 +34,6 @@
 - (void)loadChartData;
 - (void)setLanguage;
 
+- (void)closeAll;
+
 @end

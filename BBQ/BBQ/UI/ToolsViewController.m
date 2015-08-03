@@ -172,4 +172,13 @@
     [self.mChartItemLandView setLanguage];
 }
 
+- (void)closeAll
+{
+    [self.mChartItemView1 closeAll];
+    [self.mChartItemView2 closeAll];
+    [self.mChartItemView3 closeAll];
+    [self.mChartItemView4 closeAll];
+    [self.mChartItemLandView closeAll];
+}
+
 @end

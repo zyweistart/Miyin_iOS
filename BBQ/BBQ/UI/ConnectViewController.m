@@ -37,7 +37,6 @@
         
         CGFloat height=self.view.bounds.size.height-CGHeight(130);
         UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, height, CGWidth(320), CGHeight(40))];
-        ;
         bDemo=[[CButton alloc]initWithFrame:CGRectMake1(40, 0, 100, 40) Name:LOCALIZATION(@"Demo") Type:1];
         [bDemo addTarget:self action:@selector(goDemo) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:bDemo];
@@ -78,7 +77,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.appDelegate.bleManager.peripherals count];
+    if([self.appDelegate.bleManager.peripherals count]>0){
+        return [self.appDelegate.bleManager.peripherals count];
+    }else{
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -98,34 +101,37 @@
     if(cell==nil){
         cell = [[PeripheralCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] ;
     }
-    CBPeripheral *cbPeripheral = [self.appDelegate.bleManager.peripherals objectAtIndex:[indexPath section]];
-    if(cbPeripheral.name !=nil) {
-        cell.lblTitle.text = [cbPeripheral name];
-    } else {
-        cell.lblTitle.text = LOCALIZATION(@"Unknown");
-    }
-    NSString *uuid=cbPeripheral.identifier.UUIDString;
-    [cell.lblAddress setText:uuid];
-    [cell setAccessoryType:UITableViewCellAccessoryNone];
-    if(self.appDelegate.bleManager.activePeripheral){
-        if ([uuid isEqualToString:self.appDelegate.bleManager.activePeripheral.identifier.UUIDString]) {
-            if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
-                [self ConnectedState:YES];
-                //如果已经连接则显示连接状态
-//                [cell.lblAddress setText:LOCALIZATION(@"Connected")];
-                [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-            } else if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
-//                [cell.lblAddress setText:LOCALIZATION(@"Connecting")];
+    if([self.appDelegate.bleManager.peripherals count]>0){
+        
+        CBPeripheral *cbPeripheral = [self.appDelegate.bleManager.peripherals objectAtIndex:[indexPath section]];
+        if(cbPeripheral.name !=nil) {
+            cell.lblTitle.text = [cbPeripheral name];
+        } else {
+            cell.lblTitle.text = LOCALIZATION(@"Unknown");
+        }
+        NSString *uuid=cbPeripheral.identifier.UUIDString;
+        [cell.lblAddress setText:uuid];
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        if(self.appDelegate.bleManager.activePeripheral){
+            if ([uuid isEqualToString:self.appDelegate.bleManager.activePeripheral.identifier.UUIDString]) {
+                if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
+                    [self ConnectedState:YES];
+                    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+                } else if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
+                }
             }
         }
+        return  cell;
+    }else{
+        cell.lblTitle.text = @"暂无设备";
+        [cell.lblAddress setText:@""];
+        return cell;
     }
-    return  cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.appDelegate.bleManager.peripherals count]>0){
-        
         //发出通知新页面，对指定外围设备进行连接
         CBPeripheral *cbPeripheral=[self.appDelegate.bleManager.peripherals objectAtIndex:[indexPath section]];
         //判断是否已经连接
@@ -136,7 +142,6 @@
                     [self goMainPage];
                     return;
                 }else if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
-                    //                [Common alert:LOCALIZATION(@"Connecting...")];
                     return;
                 }
             }
@@ -144,7 +149,7 @@
         [self RefreshStateConnecting];
         [self.appDelegate.bleManager connectPeripheral:cbPeripheral];
     }else{
-        [self.tableView reloadData];
+        [self startScan];
     }
 }
 
@@ -196,6 +201,8 @@
     if(self.appDelegate.bleManager.CM.state==CBCentralManagerStatePoweredOn){
         [self RefreshStateStart];
         //定时扫描持续时间7秒
+        [self.appDelegate.bleManager.peripherals removeAllObjects];
+        [self.tableView reloadData];
         [self.appDelegate.bleManager findBLEPeripherals:5];
     }
 }

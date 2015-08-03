@@ -121,6 +121,7 @@
         }
     }
     [nc removeObserver:self name:NOTIFICATION_REFRESHDATA object:nil];
+    [self closeAll];
 }
 
 - (UINavigationController*)viewControllerWithTabTitle:(NSString*) title image:(NSString*)image ViewController:(UIViewController*)viewController
@@ -378,6 +379,16 @@
     [self.mToolsViewController ConnectedState:NO];
     [self.mInfoViewController ConnectedState:NO];
     [self.appDelegate.bleManager findBLEPeripherals:0];
+}
+
+- (void)closeAll
+{
+    if(self.mDemoTimer){
+        [self.mDemoTimer invalidate];
+        self.mDemoTimer=nil;
+    }
+    [self.mHomeViewController closeAll];
+    [self.mToolsViewController closeAll];
 }
 
 @end

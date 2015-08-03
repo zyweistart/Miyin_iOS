@@ -38,5 +38,6 @@
 - (void)refreshData;
 - (void)showTimerString:(NSString*)key;
 - (void)setLanguage;
+- (void)closeAll;
 
 @end

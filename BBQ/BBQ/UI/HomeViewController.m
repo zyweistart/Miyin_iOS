@@ -388,4 +388,14 @@
     [self.mSetTempView setLanguage];
 }
 
+
+- (void)closeAll
+{
+    [self.mMenuItemView1 closeAll];
+    [self.mMenuItemView2 closeAll];
+    [self.mMenuItemView3 closeAll];
+    [self.mMenuItemView4 closeAll];
+    [self.mMenuItemLandView closeAll];
+}
+
 @end

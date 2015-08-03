@@ -32,4 +32,6 @@
 - (void)refreshDataView;
 - (void)ConnectedState:(BOOL)state;
 
+- (void)closeAll;
+
 @end
