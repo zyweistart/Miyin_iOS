@@ -351,19 +351,17 @@
     }
 }
 
-//连接成功
-- (void)didConectedbleDevice
-{
-    //连接成功则断开扫描功能
-    [self stopScanBLEDevice];
-    //连接成功后需立即查询蓝牙服务
-    [self.appDelegate.bleManager.activePeripheral discoverServices:nil];
-}
-
 //停止设备扫描
 - (void)stopScanBLEDevice
 {
     [self.appDelegate.bleManager stopScan];
+}
+
+//服务发现完成之后的回调方法
+- (void)ServiceFoundOver
+{
+    //连接成功则断开扫描功能
+    [self stopScanBLEDevice];
 }
 
 //断开连接

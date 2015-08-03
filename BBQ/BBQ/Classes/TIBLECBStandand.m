@@ -229,6 +229,9 @@ typedef struct scanProcessStep{
 //    [nc postNotificationName:NOTIFICATION_DIDCONNECTEDBLEDEVICE object:nil];
     if( [self.delegate respondsToSelector: @selector(didConectedbleDevice)]) {
         [self.delegate didConectedbleDevice];
+    }else{
+        //连接成功后需立即查询蓝牙服务
+        [self.activePeripheral discoverServices:nil];
     }
 }
 

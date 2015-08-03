@@ -222,8 +222,14 @@
     }
 }
 
-//连接成功
-- (void)didConectedbleDevice
+//停止设备扫描
+- (void)stopScanBLEDevice
+{
+    [self stopScan];
+}
+
+//服务发现完成之后的回调方法
+- (void)ServiceFoundOver
 {
     [self stopScan];
     [self RefreshStateNormal];
@@ -231,20 +237,7 @@
     //自动存储连接信息方便下次连接
     NSString *uuid=self.appDelegate.bleManager.activePeripheral.identifier.UUIDString;
     [[Data Instance]setAutoConnected:uuid];
-    //连接成功后需立即查询蓝牙服务
-    [self.appDelegate.bleManager.activePeripheral discoverServices:nil];
-}
-
-//停止设备扫描
-- (void)stopScanBLEDevice
-{
-    [self stopScan];
-    [self.tableView reloadData];
-}
-
-//服务发现完成之后的回调方法
-- (void)ServiceFoundOver
-{
+//    [self goMainPage];
     [self performSelector:@selector(goMainPage) withObject:nil afterDelay:0.5];
 }
 
