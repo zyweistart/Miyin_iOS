@@ -51,7 +51,7 @@
             self.mMenuItemView4=[self createMenuItemViewWithY:570 Tag:3];
         }
         //横屏
-        self.mMenuItemLandView=[[MenuItemLandView alloc]initWithFrame:CGRectMake(0, 0,CGWidth(448)*self.appDelegate.autoSizeScaleY,CGWidth(266)*self.appDelegate.autoSizeScaleX)];
+        self.mMenuItemLandView=[[MenuItemLandView alloc]initWithFrame:CGRectMake(0, 0,CGHeight(448)*self.appDelegate.autoSizeScaleY,CGWidth(266)*self.appDelegate.autoSizeScaleX)];
         [self.mMenuItemLandView setBaseController:self];
         [self.mMenuItemLandView.lblHighestCentigrade addTarget:self action:@selector(setZoomValue:) forControlEvents:UIControlEventTouchUpInside];
         [self.mMenuItemLandView.bTimer addTarget:self action:@selector(setZoomTimer:) forControlEvents:UIControlEventTouchUpInside];
@@ -71,7 +71,7 @@
         [self.mSetTempView setHidden:YES];
         [self.bgFrame addSubview:self.mSetTempView];
         //时间设置面板
-        self.pv1=[[DatePickerView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-CGHeight(260+BOTTOMTABBARHEIGHT), CGWidth(320), CGHeight(260))];
+        self.pv1=[[DatePickerView alloc]initWithFrame:CGRectMake(0, self.bgFrame.bounds.size.height-CGHeight(260+BOTTOMTABBARHEIGHT), CGWidth(320), CGHeight(260))];
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
         [self.bgFrame addSubview:self.pv1];
