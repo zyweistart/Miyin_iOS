@@ -146,11 +146,11 @@
 - (void)RefreshStateStart
 {
     if(self.mMBProgressHUD==nil){
-        self.mMBProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
-        [self.view addSubview:self.mMBProgressHUD];
-        self.mMBProgressHUD.dimBackground = NO;
-        self.mMBProgressHUD.square = YES;
-        [self.mMBProgressHUD show:YES];
+//        self.mMBProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+//        [self.view addSubview:self.mMBProgressHUD];
+//        self.mMBProgressHUD.dimBackground = NO;
+//        self.mMBProgressHUD.square = YES;
+//        [self.mMBProgressHUD show:YES];
     }
     [lblState setText:LOCALIZATION(@"Scan...")];
 }
@@ -158,14 +158,23 @@
 - (void)RefreshStateConnecting
 {
     if(self.mMBProgressHUD==nil){
-        self.mMBProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
-        [self.view addSubview:self.mMBProgressHUD];
-        self.mMBProgressHUD.dimBackground = NO;
-        self.mMBProgressHUD.square = YES;
-        [self.mMBProgressHUD show:YES];
+//        self.mMBProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+//        [self.view addSubview:self.mMBProgressHUD];
+//        self.mMBProgressHUD.dimBackground = NO;
+//        self.mMBProgressHUD.square = YES;
+//        [self.mMBProgressHUD show:YES];
         self.mTimer=[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(connectTimerout) userInfo:nil repeats:NO];
     }
     [lblState setText:LOCALIZATION(@"Connecting...")];
+}
+
+- (void)RefreshStateNormal
+{
+    [lblState setText:@""];
+    if (self.mMBProgressHUD) {
+//        [self.mMBProgressHUD hide:YES];
+//        self.mMBProgressHUD=nil;
+    }
 }
 
 - (void)connectTimerout
@@ -174,15 +183,6 @@
         [self RefreshStateNormal];
         [Common alert:LOCALIZATION(@"The connection timeout, please try again")];
         [self startScan];
-    }
-}
-
-- (void)RefreshStateNormal
-{
-    [lblState setText:@""];
-    if (self.mMBProgressHUD) {
-        [self.mMBProgressHUD hide:YES];
-        self.mMBProgressHUD=nil;
     }
 }
 

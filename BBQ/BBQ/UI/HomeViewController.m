@@ -163,7 +163,8 @@
     NSDictionary *data = [self.dataItemArray objectAtIndex:sender.tag];
     for(id key in [data allKeys]){
         NSString *title=[NSString stringWithFormat:@"%@",key];
-        NSString *value=[[[Data Instance] sett] objectForKey:title];
+        CGFloat value1=[[[[Data Instance] sett] objectForKey:title]floatValue]+0.51;
+        NSString *value=[NSString stringWithFormat:@"%lf",value1];
         [self.mSetTempView setData:data];
         [self.mSetTempView setTag:sender.tag];
         [self SetTempShowWithTitle:title Value:[value intValue]];
