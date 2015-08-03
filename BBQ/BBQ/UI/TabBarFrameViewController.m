@@ -114,12 +114,6 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    if([[Data Instance]isDemo]){
-        if(self.mDemoTimer){
-            [self.mDemoTimer invalidate];
-            self.mDemoTimer=nil;
-        }
-    }
     [nc removeObserver:self name:NOTIFICATION_REFRESHDATA object:nil];
     [self closeAll];
 }
@@ -383,9 +377,11 @@
 
 - (void)closeAll
 {
-    if(self.mDemoTimer){
-        [self.mDemoTimer invalidate];
-        self.mDemoTimer=nil;
+    if([[Data Instance]isDemo]){
+        if(self.mDemoTimer){
+            [self.mDemoTimer invalidate];
+            self.mDemoTimer=nil;
+        }
     }
     [self.mHomeViewController closeAll];
     [self.mToolsViewController closeAll];

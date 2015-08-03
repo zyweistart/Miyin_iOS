@@ -57,7 +57,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self ConnectedState:NO];
+    [self ConnectedState];
     [self.appDelegate.bleManager setDelegate:self];
     if([self.appDelegate.bleManager.peripherals count]>0){
         if(self.appDelegate.bleManager.activePeripheral){
@@ -66,9 +66,6 @@
                     [self startScan];
                     return;
                 }
-            }
-            if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
-                [self ConnectedState:YES];
             }
         }
         [self.tableView reloadData];
@@ -115,7 +112,7 @@
         if(self.appDelegate.bleManager.activePeripheral){
             if ([uuid isEqualToString:self.appDelegate.bleManager.activePeripheral.identifier.UUIDString]) {
                 if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
-                    [self ConnectedState:YES];
+                    [self ConnectedState];
                     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
                 } else if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
                 }
@@ -164,19 +161,21 @@
         [self.mTimer invalidate];
         self.mTimer=nil;
     }
-    self.mTimer=[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(connectTimerout) userInfo:nil repeats:NO];
+    self.mTimer=[NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(connectTimerout) userInfo:nil repeats:NO];
     [lblState setText:LOCALIZATION(@"Connecting...")];
 }
 
 - (void)RefreshStateNormal
 {
+    if(self.mTimer){
+        [self.mTimer invalidate];
+        self.mTimer=nil;
+    }
     [lblState setText:@""];
 }
 
 - (void)connectTimerout
 {
-    [self.mTimer invalidate];
-    self.mTimer=nil;
     [self RefreshStateNormal];
     if(self.appDelegate.bleManager.activePeripheral!=nil){
         if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
@@ -186,12 +185,13 @@
     }
 }
 
-- (void)ConnectedState:(BOOL)state
+- (void)ConnectedState
 {
-    if(state){
-        [self cTitle:LOCALIZATION(@"BBQ Connected")];
-    }else{
-        [self cTitle:LOCALIZATION(@"BBQ Unconnected")];
+    [self cTitle:LOCALIZATION(@"BBQ Unconnected")];
+    if(self.appDelegate.bleManager.activePeripheral){
+        if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
+            [self cTitle:LOCALIZATION(@"BBQ Connected")];
+        }
     }
 }
 
@@ -203,7 +203,7 @@
         //定时扫描持续时间7秒
         [self.appDelegate.bleManager.peripherals removeAllObjects];
         [self.tableView reloadData];
-        [self.appDelegate.bleManager findBLEPeripherals:5];
+        [self.appDelegate.bleManager findBLEPeripherals:10];
     }
 }
 
@@ -226,6 +226,7 @@
 - (void)didConectedbleDevice
 {
     [self stopScan];
+    [self RefreshStateNormal];
     [self.tableView reloadData];
     //自动存储连接信息方便下次连接
     NSString *uuid=self.appDelegate.bleManager.activePeripheral.identifier.UUIDString;
