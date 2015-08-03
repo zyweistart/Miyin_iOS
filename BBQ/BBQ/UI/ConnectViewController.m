@@ -113,10 +113,10 @@
                 [lblState setText:@""];
                 [self ConnectedState:YES];
                 //如果已经连接则显示连接状态
-                [cell.lblAddress setText:LOCALIZATION(@"Connected")];
+//                [cell.lblAddress setText:LOCALIZATION(@"Connected")];
                 [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
             } else if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
-                [cell.lblAddress setText:LOCALIZATION(@"Connecting")];
+//                [cell.lblAddress setText:LOCALIZATION(@"Connecting")];
             }
         }
     }
@@ -140,6 +140,7 @@
             }
         }
     }
+    [self RefreshStateStart];
     [self.appDelegate.bleManager connectPeripheral:cbPeripheral];
 }
 
@@ -189,7 +190,6 @@
         //判断是否存在自动连接设备
         if([cp.identifier.UUIDString isEqualToString:[[Data Instance]getAutoConnected]]){
             [self.appDelegate.bleManager connectPeripheral:cp];
-            [self RefreshStateNormal];
             return;
         }
     }
@@ -212,7 +212,6 @@
 {
     [self stopScan];
     [self.tableView reloadData];
-    [self RefreshStateNormal];
 }
 
 //服务发现完成之后的回调方法
@@ -223,6 +222,7 @@
 
 - (void)stopScan
 {
+    [self RefreshStateNormal];
     if(self.appDelegate.bleManager.scanKeepTimer){
         [self.appDelegate.bleManager.scanKeepTimer invalidate];
         self.appDelegate.bleManager.scanKeepTimer=nil;

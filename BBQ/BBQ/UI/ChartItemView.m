@@ -80,6 +80,11 @@
 
 - (void)setLanguage
 {
+    if([@"f" isEqualToString:[[Data Instance]getCf]]){
+        [self.lblCFType setText:[NSString stringWithFormat:@"%@(°F)",LOCALIZATION(@"Temp")]];
+    }else{
+        [self.lblCFType setText:[NSString stringWithFormat:@"%@(°C)",LOCALIZATION(@"Temp")]];
+    }
     [self.lblCurrentTemp setText:LOCALIZATION(@"Current Temp")];
     [self.lblSetTemp setText:LOCALIZATION(@"Set Temp")];
     [self.lblTimerUnit setText:LOCALIZATION(@"Timer(M)")];

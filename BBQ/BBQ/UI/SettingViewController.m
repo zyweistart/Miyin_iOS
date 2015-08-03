@@ -24,6 +24,12 @@
     return self;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self stopAlarm];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -110,6 +116,15 @@
             [[Data Instance]setAlarm:@"Beep3"];
         }
         [self.tableView reloadData];
+        NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.wav",[[Data Instance]getAlarm]]];
+        NSURL *URL=[NSURL fileURLWithPath:path];
+        self.mAVAudioPlayer=[[AVAudioPlayer alloc] initWithContentsOfURL:URL error:nil];
+        [self.mAVAudioPlayer setDelegate:self];
+        [self.mAVAudioPlayer setVolume:1.0];
+        [self.mAVAudioPlayer setNumberOfLoops:0];
+        if([self.mAVAudioPlayer prepareToPlay]){
+            [self.mAVAudioPlayer play];
+        }
     }else if(actionSheet.tag==2){
         if(buttonIndex==0){
             [[Localisator sharedInstance] setLanguage:@"en"];
@@ -117,6 +132,25 @@
             [[Localisator sharedInstance] setLanguage:@"zh-Hans"];
         }
         [self.tableView reloadData];
+    }
+}
+
+//播放结束时执行的动作
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag{
+    if (flag) {
+        NSLog(@"播放结束了");
+    }
+}
+
+
+
+//报警声音停止
+- (void)stopAlarm
+{
+    if(self.mAVAudioPlayer){
+        [self.mAVAudioPlayer stop];
+        self.mAVAudioPlayer=nil;
+        //        [[AVAudioSession sharedInstance] setActive:NO error:nil];
     }
 }
 

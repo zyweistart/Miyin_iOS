@@ -8,6 +8,8 @@
 
 #import "BaseTableViewController.h"
 
-@interface SettingViewController : BaseTableViewController<UIActionSheetDelegate>
+@interface SettingViewController : BaseTableViewController<UIActionSheetDelegate,AVAudioPlayerDelegate>
+
+@property (strong,nonatomic) AVAudioPlayer *mAVAudioPlayer;
 
 @end
