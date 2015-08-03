@@ -8,7 +8,10 @@
 
 #import "InfoCell.h"
 
-@implementation InfoCell
+@implementation InfoCell{
+    UILabel *lblTimerText;
+    UILabel *lblTargetTempText;
+}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -24,14 +27,14 @@
         UIView *line=[[UIView alloc]initWithFrame:CGRectMake1(20, 40, 150, 1)];
         [line setBackgroundColor:DEFAULTITLECOLOR(150)];
         [frame addSubview:line];
-        CLabel *lbl=[[CLabel alloc]initWithFrame:CGRectMake1(20, 45, 60, 20) Text:@"Timer"];
-        [lbl setTextColor:[UIColor blackColor]];
-        [lbl setTextAlignment:NSTextAlignmentCenter];
-        [frame addSubview:lbl];
-        lbl=[[CLabel alloc]initWithFrame:CGRectMake1(100, 45, 80, 20) Text:@"Target Temp"];
-        [lbl setTextColor:[UIColor blackColor]];
-        [lbl setTextAlignment:NSTextAlignmentCenter];
-        [frame addSubview:lbl];
+        lblTimerText=[[CLabel alloc]initWithFrame:CGRectMake1(20, 45, 60, 20) Text:LOCALIZATION(@"Timer")];
+        [lblTimerText setTextColor:[UIColor blackColor]];
+        [lblTimerText setTextAlignment:NSTextAlignmentCenter];
+        [frame addSubview:lblTimerText];
+        lblTargetTempText=[[CLabel alloc]initWithFrame:CGRectMake1(100, 45, 80, 20) Text:LOCALIZATION(@"Target Temp")];
+        [lblTargetTempText setTextColor:[UIColor blackColor]];
+        [lblTargetTempText setTextAlignment:NSTextAlignmentCenter];
+        [frame addSubview:lblTargetTempText];
         self.lblTimer=[[UILabel alloc]initWithFrame:CGRectMake1(20, 65, 60, 20) ];
         [self.lblTimer setTextColor:[UIColor blackColor]];
         [self.lblTimer setFont:[UIFont systemFontOfSize:14]];
@@ -45,6 +48,12 @@
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     return self;
+}
+
+- (void)setLanguage
+{
+    [lblTimerText setText:LOCALIZATION(@"Timer")];
+    [lblTargetTempText setText:LOCALIZATION(@"Target Temp")];
 }
 
 @end

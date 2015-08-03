@@ -355,4 +355,15 @@
     return mMenuItemView;
 }
 
+- (void)changeLanguageText
+{
+    [self setTitle:LOCALIZATION(@"Home")];
+    [self.mMenuItemView1 setLanguage];
+    [self.mMenuItemView2 setLanguage];
+    [self.mMenuItemView3 setLanguage];
+    [self.mMenuItemView4 setLanguage];
+    [self.mMenuItemLandView setLanguage];
+    [self.mSetTempView setLanguage];
+}
+
 @end

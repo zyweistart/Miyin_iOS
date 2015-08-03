@@ -17,13 +17,14 @@
 
 @implementation ConnectViewController{
     UILabel *lblState;
+    CButton *bDemo;
+    CButton *bScan;
 }
 
 - (id)init
 {
     self=[super init];
     if(self){
-        [self ConnectedState:NO];
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
         [self RefreshStateNormal];
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
@@ -37,10 +38,10 @@
         CGFloat height=self.view.bounds.size.height-CGHeight(130);
         UIView *bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, height, CGWidth(320), CGHeight(40))];
         ;
-        CButton *bDemo=[[CButton alloc]initWithFrame:CGRectMake1(40, 0, 100, 40) Name:LOCALIZATION(@"Demo") Type:1];
+        bDemo=[[CButton alloc]initWithFrame:CGRectMake1(40, 0, 100, 40) Name:LOCALIZATION(@"Demo") Type:1];
         [bDemo addTarget:self action:@selector(goDemo) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:bDemo];
-        CButton *bScan=[[CButton alloc]initWithFrame:CGRectMake1(180, 0, 100, 40) Name:LOCALIZATION(@"Scan") Type:1];
+        bScan=[[CButton alloc]initWithFrame:CGRectMake1(180, 0, 100, 40) Name:LOCALIZATION(@"Scan") Type:1];
         [bScan addTarget:self action:@selector(startScan) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:bScan];
         [self.view addSubview:bottomView];
@@ -57,6 +58,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self ConnectedState:NO];
     [self.appDelegate.bleManager setDelegate:self];
     if([self.appDelegate.bleManager.peripherals count]>0){
         if(self.appDelegate.bleManager.activePeripheral){
@@ -65,6 +67,9 @@
                     [self startScan];
                     return;
                 }
+            }
+            if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
+                [self ConnectedState:YES];
             }
         }
         [self.tableView reloadData];
@@ -242,6 +247,13 @@
     [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
         [self stopScan];
     }];
+}
+
+- (void)changeLanguageText
+{
+    [bDemo setTitle:LOCALIZATION(@"Demo") forState:UIControlStateNormal];
+    [bScan setTitle:LOCALIZATION(@"Scan") forState:UIControlStateNormal];
+    [self.tableView reloadData];
 }
 
 @end

@@ -42,19 +42,17 @@
         [self.lblCFType setFont:[UIFont systemFontOfSize:12*self.scale]];
         [self.lblCFType setTextColor:DEFAULTITLECOLOR(150)];
         [self.topLabelView addSubview:self.lblCFType];
-        UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake1(60*self.scale, 0, 80*self.scale, 20*self.scale)];
-        [lbl setText:LOCALIZATION(@"Current Temp")];
-        [lbl setFont:[UIFont systemFontOfSize:12*self.scale]];
-        [lbl setTextColor:DEFAULTITLECOLOR(150)];
-        [self.topLabelView addSubview:lbl];
+        self.lblCurrentTemp=[[UILabel alloc]initWithFrame:CGRectMake1(60*self.scale, 0, 80*self.scale, 20*self.scale)];
+        [self.lblCurrentTemp setFont:[UIFont systemFontOfSize:12*self.scale]];
+        [self.lblCurrentTemp setTextColor:DEFAULTITLECOLOR(150)];
+        [self.topLabelView addSubview:self.lblCurrentTemp];
         UIView *CurrentTempLine=[[UIView alloc]initWithFrame:CGRectMake1(140*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
         [CurrentTempLine setBackgroundColor:DEFAULTITLECOLORRGB(7, 166, 206)];
         [self.topLabelView addSubview:CurrentTempLine];
-        lbl=[[UILabel alloc]initWithFrame:CGRectMake1(165*self.scale, 0, 60*self.scale, 20*self.scale)];
-        [lbl setText:LOCALIZATION(@"Set Temp")];
-        [lbl setFont:[UIFont systemFontOfSize:12*self.scale]];
-        [lbl setTextColor:DEFAULTITLECOLOR(150)];
-        [self.topLabelView addSubview:lbl];
+        self.lblSetTemp=[[UILabel alloc]initWithFrame:CGRectMake1(165*self.scale, 0, 60*self.scale, 20*self.scale)];
+        [self.lblSetTemp setFont:[UIFont systemFontOfSize:12*self.scale]];
+        [self.lblSetTemp setTextColor:DEFAULTITLECOLOR(150)];
+        [self.topLabelView addSubview:self.lblSetTemp];
         UIView *SetTempLine=[[UIView alloc]initWithFrame:CGRectMake1(230*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
         [SetTempLine setBackgroundColor:DEFAULTITLECOLORRGB(210, 91, 44)];
         [self.topLabelView addSubview:SetTempLine];
@@ -65,7 +63,6 @@
         self.lineChartView.min = 0;
         self.lineChartView.max = max;
         self.lblTimerUnit=[[UILabel alloc]initWithFrame:CGRectMake1(260*self.scale, 130*self.scale, 60*self.scale, 20*self.scale)];
-        [self.lblTimerUnit setText:LOCALIZATION(@"Timer(M)")];
         [self.lblTimerUnit setFont:[UIFont systemFontOfSize:12*self.scale]];
         [self.lblTimerUnit setTextColor:DEFAULTITLECOLOR(150)];
         [self.lblTimerUnit setTextAlignment:NSTextAlignmentCenter];
@@ -76,8 +73,16 @@
         }
         [self loadChartData];
         self.pointNumber=150;
+        [self setLanguage];
     }
     return self;
+}
+
+- (void)setLanguage
+{
+    [self.lblCurrentTemp setText:LOCALIZATION(@"Current Temp")];
+    [self.lblSetTemp setText:LOCALIZATION(@"Set Temp")];
+    [self.lblTimerUnit setText:LOCALIZATION(@"Timer(M)")];
 }
 
 - (void)loadData:(NSDictionary*)data

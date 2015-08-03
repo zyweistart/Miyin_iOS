@@ -13,17 +13,12 @@
     if(self){
         [self cTitle:LOCALIZATION(@"Setting")];
         
-        [self.dataItemArray addObject:LOCALIZATION(@"Temp Unit")];
-        [self.dataItemArray addObject:LOCALIZATION(@"Alarm")];
-        [self.dataItemArray addObject:LOCALIZATION(@"Language")];
-        [self.dataItemArray addObject:LOCALIZATION(@"About")];
+        [self.dataItemArray addObject:@"Temp Unit"];
+        [self.dataItemArray addObject:@"Alarm"];
+        [self.dataItemArray addObject:@"Language"];
+        [self.dataItemArray addObject:@"About"];
         
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(receiveLanguageChangedNotification:)
-                                                     name:kNotificationLanguageChanged
-                                                   object:nil];
         [[Localisator sharedInstance] setSaveInUserDefaults:YES];
     }
     return self;
@@ -54,7 +49,7 @@
         if(!cell) {
             cell = [[SwitchCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         }
-        [cell.textLabel setText:content];
+        [cell.textLabel setText:LOCALIZATION(content)];
         [cell.rightButton addTarget:self action:@selector(goSetSwitch:) forControlEvents:UIControlEventTouchUpInside];
         if([@"c" isEqualToString:[[Data Instance]getCf]]){
             [cell.rightButton setSelected:YES];
@@ -69,7 +64,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         }
         
-        [cell.textLabel setText:content];
+        [cell.textLabel setText:LOCALIZATION(content)];
         if(row==1){
             [cell.detailTextLabel setText:[[Data Instance]getAlarm]];
         }else if(row==2){
@@ -141,16 +136,12 @@
     [nc postNotificationName:NOTIFICATION_REFRESHDATA object: nil];
 }
 
-- (void)receiveLanguageChangedNotification:(NSNotification *)notification
+- (void)changeLanguageText
 {
-    if ([notification.name isEqualToString:kNotificationLanguageChanged]) {
-        [Common alert:@"修改语言成功请重启应用生效"];
-    }
-}
-
--(void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationLanguageChanged object:nil];
+    [self cTitle:LOCALIZATION(@"Setting")];
+    [self setTitle:LOCALIZATION(@"Setting")];
+    [self.tableView reloadData];
+    //    [Common alert:@"修改语言成功请重启应用生效"];
 }
 
 @end

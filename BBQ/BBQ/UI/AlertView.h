@@ -15,5 +15,6 @@
 @property (strong,nonatomic)UIButton *button;
 
 - (void)setType:(int)type;
+- (void)setLanguage;
 
 @end

@@ -20,5 +20,6 @@
 - (void)setValue:(int)value;
 
 - (void)reLoadData;
+- (void)setLanguage;
 
 @end

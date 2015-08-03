@@ -27,12 +27,17 @@
         [self.lblMessage setNumberOfLines:0];
         [self addSubview:self.lblMessage];
         self.button=[[UIButton alloc]initWithFrame:CGRectMake1(0, 140, 300, 40)];
-        [self.button setTitle:LOCALIZATION(@"OK") forState:UIControlStateNormal];
         [self.button.titleLabel setFont:[UIFont systemFontOfSize:20]];
         [self addSubview:self.button];
         [self setType:1];
+        [self setLanguage];
     }
     return self;
+}
+
+- (void)setLanguage
+{
+    [self.button setTitle:LOCALIZATION(@"OK") forState:UIControlStateNormal];
 }
 
 - (void)setType:(int)type

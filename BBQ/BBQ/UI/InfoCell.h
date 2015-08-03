@@ -14,4 +14,6 @@
 @property (strong,nonatomic)UILabel *lblTimer;
 @property (strong,nonatomic)UILabel *lblTargetTemp;
 
+- (void)setLanguage;
+
 @end

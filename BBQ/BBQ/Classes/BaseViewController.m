@@ -25,6 +25,9 @@
         [self.mConnectedPanel addSubview:self.lblMessage];
         [self.view addSubview:self.mConnectedPanel];
         [self.mConnectedPanel setHidden:YES];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLanguageChangedNotification:) name:kNotificationLanguageChanged object:nil];
+        
     }
     return self;
 }
@@ -64,6 +67,22 @@
 - (void)onControllerResult:(NSInteger)resultCode data:(NSMutableDictionary*)result
 {
     
+}
+
+- (void)changeLanguageText
+{
+}
+
+- (void)receiveLanguageChangedNotification:(NSNotification *)notification
+{
+    if ([notification.name isEqualToString:kNotificationLanguageChanged]) {
+        [self changeLanguageText];
+    }
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationLanguageChanged object:nil];
 }
 
 //- (void)requestFinishedByResponse:(Response*)response requestCode:(int)reqCode

@@ -91,6 +91,14 @@
     return self;
 }
 
+- (void)setLanguage
+{
+    [self.lblCurrent setText:LOCALIZATION(@"Current")];
+    [self.lblCurrentTemp setText:LOCALIZATION(@"Temp")];
+    [self.lblSet setText:LOCALIZATION(@"Set")];
+    [self.lblSetTemp setText:LOCALIZATION(@"Temp")];
+}
+
 - (void)setMenuData:(NSDictionary*)data
 {
     if(data!=nil){

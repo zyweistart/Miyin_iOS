@@ -29,8 +29,6 @@
     return self;
 }
 
-
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -79,6 +77,7 @@
     if(!cell) {
         cell = [[InfoCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
+    [cell setLanguage];
     NSDictionary *data=[self.dataItemArray objectAtIndex:[indexPath section]];
     for(id k in [data allKeys]){
         NSString *key=[NSString stringWithFormat:@"%@",k];
@@ -115,6 +114,13 @@
 {
     [self.tableView setHidden:!state];
     [self.mConnectedPanel setHidden:state];
+}
+
+- (void)changeLanguageText
+{
+    [self cTitle:LOCALIZATION(@"Info")];
+    [self setTitle:LOCALIZATION(@"Info")];
+    [self.tableView reloadData];
 }
 
 @end

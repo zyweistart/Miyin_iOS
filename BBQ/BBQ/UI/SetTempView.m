@@ -59,6 +59,12 @@
     return self;
 }
 
+- (void)setLanguage
+{
+    [self.cancelButton setTitle:LOCALIZATION(@"Cancel") forState:UIControlStateNormal];
+    [self.okButton setTitle:LOCALIZATION(@"OK") forState:UIControlStateNormal];
+}
+
 - (void)jNumber:(id)sender
 {
     [self setValue:self.mSlider.value-1];

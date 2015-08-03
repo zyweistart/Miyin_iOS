@@ -37,5 +37,6 @@
 - (void)setTimerScheduled;
 - (void)refreshData;
 - (void)showTimerString:(NSString*)key;
+- (void)setLanguage;
 
 @end

@@ -24,4 +24,6 @@
 - (void)goBack:(id)sender;
 - (void)cTitle:(NSString*)title;
 
+- (void)changeLanguageText;
+
 @end

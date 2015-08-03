@@ -156,4 +156,15 @@
     return mChartItemView;
 }
 
+- (void)changeLanguageText
+{
+    [self cTitle:LOCALIZATION(@"Tools")];
+    [self setTitle:LOCALIZATION(@"Tools")];
+    [self.mChartItemView1 setLanguage];
+    [self.mChartItemView2 setLanguage];
+    [self.mChartItemView3 setLanguage];
+    [self.mChartItemView4 setLanguage];
+    [self.mChartItemLandView setLanguage];
+}
+
 @end
