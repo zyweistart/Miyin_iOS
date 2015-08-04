@@ -395,4 +395,8 @@
     [self.mToolsViewController closeAll];
 }
 
+- (void)setLanguage{
+    [self.mAlertView setLanguage];
+}
+
 @end

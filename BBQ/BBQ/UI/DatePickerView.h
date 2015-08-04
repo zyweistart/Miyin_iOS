@@ -26,5 +26,6 @@
 
 - (void)showView;
 - (void)hiddenView;
+- (void)setLanguage;
 
 @end

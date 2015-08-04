@@ -162,7 +162,7 @@
 {
     //清除旧的位置点
     [self.lineChartView clearPlot];
-    [Data getTemperatureValue:2];
+    [Data getTemperatureValue:@"2"];
     if([@"f" isEqualToString:[[Data Instance]getCf]]){
         [self.lblCFType setText:[NSString stringWithFormat:@"%@(°F)",LOCALIZATION(@"Temp")]];
     }else{

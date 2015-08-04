@@ -389,6 +389,7 @@
     [self.mMenuItemView4 setLanguage];
     [self.mMenuItemLandView setLanguage];
     [self.mSetTempView setLanguage];
+    [self.pv1 setLanguage];
 }
 
 

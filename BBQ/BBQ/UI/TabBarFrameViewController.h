@@ -25,5 +25,6 @@
 - (BOOL)playAlarm;
 - (void)AlertShow;
 - (void)senderNotification:(NSString*)message;
+- (void)setLanguage;
 
 @end

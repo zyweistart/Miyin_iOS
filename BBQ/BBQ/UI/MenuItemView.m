@@ -111,24 +111,26 @@
 {
     for(id k in [self.currentData allKeys]){
         NSString *key=[NSString stringWithFormat:@"%@",k];
-        CGFloat currentValue1=[[self.currentData objectForKey:key]floatValue]+0.51;
+        NSString *oldValue1=[self.currentData objectForKey:key];
+        CGFloat currentValue1=[oldValue1 floatValue]+0.51;
         NSString *centigrade=[NSString stringWithFormat:@"%lf",currentValue1];
         
         int currentValue=[centigrade intValue];
         [self.lblTitle setText:key];
         
-        [self.lblCurrentCentigrade setText:[Data getTemperatureValue:currentValue]];
-        [self.lblCurrentSamllCentigrade setTitle:[Data getTemperatureValue:currentValue] forState:UIControlStateNormal];
+        [self.lblCurrentCentigrade setText:[Data getTemperatureValue:oldValue1]];
+        [self.lblCurrentSamllCentigrade setTitle:[Data getTemperatureValue:oldValue1] forState:UIControlStateNormal];
         
         //默认值
         int currentHighValue=0;
         
-        CGFloat value1=[[[[Data Instance] sett] objectForKey:key]floatValue]+0.51;
+        NSString *oldValue=[[[Data Instance] sett] objectForKey:key];
+        CGFloat value1=[oldValue floatValue]+0.51;
         NSString *value=[NSString stringWithFormat:@"%lf",value1];
         if(value){
             currentHighValue=[value intValue];
         }
-        [self.lblHighestCentigrade setTitle:[Data getTemperatureValue:currentHighValue] forState:UIControlStateNormal];
+        [self.lblHighestCentigrade setTitle:[Data getTemperatureValue:oldValue] forState:UIControlStateNormal];
         
         CGFloat hWidth=220;
         CGFloat width=hWidth/currentHighValue*currentValue;

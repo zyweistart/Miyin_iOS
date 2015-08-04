@@ -169,10 +169,10 @@
 
 - (void)changeLanguageText
 {
+    [[[Data Instance]mTabBarFrameViewController]setLanguage];
     [self cTitle:LOCALIZATION(@"Setting")];
     [self setTitle:LOCALIZATION(@"Setting")];
     [self.tableView reloadData];
-    //    [Common alert:@"修改语言成功请重启应用生效"];
 }
 
 @end

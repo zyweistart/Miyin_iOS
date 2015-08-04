@@ -9,7 +9,10 @@
 #import "DatePickerView.h"
 #define BGCOLOR [UIColor colorWithRed:(55/255.0) green:(55/255.0) blue:(55/255.0) alpha:0.5]
 
-@implementation DatePickerView
+@implementation DatePickerView{
+    UIBarButtonItem *btnCancel;
+    UIBarButtonItem *btnDone;
+}
 
 - (id)initWithFrame:(CGRect)rect{
     self=[super initWithFrame:rect];
@@ -18,9 +21,9 @@
         [self setUserInteractionEnabled:YES];
         self.toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake1(0, 0, 320, 44)];
         self.toolBar.barStyle = UIBarStyleDefault;
-        UIBarButtonItem *btnCancel = [[UIBarButtonItem alloc] initWithTitle:LOCALIZATION(@"Reset") style:UIBarButtonItemStyleDone target:self action:@selector(cancel:)];
+        btnCancel = [[UIBarButtonItem alloc] initWithTitle:LOCALIZATION(@"Reset") style:UIBarButtonItemStyleDone target:self action:@selector(cancel:)];
         UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-        UIBarButtonItem *btnDone = [[UIBarButtonItem alloc] initWithTitle:LOCALIZATION(@"Done") style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
+        btnDone = [[UIBarButtonItem alloc] initWithTitle:LOCALIZATION(@"Done") style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
         NSArray *barItems=[NSArray arrayWithObjects:btnCancel,flexibleSpace,btnDone,nil];
         [self.toolBar setItems:barItems animated:YES];
         [self addSubview:self.toolBar];
@@ -93,6 +96,12 @@
             return [NSString stringWithFormat:@"0%ldm",row];
         }
     }
+}
+
+- (void)setLanguage
+{
+    [btnCancel setTitle:LOCALIZATION(@"Reset")];
+    [btnDone setTitle:LOCALIZATION(@"Done")];
 }
 
 @end

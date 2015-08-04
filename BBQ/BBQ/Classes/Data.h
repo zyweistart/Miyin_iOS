@@ -27,7 +27,7 @@
 @property (strong,nonatomic) NSMutableDictionary *chartData;
 @property (strong,nonatomic) TabBarFrameViewController *mTabBarFrameViewController;
 
-+ (NSString*)getTemperatureValue:(int)v;
++ (NSString*)getTemperatureValue:(NSString*)v;
 
 - (NSString*)getAutoConnected;
 - (void)setAutoConnected:(NSString*)uuid;

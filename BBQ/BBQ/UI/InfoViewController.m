@@ -84,7 +84,7 @@
         [cell.lblTitle setText:key];
         [cell.lblTimer setText:[self showTimerString:key]];
         NSString *sett=[[[Data Instance]sett]objectForKey:key];
-        [cell.lblTargetTemp setText:[Data getTemperatureValue:[sett intValue]]];
+        [cell.lblTargetTemp setText:[Data getTemperatureValue:sett]];
     }
     return cell;
 }

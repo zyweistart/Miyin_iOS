@@ -71,13 +71,15 @@ static Data * instance = nil;
 }
 
 //获取当前温度
-+ (NSString*)getTemperatureValue:(int)v
++ (NSString*)getTemperatureValue:(NSString*)v
 {
     if([@"f" isEqualToString:[[Data Instance]getCf]]){
-        int fValue=v*9/5+32;
-        return [NSString stringWithFormat:@"%d°F",fValue];
+        CGFloat fValue=[v floatValue]*9/5+32;
+        NSString *value=[NSString stringWithFormat:@"%lf",fValue+0.51];
+        return [NSString stringWithFormat:@"%d°F",[value intValue]];
     }else{
-        return [NSString stringWithFormat:@"%d°C",v];
+        NSString *value=[NSString stringWithFormat:@"%lf",[v floatValue]+0.51];
+        return [NSString stringWithFormat:@"%d°C",[value intValue]];
     }
 }
 

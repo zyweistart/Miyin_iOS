@@ -54,7 +54,7 @@
         [self.okButton setBackgroundColor:DEFAULTITLECOLORRGB(255, 121, 74)];
         [self addSubview:self.okButton];
         
-        [self.lblValue setText:[Data getTemperatureValue:self.mSlider.value]];
+        [self.lblValue setText:[Data getTemperatureValue:[NSString stringWithFormat:@"%f",self.mSlider.value]]];
     }
     return self;
 }
@@ -78,12 +78,12 @@
 - (void)setValue:(int)value
 {
     [self.mSlider setValue:value];
-    [self.lblValue setText:[Data getTemperatureValue:self.mSlider.value]];
+    [self.lblValue setText:[Data getTemperatureValue:[NSString stringWithFormat:@"%f",self.mSlider.value]]];
 }
 
 - (void)changeValue:(id)sender
 {
-    [self.lblValue setText:[Data getTemperatureValue:self.mSlider.value]];
+    [self.lblValue setText:[Data getTemperatureValue:[NSString stringWithFormat:@"%f",self.mSlider.value]]];
 }
 
 - (void)reLoadData
