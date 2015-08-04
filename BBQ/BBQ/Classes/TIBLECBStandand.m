@@ -121,6 +121,7 @@ typedef struct scanProcessStep{
     }
     [self.CM stopScan];
     [self.CM scanForPeripheralsWithServices:nil options:0];
+//    [self.CM scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey:@YES}];
     isScan = YES;
     return 1;
 }

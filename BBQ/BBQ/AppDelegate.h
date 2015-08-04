@@ -14,7 +14,9 @@ typedef struct _CHAR{
     char buff[1000];
 }CHAR_STRUCT;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>{
+    UIBackgroundTaskIdentifier bgTask;
+}
 
 @property float autoSizeScaleX;
 @property float autoSizeScaleY;

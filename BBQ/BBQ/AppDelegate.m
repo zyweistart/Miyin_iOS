@@ -103,4 +103,27 @@
     }
 }
 
+//- (void)applicationDidEnterBackground:(UIApplication *)application
+//{
+//    BOOL backgroundAccepted = [[UIApplication sharedApplication] setKeepAliveTimeout:600 handler:^{
+//        [self backgroundHandler];
+//    }];
+//    if (backgroundAccepted) {
+//    }
+//    [self backgroundHandler];
+//}
+//
+//- (void)backgroundHandler {
+//    UIApplication* app = [UIApplication sharedApplication];
+//    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
+//        [app endBackgroundTask:bgTask];
+//        bgTask = UIBackgroundTaskInvalid;
+//    }];
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        while (1) {
+//            sleep(1);
+//        }
+//    });
+//}
+
 @end
