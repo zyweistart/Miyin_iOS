@@ -180,7 +180,7 @@
             if(![tbf playAlarm]){
                 [tbf senderNotification:LOCALIZATION(@"Timer is finished!")];
             }
-            [tbf.mAlertView.lblTitle setText:[NSString stringWithFormat:@"%@-Warning",key]];
+            [tbf.mAlertView.lblTitle setText:[NSString stringWithFormat:@"%@-%@",key,LOCALIZATION(@"Warning")]];
             [tbf.mAlertView.lblMessage setText:LOCALIZATION(@"Timer is finished!")];
             [tbf.mAlertView setType:1];
             [tbf AlertShow];
