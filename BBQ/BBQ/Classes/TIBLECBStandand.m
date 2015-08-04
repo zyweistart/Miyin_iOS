@@ -229,10 +229,9 @@ typedef struct scanProcessStep{
 //    [nc postNotificationName:NOTIFICATION_DIDCONNECTEDBLEDEVICE object:nil];
     if( [self.delegate respondsToSelector: @selector(didConectedbleDevice)]) {
         [self.delegate didConectedbleDevice];
-    }else{
-        //连接成功后需立即查询蓝牙服务
-        [self.activePeripheral discoverServices:nil];
     }
+    //连接成功后需立即查询蓝牙服务
+    [self.activePeripheral discoverServices:nil];
 }
 
 //4、[peripheral discoverServices:nil];查询蓝牙服务
@@ -296,6 +295,7 @@ typedef struct scanProcessStep{
 //处理蓝牙发过来的数据
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
+    NSLog(@"蓝牙发送数据过来了");
 //    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     if (!error) {
         if ([self.mode compare:@"UPDATEMODE" ] == NSOrderedSame) {

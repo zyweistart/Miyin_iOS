@@ -307,6 +307,8 @@
                 }else{
                     [self DisConnectperipheral];
                 }
+            }else{
+                [self dismissViewControllerAnimated:YES completion:nil];
             }
         }
     }
