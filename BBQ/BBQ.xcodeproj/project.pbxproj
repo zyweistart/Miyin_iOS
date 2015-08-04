@@ -16,6 +16,7 @@
 		C9126A391B65DC42001D3D60 /* TabBarFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A381B65DC42001D3D60 /* TabBarFrameViewController.m */; };
 		C9126A411B66004A001D3D60 /* CButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A3E1B66004A001D3D60 /* CButton.m */; };
 		C9126A421B66004A001D3D60 /* CLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9126A401B66004A001D3D60 /* CLabel.m */; };
+		C9420CB21B70A248003E3D8B /* UIScrollView+UITouch.m in Sources */ = {isa = PBXBuildFile; fileRef = C9420CB11B70A248003E3D8B /* UIScrollView+UITouch.m */; };
 		C97E090A1B6A109B00E9B118 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C97E090C1B6A109B00E9B118 /* Localizable.strings */; };
 		C9B27CA61B660236005DD13B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B27CA51B660236005DD13B /* CoreBluetooth.framework */; };
 		C9D6152F1B67D6AA003DAC98 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6152E1B67D6AA003DAC98 /* Data.m */; };
@@ -108,6 +109,8 @@
 		C9126A3E1B66004A001D3D60 /* CButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CButton.m; sourceTree = "<group>"; };
 		C9126A3F1B66004A001D3D60 /* CLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLabel.h; sourceTree = "<group>"; };
 		C9126A401B66004A001D3D60 /* CLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLabel.m; sourceTree = "<group>"; };
+		C9420CB01B70A248003E3D8B /* UIScrollView+UITouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+UITouch.h"; sourceTree = "<group>"; };
+		C9420CB11B70A248003E3D8B /* UIScrollView+UITouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+UITouch.m"; sourceTree = "<group>"; };
 		C97E090D1B6A10B400E9B118 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C97E090F1B6A143A00E9B118 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C9B27CA51B660236005DD13B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -399,6 +402,8 @@
 				C9ECF2031B65C85A0088E110 /* UIImageView+Utils.m */,
 				C9ECF2041B65C85A0088E110 /* User.h */,
 				C9ECF2051B65C85A0088E110 /* User.m */,
+				C9420CB01B70A248003E3D8B /* UIScrollView+UITouch.h */,
+				C9420CB11B70A248003E3D8B /* UIScrollView+UITouch.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -682,6 +687,7 @@
 				C9ECF20F1B65C85A0088E110 /* HttpRequest.m in Sources */,
 				C9126A2D1B65DA5A001D3D60 /* HomeViewController.m in Sources */,
 				C9D615371B67EBDE003DAC98 /* AboutViewController.m in Sources */,
+				C9420CB21B70A248003E3D8B /* UIScrollView+UITouch.m in Sources */,
 				C9ECF1CA1B65C6BD0088E110 /* ATMHud.m in Sources */,
 				C9F488451B6A35540037A9D8 /* MenuItemLandView.m in Sources */,
 				C9ECF1D41B65C6BD0088E110 /* MessageInterceptor.m in Sources */,

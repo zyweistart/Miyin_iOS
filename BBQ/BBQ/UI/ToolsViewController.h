@@ -10,7 +10,7 @@
 #import "ChartItemView.h"
 #import "ChartItemLandView.h"
 
-@interface ToolsViewController : BaseViewController
+@interface ToolsViewController : BaseViewController<UIScrollViewDelegate>
 
 @property (strong,nonatomic)UIScrollView *scrollFrameView;
 @property (strong,nonatomic)ChartItemView *mChartItemView1;

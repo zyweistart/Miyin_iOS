@@ -82,7 +82,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(![[Data Instance]isDemo]){
+    if([[Data Instance]isDemo]){
+        [self cTitle:LOCALIZATION(@"BBQ Unconnected")];
+    }else{
         if (self.appDelegate.bleManager.activePeripheral){
             if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
                 [self ConnectedState:YES];
@@ -90,8 +92,6 @@
                 [self ConnectedState:NO];
             }
         }
-    }else{
-        [self cTitle:LOCALIZATION(@"BBQ Unconnected")];
     }
     if(!isAddFlag){
         [[[Data Instance]mTabBarFrameViewController].view insertSubview:self.mMenuItemLandView atIndex:2];

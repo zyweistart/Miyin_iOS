@@ -27,6 +27,7 @@
         self.frameView.layer.borderWidth=1*self.scale;
         self.frameView.layer.borderColor=DEFAULTITLECOLOR(200).CGColor;
         [self.frameView setBackgroundColor:[UIColor whiteColor]];
+        [self.frameView setUserInteractionEnabled:YES];
         [self addSubview:self.frameView];
         
         self.lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 40*self.scale, 180*self.scale)];
@@ -61,6 +62,7 @@
         
         self.lineChartView = [[PNLineChartView alloc]initWithFrame:CGRectMake1(40*self.scale,20*self.scale, 230*self.scale, 160*self.scale)];
         [self.lineChartView setBackgroundColor:[UIColor whiteColor]];
+        [self.lineChartView setUserInteractionEnabled:YES];
         [self.frameView addSubview:self.lineChartView];
         self.lineChartView.min = 0;
         self.lineChartView.max = max;

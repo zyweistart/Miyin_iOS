@@ -7,6 +7,7 @@
 //
 
 #import "ToolsViewController.h"
+//#import "UIScrollView+UITouch.h"
 
 @interface ToolsViewController ()
 
@@ -23,7 +24,9 @@
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
         self.scrollFrameView=[[UIScrollView alloc]initWithFrame:self.view.bounds];
         [self.scrollFrameView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        [self.scrollFrameView setUserInteractionEnabled:YES];
         [self.scrollFrameView setBackgroundColor:DEFAULTITLECOLORRGB(65, 51, 42)];
+        [self.scrollFrameView setDelegate:self];
         [self.view addSubview:self.scrollFrameView];
         //针1
         if(self.mChartItemView1==nil){
