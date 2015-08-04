@@ -187,7 +187,7 @@
 {
     CGFloat maxValue=200;
     if([@"T4" isEqualToString:title]){
-        maxValue=538;
+        maxValue=537;
     }
     if([@"f" isEqualToString:[[Data Instance]getCf]]){
         value=[Common CConvertF:value];

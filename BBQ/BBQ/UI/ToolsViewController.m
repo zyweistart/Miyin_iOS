@@ -42,11 +42,11 @@
         }
         //针4
         if(self.mChartItemView4==nil){
-            self.mChartItemView4=[self createChartItemViewWithX:570 Tag:4 LineChartMax:538];
+            self.mChartItemView4=[self createChartItemViewWithX:570 Tag:4 LineChartMax:537];
             self.mChartItemView4.pointNumber=600;
         }
         //横屏
-        self.mChartItemLandView=[[ChartItemLandView alloc]initWithFrame:CGRectMake(0, 0,CGHeight(448)*self.appDelegate.autoSizeScaleY,CGWidth(266)*self.appDelegate.autoSizeScaleX) LineChartMax:538];
+        self.mChartItemLandView=[[ChartItemLandView alloc]initWithFrame:CGRectMake(0, 0,CGHeight(448)*self.appDelegate.autoSizeScaleY,CGWidth(266)*self.appDelegate.autoSizeScaleX) LineChartMax:537];
         [self.mChartItemLandView setUserInteractionEnabled:YES];
         [self.mChartItemLandView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeHide:)]];
         [self.mChartItemLandView setHidden:YES];
@@ -143,7 +143,7 @@
     }else if([@"T3" isEqualToString:self.mChartItemLandView.currentKey]){
         self.mChartItemLandView.lineChartView.max=250;
     }else if([@"T4" isEqualToString:self.mChartItemLandView.currentKey]){
-        self.mChartItemLandView.lineChartView.max=538;
+        self.mChartItemLandView.lineChartView.max=537;
     }
     [self.mChartItemLandView loadChartData];
 }

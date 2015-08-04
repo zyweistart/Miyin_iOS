@@ -37,6 +37,7 @@
 @property (nonatomic, strong)NSArray *xAxisValues;
 //数据点列表
 @property (nonatomic, readonly, strong) NSMutableArray *plots;
+@property CGFloat mXNewPoint;
 
 //设置初始化值
 - (void)setInitValue;

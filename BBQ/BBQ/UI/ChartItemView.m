@@ -122,7 +122,7 @@
             [chDataValue setObject:value forKey:CHARTCURVALUE];
             [chDataValue setObject:settValue forKey:CHARTSETVALUE];
             NSInteger t=totalSecond/60;
-            NSString *timerV=[NSString stringWithFormat:@"%ldm",t];
+            NSString *timerV=[NSString stringWithFormat:@"%ld",t];
             if(t>60){
 //                timerV=[NSString stringWithFormat:@"%ldh:%ldm",t/60,t%60];
             }

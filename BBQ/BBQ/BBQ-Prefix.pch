@@ -46,7 +46,7 @@
 #define ScreenHeight [[UIScreen mainScreen] bounds].size.height
 #define ScreenWidth [[UIScreen mainScreen] bounds].size.width
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-#define DECIMALPOINT 0.5
+#define DECIMALPOINT 0.51
 //方法
 CG_INLINE CGFloat
 CGWidth(CGFloat width)

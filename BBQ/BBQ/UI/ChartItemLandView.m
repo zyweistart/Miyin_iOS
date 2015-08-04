@@ -20,4 +20,18 @@
     return self;
 }
 
+- (void)updateTimer
+{
+    if(self.currentKey==nil){
+        return;
+    }
+    for(NSDictionary *da in [[Data Instance]currentTValue]){
+        NSString *value=[da objectForKey:self.currentKey];
+        if(value!=nil){
+            [self loadChartData];
+            break;
+        }
+    }
+}
+
 @end
