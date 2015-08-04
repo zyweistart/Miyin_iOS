@@ -218,7 +218,8 @@
         NSString *title=[NSString stringWithFormat:@"%@",key];
         int value=self.mSetTempView.mSlider.value;
         [[[Data Instance]sett]setObject:[NSString stringWithFormat:@"%d",value] forKey:key];
-        NSString *json=[NSString stringWithFormat:@"{\"sett\":{\"%@\":%d.1}}",title,value];
+        title=[title stringByReplacingOccurrencesOfString:@"T" withString:@"p"];
+        NSString *json=[NSString stringWithFormat:@"{\"sett\":{\"%@\":%d}}",title,value];
         [self.appDelegate sendData:json];
     }
     [self.bgFrame setHidden:YES];

@@ -26,10 +26,10 @@
             [[Data Instance]setAlarm:@"Beep1"];
         }
         //设置默认的温度值
-        [[[Data Instance]sett]setObject:@"100" forKey:@"p1"];
-        [[[Data Instance]sett]setObject:@"100" forKey:@"p2"];
-        [[[Data Instance]sett]setObject:@"100" forKey:@"p3"];
-        [[[Data Instance]sett]setObject:@"400" forKey:@"p4"];
+        [[[Data Instance]sett]setObject:@"100" forKey:@"T1"];
+        [[[Data Instance]sett]setObject:@"100" forKey:@"T2"];
+        [[[Data Instance]sett]setObject:@"100" forKey:@"T3"];
+        [[[Data Instance]sett]setObject:@"400" forKey:@"T4"];
         self.bgFrame=[[UIView alloc]initWithFrame:self.view.bounds];
         [self.bgFrame setBackgroundColor:DEFAULTITLECOLORA(150, 0.5)];
         [self.bgFrame setHidden:YES];
