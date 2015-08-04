@@ -71,7 +71,7 @@
         [self.mSetTempView setHidden:YES];
         [self.bgFrame addSubview:self.mSetTempView];
         //时间设置面板
-        self.pv1=[[DatePickerView alloc]initWithFrame:CGRectMake(0, self.bgFrame.bounds.size.height-CGHeight(260+BOTTOMTABBARHEIGHT), CGWidth(320), CGHeight(260))];
+        self.pv1=[[DatePickerView alloc]initWithFrame:CGRectMake(0, self.bgFrame.bounds.size.height-CGHeight(260)-BOTTOMTABBARHEIGHT, CGWidth(320), CGHeight(260))];
         [self.pv1 setCode:1];
         [self.pv1 setDelegate:self];
         [self.bgFrame addSubview:self.pv1];
