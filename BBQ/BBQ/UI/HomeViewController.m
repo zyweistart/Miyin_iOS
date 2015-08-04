@@ -105,7 +105,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:LOCALIZATION(@"Cancel")
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:LOCALIZATION(@"Disconnect connection"), nil];
+                                                    otherButtonTitles:LOCALIZATION(@"Disconnect"), nil];
     [choiceSheet showInView:self.view];
 }
 

@@ -1,7 +1,7 @@
 "Demo" = "示例";
 "Scan" = "扫描";
 "Unknown" = "未知";
-"Disconnect connection" = "断开连接";
+"Disconnect" = "断开连接";
 "Connected" = "已连接";
 "Connecting" = "连接中";
 "Connecting..." = "连接中...";
