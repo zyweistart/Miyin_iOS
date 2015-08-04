@@ -19,9 +19,6 @@
 "OK" = "OK";
 "Cancel" = "Cancel";
 "Done" = "Done";
-"Temperature is high!" = "Temperature is high!";
-"The grill has flared up!" = "The grill has flared up!";
-"Timer is finished!" = "Timer is finished";
 "BBQ Connected" = "BBQ Connected";
 "BBQ Unconnected" = "BBQ Unconnected";
 "Plase insert probes" = "Plase insert probes";
@@ -37,3 +34,6 @@
 "Target Temp" = "Target Temp";
 "No equipment" = "No equipment";
 "Warning" = "Warning";
+"Timer is finished!" = "Timer is finished";
+"Temperature is high!" = "Temperature is high";
+"The grill has flared up!" = "The grill has flared up";

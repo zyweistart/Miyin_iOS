@@ -24,9 +24,6 @@
 "BBQ Unconnected" = "BBQ 未连接";
 "Connection is broken" = "连接中断";
 "Plase insert probes" = "请插入探针";
-"Temperature is high!" = "温度过高!";
-"The grill has flared up!" = "烧烤已燃烧起来了!";
-"Timer is finished!" = "定时结束";
 "The connection timeout, please try again" = "连接超时，请重试";
 "Set" = "设定";
 "Temp" = "温度";
@@ -37,3 +34,6 @@
 "Target Temp" = "目标温度";
 "No equipment" = "暂无设备";
 "Warning" = "警告";
+"Timer is finished!" = "定时结束";
+"Temperature is high!" = "温度过高";
+"The grill has flared up!" = "烧烤已燃烧起来了";
