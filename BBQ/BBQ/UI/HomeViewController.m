@@ -51,7 +51,14 @@
             self.mMenuItemView4=[self createMenuItemViewWithY:570 Tag:3];
         }
         //横屏
-        self.mMenuItemLandView=[[MenuItemLandView alloc]initWithFrame:CGRectMake(0, 0,CGHeight(448)*self.appDelegate.autoSizeScaleY,CGWidth(266)*self.appDelegate.autoSizeScaleX)];
+        
+        CGRect rect;
+        if(inch35){
+            rect=CGRectMake(0, 0,CGHeight(448),CGWidth(266));
+        }else{
+            rect=CGRectMake(0, 0,CGHeight(512),CGWidth(304));
+        }
+        self.mMenuItemLandView=[[MenuItemLandView alloc]initWithFrame:rect];
         [self.mMenuItemLandView setBaseController:self];
         [self.mMenuItemLandView.lblHighestCentigrade addTarget:self action:@selector(setZoomValue:) forControlEvents:UIControlEventTouchUpInside];
         [self.mMenuItemLandView.bTimer addTarget:self action:@selector(setZoomTimer:) forControlEvents:UIControlEventTouchUpInside];

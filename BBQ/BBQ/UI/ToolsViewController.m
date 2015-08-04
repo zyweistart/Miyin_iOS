@@ -46,7 +46,13 @@
             self.mChartItemView4.pointNumber=600;
         }
         //横屏
-        self.mChartItemLandView=[[ChartItemLandView alloc]initWithFrame:CGRectMake(0, 0,CGHeight(448)*self.appDelegate.autoSizeScaleY,CGWidth(266)*self.appDelegate.autoSizeScaleX) LineChartMax:537];
+        CGRect rect;
+        if(inch35){
+            rect=CGRectMake(0, 0,CGHeight(448),CGWidth(266));
+        }else{
+            rect=CGRectMake(0, 0,CGHeight(512),CGWidth(304));
+        }
+        self.mChartItemLandView=[[ChartItemLandView alloc]initWithFrame:rect LineChartMax:537];
         [self.mChartItemLandView setUserInteractionEnabled:YES];
         [self.mChartItemLandView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeHide:)]];
         [self.mChartItemLandView setHidden:YES];
