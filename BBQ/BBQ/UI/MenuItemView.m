@@ -117,7 +117,6 @@
         
         int currentValue=[centigrade intValue];
         [self.lblTitle setText:key];
-        
         [self.lblCurrentCentigrade setText:[Data getTemperatureValue:oldValue1]];
         [self.lblCurrentSamllCentigrade setTitle:[Data getTemperatureValue:oldValue1] forState:UIControlStateNormal];
         
