@@ -209,7 +209,7 @@
                 if(![self playAlarm]){
                     [self senderNotification:LOCALIZATION(@"The grill has flared up!")];
                 }
-                [self.mAlertView.lblTitle setText:@"Warning"];
+                [self.mAlertView.lblTitle setText:LOCALIZATION(@"Warning")];
                 [self.mAlertView.lblMessage setText:LOCALIZATION(@"The grill has flared up!")];
                 [self.mAlertView setType:2];
                 [self AlertShow];
@@ -223,7 +223,7 @@
                 if(![self playAlarm]){
                     [self senderNotification:LOCALIZATION(@"Temperature is high!")];
                 }
-                [self.mAlertView.lblTitle setText:[NSString stringWithFormat:@"%@-Warning",alaram]];
+                [self.mAlertView.lblTitle setText:[NSString stringWithFormat:@"%@-%@",alaram,LOCALIZATION(@"Warning")]];
                 [self.mAlertView.lblMessage setText:LOCALIZATION(@"Temperature is high!")];
                 [self.mAlertView setType:1];
                 [self AlertShow];
