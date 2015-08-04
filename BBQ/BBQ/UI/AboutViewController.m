@@ -18,6 +18,12 @@
     self=[super init];
     if(self){
         [self cTitle:LOCALIZATION(@"About")];
+        UIButton *bButton = [[UIButton alloc]init];
+        [bButton setFrame:CGRectMake1(0, 0, 22, 30)];
+        [bButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        [bButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+        [bButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bButton];
         UIWebView *webView=[[UIWebView alloc]initWithFrame:self.view.bounds];
         [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.view addSubview:webView];
@@ -27,6 +33,11 @@
         [webView loadRequest:request];
     }
     return self;
+}
+
+- (void)back:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
