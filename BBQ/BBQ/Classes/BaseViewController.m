@@ -18,7 +18,7 @@
         [self.mConnectedPanel setBackgroundColor:DEFAULTITLECOLORA(150, 0.5)];
         self.lblMessage=[[UILabel alloc]initWithFrame:CGRectMake1(0, 200, 320, 60)];
         [self.lblMessage setText:NSLocalizedString(@"Connection is broken",nil)];
-        [self.lblMessage setFont:[UIFont systemFontOfSize:35]];
+        [self.lblMessage setFont:[UIFont systemFontOfSize:30]];
         [self.lblMessage setTextAlignment:NSTextAlignmentCenter];
         [self.lblMessage setTextColor:[UIColor whiteColor]];
         [self.lblMessage setBackgroundColor:DEFAULTITLECOLORA(50, 0.5)];

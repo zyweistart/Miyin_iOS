@@ -26,7 +26,6 @@
 {
     self=[super init];
     if(self){
-        [self cTitle:LOCALIZATION(@"BBQ Unconnected")];
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
         [self RefreshStateNormal];
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
@@ -112,6 +111,9 @@
             cell.lblTitle.text = LOCALIZATION(@"Unknown");
         }
         NSString *uuid=cbPeripheral.identifier.UUIDString;
+        if(uuid.length==36){
+            uuid=[uuid substringWithRange:NSMakeRange(24,12)];
+        }
         [cell.lblAddress setText:uuid];
         [cell setAccessoryType:UITableViewCellAccessoryNone];
         if(self.appDelegate.bleManager.activePeripheral){
@@ -207,7 +209,7 @@
 
 - (void)ConnectedState
 {
-//    [self cTitle:LOCALIZATION(@"BBQ Unconnected")];
+    [self cTitle:LOCALIZATION(@"BBQ Unconnected")];
 //    if(self.appDelegate.bleManager.activePeripheral){
 //        if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
 //            [self cTitle:LOCALIZATION(@"BBQ Connected")];
@@ -247,11 +249,15 @@
     [self stopScan];
 }
 
+//连接成功
+- (void)didConectedbleDevice
+{
+    [self stopScan];
+}
+
 //服务发现完成之后的回调方法
 - (void)ServiceFoundOver
 {
-    [self stopScan];
-//    [self.tableView reloadData];
     //自动存储连接信息方便下次连接
     NSString *uuid=self.appDelegate.bleManager.activePeripheral.identifier.UUIDString;
     [[Data Instance]setAutoConnected:uuid];
