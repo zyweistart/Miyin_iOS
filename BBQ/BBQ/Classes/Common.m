@@ -79,4 +79,16 @@
 {
     return [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
+
++ (CGFloat)CConvertF:(CGFloat)c
+{
+    CGFloat fValue=c*9/5+32;
+    return fValue;
+}
+
++ (CGFloat)FConvertC:(CGFloat)f
+{
+    CGFloat cValue=(f-32)*5/9;;
+    return cValue;
+}
 @end

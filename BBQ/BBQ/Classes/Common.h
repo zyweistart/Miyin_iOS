@@ -27,5 +27,9 @@
 + (NSString*)getString:(id)data DefaultValue:(NSString*)value;
 
 + (NSURL*)getUrl:(NSString*)url;
+//摄氏转华氏
++ (CGFloat)CConvertF:(CGFloat)c;
+//华氏转摄氏
++ (CGFloat)FConvertC:(CGFloat)f;
 
 @end

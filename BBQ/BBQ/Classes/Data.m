@@ -75,10 +75,10 @@ static Data * instance = nil;
 {
     if([@"f" isEqualToString:[[Data Instance]getCf]]){
         CGFloat fValue=[v floatValue]*9/5+32;
-        NSString *value=[NSString stringWithFormat:@"%lf",fValue+0.51];
+        NSString *value=[NSString stringWithFormat:@"%lf",fValue+DECIMALPOINT];
         return [NSString stringWithFormat:@"%d°F",[value intValue]];
     }else{
-        NSString *value=[NSString stringWithFormat:@"%lf",[v floatValue]+0.51];
+        NSString *value=[NSString stringWithFormat:@"%lf",[v floatValue]+DECIMALPOINT];
         return [NSString stringWithFormat:@"%d°C",[value intValue]];
     }
 }

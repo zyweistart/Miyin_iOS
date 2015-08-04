@@ -112,7 +112,7 @@
     for(id k in [self.currentData allKeys]){
         NSString *key=[NSString stringWithFormat:@"%@",k];
         NSString *oldValue1=[self.currentData objectForKey:key];
-        CGFloat currentValue1=[oldValue1 floatValue]+0.51;
+        CGFloat currentValue1=[oldValue1 floatValue]+DECIMALPOINT;
         NSString *centigrade=[NSString stringWithFormat:@"%lf",currentValue1];
         
         int currentValue=[centigrade intValue];
@@ -124,7 +124,7 @@
         int currentHighValue=0;
         
         NSString *oldValue=[[[Data Instance] sett] objectForKey:key];
-        CGFloat value1=[oldValue floatValue]+0.51;
+        CGFloat value1=[oldValue floatValue]+DECIMALPOINT;
         NSString *value=[NSString stringWithFormat:@"%lf",value1];
         if(value){
             currentHighValue=[value intValue];

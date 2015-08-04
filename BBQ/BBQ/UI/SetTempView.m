@@ -33,7 +33,6 @@
         [self addSubview:jButton];
         self.mSlider = [[UISlider alloc] initWithFrame:CGRectMake1(50,120,200,20)];
         [self.mSlider setMinimumValue:0];
-        [self.mSlider setMaximumValue:538];
         [self.mSlider addTarget:self action:@selector(changeValue:) forControlEvents:UIControlEventValueChanged];
         [self addSubview:self.mSlider];
         UIButton *aButton=[[UIButton alloc]initWithFrame:CGRectMake1(250, 110, 40, 40)];
@@ -75,23 +74,49 @@
     [self setValue:self.mSlider.value+1];
 }
 
-- (void)setValue:(int)value
+- (void)setValue:(CGFloat)value
 {
     [self.mSlider setValue:value];
-    [self.lblValue setText:[Data getTemperatureValue:[NSString stringWithFormat:@"%f",self.mSlider.value]]];
+    [self showValue];
 }
 
 - (void)changeValue:(id)sender
 {
-    [self.lblValue setText:[Data getTemperatureValue:[NSString stringWithFormat:@"%f",self.mSlider.value]]];
+    [self showValue];
+}
+
+- (void)showValue
+{
+    int d=self.mSlider.value;
+    if([@"f" isEqualToString:[[Data Instance]getCf]]){
+        [self.lblValue setText:[NSString stringWithFormat:@"%d°F",d]];
+    }else{
+        [self.lblValue setText:[NSString stringWithFormat:@"%d°C",d]];
+    }
 }
 
 - (void)reLoadData
 {
     for(id key in [self.data allKeys]){
         NSString *title=[NSString stringWithFormat:@"%@",key];
-        NSString *value=[[[Data Instance] sett] objectForKey:title];
-        [self setValue:[value intValue]];
+        NSString *valuetext=[[[Data Instance] sett] objectForKey:title];
+        CGFloat value=[valuetext floatValue];
+        CGFloat maxValue=200;
+        if([@"T4" isEqualToString:title]){
+            maxValue=538;
+        }
+        if([@"f" isEqualToString:[[Data Instance]getCf]]){
+            value=[Common CConvertF:value];
+            value=value+DECIMALPOINT;
+            [self.mSlider setValue:value];
+            [self.mSlider setMaximumValue:[Common CConvertF:maxValue]];
+        }else{
+            value=value+DECIMALPOINT;
+            [self.mSlider setValue:value];
+            [self.mSlider setMaximumValue:maxValue];
+        }
+        [self.lblTitle setText:[NSString stringWithFormat:@"%@-%@",title,LOCALIZATION(@"Set Temp")]];
+        [self setValue:value];
     }
 }
 

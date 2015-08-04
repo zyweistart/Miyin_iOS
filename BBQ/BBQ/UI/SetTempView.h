@@ -17,7 +17,7 @@
 @property (strong,nonatomic)UIButton *okButton;
 @property (strong,nonatomic)UISlider *mSlider;
 
-- (void)setValue:(int)value;
+- (void)setValue:(CGFloat)value;
 
 - (void)reLoadData;
 - (void)setLanguage;

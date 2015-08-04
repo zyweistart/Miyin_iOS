@@ -163,11 +163,10 @@
     NSDictionary *data = [self.dataItemArray objectAtIndex:sender.tag];
     for(id key in [data allKeys]){
         NSString *title=[NSString stringWithFormat:@"%@",key];
-        CGFloat value1=[[[[Data Instance] sett] objectForKey:title]floatValue]+0.51;
-        NSString *value=[NSString stringWithFormat:@"%lf",value1];
+        NSString *value=[[[Data Instance] sett] objectForKey:title];
         [self.mSetTempView setData:data];
         [self.mSetTempView setTag:sender.tag];
-        [self SetTempShowWithTitle:title Value:[value intValue]];
+        [self SetTempShowWithTitle:title Value:[value floatValue]];
     }
 }
 
@@ -184,16 +183,21 @@
     [self.pv1 setHidden:NO];
 }
 
-- (void)SetTempShowWithTitle:(NSString*)title Value:(int)value;
+- (void)SetTempShowWithTitle:(NSString*)title Value:(CGFloat)value;
 {
-    if([@"T1" isEqualToString:title]){
-        [self.mSetTempView.mSlider setMaximumValue:200];
-    }else if([@"T2" isEqualToString:title]){
-        [self.mSetTempView.mSlider setMaximumValue:200];
-    }else if([@"T3" isEqualToString:title]){
-        [self.mSetTempView.mSlider setMaximumValue:200];
-    }else if([@"T4" isEqualToString:title]){
-        [self.mSetTempView.mSlider setMaximumValue:538];
+    CGFloat maxValue=200;
+    if([@"T4" isEqualToString:title]){
+        maxValue=538;
+    }
+    if([@"f" isEqualToString:[[Data Instance]getCf]]){
+        value=[Common CConvertF:value];
+        value=value+DECIMALPOINT;
+        [self.mSetTempView.mSlider setValue:value];
+        [self.mSetTempView.mSlider setMaximumValue:[Common CConvertF:maxValue]];
+    }else{
+        value=value+DECIMALPOINT;
+        [self.mSetTempView.mSlider setValue:value];
+        [self.mSetTempView.mSlider setMaximumValue:maxValue];
     }
     [self.mSetTempView.lblTitle setText:[NSString stringWithFormat:@"%@-%@",title,LOCALIZATION(@"Set Temp")]];
     [self.mSetTempView setValue:value];
@@ -216,10 +220,17 @@
     NSDictionary *data = [self.dataItemArray objectAtIndex:r];
     for(id key in [data allKeys]){
         NSString *title=[NSString stringWithFormat:@"%@",key];
-        int value=self.mSetTempView.mSlider.value;
-        [[[Data Instance]sett]setObject:[NSString stringWithFormat:@"%d",value] forKey:key];
+        CGFloat value=self.mSetTempView.mSlider.value;
+        if([@"f" isEqualToString:[[Data Instance]getCf]]){
+            //如果为华摄单位则转为摄氏
+            value=value-DECIMALPOINT;
+            value=[Common FConvertC:value];
+        }else{
+            value=value-DECIMALPOINT;
+        }
+        [[[Data Instance]sett]setObject:[NSString stringWithFormat:@"%lf",value] forKey:key];
         title=[title stringByReplacingOccurrencesOfString:@"T" withString:@"p"];
-        NSString *json=[NSString stringWithFormat:@"{\"sett\":{\"%@\":%d}}",title,value];
+        NSString *json=[NSString stringWithFormat:@"{\"sett\":{\"%@\":%lf}}",title,value];
         [self.appDelegate sendData:json];
     }
     [self.bgFrame setHidden:YES];
