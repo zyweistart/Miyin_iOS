@@ -19,12 +19,14 @@
     UILabel *lblState;
     CButton *bDemo;
     CButton *bScan;
+    UILabel *lblInfo;
 }
 
 - (id)init
 {
     self=[super init];
     if(self){
+        [self cTitle:LOCALIZATION(@"BBQ Unconnected")];
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
         [self RefreshStateNormal];
         [self buildTableViewWithView:self.view style:UITableViewStyleGrouped];
@@ -88,18 +90,21 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGHeight(60);
+    if([self.appDelegate.bleManager.peripherals count]>0){
+        return CGHeight(60);
+    }else{
+        return CGHeight(45);
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *identifier=@"TableCellIdentifier";
-    PeripheralCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
-    if(cell==nil){
-        cell = [[PeripheralCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] ;
-    }
     if([self.appDelegate.bleManager.peripherals count]>0){
-        
+        static NSString *identifier=@"TableCellIdentifier";
+        PeripheralCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
+        if(cell==nil){
+            cell = [[PeripheralCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] ;
+        }
         CBPeripheral *cbPeripheral = [self.appDelegate.bleManager.peripherals objectAtIndex:[indexPath section]];
         if(cbPeripheral.name !=nil) {
             cell.lblTitle.text = [cbPeripheral name];
@@ -120,8 +125,18 @@
         }
         return  cell;
     }else{
-        cell.lblTitle.text = @"暂无设备";
-        [cell.lblAddress setText:@""];
+        static NSString *identifier=@"UITableViewCellIdentifier";
+        UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
+        if(cell==nil){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
+            lblInfo=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 320, 45)];
+            [lblInfo setTextColor:[UIColor whiteColor]];
+            [lblInfo setFont:[UIFont systemFontOfSize:20]];
+            [lblInfo setTextAlignment:NSTextAlignmentCenter];
+            [cell setBackgroundColor:[UIColor clearColor]];
+            [cell addSubview:lblInfo];
+        }
+        [lblInfo setText:LOCALIZATION(@"No equipment")];
         return cell;
     }
 }
@@ -157,42 +172,47 @@
 
 - (void)RefreshStateConnecting
 {
-    if(self.mTimer){
-        [self.mTimer invalidate];
-        self.mTimer=nil;
+    [self stopScan];
+    if(self.mMBProgressHUD==nil){
+        self.mMBProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+        self.mMBProgressHUD.labelText = LOCALIZATION(@"Connecting...");
+        self.mMBProgressHUD.dimBackground = NO;
+        self.mMBProgressHUD.square = YES;
+        [self.mMBProgressHUD show:YES];
+        [self.view addSubview:self.mMBProgressHUD];
     }
-    self.mTimer=[NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(connectTimerout) userInfo:nil repeats:NO];
-    [lblState setText:LOCALIZATION(@"Connecting...")];
+    self.mTimer=[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(connectTimerout) userInfo:nil repeats:NO];
+//    [lblState setText:LOCALIZATION(@"Connecting...")];
 }
 
 - (void)RefreshStateNormal
 {
+    [lblState setText:@""];
     if(self.mTimer){
         [self.mTimer invalidate];
         self.mTimer=nil;
     }
-    [lblState setText:@""];
+    if(self.mMBProgressHUD!=nil){
+        [self.mMBProgressHUD hide:YES];
+        self.mMBProgressHUD=nil;
+    }
 }
 
 - (void)connectTimerout
 {
     [self RefreshStateNormal];
-    if(self.appDelegate.bleManager.activePeripheral!=nil){
-        if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnecting){
-            [Common alert:LOCALIZATION(@"The connection timeout, please try again")];
-            [self startScan];
-        }
-    }
+    [Common alert:LOCALIZATION(@"The connection timeout, please try again")];
+    [self startScan];
 }
 
 - (void)ConnectedState
 {
-    [self cTitle:LOCALIZATION(@"BBQ Unconnected")];
-    if(self.appDelegate.bleManager.activePeripheral){
-        if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
-            [self cTitle:LOCALIZATION(@"BBQ Connected")];
-        }
-    }
+//    [self cTitle:LOCALIZATION(@"BBQ Unconnected")];
+//    if(self.appDelegate.bleManager.activePeripheral){
+//        if(self.appDelegate.bleManager.activePeripheral.state==CBPeripheralStateConnected){
+//            [self cTitle:LOCALIZATION(@"BBQ Connected")];
+//        }
+//    }
 }
 
 //开始扫描
@@ -214,10 +234,8 @@
     for(CBPeripheral *cp in self.appDelegate.bleManager.peripherals){
         //判断是否存在自动连接设备
         if([cp.identifier.UUIDString isEqualToString:[[Data Instance]getAutoConnected]]){
-            [self RefreshStateNormal];
             [self RefreshStateConnecting];
             [self.appDelegate.bleManager connectPeripheral:cp];
-//            [self performSelector:@selector(goMainPage:) withObject:cp afterDelay:0.5];
             return;
         }
     }
@@ -233,8 +251,7 @@
 - (void)ServiceFoundOver
 {
     [self stopScan];
-    [self RefreshStateNormal];
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
     //自动存储连接信息方便下次连接
     NSString *uuid=self.appDelegate.bleManager.activePeripheral.identifier.UUIDString;
     [[Data Instance]setAutoConnected:uuid];
@@ -256,19 +273,16 @@
     [[Data Instance] setIsDemo:YES];
     TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
     [[Data Instance]setMTabBarFrameViewController:mTabBarFrameViewController];
-    [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
-    }];
+    [self presentViewController:mTabBarFrameViewController animated:YES completion:nil];
 }
 
 - (void)goMainPage:(CBPeripheral*)cp
 {
     [[Data Instance] setIsDemo:NO];
     TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
-    [mTabBarFrameViewController autoConnected:cp];
+//    [mTabBarFrameViewController autoConnected:cp];
     [[Data Instance]setMTabBarFrameViewController:mTabBarFrameViewController];
-    [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
-        [self stopScan];
-    }];
+    [self presentViewController:mTabBarFrameViewController animated:YES completion:nil];
 }
 
 - (void)changeLanguageText

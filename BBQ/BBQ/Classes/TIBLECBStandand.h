@@ -80,7 +80,6 @@
 - (id)GetCharcteristicDiscriptorFromActiveDescriptorsArray:(CBCharacteristic *)characteristic;
 
 - (BOOL)isAActiveCharacteristic:(CBCharacteristic *)c;
-- (void)getAllServicesFromKeyfob:(CBPeripheral *)p;
 - (void)getAllCharacteristicsFromKeyfob:(CBPeripheral *)p;
 - (CBService *)findServiceFromUUID:(CBUUID *)UUID p:(CBPeripheral *)p;
 - (CBCharacteristic *)findCharacteristicFromUUID:(CBUUID *)UUID service:(CBService*)service;

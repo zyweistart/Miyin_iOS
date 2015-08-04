@@ -230,19 +230,22 @@ typedef struct scanProcessStep{
     if( [self.delegate respondsToSelector: @selector(didConectedbleDevice)]) {
         [self.delegate didConectedbleDevice];
     }
+    CBUUID* uuid1 = [CBUUID UUIDWithString:@"FFE0"];
+    CBUUID* uuid2 = [CBUUID UUIDWithString:@"FFE5"];
     //连接成功后需立即查询蓝牙服务
-    [self.activePeripheral discoverServices:nil];
+    [peripheral discoverServices:@[uuid1,uuid2]];
+//    [self.activePeripheral discoverServices:nil];
 }
 
 //4、[peripheral discoverServices:nil];查询蓝牙服务
 //5、服务发现完成之后的回调方法
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
     if (!error) {
-        //触发获取所有特征值
-        [self getAllCharacteristicsFromKeyfob:peripheral];
 //        NSNumber *n = [NSNumber numberWithFloat:1.0];
 //        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 //        [nc postNotificationName:NOTIFICATION_SERVICEFOUNDOVER object:n];
+        //触发获取所有特征值
+        [self getAllCharacteristicsFromKeyfob:peripheral];
         if( [self.delegate respondsToSelector: @selector(ServiceFoundOver)]) {
             [self.delegate ServiceFoundOver];
         }
@@ -295,7 +298,6 @@ typedef struct scanProcessStep{
 //处理蓝牙发过来的数据
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
-    NSLog(@"蓝牙发送数据过来了");
 //    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     if (!error) {
         if ([self.mode compare:@"UPDATEMODE" ] == NSOrderedSame) {
@@ -382,8 +384,13 @@ typedef struct scanProcessStep{
     //读取所有服务的特征值
     for (int i=0; i < p.services.count; i++) {
         CBService *s = [p.services objectAtIndex:i];
-        //开始读取当前服务的特征值
-        [p discoverCharacteristics:nil forService:s];
+        if ([s.UUID isEqual:[CBUUID UUIDWithString:@"FFE5"]] ||
+            [s.UUID isEqual:[CBUUID UUIDWithString:@"FFE0"]]){
+            // 查找服务中得特征
+            [p discoverCharacteristics:nil forService:s];
+        }
+//        //开始读取当前服务的特征值
+//        [p discoverCharacteristics:nil forService:s];
     }
 }
 
@@ -404,11 +411,6 @@ typedef struct scanProcessStep{
         //发现的外围设备，被保存在对象的peripherals 缓冲中
         [self.activeCharacteristics addObject:c];
     }
-}
-
-- (void)getAllServicesFromKeyfob:(CBPeripheral *)p
-{
-    [p discoverServices:nil];
 }
 
 - (BOOL)isAActiveCharacteristic:(CBCharacteristic *)c

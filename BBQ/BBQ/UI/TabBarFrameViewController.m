@@ -58,9 +58,9 @@
         if([[Data Instance]isDemo]){
             //生成随机数
             demoseTTArray=[[NSMutableArray alloc]init];
-            int v1 = arc4random() % 438 + 100;
-            int v2 = arc4random() % 438 + 100;
-            int v3 = arc4random() % 438 + 100;
+            int v1 = arc4random() % 100 + 100;
+            int v2 = arc4random() % 100 + 100;
+            int v3 = arc4random() % 100 + 100;
             int v4 = arc4random() % 438 + 100;
             [demoseTTArray addObject:[NSString stringWithFormat:@"{\"sett\":{\"p1\":%d}}",v1]];
             [demoseTTArray addObject:[NSString stringWithFormat:@"{\"sett\":{\"p2\":%d}}",v2]];

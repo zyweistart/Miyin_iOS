@@ -7,9 +7,11 @@
 //
 
 #import "BaseTableViewController.h"
+#import "MBProgressHUD.h"
 
 @interface ConnectViewController : BaseTableViewController<TIBLECBStandandDelegate>
 
 @property(strong,nonatomic)NSTimer *mTimer;
+@property(strong,nonatomic)MBProgressHUD *mMBProgressHUD;
 
 @end
