@@ -400,10 +400,10 @@
 				C9ECF2011B65C85A0088E110 /* UIImage+Utils.m */,
 				C9ECF2021B65C85A0088E110 /* UIImageView+Utils.h */,
 				C9ECF2031B65C85A0088E110 /* UIImageView+Utils.m */,
-				C9ECF2041B65C85A0088E110 /* User.h */,
-				C9ECF2051B65C85A0088E110 /* User.m */,
 				C9420CB01B70A248003E3D8B /* UIScrollView+UITouch.h */,
 				C9420CB11B70A248003E3D8B /* UIScrollView+UITouch.m */,
+				C9ECF2041B65C85A0088E110 /* User.h */,
+				C9ECF2051B65C85A0088E110 /* User.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

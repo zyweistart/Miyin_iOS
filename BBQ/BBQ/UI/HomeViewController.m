@@ -221,12 +221,15 @@
     for(id key in [data allKeys]){
         NSString *title=[NSString stringWithFormat:@"%@",key];
         CGFloat value=self.mSetTempView.mSlider.value;
+        NSString *vtext=[NSString stringWithFormat:@"%0.2lf",value];
+        int v=value;
+        CGFloat f=[vtext floatValue]-v;
+        if(f>0){
+           value=value-DECIMALPOINT;
+        }
         if([@"f" isEqualToString:[[Data Instance]getCf]]){
             //如果为华摄单位则转为摄氏
-            value=value-DECIMALPOINT;
             value=[Common FConvertC:value];
-        }else{
-            value=value-DECIMALPOINT;
         }
         [[[Data Instance]sett]setObject:[NSString stringWithFormat:@"%lf",value] forKey:key];
         title=[title stringByReplacingOccurrencesOfString:@"T" withString:@"p"];

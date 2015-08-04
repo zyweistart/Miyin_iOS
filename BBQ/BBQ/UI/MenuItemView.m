@@ -136,6 +136,9 @@
         if(width>hWidth){
             width=hWidth;
         }
+        if(width<=0){
+            width=0;
+        }
         [self.lblCurrentSamllCentigrade setFrame:CGRectMake1((68+width)*self.scale, 5*self.scale, 60*self.scale, 20*self.scale)];
         [self.viewCentigrade setFrame:CGRectMake1(2*self.scale, 2*self.scale, width*self.scale, 16*self.scale)];
     }
