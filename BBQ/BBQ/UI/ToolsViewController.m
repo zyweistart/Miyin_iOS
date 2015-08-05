@@ -45,6 +45,8 @@
         //针4
         if(self.mChartItemView4==nil){
             self.mChartItemView4=[self createChartItemViewWithX:570 Tag:4];
+            self.mChartItemView4.lineChartView.max = 537;
+            self.mChartItemView4.pointNumber=600;
         }
         //横屏
         CGRect rect;
