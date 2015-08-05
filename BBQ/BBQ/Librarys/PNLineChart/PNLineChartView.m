@@ -7,7 +7,7 @@
 #pragma mark -
 #pragma mark MACRO
 
-#define POINT_CIRCLE 6.0f
+#define POINT_CIRCLE 3.0f
 //#define DEVICE_WIDTH CGWidth(320)
 #define FLOAT_NUMBER_FORMATTER_STRING  @"%.2f"
 
@@ -89,7 +89,7 @@
     // set text size and font
     CGContextSetTextMatrix(context, CGAffineTransformIdentity);
     CGContextSelectFont(context,[self.fontName UTF8String],self.xAxisFontSize, kCGEncodingMacRoman);
-    // draw yAxis
+    // 绘制y轴
     for (int i=0; i<=self.numberOfVerticalElements;i++) {
         int height =self.horizontalLineInterval*i;
         float verticalLine = height + startHeight - self.contentScroll.y;
@@ -146,12 +146,15 @@
         }
         CGContextStrokePath(context);
     }
+    
     [self.xAxisFontColor set];
     CGContextSetLineWidth(context, self.axisLineWidth);
     CGContextMoveToPoint(context, startWidth, startHeight);
+    //y轴
     CGContextAddLineToPoint(context, startWidth, self.bounds.size.height);
     CGContextStrokePath(context);
     CGContextMoveToPoint(context, startWidth, startHeight);
+    //x轴
     CGContextAddLineToPoint(context, self.bounds.size.width, startHeight);
     CGContextStrokePath(context);
     for (int i=0; i<self.xAxisValues.count; i++) {

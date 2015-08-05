@@ -73,7 +73,7 @@
         [self.frameView addSubview:self.lblTimerUnit];
         totalSecond=0;
         if(self.mTimer==nil){
-            self.mTimer=[NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+            self.mTimer=[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
         }
         [self loadChartData];
         self.pointNumber=150;
