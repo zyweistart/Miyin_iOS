@@ -38,11 +38,11 @@
         [self.lblCurrentSamllCentigrade setTitleColor:DEFAULTITLECOLORRGB(242, 125, 0) forState:UIControlStateNormal];
         [self.lblCurrentSamllCentigrade setImage:[UIImage imageNamed:@"指针"] forState:UIControlStateNormal];
         [self.lblCurrentSamllCentigrade setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-        [self.lblCurrentSamllCentigrade.titleLabel setFont:[UIFont systemFontOfSize:15*self.scale]];
-        [self.lblCurrentSamllCentigrade setImageEdgeInsets:UIEdgeInsetsMake(0, -10*self.scale, 0, 0)];
+        [self.lblCurrentSamllCentigrade.titleLabel setFont:[UIFont systemFontOfSize:14*self.scale]];
+        [self.lblCurrentSamllCentigrade setImageEdgeInsets:UIEdgeInsetsMake(0, -2*self.scale, 0, 0)];
         [self.frameView addSubview:self.lblCurrentSamllCentigrade];
         
-        self.lineViewFrame=[[UIView alloc]initWithFrame:CGRectMake1(60*self.scale, 30*self.scale, 224*self.scale, 20*self.scale)];
+        self.lineViewFrame=[[UIView alloc]initWithFrame:CGRectMake1(60*self.scale, 30*self.scale, 209*self.scale, 20*self.scale)];
         [self.lineViewFrame setBackgroundColor:DEFAULTITLECOLOR(188)];
         [self.frameView addSubview:self.lineViewFrame];
         
@@ -131,7 +131,7 @@
         }
         [self.lblHighestCentigrade setTitle:[Data getTemperatureValue:oldValue] forState:UIControlStateNormal];
         
-        CGFloat hWidth=220;
+        CGFloat hWidth=205;
         CGFloat width=hWidth/currentHighValue*currentValue;
         if(width>hWidth){
             width=hWidth;
@@ -139,7 +139,7 @@
         if(width<=0){
             width=0;
         }
-        [self.lblCurrentSamllCentigrade setFrame:CGRectMake1((68+width)*self.scale, 5*self.scale, 60*self.scale, 20*self.scale)];
+        [self.lblCurrentSamllCentigrade setFrame:CGRectMake1((60+width)*self.scale, 5*self.scale, 60*self.scale, 20*self.scale)];
         [self.viewCentigrade setFrame:CGRectMake1(2*self.scale, 2*self.scale, width*self.scale, 16*self.scale)];
     }
 }
