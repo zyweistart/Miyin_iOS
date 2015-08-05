@@ -3,7 +3,6 @@
 "Unknown" = "未知";
 "Disconnect" = "断开连接";
 "Connected" = "已连接";
-"Connecting" = "连接中";
 "Connecting..." = "连接中...";
 "Menu" = "菜单";
 "Tools" = "工具";
@@ -31,9 +30,9 @@
 "Set Temp" = "设定温度";
 "Current Temp" = "当前温度";
 "Timer" = "时间";
+"Warning" = "警告";
 "Target Temp" = "目标温度";
 "No equipment" = "暂无设备";
-"Warning" = "警告";
 "Timer is finished!" = "定时结束";
 "Temperature is high!" = "温度过高";
 "The grill has flared up!" = "烧烤已燃烧起来了";
