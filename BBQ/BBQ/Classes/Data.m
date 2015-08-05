@@ -28,6 +28,13 @@ static Data * instance = nil;
     return instance;
 }
 
+- (void)clear
+{
+    [self.sett removeAllObjects];
+    [self.settValue removeAllObjects];
+    [self.chartData removeAllObjects];
+}
+
 - (void)setAutoConnected:(NSString*)uuid
 {
     [Common setCache:AUTOCONNECTEDUUID data:uuid];

@@ -35,5 +35,6 @@
 - (void)setCf:(NSString*)cf;
 - (NSString*)getAlarm;
 - (void)setAlarm:(NSString*)alarm;
+- (void)clear;
 
 @end

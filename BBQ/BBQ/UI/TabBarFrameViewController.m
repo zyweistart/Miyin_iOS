@@ -396,6 +396,8 @@
 
 - (void)closeAll
 {
+    //清除
+    [[Data Instance]clear];
     if([[Data Instance]isDemo]){
         if(self.mDemoTimer){
             [self.mDemoTimer invalidate];
