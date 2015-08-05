@@ -12,7 +12,7 @@
     NSInteger totalSecond;
 }
 
-- (id)initWithFrame:(CGRect)frame LineChartMax:(NSInteger)max
+- (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -65,7 +65,7 @@
         [self.lineChartView setUserInteractionEnabled:YES];
         [self.frameView addSubview:self.lineChartView];
         self.lineChartView.min = 0;
-        self.lineChartView.max = max;
+        self.lineChartView.max = 250;
         self.lblTimerUnit=[[UILabel alloc]initWithFrame:CGRectMake1(260*self.scale, 130*self.scale, 60*self.scale, 20*self.scale)];
         [self.lblTimerUnit setFont:[UIFont systemFontOfSize:12*self.scale]];
         [self.lblTimerUnit setTextColor:DEFAULTITLECOLOR(150)];
@@ -101,6 +101,19 @@
         NSString *key=[NSString stringWithFormat:@"%@",k];
         self.currentKey=[NSString stringWithFormat:@"%@",key];
         [self.lblTitle setText:self.currentKey];
+        if([@"T1" isEqualToString:self.currentKey]){
+            self.lineChartView.max = 250;
+            self.pointNumber=150;
+        }else if([@"T2" isEqualToString:self.currentKey]){
+            self.lineChartView.max = 250;
+            self.pointNumber=150;
+        }else if([@"T3" isEqualToString:self.currentKey]){
+            self.lineChartView.max = 250;
+            self.pointNumber=150;
+        }else if([@"T4" isEqualToString:self.currentKey]){
+            self.lineChartView.max = 537;
+            self.pointNumber=600;
+        }
     }
 }
 

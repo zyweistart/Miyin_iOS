@@ -126,6 +126,10 @@
     }
     [self.scrollFrameView setContentSize:CGSizeMake1(320, 190*[array count])];
     self.dataItemArray=[[NSMutableArray alloc]initWithArray:array];
+    [self.mMenuItemView1 setHidden:YES];
+    [self.mMenuItemView2 setHidden:YES];
+    [self.mMenuItemView3 setHidden:YES];
+    [self.mMenuItemView4 setHidden:YES];
     for(int i=0;i<[array count];i++){
         if(i==0){
             NSDictionary *d1=[array objectAtIndex:0];

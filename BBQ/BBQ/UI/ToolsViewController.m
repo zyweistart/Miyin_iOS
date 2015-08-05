@@ -30,20 +30,19 @@
         [self.view addSubview:self.scrollFrameView];
         //针1
         if(self.mChartItemView1==nil){
-            self.mChartItemView1=[self createChartItemViewWithX:0 Tag:1 LineChartMax:250];
+            self.mChartItemView1=[self createChartItemViewWithX:0 Tag:1];
         }
         //针2
         if(self.mChartItemView2==nil){
-            self.mChartItemView2=[self createChartItemViewWithX:190 Tag:2 LineChartMax:250];
+            self.mChartItemView2=[self createChartItemViewWithX:190 Tag:2 ];
         }
         //针3
         if(self.mChartItemView3==nil){
-            self.mChartItemView3=[self createChartItemViewWithX:380 Tag:3 LineChartMax:250];
+            self.mChartItemView3=[self createChartItemViewWithX:380 Tag:3];
         }
         //针4
         if(self.mChartItemView4==nil){
-            self.mChartItemView4=[self createChartItemViewWithX:570 Tag:4 LineChartMax:537];
-            self.mChartItemView4.pointNumber=600;
+            self.mChartItemView4=[self createChartItemViewWithX:570 Tag:4];
         }
         //横屏
         CGRect rect;
@@ -52,7 +51,7 @@
         }else{
             rect=CGRectMake(0, 0,CGHeight(512),CGWidth(304));
         }
-        self.mChartItemLandView=[[ChartItemLandView alloc]initWithFrame:rect LineChartMax:537];
+        self.mChartItemLandView=[[ChartItemLandView alloc]initWithFrame:rect];
         [self.mChartItemLandView setUserInteractionEnabled:YES];
         [self.mChartItemLandView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeHide:)]];
         [self.mChartItemLandView setHidden:YES];
@@ -87,6 +86,10 @@
         return;
     }
     [self.scrollFrameView setContentSize:CGSizeMake1(320, 190*[array count])];
+    [self.mChartItemView1 setHidden:YES];
+    [self.mChartItemView2 setHidden:YES];
+    [self.mChartItemView3 setHidden:YES];
+    [self.mChartItemView4 setHidden:YES];
     for(int i=0;i<[array count];i++){
         if(i==0){
             NSDictionary *d1=[array objectAtIndex:0];
@@ -159,9 +162,9 @@
     [self.mChartItemLandView setHidden:YES];
 }
 
-- (ChartItemView*)createChartItemViewWithX:(CGFloat)x Tag:(NSInteger)tag LineChartMax:(NSInteger)max
+- (ChartItemView*)createChartItemViewWithX:(CGFloat)x Tag:(NSInteger)tag
 {
-    ChartItemView *mChartItemView=[[ChartItemView alloc]initWithFrame:CGRectMake1(0, x, 320, 190) LineChartMax:max];
+    ChartItemView *mChartItemView=[[ChartItemView alloc]initWithFrame:CGRectMake1(0, x, 320, 190)];
     [mChartItemView setTag:tag];
     [mChartItemView setUserInteractionEnabled:YES];
     [mChartItemView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];
