@@ -154,9 +154,11 @@
 
 - (void)ConnectedState:(BOOL)state
 {
-    [self.scrollFrameView setHidden:!state];
-    [self.mConnectedPanel setHidden:state];
-    [self.lblMessage setText:LOCALIZATION(@"Connection is broken")];
+    if(![[Data Instance]isDemo]){
+        [self.scrollFrameView setHidden:!state];
+        [self.mConnectedPanel setHidden:state];
+        [self.lblMessage setText:LOCALIZATION(@"Connection is broken")];
+    }
 }
 
 - (void)frmeChange:(UIGestureRecognizer*)sender

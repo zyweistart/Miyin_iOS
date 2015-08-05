@@ -112,9 +112,11 @@
 
 - (void)ConnectedState:(BOOL)state
 {
-    [self.tableView setHidden:!state];
-    [self.mConnectedPanel setHidden:state];
-    [self.lblMessage setText:LOCALIZATION(@"Connection is broken")];
+    if(![[Data Instance]isDemo]){
+        [self.tableView setHidden:!state];
+        [self.mConnectedPanel setHidden:state];
+        [self.lblMessage setText:LOCALIZATION(@"Connection is broken")];
+    }
 }
 
 - (void)changeLanguageText

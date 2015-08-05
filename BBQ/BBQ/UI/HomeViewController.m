@@ -373,14 +373,16 @@
 
 - (void)ConnectedState:(BOOL)state
 {
-    if(state){
-        [self cTitle:LOCALIZATION(@"BBQ Connected")];
-    }else{
-        [self cTitle:LOCALIZATION(@"BBQ Unconnected")];
+    if(![[Data Instance]isDemo]){
+        if(state){
+            [self cTitle:LOCALIZATION(@"BBQ Connected")];
+        }else{
+            [self cTitle:LOCALIZATION(@"BBQ Unconnected")];
+        }
+        [self.scrollFrameView setHidden:!state];
+        [self.mConnectedPanel setHidden:state];
+        [self.lblMessage setText:LOCALIZATION(@"Connection is broken")];
     }
-    [self.scrollFrameView setHidden:!state];
-    [self.mConnectedPanel setHidden:state];
-    [self.lblMessage setText:LOCALIZATION(@"Connection is broken")];
 }
 
 - (void)frmeChange:(UIGestureRecognizer*)sender

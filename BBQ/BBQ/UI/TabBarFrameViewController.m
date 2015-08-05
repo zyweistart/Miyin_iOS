@@ -61,7 +61,7 @@
             int v1 = arc4random() % 100 + 100;
             int v2 = arc4random() % 100 + 100;
             int v3 = arc4random() % 100 + 100;
-            int v4 = arc4random() % 438 + 100;
+            int v4 = arc4random() % 437 + 100;
             [demoseTTArray addObject:[NSString stringWithFormat:@"{\"sett\":{\"p1\":%d}}",v1]];
             [demoseTTArray addObject:[NSString stringWithFormat:@"{\"sett\":{\"p2\":%d}}",v2]];
             [demoseTTArray addObject:[NSString stringWithFormat:@"{\"sett\":{\"p3\":%d}}",v3]];
@@ -79,7 +79,7 @@
                 [demoTArray addObject:[NSString stringWithFormat:@"{\"t\":[{\"p1\":%d},{\"p2\":%d},{\"p3\":%d},{\"p4\":%d}]}",v1,v2,v3,v4]];
             }
             [self demoUpdateTimer];
-            self.mDemoTimer=[NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(demoUpdateTimer) userInfo:nil repeats:YES];
+            self.mDemoTimer=[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(demoUpdateTimer) userInfo:nil repeats:YES];
         }
         
         receiveSBString=[NSMutableString new];
