@@ -8,6 +8,8 @@
 
 #import "ChartItemView.h"
 
+#define SECOND 6
+
 @implementation ChartItemView{
     NSInteger totalSecond;
 }
@@ -72,11 +74,11 @@
         [self.frameView addSubview:self.lblTimerUnit];
         totalSecond=0;
         if(self.mTimer==nil){
-            self.mTimer=[NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+            self.mTimer=[NSTimer scheduledTimerWithTimeInterval:SECOND target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
         }
         [self loadChartData];
         self.lineChartView.max = 250;
-        self.pointNumber=150;
+        self.pointNumber = 1200;
         [self setLanguage];
     }
     return self;
@@ -103,16 +105,16 @@
         [self.lblTitle setText:self.currentKey];
         if([@"T1" isEqualToString:self.currentKey]){
             self.lineChartView.max = 250;
-            self.pointNumber=150;
+            self.pointNumber=1200;
         }else if([@"T2" isEqualToString:self.currentKey]){
             self.lineChartView.max = 250;
-            self.pointNumber=150;
+            self.pointNumber=1200;
         }else if([@"T3" isEqualToString:self.currentKey]){
             self.lineChartView.max = 250;
-            self.pointNumber=150;
+            self.pointNumber=1200;
         }else if([@"T4" isEqualToString:self.currentKey]){
             self.lineChartView.max = 537;
-            self.pointNumber=600;
+            self.pointNumber=1200;
         }
     }
 }
@@ -125,7 +127,7 @@
     for(NSDictionary *da in [[Data Instance]currentTValue]){
         NSString *value=[da objectForKey:self.currentKey];
         if(value!=nil){
-            totalSecond+=60;
+            totalSecond+=SECOND;
             NSMutableArray *array=[[[Data Instance]chartData]objectForKey:self.currentKey];
             if(array==nil){
                 array=[[NSMutableArray alloc]init];
@@ -134,9 +136,9 @@
             NSMutableDictionary *chDataValue=[[NSMutableDictionary alloc]init];
             [chDataValue setObject:value forKey:CHARTCURVALUE];
             [chDataValue setObject:settValue forKey:CHARTSETVALUE];
-            NSInteger t=totalSecond/60;
+            NSInteger t=totalSecond/SECOND;
             NSString *timerV=[NSString stringWithFormat:@"%ld",t];
-            if(t>60){
+            if(t>SECOND){
 //                timerV=[NSString stringWithFormat:@"%ldh:%ldm",t/60,t%60];
             }
             BOOL flag=YES;
@@ -182,13 +184,29 @@
         [self.lblCFType setText:[NSString stringWithFormat:@"%@(°C)",LOCALIZATION(@"Temp")]];
     }
     self.lineChartView.interval = (self.lineChartView.max-self.lineChartView.min)/self.lineChartView.numberOfVerticalElements;
-    //x轴
-    NSMutableArray *xAxisValues = [NSMutableArray array];
     NSArray *dlV=[[[Data Instance]chartData]objectForKey:self.currentKey];
+    int count=1;
+    NSMutableArray *totalData=nil;
+    NSMutableArray *timerList=[[NSMutableArray alloc]init];
+    NSMutableDictionary *totalDataDic=[[NSMutableDictionary alloc]init];
     for(int i=0;i<[dlV count];i++){
         NSDictionary *vv=[dlV objectAtIndex:i];
-        NSString * str = [NSString stringWithFormat:@"%@",[vv objectForKey:CHARTTIMER]];
-        [xAxisValues addObject:str];
+        NSString *timer=[NSString stringWithFormat:@"%d",count];
+        totalData=[totalDataDic objectForKey:timer];
+        if(totalData==nil){
+            [timerList addObject:timer];
+            totalData=[[NSMutableArray alloc]init];
+        }
+        [totalData addObject:vv];
+        [totalDataDic setObject:totalData forKey:timer];
+        if([totalData count]==10){
+            count++;
+        }
+    }
+    //x轴
+    NSMutableArray *xAxisValues = [NSMutableArray array];
+    for(NSString *timer in timerList){
+        [xAxisValues addObject:timer];
     }
     self.lineChartView.xAxisValues = xAxisValues;
     //y轴
@@ -202,14 +220,14 @@
         }
     }
     self.lineChartView.yAxisValues = yAxisValues;
-    
     NSMutableArray *plottingDataValues1 = [NSMutableArray array];
     NSMutableArray *plottingDataValues2 = [NSMutableArray array];
-    dlV=[[[Data Instance]chartData]objectForKey:self.currentKey];
-    for(int i=0;i<[dlV count];i++){
-        NSDictionary *vv=[dlV objectAtIndex:i];
-        [plottingDataValues1 addObject:[NSString stringWithFormat:@"%@",[vv objectForKey:CHARTCURVALUE]]];
-        [plottingDataValues2 addObject:[NSString stringWithFormat:@"%@",[vv objectForKey:CHARTSETVALUE]]];
+    for(NSString *timer in timerList){
+        NSArray *dlist=[totalDataDic objectForKey:timer];
+        for(NSDictionary *d in dlist){
+            [plottingDataValues1 addObject:[NSString stringWithFormat:@"%@",[d objectForKey:CHARTCURVALUE]]];
+            [plottingDataValues2 addObject:[NSString stringWithFormat:@"%@",[d objectForKey:CHARTSETVALUE]]];
+        }
     }
     //当前温度值
     PNPlot *plot1 = [[PNPlot alloc] init];

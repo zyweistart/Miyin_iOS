@@ -1,8 +1,5 @@
 #import <UIKit/UIKit.h>
 
-#define POINTTIMER @"POINTTIMER"
-#define POINTARRAY @"POINTARRAY"
-
 @class PNPlot;
 
 @interface PNLineChartView : UIView

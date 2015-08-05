@@ -131,7 +131,7 @@
             NSNumber* value = [pointArray objectAtIndex:i];
             float floatValue = value.floatValue;
             float height = (floatValue-self.min)/self.interval*self.horizontalLineInterval-self.contentScroll.y+startHeight;
-            float width =self.pointerInterval*(i+1)+mOffsetX+ startHeight+5;
+            float width =self.pointerInterval+self.pointerInterval*(i+1)/10+mOffsetX+ startHeight+5;
             if (width<startWidth) {
                 NSNumber* nextValue = [pointArray objectAtIndex:i+1];
                 float nextFloatValue = nextValue.floatValue;
@@ -151,7 +151,7 @@
             NSNumber* value = [pointArray objectAtIndex:i];
             float floatValue = value.floatValue;
             float height = (floatValue-self.min)/self.interval*self.horizontalLineInterval-self.contentScroll.y+startHeight;
-            float width =self.pointerInterval*(i+1)+mOffsetX+ startWidth;
+            float width =self.pointerInterval+self.pointerInterval*(i+1)/10+mOffsetX+ startWidth;
             if (width>startWidth) {
                 CGContextFillEllipseInRect(context, CGRectMake(width-POINT_CIRCLE, height-POINT_CIRCLE/2, POINT_CIRCLE, POINT_CIRCLE));
             }

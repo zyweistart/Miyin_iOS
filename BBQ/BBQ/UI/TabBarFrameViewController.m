@@ -79,7 +79,7 @@
                 [demoTArray addObject:[NSString stringWithFormat:@"{\"t\":[{\"p1\":%d},{\"p2\":%d},{\"p3\":%d},{\"p4\":%d}]}",v1,v2,v3,v4]];
             }
             [self demoUpdateTimer];
-            self.mDemoTimer=[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(demoUpdateTimer) userInfo:nil repeats:YES];
+            self.mDemoTimer=[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(demoUpdateTimer) userInfo:nil repeats:YES];
         }
         
         receiveSBString=[NSMutableString new];
