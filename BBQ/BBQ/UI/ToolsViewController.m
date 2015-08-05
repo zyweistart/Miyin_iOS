@@ -15,11 +15,13 @@
 
 @implementation ToolsViewController{
     BOOL isAddFlag;
+    NSInteger currentZoomTag;
 }
 
 - (id)init{
     self=[super init];
     if(self){
+        currentZoomTag=-1;
         [self cTitle:LOCALIZATION(@"Tools")];
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景3"]]];
         self.scrollFrameView=[[UIScrollView alloc]initWithFrame:self.view.bounds];
@@ -90,23 +92,53 @@
     [self.mChartItemView2 setHidden:YES];
     [self.mChartItemView3 setHidden:YES];
     [self.mChartItemView4 setHidden:YES];
+    [self.mChartItemLandView setHidden:YES];
     for(int i=0;i<[array count];i++){
         if(i==0){
             NSDictionary *d1=[array objectAtIndex:0];
             [self.mChartItemView1 loadData:d1];
             [self.mChartItemView1 setHidden:NO];
+            if(currentZoomTag>=0){
+                if([self.mChartItemView1.currentKey isEqualToString:self.mChartItemLandView.currentKey]){
+                    [self.mChartItemLandView loadData:d1];
+                    [self.mChartItemLandView setHidden:NO];
+                }
+            }
         }else if(i==1){
             NSDictionary *d2=[array objectAtIndex:1];
             [self.mChartItemView2 loadData:d2];
             [self.mChartItemView2 setHidden:NO];
+            if(currentZoomTag>=0){
+                if([self.mChartItemView2.currentKey isEqualToString:self.mChartItemLandView.currentKey]){
+                    [self.mChartItemLandView loadData:d2];
+                    [self.mChartItemLandView setHidden:NO];
+                }
+            }
         }else if(i==2){
             NSDictionary *d3=[array objectAtIndex:2];
             [self.mChartItemView3 loadData:d3];
             [self.mChartItemView3 setHidden:NO];
+            if(currentZoomTag>=0){
+                if([self.mChartItemView3.currentKey isEqualToString:self.mChartItemLandView.currentKey]){
+                    [self.mChartItemLandView loadData:d3];
+                    [self.mChartItemLandView setHidden:NO];
+                }
+            }
         }else if(i==3){
             NSDictionary *d4=[array objectAtIndex:3];
             [self.mChartItemView4 loadData:d4];
             [self.mChartItemView4 setHidden:NO];
+            if(currentZoomTag>=0){
+                if([self.mChartItemView4.currentKey isEqualToString:self.mChartItemLandView.currentKey]){
+                    [self.mChartItemLandView loadData:d4];
+                    [self.mChartItemLandView setHidden:NO];
+                }
+            }
+        }
+    }
+    if(currentZoomTag>=0){
+        if([self.mChartItemLandView isHidden]){
+            currentZoomTag=-1;
         }
     }
 }
@@ -129,20 +161,20 @@
 
 - (void)frmeChange:(UIGestureRecognizer*)sender
 {
-    NSInteger tag=[[sender view]tag];
+    currentZoomTag=[[sender view]tag];
     [self.mChartItemLandView setHidden:NO];
     CGAffineTransform at =CGAffineTransformMakeRotation(M_PI/2);
     [self.mChartItemLandView setTransform:at];
     CGFloat width=[[Data Instance]mTabBarFrameViewController].view.bounds.size.width;
     CGFloat height=[[Data Instance]mTabBarFrameViewController].view.bounds.size.height;
     [self.mChartItemLandView setCenter:CGPointMake(width/2,height/2)];
-    if(tag==1){
+    if(currentZoomTag==1){
         [self.mChartItemLandView loadData:self.mChartItemView1.currentData];
-    }else if(tag==2){
+    }else if(currentZoomTag==2){
         [self.mChartItemLandView loadData:self.mChartItemView2.currentData];
-    }else if(tag==3){
+    }else if(currentZoomTag==3){
         [self.mChartItemLandView loadData:self.mChartItemView3.currentData];
-    }else if(tag==4){
+    }else if(currentZoomTag==4){
         [self.mChartItemLandView loadData:self.mChartItemView4.currentData];
     }
     if([@"T1" isEqualToString:self.mChartItemLandView.currentKey]){
@@ -159,6 +191,7 @@
 
 - (void)frmeHide:(id)sender
 {
+    currentZoomTag=-1;
     [self.mChartItemLandView setHidden:YES];
 }
 

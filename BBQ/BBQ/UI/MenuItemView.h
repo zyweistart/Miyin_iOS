@@ -28,6 +28,7 @@
 @property (strong,nonatomic)UILabel *lblSetTemp;
 @property (strong,nonatomic)UIView *lineViewFrame;
 @property (strong,nonatomic)UIView *lineView;
+@property (strong,nonatomic)NSString *currentKey;
 
 @property (strong,nonatomic)NSTimer *mTimer;
 

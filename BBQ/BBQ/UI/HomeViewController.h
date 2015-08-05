@@ -25,7 +25,6 @@
 @property (strong,nonatomic)MenuItemView *mMenuItemView4;
 
 @property (strong,nonatomic)MenuItemLandView *mMenuItemLandView;
-
 @property (strong,nonatomic)NSMutableArray *dataItemArray;
 
 - (void)loadData:(NSArray*)array;

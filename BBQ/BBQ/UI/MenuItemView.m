@@ -111,19 +111,26 @@
 {
     for(id k in [self.currentData allKeys]){
         NSString *key=[NSString stringWithFormat:@"%@",k];
-        NSString *oldValue1=[self.currentData objectForKey:key];
+        if([key isEqualToString:self.currentKey]){
+            [self showTimerString:self.currentKey];
+        }else{
+            self.currentKey=key;
+            //掉电保存
+            [self setTimerScheduled];
+        }
+        NSString *oldValue1=[self.currentData objectForKey:self.currentKey];
         CGFloat currentValue1=[oldValue1 floatValue]+DECIMALPOINT;
         NSString *centigrade=[NSString stringWithFormat:@"%lf",currentValue1];
         
         int currentValue=[centigrade intValue];
-        [self.lblTitle setText:key];
+        [self.lblTitle setText:self.currentKey];
         [self.lblCurrentCentigrade setText:[Data getTemperatureValue:oldValue1]];
         [self.lblCurrentSamllCentigrade setTitle:[Data getTemperatureValue:oldValue1] forState:UIControlStateNormal];
         
         //默认值
         int currentHighValue=0;
         
-        NSString *oldValue=[[[Data Instance] sett] objectForKey:key];
+        NSString *oldValue=[[[Data Instance] sett] objectForKey:self.currentKey];
         CGFloat value1=[oldValue floatValue]+DECIMALPOINT;
         NSString *value=[NSString stringWithFormat:@"%lf",value1];
         if(value){
