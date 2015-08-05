@@ -131,7 +131,7 @@
     }
     mOffsetX=self.contentScroll.x;
     //曲线的总长
-    float lineTotalLength=self.pointerInterval*[self.xAxisValues count] + startWidth;
+    float lineTotalLength=self.pointerInterval*[self.xAxisValues count] + startWidth-self.pointerInterval;
     //图表显示界的长度
     CGFloat width=self.bounds.size.width-startWidth;
     if(self.isAutoOffset){
@@ -151,7 +151,7 @@
             NSNumber* value = [pointArray objectAtIndex:i];
             float floatValue = value.floatValue;
             float height = (floatValue-self.min)/self.interval*self.horizontalLineInterval-self.contentScroll.y+startHeight;
-            float width =self.pointerInterval+self.pointerInterval*(i+1)/10+mOffsetX+ startWidth;
+            float width =self.pointerInterval*(i+1)/10+mOffsetX+ startWidth;
             if (width<startWidth) {
                 NSNumber* nextValue = [pointArray objectAtIndex:i+1];
                 float nextFloatValue = nextValue.floatValue;
@@ -171,7 +171,7 @@
             NSNumber* value = [pointArray objectAtIndex:i];
             float floatValue = value.floatValue;
             float height = (floatValue-self.min)/self.interval*self.horizontalLineInterval-self.contentScroll.y+startHeight;
-            float width =self.pointerInterval+self.pointerInterval*(i+1)/10+mOffsetX+ startWidth;
+            float width =self.pointerInterval*(i+1)/10+mOffsetX+ startWidth;
             if (width>startWidth) {
                 CGContextFillEllipseInRect(context, CGRectMake(width-POINT_CIRCLE/2, height-POINT_CIRCLE/2, POINT_CIRCLE, POINT_CIRCLE));
             }
@@ -190,7 +190,7 @@
     CGContextAddLineToPoint(context, self.bounds.size.width, startHeight);
     CGContextStrokePath(context);
     for (int i=0; i<self.xAxisValues.count; i++) {
-        float width =self.pointerInterval*(i+1)+mOffsetX+ startHeight;
+        float width =self.pointerInterval*i+mOffsetX+ startWidth;
         float height = self.xAxisFontSize;
         if (width<startWidth) {
             continue;
@@ -209,7 +209,7 @@
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    CGFloat lineOffsetX=self.pointerInterval*self.xAxisValues.count;
+    CGFloat lineOffsetX=self.pointerInterval*self.xAxisValues.count-self.pointerInterval;
     if(self.isAutoOffset){
         _contentScroll.x=-(lineOffsetX-self.axisLineSizeWidth);
     }
