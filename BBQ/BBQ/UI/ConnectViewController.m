@@ -279,7 +279,9 @@
     [[Data Instance] setIsDemo:YES];
     TabBarFrameViewController *mTabBarFrameViewController=[[TabBarFrameViewController alloc]init];
     [[Data Instance]setMTabBarFrameViewController:mTabBarFrameViewController];
-    [self presentViewController:mTabBarFrameViewController animated:YES completion:nil];
+    [self presentViewController:mTabBarFrameViewController animated:YES completion:^{
+        [self stopScan];
+    }];
 }
 
 - (void)goMainPage:(CBPeripheral*)cp
