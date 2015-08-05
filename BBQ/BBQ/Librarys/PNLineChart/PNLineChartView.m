@@ -14,12 +14,13 @@
 @interface PNLineChartView ()
 //字体名称
 @property (nonatomic, strong) NSString* fontName;
-@property (nonatomic, assign) CGPoint contentScroll;
 
 @end
 
 
-@implementation PNLineChartView
+@implementation PNLineChartView{
+    CGFloat mOffsetX;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -44,7 +45,7 @@
     self.numberOfVerticalElements=8;
     self.horizontalLineInterval=(self.frame.size.height-self.axisBottomLinetHeight-10)/self.numberOfVerticalElements;
     self.axisLineSizeWidth=self.frame.size.width-self.axisLeftLineWidth;
-    self.mXNewPoint=0;
+    self.isAutoOffset=YES;
 }
 
 #pragma mark -
@@ -108,6 +109,23 @@
         CGSize fontSize = [numberString sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil]];
         CGContextShowTextAtPoint(context, self.axisLeftLineWidth/2-fontSize.width/2, verticalLine - self.xAxisFontSize/2, [numberString UTF8String], count);
     }
+    mOffsetX=self.contentScroll.x;
+    //曲线的总长
+    float lineTotalLength=self.pointerInterval*[self.xAxisValues count] + startWidth;
+    //图表显示界的长度
+    CGFloat width=self.bounds.size.width-startWidth;
+    if(self.isAutoOffset){
+        //没有偏移的情况下
+        if(lineTotalLength>width){
+            mOffsetX=width-lineTotalLength;
+        }
+    }else{
+        //有偏移的情况下
+        //            if(lineTotalLength>width){
+        //                self.mOffsetX=width-lineTotalLength;
+        //            }
+//        NSLog(@"有偏移的情况下：%lf",self.mOffsetX);
+    }
     // draw lines
     for (int i=0; i<self.plots.count; i++) {
         PNPlot* plot = [self.plots objectAtIndex:i];
@@ -119,7 +137,7 @@
             NSNumber* value = [pointArray objectAtIndex:i];
             float floatValue = value.floatValue;
             float height = (floatValue-self.min)/self.interval*self.horizontalLineInterval-self.contentScroll.y+startHeight;
-            float width =self.pointerInterval*(i+1)+self.contentScroll.x+ startHeight+5;
+            float width =self.pointerInterval*(i+1)+mOffsetX+ startHeight+5;
             if (width<startWidth) {
                 NSNumber* nextValue = [pointArray objectAtIndex:i+1];
                 float nextFloatValue = nextValue.floatValue;
@@ -139,7 +157,7 @@
             NSNumber* value = [pointArray objectAtIndex:i];
             float floatValue = value.floatValue;
             float height = (floatValue-self.min)/self.interval*self.horizontalLineInterval-self.contentScroll.y+startHeight;
-            float width =self.pointerInterval*(i+1)+self.contentScroll.x+ startWidth;
+            float width =self.pointerInterval*(i+1)+mOffsetX+ startWidth;
             if (width>startWidth) {
                 CGContextFillEllipseInRect(context, CGRectMake(width-POINT_CIRCLE, height-POINT_CIRCLE/2, POINT_CIRCLE, POINT_CIRCLE));
             }
@@ -158,7 +176,7 @@
     CGContextAddLineToPoint(context, self.bounds.size.width, startHeight);
     CGContextStrokePath(context);
     for (int i=0; i<self.xAxisValues.count; i++) {
-        float width =self.pointerInterval*(i+1)+self.contentScroll.x+ startHeight;
+        float width =self.pointerInterval*(i+1)+mOffsetX+ startHeight;
         float height = self.xAxisFontSize;
         if (width<startWidth) {
             continue;
@@ -177,28 +195,31 @@
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    self.isAutoOffset=NO;
     CGPoint touchLocation=[[touches anyObject] locationInView:self];
     CGPoint prevouseLocation=[[touches anyObject] previousLocationInView:self];
     float xDiffrance=touchLocation.x-prevouseLocation.x;
     float yDiffrance=touchLocation.y-prevouseLocation.y;
     _contentScroll.x+=xDiffrance;
     _contentScroll.y+=yDiffrance;
-    if (_contentScroll.x >0) {
+    //
+    if (_contentScroll.x>0) {
         _contentScroll.x=0;
     }
-    if(_contentScroll.y<0){
-        _contentScroll.y=0;
+    CGFloat lineOffsetX=self.pointerInterval*self.xAxisValues.count;
+    if(lineOffsetX<self.axisLineSizeWidth){
+        _contentScroll.x=0;
+        self.isAutoOffset=YES;
+    }else{
+        if (-_contentScroll.x>(lineOffsetX-self.axisLineSizeWidth)) {
+            _contentScroll.x=-(lineOffsetX-self.axisLineSizeWidth);
+            self.isAutoOffset=YES;
+        }
+        if (_contentScroll.x>self.frame.size.width/2) {
+            _contentScroll.x=self.frame.size.width/2;
+            self.isAutoOffset=YES;
+        }
     }
-    if (-_contentScroll.x>(self.pointerInterval*(self.xAxisValues.count +3)-self.axisLineSizeWidth)) {
-        _contentScroll.x=-(self.pointerInterval*(self.xAxisValues.count +3)-self.axisLineSizeWidth);
-    }
-    if (_contentScroll.x>self.frame.size.width/2) {
-        _contentScroll.x=self.frame.size.width/2;
-    }
-    if (_contentScroll.y>self.frame.size.height/2) {
-        _contentScroll.y=self.frame.size.height/2;
-    }
-    // close the move up
     _contentScroll.y =0;
     [self setNeedsDisplay];
 }

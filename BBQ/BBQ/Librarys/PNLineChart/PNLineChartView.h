@@ -39,7 +39,9 @@
 //数据点列表
 @property (nonatomic, readonly, strong) NSMutableArray *plots;
 //
-@property CGFloat mXNewPoint;
+
+@property BOOL isAutoOffset;
+@property (nonatomic, assign) CGPoint contentScroll;
 
 //设置初始化值
 - (void)setInitValue;

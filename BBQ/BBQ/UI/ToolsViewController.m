@@ -172,12 +172,20 @@
     [self.mChartItemLandView setCenter:CGPointMake(width/2,height/2)];
     if(currentZoomTag==1){
         [self.mChartItemLandView loadData:self.mChartItemView1.currentData];
+        [self.mChartItemLandView.lineChartView setIsAutoOffset:self.mChartItemView1.lineChartView.isAutoOffset];
+        [self.mChartItemLandView.lineChartView setContentScroll:self.mChartItemView1.lineChartView.contentScroll];
     }else if(currentZoomTag==2){
         [self.mChartItemLandView loadData:self.mChartItemView2.currentData];
+        [self.mChartItemLandView.lineChartView setIsAutoOffset:self.mChartItemView2.lineChartView.isAutoOffset];
+        [self.mChartItemLandView.lineChartView setContentScroll:self.mChartItemView2.lineChartView.contentScroll];
     }else if(currentZoomTag==3){
         [self.mChartItemLandView loadData:self.mChartItemView3.currentData];
+        [self.mChartItemLandView.lineChartView setIsAutoOffset:self.mChartItemView3.lineChartView.isAutoOffset];
+        [self.mChartItemLandView.lineChartView setContentScroll:self.mChartItemView3.lineChartView.contentScroll];
     }else if(currentZoomTag==4){
         [self.mChartItemLandView loadData:self.mChartItemView4.currentData];
+        [self.mChartItemLandView.lineChartView setIsAutoOffset:self.mChartItemView4.lineChartView.isAutoOffset];
+        [self.mChartItemLandView.lineChartView setContentScroll:self.mChartItemView4.lineChartView.contentScroll];
     }
     if([@"T1" isEqualToString:self.mChartItemLandView.currentKey]){
         self.mChartItemLandView.lineChartView.max=250;
