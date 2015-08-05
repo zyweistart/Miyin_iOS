@@ -23,6 +23,7 @@
 @property (strong,nonatomic)NSString *currentKey;
 @property (strong,nonatomic)PNLineChartView *lineChartView;
 @property (strong,nonatomic)UIView *topLabelView;
+@property NSInteger max;
 
 @property CGFloat scale;
 @property NSInteger pointNumber;

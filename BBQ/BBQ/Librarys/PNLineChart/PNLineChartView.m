@@ -38,7 +38,7 @@
     self.xAxisFontColor = DEFAULTITLECOLOR(154);
     self.horizontalLinesColor = DEFAULTITLECOLOR(74);
     self.axisLineWidth = CGWidth(1);
-    self.axisLeftLineWidth = CGWidth(20);
+    self.axisLeftLineWidth = CGWidth(25);
     self.axisBottomLinetHeight = CGHeight(20);
     self.pointerInterval = CGWidth(20);
     self.horizontalLineWidth = CGWidth(0.2);
@@ -80,6 +80,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    [super drawRect:rect];
     CGFloat startWidth = self.axisLeftLineWidth;
     CGFloat startHeight = self.axisBottomLinetHeight;
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -90,7 +91,26 @@
     // set text size and font
     CGContextSetTextMatrix(context, CGAffineTransformIdentity);
     CGContextSelectFont(context,[self.fontName UTF8String],self.xAxisFontSize, kCGEncodingMacRoman);
+    // 绘制x轴
+    CGFloat w=self.frame.size.width-startWidth;
+    int horizontalCount=w/self.horizontalLineInterval;
+    if((w-(horizontalCount*self.horizontalLineInterval))>0){
+        horizontalCount++;
+    }
+    CGFloat lineHeight=startHeight+self.numberOfVerticalElements*self.horizontalLineInterval;
+    for (int i=0; i<=horizontalCount;i++) {
+        int height =self.horizontalLineInterval*i;
+        float horizontalLine = height + startWidth;
+        //设置y轴水平线宽
+        CGContextSetLineWidth(context, self.horizontalLineWidth);
+        //设置y轴水平线颜色
+        [self.horizontalLinesColor set];
+        CGContextMoveToPoint(context, horizontalLine, startHeight);
+        CGContextAddLineToPoint(context, horizontalLine, lineHeight);
+        CGContextStrokePath(context);
+    }
     // 绘制y轴
+    CGFloat lineWidth=startWidth+(horizontalCount-1)*self.horizontalLineInterval;
     for (int i=0; i<=self.numberOfVerticalElements;i++) {
         int height =self.horizontalLineInterval*i;
         float verticalLine = height + startHeight - self.contentScroll.y;
@@ -99,7 +119,7 @@
         //设置y轴水平线颜色
         [self.horizontalLinesColor set];
         CGContextMoveToPoint(context, startWidth, verticalLine);
-        CGContextAddLineToPoint(context, self.bounds.size.width, verticalLine);
+        CGContextAddLineToPoint(context, lineWidth, verticalLine);
         CGContextStrokePath(context);
         NSNumber* yAxisVlue = [self.yAxisValues objectAtIndex:i];
         NSString *numberString = [NSString stringWithFormat:@"%d",yAxisVlue.intValue];
@@ -161,12 +181,12 @@
     
     [self.xAxisFontColor set];
     CGContextSetLineWidth(context, self.axisLineWidth);
-    CGContextMoveToPoint(context, startWidth, startHeight);
     //y轴
+    CGContextMoveToPoint(context, startWidth, startHeight);
     CGContextAddLineToPoint(context, startWidth, self.bounds.size.height);
     CGContextStrokePath(context);
-    CGContextMoveToPoint(context, startWidth, startHeight);
     //x轴
+    CGContextMoveToPoint(context, startWidth, startHeight);
     CGContextAddLineToPoint(context, self.bounds.size.width, startHeight);
     CGContextStrokePath(context);
     for (int i=0; i<self.xAxisValues.count; i++) {

@@ -28,7 +28,7 @@
         self.frameView.layer.cornerRadius=CGWidth(5*self.scale);
         self.frameView.layer.borderWidth=1*self.scale;
         self.frameView.layer.borderColor=DEFAULTITLECOLOR(200).CGColor;
-        [self.frameView setBackgroundColor:[UIColor whiteColor]];
+        [self.frameView setBackgroundColor:DEFAULTITLECOLOR(230)];
         [self.frameView setUserInteractionEnabled:YES];
         [self addSubview:self.frameView];
         
@@ -62,13 +62,13 @@
         [SetTempLine setBackgroundColor:DEFAULTITLECOLORRGB(210, 91, 44)];
         [self.topLabelView addSubview:SetTempLine];
         
-        self.lineChartView = [[PNLineChartView alloc]initWithFrame:CGRectMake1(40*self.scale,20*self.scale, 230*self.scale, 160*self.scale)];
-        [self.lineChartView setBackgroundColor:[UIColor whiteColor]];
+        self.lineChartView = [[PNLineChartView alloc]initWithFrame:CGRectMake1(40*self.scale,20*self.scale, 240*self.scale, 160*self.scale)];
+        [self.lineChartView setBackgroundColor:[UIColor clearColor]];
         [self.lineChartView setUserInteractionEnabled:YES];
         [self.frameView addSubview:self.lineChartView];
         self.lineChartView.min = 0;
-        self.lblTimerUnit=[[UILabel alloc]initWithFrame:CGRectMake1(260*self.scale, 150*self.scale, 60*self.scale, 20*self.scale)];
-        [self.lblTimerUnit setFont:[UIFont systemFontOfSize:12*self.scale]];
+        self.lblTimerUnit=[[UILabel alloc]initWithFrame:CGRectMake1(270*self.scale, 150*self.scale, 50*self.scale, 20*self.scale)];
+        [self.lblTimerUnit setFont:[UIFont systemFontOfSize:10*self.scale]];
         [self.lblTimerUnit setTextColor:DEFAULTITLECOLOR(150)];
         [self.lblTimerUnit setTextAlignment:NSTextAlignmentCenter];
         [self.frameView addSubview:self.lblTimerUnit];
@@ -77,7 +77,7 @@
             self.mTimer=[NSTimer scheduledTimerWithTimeInterval:SECOND target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
         }
         [self loadChartData];
-        self.lineChartView.max = 250;
+        self.max=250;
         self.pointNumber = 1200;
         [self setLanguage];
     }
@@ -104,16 +104,16 @@
         self.currentKey=[NSString stringWithFormat:@"%@",key];
         [self.lblTitle setText:self.currentKey];
         if([@"T1" isEqualToString:self.currentKey]){
-            self.lineChartView.max = 250;
+            self.max = 250;
             self.pointNumber=1200;
         }else if([@"T2" isEqualToString:self.currentKey]){
-            self.lineChartView.max = 250;
+            self.max = 250;
             self.pointNumber=1200;
         }else if([@"T3" isEqualToString:self.currentKey]){
-            self.lineChartView.max = 250;
+            self.max = 250;
             self.pointNumber=1200;
         }else if([@"T4" isEqualToString:self.currentKey]){
-            self.lineChartView.max = 537;
+            self.max = 537;
             self.pointNumber=1200;
         }
     }
@@ -179,8 +179,10 @@
     [self.lineChartView clearPlot];
     [Data getTemperatureValue:@"2"];
     if([@"f" isEqualToString:[[Data Instance]getCf]]){
+        self.lineChartView.max = self.max*9/5+32;
         [self.lblCFType setText:[NSString stringWithFormat:@"%@(°F)",LOCALIZATION(@"Temp")]];
     }else{
+        self.lineChartView.max = self.max;
         [self.lblCFType setText:[NSString stringWithFormat:@"%@(°C)",LOCALIZATION(@"Temp")]];
     }
     self.lineChartView.interval = (self.lineChartView.max-self.lineChartView.min)/self.lineChartView.numberOfVerticalElements;
@@ -213,11 +215,7 @@
     NSMutableArray* yAxisValues = [@[] mutableCopy];
     for (int i=0; i<=self.lineChartView.numberOfVerticalElements; i++) {
         NSString *value = [NSString stringWithFormat:@"%.2f", self.lineChartView.min+self.lineChartView.interval*i];
-        if([@"f" isEqualToString:[[Data Instance]getCf]]){
-            [yAxisValues addObject:[NSString stringWithFormat:@"%d",[value intValue]*9/5+32]];
-        }else{
-            [yAxisValues addObject:value];
-        }
+        [yAxisValues addObject:value];
     }
     self.lineChartView.yAxisValues = yAxisValues;
     NSMutableArray *plottingDataValues1 = [NSMutableArray array];
@@ -233,13 +231,13 @@
     PNPlot *plot1 = [[PNPlot alloc] init];
     plot1.plottingValues = plottingDataValues1;
     plot1.lineColor = DEFAULTITLECOLORRGB(7, 166, 206);
-    plot1.lineWidth = 2;
+    plot1.lineWidth = 1.5;
     [self.lineChartView addPlot:plot1];
     //设定温度值
     PNPlot *plot2 = [[PNPlot alloc] init];
     plot2.plottingValues = plottingDataValues2;
     plot2.lineColor = DEFAULTITLECOLORRGB(210, 91, 44);
-    plot2.lineWidth = 2;
+    plot2.lineWidth = 1.5;
     [self.lineChartView  addPlot:plot2];
 }
 
