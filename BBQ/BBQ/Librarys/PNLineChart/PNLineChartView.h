@@ -8,11 +8,9 @@
 @property (nonatomic, assign)NSInteger xAxisFontSize;
 //字体颜色
 @property (nonatomic, strong)UIColor *xAxisFontColor;
-//y轴水平线的颜色
-@property (nonatomic, strong)UIColor *horizontalLinesColor;
-//y轴值的宽度
+//y轴数值文本的宽度
 @property (nonatomic, assign)float axisLeftLineWidth;
-//x轴值的高度
+//x轴数值文本的高度
 @property (nonatomic, assign)float axisBottomLinetHeight;
 //y轴水平线的间距
 @property (nonatomic, assign)float horizontalLineInterval;
@@ -20,6 +18,8 @@
 @property (nonatomic, assign)float axisLineWidth;
 //y轴水平线的宽度
 @property (nonatomic, assign)float horizontalLineWidth;
+//y轴水平线的颜色
+@property (nonatomic, strong)UIColor *horizontalLinesColor;
 //两个数据点的间距
 @property (nonatomic, assign)float pointerInterval;
 //x坐标轴宽度

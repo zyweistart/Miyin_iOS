@@ -82,7 +82,9 @@
     CGFloat startWidth = self.axisLeftLineWidth;
     CGFloat startHeight = self.axisBottomLinetHeight;
     CGContextRef context = UIGraphicsGetCurrentContext();
+    //坐标移动到(0,self.bounds.size.height)
     CGContextTranslateCTM(context, 0.0f , self.bounds.size.height);
+    //
     CGContextScaleCTM(context,1,-1);
     // set text size and font
     CGContextSetTextMatrix(context, CGAffineTransformIdentity);
@@ -91,8 +93,9 @@
     for (int i=0; i<=self.numberOfVerticalElements;i++) {
         int height =self.horizontalLineInterval*i;
         float verticalLine = height + startHeight - self.contentScroll.y;
+        //设置y轴水平线宽
         CGContextSetLineWidth(context, self.horizontalLineWidth);
-        //设置线的颜色
+        //设置y轴水平线颜色
         [self.horizontalLinesColor set];
         CGContextMoveToPoint(context, startWidth, verticalLine);
         CGContextAddLineToPoint(context, self.bounds.size.width, verticalLine);
@@ -185,6 +188,9 @@
     }
     if (-_contentScroll.x>(self.pointerInterval*(self.xAxisValues.count +3)-self.axisLineSizeWidth)) {
         _contentScroll.x=-(self.pointerInterval*(self.xAxisValues.count +3)-self.axisLineSizeWidth);
+    }
+    if (_contentScroll.x>self.frame.size.width/2) {
+        _contentScroll.x=self.frame.size.width/2;
     }
     if (_contentScroll.y>self.frame.size.height/2) {
         _contentScroll.y=self.frame.size.height/2;
