@@ -25,6 +25,8 @@ typedef struct _CHAR{
 
 @property (strong, nonatomic) TIBLECBStandand *bleManager;
 
+@property BOOL isApplicationBackground;
+
 - (void)sendData:(NSString*)message;
 
 @end

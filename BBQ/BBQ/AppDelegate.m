@@ -34,7 +34,8 @@
         myDelegate.autoSizeScaleX = 1.0;
         myDelegate.autoSizeScaleY = 1.0;
     }
-    
+    //默认为前台
+    self.isApplicationBackground=YES;
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance]setBarTintColor:NAVBG];
@@ -101,6 +102,18 @@
         length -= lengthChar ;
         p += lengthChar;
     }
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    // 进入后台
+    self.isApplicationBackground=NO;
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    // 回到前台
+    self.isApplicationBackground=YES;
 }
 
 //- (void)applicationDidEnterBackground:(UIApplication *)application

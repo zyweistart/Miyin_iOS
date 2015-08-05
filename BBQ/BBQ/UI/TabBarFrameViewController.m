@@ -108,6 +108,11 @@
     [super viewDidAppear:animated];
     if(![[Data Instance]isDemo]){
         [self.appDelegate.bleManager setDelegate:self];
+        //如果提示框为显示状态则播放报警声音
+        if(![self.mAlertView isHidden]){
+            //显示的状态下
+            [self playAlarm];
+        }
     }
 }
 
@@ -206,7 +211,9 @@
             NSString *alaram=[resultJSON objectForKey:@"alarm"];
             if([@"fire" isEqualToString:alaram]){
                 //火警
-                if(![self playAlarm]){
+                if(self.appDelegate.isApplicationBackground){
+                    [self playAlarm];
+                }else{
                     [self senderNotification:LOCALIZATION(@"The grill has flared up!")];
                 }
                 [self.mAlertView.lblTitle setText:LOCALIZATION(@"Warning")];
@@ -214,13 +221,17 @@
                 [self.mAlertView setType:2];
                 [self AlertShow];
             }else if([@"false" isEqualToString:alaram]){
-                //停止报警
-                [self stopAlarm];
+                //停止报警如果应用运行在前台则关闭
+                if(self.appDelegate.isApplicationBackground){
+                    [self stopAlarm];
+                }
                 [self.mAlertView setHidden:YES];
                 [self.bgFrame setHidden:YES];
             }else{
-                //某指针报警
-                if(![self playAlarm]){
+                //某指针报警如果应用运行在前台则报警否则发送消息
+                if(self.appDelegate.isApplicationBackground){
+                    [self playAlarm];
+                }else{
                     [self senderNotification:LOCALIZATION(@"Temperature is high!")];
                 }
                 [self.mAlertView.lblTitle setText:[NSString stringWithFormat:@"%@-%@",alaram,LOCALIZATION(@"Warning")]];
