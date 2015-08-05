@@ -34,15 +34,15 @@
 - (void)setInitValue
 {
     self.fontName=@"Helvetica";
-    self.xAxisFontSize = 14;
+    self.xAxisFontSize = 10;
     self.xAxisFontColor = DEFAULTITLECOLOR(154);
     self.horizontalLinesColor = DEFAULTITLECOLOR(74);
     self.axisLineWidth = CGWidth(1);
-    self.axisLeftLineWidth = CGWidth(35);
-    self.axisBottomLinetHeight = CGHeight(30);
-    self.pointerInterval = CGWidth(30);
+    self.axisLeftLineWidth = CGWidth(20);
+    self.axisBottomLinetHeight = CGHeight(20);
+    self.pointerInterval = CGWidth(20);
     self.horizontalLineWidth = CGWidth(0.2);
-    self.numberOfVerticalElements=8;
+    self.numberOfVerticalElements=13;
     self.horizontalLineInterval=(self.frame.size.height-self.axisBottomLinetHeight-10)/self.numberOfVerticalElements;
     self.axisLineSizeWidth=self.frame.size.width-self.axisLeftLineWidth;
     self.isAutoOffset=YES;
@@ -131,7 +131,7 @@
             NSNumber* value = [pointArray objectAtIndex:i];
             float floatValue = value.floatValue;
             float height = (floatValue-self.min)/self.interval*self.horizontalLineInterval-self.contentScroll.y+startHeight;
-            float width =self.pointerInterval+self.pointerInterval*(i+1)/10+mOffsetX+ startHeight+5;
+            float width =self.pointerInterval+self.pointerInterval*(i+1)/10+mOffsetX+ startWidth;
             if (width<startWidth) {
                 NSNumber* nextValue = [pointArray objectAtIndex:i+1];
                 float nextFloatValue = nextValue.floatValue;
@@ -153,7 +153,7 @@
             float height = (floatValue-self.min)/self.interval*self.horizontalLineInterval-self.contentScroll.y+startHeight;
             float width =self.pointerInterval+self.pointerInterval*(i+1)/10+mOffsetX+ startWidth;
             if (width>startWidth) {
-                CGContextFillEllipseInRect(context, CGRectMake(width-POINT_CIRCLE, height-POINT_CIRCLE/2, POINT_CIRCLE, POINT_CIRCLE));
+                CGContextFillEllipseInRect(context, CGRectMake(width-POINT_CIRCLE/2, height-POINT_CIRCLE/2, POINT_CIRCLE, POINT_CIRCLE));
             }
         }
         CGContextStrokePath(context);

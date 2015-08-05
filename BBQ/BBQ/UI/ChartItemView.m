@@ -67,7 +67,7 @@
         [self.lineChartView setUserInteractionEnabled:YES];
         [self.frameView addSubview:self.lineChartView];
         self.lineChartView.min = 0;
-        self.lblTimerUnit=[[UILabel alloc]initWithFrame:CGRectMake1(260*self.scale, 130*self.scale, 60*self.scale, 20*self.scale)];
+        self.lblTimerUnit=[[UILabel alloc]initWithFrame:CGRectMake1(260*self.scale, 150*self.scale, 60*self.scale, 20*self.scale)];
         [self.lblTimerUnit setFont:[UIFont systemFontOfSize:12*self.scale]];
         [self.lblTimerUnit setTextColor:DEFAULTITLECOLOR(150)];
         [self.lblTimerUnit setTextAlignment:NSTextAlignmentCenter];
@@ -233,13 +233,13 @@
     PNPlot *plot1 = [[PNPlot alloc] init];
     plot1.plottingValues = plottingDataValues1;
     plot1.lineColor = DEFAULTITLECOLORRGB(7, 166, 206);
-    plot1.lineWidth = 0.5;
+    plot1.lineWidth = 2;
     [self.lineChartView addPlot:plot1];
     //设定温度值
     PNPlot *plot2 = [[PNPlot alloc] init];
     plot2.plottingValues = plottingDataValues2;
     plot2.lineColor = DEFAULTITLECOLORRGB(210, 91, 44);
-    plot2.lineWidth = 1;
+    plot2.lineWidth = 2;
     [self.lineChartView  addPlot:plot2];
 }
 
