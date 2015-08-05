@@ -141,7 +141,7 @@
             NSDictionary *d1=[array objectAtIndex:0];
             [self.mMenuItemView1 setMenuData:d1];
             [self.mMenuItemView1 setHidden:NO];
-            if(currentZoomTag>=0){
+            if(self.bgFrame.isHidden&&currentZoomTag>=0){
                 if([self.mMenuItemView1.currentKey isEqualToString:self.mMenuItemLandView.currentKey]){
                     [self.mMenuItemLandView setMenuData:d1];
                     [self.mMenuItemLandView setHidden:NO];
@@ -151,7 +151,7 @@
             NSDictionary *d2=[array objectAtIndex:1];
             [self.mMenuItemView2 setMenuData:d2];
             [self.mMenuItemView2 setHidden:NO];
-            if(currentZoomTag>=0){
+            if(self.bgFrame.isHidden&&currentZoomTag>=0){
                 if([self.mMenuItemView2.currentKey isEqualToString:self.mMenuItemLandView.currentKey]){
                     [self.mMenuItemLandView setMenuData:d2];
                     [self.mMenuItemLandView setHidden:NO];
@@ -161,7 +161,7 @@
             NSDictionary *d3=[array objectAtIndex:2];
             [self.mMenuItemView3 setMenuData:d3];
             [self.mMenuItemView3 setHidden:NO];
-            if(currentZoomTag>=0){
+            if(self.bgFrame.isHidden&&currentZoomTag>=0){
                 if([self.mMenuItemView3.currentKey isEqualToString:self.mMenuItemLandView.currentKey]){
                     [self.mMenuItemLandView setMenuData:d3];
                     [self.mMenuItemLandView setHidden:NO];
@@ -171,7 +171,7 @@
             NSDictionary *d4=[array objectAtIndex:3];
             [self.mMenuItemView4 setMenuData:d4];
             [self.mMenuItemView4 setHidden:NO];
-            if(currentZoomTag>=0){
+            if(self.bgFrame.isHidden&&currentZoomTag>=0){
                 if([self.mMenuItemView4.currentKey isEqualToString:self.mMenuItemLandView.currentKey]){
                     [self.mMenuItemLandView setMenuData:d4];
                     [self.mMenuItemLandView setHidden:NO];
@@ -179,7 +179,7 @@
             }
         }
     }
-    if(currentZoomTag>=0){
+    if(self.bgFrame.isHidden&&currentZoomTag>=0){
         if([self.mMenuItemLandView isHidden]){
             currentZoomTag=-1;
         }
