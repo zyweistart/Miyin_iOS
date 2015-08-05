@@ -189,6 +189,10 @@
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    CGFloat lineOffsetX=self.pointerInterval*self.xAxisValues.count;
+    if(self.isAutoOffset){
+        _contentScroll.x=-(lineOffsetX-self.axisLineSizeWidth);
+    }
     self.isAutoOffset=NO;
     CGPoint touchLocation=[[touches anyObject] locationInView:self];
     CGPoint prevouseLocation=[[touches anyObject] previousLocationInView:self];
@@ -200,7 +204,6 @@
     if (_contentScroll.x>0) {
         _contentScroll.x=0;
     }
-    CGFloat lineOffsetX=self.pointerInterval*self.xAxisValues.count;
     if(lineOffsetX<self.axisLineSizeWidth){
         _contentScroll.x=0;
         self.isAutoOffset=YES;
