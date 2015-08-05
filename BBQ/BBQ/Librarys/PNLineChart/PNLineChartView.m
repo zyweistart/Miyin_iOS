@@ -7,7 +7,7 @@
 #pragma mark -
 #pragma mark MACRO
 
-#define POINT_CIRCLE 3.0f
+#define POINT_CIRCLE 1.0f
 //#define DEVICE_WIDTH CGWidth(320)
 #define FLOAT_NUMBER_FORMATTER_STRING  @"%.2f"
 
@@ -119,12 +119,6 @@
         if(lineTotalLength>width){
             mOffsetX=width-lineTotalLength;
         }
-    }else{
-        //有偏移的情况下
-        //            if(lineTotalLength>width){
-        //                self.mOffsetX=width-lineTotalLength;
-        //            }
-//        NSLog(@"有偏移的情况下：%lf",self.mOffsetX);
     }
     // draw lines
     for (int i=0; i<self.plots.count; i++) {
