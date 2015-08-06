@@ -15,7 +15,7 @@
 @property (strong,nonatomic)UIView *frameView;
 @property (strong,nonatomic)NSDictionary *currentData;
 @property (strong,nonatomic)UILabel *lblTitle;
-@property (strong,nonatomic)UILabel *lblSetTime;
+@property (strong,nonatomic)UIButton *bSetTime;
 @property (strong,nonatomic)UILabel *lblCurrentCentigrade;
 @property (strong,nonatomic)UIButton *lblCurrentSamllCentigrade;
 @property (strong,nonatomic)UIButton *lblHighestCentigrade;

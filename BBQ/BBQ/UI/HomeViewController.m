@@ -61,7 +61,7 @@
         self.mMenuItemLandView=[[MenuItemLandView alloc]initWithFrame:rect];
         [self.mMenuItemLandView setBaseController:self];
         [self.mMenuItemLandView.lblHighestCentigrade addTarget:self action:@selector(setZoomValue:) forControlEvents:UIControlEventTouchUpInside];
-        [self.mMenuItemLandView.bTimer addTarget:self action:@selector(setZoomTimer:) forControlEvents:UIControlEventTouchUpInside];
+        [self.mMenuItemLandView.bSetTime addTarget:self action:@selector(setZoomTimer:) forControlEvents:UIControlEventTouchUpInside];
         [self.mMenuItemLandView setUserInteractionEnabled:YES];
         [self.mMenuItemLandView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeHide:)]];
         [self.mMenuItemLandView setHidden:YES];
@@ -389,7 +389,7 @@
 {
     NSInteger tag=[[sender view]tag];
     currentZoomTag=tag;
-    [self.mMenuItemLandView.bTimer setTag:tag];
+    [self.mMenuItemLandView.bSetTime setTag:tag];
     [self.mMenuItemLandView.lblHighestCentigrade setTag:tag];
     if(tag==0){
         [self.mMenuItemLandView setMenuData:self.mMenuItemView1.currentData];
@@ -417,8 +417,18 @@
 - (void)frmeHide:(id)sender
 {
     currentZoomTag=-1;
-    [self.mMenuItemLandView setHidden:YES];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDuration:0.2];
     self.mMenuItemLandView.transform = CGAffineTransformMakeRotation(M_PI/90*180);
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(hideChartItemLandView)];
+    [UIView commitAnimations];
+}
+
+- (void)hideChartItemLandView
+{
+    [self.mMenuItemLandView setHidden:YES];
 }
 
 - (MenuItemView*)createMenuItemViewWithY:(CGFloat)y Tag:(NSInteger)tag
@@ -427,8 +437,8 @@
     [mMenuItemView setBaseController:self];
     [mMenuItemView.lblHighestCentigrade setTag:tag];
     [mMenuItemView.lblHighestCentigrade addTarget:self action:@selector(setValue:) forControlEvents:UIControlEventTouchUpInside];
-    [mMenuItemView.bTimer setTag:tag];
-    [mMenuItemView.bTimer addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
+    [mMenuItemView.bSetTime setTag:tag];
+    [mMenuItemView.bSetTime addTarget:self action:@selector(setTimer:) forControlEvents:UIControlEventTouchUpInside];
     [mMenuItemView setTag:tag];
     [mMenuItemView setUserInteractionEnabled:YES];
     [mMenuItemView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(frmeChange:)]];

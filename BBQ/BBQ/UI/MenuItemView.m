@@ -92,18 +92,15 @@
         
         self.bTimer=[[UIButton alloc]initWithFrame:CGRectMake1(235*self.scale, 77*self.scale, 46*self.scale, 52*self.scale)];
         [self.frameView addSubview:self.bTimer];
-        self.lblSetTime=[[UILabel alloc]initWithFrame:CGRectMake1(220*self.scale, 135*self.scale, 80*self.scale, 30*self.scale)];
-        self.lblSetTime.layer.cornerRadius=CGWidth(15*self.scale);
-        self.lblSetTime.layer.masksToBounds=YES;
-        self.lblSetTime.layer.borderWidth=2;
-        self.lblSetTime.layer.borderColor=DEFAULTITLECOLORRGB(137, 140, 255).CGColor;
-//        self.lblSetTime.layer.shadowColor = DEFAULTITLECOLORRGB(137, 140, 255).CGColor;
-//        self.lblSetTime.layer.shadowOffset = CGSizeMake(1, 1);
-//        self.lblSetTime.layer.shadowOpacity = 0.5;
-        [self.lblSetTime setTextColor:DEFAULTITLECOLOR(41)];
-        [self.lblSetTime setFont:[UIFont systemFontOfSize:18*self.scale]];
-        [self.lblSetTime setTextAlignment:NSTextAlignmentCenter];
-        [self.frameView addSubview:self.lblSetTime];
+        self.bSetTime=[[UIButton alloc]initWithFrame:CGRectMake1(220*self.scale, 135*self.scale, 80*self.scale, 30*self.scale)];
+        self.bSetTime.layer.cornerRadius=CGWidth(15*self.scale);
+        self.bSetTime.layer.masksToBounds=YES;
+        self.bSetTime.layer.borderWidth=2;
+        self.bSetTime.layer.borderColor=DEFAULTITLECOLORRGB(137, 140, 255).CGColor;
+        [self.bSetTime setTitleColor:DEFAULTITLECOLOR(41) forState:UIControlStateNormal];
+        [self.bSetTime.titleLabel setFont:[UIFont systemFontOfSize:18*self.scale]];
+        [self.bSetTime.titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [self.frameView addSubview:self.bSetTime];
     }
     return self;
 }
@@ -225,6 +222,7 @@
 {
     NSString *timer=[[[Data Instance]settValue]objectForKey:key];
     int tv=[timer intValue];
+    NSString *timerStr=@"00:00";
     if(tv>0){
         [self.bTimer setImage:[UIImage imageNamed:@"时间_s"] forState:UIControlStateNormal];
         int hour=tv/60;
@@ -237,11 +235,11 @@
         if(min>9){
             mstr=[NSString stringWithFormat:@"%d",min];
         }
-        [self.lblSetTime setText:[NSString stringWithFormat:@"%@:%@",hstr,mstr]];
+        timerStr=[NSString stringWithFormat:@"%@:%@",hstr,mstr];
     }else{
         [self.bTimer setImage:[UIImage imageNamed:@"时间_n"] forState:UIControlStateNormal];
-        [self.lblSetTime setText:@"00:00"];
     }
+    [self.bSetTime setTitle:timerStr forState:UIControlStateNormal];
 }
 
 - (void)closeAll

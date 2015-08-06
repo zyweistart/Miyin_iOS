@@ -209,8 +209,18 @@
 - (void)frmeHide:(id)sender
 {
     currentZoomTag=-1;
-    [self.mChartItemLandView setHidden:YES];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDuration:0.2];
     self.mChartItemLandView.transform = CGAffineTransformMakeRotation(M_PI/90*180);
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(hideChartItemLandView)];
+    [UIView commitAnimations];
+}
+
+- (void)hideChartItemLandView
+{
+    [self.mChartItemLandView setHidden:YES];
 }
 
 - (ChartItemView*)createChartItemViewWithX:(CGFloat)x Tag:(NSInteger)tag
