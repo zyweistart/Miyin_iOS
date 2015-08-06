@@ -198,7 +198,7 @@
     [self.mChartItemLandView setHidden:NO];
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:0.2];
+    [UIView setAnimationDuration:0.3];
     self.mChartItemLandView.transform = CGAffineTransformMakeRotation(M_PI/2);
     CGAffineTransform transform = self.mChartItemLandView.transform;
     transform = CGAffineTransformScale(transform, 1,1);
@@ -211,7 +211,7 @@
     currentZoomTag=-1;
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:0.2];
+    [UIView setAnimationDuration:0.3];
     self.mChartItemLandView.transform = CGAffineTransformMakeRotation(M_PI/90*180);
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(hideChartItemLandView)];
