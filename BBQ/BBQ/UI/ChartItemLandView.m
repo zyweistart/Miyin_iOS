@@ -16,6 +16,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
+        [self.titleView setHidden:YES];
+        [self.lblTitleChild setHidden:NO];
+        [self.lineChartView setFrame:CGRectMake1(0*self.scale,20*self.scale, 280*self.scale, 160*self.scale)];
     }
     return self;
 }

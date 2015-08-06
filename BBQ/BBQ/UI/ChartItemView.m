@@ -32,38 +32,44 @@
         [self.frameView setUserInteractionEnabled:YES];
         [self addSubview:self.frameView];
         
-        UIView *titleView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 40*self.scale, 180*self.scale)];
-        [titleView setBackgroundColor:DEFAULTITLECOLORRGB(242, 125, 0)];
-        [self.frameView addSubview:titleView];
+        self.titleView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 40*self.scale, 180*self.scale)];
+        [self.titleView setBackgroundColor:DEFAULTITLECOLORRGB(242, 125, 0)];
+        [self.frameView addSubview:self.titleView];
         self.lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(0, 70*self.scale, 40*self.scale, 40*self.scale)];
         [self.lblTitle setTextColor:[UIColor whiteColor]];
         [self.lblTitle setFont:[UIFont systemFontOfSize:18*self.scale]];
         [self.lblTitle setTextAlignment:NSTextAlignmentCenter];
         [self.lblTitle setBackgroundColor:[UIColor clearColor]];
-        [titleView addSubview:self.lblTitle];
+        [self.titleView addSubview:self.lblTitle];
         CGAffineTransform at =CGAffineTransformMakeRotation(-M_PI/2);
         [self.lblTitle setTransform:at];
         
-        self.topLabelView=[[UIView alloc]initWithFrame:CGRectMake1(45*self.scale, 0, 275*self.scale, 20*self.scale)];
+        self.topLabelView=[[UIView alloc]initWithFrame:CGRectMake1(0*self.scale, 0, 315*self.scale, 20*self.scale)];
         [self.frameView addSubview:self.topLabelView];
-        self.lblCFType=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 55*self.scale, 20*self.scale)];
+        self.lblTitleChild=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 45*self.scale, 20*self.scale)];
+        [self.lblTitleChild setFont:[UIFont systemFontOfSize:14*self.scale]];
+        [self.lblTitleChild setTextColor:DEFAULTITLECOLOR(150)];
+        [self.lblTitleChild setTextAlignment:NSTextAlignmentCenter];
+        [self.lblTitleChild setHidden:YES];
+        [self.topLabelView addSubview:self.lblTitleChild];
+        self.lblCFType=[[UILabel alloc]initWithFrame:CGRectMake1(45*self.scale, 0, 55*self.scale, 20*self.scale)];
         [self.lblCFType setFont:[UIFont systemFontOfSize:12*self.scale]];
         [self.lblCFType setTextColor:DEFAULTITLECOLOR(150)];
         [self.topLabelView addSubview:self.lblCFType];
-        self.lblCurrentTemp=[[UILabel alloc]initWithFrame:CGRectMake1(55*self.scale, 0, 80*self.scale, 20*self.scale)];
+        self.lblCurrentTemp=[[UILabel alloc]initWithFrame:CGRectMake1(100*self.scale, 0, 80*self.scale, 20*self.scale)];
         [self.lblCurrentTemp setFont:[UIFont systemFontOfSize:12*self.scale]];
         [self.lblCurrentTemp setTextColor:DEFAULTITLECOLOR(150)];
         [self.lblCurrentTemp setTextAlignment:NSTextAlignmentRight];
         [self.topLabelView addSubview:self.lblCurrentTemp];
-        UIView *CurrentTempLine=[[UIView alloc]initWithFrame:CGRectMake1(140*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
+        UIView *CurrentTempLine=[[UIView alloc]initWithFrame:CGRectMake1(185*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
         [CurrentTempLine setBackgroundColor:DEFAULTITLECOLORRGB(7, 166, 206)];
         [self.topLabelView addSubview:CurrentTempLine];
-        self.lblSetTemp=[[UILabel alloc]initWithFrame:CGRectMake1(165*self.scale, 0, 60*self.scale, 20*self.scale)];
+        self.lblSetTemp=[[UILabel alloc]initWithFrame:CGRectMake1(210*self.scale, 0, 60*self.scale, 20*self.scale)];
         [self.lblSetTemp setFont:[UIFont systemFontOfSize:12*self.scale]];
         [self.lblSetTemp setTextColor:DEFAULTITLECOLOR(150)];
         [self.lblSetTemp setTextAlignment:NSTextAlignmentRight];
         [self.topLabelView addSubview:self.lblSetTemp];
-        UIView *SetTempLine=[[UIView alloc]initWithFrame:CGRectMake1(230*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
+        UIView *SetTempLine=[[UIView alloc]initWithFrame:CGRectMake1(275*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
         [SetTempLine setBackgroundColor:DEFAULTITLECOLORRGB(210, 91, 44)];
         [self.topLabelView addSubview:SetTempLine];
         self.lineChartView = [[PNLineChartView alloc]initWithFrame:CGRectMake1(40*self.scale,20*self.scale, 240*self.scale, 160*self.scale)];
@@ -77,10 +83,10 @@
         [self.lblTimerUnit setTextAlignment:NSTextAlignmentCenter];
         [self.frameView addSubview:self.lblTimerUnit];
         if(inch47||inch55){
-            [self.lblCurrentTemp setFrame:CGRectMake1(85*self.scale, 0, 70*self.scale, 20*self.scale)];
-            [CurrentTempLine setFrame:CGRectMake1(160*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
-            [self.lblSetTemp setFrame:CGRectMake1(185*self.scale, 0, 50*self.scale, 20*self.scale)];
-            [SetTempLine setFrame:CGRectMake1(240*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
+            [self.lblCurrentTemp setFrame:CGRectMake1(130*self.scale, 0, 70*self.scale, 20*self.scale)];
+            [CurrentTempLine setFrame:CGRectMake1(205*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
+            [self.lblSetTemp setFrame:CGRectMake1(230*self.scale, 0, 50*self.scale, 20*self.scale)];
+            [SetTempLine setFrame:CGRectMake1(285*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
             [self.lblTimerUnit setFrame:CGRectMake1(270*self.scale, 160*self.scale, 50*self.scale, 20*self.scale)];
         }
         totalSecond=0;
@@ -114,6 +120,7 @@
         NSString *key=[NSString stringWithFormat:@"%@",k];
         self.currentKey=[NSString stringWithFormat:@"%@",key];
         [self.lblTitle setText:self.currentKey];
+        [self.lblTitleChild setText:self.currentKey];
         if([@"T1" isEqualToString:self.currentKey]){
             self.max = 250;
             self.pointNumber=1200;
