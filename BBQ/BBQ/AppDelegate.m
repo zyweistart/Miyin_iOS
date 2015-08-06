@@ -23,6 +23,8 @@
     application.applicationIconBadgeNumber = 0;
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+//    //让app支持接受远程控制事件后台播放音乐
+//    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     self.bleManager = [[TIBLECBStandand alloc]init];
     [self.bleManager controlSetup:1];
     
