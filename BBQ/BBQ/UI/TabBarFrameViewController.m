@@ -47,7 +47,7 @@
         self.viewControllers = [NSArray arrayWithObjects:
                                 [self viewControllerWithTabTitle:LOCALIZATION(@"Menu") image:@"icon-nav-home" ViewController:self.mHomeViewController],
                                 [self viewControllerWithTabTitle:LOCALIZATION(@"Tools") image:@"icon-nav-tools" ViewController:self.mToolsViewController],
-                                [self viewControllerWithTabTitle:LOCALIZATION(@"Info") image:@"icon-nav-info" ViewController:self.mInfoViewController],
+//                                [self viewControllerWithTabTitle:LOCALIZATION(@"Info") image:@"icon-nav-info" ViewController:self.mInfoViewController],
                                 [self viewControllerWithTabTitle:LOCALIZATION(@"Setting") image:@"icon-nav-setting" ViewController:self.mSettingViewController], nil];
         [[self tabBar] setTintColor:[UIColor whiteColor]];
         [[self tabBar] setSelectedImageTintColor:[UIColor whiteColor]];

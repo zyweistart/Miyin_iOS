@@ -46,6 +46,8 @@
     self.horizontalLineInterval=(self.frame.size.height-self.axisBottomLinetHeight-10)/self.numberOfVerticalElements;
     self.axisLineSizeWidth=self.frame.size.width-self.axisLeftLineWidth;
     self.isAutoOffset=YES;
+    //间隔为数据的3倍
+    self.pointerInterval = self.horizontalLineInterval*3;
 }
 
 #pragma mark -
@@ -190,7 +192,7 @@
     CGContextAddLineToPoint(context, self.bounds.size.width, startHeight);
     CGContextStrokePath(context);
     for (int i=0; i<self.xAxisValues.count; i++) {
-        float width =self.pointerInterval*i+mOffsetX+ startWidth;
+        float width =self.pointerInterval*i+mOffsetX+ startWidth+self.horizontalLineInterval;
         float height = self.xAxisFontSize;
         if (width<startWidth) {
             continue;

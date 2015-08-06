@@ -77,17 +77,17 @@
         [self.lineChartView setUserInteractionEnabled:YES];
         [self.frameView addSubview:self.lineChartView];
         self.lineChartView.min = 0;
-        self.lblTimerUnit=[[UILabel alloc]initWithFrame:CGRectMake1(270*self.scale, 150*self.scale, 50*self.scale, 20*self.scale)];
-        [self.lblTimerUnit setFont:[UIFont systemFontOfSize:10*self.scale]];
+        self.lblTimerUnit=[[UILabel alloc]initWithFrame:CGRectMake1(265*self.scale, 160*self.scale, 50*self.scale, 20*self.scale)];
+        [self.lblTimerUnit setFont:[UIFont systemFontOfSize:10]];
         [self.lblTimerUnit setTextColor:DEFAULTITLECOLOR(150)];
-        [self.lblTimerUnit setTextAlignment:NSTextAlignmentCenter];
+        [self.lblTimerUnit setTextAlignment:NSTextAlignmentRight];
         [self.frameView addSubview:self.lblTimerUnit];
         if(inch47||inch55){
             [self.lblCurrentTemp setFrame:CGRectMake1(130*self.scale, 0, 70*self.scale, 20*self.scale)];
             [CurrentTempLine setFrame:CGRectMake1(205*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
             [self.lblSetTemp setFrame:CGRectMake1(230*self.scale, 0, 50*self.scale, 20*self.scale)];
             [SetTempLine setFrame:CGRectMake1(285*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
-            [self.lblTimerUnit setFrame:CGRectMake1(270*self.scale, 160*self.scale, 50*self.scale, 20*self.scale)];
+            [self.lblTimerUnit setFrame:CGRectMake1(265*self.scale, 160*self.scale, 50*self.scale, 20*self.scale)];
         }
         totalSecond=0;
         if(self.mTimer==nil){
