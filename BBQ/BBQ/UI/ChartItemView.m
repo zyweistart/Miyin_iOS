@@ -208,7 +208,7 @@
         [totalData addObject:vv];
         [totalDataDic setObject:totalData forKey:timer];
     }
-    if([timerList count]>0){
+    if([timerList count]>1){
         NSArray *dlist=[totalDataDic objectForKey:[timerList objectAtIndex:0]];
         if([dlist count]<y){
             [timerList removeObjectAtIndex:0];
