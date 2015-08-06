@@ -80,10 +80,10 @@
         [self.mSetTempView setHidden:YES];
         [self.bgFrame addSubview:self.mSetTempView];
         //时间设置面板
-        if(inch35){
-            rect=CGRectMake(0, self.bgFrame.bounds.size.height-CGHeight(260)-BOTTOMTABBARHEIGHT-64, CGWidth(320),CGHeight(260));
-        }else{
+        if(inch4||inch47||inch55){
             rect=CGRectMake(0, self.bgFrame.bounds.size.height-CGHeight(260)-BOTTOMTABBARHEIGHT, CGWidth(320),CGHeight(260));
+        }else{
+            rect=CGRectMake(0, self.bgFrame.bounds.size.height-CGHeight(260)-BOTTOMTABBARHEIGHT-64, CGWidth(320),CGHeight(260));
         }
         self.pv1=[[DatePickerView alloc]initWithFrame:rect];
         [self.pv1 setCode:1];
