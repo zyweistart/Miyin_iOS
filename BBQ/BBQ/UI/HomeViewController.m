@@ -389,12 +389,6 @@
 {
     NSInteger tag=[[sender view]tag];
     currentZoomTag=tag;
-    [self.mMenuItemLandView setHidden:NO];
-    CGAffineTransform at =CGAffineTransformMakeRotation(M_PI/2);
-    [self.mMenuItemLandView setTransform:at];
-    CGFloat width=[[Data Instance]mTabBarFrameViewController].view.bounds.size.width;
-    CGFloat height=[[Data Instance]mTabBarFrameViewController].view.bounds.size.height;
-    [self.mMenuItemLandView setCenter:CGPointMake(width/2,height/2)];
     [self.mMenuItemLandView.bTimer setTag:tag];
     [self.mMenuItemLandView.lblHighestCentigrade setTag:tag];
     if(tag==0){
@@ -406,6 +400,18 @@
     }else if(tag==3){
         [self.mMenuItemLandView setMenuData:self.mMenuItemView4.currentData];
     }
+    CGFloat width=[[Data Instance]mTabBarFrameViewController].view.bounds.size.width;
+    CGFloat height=[[Data Instance]mTabBarFrameViewController].view.bounds.size.height;
+    [self.mMenuItemLandView setCenter:CGPointMake(width/2,height/2)];
+    [self.mMenuItemLandView setHidden:NO];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDuration:0.2];
+    self.mMenuItemLandView.transform = CGAffineTransformMakeRotation(M_PI/2);
+    CGAffineTransform transform = self.mMenuItemLandView.transform;
+    transform = CGAffineTransformScale(transform, 1,1);
+    self.mMenuItemLandView.transform = transform;
+    [UIView commitAnimations];
 }
 
 - (void)frmeHide:(id)sender

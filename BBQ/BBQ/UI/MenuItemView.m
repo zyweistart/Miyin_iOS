@@ -27,12 +27,17 @@
         [self.frameView setBackgroundColor:[UIColor whiteColor]];
         [self addSubview:self.frameView];
         
-        self.lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 40*self.scale, 180*self.scale)];
+        UIView *titleView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 40*self.scale, 180*self.scale)];
+        [titleView setBackgroundColor:DEFAULTITLECOLORRGB(242, 125, 0)];
+        [self.frameView addSubview:titleView];
+        self.lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(0, 70*self.scale, 40*self.scale, 40*self.scale)];
         [self.lblTitle setTextColor:[UIColor whiteColor]];
         [self.lblTitle setFont:[UIFont systemFontOfSize:18*self.scale]];
-        [self.lblTitle setBackgroundColor:DEFAULTITLECOLORRGB(242, 125, 0)];
         [self.lblTitle setTextAlignment:NSTextAlignmentCenter];
-        [self.frameView addSubview:self.lblTitle];
+        [self.lblTitle setBackgroundColor:[UIColor clearColor]];
+        [titleView addSubview:self.lblTitle];
+        CGAffineTransform at =CGAffineTransformMakeRotation(-M_PI/2);
+        [self.lblTitle setTransform:at];
         
         self.lblCurrentSamllCentigrade=[[UIButton alloc]initWithFrame:CGRectMake1(60*self.scale, 5*self.scale, 60*self.scale, 20*self.scale)];
         [self.lblCurrentSamllCentigrade setTitleColor:DEFAULTITLECOLORRGB(242, 125, 0) forState:UIControlStateNormal];

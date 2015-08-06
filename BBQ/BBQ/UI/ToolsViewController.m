@@ -165,12 +165,6 @@
 - (void)frmeChange:(UIGestureRecognizer*)sender
 {
     currentZoomTag=[[sender view]tag];
-    [self.mChartItemLandView setHidden:NO];
-    CGAffineTransform at =CGAffineTransformMakeRotation(M_PI/2);
-    [self.mChartItemLandView setTransform:at];
-    CGFloat width=[[Data Instance]mTabBarFrameViewController].view.bounds.size.width;
-    CGFloat height=[[Data Instance]mTabBarFrameViewController].view.bounds.size.height;
-    [self.mChartItemLandView setCenter:CGPointMake(width/2,height/2)];
     if(currentZoomTag==1){
         [self.mChartItemLandView.lineChartView setIsAutoOffset:self.mChartItemView1.lineChartView.isAutoOffset];
         [self.mChartItemLandView.lineChartView setContentScroll:self.mChartItemView1.lineChartView.contentScroll];
@@ -198,6 +192,18 @@
         self.mChartItemLandView.lineChartView.max=537;
     }
     [self.mChartItemLandView loadChartData];
+    CGFloat width=[[Data Instance]mTabBarFrameViewController].view.bounds.size.width;
+    CGFloat height=[[Data Instance]mTabBarFrameViewController].view.bounds.size.height;
+    [self.mChartItemLandView setCenter:CGPointMake(width/2,height/2)];
+    [self.mChartItemLandView setHidden:NO];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDuration:0.2];
+    self.mChartItemLandView.transform = CGAffineTransformMakeRotation(M_PI/2);
+    CGAffineTransform transform = self.mChartItemLandView.transform;
+    transform = CGAffineTransformScale(transform, 1,1);
+    self.mChartItemLandView.transform = transform;
+    [UIView commitAnimations];
 }
 
 - (void)frmeHide:(id)sender

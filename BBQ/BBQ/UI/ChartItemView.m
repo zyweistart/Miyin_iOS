@@ -32,12 +32,17 @@
         [self.frameView setUserInteractionEnabled:YES];
         [self addSubview:self.frameView];
         
-        self.lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(0, 0, 40*self.scale, 180*self.scale)];
+        UIView *titleView=[[UIView alloc]initWithFrame:CGRectMake1(0, 0, 40*self.scale, 180*self.scale)];
+        [titleView setBackgroundColor:DEFAULTITLECOLORRGB(242, 125, 0)];
+        [self.frameView addSubview:titleView];
+        self.lblTitle=[[UILabel alloc]initWithFrame:CGRectMake1(0, 70*self.scale, 40*self.scale, 40*self.scale)];
         [self.lblTitle setTextColor:[UIColor whiteColor]];
         [self.lblTitle setFont:[UIFont systemFontOfSize:18*self.scale]];
-        [self.lblTitle setBackgroundColor:DEFAULTITLECOLORRGB(242, 125, 0)];
         [self.lblTitle setTextAlignment:NSTextAlignmentCenter];
-        [self.frameView addSubview:self.lblTitle];
+        [self.lblTitle setBackgroundColor:[UIColor clearColor]];
+        [titleView addSubview:self.lblTitle];
+        CGAffineTransform at =CGAffineTransformMakeRotation(-M_PI/2);
+        [self.lblTitle setTransform:at];
         
         self.topLabelView=[[UIView alloc]initWithFrame:CGRectMake1(45*self.scale, 0, 275*self.scale, 20*self.scale)];
         [self.frameView addSubview:self.topLabelView];
@@ -61,7 +66,6 @@
         UIView *SetTempLine=[[UIView alloc]initWithFrame:CGRectMake1(230*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
         [SetTempLine setBackgroundColor:DEFAULTITLECOLORRGB(210, 91, 44)];
         [self.topLabelView addSubview:SetTempLine];
-        
         self.lineChartView = [[PNLineChartView alloc]initWithFrame:CGRectMake1(40*self.scale,20*self.scale, 240*self.scale, 160*self.scale)];
         [self.lineChartView setBackgroundColor:[UIColor clearColor]];
         [self.lineChartView setUserInteractionEnabled:YES];
@@ -72,6 +76,13 @@
         [self.lblTimerUnit setTextColor:DEFAULTITLECOLOR(150)];
         [self.lblTimerUnit setTextAlignment:NSTextAlignmentCenter];
         [self.frameView addSubview:self.lblTimerUnit];
+        if(inch47||inch55){
+            [self.lblCurrentTemp setFrame:CGRectMake1(85*self.scale, 0, 70*self.scale, 20*self.scale)];
+            [CurrentTempLine setFrame:CGRectMake1(160*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
+            [self.lblSetTemp setFrame:CGRectMake1(185*self.scale, 0, 50*self.scale, 20*self.scale)];
+            [SetTempLine setFrame:CGRectMake1(240*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
+            [self.lblTimerUnit setFrame:CGRectMake1(270*self.scale, 160*self.scale, 50*self.scale, 20*self.scale)];
+        }
         totalSecond=0;
         if(self.mTimer==nil){
             self.mTimer=[NSTimer scheduledTimerWithTimeInterval:SECOND target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
