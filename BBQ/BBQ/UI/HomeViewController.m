@@ -53,10 +53,12 @@
         //横屏
         
         CGRect rect;
-        if(inch35){
+        if(inch4||inch47||inch55){
+            rect=CGRectMake(0, 0,CGHeight(512),CGWidth(304));
+        }else if(inch35){
             rect=CGRectMake(0, 0,CGHeight(448),CGWidth(266));
         }else{
-            rect=CGRectMake(0, 0,CGHeight(512),CGWidth(304));
+            rect=CGRectMake(0, 0,CGHeight(416),CGWidth(247));
         }
         self.mMenuItemLandView=[[MenuItemLandView alloc]initWithFrame:rect];
         [self.mMenuItemLandView setBaseController:self];

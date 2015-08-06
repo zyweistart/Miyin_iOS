@@ -100,7 +100,7 @@
         horizontalCount++;
     }
     CGFloat lineHeight=startHeight+self.numberOfVerticalElements*self.horizontalLineInterval;
-    for (int i=0; i<=horizontalCount;i++) {
+    for (int i=3; i<=horizontalCount;i=i+3) {
         int height =self.horizontalLineInterval*i;
         float horizontalLine = height + startWidth;
         //设置y轴水平线宽
