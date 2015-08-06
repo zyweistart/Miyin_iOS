@@ -88,6 +88,7 @@
             [self.lblSetTemp setFrame:CGRectMake1(230*self.scale, 0, 50*self.scale, 20*self.scale)];
             [SetTempLine setFrame:CGRectMake1(285*self.scale, 9*self.scale, 20*self.scale, 2*self.scale)];
             [self.lblTimerUnit setFrame:CGRectMake1(265*self.scale, 160*self.scale, 50*self.scale, 20*self.scale)];
+            [self.lblTimerUnit setFont:[UIFont systemFontOfSize:10*self.scale]];
         }
         totalSecond=0;
         if(self.mTimer==nil){
