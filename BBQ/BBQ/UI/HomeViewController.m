@@ -418,6 +418,7 @@
 {
     currentZoomTag=-1;
     [self.mMenuItemLandView setHidden:YES];
+    self.mMenuItemLandView.transform = CGAffineTransformMakeRotation(M_PI/90*180);
 }
 
 - (MenuItemView*)createMenuItemViewWithY:(CGFloat)y Tag:(NSInteger)tag

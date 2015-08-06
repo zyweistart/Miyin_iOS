@@ -210,6 +210,7 @@
 {
     currentZoomTag=-1;
     [self.mChartItemLandView setHidden:YES];
+    self.mChartItemLandView.transform = CGAffineTransformMakeRotation(M_PI/90*180);
 }
 
 - (ChartItemView*)createChartItemViewWithX:(CGFloat)x Tag:(NSInteger)tag
