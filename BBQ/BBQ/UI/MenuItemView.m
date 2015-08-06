@@ -221,7 +221,7 @@
     NSString *timer=[[[Data Instance]settValue]objectForKey:key];
     int tv=[timer intValue];
     if(tv>0){
-        [self.bTimer setImage:[UIImage imageNamed:@"时间"] forState:UIControlStateNormal];
+        [self.bTimer setImage:[UIImage imageNamed:@"时间_s"] forState:UIControlStateNormal];
         int hour=tv/60;
         NSString *hstr=[NSString stringWithFormat:@"0%d",hour];
         if(hour>9){
@@ -234,7 +234,7 @@
         }
         [self.lblSetTime setText:[NSString stringWithFormat:@"%@:%@",hstr,mstr]];
     }else{
-        [self.bTimer setImage:[UIImage imageNamed:@"时间"] forState:UIControlStateNormal];
+        [self.bTimer setImage:[UIImage imageNamed:@"时间_n"] forState:UIControlStateNormal];
         [self.lblSetTime setText:@"00:00"];
     }
 }
