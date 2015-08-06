@@ -73,16 +73,28 @@
         [self.lblSetTemp setFont:[UIFont systemFontOfSize:15*self.scale]];
         [self.frameView addSubview:self.lblSetTemp];
         
-        self.lblHighestCentigrade=[[UIButton alloc]initWithFrame:CGRectMake1(100*self.scale, 130*self.scale, 100*self.scale, 40*self.scale)];
-        [self.lblHighestCentigrade.titleLabel setFont:[UIFont systemFontOfSize:30*self.scale]];
+        self.lblHighestCentigrade=[[UIButton alloc]initWithFrame:CGRectMake1(120*self.scale, 135*self.scale, 80*self.scale, 30*self.scale)];
+        self.lblHighestCentigrade.layer.cornerRadius=CGWidth(15*self.scale);
+        self.lblHighestCentigrade.layer.masksToBounds=YES;
+        self.lblHighestCentigrade.layer.borderWidth=2;
+        self.lblHighestCentigrade.layer.borderColor=DEFAULTITLECOLORRGB(137, 140, 255).CGColor;
+//        self.lblHighestCentigrade.layer.shadowColor = DEFAULTITLECOLORRGB(137, 140, 255).CGColor;
+//        self.lblHighestCentigrade.layer.shadowOffset = CGSizeMake(0, 1);
+//        self.lblHighestCentigrade.layer.shadowOpacity = 0.5;
+        [self.lblHighestCentigrade.titleLabel setFont:[UIFont systemFontOfSize:25*self.scale]];
         [self.lblHighestCentigrade setTitleColor:DEFAULTITLECOLOR(100) forState:UIControlStateNormal];
         [self.frameView addSubview:self.lblHighestCentigrade];
         
-        self.bTimer=[[UIButton alloc]initWithFrame:CGRectMake1(202*self.scale, 97*self.scale, 46*self.scale, 52*self.scale)];
-        [self.bTimer setImage:[UIImage imageNamed:@"时间"] forState:UIControlStateNormal];
+        self.bTimer=[[UIButton alloc]initWithFrame:CGRectMake1(235*self.scale, 77*self.scale, 46*self.scale, 52*self.scale)];
         [self.frameView addSubview:self.bTimer];
-        
-        self.lblSetTime=[[UILabel alloc]initWithFrame:CGRectMake1(250*self.scale, 97*self.scale, 60*self.scale, 52*self.scale)];
+        self.lblSetTime=[[UILabel alloc]initWithFrame:CGRectMake1(220*self.scale, 135*self.scale, 80*self.scale, 30*self.scale)];
+        self.lblSetTime.layer.cornerRadius=CGWidth(15*self.scale);
+        self.lblSetTime.layer.masksToBounds=YES;
+        self.lblSetTime.layer.borderWidth=2;
+        self.lblSetTime.layer.borderColor=DEFAULTITLECOLORRGB(137, 140, 255).CGColor;
+//        self.lblSetTime.layer.shadowColor = DEFAULTITLECOLORRGB(137, 140, 255).CGColor;
+//        self.lblSetTime.layer.shadowOffset = CGSizeMake(1, 1);
+//        self.lblSetTime.layer.shadowOpacity = 0.5;
         [self.lblSetTime setTextColor:DEFAULTITLECOLOR(41)];
         [self.lblSetTime setFont:[UIFont systemFontOfSize:18*self.scale]];
         [self.lblSetTime setTextAlignment:NSTextAlignmentCenter];
@@ -209,6 +221,7 @@
     NSString *timer=[[[Data Instance]settValue]objectForKey:key];
     int tv=[timer intValue];
     if(tv>0){
+        [self.bTimer setImage:[UIImage imageNamed:@"时间"] forState:UIControlStateNormal];
         int hour=tv/60;
         NSString *hstr=[NSString stringWithFormat:@"0%d",hour];
         if(hour>9){
@@ -221,7 +234,8 @@
         }
         [self.lblSetTime setText:[NSString stringWithFormat:@"%@:%@",hstr,mstr]];
     }else{
-        [self.lblSetTime setText:@""];
+        [self.bTimer setImage:[UIImage imageNamed:@"时间"] forState:UIControlStateNormal];
+        [self.lblSetTime setText:@"00:00"];
     }
 }
 

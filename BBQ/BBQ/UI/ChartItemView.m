@@ -156,6 +156,7 @@
             NSMutableArray *tmpArray=[NSMutableArray new];
             if([array count]>self.pointNumber){
                 tmpArray=[NSMutableArray new];
+                
                 for(NSInteger i=[array count]-self.pointNumber;i<[array count];i++){
                     [tmpArray addObject:[array objectAtIndex:i]];
                 }
@@ -187,13 +188,18 @@
     }
     self.lineChartView.interval = (self.lineChartView.max-self.lineChartView.min)/self.lineChartView.numberOfVerticalElements;
     NSArray *dlV=[[[Data Instance]chartData]objectForKey:self.currentKey];
-    int count=1;
     NSMutableArray *totalData=nil;
     NSMutableArray *timerList=[[NSMutableArray alloc]init];
     NSMutableDictionary *totalDataDic=[[NSMutableDictionary alloc]init];
+    int y=60/SECOND;
     for(int i=0;i<[dlV count];i++){
         NSDictionary *vv=[dlV objectAtIndex:i];
-        NSString *timer=[NSString stringWithFormat:@"%d",count];
+        int timerValue=[[vv objectForKey:CHARTTIMER]intValue];
+        int b=timerValue/y;
+        if(timerValue%y>0){
+            b++;
+        }
+        NSString *timer=[NSString stringWithFormat:@"%d",b];
         totalData=[totalDataDic objectForKey:timer];
         if(totalData==nil){
             [timerList addObject:timer];
@@ -201,8 +207,11 @@
         }
         [totalData addObject:vv];
         [totalDataDic setObject:totalData forKey:timer];
-        if([totalData count]==10){
-            count++;
+    }
+    if([timerList count]>0){
+        NSArray *dlist=[totalDataDic objectForKey:[timerList objectAtIndex:0]];
+        if([dlist count]<y){
+            [timerList removeObjectAtIndex:0];
         }
     }
     //x轴
