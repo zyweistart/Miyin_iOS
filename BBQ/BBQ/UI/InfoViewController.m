@@ -48,7 +48,7 @@
     if([array count]==0){
         [self.tableView setHidden:YES];
         [self.mConnectedPanel setHidden:NO];
-        [self.lblMessage setText:LOCALIZATION(@"Plase insert probes")];
+        [self.lblMessage setText:LOCALIZATION(@"Please insert probes")];
         return;
     }
     self.dataItemArray=[[NSMutableArray alloc]initWithArray:array];

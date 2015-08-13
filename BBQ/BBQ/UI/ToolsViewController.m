@@ -87,7 +87,7 @@
     if([array count]==0){
         [self.scrollFrameView setHidden:YES];
         [self.mConnectedPanel setHidden:NO];
-        [self.lblMessage setText:LOCALIZATION(@"Plase insert probes")];
+        [self.lblMessage setText:LOCALIZATION(@"Please insert probes")];
         return;
     }
     [self.scrollFrameView setContentSize:CGSizeMake1(320, 190*[array count])];

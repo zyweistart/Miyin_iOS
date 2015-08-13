@@ -22,7 +22,7 @@
 "BBQ Connected" = "BBQ 已连接";
 "BBQ Unconnected" = "BBQ 未连接";
 "Connection is broken" = "连接中断";
-"Plase insert probes" = "请插入探针";
+"Please insert probes" = "请插入探针";
 "The connection timeout, please try again" = "连接超时，请重试";
 "Set" = "设定";
 "Temp" = "温度";
