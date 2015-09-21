@@ -575,7 +575,7 @@
 		C9ECF1631B65C1460088E110 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Start;
 				TargetAttributes = {
 					C9ECF16A1B65C1460088E110 = {
@@ -754,6 +754,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -829,6 +830,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BBQ/Classes/Project/绍兴巴贝/ios_BLECollectionOpen/BLECollection/Demo/UMFeedback",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.start.grillnow;
 				PRODUCT_NAME = BBQ;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -848,6 +850,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BBQ/Classes/Project/绍兴巴贝/ios_BLECollectionOpen/BLECollection/Demo/UMFeedback",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.start.grillnow;
 				PRODUCT_NAME = BBQ;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -867,6 +870,7 @@
 				);
 				INFOPLIST_FILE = BBQTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.start.zmcy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = BBQTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BBQ.app/BBQ";
 			};
@@ -882,6 +886,7 @@
 				);
 				INFOPLIST_FILE = BBQTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.start.zmcy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = BBQTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BBQ.app/BBQ";
 			};

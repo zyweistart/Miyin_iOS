@@ -182,7 +182,7 @@ typedef struct scanProcessStep{
         //列表中有曾经发现的设备，如果重复发现则刷新，
         for(i = 0; i < self.peripherals.count; i++) {
             CBPeripheral *p = [self.peripherals objectAtIndex:i];
-            if (p.UUID == peripheral.UUID) {
+            if ([p.identifier.UUIDString isEqualToString:peripheral.identifier.UUIDString]) {
                 [self.peripherals replaceObjectAtIndex:i withObject:peripheral];
                 //发送外围设备的序号，以及RSSI通知
 //                rssiArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:i],RSSI, nil];
@@ -462,7 +462,8 @@ typedef struct scanProcessStep{
 - (NSString *)getUUIDString
 {
     NSString  *uuidString = nil;
-    NSString *auuid = [[NSString alloc]initWithFormat:@"%@", self.activePeripheral.UUID];
+//    NSString *auuid = [[NSString alloc]initWithFormat:@"%@", self.activePeripheral.UUID];
+    NSString *auuid = [[NSString alloc]initWithFormat:@"%@", self.activePeripheral.identifier.UUIDString];
     if (auuid.length >= 36) {
         uuidString = [auuid substringWithRange:NSMakeRange(auuid.length-36, 36)];
     }
