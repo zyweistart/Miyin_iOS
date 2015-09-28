@@ -82,8 +82,8 @@
 @property (nonatomic,copy) NSString *p2TNum;
 @property (nonatomic,assign) BOOL isOK; // 报警
 @property (nonatomic,assign) BOOL isOK2; // 报警
-@property (nonatomic,assign) int p1T;
-@property (nonatomic,assign) int p2T;
+@property (nonatomic,assign) float p1T;
+@property (nonatomic,assign) float p2T;
 @property (nonatomic,assign) CGFloat p1ViewY; // 保存p1的framY
 @property (nonatomic,assign) CGFloat foodViewY; // 食物view的framY
 @property (nonatomic,assign) CGFloat p2ViewY; // 保存p2的framY

@@ -58,7 +58,7 @@
         lb.text =[NSString stringWithFormat:@"%d℃",(int)content];
     }
     else{
-        lb.text =[NSString stringWithFormat:@"%d℉",(int)[[DataCenter getInstance] ConvertC2F:content]];
+        lb.text =[NSString stringWithFormat:@"%d℉",(int)[[DataCenter getInstance] CConvertF:content]];
     }
 }
 - (void)viewDidLoad

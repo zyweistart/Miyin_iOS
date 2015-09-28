@@ -208,19 +208,19 @@
        _P2FoodName.text = currentFood.FoodName;
     }
     
-    int t = [DataCenter getInstance].CurrentTempTarget;
+    float t = [DataCenter getInstance].CurrentTempTarget;
     // 设置温度值，lbMaxTemperature--温度值
     if([DataCenter getInstance].IsC){
-        _showTNumber.text =[NSString stringWithFormat:@"%d℃",t];
+        _showTNumber.text =[NSString stringWithFormat:@"%d℃",(int)t];
         if (_isP1orP2 == 1) {
-            _P1SetT.text =[NSString stringWithFormat:@"%d℃",t];
+            _P1SetT.text =[NSString stringWithFormat:@"%d℃",(int)t];
              // 存续各自的数据
             [_P1FoodDictionary removeAllObjects];
             [_P1FoodDictionary setObject:currentFood forKey:@"myFood"];
 
         } else if (_isP1orP2 == 2)
         {
-           _P2SetT.text =[NSString stringWithFormat:@"%d℃",t];
+           _P2SetT.text =[NSString stringWithFormat:@"%d℃",(int)t];
             [_p2FoodDictionary removeAllObjects];
             [_p2FoodDictionary setObject:currentFood forKey:@"myFood"];
         }
@@ -347,8 +347,8 @@
     }
     }
         
-    _p1T = [_p1TNum intValue];
-    _p2T = [_p2TNum intValue];
+    _p1T = [_p1TNum floatValue];
+    _p2T = [_p2TNum floatValue];
     
     [DataCenter getInstance].Temperature = _p1T;
     CompareTargetTimeDuring++;

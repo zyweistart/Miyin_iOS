@@ -274,7 +274,8 @@ DataCenter* instance;
 //    NSLog(@"温度--1  %0.1f",(32.5 + (C-.05)*1.8f));
 //    NSLog(@"温度--2  %0.1f",((32 + (C-0.5)*1.8f)*10+5)/10);
 //    return i;
-    return [self CConvertF:C];
+    float i=[self CConvertF:C];
+    return i+0.51;
 }
 
 -(float)GetTemperature
